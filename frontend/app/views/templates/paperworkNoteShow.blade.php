@@ -14,7 +14,7 @@
 	      	<li>
 		      	<div class="btn-group">
 		      		<button class="btn btn-default navbar-btn"><i class="fa fa-info-circle"></i></button>
-		      		<button id="noteHistory" class="btn btn-default navbar-btn"><i class="fa fa-history"></i></button>
+		      		<button class="btn btn-default navbar-btn" data-toggle="freqselector" data-target="#wayback-machine"><i class="fa fa-history"></i></button>
 		      		<a href="#/n/{{note.notebook_id}}/{{note.id}}/edit" class="btn btn-default navbar-btn"><i class="fa fa-pencil-square-o"></i></a>
 		      		<button class="btn btn-default navbar-btn"><i class="fa fa-share-alt"></i></button>
 		      		<button class="btn btn-danger navbar-btn"><i class="fa fa-trash-o"></i></button>
@@ -25,50 +25,48 @@
 	</div><!-- /.container-fluid -->
 </nav>
 
-<div class="wayback-timeline">
-	<!-- <div class="content-fadeout-bottom"></div> -->
-	<div class="fadeout-left fadeout"></div>
-	<div class="fadeout-right fadeout"></div>
-	<div class="arrow-top"></div>
-	<div class="arrow-bottom"></div>
-	<div class="background">
-		<div class="content">
-			<div class="item item-dummy">
-				<div id="timeline-item-0" class="item-snap"></div>
-				<a><div>&nbsp;</div><div>&nbsp;</div></a>
+<div id="wayback-machine" class="freqselector">
+	<div class="freqselector-fadeout-left freqselector-fadeout"></div>
+	<div class="freqselector-fadeout-right freqselector-fadeout"></div>
+	<div class="freqselector-arrow-top"></div>
+	<div class="freqselector-arrow-bottom"></div>
+	<div class="freqselector-background">
+		<div class="freqselector-content">
+			<div class="freqselector-item freqselector-item-dummy">
+				<div id="freqselector-item-0" class="freqselector-item-snap"></div>
 			</div>
-			<div class="item item-not-dummy">
-			<div id="timeline-item-1" class="item-snap"></div>
+			<div class="freqselector-item freqselector-item-not-dummy">
+			<div id="freqselector-item-1" class="freqselector-item-snap"></div>
 				<div>
-					<div class="item-title">19.07.2014</div>
-					<div class="item-subtitle">23:05</div>
+					<div class="freqselector-item-title">19.07.2014</div>
+					<div class="freqselector-item-subtitle">23:05</div>
 				</div>
 			</div>
-			<div class="item item-not-dummy">
-				<div id="timeline-item-2" class="item-snap"></div>
+			<div class="freqselector-item freqselector-item-not-dummy">
+				<div id="freqselector-item-2" class="freqselector-item-snap"></div>
 				<div>
-					<div class="item-title">20.07.2014</div>
-					<div class="item-subtitle">14:09</div>
+					<div class="freqselector-item-title">20.07.2014</div>
+					<div class="freqselector-item-subtitle">14:09</div>
 				</div>
 			</div>
-			<div class="item item-not-dummy">
-				<div id="timeline-item-3" class="item-snap"></div>
+			<div class="freqselector-item freqselector-item-not-dummy">
+				<div id="freqselector-item-3" class="freqselector-item-snap"></div>
 				<div>
-					<div class="item-title">21.07.2014</div>
-					<div class="item-subtitle">15:22</div>
+					<div class="freqselector-item-title">21.07.2014</div>
+					<div class="freqselector-item-subtitle">15:22</div>
 				</div>
 			</div>
-			<div class="item item-not-dummy">
-				<div id="timeline-item-4" class="item-snap"></div>
+			<div class="freqselector-item freqselector-item-not-dummy">
+				<div id="freqselector-item-4" class="freqselector-item-snap"></div>
 				<div>
-					<div class="item-title">23.07.2014</div>
-					<div class="item-subtitle">09:53</div>
+					<div class="freqselector-item-title">23.07.2014</div>
+					<div class="freqselector-item-subtitle">09:53</div>
 				</div>
 			</div>
-			<div class="item item-dummy">
-				<div id="timeline-item-5" class="item-snap"></div>
-				<a><div>&nbsp;</div><div>&nbsp;</div></a>
+			<div class="freqselector-item freqselector-item-dummy">
+				<div id="freqselector-item-5" class="freqselector-item-snap"></div>
 			</div>
+			<div class="clear"></div>
 		</div>
 	</div>
 </div>
