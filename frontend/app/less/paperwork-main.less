@@ -147,7 +147,24 @@ body {
   }
 }
 
+// Search
+.navbar-search {
+  border: #222;
+  background-color: #444;
+  color: #f0f0f0;
+}
+
 // Tree List
+#sidebarNotebooks {
+  background-color: @gray-lighter;
+  color: @gray;
+  // top: 50px;
+}
+
+.tree-nav-sidebar {
+  margin-top: -20px;
+}
+
 .tree {
     min-height:20px;
     margin-bottom:20px;
@@ -168,7 +185,7 @@ body {
     li {
         list-style-type:none;
         margin:0;
-        padding:10px 0px 0 0px;
+        padding:0px 0px 10px 0px;
         position:relative
     }
     li::before, li::after {
@@ -220,149 +237,12 @@ body {
 
     span.tree-header {
       display: block;
-      background-color: @gray-lighter;
       padding: 10px;
-      margin-top: 10px;
+      margin: 0px 0px 10px 0px;
       font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
       font-weight: 400;
       font-size: 1.1em;
     }
-}
-
-.wayback-timeline {
-  height: 80px;
-  width: 100%;
-  position: relative;
-  cursor: default;
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-
-  .fadeout {
-    width: 100px;
-    height: 80px;
-    position: absolute;
-    z-index: 10;
-  }
-
-  .fadeout-left {
-    background: transparent url('/images/timeline-fadeout-left.png?3') repeat-y top left;
-    left: 0;
-  }
-
-  .fadeout-right {
-    background: transparent url('/images/timeline-fadeout-right.png?3') repeat-y top left;
-    right: 0;
-  }
-
-  .arrow {
-    background: transparent url('/images/timeline-arrow.png?as13') no-repeat top left;
-    width: 23px;
-    height: 80px;
-    position: absolute;
-    left: 50%;
-    top: 0px;
-    z-index: 11;
-  }
-
-  .arrow-top {
-    background: transparent url('/images/timeline-arrow.png?as13') no-repeat top left;
-    width: 23px;
-    height: 13px;
-    position: absolute;
-    left: 50%;
-    top: 0px;
-    z-index: 11;
-  }
-
-  .arrow-bottom {
-    background: transparent url('/images/timeline-arrow.png?as13') no-repeat bottom left;
-    width: 23px;
-    height: 13px;
-    position: absolute;
-    left: 50%;
-    bottom: 0px;
-    z-index: 11;
-  }
-
-  .background {
-    height: 80px;
-    width: 100%;
-    background: #fff url('/images/timeline-background.png?11') repeat-x top left;
-    overflow: hidden;
-    position: absolute;
-
-    .content {
-      height: 80px;
-      //width: 1440px;
-      position: absolute;
-      overflow: hidden;
-
-      .item {
-        height: 80px;
-        // line-height: 42px;
-        width: 144px;
-        display: inline-block;
-        background: transparent url('/images/timeline-ruler.png?14') repeat-x top left;
-        text-align: center;
-        margin: 0px;
-        padding: 0px;
-        padding-top: 18px;
-        clear: both;
-
-        a {
-          display: block;
-          color: #333;
-          padding: 0px;
-          margin: 0px;
-        }
-
-        a:hover {
-          text-decoration: none;
-        }
-
-        .item-title {
-          color: #333;
-          font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-          font-weight: normal;
-          font-size: 1.1em;
-        }
-
-        .item-subtitle {
-          color: #666;
-          font-family: "LatoLight", "Helvetica Neue", Helvetica, Arial, sans-serif;
-          font-weight: normal;
-          font-size: 1.0em;
-        }
-
-        .item-snap {
-          background-color: red;
-          width: 3px;
-          height: 20px;
-          position: relative;
-          left: 50%;
-          float: left;
-          clear: both;
-          visibility: hidden;
-        }
-      }
-
-      .item-dummy {
-      }
-    }
-  }
-
-
-
-
-  .content-fadeout-bottom {
-    width: 100%;
-    height: 100px;
-    background: transparent url('/images/content-fadeout-bottom.png') repeat-x top left;
-  }
 }
 
 .clear {
