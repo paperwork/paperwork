@@ -1,14 +1,12 @@
 @extends("layouts/user-layout")
 @section("content")
 
-@include('modal/new-notebook')
+@include('modal/notebook')
 
 <div class="container-fluid">
 	<div class="row">
-		<div id="sidebarNotebooks" class="col-sm-3 col-md-2 sidebar" ng-controller="paperworkSidebarNotebooksController" ng-show="isVisible()">
-			<a class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#modalNewNotebook">[[Lang::get('keywords.new_notebook')]]</a>
-			<a class="btn btn-primary btn-sm btn-block" ng-disabled="notebooks.length">[[Lang::get('keywords.new_note')]]</a>
-			<ul class="nav nav-sidebar">
+		<div id="sidebarNotebooks" class="col-sm-3 col-md-2 sidebar hidden-xs" ng-controller="paperworkSidebarNotebooksController" ng-show="isVisible()">
+			<ul class="nav nav-sidebar tree-nav-sidebar">
 				<div class="tree ">
 					<ul class="tree-base">
 						<li>
@@ -45,13 +43,7 @@
 			</ul>
 		</div>
 
-		<div "sidebarNotes" class="col-sm-4 col-sm-offset-3 col-md-3 col-md-offset-2 sidebar" ng-controller="paperworkSidebarNotesController" ng-show="isVisible()">
-			<div id="search-form">
-				<form id="searchForm" role="form" ng-submit="submitSearch()">
-					<input type="text" class="form-control" placeholder="[[Lang::get('keywords.search_dotdotdot')]]" ng-model="search">
-				</form>
-			</div>
-
+		<div "sidebarNotes" class="col-sm-4 col-sm-offset-3 col-md-3 col-md-offset-2 sidebar hidden-xs" ng-controller="paperworkSidebarNotesController" ng-show="isVisible()">
 			<ul id="notes-list" class="nav nav-sidebar notes-list" ng-controller="paperworkNotesListController">
 				<li class="notes-list-item" ng-repeat="note in notes" ng-click="noteSelect(note.notebook_id, note.id)" ng-class="{ 'active': note.notebook_id + '-' + note.id == getNoteSelectedId() }">
 					<a href="#{{getNoteLink(note.notebook_id, note.id)}}">
@@ -62,7 +54,7 @@
 			</ul>
 		</div>
 
-		<div class="{{ isVisible() ? 'col-sm-5 col-sm-offset-7 col-md-7 col-md-offset-5 main' : 'col-sm-12 col-md-12 main' }}" ng-controller="paperworkViewController">
+		<div class="{{ isVisible() ? 'col-xs-12 col-sm-5 col-sm-offset-7 col-md-7 col-md-offset-5 main' : 'col-xs-12 col-sm-12 col-md-12 main' }}" ng-controller="paperworkViewController">
 			<div ng-view></div>
 		</div>
 	</div>
