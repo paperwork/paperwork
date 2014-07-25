@@ -1,112 +1,7 @@
 var paperworkApi = '/api/v1';
 
-angular.module("paperworkNotes", ['ngRoute']).factory('paperworkNotebooksService', ['$rootScope', '$http', function($rootScope, $http) {
-  var paperworkNotebooksServiceFactory = {};
-
-  paperworkNotebooksServiceFactory.selectedNotebookId = 0;
-
-  paperworkNotebooksServiceFactory.createNotebook = function(callback, notebookTitle, notebookShortcut) {
-    var data = { 'title': notebookTitle, 'shortcut': notebookShortcut };
-
-    $http.post(paperworkApi + '/notebooks', data).
-      success(function(data, status, headers, config) {
-        callback(status, data);
-      }).
-      error(function(data, status, headers, config) {
-        callback(status, data);
-        console.log("Error receiving data for /notebooks");
-        return null;
-      });
-  };
-
-  paperworkNotebooksServiceFactory.getNotebooks = function() {
-    $http({method: 'GET', url: paperworkApi + '/notebooks'}).
-      success(function(data, status, headers, config) {
-        $rootScope.notebooks = data;
-        return $rootScope.notebooks;
-      }).
-      error(function(data, status, headers, config) {
-        console.log("Error receiving data for /notebooks");
-        return null;
-      });
-  };
-
-  paperworkNotebooksServiceFactory.getNotebookById = function(notebookId) {
-    $http({method: 'GET', url: paperworkApi + '/notebooks/' + notebookId}).
-      success(function(data, status, headers, config) {
-        return data;
-      }).
-      error(function(data, status, headers, config) {
-        console.log("Error receiving data for /notebooks/" + notebookId);
-        return null;
-      });
-  };
-
-  paperworkNotebooksServiceFactory.getNotebookShortcuts = function(shortcuts) {
-    $http({method: 'GET', url: paperworkApi + '/shortcuts'}).
-      success(function(data, status, headers, config) {
-        $rootScope.shortcuts = data;
-        return $rootScope.shortcuts;
-      }).
-      error(function(data, status, headers, config) {
-        console.log("Error receiving data for /shortcuts");
-        return null;
-      });
-  }
-
-  paperworkNotebooksServiceFactory.getTags = function() {
-    $http({method: 'GET', url: paperworkApi + '/tags'}).
-      success(function(data, status, headers, config) {
-        $rootScope.tags = data;
-        return $rootScope.tags;
-      }).
-      error(function(data, status, headers, config) {
-        console.log("Error receiving data for /tags");
-        return null;
-      });
-  };
-
-  return paperworkNotebooksServiceFactory;
-}]).factory('paperworkNotesService', ['$rootScope', '$http', function($rootScope, $http) {
-  var paperworkNotesServiceFactory = {};
-
-  paperworkNotesServiceFactory.selectedNoteIndex = 0;
-
-  paperworkNotesServiceFactory.getNotesInNotebook = function(notebookId) {
-    $http({method: 'GET', url: paperworkApi + '/notebooks/' + notebookId + '/notes'}).
-      success(function(data, status, headers, config) {
-        $rootScope.notes = data;
-      }).
-      error(function(data, status, headers, config) {
-        console.log("Error receiving data for /notebooks/" + notebookId + "/notes");
-        return null;
-      });
-  };
-
-  paperworkNotesServiceFactory.getNotesInTag = function(tagId) {
-    $http({method: 'GET', url: paperworkApi + '/tagged/' + tagId}).
-      success(function(data, status, headers, config) {
-        $rootScope.notes = data;
-      }).
-      error(function(data, status, headers, config) {
-        console.log("Error receiving data for /tagged/" + tagId);
-        return null;
-      });
-  };
-
-  paperworkNotesServiceFactory.getNoteById = function(noteId) {
-    $http({method: 'GET', url: paperworkApi + '/notebooks/0/notes/' + noteId}).
-      success(function(data, status, headers, config) {
-        $rootScope.note = data;
-      }).
-      error(function(data, status, headers, config) {
-        console.log("Error receiving data for /notebooks/0/notes/" + noteId);
-        return null;
-      });
-  };
-
-  return paperworkNotesServiceFactory;
-}]).config(function($routeProvider) {
+angular.module("paperworkNotes", ['ngRoute'])
+.config(function($routeProvider) {
   $routeProvider
   .when('/', {
     redirectTo:'/n/0'
@@ -142,7 +37,147 @@ angular.module("paperworkNotes", ['ngRoute']).factory('paperworkNotebooksService
   .otherwise({
     redirectTo:'/404'
   });
-}).controller('paperworkDefaultController', function($scope, $location, $routeParams, paperworkNotesService) {
+}).service('paperworkNetService', ['$rootScope', '$http', function($rootScope, $http) {
+  this.apiGet = function(url, callback) {
+    $http({method: 'GET', url: paperworkApi + url}).
+      success(function(data, status, headers, config) {
+        callback(status, data);
+      }).
+      error(function(data, status, headers, config) {
+        callback(status, data);
+      });
+  };
+
+  this.apiPost = function(url, data, callback) {
+    $http.post(paperworkApi + url, data).
+      success(function(data, status, headers, config) {
+        callback(status, data);
+      }).
+      error(function(data, status, headers, config) {
+        callback(status, data);
+      });
+  };
+
+  this.apiPut = function(url, data, callback) {
+    $http.put(paperworkApi + url, data).
+      success(function(data, status, headers, config) {
+        callback(status, data);
+      }).
+      error(function(data, status, headers, config) {
+        callback(status, data);
+      });
+  };
+
+  this.apiDelete = function(url, callback) {
+    $http.delete(paperworkApi + url).
+      success(function(data, status, headers, config) {
+        callback(status, data);
+      }).
+      error(function(data, status, headers, config) {
+        callback(status, data);
+      });
+  };
+}]).factory('paperworkNotebooksService', ['$rootScope', '$http', 'paperworkNetService', function($rootScope, $http, paperworkNetService) {
+  var paperworkNotebooksServiceFactory = {};
+
+  paperworkNotebooksServiceFactory.selectedNotebookId = 0;
+
+  paperworkNotebooksServiceFactory.createNotebook = function(data, callback) {
+    paperworkNetService.apiPost('/notebooks', data, callback);
+  };
+
+  paperworkNotebooksServiceFactory.updateNotebook = function(notebookId, data, callback) {
+    paperworkNetService.apiPut('/notebooks/' + notebookId, data, callback);
+  };
+
+  paperworkNotebooksServiceFactory.deleteNotebook = function(notebookId, callback) {
+    paperworkNetService.apiDelete('/notebooks/' + notebookId, callback);
+  };
+
+  paperworkNotebooksServiceFactory.getNotebooks = function() {
+    paperworkNetService.apiGet('/notebooks', function(status, data) {
+      if(status == 200) {
+        $rootScope.notebooks = data;
+      }
+    });
+  };
+
+  paperworkNotebooksServiceFactory.getNotebookById = function(notebookId) {
+    paperworkNetService.apiGet('/notebooks/' + notebookId, function(status, data) {
+      if(status == 200) {
+        $rootScope.notebook = data;
+      }
+    });
+  };
+
+  paperworkNotebooksServiceFactory.getNotebookByIdLocal = function(notebookId) {
+    var i=0, l=$rootScope.notebooks.length;
+    for(i=0; i<l; i++) {
+      if($rootScope.notebooks[i].id == notebookId) {
+        return $rootScope.notebooks[i];
+      }
+    }
+    return null;
+  }
+
+  paperworkNotebooksServiceFactory.getNotebookShortcuts = function() {
+    paperworkNetService.apiGet('/shortcuts', function(status, data) {
+      if(status == 200) {
+        $rootScope.shortcuts = data;
+      }
+    });
+  }
+
+  paperworkNotebooksServiceFactory.getShortcutByNotebookIdLocal = function(notebookId) {
+    var i=0, l=$rootScope.shortcuts.length;
+    for(i=0; i<l; i++) {
+      if($rootScope.shortcuts[i].id == notebookId) {
+        return $rootScope.shortcuts[i];
+      }
+    }
+    return null;
+  }
+
+  paperworkNotebooksServiceFactory.getTags = function() {
+    paperworkNetService.apiGet('/tags', function(status, data) {
+      if(status == 200) {
+        $rootScope.tags = data;
+      }
+    });
+  };
+
+  return paperworkNotebooksServiceFactory;
+}]).factory('paperworkNotesService', ['$rootScope', '$http', 'paperworkNetService', function($rootScope, $http, paperworkNetService) {
+  var paperworkNotesServiceFactory = {};
+
+  paperworkNotesServiceFactory.selectedNoteIndex = 0;
+
+  paperworkNotesServiceFactory.getNotesInNotebook = function(notebookId) {
+    paperworkNetService.apiGet('/notebooks/' + notebookId + '/notes', function(status, data) {
+      if(status == 200) {
+        $rootScope.notes = data;
+      }
+    });
+  };
+
+  paperworkNotesServiceFactory.getNotesInTag = function(tagId) {
+    paperworkNetService.apiGet('/tagged/' + tagId, function(status, data) {
+      if(status == 200) {
+        $rootScope.notes = data;
+      }
+    });
+  };
+
+  paperworkNotesServiceFactory.getNoteById = function(noteId) {
+    paperworkNetService.apiGet('/notebooks/0/notes/' + noteId, function(status, data) {
+      if(status == 200) {
+        $rootScope.note = data;
+      }
+    });
+  };
+
+  return paperworkNotesServiceFactory;
+}]).controller('paperworkDefaultController', function($scope, $location, $routeParams, paperworkNotesService) {
 }).controller('paperworkNotesAllController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService) {
     if(typeof $routeParams == "undefined" || $routeParams == {} || typeof $routeParams.notebookId == "undefined") {
       return;
@@ -160,7 +195,7 @@ angular.module("paperworkNotes", ['ngRoute']).factory('paperworkNotebooksService
     $rootScope.notebookSelectedId = parseInt($routeParams.notebookId);
   }
   paperworkNotesService.getNoteById(parseInt($routeParams.noteId));
-  window.setupWaybackTimeline();
+  // window.setupWaybackTimeline();
 }).controller('paperworkNotesEditController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService) {
   paperworkNotesService.getNoteById(parseInt($routeParams.noteId));
 }).controller('paperworkNotesListController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService) {
@@ -226,34 +261,80 @@ angular.module("paperworkNotes", ['ngRoute']).factory('paperworkNotebooksService
     $location.path("/s/tagid:" + parseInt(tagId));
   }
 
-  $scope.createNotebook = function() {
-    paperworkNotebooksService.createNotebook((function(_paperworkNotebooksService) {
+  $scope.modalNewNotebook = function() {
+    $rootScope.modalNotebook = {
+      action: "create"
+    };
+    $('#modalNotebook').modal("show");
+  }
+
+  $scope.modalNotebookSubmit = function() {
+    var data = {
+      'type': 0,
+      'title': $rootScope.modalNotebook.title,
+      'shortcut': $rootScope.modalNotebook.shortcut
+    };
+
+    var callback = (function(_paperworkNotebooksService) {
       return function(status, data) {
         switch(status) {
           case 200:
-            $('#modalNewNotebook').modal('hide');
+            $('#modalNotebook').modal('hide');
             _paperworkNotebooksService.getNotebooks();
+            _paperworkNotebooksService.getNotebookShortcuts(null);
             break;
           case 400:
-            console.log(data);
             if(typeof data.errors.title != "undefined") {
-              $('#modalNewNotebook').find('input[name="title"]').parents('.form-group').addClass('has-warning');
+              $('#modalNotebook').find('input[name="title"]').parents('.form-group').addClass('has-warning');
             }
             break;
         }
       };
-    })(paperworkNotebooksService), $scope.createNotebookTitle, $scope.createNotebookShortcut);
+    })(paperworkNotebooksService);
+
+    if($rootScope.modalNotebook.action == "create") {
+      paperworkNotebooksService.createNotebook(data, callback);
+    } else if($rootScope.modalNotebook.action == "edit") {
+      if($rootScope.modalNotebook.delete) {
+        paperworkNotebooksService.deleteNotebook($rootScope.modalNotebook.id, callback);
+      } else {
+        paperworkNotebooksService.updateNotebook($rootScope.modalNotebook.id, data, callback);
+      }
+    }
+  }
+
+  $scope.modalEditNotebook = function(notebookId) {
+    var notebook = paperworkNotebooksService.getNotebookByIdLocal(notebookId);
+
+    if(notebook == null) {
+      return false;
+    }
+
+    $rootScope.modalNotebook = {
+      'action': 'edit',
+      'id': notebookId,
+      'title': notebook.title
+    };
+
+    var shortcut = paperworkNotebooksService.getShortcutByNotebookIdLocal(notebookId);
+
+    if(shortcut == null) {
+      $rootScope.modalNotebook.shortcut = false;
+    } else {
+      $rootScope.modalNotebook.shortcut = true;
+    }
+    $('#modalNotebook').modal("show");
   }
 
   $rootScope.shortcuts = paperworkNotebooksService.getNotebookShortcuts(null);
   $rootScope.notebooks = paperworkNotebooksService.getNotebooks();
   $rootScope.tags = paperworkNotebooksService.getTags();
 
-  $('#modalNewNotebook').on('hidden.bs.modal', function (e) {
-    $scope.createNotebookTitle = "";
-    $scope.createNotebookShortcut = false;
+  $('#modalNotebook').on('hidden.bs.modal', function (e) {
+    $scope.modalNotebookTitle = "";
+    $scope.modalNotebookShortcut = false;
     $(this).find('input[name="title"]').parents('.form-group').removeClass('has-warning');
-  })
+  });
 }).controller('paperworkSidebarNotesController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService){
 
   $scope.isVisible = function() {
@@ -269,7 +350,11 @@ angular.module("paperworkNotes", ['ngRoute']).factory('paperworkNotebooksService
   }
 
   $scope.submitSearch = function() {
-    $location.path("/s/" + encodeURIComponent($scope.search));
+    if($scope.search == "") {
+      $location.path("/");
+    } else {
+      $location.path("/s/" + encodeURIComponent($scope.search));
+    }
   }
 }).controller('paperworkViewController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService){
   $scope.isVisible = function() {
