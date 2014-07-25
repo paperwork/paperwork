@@ -47,13 +47,26 @@ class Initialize extends Migration {
             $table->engine = 'InnoDB';
         });
 
+        Schema::create('versions', function(Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->bigInteger('previous_id')->unsigned()->nullable();
+            $table->bigInteger('next_id')->unsigned()->nullable();
+            $table->string('title');
+            $table->string('content_preview');
+            $table->text('content');
+            $table->timestamps();
+            $table->softDeletes();
+            $table->engine = 'InnoDB';
+        });
+        DB::statement('ALTER TABLE versions ADD FOREIGN KEY (previous_id) REFERENCES versions (id) ON DELETE CASCADE ON UPDATE CASCADE');
+        DB::statement('ALTER TABLE versions ADD FOREIGN KEY (next_id) REFERENCES versions (id) ON DELETE CASCADE ON UPDATE CASCADE');
+
 		Schema::create('notes', function(Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('notebook_id')->unsigned();
             $table->foreign('notebook_id')->references('id')->on('notebooks');
-            $table->string('title');
-            $table->string('content_preview');
-            $table->text('content');
+            $table->bigInteger('version_id')->unsigned();
+            $table->foreign('version_id')->references('id')->on('versions');
             $table->timestamps();
             $table->softDeletes();
             $table->engine = 'InnoDB';
