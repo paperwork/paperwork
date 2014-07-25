@@ -1,6 +1,7 @@
 <?php
 
 class Notebook extends Eloquent {
+	use SoftDeletingTrait;
 	protected $table = 'notebooks';
 
 	public function users() {

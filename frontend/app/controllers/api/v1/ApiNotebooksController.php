@@ -8,8 +8,13 @@ class ApiNotebooksController extends BaseController {
 
 	private function getNotebookChildren($notebookId) {
 		$children = DB::table('notebooks')
+			->join('notebook_user', function($join) {
+				$join->on('notebooks.id', '=', 'notebook_user.notebook_id')
+					->where('notebook_user.user_id', '=', Auth::user()->id);
+			})
 			->select('notebooks.id', 'notebooks.type', 'notebooks.title')
 			->where('notebooks.parent_id', '=', $notebookId)
+			->whereNull('notebooks.deleted_at')
 			->get();
 		return $children;
 	}
@@ -23,6 +28,7 @@ class ApiNotebooksController extends BaseController {
 			})
 			->select('notebooks.id', 'notebooks.type', 'notebooks.title')
 			->where('notebooks.parent_id', '=', null)
+			->whereNull('notebooks.deleted_at')
 			->get();
 
 		foreach($notebooks as $notebook) {
@@ -48,6 +54,7 @@ class ApiNotebooksController extends BaseController {
 				})
 				->select('notebooks.id', 'notebooks.type', 'notebooks.title')
 				->where('notebooks.id', '=', $id)
+				->whereNull('notebooks.deleted_at')
 				->first();
 
 			if(is_null($notebook)){
@@ -68,6 +75,7 @@ class ApiNotebooksController extends BaseController {
 
 			$notebook = new Notebook();
 			$notebook->title = $newNotebook->get('title');
+			$notebook->type = $newNotebook->get('type');
 			$notebook->save();
 
 			$notebook->users()->attach(Auth::user()->id);
@@ -84,35 +92,56 @@ class ApiNotebooksController extends BaseController {
 	}
 
 	protected function getNewNotebookValidator() {
-		return Validator::make(Input::all(), [ "title" => "required"]);
+		return Validator::make(Input::all(), [ "title" => "required", "type" => "required"]);
 	}
 
 
-	public function update()
+	public function update($notebookId)
 	{
-		$updateNotebook = Input::json();
+		$validator = $this->getNewNotebookValidator();
+		if($validator->passes()) {
+			$updateNotebook = Input::json();
 
-		$notebook = Notebook::find($updateNotebook->id);
-		if(is_null($notebook)){
-			return Response::json('Notebook not found', 404);
+			$notebook = User::find(Auth::user()->id)->notebooks()->where('notebooks.id', '=', $notebookId)->whereNull('notebooks.deleted_at')->first();
+
+			if(is_null($notebook)){
+				return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+			}
+			$notebook->title = $updateNotebook->get('title');
+			$notebook->type = $updateNotebook->get('type');
+			$notebook->save();
+
+			$shortcut = Shortcut::where('user_id', '=', Auth::user()->id)->where('notebook_id', '=', $notebookId);
+
+			if($updateNotebook->get('shortcut') == true) {
+				if($shortcut->count()<1) {
+					$shortcut = new Shortcut(array('sortkey' => 255, 'user_id' => Auth::user()->id));
+					$notebook->shortcuts()->save($shortcut);
+				}
+			} else {
+				if($shortcut->count()>0) {
+					$shortcut->delete();
+				}
+			}
+
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notebook);
 		}
-		$notebook->title = $updateNotebook->title;
-		$notebook->completed = $updateNotebook->completed;
-		$notebook->save();
-		return Response::json($notebook);
+		else {
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, $validator->getMessageBag()->toArray());
+		}
 	}
 
-	public function delete($id = null)
+	public function destroy($notebookId)
 	{
-		$notebook = Notebook::find($id);
+		$notebook = User::find(Auth::user()->id)->notebooks()->where('notebooks.id', '=', $notebookId)->whereNull('notebooks.deleted_at')->first();
 
 		if(is_null($notebook))
 		{
-			return Response::json('Notebook not found', 404);
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
 		}
 		$deletedNotebook = $notebook;
 		$notebook->delete();
-		return Response::json($deletedNotebook);
+		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $deletedNotebook);
 	}
 }
 

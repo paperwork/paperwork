@@ -32,7 +32,10 @@ class ApiNotesController extends BaseController {
 				->join('notebooks', function($join) {
 					$join->on('notes.notebook_id', '=', 'notebooks.id');
 				})
-				->select('notes.id', 'notes.notebook_id', 'notebooks.title as notebook_title', 'notes.title', 'notes.content_preview', 'notes.content', 'notes.created_at', 'notes.updated_at', 'note_user.umask')
+				->join('versions', function($join) {
+					$join->on('notes.version_id', '=', 'versions.id');
+				})
+				->select('notes.id', 'notes.notebook_id', 'notebooks.title as notebook_title', 'versions.title', 'versions.content_preview', 'versions.content', 'notes.created_at', 'notes.updated_at', 'note_user.umask')
 				->where('notes.notebook_id', '=', $notebookId)
 				->get();
 		} else {
@@ -44,7 +47,10 @@ class ApiNotesController extends BaseController {
 				->join('notebooks', function($join) {
 					$join->on('notes.notebook_id', '=', 'notebooks.id');
 				})
-				->select('notes.id', 'notes.notebook_id', 'notebooks.title as notebook_title', 'notes.title', 'notes.content_preview', 'notes.content', 'notes.created_at', 'notes.updated_at', 'note_user.umask')
+				->join('versions', function($join) {
+					$join->on('notes.version_id', '=', 'versions.id');
+				})
+				->select('notes.id', 'notes.notebook_id', 'notebooks.title as notebook_title', 'versions.title', 'versions.content_preview', 'versions.content', 'notes.created_at', 'notes.updated_at', 'note_user.umask')
 				->get();
 		}
 
@@ -63,10 +69,13 @@ class ApiNotesController extends BaseController {
 			->join('notebooks', function($join) {
 				$join->on('notes.notebook_id', '=', 'notebooks.id');
 			})
+			->join('versions', function($join) {
+				$join->on('notes.version_id', '=', 'versions.id');
+			})
 			->join('tag_note', function($join) {
 				$join->on('notes.id', '=', 'tag_note.tag_id');
 			})
-			->select('notes.id', 'notes.notebook_id', 'notebooks.title as notebook_title', 'notes.title', 'notes.content_preview', 'notes.content', 'notes.created_at', 'notes.updated_at', 'note_user.umask')
+			->select('notes.id', 'notes.notebook_id', 'notebooks.title as notebook_title', 'versions.title', 'versions.content_preview', 'versions.content', 'notes.created_at', 'notes.updated_at', 'note_user.umask')
 			->get();
 
 		return Response::json($notes);
@@ -91,7 +100,10 @@ class ApiNotesController extends BaseController {
 					->join('notebooks', function($join) {
 						$join->on('notes.notebook_id', '=', 'notebooks.id');
 					})
-					->select('notes.id', 'notes.notebook_id', 'notebooks.title as notebook_title', 'notes.title', 'notes.content_preview', 'notes.content', 'notes.created_at', 'notes.updated_at', 'note_user.umask')
+					->join('versions', function($join) {
+						$join->on('notes.version_id', '=', 'versions.id');
+					})
+					->select('notes.id', 'notes.notebook_id', 'notebooks.title as notebook_title', 'versions.title', 'versions.content_preview', 'versions.content', 'notes.created_at', 'notes.updated_at', 'note_user.umask')
 					->where('notes.notebook_id', '=', $notebookId)
 					->where('notes.id', '=', $id)
 					->first();
@@ -105,7 +117,10 @@ class ApiNotesController extends BaseController {
 						->join('notebooks', function($join) {
 							$join->on('notes.notebook_id', '=', 'notebooks.id');
 						})
-						->select('notes.id', 'notes.notebook_id', 'notebooks.title as notebook_title', 'notes.title', 'notes.content_preview', 'notes.content', 'notes.created_at', 'notes.updated_at', 'note_user.umask')
+						->join('versions', function($join) {
+							$join->on('notes.version_id', '=', 'versions.id');
+						})
+						->select('notes.id', 'notes.notebook_id', 'notebooks.title as notebook_title', 'versions.title', 'versions.content_preview', 'versions.content', 'notes.created_at', 'notes.updated_at', 'note_user.umask')
 						->where('notes.id', '=', $id)
 						->first();
 
