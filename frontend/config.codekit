@@ -380,7 +380,7 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/app\/js\/bootstrap\/dropdown.js",
-		"outputAbbreviatedPath": "\/public\/js\/bootstrap.min.js",
+		"outputAbbreviatedPath": "\/public\/js\/bootstrap-dropdown.min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 1,
 		"outputStyle": 1,
@@ -450,6 +450,17 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 1,
 		"outputStyle": 1,
+		"syntaxCheckerStyle": 0
+		},
+	"\/app\/js\/freqselector.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/js\/freqselector.js",
+		"outputAbbreviatedPath": "\/public\/js\/freqselector.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 1,
+		"outputStyle": 0,
 		"syntaxCheckerStyle": 0
 		},
 	"\/app\/js\/ie10-viewport-bug-workaround.js": {
@@ -2281,6 +2292,26 @@
 		"strictMath": 0,
 		"strictUnits": 0
 		},
+	"\/app\/less\/freqselector.less": {
+		"allowInsecureImports": 0,
+		"createSourceMap": 0,
+		"disableJavascript": 0,
+		"fileType": 1,
+		"ieCompatibility": 1,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/less\/freqselector.less",
+		"outputAbbreviatedPath": "\/public\/css\/freqselector.min.css",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 1,
+		"outputStyle": 2,
+		"relativeURLS": 0,
+		"shouldRunAutoprefixer": 0,
+		"shouldRunBless": 0,
+		"strictImports": 0,
+		"strictMath": 0,
+		"strictUnits": 0
+		},
 	"\/app\/less\/paperwork-login.less": {
 		"allowInsecureImports": 0,
 		"createSourceMap": 0,
@@ -2393,6 +2424,15 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/app\/models\/Version.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/models\/Version.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/app\/routes.php": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -2492,20 +2532,11 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/app\/views\/modal\/new-notebook.blade.php": {
+	"\/app\/views\/modal\/notebook.blade.php": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/app\/views\/modal\/new-notebook.blade.php",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
-	"\/app\/views\/templates\/paperwork404.blade.php": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/app\/views\/templates\/paperwork404.blade.php",
+		"inputAbbreviatedPath": "\/app\/views\/modal\/notebook.blade.php",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -2659,18 +2690,6 @@
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
-		},
-	"\/CONTRIBUTING.md": {
-		"enableFootnoteSupport": 0,
-		"enableSmartyPants": 1,
-		"expandTabs": 1,
-		"fileType": 4096,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/CONTRIBUTING.md",
-		"outputAbbreviatedPath": "\/CONTRIBUTING.html",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
 		},
 	"\/public\/ckeditor\/adapters\/jquery.js": {
 		"fileType": 64,
@@ -5394,6 +5413,15 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/public\/css\/freqselector.min.css": {
+		"fileType": 16,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/public\/css\/freqselector.min.css",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/public\/css\/paperwork-login.min.css": {
 		"fileType": 16,
 		"ignore": 1,
@@ -5412,101 +5440,57 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/public\/images\/content-background.png": {
+	"\/public\/images\/freqselector\/default\/arrow.png": {
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"initialSize": 13688,
-		"inputAbbreviatedPath": "\/public\/images\/content-background.png",
-		"outputAbbreviatedPath": "\/public\/images\/content-background.png",
+		"initialSize": 1162,
+		"inputAbbreviatedPath": "\/public\/images\/freqselector\/default\/arrow.png",
+		"outputAbbreviatedPath": "\/public\/images\/freqselector\/default\/arrow.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
-	"\/public\/images\/content-fadeout-bottom.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 8667,
-		"inputAbbreviatedPath": "\/public\/images\/content-fadeout-bottom.png",
-		"outputAbbreviatedPath": "\/public\/images\/content-fadeout-bottom.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/public\/images\/content-fadeout-top.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 9854,
-		"inputAbbreviatedPath": "\/public\/images\/content-fadeout-top.png",
-		"outputAbbreviatedPath": "\/public\/images\/content-fadeout-top.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/public\/images\/timeline-arrow.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 3140,
-		"inputAbbreviatedPath": "\/public\/images\/timeline-arrow.png",
-		"outputAbbreviatedPath": "\/public\/images\/timeline-arrow.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/public\/images\/timeline-background.png": {
+	"\/public\/images\/freqselector\/default\/background.png": {
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"initialSize": 145,
-		"inputAbbreviatedPath": "\/public\/images\/timeline-background.png",
-		"outputAbbreviatedPath": "\/public\/images\/timeline-background.png",
+		"inputAbbreviatedPath": "\/public\/images\/freqselector\/default\/background.png",
+		"outputAbbreviatedPath": "\/public\/images\/freqselector\/default\/background.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
-	"\/public\/images\/timeline-fadeout-left.png": {
+	"\/public\/images\/freqselector\/default\/fadeout-left.png": {
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"initialSize": 1158,
-		"inputAbbreviatedPath": "\/public\/images\/timeline-fadeout-left.png",
-		"outputAbbreviatedPath": "\/public\/images\/timeline-fadeout-left.png",
+		"inputAbbreviatedPath": "\/public\/images\/freqselector\/default\/fadeout-left.png",
+		"outputAbbreviatedPath": "\/public\/images\/freqselector\/default\/fadeout-left.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
-	"\/public\/images\/timeline-fadeout-right.png": {
+	"\/public\/images\/freqselector\/default\/fadeout-right.png": {
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"initialSize": 1167,
-		"inputAbbreviatedPath": "\/public\/images\/timeline-fadeout-right.png",
-		"outputAbbreviatedPath": "\/public\/images\/timeline-fadeout-right.png",
+		"inputAbbreviatedPath": "\/public\/images\/freqselector\/default\/fadeout-right.png",
+		"outputAbbreviatedPath": "\/public\/images\/freqselector\/default\/fadeout-right.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
-	"\/public\/images\/timeline-ruler.png": {
+	"\/public\/images\/freqselector\/default\/ruler.png": {
 		"fileType": 32768,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"initialSize": 3035,
-		"inputAbbreviatedPath": "\/public\/images\/timeline-ruler.png",
-		"outputAbbreviatedPath": "\/public\/images\/timeline-ruler.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
-	"\/public\/images\/timeline-sunkin.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 73,
-		"inputAbbreviatedPath": "\/public\/images\/timeline-sunkin.png",
-		"outputAbbreviatedPath": "\/public\/images\/timeline-sunkin.png",
+		"inputAbbreviatedPath": "\/public\/images\/freqselector\/default\/ruler.png",
+		"outputAbbreviatedPath": "\/public\/images\/freqselector\/default\/ruler.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
@@ -5548,6 +5532,17 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/public\/js\/angular.min.js",
 		"outputAbbreviatedPath": "\/public\/js\/min\/angular.min-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/public\/js\/bootstrap-dropdown.min.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/public\/js\/bootstrap-dropdown.min.js",
+		"outputAbbreviatedPath": "\/public\/js\/min\/bootstrap-dropdown.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
@@ -5603,6 +5598,17 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/public\/js\/collapse.min.js",
 		"outputAbbreviatedPath": "\/public\/js\/min\/collapse.min-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/public\/js\/freqselector.min.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/public\/js\/freqselector.min.js",
+		"outputAbbreviatedPath": "\/public\/js\/min\/freqselector.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
@@ -5684,18 +5690,6 @@
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
-		},
-	"\/readme.md": {
-		"enableFootnoteSupport": 0,
-		"enableSmartyPants": 1,
-		"expandTabs": 1,
-		"fileType": 4096,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/readme.md",
-		"outputAbbreviatedPath": "\/readme.html",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
 		},
 	"\/server.php": {
 		"fileType": 8192,
