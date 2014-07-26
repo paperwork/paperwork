@@ -60,6 +60,26 @@ class Initialize extends Migration {
         });
         DB::statement('ALTER TABLE versions ADD FOREIGN KEY (previous_id) REFERENCES versions (id) ON DELETE SET NULL ON UPDATE CASCADE');
         DB::statement('ALTER TABLE versions ADD FOREIGN KEY (next_id) REFERENCES versions (id) ON DELETE SET NULL ON UPDATE CASCADE');
+        // DB::statement('ALTER TABLE versions ADD FULLTEXT search(title, content)');
+
+        Schema::create('attachments', function(Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->timestamps();
+            $table->text('content');
+            $table->softDeletes();
+            $table->engine = 'InnoDB';
+        });
+        // DB::statement('ALTER TABLE attachments ADD FULLTEXT search(content)');
+
+        Schema::create('attachment_version', function(Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->bigInteger('attachment_id')->unsigned();
+            $table->foreign('attachment_id')->references('id')->on('attachments')->onDelete('cascade');
+            $table->bigInteger('version_id')->unsigned();
+            $table->foreign('version_id')->references('id')->on('versions')->onDelete('cascade');
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
 
 		Schema::create('notes', function(Blueprint $table) {
             $table->bigIncrements('id');
@@ -133,6 +153,9 @@ class Initialize extends Migration {
         Schema::table('shortcuts', function(Blueprint $table) {
             $table->drop();
         });
+        Schema::table('tag_note', function(Blueprint $table) {
+            $table->drop();
+        });
         Schema::table('tag_user', function(Blueprint $table) {
             $table->drop();
         });
@@ -146,6 +169,15 @@ class Initialize extends Migration {
             $table->drop();
         });
         Schema::table('notes', function(Blueprint $table) {
+            $table->drop();
+        });
+        Schema::table('version_attachment', function(Blueprint $table) {
+            $table->drop();
+        });
+        Schema::table('attachments', function(Blueprint $table) {
+            $table->drop();
+        });
+        Schema::table('versions', function(Blueprint $table) {
             $table->drop();
         });
         Schema::table('notebook_user', function(Blueprint $table) {

@@ -46,6 +46,8 @@ Route::group(array('prefix' => 'api/v1', 'before' => 'auth'), function()
     // Route::any('notebook/{num?}', 'ApiNotebooksController@index')->where('num','([0-9]*)');
     Route::resource('notebooks', 'ApiNotebooksController');
     Route::resource('notebooks.notes', 'ApiNotesController');
+    Route::resource('notebooks.notes.versions', 'ApiVersionsController');
+    Route::resource('notebooks.notes.versions.attachments', 'ApiAttachmentsController');
     Route::resource('shortcuts', 'ApiShortcutsController');
     Route::resource('tags', 'ApiTagsController');
     Route::get('/tagged/{num}', 'ApiNotesController@tagIndex');

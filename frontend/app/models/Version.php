@@ -17,6 +17,10 @@ class Version extends Eloquent {
 	public function next() {
 		return $this->belongsTo('Version', 'next_id');
 	}
+
+	public function attachments() {
+		return $this->belongsToMany('Attachment');
+	}
 }
 
 ?>
