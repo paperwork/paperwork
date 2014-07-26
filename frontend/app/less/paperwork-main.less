@@ -22,6 +22,26 @@ body {
   transition-duration: 0.4s;
 }
 
+.animate-button-short {
+    display: inline-block!important;
+    opacity: 0;
+    width: 0;
+}
+
+.animate-button-short {
+  -webkit-transition: opacity 0.25s, width 0.25s;
+  -moz-transition: opacity 0.25s, width 0.25s;
+  -o-transition: opacity 0.25s, width 0.25s;
+  transition: opacity 0.25s, width 0.25s;
+  width:60px;
+  opacity:1;
+  }
+
+.animate-button-short.ng-hide {
+  opacity:0;
+  width: 0px;
+}
+
 /*
  * Global add-ons
  */

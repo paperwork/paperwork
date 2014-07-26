@@ -37,6 +37,7 @@ class ApiNotesController extends BaseController {
 				})
 				->select('notes.id', 'notes.notebook_id', 'notebooks.title as notebook_title', 'versions.title', 'versions.content_preview', 'versions.content', 'notes.created_at', 'notes.updated_at', 'note_user.umask')
 				->where('notes.notebook_id', '=', $notebookId)
+				->whereNull('notes.deleted_at')
 				->get();
 		} else {
 			$notes = DB::table('notes')
@@ -51,6 +52,7 @@ class ApiNotesController extends BaseController {
 					$join->on('notes.version_id', '=', 'versions.id');
 				})
 				->select('notes.id', 'notes.notebook_id', 'notebooks.title as notebook_title', 'versions.title', 'versions.content_preview', 'versions.content', 'notes.created_at', 'notes.updated_at', 'note_user.umask')
+				->whereNull('notes.deleted_at')
 				->get();
 		}
 
@@ -106,6 +108,7 @@ class ApiNotesController extends BaseController {
 					->select('notes.id', 'notes.notebook_id', 'notebooks.title as notebook_title', 'versions.title', 'versions.content_preview', 'versions.content', 'notes.created_at', 'notes.updated_at', 'note_user.umask')
 					->where('notes.notebook_id', '=', $notebookId)
 					->where('notes.id', '=', $id)
+					->whereNull('notes.deleted_at')
 					->first();
 
 			} else {
@@ -122,6 +125,7 @@ class ApiNotesController extends BaseController {
 						})
 						->select('notes.id', 'notes.notebook_id', 'notebooks.title as notebook_title', 'versions.title', 'versions.content_preview', 'versions.content', 'notes.created_at', 'notes.updated_at', 'note_user.umask')
 						->where('notes.id', '=', $id)
+						->whereNull('notes.deleted_at')
 						->first();
 
 			}
@@ -170,6 +174,11 @@ class ApiNotesController extends BaseController {
 
 	public function update($notebookId, $noteId)
 	{
+		$validator = Validator::make(Input::all(), [ "title" => "required" ]);
+		if(!$validator->passes()) {
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, $validator->getMessageBag()->toArray());
+		}
+
 		$updateNote = Input::json();
 
 		$note = Note::find($noteId);
@@ -199,17 +208,17 @@ class ApiNotesController extends BaseController {
 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $note);
 	}
 
-	public function delete($id = null)
+	public function destroy($notebookId, $noteId = null)
 	{
-		$notebook = Notebook::find($id);
+		$note = User::find(Auth::user()->id)->notes()->where('notes.id', '=', $noteId)->whereNull('notes.deleted_at')->first();
 
-		if(is_null($notebook))
-		{
-			return Response::json('Notebook not found', 404);
+		if(is_null($note)){
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array('item'=>'note', 'id'=>$noteId));
 		}
-		$deletedNotebook = $notebook;
-		$notebook->delete();
-		return Response::json($deletedNotebook);
+
+		$deletedNote = $note;
+		$note->delete();
+		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $note);
 	}
 }
 

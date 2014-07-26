@@ -254,6 +254,17 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/app\/js\/angular-animate.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/js\/angular-animate.js",
+		"outputAbbreviatedPath": "\/public\/js\/angular-animate.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 1,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/app\/js\/angular-resource.js": {
 		"fileType": 64,
 		"ignore": 0,
@@ -5524,6 +5535,17 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/public\/js\/angular-animate.min.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/public\/js\/angular-animate.min.js",
+		"outputAbbreviatedPath": "\/public\/js\/min\/angular-animate.min-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/public\/js\/angular-resource.min.js": {
 		"fileType": 64,
 		"ignore": 1,
@@ -5541,6 +5563,17 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/public\/js\/angular-route.min.js",
 		"outputAbbreviatedPath": "\/public\/js\/min\/angular-route.min-ck.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/public\/js\/angular-sanitize.min.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/public\/js\/angular-sanitize.min.js",
+		"outputAbbreviatedPath": "\/public\/js\/min\/angular-sanitize.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
