@@ -58,8 +58,8 @@ class Initialize extends Migration {
             $table->softDeletes();
             $table->engine = 'InnoDB';
         });
-        DB::statement('ALTER TABLE versions ADD FOREIGN KEY (previous_id) REFERENCES versions (id) ON DELETE CASCADE ON UPDATE CASCADE');
-        DB::statement('ALTER TABLE versions ADD FOREIGN KEY (next_id) REFERENCES versions (id) ON DELETE CASCADE ON UPDATE CASCADE');
+        DB::statement('ALTER TABLE versions ADD FOREIGN KEY (previous_id) REFERENCES versions (id) ON DELETE SET NULL ON UPDATE CASCADE');
+        DB::statement('ALTER TABLE versions ADD FOREIGN KEY (next_id) REFERENCES versions (id) ON DELETE SET NULL ON UPDATE CASCADE');
 
 		Schema::create('notes', function(Blueprint $table) {
             $table->bigIncrements('id');
