@@ -42,6 +42,23 @@ body {
   width: 0px;
 }
 
+
+.animate-panel {
+    opacity: 0;
+}
+
+.animate-panel {
+  -webkit-transition: opacity 0.25s, width 0.25s;
+  -moz-transition: opacity 0.25s, width 0.25s;
+  -o-transition: opacity 0.25s, width 0.25s;
+  transition: opacity 0.25s, width 0.25s;
+  opacity:1;
+  }
+
+.animate-panel.ng-hide {
+  opacity:0;
+}
+
 /*
  * Global add-ons
  */
@@ -181,7 +198,7 @@ body {
   // top: 50px;
 }
 
-.tree-nav-sidebar {
+.sidebar-no-border {
   margin-top: -20px;
 }
 

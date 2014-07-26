@@ -50,7 +50,7 @@
 					</form>
 				</div>
 
-				<ul class="nav navbar-nav">
+				<ul class="nav navbar-nav animate-panel" ng-show="navbarMainMenu">
 					<li class="dropdown">
 						<a href="" class="dropdown-toggle" data-toggle="dropdown">[[Lang::get('keywords.file')]] <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
@@ -71,11 +71,13 @@
 						</ul>
 					</li>
 				</ul>
-				<form ng-controller="paperworkSidebarNotesController" class="navbar-form navbar-left" id="searchForm" role="form" ng-submit="submitSearch()">
+
+				<form ng-controller="paperworkSidebarNotesController" ng-show="navbarSearchForm" class="navbar-form navbar-left animate-panel" id="searchForm" role="form" ng-submit="submitSearch()">
 					<div class="form-group">
 						<input type="text" class="form-control navbar-search" placeholder="[[Lang::get('keywords.search_dotdotdot')]]" ng-model="search">
 					</div>
 				</form>
+
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="[[ URL::route("/") ]]" class="transition-effect"><i class="fa fa-book"></i> [[Lang::get('keywords.library')]]</a></li>
 					<li><a href="[[ URL::route("user/profile") ]]" class="transition-effect"><i class="fa fa-user"></i> [[Lang::get('keywords.profile')]]</a></li>

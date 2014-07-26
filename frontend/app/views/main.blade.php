@@ -5,8 +5,8 @@
 
 <div class="container-fluid">
 	<div class="row">
-		<div id="sidebarNotebooks" class="col-sm-3 col-md-2 sidebar hidden-xs" ng-controller="paperworkSidebarNotebooksController" ng-show="isVisible()">
-			<ul class="nav nav-sidebar tree-nav-sidebar">
+		<div id="sidebarNotebooks" class="col-sm-3 col-md-2 sidebar hidden-xs animate-panel" ng-controller="paperworkSidebarNotebooksController" ng-show="isVisible()">
+			<ul class="nav nav-sidebar sidebar-no-border">
 				<div class="tree ">
 					<ul class="tree-base">
 						<li>
@@ -43,8 +43,8 @@
 			</ul>
 		</div>
 
-		<div "sidebarNotes" class="col-sm-4 col-sm-offset-3 col-md-3 col-md-offset-2 sidebar hidden-xs" ng-controller="paperworkSidebarNotesController" ng-show="isVisible()">
-			<ul id="notes-list" class="nav nav-sidebar notes-list" ng-controller="paperworkNotesListController">
+		<div id="sidebarNotes" class="col-sm-4 col-sm-offset-3 col-md-3 col-md-offset-2 sidebar hidden-xs animate-panel" ng-controller="paperworkSidebarNotesController" ng-show="isVisible()">
+			<ul id="notes-list" class="nav nav-sidebar notes-list sidebar-no-border" ng-controller="paperworkNotesListController">
 				<li class="notes-list-item" ng-repeat="note in notes" ng-click="noteSelect(note.notebook_id, note.id)" ng-class="{ 'active': note.notebook_id + '-' + note.id == getNoteSelectedId() }">
 					<a href="#{{getNoteLink(note.notebook_id, note.id)}}">
 						<span class="notes-list-title">{{note.title}} <span class="label label-primary">{{note.updated_at | convertdate | date : 'shortDate'}}</span></span>

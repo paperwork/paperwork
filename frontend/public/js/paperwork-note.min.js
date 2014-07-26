@@ -194,15 +194,22 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
       $rootScope.notebookSelectedId = parseInt($routeParams.notebookId);
     }
     paperworkNotesService.getNotesInNotebook($rootScope.notebookSelectedId);
-    $rootScope.note = null;
+    $rootScope.navbarMainMenu = true;
+    $rootScope.navbarSearchForm = true;
+
+    // $rootScope.note = null; // TODO: Do we still need this?
+
     // $location.path("/notebook/" + $scope.notebookSelectedId + "/note/" + $rootScope.notes[0].id);
 }).controller('paperworkNotesShowController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService) {
-  $rootScope.noteSelectedId = parseInt($routeParams.notebookId) + "-" + parseInt($routeParams.noteId);
+  $rootScope.noteSelectedId = { 'notebookId': parseInt($routeParams.notebookId), 'noteId': parseInt($routeParams.noteId) };
   if(typeof $routeParams.searchQuery == "undefined" || $routeParams.searchQuery == null || $routeParams.searchQuery.length <= 0) {
     paperworkNotesService.getNotesInNotebook(parseInt($routeParams.notebookId));
     $rootScope.notebookSelectedId = parseInt($routeParams.notebookId);
   }
   paperworkNotesService.getNoteById(parseInt($routeParams.noteId));
+  $rootScope.navbarMainMenu = true;
+  $rootScope.navbarSearchForm = true;
+
   // window.setupWaybackTimeline();
 }).controller('paperworkNotesEditController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService) {
   paperworkNotesService.getNoteById(parseInt($routeParams.noteId));
@@ -222,12 +229,15 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
       _$rootScope.templateNoteEdit.modified = true;
     });
   });
+
+  $rootScope.navbarMainMenu = false;
+  $rootScope.navbarSearchForm = false;
 }).controller('paperworkNotesListController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService) {
-    $rootScope.noteSelectedId = -1;
+    $rootScope.noteSelectedId = {};
     paperworkNotesService.getNotesInNotebook(0);
 
     $scope.noteSelect = function($notebookId, $noteId) {
-      $rootScope.noteSelectedId = parseInt($notebookId) + "-" + parseInt($noteId);
+      $rootScope.noteSelectedId = { 'notebookId': parseInt($notebookId), 'noteId': parseInt($noteId) };
     }
 
     $scope.getNoteLink = function(notebookId, noteId) {
@@ -370,6 +380,13 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
     }
   };
 
+  $rootScope.getNoteSelectedId = function(asObject) {
+    if(asObject === true) {
+      return $rootScope.noteSelectedId;
+    }
+    return $rootScope.noteSelectedId.notebookId + "-" + $rootScope.noteSelectedId.noteId;
+  };
+
   $scope.newNote = function(notebookId) {
     if(typeof notebookId == "undefined" || notebookId == 0) {
       // TODO: Show some error
@@ -427,8 +444,8 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
     if($rootScope.templateNoteEdit.modified) {
       // TODO: Ask!
     }
-
-    $location.path("/n/" + $rootScope.getNotebookSelectedId());
+    var currentNote = $rootScope.getNoteSelectedId(true);
+    $location.path("/n/" + $rootScope.getNotebookSelectedId() + "/" + currentNote.noteId);
   };
 
   $scope.deleteNote = function() {
@@ -462,10 +479,6 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
     }
   }
 
-  $scope.getNoteSelectedId = function() {
-    return $rootScope.noteSelectedId;
-  };
-
   $scope.submitSearch = function() {
     if($scope.search == "") {
       $location.path("/");
@@ -492,8 +505,11 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
     $rootScope.note = null;
     // $rootScope.noteSelectedId = -1;
   }
+  $rootScope.navbarMainMenu = true;
+  $rootScope.navbarSearchForm = true;
 }).controller('paperworkFourOhFourController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService){
-
+  $rootScope.navbarMainMenu = true;
+  $rootScope.navbarSearchForm = true;
 }).filter('convertdate', function () {
     return function (value) {
         return (!value) ? '' : value.replace(/ /g, 'T');
