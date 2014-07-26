@@ -13,7 +13,7 @@ class ApiTagsController extends BaseController {
 			->select('tags.id', 'tags.title')
 			->get();
 
-		return Response::json($tags);
+		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $tags);
 	}
 
 	public function show($id = null)
@@ -34,9 +34,9 @@ class ApiTagsController extends BaseController {
 			->first();
 
 			if(is_null($tags)){
-				return Response::json('Tag not found', 404);
+				return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
 			} else {
-				return Response::json($tags);
+				return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $tags);
 			}
 		}
 	}
@@ -51,7 +51,7 @@ class ApiTagsController extends BaseController {
 		$notebook->completed = $newNotebook->completed;
 		$notebook->save();
 
-		return Response::json($notebook);
+		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notebook);
 	}
 
 	public function store()
@@ -65,7 +65,7 @@ class ApiTagsController extends BaseController {
 		$notebook->title = $updateNotebook->title;
 		$notebook->completed = $updateNotebook->completed;
 		$notebook->save();
-		return Response::json($notebook);
+		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notebook);
 	}
 
 	public function delete($id = null)
@@ -78,7 +78,7 @@ class ApiTagsController extends BaseController {
 		}
 		$deletedNotebook = $notebook;
 		$notebook->delete();
-		return Response::json($deletedNotebook);
+		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notebook);
 	}
 }
 

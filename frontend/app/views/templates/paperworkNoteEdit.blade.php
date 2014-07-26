@@ -4,7 +4,7 @@
 	      <ul class="nav navbar-nav">
 	      	<li>
 		      	<div class="btn-group">
-		      		<button class="btn btn-default navbar-btn"><i class="fa fa-book"></i> {{note.notebook_title}}</button>
+		      		<button class="btn btn-default navbar-btn"><i class="fa fa-book"></i> {{templateNoteEdit.notebook_title}}</button>
 		      		<button class="btn btn-default navbar-btn"><i class="fa fa-tags"></i></button>
 	      		</div>
 	      	</li>
@@ -26,11 +26,11 @@
 	<div>
 		<div class="page-header">
 			<div class="form-group {{ errors.title ? 'has-error' : '' }}">
-				<input type="title" class="form-control" id="title" placeholder="Note title" ng-model="note.title">
+				<input type="title" class="form-control" id="title" placeholder="Note title" ng-model="templateNoteEdit.title">
 			</div>
 		</div>
 		<div class="page-content">
-			<textarea id="content" class="form-control" rows="16" ng-model="note.content"></textarea>
+			<textarea id="content" class="form-control" rows="16" ng-model="templateNoteEdit.content"></textarea>
 		</div>
 	</div>
 </form>

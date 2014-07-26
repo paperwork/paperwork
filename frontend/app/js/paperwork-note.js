@@ -93,7 +93,7 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
   paperworkNotebooksServiceFactory.getNotebooks = function() {
     paperworkNetService.apiGet('/notebooks', function(status, data) {
       if(status == 200) {
-        $rootScope.notebooks = data;
+        $rootScope.notebooks = data.response;
       }
     });
   };
@@ -101,7 +101,7 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
   paperworkNotebooksServiceFactory.getNotebookById = function(notebookId) {
     paperworkNetService.apiGet('/notebooks/' + notebookId, function(status, data) {
       if(status == 200) {
-        $rootScope.notebook = data;
+        $rootScope.notebook = data.response;
       }
     });
   };
@@ -119,7 +119,7 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
   paperworkNotebooksServiceFactory.getNotebookShortcuts = function() {
     paperworkNetService.apiGet('/shortcuts', function(status, data) {
       if(status == 200) {
-        $rootScope.shortcuts = data;
+        $rootScope.shortcuts = data.response;
       }
     });
   }
@@ -137,7 +137,7 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
   paperworkNotebooksServiceFactory.getTags = function() {
     paperworkNetService.apiGet('/tags', function(status, data) {
       if(status == 200) {
-        $rootScope.tags = data;
+        $rootScope.tags = data.response;
       }
     });
   };
@@ -163,7 +163,7 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
   paperworkNotesServiceFactory.getNotesInNotebook = function(notebookId) {
     paperworkNetService.apiGet('/notebooks/' + notebookId + '/notes', function(status, data) {
       if(status == 200) {
-        $rootScope.notes = data;
+        $rootScope.notes = data.response;
       }
     });
   };
@@ -171,7 +171,7 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
   paperworkNotesServiceFactory.getNotesInTag = function(tagId) {
     paperworkNetService.apiGet('/tagged/' + tagId, function(status, data) {
       if(status == 200) {
-        $rootScope.notes = data;
+        $rootScope.notes = data.response;
       }
     });
   };
@@ -179,7 +179,7 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
   paperworkNotesServiceFactory.getNoteById = function(noteId) {
     paperworkNetService.apiGet('/notebooks/0/notes/' + noteId, function(status, data) {
       if(status == 200) {
-        $rootScope.note = data;
+        $rootScope.note = data.response;
       }
     });
   };
@@ -201,6 +201,9 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
 
     // $location.path("/notebook/" + $scope.notebookSelectedId + "/note/" + $rootScope.notes[0].id);
 }).controller('paperworkNotesShowController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService) {
+  if(!angular.isNumber(parseInt($routeParams.noteId)) || $routeParams.noteId === "undefined") {
+    return;
+  }
   $rootScope.noteSelectedId = { 'notebookId': parseInt($routeParams.notebookId), 'noteId': parseInt($routeParams.noteId) };
   if(typeof $routeParams.searchQuery == "undefined" || $routeParams.searchQuery == null || $routeParams.searchQuery.length <= 0) {
     paperworkNotesService.getNotesInNotebook(parseInt($routeParams.notebookId));
@@ -213,7 +216,6 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
   // window.setupWaybackTimeline();
 }).controller('paperworkNotesEditController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService) {
   paperworkNotesService.getNoteById(parseInt($routeParams.noteId));
-  $rootScope.templateNoteEdit = {};
 
   var ck =  CKEDITOR.replace('content', {
     fullPage: false,
@@ -387,6 +389,16 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
     return $rootScope.noteSelectedId.notebookId + "-" + $rootScope.noteSelectedId.noteId;
   };
 
+  $rootScope.getNoteByIdLocal = function(noteId) {
+    var i=0, l=$rootScope.notes.length;
+    for(i=0; i<l; i++) {
+      if($rootScope.notes[i].id == noteId) {
+        return $rootScope.notes[i];
+      }
+    }
+    return null;
+  }
+
   $scope.newNote = function(notebookId) {
     if(typeof notebookId == "undefined" || notebookId == 0) {
       // TODO: Show some error
@@ -401,6 +413,7 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
       return function(status, data) {
         switch(status) {
           case 200:
+            $rootScope.templateNoteEdit = {};
             $location.path("/n/" + _notebookId + "/" + data.response.id + "/edit");
             break;
           case 400:
@@ -413,12 +426,17 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
     paperworkNotesService.createNote(notebookId, data, callback);
   };
 
+  $scope.editNote = function (notebookId, noteId) {
+      $rootScope.templateNoteEdit = $rootScope.getNoteByIdLocal(noteId);
+      $location.path("/n/" + notebookId + "/" + noteId + "/edit");
+  };
+
   $scope.updateNote = function() {
     $rootScope.note.content = CKEDITOR.instances.content.getData();
 
     var data = {
-      'title': $rootScope.note.title,
-      'content': $rootScope.note.content
+      'title': $rootScope.templateNoteEdit.title,
+      'content': $rootScope.templateNoteEdit.content
     };
 
     var callback = (function() {
@@ -446,6 +464,8 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
     }
     var currentNote = $rootScope.getNoteSelectedId(true);
     $location.path("/n/" + $rootScope.getNotebookSelectedId() + "/" + currentNote.noteId);
+    CKEDITOR.instances.content.destroy();
+    $rootScope.templateNoteEdit = {};
   };
 
   $scope.deleteNote = function() {

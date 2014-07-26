@@ -14,7 +14,7 @@ class ApiShortcutsController extends BaseController {
 			->select('notebooks.id', 'notebooks.parent_id', 'notebooks.type', 'notebooks.title', 'shortcuts.id as shortcut_id', 'shortcuts.sortkey')
 			->get();
 
-		return Response::json($shortcuts);
+		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $shortcuts);
 	}
 
 	public function show($id = null)
@@ -35,9 +35,9 @@ class ApiShortcutsController extends BaseController {
 				->first();
 
 			if(is_null($shortcuts)){
-				return Response::json('Shortcut not found', 404);
+				return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
 			} else {
-				return Response::json($shortcuts);
+				return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $shortcuts);
 			}
 		}
 	}
@@ -52,7 +52,7 @@ class ApiShortcutsController extends BaseController {
 		$notebook->completed = $newNotebook->completed;
 		$notebook->save();
 
-		return Response::json($notebook);
+		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notebook);
 	}
 
 	public function store()
@@ -66,7 +66,7 @@ class ApiShortcutsController extends BaseController {
 		$notebook->title = $updateNotebook->title;
 		$notebook->completed = $updateNotebook->completed;
 		$notebook->save();
-		return Response::json($notebook);
+		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notebook);
 	}
 
 	public function delete($id = null)
@@ -79,7 +79,7 @@ class ApiShortcutsController extends BaseController {
 		}
 		$deletedNotebook = $notebook;
 		$notebook->delete();
-		return Response::json($deletedNotebook);
+		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $deletedNotebook);
 	}
 }
 

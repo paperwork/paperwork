@@ -55,8 +55,7 @@ class ApiNotesController extends BaseController {
 				->whereNull('notes.deleted_at')
 				->get();
 		}
-
-		return Response::json($notes);
+		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notes);
 	}
 
 	public function tagIndex($tagId)
@@ -80,7 +79,7 @@ class ApiNotesController extends BaseController {
 			->select('notes.id', 'notes.notebook_id', 'notebooks.title as notebook_title', 'versions.title', 'versions.content_preview', 'versions.content', 'notes.created_at', 'notes.updated_at', 'note_user.umask')
 			->get();
 
-		return Response::json($notes);
+		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notes);
 	}
 
 	public function show($notebookId, $id = null)
@@ -130,10 +129,10 @@ class ApiNotesController extends BaseController {
 
 			}
 			if(is_null($note)){
-				return Response::json('Notebook not found', 404);
+				return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
 			} else {
 				$note->tags = $this->getNoteTags($id);
-				return Response::json($note);
+				return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $note);
 			}
 		}
 	}

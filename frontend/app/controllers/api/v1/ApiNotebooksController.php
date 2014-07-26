@@ -36,7 +36,7 @@ class ApiNotebooksController extends BaseController {
 		}
 
 		array_unshift($notebooks, array('id' => '0', 'type' => '2', 'title' => Lang::get('notebooks.all_notes')));
-		return Response::json($notebooks);
+		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notebooks);
 	}
 
 	public function show($id = null)
@@ -58,10 +58,10 @@ class ApiNotebooksController extends BaseController {
 				->first();
 
 			if(is_null($notebook)){
-				return Response::json('Notebook not found', 404);
+				return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
 			} else {
 				$notebook->children = $this->getNotebookChildren($id);
-				return Response::json($notebook);
+				return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notebook);
 			}
 		}
 	}
