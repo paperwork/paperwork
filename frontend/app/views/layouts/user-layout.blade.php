@@ -54,7 +54,7 @@
 					<li class="dropdown">
 						<a href="" class="dropdown-toggle" data-toggle="dropdown">[[Lang::get('keywords.file')]] <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li ng-controller="paperworkSidebarNotesController"><a href="" class="{{notebooks.length ? '' : 'disabled'}}"><i class="fa fa-file"></i> [[Lang::get('keywords.new_note')]]</a></li>
+							<li ng-controller="paperworkSidebarNotesController"><a href="" ng-click="newNote(getNotebookSelectedId())" class="{{notebooks.length ? '' : 'disabled'}}"><i class="fa fa-file"></i> [[Lang::get('keywords.new_note')]]</a></li>
 							<li ng-controller="paperworkSidebarNotebooksController"><a href="" ng-click="modalNewNotebook()"><i class="fa fa-book"></i> [[Lang::get('keywords.new_notebook')]]</a></li>
 							<li><a href="" data-toggle="modal" data-target="#modalCollection"><i class="fa fa-folder"></i> [[Lang::get('keywords.new_collection')]]</a></li>
 							<li class="divider"></li>
@@ -64,8 +64,8 @@
 					<li class="dropdown">
 						<a href="" class="dropdown-toggle" data-toggle="dropdown">[[Lang::get('keywords.edit')]] <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li ng-controller="paperworkSidebarNotebooksController" class="{{getNotebookSelectedId() == 0 ? 'disabled' : ''}}"><a href="" ng-click="modalEditNotebook(getNotebookSelectedId())"><i class="fa fa-pencil"></i> [[Lang::get('keywords.edit_notebook')]]</a></li>
-							<li ng-controller="paperworkSidebarNotebooksController" class="{{getNotebookSelectedId() == 0 ? 'disabled' : ''}}"><a href="" ><i class="fa fa-trash-o"></i> [[Lang::get('keywords.delete_notebook')]]</a></li>
+							<li ng-controller="paperworkSidebarNotebooksController" class="{{getNotebookSelectedId() == 0 ? 'disabled' : ''}}"><a href="" ng-click="modalEditNotebook(getNotebookSelectedId(), false)"><i class="fa fa-pencil"></i> [[Lang::get('keywords.edit_notebook')]]</a></li>
+							<li ng-controller="paperworkSidebarNotebooksController" class="{{getNotebookSelectedId() == 0 ? 'disabled' : ''}}"><a href="" ng-click="modalEditNotebook(getNotebookSelectedId(), true)"><i class="fa fa-trash-o"></i> [[Lang::get('keywords.delete_notebook')]]</a></li>
 							<li class="divider"></li>
 							<li><a href=""><i class="fa fa-files-o"></i> [[Lang::get('keywords.edit_notes')]]</a></li>
 						</ul>
@@ -98,6 +98,7 @@
 	[[ HTML::script('js/angular.min.js') ]]
 	[[ HTML::script('js/angular-resource.min.js') ]]
 	[[ HTML::script('js/angular-route.min.js') ]]
+	[[ HTML::script('js/angular-sanitize.min.js') ]]
 
 	<!-- [[ HTML::script('js/typeahead.min.js') ]] -->
 

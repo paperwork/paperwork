@@ -4,18 +4,18 @@ class Version extends Eloquent {
 	use SoftDeletingTrait;
 
 	protected $table = 'versions';
-	protected $fillable = array('previous_id', 'next_id', 'title', 'content_preview', 'content');
+	protected $fillable = array('previous_id', 'next_id', 'title', 'content');
 
-	public function note() {
-		return $this->belongsTo('Note', 'version_id');
+	public function notes() {
+		return $this->hasOne('Note');
 	}
 
 	public function previous() {
-		return $this->hasMany('Version', 'previous_id');
+		return $this->belongsTo('Version', 'previous_id');
 	}
 
 	public function next() {
-		return $this->hasMany('Version', 'next_id');
+		return $this->belongsTo('Version', 'next_id');
 	}
 }
 

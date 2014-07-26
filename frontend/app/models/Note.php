@@ -6,7 +6,12 @@ class Note extends Eloquent {
 
 	public function version()
 	{
-	  return $this->hasOne('Version', 'version_id');
+	  return $this->belongsTo('Version');
+	}
+
+	public function notebook()
+	{
+	  return $this->hasMany('Notebook');
 	}
 
 	public function tags()
@@ -16,7 +21,7 @@ class Note extends Eloquent {
 
 	public function users()
 	{
-	  return $this->belongsToMany('User', 'tag_user');
+	  return $this->belongsToMany('User');
 	}
 }
 

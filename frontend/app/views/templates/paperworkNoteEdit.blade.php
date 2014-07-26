@@ -11,8 +11,8 @@
 	      </ul>
 	      <ul class="nav navbar-nav navbar-right">
 	      	<li>
-		      	<div class="btn-group">
-		      		<a href="#/n/{{note.notebook_id}}/{{note.id}}" class="btn btn-success navbar-btn"><i class="fa fa-floppy-o"></i></a>
+		      	<div class="btn-group" ng-controller="paperworkSidebarNotesController">
+		      		<a href="#/n/{{note.notebook_id}}/{{note.id}}/edit" ng-click="updateNote()" class="btn btn-success navbar-btn"><i class="fa fa-floppy-o"></i></a>
 		      		<a href="#/n/{{note.notebook_id}}/{{note.id}}" class="btn btn-danger navbar-btn"><i class="fa fa-times-circle"></i></a>
 	      		</div>
 	      	</li>
@@ -33,8 +33,7 @@
 [[ HTML::script('ckeditor/ckeditor.js') ]]
 <script type="text/javascript">
 	CKEDITOR.replace('content', {
-		fullPage: true,
-		allowedContent: true,
-
+		fullPage: false,
+		// config.extraPlugins = 'myplugin,anotherplugin'
 	});
 </script>

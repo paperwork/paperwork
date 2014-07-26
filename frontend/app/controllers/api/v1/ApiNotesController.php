@@ -135,30 +135,68 @@ class ApiNotesController extends BaseController {
 	}
 
 
-	public function create()
+	public function store($notebookId)
 	{
-		$newNotebook = Input::json();
+		$newNote = Input::json();
 
-		$notebook = new Notebook();
-		$notebook->title = $newNotebook->title;
-		$notebook->completed = $newNotebook->completed;
-		$notebook->save();
+		$note = new Note();
 
-		return Response::json($notebook);
+		$version = new Version(array('title' => $newNote->get("title"), 'content' => $newNote->get("content")));
+		$version->save();
+		$note->version()->associate($version);
+
+		$notebook = DB::table('notebooks')
+			->join('notebook_user', function($join) {
+				$join->on('notebooks.id', '=', 'notebook_user.notebook_id')
+					->where('notebook_user.user_id', '=', Auth::user()->id);
+			})
+			->select('notebooks.id', 'notebooks.type', 'notebooks.title')
+			->where('notebooks.id', '=', $notebookId)
+			->whereNull('notebooks.deleted_at')
+			->first();
+
+		if(is_null($notebook)){
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+		}
+
+		$note->notebook_id = $notebookId;
+
+		$note->save();
+
+		$note->users()->attach(Auth::user()->id);
+
+		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $note);
 	}
 
-	public function store()
+	public function update($notebookId, $noteId)
 	{
-		$updateNotebook = Input::json();
+		$updateNote = Input::json();
 
-		$notebook = Notebook::find($updateNotebook->id);
-		if(is_null($notebook)){
-			return Response::json('Notebook not found', 404);
+		$note = Note::find($noteId);
+		if(is_null($note)){
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array('item'=>'note', 'id'=>$noteId));
 		}
-		$notebook->title = $updateNotebook->title;
-		$notebook->completed = $updateNotebook->completed;
-		$notebook->save();
-		return Response::json($notebook);
+
+		$user = $note->users()->where('users.id', '=', Auth::user()->id)->first();
+		if(is_null($user)){
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array('item'=>'user'));
+		}
+
+		$version = new Version(array('title' => $updateNote->get("title"), 'content' => $updateNote->get("content")));
+		$version->save();
+
+		$previousVersion = $note->version()->first();
+
+		$previousVersion->next()->associate($version);
+		$previousVersion->save();
+
+		$version->previous()->associate($previousVersion);
+		$version->save();
+
+		$note->version_id = $version->id;
+
+		$note->save();
+		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $note);
 	}
 
 	public function delete($id = null)
