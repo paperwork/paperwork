@@ -1,5 +1,4 @@
 var paperworkApi = '/api/v1';
-
 angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
 .config(function($routeProvider) {
   $routeProvider
@@ -188,7 +187,66 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
   };
 
   return paperworkNotesServiceFactory;
-}]).controller('paperworkDefaultController', function($scope, $location, $routeParams, paperworkNotesService) {
+}]).factory('paperworkMessageBoxService', ['$rootScope', '$http', 'paperworkNetService', function($rootScope, $http, paperworkNetService) {
+  var paperworkMessageBoxFactory = {};
+
+
+
+  return paperworkMessageBoxFactory;
+}]).controller('paperworkConstructorController', function($scope, $rootScope, $location, $routeParams) {
+    if($rootScope.initDone) {
+      return;
+    }
+    $rootScope.initDone = true;
+    $rootScope.modal = {
+      'active': false,
+      'next': []
+    };
+
+    $rootScope.$on('paperworkModalVisible', function(ev, data) {
+      $rootScope.modal.active = true;
+    });
+
+    $rootScope.$on('paperworkModalHidden', function(ev, data) {
+      $rootScope.modal.active = false;
+
+      if($rootScope.modal.next.length > 0) {
+        if($rootScope.modal.next[0].callback) {
+          $rootScope.modal.next[0].callback();
+        }
+        $rootScope.modal.next.splice(0,1);
+      }
+    });
+
+    $('#modalNotebook').on('hidden.bs.modal', function (e) {
+      $(this).find('input[name="title"]').parents('.form-group').removeClass('has-warning');
+    });
+
+    $('.modal').on('hidden.bs.modal', function(e) {
+      $rootScope.$broadcast('paperworkModalHidden', e);
+    });
+
+    $('.modal').on('show.bs.modal', function(e) {
+      $rootScope.$broadcast('paperworkModalVisible', e);
+    });
+
+    $rootScope.messageBox = function(messageBoxData) {
+      var callback = function(data) {
+        $rootScope.modalMessageBox = data;
+        $('#modalMessageBox').modal('show');
+      };
+      if($rootScope.modal.active === false) {
+        callback(messageBoxData);
+      } else {
+        $rootScope.modal.next.push({
+          'id': 'modalMessageBox',
+          'callback': function() {
+            callback(messageBoxData);
+          }
+        });
+      }
+    };
+}).controller('paperworkDefaultController', function($scope, $location, $routeParams, paperworkNotesService) {
 }).controller('paperworkNotesAllController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService) {
     if(typeof $routeParams == "undefined" || $routeParams == {} || typeof $routeParams.notebookId == "undefined") {
       return;
@@ -309,7 +367,9 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
 
   $scope.modalNewNotebook = function() {
     $rootScope.modalNotebook = {
-      action: "create"
+      'action': 'create',
+      'shortcut': '',
+      'title': ''
     };
     $('#modalNotebook').modal("show");
   };
@@ -376,12 +436,6 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
   $rootScope.shortcuts = paperworkNotebooksService.getNotebookShortcuts(null);
   $rootScope.notebooks = paperworkNotebooksService.getNotebooks();
   $rootScope.tags = paperworkNotebooksService.getTags();
-
-  $('#modalNotebook').on('hidden.bs.modal', function (e) {
-    $scope.modalNotebookTitle = "";
-    $scope.modalNotebookShortcut = false;
-    $(this).find('input[name="title"]').parents('.form-group').removeClass('has-warning');
-  });
 }).controller('paperworkSidebarNotesController', function($scope, $rootScope, $location, $timeout, $routeParams, paperworkNotesService){
 
   $scope.isVisible = function() {
@@ -473,6 +527,7 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
     $rootScope.templateNoteEdit = {};
   };
 
+  // *** NOT IN USE ***
   $scope.deleteNote = function() {
     if(typeof $rootScope.templateNoteEdit == "undefined" || $rootScope.templateNoteEdit == null) {
       $rootScope.templateNoteEdit = {
@@ -505,35 +560,41 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
   }
 
   $scope.modalDeleteNote = function() {
-    // TODO
-    if(typeof $rootScope.templateNoteEdit == "undefined" || $rootScope.templateNoteEdit == null) {
-      $rootScope.templateNoteEdit = {
-        'delete': 0
+    var callback = (function() {
+      return function(status, data) {
+        switch(status) {
+          case 200:
+            $location.path("/n/" + $rootScope.notebookSelectedId);
+            break;
+          case 400:
+            // TODO: Show some kind of error
+            break;
+        }
       };
-    }
-    if($rootScope.templateNoteEdit.delete == 1) {
-      var callback = (function() {
-        return function(status, data) {
-          switch(status) {
-            case 200:
-              // TODO: Show cool success message
-              $rootScope.templateNoteEdit.delete = 0;
-              $location.path("/n/" + $rootScope.notebookSelectedId);
-              break;
-            case 400:
-              // TODO: Show some kind of error
-              break;
-          }
-        };
-      })();
-      paperworkNotesService.deleteNote($rootScope.note.id, callback);
-    } else {
-      $rootScope.templateNoteEdit.delete = 1;
-      $timeout(function() {
-        console.log($rootScope.templateNoteEdit.delete);
-        $rootScope.templateNoteEdit.delete = 0;
-      }, 3000)
-    }
+    })();
+
+
+    $rootScope.messageBox({
+      'title': 'Delete note?',
+      'content': 'Do you really want to delete this note?',
+      'buttons': [
+        {
+          // We don't need an id for the dismiss button.
+          // 'id': 'button-no',
+          'label': 'No',
+          'isDismiss': true
+        },
+        {
+          'id': 'button-yes',
+          'label': 'Yes, delete',
+          'class': 'btn-warning',
+          'click': function() {
+            paperworkNotesService.deleteNote($rootScope.note.id, callback);
+            return true;
+          },
+        }
+      ]
+    });
   }
 
   $scope.submitSearch = function() {
@@ -563,6 +624,25 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
 }).controller('paperworkFourOhFourController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService){
   $rootScope.navbarMainMenu = true;
   $rootScope.navbarSearchForm = true;
+}).controller('paperworkMessageBoxController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService){
+  $scope.onClick = function(buttonId) {
+    if(typeof buttonId == "undefined" || buttonId == null || buttonId == "") {
+      return false;
+    }
+
+    var l = $rootScope.modalMessageBox.buttons.length;
+
+    for(i=0; i<l; i++) {
+      if($rootScope.modalMessageBox.buttons[i].id == buttonId) {
+        if(typeof $rootScope.modalMessageBox.buttons[i].click != "undefined") {
+          if($rootScope.modalMessageBox.buttons[i].click()) {
+            $('#modalMessageBox').modal('hide');
+          }
+          return;
+        }
+      }
+    }
+  };
 }).filter('convertdate', function () {
     return function (value) {
         return (!value) ? '' : value.replace(/ /g, 'T');

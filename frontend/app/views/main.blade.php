@@ -1,6 +1,7 @@
 @extends("layouts/user-layout")
 @section("content")
 
+@include('modal/messagebox')
 @include('modal/notebook')
 
 <div class="container-fluid">

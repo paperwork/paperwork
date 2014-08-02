@@ -22,6 +22,7 @@
 
 </head>
   <body ng-app="paperworkNotes">
+  	<div ng-controller="paperworkConstructorController"></div>
 
 	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
