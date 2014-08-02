@@ -193,11 +193,18 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
 
 
   return paperworkMessageBoxFactory;
-}]).controller('paperworkConstructorController', function($scope, $rootScope, $location, $routeParams) {
+}]).controller('paperworkConstructorController', function($scope, $rootScope, $location, $routeParams, paperworkNetService) {
     if($rootScope.initDone) {
       return;
     }
     $rootScope.initDone = true;
+
+    paperworkNetService.apiGet('/i18n', function(status, data) {
+      if(status == 200) {
+        $rootScope.i18n = data.response;
+      }
+    });
+
     $rootScope.modal = {
       'active': false,
       'next': []
@@ -575,18 +582,18 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
 
 
     $rootScope.messageBox({
-      'title': 'Delete note?',
-      'content': 'Do you really want to delete this note?',
+      'title': $rootScope.i18n.keywords.delete_note_question,
+      'content': $rootScope.i18n.keywords.delete_note_message,
       'buttons': [
         {
           // We don't need an id for the dismiss button.
           // 'id': 'button-no',
-          'label': 'No',
+          'label': $rootScope.i18n.keywords.cancel,
           'isDismiss': true
         },
         {
           'id': 'button-yes',
-          'label': 'Yes, delete',
+          'label': $rootScope.i18n.keywords.yes,
           'class': 'btn-warning',
           'click': function() {
             paperworkNotesService.deleteNote($rootScope.note.id, callback);
