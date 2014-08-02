@@ -14,7 +14,6 @@
 		      	<div class="btn-group" ng-controller="paperworkSidebarNotesController">
 		      		<a href="" ng-click="updateNote()" class="btn btn-default navbar-btn" title="[[Lang::get('keywords.save')]]"><i class="fa fa-floppy-o"></i></a>
 		      		<a href="" ng-click="closeNote()" class="btn btn-default navbar-btn" title="[[Lang::get('keywords.close')]]"><i class="fa fa-times-circle"></i></a>
-		      		<a href="" ng-click="deleteNote()" class="btn btn-danger navbar-btn" title="[[Lang::get('keywords.delete')]]"><i class="fa fa-trash-o"></i> <span class="animate-button-short ng-hide" ng-show="(templateNoteEdit.delete == 1)">[[Lang::get('keywords.sure_question')]]</span></a>
 	      		</div>
 	      	</li>
 	      </ul>

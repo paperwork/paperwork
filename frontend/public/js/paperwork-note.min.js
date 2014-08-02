@@ -160,10 +160,13 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
     paperworkNetService.apiDelete('/notebooks/0/notes/' + noteId, callback);
   };
 
-  paperworkNotesServiceFactory.getNotesInNotebook = function(notebookId) {
+  paperworkNotesServiceFactory.getNotesInNotebook = function(notebookId, callback) {
     paperworkNetService.apiGet('/notebooks/' + notebookId + '/notes', function(status, data) {
       if(status == 200) {
         $rootScope.notes = data.response;
+        if(typeof callback != "undefined") {
+          callback();
+        }
       }
     });
   };
@@ -212,28 +215,39 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
   paperworkNotesService.getNoteById(parseInt($routeParams.noteId));
   $rootScope.navbarMainMenu = true;
   $rootScope.navbarSearchForm = true;
-
-  // window.setupWaybackTimeline();
+  $rootScope.expandedNoteLayout = false;
 }).controller('paperworkNotesEditController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService) {
-  paperworkNotesService.getNoteById(parseInt($routeParams.noteId));
+  var thisController = function() {
+    paperworkNotesService.getNoteById(parseInt($routeParams.noteId));
+    $rootScope.templateNoteEdit = $rootScope.getNoteByIdLocal(parseInt($routeParams.noteId));
 
-  var ck =  CKEDITOR.replace('content', {
-    fullPage: false,
-    // extraPlugins: 'myplugin,anotherplugin',
-    removePlugins: 'sourcearea,save,newpage,preview,print,forms'
-  });
-
-  ck.on('change', function() {
-    // Let's access our $rootScope from within jQuery (this)
-    _$scope = $('body').scope();
-    _$rootScope = _$scope.$root;
-    _$scope.$apply(function() {
-      _$rootScope.templateNoteEdit.modified = true;
+    var ck =  CKEDITOR.replace('content', {
+      fullPage: false,
+      // extraPlugins: 'myplugin,anotherplugin',
+      removePlugins: 'sourcearea,save,newpage,preview,print,forms'
     });
-  });
+
+    ck.on('change', function() {
+      // Let's access our $rootScope from within jQuery (this)
+      _$scope = $('body').scope();
+      _$rootScope = _$scope.$root;
+      _$scope.$apply(function() {
+        _$rootScope.templateNoteEdit.modified = true;
+      });
+    });
+  }
+
+  if(typeof $rootScope.notes == "undefined") {
+    paperworkNotesService.getNotesInNotebook($rootScope.notebookSelectedId, function() {
+      thisController();
+    });
+  } else {
+    thisController();
+  }
 
   $rootScope.navbarMainMenu = false;
   $rootScope.navbarSearchForm = false;
+  $rootScope.expandedNoteLayout = true;
 }).controller('paperworkNotesListController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService) {
     $rootScope.noteSelectedId = {};
     paperworkNotesService.getNotesInNotebook(0);
@@ -257,11 +271,7 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
   $rootScope.tagsSelectedId = -1;
 
   $scope.isVisible = function() {
-    if($location.$$path.match(/^\/n\/[0-9]+\/[0-9]+\/edit/g) == null) {
-      return true;
-    } else {
-      return false;
-    }
+    return !$rootScope.expandedNoteLayout;
   };
 
   $scope.notebookIconByType = function(type) {
@@ -375,11 +385,7 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
 }).controller('paperworkSidebarNotesController', function($scope, $rootScope, $location, $timeout, $routeParams, paperworkNotesService){
 
   $scope.isVisible = function() {
-    if($location.$$path.match(/^\/n\/[0-9]+\/[0-9]+\/edit/g) == null) {
-      return true;
-    } else {
-      return false;
-    }
+    return !$rootScope.expandedNoteLayout;
   };
 
   $rootScope.getNoteSelectedId = function(asObject) {
@@ -427,7 +433,6 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
   };
 
   $scope.editNote = function (notebookId, noteId) {
-      $rootScope.templateNoteEdit = $rootScope.getNoteByIdLocal(noteId);
       $location.path("/n/" + notebookId + "/" + noteId + "/edit");
   };
 
@@ -459,7 +464,7 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
   };
 
   $scope.closeNote = function() {
-    if($rootScope.templateNoteEdit.modified) {
+    if($rootScope.templateNoteEdit && $rootScope.templateNoteEdit.modified) {
       // TODO: Ask!
     }
     var currentNote = $rootScope.getNoteSelectedId(true);
@@ -499,6 +504,38 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
     }
   }
 
+  $scope.modalDeleteNote = function() {
+    // TODO
+    if(typeof $rootScope.templateNoteEdit == "undefined" || $rootScope.templateNoteEdit == null) {
+      $rootScope.templateNoteEdit = {
+        'delete': 0
+      };
+    }
+    if($rootScope.templateNoteEdit.delete == 1) {
+      var callback = (function() {
+        return function(status, data) {
+          switch(status) {
+            case 200:
+              // TODO: Show cool success message
+              $rootScope.templateNoteEdit.delete = 0;
+              $location.path("/n/" + $rootScope.notebookSelectedId);
+              break;
+            case 400:
+              // TODO: Show some kind of error
+              break;
+          }
+        };
+      })();
+      paperworkNotesService.deleteNote($rootScope.note.id, callback);
+    } else {
+      $rootScope.templateNoteEdit.delete = 1;
+      $timeout(function() {
+        console.log($rootScope.templateNoteEdit.delete);
+        $rootScope.templateNoteEdit.delete = 0;
+      }, 3000)
+    }
+  }
+
   $scope.submitSearch = function() {
     if($scope.search == "") {
       $location.path("/");
@@ -508,11 +545,7 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
   };
 }).controller('paperworkViewController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService){
   $scope.isVisible = function() {
-    if($location.$$path.match(/^\/n\/[0-9]+\/[0-9]+\/edit/g) == null) {
-      return true;
-    } else {
-      return false;
-    }
+    return !$rootScope.expandedNoteLayout;
   }
 }).controller('paperworkSearchController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService){
   var sQ = $routeParams.searchQuery;

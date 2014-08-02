@@ -15,9 +15,7 @@
 		      	<div class="btn-group">
 		      		<button class="btn btn-default navbar-btn"><i class="fa fa-info-circle"></i></button>
 		      		<button class="btn btn-default navbar-btn" data-toggle="freqselector" data-target="#wayback-machine"><i class="fa fa-history"></i></button>
-		      		<a ng-controller="paperworkSidebarNotesController" href="" ng-click="editNote(note.notebook_id, note.id)" class="btn btn-default navbar-btn"><i class="fa fa-pencil-square-o"></i></a>
 		      		<button class="btn btn-default navbar-btn"><i class="fa fa-share-alt"></i></button>
-		      		<button class="btn btn-danger navbar-btn"><i class="fa fa-trash-o"></i></button>
 	      		</div>
 	      	</li>
 	      </ul>
