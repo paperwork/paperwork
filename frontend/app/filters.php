@@ -35,16 +35,20 @@ App::after(function($request, $response)
 
 Route::filter('auth', function()
 {
-	if (Auth::guest())
-	{
-		if (Request::ajax())
+	if(Input::get('basic') === null) {
+		if (Auth::guest())
 		{
-			return Response::make('Unauthorized', 401);
+			if (Request::ajax())
+			{
+				return Response::make('Unauthorized', 401);
+			}
+			else
+			{
+				return Redirect::guest('/login');
+			}
 		}
-		else
-		{
-			return Redirect::guest('/login');
-		}
+	} else {
+		return Auth::basic("username");
 	}
 });
 
