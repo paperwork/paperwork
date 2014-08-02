@@ -48,8 +48,8 @@
 			<ul id="notes-list" class="nav nav-sidebar notes-list sidebar-no-border" ng-controller="paperworkNotesListController">
 				<li class="notes-list-item" ng-repeat="note in notes" ng-click="noteSelect(note.notebook_id, note.id)" ng-dblclick="editNote(note.notebook_id, note.id)" ng-class="{ 'active': note.notebook_id + '-' + note.id == getNoteSelectedId() }">
 					<a href="#{{getNoteLink(note.notebook_id, note.id)}}">
-						<span class="notes-list-title">{{note.title}} <span class="label label-primary">{{note.updated_at | convertdate | date : 'shortDate'}}</span></span>
-						<span class="notes-list-content">{{note.content_preview}}</span>
+						<span class="notes-list-title notes-list-title-gradient">{{note.title}}</span>
+						<span class="notes-list-content notes-list-content-gradient"><span class="notes-list-date">{{note.updated_at | convertdate | date : 'shortDate'}}</span> {{note.content}}</span>
 					</a>
 				</li>
 			</ul>

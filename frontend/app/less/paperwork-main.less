@@ -170,16 +170,72 @@ body {
 .notes-list {
   .notes-list-item {
       .notes-list-title {
-        font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-weight: 400;
+        // font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: 600;
+        font-size: 1.2em;
+        display: block;
+        white-space: nowrap;
         display: block;
       }
 
       .notes-list-content {
+        display: block;
         height: 48px;
-        font-size: 0.8em;
+        font-size: 1.0em;
+        font-weight: 400;
         display: block;
         overflow: hidden;
+
+        .notes-list-date {
+          font-size: 0.9em;
+        }
+      }
+
+      .notes-list-title-gradient {
+        background-image: -webkit-gradient(linear, left top, right top, color-stop(0.75, rgba(0, 0, 0, 1)), color-stop(1, rgba(0, 0, 0, 0)));
+        background-image: -o-linear-gradient(right, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 100%);
+        background-image: -moz-linear-gradient(right, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 100%);
+        background-image: -webkit-linear-gradient(right, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 100%);
+        background-image: -ms-linear-gradient(right, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 100%);
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .notes-list-content-gradient {
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.50, rgba(0, 0, 0, 1)), color-stop(1, rgba(0, 0, 0, 0)));
+        background-image: -o-linear-gradient(bottom, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
+        background-image: -moz-linear-gradient(bottom, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
+        background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
+        background-image: -ms-linear-gradient(bottom, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+  }
+
+  .notes-list-item.active {
+
+      .notes-list-title-gradient {
+        background-image: -webkit-gradient(linear, left top, right top, color-stop(0.75, rgba(255, 255, 255, 1)), color-stop(1, rgba(255, 255, 255, 0)));
+        background-image: -o-linear-gradient(right, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0) 100%);
+        background-image: -moz-linear-gradient(right, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0) 100%);
+        background-image: -webkit-linear-gradient(right, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0) 100%);
+        background-image: -ms-linear-gradient(right, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0) 100%);
+        background-image: linear-gradient(to right, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+
+      .notes-list-content-gradient {
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.50, rgba(0, 0, 0, 1)), color-stop(1, rgba(0, 0, 0, 0)));
+        background-image: -o-linear-gradient(bottom, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+        background-image: -moz-linear-gradient(bottom, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+        background-image: -webkit-linear-gradient(bottom, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+        background-image: -ms-linear-gradient(bottom, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+        background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
   }
 }

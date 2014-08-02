@@ -283,6 +283,7 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
   $rootScope.expandedNoteLayout = false;
 }).controller('paperworkNotesEditController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService) {
   var thisController = function() {
+    $rootScope.noteSelectedId = { 'notebookId': parseInt($routeParams.notebookId), 'noteId': parseInt($routeParams.noteId) };
     paperworkNotesService.getNoteById(parseInt($routeParams.noteId));
     $rootScope.templateNoteEdit = $rootScope.getNoteByIdLocal(parseInt($routeParams.noteId));
 
@@ -537,7 +538,7 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
   };
 
   $scope.updateNote = function() {
-    $rootScope.note.content = CKEDITOR.instances.content.getData();
+    $rootScope.templateNoteEdit.content = CKEDITOR.instances.content.getData();
 
     var data = {
       'title': $rootScope.templateNoteEdit.title,
