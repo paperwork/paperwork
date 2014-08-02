@@ -32,7 +32,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand transition-effect" href="[[ URL::route("/") ]]">Paperworks</a>
+				<a class="navbar-brand transition-effect" href="[[ URL::route("/") ]]">Paperwork</a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<div class="visible-xs">
