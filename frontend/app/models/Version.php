@@ -2,7 +2,7 @@
 
 class Version extends Eloquent {
 	use SoftDeletingTrait;
-
+	protected $softDelete = true;
 	protected $table = 'versions';
 	protected $fillable = array('previous_id', 'next_id', 'title', 'content');
 

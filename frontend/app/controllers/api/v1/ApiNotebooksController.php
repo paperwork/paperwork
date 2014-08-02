@@ -140,7 +140,14 @@ class ApiNotebooksController extends BaseController {
 			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
 		}
 		$deletedNotebook = $notebook;
+
+		$shortcut = Shortcut::where('user_id', '=', Auth::user()->id)->where('notebook_id', '=', $notebookId);
+		if($shortcut->count()>0) {
+			$shortcut->delete();
+		}
+
 		$notebook->delete();
+
 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $deletedNotebook);
 	}
 }

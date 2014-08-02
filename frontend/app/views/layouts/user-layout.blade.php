@@ -69,8 +69,8 @@
 							<li><a href=""><i class="fa fa-files-o"></i> [[Lang::get('keywords.edit_notes')]]</a></li>
 							<li ng-controller="paperworkSidebarNotesController" class="{{getNoteSelectedId(true) == null ? 'disabled' : ''}}"><a href="" ng-click="modalDeleteNote(getNotebookSelectedId(), getNoteSelectedId())"><i class="fa fa-trash-o"></i> [[Lang::get('keywords.delete_note')]]</a></li>
 							<li class="divider"></li>
-							<li ng-controller="paperworkSidebarNotebooksController" class="{{getNotebookSelectedId() == 0 ? 'disabled' : ''}}"><a href="" ng-click="modalEditNotebook(getNotebookSelectedId(), false)"><i class="fa fa-pencil"></i> [[Lang::get('keywords.edit_notebook')]]</a></li>
-							<li ng-controller="paperworkSidebarNotebooksController" class="{{getNotebookSelectedId() == 0 ? 'disabled' : ''}}"><a href="" ng-click="modalEditNotebook(getNotebookSelectedId(), true)"><i class="fa fa-trash-o"></i> [[Lang::get('keywords.delete_notebook')]]</a></li>
+							<li ng-controller="paperworkSidebarNotebooksController" class="{{getNotebookSelectedId() == 0 ? 'disabled' : ''}}"><a href="" ng-click="modalEditNotebook(getNotebookSelectedId())"><i class="fa fa-pencil"></i> [[Lang::get('keywords.edit_notebook')]]</a></li>
+							<li ng-controller="paperworkSidebarNotebooksController" class="{{getNotebookSelectedId() == 0 ? 'disabled' : ''}}"><a href="" ng-click="modalDeleteNotebook(getNotebookSelectedId())"><i class="fa fa-trash-o"></i> [[Lang::get('keywords.delete_notebook')]]</a></li>
 						</ul>
 					</li>
 				</ul>

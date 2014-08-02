@@ -408,15 +408,15 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
     if($rootScope.modalNotebook.action == "create") {
       paperworkNotebooksService.createNotebook(data, callback);
     } else if($rootScope.modalNotebook.action == "edit") {
-      if($rootScope.modalNotebook.delete) {
-        paperworkNotebooksService.deleteNotebook($rootScope.modalNotebook.id, callback);
-      } else {
+      // if($rootScope.modalNotebook.delete) {
+        // paperworkNotebooksService.deleteNotebook($rootScope.modalNotebook.id, callback);
+      // } else {
         paperworkNotebooksService.updateNotebook($rootScope.modalNotebook.id, data, callback);
-      }
+      // }
     }
   };
 
-  $scope.modalEditNotebook = function(notebookId, deleteIt) {
+  $scope.modalEditNotebook = function(notebookId) {
     var notebook = paperworkNotebooksService.getNotebookByIdLocal(notebookId);
 
     if(notebook == null) {
@@ -426,8 +426,7 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
     $rootScope.modalNotebook = {
       'action': 'edit',
       'id': notebookId,
-      'title': notebook.title,
-      'delete': deleteIt
+      'title': notebook.title
     };
 
     var shortcut = paperworkNotebooksService.getShortcutByNotebookIdLocal(notebookId);
@@ -440,8 +439,48 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
     $('#modalNotebook').modal("show");
   };
 
-  $rootScope.shortcuts = paperworkNotebooksService.getNotebookShortcuts(null);
-  $rootScope.notebooks = paperworkNotebooksService.getNotebooks();
+  $scope.modalDeleteNotebook = function(notebookId) {
+    var callback = (function() {
+      return function(status, data) {
+        switch(status) {
+          case 200:
+            paperworkNotebooksService.getNotebookShortcuts(null);
+            paperworkNotebooksService.getNotebooks();
+            $location.path("/n/0");
+            break;
+          case 400:
+            // TODO: Show some kind of error
+            break;
+        }
+      };
+    })();
+
+
+    $rootScope.messageBox({
+      'title': $rootScope.i18n.keywords.delete_notebook_question,
+      'content': $rootScope.i18n.keywords.delete_notebook_message,
+      'buttons': [
+        {
+          // We don't need an id for the dismiss button.
+          // 'id': 'button-no',
+          'label': $rootScope.i18n.keywords.cancel,
+          'isDismiss': true
+        },
+        {
+          'id': 'button-yes',
+          'label': $rootScope.i18n.keywords.yes,
+          'class': 'btn-warning',
+          'click': function() {
+            paperworkNotebooksService.deleteNotebook(notebookId, callback);
+            return true;
+          },
+        }
+      ]
+    });
+  };
+
+  paperworkNotebooksService.getNotebookShortcuts(null);
+  paperworkNotebooksService.getNotebooks();
   $rootScope.tags = paperworkNotebooksService.getTags();
 }).controller('paperworkSidebarNotesController', function($scope, $rootScope, $location, $timeout, $routeParams, paperworkNotesService){
 
@@ -535,43 +574,43 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
   };
 
   // *** NOT IN USE ***
-  $scope.deleteNote = function() {
-    if(typeof $rootScope.templateNoteEdit == "undefined" || $rootScope.templateNoteEdit == null) {
-      $rootScope.templateNoteEdit = {
-        'delete': 0
-      };
-    }
-    if($rootScope.templateNoteEdit.delete == 1) {
-      var callback = (function() {
-        return function(status, data) {
-          switch(status) {
-            case 200:
-              // TODO: Show cool success message
-              $rootScope.templateNoteEdit.delete = 0;
-              $location.path("/n/" + $rootScope.notebookSelectedId);
-              break;
-            case 400:
-              // TODO: Show some kind of error
-              break;
-          }
-        };
-      })();
-      paperworkNotesService.deleteNote($rootScope.note.id, callback);
-    } else {
-      $rootScope.templateNoteEdit.delete = 1;
-      $timeout(function() {
-        console.log($rootScope.templateNoteEdit.delete);
-        $rootScope.templateNoteEdit.delete = 0;
-      }, 3000)
-    }
-  }
+  // $scope.deleteNote = function() {
+  //   if(typeof $rootScope.templateNoteEdit == "undefined" || $rootScope.templateNoteEdit == null) {
+  //     $rootScope.templateNoteEdit = {
+  //       'delete': 0
+  //     };
+  //   }
+  //   if($rootScope.templateNoteEdit.delete == 1) {
+  //     var callback = (function() {
+  //       return function(status, data) {
+  //         switch(status) {
+  //           case 200:
+  //             // TODO: Show cool success message
+  //             $rootScope.templateNoteEdit.delete = 0;
+  //             $location.path("/n/" + $rootScope.notebookSelectedId);
+  //             break;
+  //           case 400:
+  //             // TODO: Show some kind of error
+  //             break;
+  //         }
+  //       };
+  //     })();
+  //     paperworkNotesService.deleteNote($rootScope.note.id, callback);
+  //   } else {
+  //     $rootScope.templateNoteEdit.delete = 1;
+  //     $timeout(function() {
+  //       console.log($rootScope.templateNoteEdit.delete);
+  //       $rootScope.templateNoteEdit.delete = 0;
+  //     }, 3000)
+  //   }
+  // }
 
-  $scope.modalDeleteNote = function() {
+  $scope.modalDeleteNote = function(notebookId, noteId) {
     var callback = (function() {
       return function(status, data) {
         switch(status) {
           case 200:
-            $location.path("/n/" + $rootScope.notebookSelectedId);
+            $location.path("/n/" + notebookId);
             break;
           case 400:
             // TODO: Show some kind of error
@@ -596,13 +635,13 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
           'label': $rootScope.i18n.keywords.yes,
           'class': 'btn-warning',
           'click': function() {
-            paperworkNotesService.deleteNote($rootScope.note.id, callback);
+            paperworkNotesService.deleteNote(noteId, callback);
             return true;
           },
         }
       ]
     });
-  }
+  };
 
   $scope.submitSearch = function() {
     if($scope.search == "") {

@@ -23,38 +23,23 @@ class ApiNotesController extends BaseController {
 	{
 		$notes = null;
 
-		if($notebookId>0) {
-			$notes = DB::table('notes')
-				->join('note_user', function($join) {
-					$join->on('notes.id', '=', 'note_user.note_id')
-						->where('note_user.user_id', '=', Auth::user()->id);
-				})
-				->join('notebooks', function($join) {
-					$join->on('notes.notebook_id', '=', 'notebooks.id');
-				})
-				->join('versions', function($join) {
-					$join->on('notes.version_id', '=', 'versions.id');
-				})
-				->select('notes.id', 'notes.notebook_id', 'notebooks.title as notebook_title', 'versions.title', 'versions.content_preview', 'versions.content', 'notes.created_at', 'notes.updated_at', 'note_user.umask')
-				->where('notes.notebook_id', '=', $notebookId)
-				->whereNull('notes.deleted_at')
-				->get();
-		} else {
-			$notes = DB::table('notes')
-				->join('note_user', function($join) {
-					$join->on('notes.id', '=', 'note_user.note_id')
-						->where('note_user.user_id', '=', Auth::user()->id);
-				})
-				->join('notebooks', function($join) {
-					$join->on('notes.notebook_id', '=', 'notebooks.id');
-				})
-				->join('versions', function($join) {
-					$join->on('notes.version_id', '=', 'versions.id');
-				})
-				->select('notes.id', 'notes.notebook_id', 'notebooks.title as notebook_title', 'versions.title', 'versions.content_preview', 'versions.content', 'notes.created_at', 'notes.updated_at', 'note_user.umask')
-				->whereNull('notes.deleted_at')
-				->get();
-		}
+		$notes = DB::table('notes')
+			->join('note_user', function($join) {
+				$join->on('notes.id', '=', 'note_user.note_id')
+					->where('note_user.user_id', '=', Auth::user()->id);
+			})
+			->join('notebooks', function($join) {
+				$join->on('notes.notebook_id', '=', 'notebooks.id');
+			})
+			->join('versions', function($join) {
+				$join->on('notes.version_id', '=', 'versions.id');
+			})
+			->select('notes.id', 'notes.notebook_id', 'notebooks.title as notebook_title', 'versions.title', 'versions.content_preview', 'versions.content', 'notes.created_at', 'notes.updated_at', 'note_user.umask')
+			->where('notes.notebook_id', ($notebookId>0 ? '=' : '>'), ($notebookId>0 ? $notebookId : '0'))
+			->whereNull('notes.deleted_at')
+			->whereNull('notebooks.deleted_at')
+			->get();
+
 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notes);
 	}
 
@@ -92,42 +77,22 @@ class ApiNotesController extends BaseController {
 		{
 			$note = null;
 
-			if($notebookId > 0) {
-				$note = DB::table('notes')
-					->join('note_user', function($join) {
-						$join->on('notes.id', '=', 'note_user.note_id')
-							->where('note_user.user_id', '=', Auth::user()->id);
-					})
-					->join('notebooks', function($join) {
-						$join->on('notes.notebook_id', '=', 'notebooks.id');
-					})
-					->join('versions', function($join) {
-						$join->on('notes.version_id', '=', 'versions.id');
-					})
-					->select('notes.id', 'notes.notebook_id', 'notebooks.title as notebook_title', 'versions.title', 'versions.content_preview', 'versions.content', 'notes.created_at', 'notes.updated_at', 'note_user.umask')
-					->where('notes.notebook_id', '=', $notebookId)
-					->where('notes.id', '=', $id)
-					->whereNull('notes.deleted_at')
-					->first();
-
-			} else {
-				$note = DB::table('notes')
-						->join('note_user', function($join) {
-							$join->on('notes.id', '=', 'note_user.note_id')
-								->where('note_user.user_id', '=', Auth::user()->id);
-						})
-						->join('notebooks', function($join) {
-							$join->on('notes.notebook_id', '=', 'notebooks.id');
-						})
-						->join('versions', function($join) {
-							$join->on('notes.version_id', '=', 'versions.id');
-						})
-						->select('notes.id', 'notes.notebook_id', 'notebooks.title as notebook_title', 'versions.title', 'versions.content_preview', 'versions.content', 'notes.created_at', 'notes.updated_at', 'note_user.umask')
-						->where('notes.id', '=', $id)
-						->whereNull('notes.deleted_at')
-						->first();
-
-			}
+			$note = DB::table('notes')
+				->join('note_user', function($join) {
+					$join->on('notes.id', '=', 'note_user.note_id')
+						->where('note_user.user_id', '=', Auth::user()->id);
+				})
+				->join('notebooks', function($join) {
+					$join->on('notes.notebook_id', '=', 'notebooks.id');
+				})
+				->join('versions', function($join) {
+					$join->on('notes.version_id', '=', 'versions.id');
+				})
+				->select('notes.id', 'notes.notebook_id', 'notebooks.title as notebook_title', 'versions.title', 'versions.content_preview', 'versions.content', 'notes.created_at', 'notes.updated_at', 'note_user.umask')
+				->where('notes.notebook_id', ($notebookId>0 ? '=' : '>'), ($notebookId>0 ? $notebookId : '0'))
+				->where('notes.id', '=', $id)
+				->whereNull('notes.deleted_at')
+				->first();
 			if(is_null($note)){
 				return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
 			} else {

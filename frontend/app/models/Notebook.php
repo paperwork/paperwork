@@ -2,6 +2,7 @@
 
 class Notebook extends Eloquent {
 	use SoftDeletingTrait;
+	protected $softDelete = true;
 	protected $table = 'notebooks';
 
 	public function users() {

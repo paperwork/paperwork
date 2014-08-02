@@ -2,6 +2,7 @@
 
 class Note extends Eloquent {
 	use SoftDeletingTrait;
+	protected $softDelete = true;
 	protected $table = 'notes';
 
 	public function version()

@@ -18,17 +18,12 @@
 						<input type="checkbox" name="add_shortcut" ng-model="modalNotebook.shortcut"> [[Lang::get('notebooks.add_shortcut')]]
 					</label>
 				</div>
-				<div class="checkbox" ng-show="modalNotebook.action == 'edit'">
-					<label>
-						<input type="checkbox" name="delete" ng-model="modalNotebook.delete"> [[Lang::get('notebooks.delete_notebook')]]
-					</label>
-				</div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">[[Lang::get('keywords.cancel')]]</button>
-				<button type="button" class="btn {{ modalNotebook.delete ? 'btn-danger' : 'btn-primary' }}" ng-click="modalNotebookSubmit()">
+				<button type="button" class="btn btn-primary" ng-click="modalNotebookSubmit()">
 					{{ modalNotebook.action == 'create' ? '[[Lang::get('keywords.create')]]' : '' }}
-					{{ modalNotebook.action == 'edit' ? (modalNotebook.delete ? '[[Lang::get('keywords.delete')]]' : '[[Lang::get('keywords.update')]]') : '' }}
+					{{ modalNotebook.action == 'edit' ? '[[Lang::get('keywords.update')]]' : '' }}
 				</button>
 			</div>
 			[[ Form::close() ]]
