@@ -15,6 +15,15 @@ body {
   font-size: 14px
 }
 
+.disable-selection {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 .transition-effect {
   -webkit-transition-duration: 0.4s;
   -moz-transition-duration: 0.4s;
@@ -169,6 +178,8 @@ body {
 // Notes List
 .notes-list {
   .notes-list-item {
+      border-bottom: 1px solid @gray-lighter;
+
       .notes-list-title {
         // font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
         font-weight: 600;
@@ -178,6 +189,33 @@ body {
         display: block;
       }
 
+      .notes-list-date {
+        font-weight: 400;
+        display: block;
+        float: left;
+        text-align: center;
+
+        padding: 2px 8px 2px 4px;
+
+        margin-right: 8px;
+        border-right: 1px solid @gray-lighter;
+
+        .notes-list-date-day {
+          display: block;
+          font-size: 1.3em;
+        }
+
+        .notes-list-date-month {
+          display: block;
+          font-size: 0.9em;
+        }
+
+        .notes-list-date-year {
+          display: block;
+          font-size: 0.7em;
+        }
+      }
+
       .notes-list-content {
         display: block;
         height: 48px;
@@ -185,10 +223,6 @@ body {
         font-weight: 400;
         display: block;
         overflow: hidden;
-
-        .notes-list-date {
-          font-size: 0.9em;
-        }
       }
 
       .notes-list-title-gradient {
@@ -203,12 +237,12 @@ body {
       }
 
       .notes-list-content-gradient {
-        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.50, rgba(0, 0, 0, 1)), color-stop(1, rgba(0, 0, 0, 0)));
-        background-image: -o-linear-gradient(bottom, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
-        background-image: -moz-linear-gradient(bottom, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
-        background-image: -webkit-linear-gradient(bottom, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
-        background-image: -ms-linear-gradient(bottom, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
-        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.50, rgba(33, 33, 33, 1)), color-stop(1, rgba(33, 33, 33, 0)));
+        background-image: -o-linear-gradient(bottom, rgba(33, 33, 33, 1) 50%, rgba(33, 33, 33, 0) 100%);
+        background-image: -moz-linear-gradient(bottom, rgba(33, 33, 33, 1) 50%, rgba(33, 33, 33, 0) 100%);
+        background-image: -webkit-linear-gradient(bottom, rgba(33, 33, 33, 1) 50%, rgba(33, 33, 33, 0) 100%);
+        background-image: -ms-linear-gradient(bottom, rgba(33, 33, 33, 1) 50%, rgba(33, 33, 33, 0) 100%);
+        background-image: linear-gradient(to bottom, rgba(33, 33, 33, 1) 50%, rgba(33, 33, 33, 0) 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }

@@ -6,7 +6,7 @@
 
 <div class="container-fluid">
 	<div class="row">
-		<div id="sidebarNotebooks" class="col-sm-3 col-md-2 sidebar hidden-xs animate-panel" ng-controller="paperworkSidebarNotebooksController" ng-show="isVisible()">
+		<div id="sidebarNotebooks" class="col-sm-3 col-md-2 sidebar hidden-xs animate-panel disable-selection" ng-controller="paperworkSidebarNotebooksController" ng-show="isVisible()">
 			<ul class="nav nav-sidebar sidebar-no-border">
 				<div class="tree ">
 					<ul class="tree-base">
@@ -49,7 +49,12 @@
 				<li class="notes-list-item" ng-repeat="note in notes" ng-click="noteSelect(note.notebook_id, note.id)" ng-dblclick="editNote(note.notebook_id, note.id)" ng-class="{ 'active': note.notebook_id + '-' + note.id == getNoteSelectedId() }">
 					<a href="#{{getNoteLink(note.notebook_id, note.id)}}">
 						<span class="notes-list-title notes-list-title-gradient">{{note.title}}</span>
-						<span class="notes-list-content notes-list-content-gradient"><span class="notes-list-date">{{note.updated_at | convertdate | date : 'shortDate'}}</span> {{note.content}}</span>
+						<span class="notes-list-date">
+							<span class="notes-list-date-day">{{note.updated_at | convertdate | date : 'd'}}</span>
+							<span class="notes-list-date-month">{{note.updated_at | convertdate | date : 'MMM'}}</span>
+							<span class="notes-list-date-year">{{note.updated_at | convertdate | date : 'yyyy'}}</span>
+						</span>
+						<span class="notes-list-content notes-list-content-gradient">{{note.content}}</span>
 					</a>
 				</li>
 			</ul>
