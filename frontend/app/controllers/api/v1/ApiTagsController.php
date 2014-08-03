@@ -44,40 +44,16 @@ class ApiTagsController extends BaseController {
 
 	public function create()
 	{
-		$newNotebook = Input::json();
-
-		$notebook = new Notebook();
-		$notebook->title = $newNotebook->title;
-		$notebook->completed = $newNotebook->completed;
-		$notebook->save();
-
 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notebook);
 	}
 
 	public function store()
 	{
-		$updateNotebook = Input::json();
-
-		$notebook = Notebook::find($updateNotebook->id);
-		if(is_null($notebook)){
-			return Response::json('Notebook not found', 404);
-		}
-		$notebook->title = $updateNotebook->title;
-		$notebook->completed = $updateNotebook->completed;
-		$notebook->save();
 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notebook);
 	}
 
 	public function delete($id = null)
 	{
-		$notebook = Notebook::find($id);
-
-		if(is_null($notebook))
-		{
-			return Response::json('Notebook not found', 404);
-		}
-		$deletedNotebook = $notebook;
-		$notebook->delete();
 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notebook);
 	}
 }

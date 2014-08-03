@@ -105,6 +105,7 @@
 	[[ HTML::script('js/angular-route.min.js') ]]
 	[[ HTML::script('js/angular-sanitize.min.js') ]]
 	[[ HTML::script('js/angular-animate.min.js') ]]
+	[[ HTML::script('js/angular-file-upload.min.js') ]]
 
 	<!-- [[ HTML::script('js/typeahead.min.js') ]] -->
 

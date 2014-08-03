@@ -12,7 +12,7 @@ class Note extends Eloquent {
 
 	public function notebook()
 	{
-	  return $this->hasMany('Notebook');
+	  return $this->belongsTo('Notebook');
 	}
 
 	public function tags()

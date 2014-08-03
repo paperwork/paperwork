@@ -24,6 +24,10 @@ body {
   user-select: none;
 }
 
+.padding-twenty {
+  padding: 20px;
+}
+
 .transition-effect {
   -webkit-transition-duration: 0.4s;
   -moz-transition-duration: 0.4s;
@@ -370,6 +374,48 @@ body {
       font-weight: 400;
       font-size: 1.1em;
     }
+}
+
+// file uploader
+.file-upload-wrapper {
+}
+
+.file-upload-dropzone {
+  background-color: @gray-lighter;
+  border: 1px dashed @gray-light;
+  border-radius: 9px;
+  font-size: 1.1em;
+
+  height: 42px;
+  line-height: 42px;
+  text-align: center;
+
+  margin: 0px 0px 12px 0px;
+}
+
+.file-upload-dropzone-active {
+  border: 1px solid @brand-primary;
+}
+
+.table {
+  thead {
+    th {
+      .status-th {
+        width: 30px;
+      }
+    }
+  }
+  tbody {
+    tr {
+      .status-td {
+        width: 30px;
+      }
+    }
+  }
+}
+
+.text-align-right {
+  text-align: right;
 }
 
 .clear {

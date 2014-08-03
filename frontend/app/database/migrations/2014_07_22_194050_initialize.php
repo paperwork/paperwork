@@ -65,7 +65,11 @@ class Initialize extends Migration {
         Schema::create('attachments', function(Blueprint $table) {
             $table->bigIncrements('id');
             $table->timestamps();
+            $table->text('filename');
+            $table->text('fileextension');
             $table->text('content');
+            $table->text('mimetype');
+            $table->bigInteger('filesize')->unsigned();
             $table->softDeletes();
             $table->engine = 'InnoDB';
         });

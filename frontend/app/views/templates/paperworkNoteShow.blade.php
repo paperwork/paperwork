@@ -70,7 +70,7 @@
 </div>
 
 
-<div>
+<div class="padding-twenty">
 	<div class="page-header"><h1>{{note.title}}</h1></div>
 	<div class="page-content" ng-bind-html="note.content">
 	</div>

@@ -1,5 +1,5 @@
 var paperworkApi = '/api/v1';
-angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
+angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate', 'angularFileUpload'])
 .config(function($routeProvider) {
   $routeProvider
   .when('/', {
@@ -282,10 +282,10 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
   $rootScope.navbarSearchForm = true;
   $rootScope.expandedNoteLayout = false;
 }).controller('paperworkNotesEditController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService) {
-  var thisController = function() {
-    $rootScope.noteSelectedId = { 'notebookId': parseInt($routeParams.notebookId), 'noteId': parseInt($routeParams.noteId) };
-    paperworkNotesService.getNoteById(parseInt($routeParams.noteId));
-    $rootScope.templateNoteEdit = $rootScope.getNoteByIdLocal(parseInt($routeParams.noteId));
+  var thisController = function(notebookId, noteId) {
+    $rootScope.noteSelectedId = { 'notebookId': notebookId, 'noteId': noteId };
+    paperworkNotesService.getNoteById(noteId);
+    $rootScope.templateNoteEdit = $rootScope.getNoteByIdLocal(noteId);
 
     var ck =  CKEDITOR.replace('content', {
       fullPage: false,
@@ -303,12 +303,16 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
     });
   }
 
+  $rootScope.uploadUrl = paperworkApi + '/notebooks/' + parseInt($routeParams.notebookId) + '/notes/' + parseInt($routeParams.noteId) + '/versions/0/attachments';
+
   if(typeof $rootScope.notes == "undefined") {
-    paperworkNotesService.getNotesInNotebook($rootScope.notebookSelectedId, function() {
-      thisController();
-    });
+    paperworkNotesService.getNotesInNotebook($rootScope.notebookSelectedId, (function(_notebookId, _noteId) {
+      return function() {
+        thisController(_notebookId, _noteId);
+      }
+    })(parseInt($routeParams.notebookId), parseInt($routeParams.noteId)) );
   } else {
-    thisController();
+    thisController(parseInt($routeParams.notebookId), parseInt($routeParams.noteId));
   }
 
   $rootScope.navbarMainMenu = false;
@@ -671,7 +675,54 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate'])
 }).controller('paperworkFourOhFourController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService){
   $rootScope.navbarMainMenu = true;
   $rootScope.navbarSearchForm = true;
-}).controller('paperworkMessageBoxController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService){
+}).controller('paperworkFileUploadController', ['$scope', '$rootScope', '$location', '$routeParams', 'FileUploader', function($scope, $rootScope, $location, $routeParams, FileUploader) {
+    var uploader = $scope.uploader = new FileUploader({
+    url: $rootScope.uploadUrl
+  });
+
+  uploader.filters.push({
+    name: 'customFilter',
+    fn: function(item /*{File|FileLikeObject}*/, options) {
+        return this.queue.length < 10;
+    }
+  });
+
+  uploader.onWhenAddingFileFailed = function(item /*{File|FileLikeObject}*/, filter, options) {
+      console.info('onWhenAddingFileFailed', item, filter, options);
+  };
+  uploader.onAfterAddingFile = function(fileItem) {
+      console.info('onAfterAddingFile', fileItem);
+  };
+  uploader.onAfterAddingAll = function(addedFileItems) {
+      console.info('onAfterAddingAll', addedFileItems);
+  };
+  uploader.onBeforeUploadItem = function(item) {
+      console.info('onBeforeUploadItem', item);
+  };
+  uploader.onProgressItem = function(fileItem, progress) {
+      console.info('onProgressItem', fileItem, progress);
+  };
+  uploader.onProgressAll = function(progress) {
+      console.info('onProgressAll', progress);
+  };
+  uploader.onSuccessItem = function(fileItem, response, status, headers) {
+      console.info('onSuccessItem', fileItem, response, status, headers);
+  };
+  uploader.onErrorItem = function(fileItem, response, status, headers) {
+      console.info('onErrorItem', fileItem, response, status, headers);
+  };
+  uploader.onCancelItem = function(fileItem, response, status, headers) {
+      console.info('onCancelItem', fileItem, response, status, headers);
+  };
+  uploader.onCompleteItem = function(fileItem, response, status, headers) {
+      console.info('onCompleteItem', fileItem, response, status, headers);
+  };
+  uploader.onCompleteAll = function() {
+      console.info('onCompleteAll');
+  };
+
+  console.info('uploader', uploader);
+}]).controller('paperworkMessageBoxController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService){
   $scope.onClick = function(buttonId) {
     if(typeof buttonId == "undefined" || buttonId == null || buttonId == "") {
       return false;
