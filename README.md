@@ -11,6 +11,8 @@ For the back-end part a MySQL database stores everything. With such common requi
 
 At [paperwork.twostairs.com](http://paperwork.twostairs.com/) you can actually see the current development status of Paperwork. Every night at 3am (CET) the database is being dropped and newly created, and the latest sources from GitHub are being deployed on the machine.
 
+Feel free to create/modify/delete accounts, notebooks and notes. This demo can be used for heavy playing without regrets. Just try not to take down that thing. :)
+
 ## Some last words
 
 The current development status is far from being worth called "version 1.0". However, if I could get you interested in this project and you feel like contributing, don't hesitate to ping me by e-mail (marius at twostairs dot com) or twitter (@devilx) so we can talk. :-)
