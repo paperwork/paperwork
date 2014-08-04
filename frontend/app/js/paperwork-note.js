@@ -186,6 +186,16 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate', 'angular
     });
   };
 
+  paperworkNotesServiceFactory.getNoteVersionAttachments = function(notebookId, noteId, versionId, callback) {
+    paperworkNetService.apiGet('/notebooks/' + notebookId + '/notes/' + noteId + '/versions/' + versionId + '/attachments', function(status, data) {
+      if(status == 200) {
+        if(typeof callback != "undefined") {
+          callback(data.response);
+        }
+      }
+    });
+  };
+
   return paperworkNotesServiceFactory;
 }]).factory('paperworkMessageBoxService', ['$rootScope', '$http', 'paperworkNetService', function($rootScope, $http, paperworkNetService) {
   var paperworkMessageBoxFactory = {};
@@ -198,6 +208,10 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate', 'angular
       return;
     }
     $rootScope.initDone = true;
+
+    // if(typeof $rootScope.versionSelectedId == "undefined") {
+    //   console.log($rootScope.getNoteSelectedId());
+    // }
 
     paperworkNetService.apiGet('/i18n', function(status, data) {
       if(status == 200) {
@@ -237,6 +251,14 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate', 'angular
       $rootScope.$broadcast('paperworkModalVisible', e);
     });
 
+    $rootScope.getVersionSelectedId = function(asObject) {
+      if(asObject === true) {
+        return $rootScope.versionSelectedId;
+      }
+      return $rootScope.versionSelectedId.notebookId + "-" + $rootScope.versionSelectedId.noteId + "-" + $rootScope.versionSelectedId.versionId;
+    };
+
+
     $rootScope.messageBox = function(messageBoxData) {
       var callback = function(data) {
         $rootScope.modalMessageBox = data;
@@ -273,19 +295,33 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate', 'angular
     return;
   }
   $rootScope.noteSelectedId = { 'notebookId': parseInt($routeParams.notebookId), 'noteId': parseInt($routeParams.noteId) };
+  $rootScope.versionSelectedId = { 'notebookId': parseInt($routeParams.notebookId), 'noteId': parseInt($routeParams.noteId), 'versionId': 0 };
+
   if(typeof $routeParams.searchQuery == "undefined" || $routeParams.searchQuery == null || $routeParams.searchQuery.length <= 0) {
     paperworkNotesService.getNotesInNotebook(parseInt($routeParams.notebookId));
     $rootScope.notebookSelectedId = parseInt($routeParams.notebookId);
   }
+
   paperworkNotesService.getNoteById(parseInt($routeParams.noteId));
+
+  paperworkNotesService.getNoteVersionAttachments($rootScope.getNotebookSelectedId(), $rootScope.getNoteSelectedId(), $rootScope.getVersionSelectedId(true).versionId, function(response) {
+    $rootScope.fileList = response;
+  });
+
   $rootScope.navbarMainMenu = true;
   $rootScope.navbarSearchForm = true;
   $rootScope.expandedNoteLayout = false;
 }).controller('paperworkNotesEditController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService) {
   var thisController = function(notebookId, noteId) {
     $rootScope.noteSelectedId = { 'notebookId': notebookId, 'noteId': noteId };
+    $rootScope.versionSelectedId = { 'notebookId': notebookId, 'noteId': noteId, 'versionId': 0 };
     paperworkNotesService.getNoteById(noteId);
     $rootScope.templateNoteEdit = $rootScope.getNoteByIdLocal(noteId);
+
+    paperworkNotesService.getNoteVersionAttachments($rootScope.getNotebookSelectedId(), $rootScope.getNoteSelectedId(), $rootScope.getVersionSelectedId(true).versionId, function(response) {
+      $rootScope.fileList = response;
+      console.log($rootScope.fileList);
+    });
 
     var ck =  CKEDITOR.replace('content', {
       fullPage: false,
@@ -655,6 +691,8 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate', 'angular
       $location.path("/s/" + encodeURIComponent($scope.search));
     }
   };
+}).controller('paperworkVersionsController', function($scope, $rootScope, $location, $timeout, $routeParams){
+  // TODO
 }).controller('paperworkViewController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService){
   $scope.isVisible = function() {
     return !$rootScope.expandedNoteLayout;
@@ -675,10 +713,19 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate', 'angular
 }).controller('paperworkFourOhFourController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService){
   $rootScope.navbarMainMenu = true;
   $rootScope.navbarSearchForm = true;
-}).controller('paperworkFileUploadController', ['$scope', '$rootScope', '$location', '$routeParams', 'FileUploader', function($scope, $rootScope, $location, $routeParams, FileUploader) {
-    var uploader = $scope.uploader = new FileUploader({
+}).controller('paperworkFileUploadController', ['$scope', '$rootScope', '$location', '$routeParams', 'FileUploader', 'paperworkNotesService', function($scope, $rootScope, $location, $routeParams, FileUploader, paperworkNotesService) {
+  var uploader = $scope.uploader = new FileUploader({
     url: $rootScope.uploadUrl
   });
+
+  // var loadFileList = function() {
+  //   var sel = $rootScope.getVersionSelectedId(true);
+  //   console.log(sel);
+  //     paperworkNotesService.getNoteVersionAttachments($rootScope.getNotebookSelectedId(), $rootScope.getNoteSelectedId(), sel.versionId, function(response) {
+  //       $rootScope.fileList = response;
+  //     });
+  // };
+  // loadFileList();
 
   uploader.filters.push({
     name: 'customFilter',
@@ -719,6 +766,7 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate', 'angular
   };
   uploader.onCompleteAll = function() {
       console.info('onCompleteAll');
+      loadFileList();
   };
 
   console.info('uploader', uploader);

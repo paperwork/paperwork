@@ -5,7 +5,7 @@
             <span><i class="fa fa-upload"></i> [[Lang::get('keywords.upload_document')]]</span>
         </div>
 
-        <table class="table" ng-show="(uploader.queue.length > 0)">
+        <table class="table" ng-show="(uploader.queue.length > 0 || fileList.length > 0)">
             <thead>
                 <tr>
                     <th class="status-th"></th>
@@ -14,6 +14,17 @@
                 </tr>
             </thead>
             <tbody>
+                <tr ng-repeat="item in fileList">
+                    <td class="status-td">
+                        <i class="fa fa-file-o"></i>
+                    </td>
+                    <td><strong>{{ item.filename }}</strong></td>
+                    <td>
+                        <a class="">Insert</a>
+                        &nbsp;|&nbsp;
+                        <a class="">Delete</a>
+                    </td>
+                </tr>
                 <tr ng-repeat="item in uploader.queue">
                     <td class="status-td">
                         <span ng-show="item.isSuccess"><i class="fa fa-check"></i></span>
