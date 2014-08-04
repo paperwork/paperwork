@@ -18,11 +18,11 @@
                     <td class="status-td">
                         <i class="fa fa-file-o"></i>
                     </td>
-                    <td><strong>{{ item.filename }}</strong></td>
+                    <td><a href="#"><strong>{{ item.filename }}</strong></a></td>
                     <td>
-                        <a class="">Insert</a>
+                        <a class="">[[Lang::get('keywords.insert')]]</a>
                         &nbsp;|&nbsp;
-                        <a class="">Delete</a>
+                        <a class="">[[Lang::get('keywords.delete')]]</a>
                     </td>
                 </tr>
                 <tr ng-repeat="item in uploader.queue">
@@ -44,13 +44,13 @@
 
         <div class="text-align-right">
             <button type="button" class="btn btn-success" ng-click="uploader.uploadAll()" ng-hide="uploader.getNotUploadedItems().length < 1 || uploader.isUploading">
-                <i class="fa fa-upload"></i> Upload
+                <i class="fa fa-upload"></i> [[Lang::get('keywords.upload')]]
             </button>
             <button type="button" class="btn btn-warning" ng-click="uploader.cancelAll()" ng-hide="!uploader.isUploading">
-                <i class="fa fa-times"></i> Cancel
+                <i class="fa fa-times"></i> [[Lang::get('keywords.cancel')]]
             </button>
             <button type="button" class="btn btn-danger" ng-click="uploader.clearQueue()" ng-hide="!uploader.queue.length || uploader.isUploading">
-                <i class="fa fa-trash-o"></i> Remove
+                <i class="fa fa-trash-o"></i> [[Lang::get('keywords.remove')]]
             </button>
         </div>
 

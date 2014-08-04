@@ -766,7 +766,10 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate', 'angular
   };
   uploader.onCompleteAll = function() {
       console.info('onCompleteAll');
-      loadFileList();
+      paperworkNotesService.getNoteVersionAttachments($rootScope.getNotebookSelectedId(), $rootScope.getNoteSelectedId(), $rootScope.getVersionSelectedId(true).versionId, function(response) {
+        $rootScope.fileList = response;
+        uploader.clearQueue();
+      });
   };
 
   console.info('uploader', uploader);
