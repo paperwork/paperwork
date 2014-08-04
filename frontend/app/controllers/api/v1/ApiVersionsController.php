@@ -53,7 +53,6 @@ class ApiVersionsController extends BaseController {
 				$query->where('id', ($notebookId>0 ? '=' : '>'), ($notebookId>0 ? $notebookId : '0'));
 			},
 			'version' => function($query) {
-
 			}
 			)
 		)->where('id', '=', $noteId)->whereNull('deleted_at')->first();
@@ -66,7 +65,7 @@ class ApiVersionsController extends BaseController {
 		}
 
 		while(!is_null($tmp)) {
-			if($tmp->id == $versionId) {
+			if($tmp->id == $versionId || $versionId == 0) {
 				return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $tmp);
 			}
 			$tmp = $tmp->previous()->first();
