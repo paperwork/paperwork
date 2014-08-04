@@ -41,7 +41,7 @@ class ApiAttachmentsController extends BaseController {
 			$tmp = $tmp->previous()->first();
 		}
 
-		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $version->attachments()->get());
+		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $version->attachments()->whereNull('attachments.deleted_at')->get());
 	}
 
 	public function show($notebookId, $noteId, $versionId, $attachmentId)
@@ -54,14 +54,13 @@ class ApiAttachmentsController extends BaseController {
 			'users' => function($query) {
 				$query->where('note_user.user_id', '=', Auth::user()->id);
 			},
-			'notebook' => function($query) use( &$notebookId) {
+			'notebook' => function($query) use(&$notebookId) {
 				$query->where('id', ($notebookId>0 ? '=' : '>'), ($notebookId>0 ? $notebookId : '0'));
 			},
 			'version' => function($query) {
 			}
 			)
 		)->where('id', '=', $noteId)->whereNull('deleted_at')->first();
-
 
 		$tmp = $note->version()->first();
 		$version = null;
@@ -78,7 +77,7 @@ class ApiAttachmentsController extends BaseController {
 			$tmp = $tmp->previous()->first();
 		}
 
-		$attachment = $version->attachments()->where('attachments.id', '=', $attachmentId)->first();
+		$attachment = $version->attachments()->where('attachments.id', '=', $attachmentId)->whereNull('attachments.deleted_at')->first();
 
 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $attachment);
 	}
@@ -158,12 +157,55 @@ class ApiAttachmentsController extends BaseController {
 
 	public function update($notebookId, $noteId, $versionId, $attachmentId)
 	{
+		// We actually don't need this. If the user wants to update an attachment, he'd probably
+		// upload the new version and delete the old one, right?
 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, null);
 	}
 
 	public function destroy($notebookId, $noteId, $versionId, $attachmentId)
 	{
-		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, null);
+		// This is the same source as used in ApiVersionsController@show
+		// -> TODO: DRY it.
+
+		$note = Note::with(
+			array(
+			'users' => function($query) {
+				$query->where('note_user.user_id', '=', Auth::user()->id);
+			},
+			'notebook' => function($query) use(&$notebookId) {
+				$query->where('id', ($notebookId>0 ? '=' : '>'), ($notebookId>0 ? $notebookId : '0'));
+			},
+			'version' => function($query) {
+			}
+			)
+		)->where('id', '=', $noteId)->whereNull('deleted_at')->first();
+
+		$tmp = $note->version()->first();
+		$version = null;
+
+		if(is_null($tmp)) {
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+		}
+
+		while(!is_null($tmp)) {
+			if($tmp->id == $versionId || $versionId == 0) {
+				$version = $tmp;
+				break;
+			}
+			$tmp = $tmp->previous()->first();
+		}
+
+		$attachment = $version->attachments()->where('attachments.id', '=', $attachmentId)->whereNull('attachments.deleted_at')->first();
+
+		// $version->attachments()->detach($attachment);
+		if(is_null($attachment)) {
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+		}
+
+		$oldAttachment = $attachment;
+		$attachment->delete();
+
+		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $oldAttachment);
 	}
 }
 
