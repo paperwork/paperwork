@@ -609,6 +609,14 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate', 'angular
   };
 
   $scope.closeNote = function() {
+    var closeNoteCallback = function() {
+      var currentNote = $rootScope.getNoteSelectedId(true);
+      $location.path("/n/" + $rootScope.getNotebookSelectedId() + "/" + currentNote.noteId);
+      CKEDITOR.instances.content.destroy();
+      $rootScope.templateNoteEdit = {};
+      return true;
+    }
+
     if($rootScope.templateNoteEdit && $rootScope.templateNoteEdit.modified) {
       $rootScope.messageBox({
         'title': $rootScope.i18n.keywords.close_without_saving_question,
@@ -625,15 +633,13 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate', 'angular
             'label': $rootScope.i18n.keywords.yes,
             'class': 'btn-warning',
             'click': function() {
-              var currentNote = $rootScope.getNoteSelectedId(true);
-              $location.path("/n/" + $rootScope.getNotebookSelectedId() + "/" + currentNote.noteId);
-              CKEDITOR.instances.content.destroy();
-              $rootScope.templateNoteEdit = {};
-              return true;
+              return closeNoteCallback();
             },
           }
         ]
       });
+    } else {
+      return closeNoteCallback();
     }
   };
 
