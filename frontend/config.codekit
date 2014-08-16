@@ -2538,6 +2538,40 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/app\/storage\/attachments\/12\/follower-ct.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/storage\/attachments\/12\/follower-ct.md",
+		"outputAbbreviatedPath": "\/app\/storage\/attachments\/12\/follower-ct.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/app\/storage\/attachments\/13\/liferay.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 77077,
+		"inputAbbreviatedPath": "\/app\/storage\/attachments\/13\/liferay.png",
+		"outputAbbreviatedPath": "\/app\/storage\/attachments\/13\/liferay.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/app\/storage\/attachments\/15\/wegbeschreibung-cgn.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 2.05041e+06,
+		"inputAbbreviatedPath": "\/app\/storage\/attachments\/15\/wegbeschreibung-cgn.png",
+		"outputAbbreviatedPath": "\/app\/storage\/attachments\/15\/wegbeschreibung-cgn.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/app\/tests\/ExampleTest.php": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -2615,6 +2649,15 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/app\/views\/modal\/notebook.blade.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/app\/views\/partials\/file-uploader.blade.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/views\/partials\/file-uploader.blade.php",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -5597,6 +5640,17 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/public\/js\/angular-animate.min.js",
 		"outputAbbreviatedPath": "\/public\/js\/min\/angular-animate.min-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/public\/js\/angular-file-upload.min.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/public\/js\/angular-file-upload.min.js",
+		"outputAbbreviatedPath": "\/public\/js\/min\/angular-file-upload.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,

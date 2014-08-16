@@ -34,6 +34,8 @@ return array(
 	'new_note' => 'New note',
 	'delete_note_question' => 'Delete note?',
 	'delete_note_message' => 'This will delete the selected note and all its attachments. Are you sure?',
+	'close_without_saving_question' => 'Close without saving?',
+	'close_without_saving_message' => 'There are unsaved changes in your note. Do you really want to close this note and dismiss all unsaved changes?',
 	'search_dotdotdot' => 'Search...',
 	'reset_password' => 'Reset password',
 	'toggle_navigation' => 'Toggle navigation',
