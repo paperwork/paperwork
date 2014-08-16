@@ -13,11 +13,38 @@ class ApiNotesController extends BaseController {
 			$tags[] = array(
 				'id' => $tag->id,
 				'title' => $tag->title
-				);
+			);
 		}
 		return $tags;
 	}
 
+	private function getNoteVersionsBrief($noteId) {
+		$note = Note::with('version')->where('notes.id', '=', $noteId)->first();
+		$versionsObject = $note->version()->first();
+		if(is_null($versionsObject)) {
+			return null;
+		}
+
+		$versionsArray[] = $versionsObject;
+
+		$tmp = $versionsObject->previous()->first();
+
+		$versions = array();
+		while(!is_null($tmp)) {
+			$versionsArray[] = $tmp;
+
+			$versions[] = array(
+				'id' => $tmp->id,
+				'previous_id' => $tmp->previous_id,
+				'next_id' => $tmp->next_id,
+				'timestamp' => $tmp->created_at->getTimestamp()
+			);
+
+			$tmp = $tmp->previous()->first();
+		}
+
+		return $versions;
+	}
 
 	public function index($notebookId)
 	{
@@ -97,6 +124,7 @@ class ApiNotesController extends BaseController {
 				return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
 			} else {
 				$note->tags = $this->getNoteTags($id);
+				$note->versions = $this->getNoteVersionsBrief($id);
 				return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $note);
 			}
 		}
