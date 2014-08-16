@@ -283,11 +283,15 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate', 'angular
     } else {
       $rootScope.notebookSelectedId = parseInt($routeParams.notebookId);
     }
-    paperworkNotesService.getNotesInNotebook($rootScope.getNotebookSelectedId());
-    $rootScope.navbarMainMenu = true;
-    $rootScope.navbarSearchForm = true;
-    $rootScope.expandedNoteLayout = false;
+    paperworkNotesService.getNotesInNotebook($rootScope.getNotebookSelectedId(), function() {
+      // $rootScope.setNoteSelectedId($rootScope.getNotebookSelectedId(), $rootScope.notes[0].id);
+      $location.path("/n/" + $scope.notebookSelectedId + "/" + $rootScope.notes[0].id);
+    });
+    // $rootScope.navbarMainMenu = true;
+    // $rootScope.navbarSearchForm = true;
+    // $rootScope.expandedNoteLayout = false;
 
+    // ---
     // $rootScope.note = null; // TODO: Do we still need this?
 
     // $location.path("/notebook/" + $scope.notebookSelectedId + "/note/" + $rootScope.notes[0].id);
@@ -318,6 +322,10 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate', 'angular
     $rootScope.versionSelectedId = { 'notebookId': notebookId, 'noteId': noteId, 'versionId': 0 };
     paperworkNotesService.getNoteById(noteId);
     $rootScope.templateNoteEdit = $rootScope.getNoteByIdLocal(noteId);
+    if(typeof $rootScope.templateNoteEdit == "undefined" || $rootScope.templateNoteEdit == null) {
+      $rootScope.templateNoteEdit = {};
+    }
+
 
     paperworkNotesService.getNoteVersionAttachments($rootScope.getNotebookSelectedId(), ($rootScope.getNoteSelectedId(true)).noteId, $rootScope.getVersionSelectedId(true).versionId, function(response) {
       $rootScope.fileList = response;
@@ -540,6 +548,11 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate', 'angular
     return $rootScope.noteSelectedId.notebookId + "-" + $rootScope.noteSelectedId.noteId;
   };
 
+  $rootScope.setNoteSelectedId = function(notebookId, noteId) {
+    $rootScope.noteSelectedId.notebookId = notebookId;
+    $rootScope.noteSelectedId.noteId = noteId;
+  }
+
   $rootScope.getNoteByIdLocal = function(noteId) {
     var i=0, l=$rootScope.notes.length;
     for(i=0; i<l; i++) {
@@ -578,10 +591,14 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate', 'angular
   };
 
   $scope.editNote = function (notebookId, noteId) {
-      $location.path("/n/" + notebookId + "/" + noteId + "/edit");
+    $location.path("/n/" + notebookId + "/" + noteId + "/edit");
   };
 
   $scope.updateNote = function() {
+    // if(typeof $rootScope.templateNoteEdit == "undefined" || $rootScope.templateNoteEdit == null) {
+    //   $rootScope.templateNoteEdit = {};
+    // }
+
     $rootScope.templateNoteEdit.content = CKEDITOR.instances.content.getData();
 
     var data = {
