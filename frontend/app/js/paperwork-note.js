@@ -637,38 +637,6 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate', 'angular
     }
   };
 
-  // *** NOT IN USE ***
-  // $scope.deleteNote = function() {
-  //   if(typeof $rootScope.templateNoteEdit == "undefined" || $rootScope.templateNoteEdit == null) {
-  //     $rootScope.templateNoteEdit = {
-  //       'delete': 0
-  //     };
-  //   }
-  //   if($rootScope.templateNoteEdit.delete == 1) {
-  //     var callback = (function() {
-  //       return function(status, data) {
-  //         switch(status) {
-  //           case 200:
-  //             // TODO: Show cool success message
-  //             $rootScope.templateNoteEdit.delete = 0;
-  //             $location.path("/n/" + $rootScope.notebookSelectedId);
-  //             break;
-  //           case 400:
-  //             // TODO: Show some kind of error
-  //             break;
-  //         }
-  //       };
-  //     })();
-  //     paperworkNotesService.deleteNote($rootScope.note.id, callback);
-  //   } else {
-  //     $rootScope.templateNoteEdit.delete = 1;
-  //     $timeout(function() {
-  //       console.log($rootScope.templateNoteEdit.delete);
-  //       $rootScope.templateNoteEdit.delete = 0;
-  //     }, 3000)
-  //   }
-  // }
-
   $scope.modalDeleteNote = function(notebookId, noteId) {
     var callback = (function() {
       return function(status, data) {
@@ -742,15 +710,6 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate', 'angular
   var uploader = $scope.uploader = new FileUploader({
     url: $rootScope.uploadUrl
   });
-
-  // var loadFileList = function() {
-  //   var sel = $rootScope.getVersionSelectedId(true);
-  //   console.log(sel);
-  //     paperworkNotesService.getNoteVersionAttachments($rootScope.getNotebookSelectedId(), $rootScope.getNoteSelectedId(), sel.versionId, function(response) {
-  //       $rootScope.fileList = response;
-  //     });
-  // };
-  // loadFileList();
 
   uploader.filters.push({
     name: 'customFilter',

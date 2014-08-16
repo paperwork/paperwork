@@ -159,11 +159,19 @@ class ApiNotesController extends BaseController {
 		$version->save();
 
 		$previousVersion = $note->version()->first();
+		$previousAttachments = $previousVersion->attachments()->get();
 
 		$previousVersion->next()->associate($version);
 		$previousVersion->save();
 
 		$version->previous()->associate($previousVersion);
+
+		if(!is_null($previousAttachments) && $previousAttachments->count() > 0) {
+			foreach($previousAttachments as $previousAttachment) {
+				$version->attachments()->attach($previousAttachment);
+			}
+		}
+
 		$version->save();
 
 		$note->version_id = $version->id;
