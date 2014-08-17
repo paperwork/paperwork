@@ -197,6 +197,28 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate', 'angular
   };
 
   return paperworkNotesServiceFactory;
+}]).factory('paperworkVersionsService', ['$rootScope', '$http', 'paperworkNetService', function($rootScope, $http, paperworkNetService) {
+  var paperworkVersionsServiceFactory = {};
+
+  paperworkVersionsServiceFactory.getVersionById = function(notebookId, noteId, versionId) {
+    paperworkNetService.apiGet('/notebooks/' + notebookId + '/notes/' + noteId + '/versions/' + versionId, function(status, data) {
+      if(status == 200) {
+        $rootScope.version = data.response;
+      }
+    });
+  };
+
+  paperworkVersionsServiceFactory.getVersionAttachments = function(notebookId, noteId, versionId, callback) {
+    paperworkNetService.apiGet('/notebooks/' + notebookId + '/notes/' + noteId + '/versions/' + versionId + '/attachments', function(status, data) {
+      if(status == 200) {
+        if(typeof callback != "undefined") {
+          callback(data.response);
+        }
+      }
+    });
+  };
+
+  return paperworkVersionsServiceFactory;
 }]).factory('paperworkMessageBoxService', ['$rootScope', '$http', 'paperworkNetService', function($rootScope, $http, paperworkNetService) {
   var paperworkMessageBoxFactory = {};
 
@@ -295,7 +317,7 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate', 'angular
     // $rootScope.note = null; // TODO: Do we still need this?
 
     // $location.path("/notebook/" + $scope.notebookSelectedId + "/note/" + $rootScope.notes[0].id);
-}).controller('paperworkNotesShowController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService) {
+}).controller('paperworkNotesShowController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService, paperworkNetService) {
   if(!angular.isNumber(parseInt($routeParams.noteId)) || $routeParams.noteId === "undefined") {
     return;
   }
@@ -312,6 +334,23 @@ angular.module("paperworkNotes", ['ngRoute', 'ngSanitize', 'ngAnimate', 'angular
   paperworkNotesService.getNoteVersionAttachments($rootScope.getNotebookSelectedId(), ($rootScope.getNoteSelectedId(true)).noteId, $rootScope.getVersionSelectedId(true).versionId, function(response) {
     $rootScope.fileList = response;
   });
+
+  $('#wayback-machine').on('picked.freqselector', function(e) {
+    var itemId = $(e.item).data('itemid');
+
+    paperworkNetService.apiGet('/notebooks/' + $rootScope.getNotebookSelectedId() + '/notes/' + ($rootScope.getNoteSelectedId(true)).noteId + '/versions/' + itemId, function(status, data) {
+      if(status == 200) {
+        $rootScope.note.title = data.response.title;
+        $rootScope.note.content = data.response.content;
+        if(data.response.next_id === null) {
+          itemId = 0;
+        }
+        $rootScope.note.version = itemId;
+      }
+    });
+
+  });
+
 
   $rootScope.navbarMainMenu = true;
   $rootScope.navbarSearchForm = true;

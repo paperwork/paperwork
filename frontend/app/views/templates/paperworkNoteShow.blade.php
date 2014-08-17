@@ -33,7 +33,7 @@
 				<div id="freqselector-item-0" class="freqselector-item-snap"></div>
 			</div>
 			<div class="freqselector-item freqselector-item-not-dummy" ng-repeat="version in note.versions">
-				<div id="freqselector-item-{{version.id}}" class="freqselector-item-snap"></div>
+				<div id="freqselector-item-{{version.id}}" class="freqselector-item-snap" data-itemid="{{version.id}}" data-itemlatest="{{version.latest}}"></div>
 				<div>
 					<div class="freqselector-item-title">{{version.timestamp * 1000 | date:'yyyy-MM-dd'}}</div>
 					<div class="freqselector-item-subtitle">{{version.timestamp * 1000 | date:'HH:mm'}}</div>
@@ -49,6 +49,9 @@
 
 
 <div class="padding-twenty">
+	<div class="alert alert-info animate-fade" role="alert" ng-show="note.version > 0">
+	[[Lang::get('messages.note_version_info')]]
+	</div>
 	<div class="page-header"><h1>{{note.title}}</h1></div>
 	<div class="page-content" ng-bind-html="note.content">
 	</div>

@@ -25,9 +25,9 @@ class ApiNotesController extends BaseController {
 			return null;
 		}
 
-		$versionsArray[] = $versionsObject;
-
-		$tmp = $versionsObject->previous()->first();
+		$versionsArray = [];
+		$tmp = $versionsObject;
+		$isLatest = true;
 
 		$versions = array();
 		while(!is_null($tmp)) {
@@ -37,9 +37,10 @@ class ApiNotesController extends BaseController {
 				'id' => $tmp->id,
 				'previous_id' => $tmp->previous_id,
 				'next_id' => $tmp->next_id,
+				'latest' => $isLatest,
 				'timestamp' => $tmp->created_at->getTimestamp()
 			);
-
+			$isLatest = false;
 			$tmp = $tmp->previous()->first();
 		}
 
