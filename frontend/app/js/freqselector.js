@@ -14,19 +14,19 @@
     this.options        = options;
     this.$body          = $(element).parent();
     this.$element       = $(element);
-    this.$background 	= $(element).find('.freqselector-background');
-    this.$arrow 		= $(element).find('.freqselector-arrow-top');
-    this.$content 		= $(element).find('.freqselector-content');
+    this.$background  = $(element).find('.freqselector-background');
+    this.$arrow     = $(element).find('.freqselector-arrow-top');
+    this.$content     = $(element).find('.freqselector-content');
 
-    this.arrowLeft		= 0;
+    this.arrowLeft    = 0;
     this.arrowCenterOffset = 11;
     this.isShown        = false;
-    this.isSelected		= "";
+    this.isSelected   = "";
 
     this.initializeFreqselector();
   };
 
-  Freqselector.VERSION  = '1.0.0';
+  Freqselector.VERSION  = '1.0.1';
 
   Freqselector.DEFAULTS = {
     show: false
@@ -46,14 +46,14 @@
     this.isShown = true;
 
     if($.support.transition) {
-		this.$element.animate({
-			opacity: 1.0,
-			height: "80px"
-		}, "fast", function() {
-			// Move it?
-		});
+    this.$element.animate({
+      opacity: 1.0,
+      height: "80px"
+    }, "fast", function() {
+      // Move it?
+    });
     } else {
-    	this.showFreqselector();
+      this.showFreqselector();
     }
   };
 
@@ -65,7 +65,7 @@
     this.$element.trigger(e);
 
     if (!this.isShown || e.isDefaultPrevented()) {
-    	return;
+      return;
     }
     this.isShown = false;
 
@@ -75,91 +75,96 @@
 
     if($.support.transition) {
       this.$element.animate({
-			opacity: 0.0,
-			height: "0px"
-		}, "fast", function() {
-			// Move it?
-		});
+      opacity: 0.0,
+      height: "0px"
+    }, "fast", function() {
+      // Move it?
+    });
     } else {
       this.hideFreqselector();
     }
   };
 
   Freqselector.prototype.showFreqselector = function () {
-  	this.isShown = true;
+    this.isShown = true;
     this.$element.css("height", "80px").css("opacity", "1");
   };
 
   Freqselector.prototype.hideFreqselector = function () {
-  	this.isShown = false;
+    this.isShown = false;
     this.$element.css("height", "0px").css("opacity", "0");
   };
 
   Freqselector.prototype.initializeFreqselector = function () {
     jQuery(window).resize((function(_this) {
-    	return function() {
-    		_this.resizeFreqselector();
-    	}
-  	})(this));
-  	jQuery(window).resize();
+      return function() {
+        _this.resizeFreqselector();
+      };
+    })(this));
+    jQuery(window).resize();
 
     this.$background.overscroll({
-    	showThumbs: false,
-    	direction: 'horizontal',
-    	wheelDirection: 'horizontal',
-    	openedCursor: '',
-    	closedCursor: '',
-    	captureWheel: false
-    }).on('overscroll:dragend', (function(_this) {
-    	return function() {
-    		var resultsArray = new Array();
+      showThumbs: false,
+      direction: 'horizontal',
+      wheelDirection: 'horizontal',
+      openedCursor: '',
+      closedCursor: '',
+      captureWheel: false
+    });
+    this.initializeOverscroll();
+    this.show();
+  };
 
-    		_this.$element.find('.freqselector-item-snap').each(function() {
-    			var itemDistance = jQuery(this).offset().left;
-    			var itemId = jQuery(this).attr('id').replace(/freqselector-item-/, "");
-    			resultsArray.push({ 'id': itemId, 'distance': itemDistance });
-    		});
+  Freqselector.prototype.initializeOverscroll = function () {
+    this.$background.off('overscroll:dragend').on('overscroll:dragend', (function(_this) {
+      return function() {
+        var resultsArray = [];
 
-		    var closest = null;
-		    var prev = Math.abs(resultsArray[0].distance - _this.arrowLeft - _this.arrowCenterOffset);
-		    for (var i = 1; i < resultsArray.length; i++) {
-		        var diff = Math.abs(resultsArray[i].distance - _this.arrowLeft - _this.arrowCenterOffset);
-		        if (diff < prev) {
-		            prev = diff;
-		            closest = resultsArray[i];
-		        }
-		    }
+        _this.$element.find('.freqselector-item-snap').each(function() {
+          var itemDistance = jQuery(this).offset().left;
+          var itemId = jQuery(this).attr('id').replace(/freqselector-item-/, "");
+          resultsArray.push({ 'id': itemId, 'distance': itemDistance });
+        });
 
-		    if(closest != null)
-		    {
-		    	_this.pick('#freqselector-item-'+closest.id);
-			}
-    	}
+        var closest = null;
+        var prev = Math.abs(resultsArray[0].distance - _this.arrowLeft - _this.arrowCenterOffset);
+        for (var i = 1; i < resultsArray.length; i++) {
+            var diff = Math.abs(resultsArray[i].distance - _this.arrowLeft - _this.arrowCenterOffset);
+            if (diff < prev) {
+                prev = diff;
+                closest = resultsArray[i];
+            }
+        }
+
+        if(closest !== null)
+        {
+          _this.pick('#freqselector-item-'+closest.id);
+      }
+      };
     })(this)).trigger('overscroll:dragend');
-	this.show();
   };
 
   Freqselector.prototype.pick = function (item) {
-  	if(typeof item != "undefined") {
-	  	this.$background.scrollTo(item, 500, { offset: (0 - this.arrowLeft - this.arrowCenterOffset + this.$element.offset().left), axis: 'x' });
-		var e = $.Event('picked.freqselector', { 'item': item });
-		this.$element.trigger(e);
-	  	this.isSelected = item;
-  	}
-  }
+    if(typeof item !== "undefined") {
+      this.$background.scrollTo(item, 500, { offset: (0 - this.arrowLeft - this.arrowCenterOffset + this.$element.offset().left), axis: 'x' });
+      var e = $.Event('picked.freqselector', { 'item': item });
+      this.$element.trigger(e);
+      this.isSelected = item;
+    }
+  };
 
   Freqselector.prototype.resizeFreqselector = function () {
-	var newWidth = 0;
-	var documentWidth = Math.round(this.$body.width() / 2);
+  var newWidth = 0;
+  var documentWidth = Math.round(this.$body.width() / 2);
 
-	this.$element.find('.freqselector-item-dummy').width(documentWidth);
+  this.$element.find('.freqselector-item-dummy').width(documentWidth);
 
-	this.$element.find('.freqselector-item').each(function() {
-		newWidth += $(this).width() + 4;
-	});
+  this.$element.find('.freqselector-item').each(function() {
+    newWidth += $(this).width() + 4;
+  });
 
-	this.$content.width(newWidth);
-	this.arrowLeft = Math.abs(this.$arrow.offset().left);
+  this.$content.width(newWidth);
+  this.arrowLeft = Math.abs(this.$arrow.offset().left);
   };
 
   function Plugin(option, _relatedTarget) {
@@ -169,10 +174,10 @@
       var options = $.extend({}, Freqselector.DEFAULTS, $this.data(), typeof option === 'object' && option);
 
       if (!data) {
-      	$this.data('freqselector', (data = new Freqselector(this, options)));
-      	if(options.show) {
-      		data.showFreqselector();
-      	}
+        $this.data('freqselector', (data = new Freqselector(this, options)));
+        if(options.show) {
+          data.showFreqselector();
+        }
       }
       if (typeof option === 'string') { data[option](_relatedTarget); }
     });

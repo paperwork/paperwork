@@ -23,7 +23,7 @@
 	</div><!-- /.container-fluid -->
 </nav>
 <div id="wayback-machine" class="freqselector">
-	<div class="freqselector-fadeout-left freqselector-fadeout"></div>
+	<div class="freqselector-fadeout-left freqselector-fadeout" ng-controller="paperworkWaybackController"></div>
 	<div class="freqselector-fadeout-right freqselector-fadeout"></div>
 	<div class="freqselector-arrow-top"></div>
 	<div class="freqselector-arrow-bottom"></div>
