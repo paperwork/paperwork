@@ -1,6 +1,8 @@
 Paperwork - OpenSource note-taking & archiving
 ==============================================
 
+![paperwork-logo](twostairs.github.com/paperwork/paperwork-logo.png)
+
 Paperwork aims to be an open-source, self-hosted alternative to services like Evernote (R), Microsoft OneNote (R) or Google Keep (R).
 
 Paperwork is written in PHP, utilising the beautiful Laravel 4 framework. It provides a modern web UI, built on top of AngularJS & Bootstrap 3, as well as an open API for third party integration.
