@@ -578,6 +578,259 @@
 		"outputStyle": 0,
 		"syntaxCheckerStyle": 0
 		},
+	"\/app\/js\/paperwork\/paperwork.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/js\/paperwork\/paperwork.js",
+		"outputAbbreviatedPath": "\/public\/js\/paperwork.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 1,
+		"outputStyle": 0,
+		"syntaxCheckerStyle": 1
+		},
+	"\/app\/js\/paperwork\/paperworkConstructorController.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/js\/paperwork\/paperworkConstructorController.js",
+		"outputAbbreviatedPath": "\/app\/js\/paperwork\/min\/paperworkConstructorController-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/app\/js\/paperwork\/paperworkDefaultController.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/js\/paperwork\/paperworkDefaultController.js",
+		"outputAbbreviatedPath": "\/app\/js\/paperwork\/min\/paperworkDefaultController-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/app\/js\/paperwork\/paperworkFileUploadController.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/js\/paperwork\/paperworkFileUploadController.js",
+		"outputAbbreviatedPath": "\/app\/js\/paperwork\/min\/paperworkFileUploadController-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/app\/js\/paperwork\/paperworkFilters.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/js\/paperwork\/paperworkFilters.js",
+		"outputAbbreviatedPath": "\/app\/js\/paperwork\/min\/paperworkFilters-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/app\/js\/paperwork\/paperworkFourOhFourController.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/js\/paperwork\/paperworkFourOhFourController.js",
+		"outputAbbreviatedPath": "\/app\/js\/paperwork\/min\/paperworkFourOhFourController-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/app\/js\/paperwork\/paperworkMessageBoxController.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/js\/paperwork\/paperworkMessageBoxController.js",
+		"outputAbbreviatedPath": "\/app\/js\/paperwork\/min\/paperworkMessageBoxController-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/app\/js\/paperwork\/paperworkMessageBoxService.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/js\/paperwork\/paperworkMessageBoxService.js",
+		"outputAbbreviatedPath": "\/app\/js\/paperwork\/min\/paperworkMessageBoxService-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/app\/js\/paperwork\/paperworkNetService.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/js\/paperwork\/paperworkNetService.js",
+		"outputAbbreviatedPath": "\/app\/js\/paperwork\/min\/paperworkNetService-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/app\/js\/paperwork\/paperworkNotebooksService.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/js\/paperwork\/paperworkNotebooksService.js",
+		"outputAbbreviatedPath": "\/app\/js\/paperwork\/min\/paperworkNotebooksService-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/app\/js\/paperwork\/paperworkNotesAllController.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/js\/paperwork\/paperworkNotesAllController.js",
+		"outputAbbreviatedPath": "\/app\/js\/paperwork\/min\/paperworkNotesAllController-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/app\/js\/paperwork\/paperworkNotesEditController.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/js\/paperwork\/paperworkNotesEditController.js",
+		"outputAbbreviatedPath": "\/app\/js\/paperwork\/min\/paperworkNotesEditController-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/app\/js\/paperwork\/paperworkNotesListController.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/js\/paperwork\/paperworkNotesListController.js",
+		"outputAbbreviatedPath": "\/app\/js\/paperwork\/min\/paperworkNotesListController-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/app\/js\/paperwork\/paperworkNotesService.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/js\/paperwork\/paperworkNotesService.js",
+		"outputAbbreviatedPath": "\/app\/js\/paperwork\/min\/paperworkNotesService-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/app\/js\/paperwork\/paperworkNotesShowController.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/js\/paperwork\/paperworkNotesShowController.js",
+		"outputAbbreviatedPath": "\/app\/js\/paperwork\/min\/paperworkNotesShowController-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/app\/js\/paperwork\/paperworkRoutes.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/js\/paperwork\/paperworkRoutes.js",
+		"outputAbbreviatedPath": "\/app\/js\/paperwork\/min\/paperworkRoutes-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/app\/js\/paperwork\/paperworkSearchController.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/js\/paperwork\/paperworkSearchController.js",
+		"outputAbbreviatedPath": "\/app\/js\/paperwork\/min\/paperworkSearchController-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/app\/js\/paperwork\/paperworkSidebarNotebooksController.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/js\/paperwork\/paperworkSidebarNotebooksController.js",
+		"outputAbbreviatedPath": "\/app\/js\/paperwork\/min\/paperworkSidebarNotebooksController-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/app\/js\/paperwork\/paperworkSidebarNotesController.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/js\/paperwork\/paperworkSidebarNotesController.js",
+		"outputAbbreviatedPath": "\/app\/js\/paperwork\/min\/paperworkSidebarNotesController-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/app\/js\/paperwork\/paperworkVersionsController.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/js\/paperwork\/paperworkVersionsController.js",
+		"outputAbbreviatedPath": "\/app\/js\/paperwork\/min\/paperworkVersionsController-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/app\/js\/paperwork\/paperworkVersionsService.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/js\/paperwork\/paperworkVersionsService.js",
+		"outputAbbreviatedPath": "\/app\/js\/paperwork\/min\/paperworkVersionsService-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/app\/js\/paperwork\/paperworkViewController.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/js\/paperwork\/paperworkViewController.js",
+		"outputAbbreviatedPath": "\/app\/js\/paperwork\/min\/paperworkViewController-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/app\/js\/paperwork\/paperworkWaybackController.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/js\/paperwork\/paperworkWaybackController.js",
+		"outputAbbreviatedPath": "\/app\/js\/paperwork\/min\/paperworkWaybackController-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/app\/js\/typeahead.js": {
 		"fileType": 64,
 		"ignore": 0,
@@ -2568,6 +2821,28 @@
 		"initialSize": 2.05041e+06,
 		"inputAbbreviatedPath": "\/app\/storage\/attachments\/15\/wegbeschreibung-cgn.png",
 		"outputAbbreviatedPath": "\/app\/storage\/attachments\/15\/wegbeschreibung-cgn.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/app\/storage\/attachments\/16\/cover.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 1661,
+		"inputAbbreviatedPath": "\/app\/storage\/attachments\/16\/cover.png",
+		"outputAbbreviatedPath": "\/app\/storage\/attachments\/16\/cover.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/app\/storage\/attachments\/17\/cover.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 1661,
+		"inputAbbreviatedPath": "\/app\/storage\/attachments\/17\/cover.png",
+		"outputAbbreviatedPath": "\/app\/storage\/attachments\/17\/cover.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
@@ -5570,6 +5845,17 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/public\/images\/favicon.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 4643,
+		"inputAbbreviatedPath": "\/public\/images\/favicon.png",
+		"outputAbbreviatedPath": "\/public\/images\/favicon.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/public\/images\/freqselector\/default\/arrow.png": {
 		"fileType": 32768,
 		"ignore": 0,
@@ -5821,12 +6107,12 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/public\/js\/paperwork-note.min.js": {
+	"\/public\/js\/paperwork.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/public\/js\/paperwork-note.min.js",
-		"outputAbbreviatedPath": "\/public\/js\/min\/paperwork-note.min-ck.js",
+		"inputAbbreviatedPath": "\/public\/js\/paperwork.min.js",
+		"outputAbbreviatedPath": "\/public\/js\/min\/paperwork.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
@@ -30278,6 +30564,140 @@
 	],
 "lastSavedByUser": "Marius M.",
 "manualImportLinks": {
+	"\/app\/js\/paperwork\/paperwork.js": [
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkRoutes.js",
+			"position": 0,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkNetService.js",
+			"position": 1,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkNotebooksService.js",
+			"position": 2,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkNotesService.js",
+			"position": 3,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkVersionsService.js",
+			"position": 4,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkMessageBoxService.js",
+			"position": 5,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkConstructorController.js",
+			"position": 6,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkDefaultController.js",
+			"position": 7,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkNotesAllController.js",
+			"position": 8,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkNotesShowController.js",
+			"position": 9,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkNotesEditController.js",
+			"position": 10,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkNotesListController.js",
+			"position": 11,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkSidebarNotebooksController.js",
+			"position": 12,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkSidebarNotesController.js",
+			"position": 13,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkVersionsController.js",
+			"position": 14,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkSearchController.js",
+			"position": 15,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkViewController.js",
+			"position": 16,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkFileUploadController.js",
+			"position": 17,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkMessageBoxController.js",
+			"position": 18,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkWaybackController.js",
+			"position": 19,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkFourOhFourController.js",
+			"position": 20,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkFilters.js",
+			"position": 21,
+			"type": 1
+			}
+		]
 	},
 "projectAttributes": {
 	"bowerAbbreviatedPath": "",

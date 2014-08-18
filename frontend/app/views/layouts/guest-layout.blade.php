@@ -35,8 +35,6 @@
   <!-- [[ HTML::script('js/bootstrap-tagsinput.min.js') ]] -->
   <!-- [[ HTML::script('js/bootstrap-tagsinput-angular.min.js') ]] -->
 
-  [[ HTML::script('js/paperwork-note.min.js') ]]
-
   [[ HTML::script('js/transition.min.js') ]]
   [[ HTML::script('js/collapse.min.js') ]]
 
