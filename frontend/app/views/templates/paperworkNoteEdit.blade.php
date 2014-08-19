@@ -38,7 +38,7 @@
 				</form>
   			</div>
   			<div class="col-md-3">
-  				@include('partials/file-uploader')
+  				@include('partials/file-uploader', array('uploadEnabled' => true))
   			</div>
   		</div>
 	</div>

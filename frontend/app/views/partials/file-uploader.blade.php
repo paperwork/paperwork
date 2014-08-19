@@ -1,9 +1,11 @@
 <div ng-controller="paperworkFileUploadController" class="file-upload-wrapper padding-twenty" uploader="uploader" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
 
     <div class="file-uploader">
+        @if ($uploadEnabled)
         <div class="file-upload-dropzone" over-class="file-upload-dropzone-active" nv-file-over="" uploader="uploader">
             <span><i class="fa fa-upload"></i> [[Lang::get('keywords.upload_document')]]</span>
         </div>
+        @endif
 
         <table class="table" ng-show="(uploader.queue.length > 0 || fileList.length > 0)">
             <thead>
@@ -42,6 +44,7 @@
             </tbody>
         </table>
 
+        @if ($uploadEnabled)
         <div class="text-align-right">
             <button type="button" class="btn btn-success" ng-click="uploader.uploadAll()" ng-hide="uploader.getNotUploadedItems().length < 1 || uploader.isUploading">
                 <i class="fa fa-upload"></i> [[Lang::get('keywords.upload')]]
@@ -53,6 +56,7 @@
                 <i class="fa fa-trash-o"></i> [[Lang::get('keywords.remove')]]
             </button>
         </div>
+        @endif
 
     </div>
 
