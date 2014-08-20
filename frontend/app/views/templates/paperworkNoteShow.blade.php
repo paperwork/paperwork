@@ -56,5 +56,5 @@
 	<div class="page-content" ng-bind-html="note.content">
 	</div>
 </div>
-	@include('partials/file-uploader', array('uploadEnabled' => false))
+	@include('partials/file-uploader', array('uploadEnabled' => false, 'actionsEnabled' => false))
 </div>

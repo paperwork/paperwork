@@ -1,7 +1,5 @@
-paperworkModule.controller('paperworkWaybackController', function($scope, $rootScope, $location, $routeParams, paperworkNetService){
-  console.log("WAYBACK");
+paperworkModule.controller('paperworkWaybackController', function($scope, $rootScope, $location, $routeParams, paperworkNetService, paperworkNotesService){
   $('#paperworkViewParent').off('picked.freqselector').on('picked.freqselector', function(e) {
-    console.log("PICKED");
     var itemId = $(e.item).data('itemid');
 
     paperworkNetService.apiGet('/notebooks/' + $rootScope.getNotebookSelectedId() + '/notes/' + ($rootScope.getNoteSelectedId(true)).noteId + '/versions/' + itemId, function(status, data) {
@@ -14,6 +12,11 @@ paperworkModule.controller('paperworkWaybackController', function($scope, $rootS
         $rootScope.note.version = itemId;
       }
     });
+
+    paperworkNotesService.getNoteVersionAttachments($rootScope.getNotebookSelectedId(), ($rootScope.getNoteSelectedId(true)).noteId, itemId, function(response) {
+      $rootScope.fileList = response;
+    });
+
 
   });
 });

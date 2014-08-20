@@ -11,8 +11,10 @@
             <thead>
                 <tr>
                     <th class="status-th"></th>
-                    <th width="50%">Name</th>
+                    <th>Name</th>
+                    @if ($actionsEnabled)
                     <th ng-show="uploader.isHTML5"></th>
+                    @endif
                 </tr>
             </thead>
             <tbody>
@@ -21,11 +23,13 @@
                         <i class="fa fa-file-o"></i>
                     </td>
                     <td><a href="#"><strong>{{ item.filename }}</strong></a></td>
+                    @if ($actionsEnabled)
                     <td>
                         <a class="">[[Lang::get('keywords.insert')]]</a>
                         &nbsp;|&nbsp;
                         <a class="">[[Lang::get('keywords.delete')]]</a>
                     </td>
+                    @endif
                 </tr>
                 <tr ng-repeat="item in uploader.queue">
                     <td class="status-td">

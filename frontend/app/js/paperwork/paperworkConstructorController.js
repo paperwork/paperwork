@@ -4,10 +4,6 @@ paperworkModule.controller('paperworkConstructorController', function($scope, $r
     }
     $rootScope.initDone = true;
 
-    // if(typeof $rootScope.versionSelectedId == "undefined") {
-    //   console.log($rootScope.getNoteSelectedId());
-    // }
-
     paperworkNetService.apiGet('/i18n', function(status, data) {
       if(status == 200) {
         $rootScope.i18n = data.response;

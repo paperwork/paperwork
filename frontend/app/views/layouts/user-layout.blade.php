@@ -65,7 +65,7 @@
 					<li class="dropdown">
 						<a href="" class="dropdown-toggle" data-toggle="dropdown">[[Lang::get('keywords.edit')]] <span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li ng-controller="paperworkSidebarNotesController" class="{{getNoteSelectedId(true) == null ? 'disabled' : ''}}"><a href="" ng-click="editNote(getNotebookSelectedId(), getNoteSelectedId())"><i class="fa fa-pencil"></i> [[Lang::get('keywords.edit_note')]]</a></li>
+							<li ng-controller="paperworkSidebarNotesController" class="{{getNoteSelectedId(true) == null ? 'disabled' : ''}}"><a href="" ng-click="editNote(getNotebookSelectedId(), (getNoteSelectedId(true).noteId))"><i class="fa fa-pencil"></i> [[Lang::get('keywords.edit_note')]]</a></li>
 							<li><a href=""><i class="fa fa-files-o"></i> [[Lang::get('keywords.edit_notes')]]</a></li>
 							<li ng-controller="paperworkSidebarNotesController" class="{{getNoteSelectedId(true) == null ? 'disabled' : ''}}"><a href="" ng-click="modalDeleteNote(getNotebookSelectedId(), (getNoteSelectedId(true)).noteId)"><i class="fa fa-trash-o"></i> [[Lang::get('keywords.delete_note')]]</a></li>
 							<li class="divider"></li>

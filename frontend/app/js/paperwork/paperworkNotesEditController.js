@@ -11,7 +11,6 @@ paperworkModule.controller('paperworkNotesEditController', function($scope, $roo
 
     paperworkNotesService.getNoteVersionAttachments($rootScope.getNotebookSelectedId(), ($rootScope.getNoteSelectedId(true)).noteId, $rootScope.getVersionSelectedId(true).versionId, function(response) {
       $rootScope.fileList = response;
-      console.log($rootScope.fileList);
     });
 
     var ck =  CKEDITOR.replace('content', {
