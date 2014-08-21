@@ -26,6 +26,7 @@
 
 
   [[ HTML::script('js/jquery.min.js') ]]
+  [[ HTML::script('js/retina.min.js') ]]
   [[ HTML::script('js/angular.min.js') ]]
   [[ HTML::script('js/angular-resource.min.js') ]]
   [[ HTML::script('js/angular-route.min.js') ]]

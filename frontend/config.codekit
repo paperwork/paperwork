@@ -820,6 +820,17 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
+	"\/app\/js\/retina.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/js\/retina.js",
+		"outputAbbreviatedPath": "\/public\/js\/retina.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 1,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 0
+		},
 	"\/app\/js\/typeahead.js": {
 		"fileType": 64,
 		"ignore": 0,
@@ -2637,7 +2648,7 @@
 	"\/app\/less\/paperwork-main.less": {
 		"allowInsecureImports": 0,
 		"createSourceMap": 0,
-		"disableJavascript": 1,
+		"disableJavascript": 0,
 		"fileType": 1,
 		"ieCompatibility": 1,
 		"ignore": 0,
@@ -2653,6 +2664,26 @@
 		"strictImports": 0,
 		"strictMath": 1,
 		"strictUnits": 1
+		},
+	"\/app\/less\/retina.less": {
+		"allowInsecureImports": 0,
+		"createSourceMap": 0,
+		"disableJavascript": 0,
+		"fileType": 1,
+		"ieCompatibility": 1,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/less\/retina.less",
+		"outputAbbreviatedPath": "\/app\/css\/retina.css",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 0,
+		"relativeURLS": 0,
+		"shouldRunAutoprefixer": 0,
+		"shouldRunBless": 0,
+		"strictImports": 0,
+		"strictMath": 0,
+		"strictUnits": 0
 		},
 	"\/app\/lib\/Paperwork\/PaperworkHelpers.php": {
 		"fileType": 8192,
@@ -5911,6 +5942,28 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
+	"\/public\/images\/navbar-log@2x.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 93523,
+		"inputAbbreviatedPath": "\/public\/images\/navbar-log@2x.png",
+		"outputAbbreviatedPath": "\/public\/images\/navbar-log@2x.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/public\/images\/navbar-logo.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 93523,
+		"inputAbbreviatedPath": "\/public\/images\/navbar-logo.png",
+		"outputAbbreviatedPath": "\/public\/images\/navbar-logo.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/public\/index.php": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -6113,6 +6166,17 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/public\/js\/paperwork.min.js",
 		"outputAbbreviatedPath": "\/public\/js\/min\/paperwork.min-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/public\/js\/retina.min.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/public\/js\/retina.min.js",
+		"outputAbbreviatedPath": "\/public\/js\/min\/retina.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,

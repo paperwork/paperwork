@@ -1,6 +1,7 @@
 @import "bootstrap/variables.less";
 @import "font-lato.less";
 @import "font-fontawesome/font-awesome.less";
+@import "retina.less";
 
 /*
  * Base structure
@@ -9,6 +10,24 @@
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
   padding-top: 50px;
+}
+
+/* Customize container */
+@media (min-width: 768px) {
+  .container-narrow {
+    max-width: 730px;
+    margin-right: auto;
+    margin-left: auto;
+  }
+}
+
+.paperwork-logo {
+  padding: 4px 15px;
+
+  img {
+    width: 42px;
+    height: 42px;
+  }
 }
 
 .fa {
