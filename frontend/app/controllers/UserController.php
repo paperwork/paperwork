@@ -11,7 +11,7 @@ class UserController extends BaseController {
 				$user = User::create(Input::except('_token', 'password_confirmation'));
 				if ($user) {
 					Auth::login($user);
-					return Redirect::route("user/profile");
+					return Redirect::route("/");
 				}
 				return Redirect::back()->withErrors([ "password" => [Lang::get('messages.account_creation_failed')]]);
 
@@ -32,7 +32,7 @@ class UserController extends BaseController {
 				$credentials = $this->getLoginCredentials();
 
 				if (Auth::attempt($credentials)) {
-					return Redirect::route("user/profile");
+					return Redirect::route("/");
 				}
 				return Redirect::back()->withErrors([ "password" => [Lang::get('messages.invalid_credentials')]]);
 
