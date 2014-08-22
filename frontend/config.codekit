@@ -5942,17 +5942,6 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
-	"\/public\/images\/navbar-log@2x.png": {
-		"fileType": 32768,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"initialSize": 93523,
-		"inputAbbreviatedPath": "\/public\/images\/navbar-log@2x.png",
-		"outputAbbreviatedPath": "\/public\/images\/navbar-log@2x.png",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"processed": 0
-		},
 	"\/public\/images\/navbar-logo.png": {
 		"fileType": 32768,
 		"ignore": 0,
@@ -5960,6 +5949,17 @@
 		"initialSize": 93523,
 		"inputAbbreviatedPath": "\/public\/images\/navbar-logo.png",
 		"outputAbbreviatedPath": "\/public\/images\/navbar-logo.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/public\/images\/navbar-logo@2x.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 93523,
+		"inputAbbreviatedPath": "\/public\/images\/navbar-logo@2x.png",
+		"outputAbbreviatedPath": "\/public\/images\/navbar-logo@2x.png",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"processed": 0
