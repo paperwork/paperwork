@@ -2,7 +2,7 @@
 @section("content")
 
 <div class="container-narrow">
-<h2>Profile [[ Auth::user()->firstname ]]!</h2>
+<h2>[[ Lang::get('keywords.profile') ]]: [[ $user->username ]]</h2>
 @if (Session::get("error"))
   <div class="alert alert-danger" role="alert">
     [[ Session::get("error") ]]
@@ -13,7 +13,7 @@
     [[ Session::get("status") ]]
   </div>
 @endif
-@foreach(['username', 'password', 'password_confirmation', 'firstname', 'lastname'] as $err)
+@foreach(['password', 'password_confirmation', 'firstname', 'lastname'] as $err)
 	@if ($errors->first($err)!=null)
 	  <div class="alert alert-danger" role="alert">
 	    [[ $errors->first($err) ]]
@@ -23,23 +23,44 @@
 
 [[ Form::open(array('class' => 'form-horizontal', 'role' => 'form')) ]]
 	<div class="form-group [[ $errors->first('firstname') ? 'has-error' : '' ]]">
-		<label for="firstname" class="col-sm-2 control-label">[[ Lang::get('keywords.first_name') ]]</label>
-		<div class="col-sm-10">
-			[[ Form::text("firstname", Input::old("firstname"), array('id' => 'firstname', 'class' => 'form-control', 'placeholder' => Lang::get('keywords.first_name'), 'required')) ]]
+		<label for="firstname" class="col-sm-3 control-label">[[ Lang::get('keywords.first_name') ]]</label>
+		<div class="col-sm-9">
+			[[ Form::text("firstname", $user->firstname, array('id' => 'firstname', 'class' => 'form-control', 'placeholder' => Lang::get('keywords.first_name'), 'required')) ]]
 		</div>
 	</div>
 	<div class="form-group [[ $errors->first('lastname') ? 'has-error' : '' ]]">
-		<label for="lastname">[[ Lang::get('keywords.last_name') ]]</label>
-	  [[ Form::text("lastname", Input::old("lastname"), array('id' => 'lastname', 'class' => 'form-control', 'placeholder' => Lang::get('keywords.last_name'), 'required')) ]]
+		<label for="lastname" class="col-sm-3 control-label">[[ Lang::get('keywords.last_name') ]]</label>
+		<div class="col-sm-9">
+		  [[ Form::text("lastname", $user->lastname, array('id' => 'lastname', 'class' => 'form-control', 'placeholder' => Lang::get('keywords.last_name'), 'required')) ]]
+		</div>
 	</div>
+
+	<div class="form-group">
+		<div class="col-sm-offset-3 col-sm-9">
+		  <div>
+		  	[[ Lang::get('users.profile_change_password_info') ]]
+		  </div>
+		</div>
+	</div>
+
 	<div class="form-group [[ $errors->first('password') ? 'has-error' : '' ]]">
-		<label for="password">[[ Lang::get('keywords.password') ]]</label>
-	  [[ Form::password("password", array('id' => 'password', 'class' => 'form-control', 'placeholder' => Lang::get('keywords.password'), 'required')) ]]
+		<label for="password" class="col-sm-3 control-label">[[ Lang::get('keywords.password') ]]</label>
+		<div class="col-sm-9">
+		  [[ Form::password("password", array('id' => 'password', 'class' => 'form-control', 'placeholder' => Lang::get('keywords.password'))) ]]
+		</div>
 	</div>
 	<div class="form-group [[ $errors->first('password_confirmation') ? 'has-error' : '' ]]">
-		<label for="password_confirmation">[[ Lang::get('keywords.confirm') ]]</label>
-	  [[ Form::password("password_confirmation", array('id' => 'password_confirmation', 'class' => 'form-control', 'placeholder' => Lang::get('keywords.confirm'), 'required')) ]]
+		<label for="password_confirmation" class="col-sm-3 control-label">[[ Lang::get('keywords.confirm') ]]</label>
+		<div class="col-sm-9">
+		  [[ Form::password("password_confirmation", array('id' => 'password_confirmation', 'class' => 'form-control', 'placeholder' => Lang::get('keywords.confirm'))) ]]
+		</div>
 	</div>
+	<div class="form-group">
+		<div class="col-sm-offset-3 col-sm-9">
+			[[ Form::submit(Lang::get('keywords.save'), array('class' => 'btn btn-primary')) ]]
+		</div>
+	</div>
+
 [[ Form::close() ]]
 </div>
 

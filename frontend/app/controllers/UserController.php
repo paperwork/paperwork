@@ -57,6 +57,10 @@ class UserController extends BaseController {
 		return Validator::make(Input::all(), [ "username" => "required|email", "password" => "required"]);
 	}
 
+	protected function getProfileValidator() {
+		return Validator::make(Input::all(), [ "password" => "min:5|confirmed", "firstname" => "required|alpha_num", "lastname" => "required|alpha_num"]);
+	}
+
 	// protected function getRegistrationCredentials() {
 	// 	return ["username" => Input::get("username"), "password" => Input::get("password"), "firstname" => Input::get("firstname"), "lastname" => Input::get("lastname")];
 	// }
@@ -68,7 +72,27 @@ class UserController extends BaseController {
 
 	public function profile()
 	{
- 		return View::make("user/profile");
+		$user = User::find(Auth::user()->id);
+
+		if($this->isPostRequest()) {
+			$validator = $this->getProfileValidator();
+
+			if($validator->passes()) {
+				$user->firstname = Input::get('firstname');
+				$user->lastname = Input::get('lastname');
+
+				$passwd = Input::get('password');
+				if(!is_null($passwd) && trim($passwd) != "") {
+					$user->password = Input::get('password');
+				}
+				if (!$user->save()) {
+					return Redirect::back()->withErrors([ "password" => [Lang::get('messages.account_update_failed')]]);
+				}
+			} else {
+				return Redirect::back()->withInput()->withErrors($validator);
+			}
+		}
+ 		return View::make("user/profile")->with('user', $user);
  	}
 
 	public function settings()
@@ -86,7 +110,7 @@ class UserController extends BaseController {
 		}
 		return View::make("user/request");
 	}
-
+	// TODO: Password reminders not working out of the box, since we don't have an "email" column.
 	protected function getPasswordRemindResponse() {
 		return Password::remind(Input::only("username"));
 	}
