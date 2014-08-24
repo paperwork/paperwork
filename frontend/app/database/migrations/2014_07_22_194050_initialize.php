@@ -13,7 +13,7 @@ class Initialize extends Migration {
 	public function up()
 	{
 		Schema::create('users', function(Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->unsigned();
             $table->string('username')->unique();
             $table->string('password');
             $table->string('firstname');
@@ -24,8 +24,36 @@ class Initialize extends Migration {
             $table->engine = 'InnoDB';
         });
 
+        Schema::create('settings', function(Blueprint $table) {
+            $table->bigIncrements('id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->char('ui_language', 2);
+            $table->timestamps();
+            $table->softDeletes();
+            $table->engine = 'InnoDB';
+        });
+
+        Schema::create('languages', function(Blueprint $table) {
+            $table->bigIncrements('id')->unsigned();
+            $table->char('language_code', 3);
+            $table->timestamps();
+            $table->softDeletes();
+            $table->engine = 'InnoDB';
+        });
+
+        Schema::create('language_user', function(Blueprint $table) {
+            $table->bigIncrements('id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->bigInteger('language_id')->unsigned();
+            $table->foreign('language_id')->references('id')->on('languages')->onDelete('cascade');
+            $table->timestamps();
+            $table->engine = 'InnoDB';
+        });
+
 		Schema::create('notebooks', function(Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->unsigned();
             // $table->foreign('parent_id')->references('id')->on('notebooks')->nullable();
             $table->bigInteger('parent_id')->unsigned()->nullable();
             $table->tinyInteger('type')->unsigned()->default(0);
@@ -37,7 +65,7 @@ class Initialize extends Migration {
         DB::statement('ALTER TABLE notebooks ADD FOREIGN KEY (parent_id) REFERENCES notebooks (id) ON DELETE CASCADE ON UPDATE CASCADE');
 
         Schema::create('notebook_user', function(Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->bigInteger('notebook_id')->unsigned();
@@ -48,7 +76,7 @@ class Initialize extends Migration {
         });
 
         Schema::create('versions', function(Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->unsigned();
             $table->bigInteger('previous_id')->unsigned()->nullable();
             $table->bigInteger('next_id')->unsigned()->nullable();
             $table->string('title');
@@ -63,7 +91,7 @@ class Initialize extends Migration {
         // DB::statement('ALTER TABLE versions ADD FULLTEXT search(title, content)');
 
         Schema::create('attachments', function(Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->unsigned();
             $table->timestamps();
             $table->text('filename');
             $table->text('fileextension');
@@ -76,7 +104,7 @@ class Initialize extends Migration {
         // DB::statement('ALTER TABLE attachments ADD FULLTEXT search(content)');
 
         Schema::create('attachment_version', function(Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->unsigned();
             $table->bigInteger('attachment_id')->unsigned();
             $table->foreign('attachment_id')->references('id')->on('attachments')->onDelete('cascade');
             $table->bigInteger('version_id')->unsigned();
@@ -86,7 +114,7 @@ class Initialize extends Migration {
         });
 
 		Schema::create('notes', function(Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->unsigned();
             $table->bigInteger('notebook_id')->unsigned();
             $table->foreign('notebook_id')->references('id')->on('notebooks');
             $table->bigInteger('version_id')->unsigned();
@@ -97,7 +125,7 @@ class Initialize extends Migration {
         });
 
         Schema::create('note_user', function(Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->bigInteger('note_id')->unsigned();
@@ -108,7 +136,7 @@ class Initialize extends Migration {
         });
 
 		Schema::create('tags', function(Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->unsigned();
             $table->string('title');
             $table->timestamps();
             $table->softDeletes();
@@ -116,7 +144,7 @@ class Initialize extends Migration {
         });
 
         Schema::create('tag_user', function(Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->bigInteger('tag_id')->unsigned();
@@ -126,7 +154,7 @@ class Initialize extends Migration {
         });
 
         Schema::create('tag_note', function(Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->unsigned();
             $table->bigInteger('note_id')->unsigned();
             $table->foreign('note_id')->references('id')->on('notes')->onDelete('cascade');
             $table->bigInteger('tag_id')->unsigned();
@@ -136,7 +164,7 @@ class Initialize extends Migration {
         });
 
         Schema::create('shortcuts', function(Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->bigIncrements('id')->unsigned();
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->bigInteger('notebook_id')->unsigned();
@@ -163,9 +191,6 @@ class Initialize extends Migration {
         Schema::table('tag_user', function(Blueprint $table) {
             $table->drop();
         });
-        Schema::table('tag_note', function(Blueprint $table) {
-            $table->drop();
-        });
         Schema::table('tags', function(Blueprint $table) {
             $table->drop();
         });
@@ -175,7 +200,7 @@ class Initialize extends Migration {
         Schema::table('notes', function(Blueprint $table) {
             $table->drop();
         });
-        Schema::table('version_attachment', function(Blueprint $table) {
+        Schema::table('attachment_version', function(Blueprint $table) {
             $table->drop();
         });
         Schema::table('attachments', function(Blueprint $table) {
@@ -188,6 +213,15 @@ class Initialize extends Migration {
             $table->drop();
         });
         Schema::table('notebooks', function(Blueprint $table) {
+            $table->drop();
+        });
+        Schema::table('language_user', function(Blueprint $table) {
+            $table->drop();
+        });
+        Schema::table('languages', function(Blueprint $table) {
+            $table->drop();
+        });
+        Schema::table('settings', function(Blueprint $table) {
             $table->drop();
         });
         Schema::table('users', function(Blueprint $table) {
