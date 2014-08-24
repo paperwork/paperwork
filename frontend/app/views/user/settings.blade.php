@@ -30,7 +30,10 @@
 			</div>
 
 			<div class="form-group [[ $errors->first('document_languages') ? 'has-error' : '' ]]">
-				<label for="document_languages" class="col-sm-5 control-label">[[ Lang::get('keywords.document_languages') ]]</label>
+				<label for="document_languages" class="col-sm-5 control-label">
+					[[ Lang::get('keywords.document_languages') ]]
+					<p class="label-description">[[ Lang::get('messages.document_languages_description') ]]</p>
+				</label>
 				<div class="col-sm-7">
 					<div class="container-scrollable">
 					<div class="container">

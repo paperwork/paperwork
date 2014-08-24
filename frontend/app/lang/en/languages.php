@@ -29,7 +29,7 @@ return array(
 	'frk'=> 'Frankish',
 	'frm'=> 'Middle French',
 	'glg'=> 'Galician',
-	'grc'=> 'Ancient',
+	'grc'=> 'Ancient Greek',
 	'heb'=> 'Hebrew',
 	'hin'=> 'Hindi',
 	'hrv'=> 'Croatian',
