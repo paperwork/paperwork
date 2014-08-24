@@ -32,6 +32,7 @@
 			<div class="form-group [[ $errors->first('document_languages') ? 'has-error' : '' ]]">
 				<label for="document_languages" class="col-sm-5 control-label">[[ Lang::get('keywords.document_languages') ]]</label>
 				<div class="col-sm-7">
+					<div class="container-scrollable">
 					<div class="container">
 						@foreach(PaperworkHelpers::getDocumentLanguages() as $lang_code => $lang_label)
 							<div class="row">
@@ -44,6 +45,7 @@
 								</div>
 							</div>
 						@endforeach
+					</div>
 					</div>
 				</div>
 			</div>

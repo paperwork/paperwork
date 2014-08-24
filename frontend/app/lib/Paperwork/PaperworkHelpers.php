@@ -39,6 +39,7 @@ class PaperworkHelpers {
 		foreach($languages as $language) {
 			$documentLanguages[$language->language_code] = \Lang::get('languages.' . $language->language_code);
 		}
+		array_multisort($documentLanguages);
 		return $documentLanguages;
 	}
 
