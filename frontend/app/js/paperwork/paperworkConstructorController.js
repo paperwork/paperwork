@@ -42,13 +42,32 @@ paperworkModule.controller('paperworkConstructorController', function($scope, $r
       $rootScope.$broadcast('paperworkModalVisible', e);
     });
 
+    $rootScope.menuItemNotebookClass = function() {
+      if($rootScope.getNotebookSelectedId() != 0) {
+        return '';
+      } else {
+        return 'disabled';
+      }
+    }
+
+    $rootScope.menuItemNoteClass = function(availabilityType) {
+      if($rootScope.getNoteSelectedId(true) != null && typeof $rootScope.notes != "undefined" && $rootScope.notes.length > 0) {
+        if(availabilityType == 'single' && $rootScope.editMultipleNotes == true) {
+          return 'disabled';
+        } else {
+          return '';
+        }
+      } else {
+        return 'disabled';
+      }
+    };
+
     $rootScope.getVersionSelectedId = function(asObject) {
       if(asObject === true) {
         return $rootScope.versionSelectedId;
       }
       return $rootScope.versionSelectedId.notebookId + "-" + $rootScope.versionSelectedId.noteId + "-" + $rootScope.versionSelectedId.versionId;
     };
-
 
     $rootScope.messageBox = function(messageBoxData) {
       var callback = function(data) {

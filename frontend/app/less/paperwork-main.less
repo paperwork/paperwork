@@ -177,13 +177,14 @@ label {
 }
 
 /* Tabs within Forms */
-form {
-  ul.nav-tabs {
-    margin-bottom: 15px;
-  }
-  div.tab-content {
+.tab-pane {
+  form {
     margin: 0px 12px;
   }
+}
+
+ul.nav-tabs-margin {
+  margin-bottom: 15px;
 }
 
 /*
@@ -238,6 +239,13 @@ form {
 .notes-list {
   .notes-list-item {
       border-bottom: 1px solid @gray-lighter;
+
+      .notes-list-item-checkbox {
+        height: 88px;
+        line-height: 88px;
+        padding: 0px;
+        text-align: center;
+      }
 
       .notes-list-title {
         // font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;

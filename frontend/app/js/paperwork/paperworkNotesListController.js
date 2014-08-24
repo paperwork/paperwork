@@ -1,5 +1,6 @@
 paperworkModule.controller('paperworkNotesListController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService) {
     $rootScope.noteSelectedId = {};
+    $rootScope.notesSelectedIds = [];
     paperworkNotesService.getNotesInNotebook(0);
 
     $scope.noteSelect = function($notebookId, $noteId) {

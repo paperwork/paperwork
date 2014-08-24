@@ -47,6 +47,4 @@ paperworkModule.controller('paperworkFileUploadController', ['$scope', '$rootSco
         uploader.clearQueue();
       });
   };
-
-  console.info('uploader', uploader);
 }]);

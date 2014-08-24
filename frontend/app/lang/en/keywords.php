@@ -22,7 +22,10 @@ return array(
 	'collection' => 'Collection',
 	'new_note' => 'New note',
 	'edit_note' => 'Edit note',
+	'move_note' => 'Move note',
+	'move_notes' => 'Move notes',
 	'delete_note' => 'Delete note',
+	'delete_notes' => 'Delete notes',
 	'new_notebook' => 'New notebook',
 	'edit_notebook' => 'Edit notebook',
 	'delete_notebook' => 'Delete notebook',
@@ -54,6 +57,7 @@ return array(
 	'edit' => 'Edit',
 	'upload_document' => 'Upload document...',
 	'edit_notes' => 'Edit multiple notes...',
+	'edit_notes_cancel' => 'Stop editing multiple notes',
 	'ui_language' => 'User Interface Language',
 	'document_languages' => 'Document Languages'
 

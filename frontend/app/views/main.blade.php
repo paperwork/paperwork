@@ -46,16 +46,22 @@
 
 		<div id="sidebarNotes" class="col-sm-4 col-sm-offset-3 col-md-3 col-md-offset-2 sidebar hidden-xs animate-panel" ng-controller="paperworkSidebarNotesController" ng-show="isVisible()">
 			<ul id="notes-list" class="nav nav-sidebar notes-list sidebar-no-border" ng-controller="paperworkNotesListController">
-				<li class="notes-list-item" ng-repeat="note in notes" ng-click="noteSelect(note.notebook_id, note.id)" ng-dblclick="editNote(note.notebook_id, note.id)" ng-class="{ 'active': note.notebook_id + '-' + note.id == getNoteSelectedId() }">
-					<a href="#{{getNoteLink(note.notebook_id, note.id)}}">
-						<span class="notes-list-title notes-list-title-gradient">{{note.title}}</span>
-						<span class="notes-list-date">
-							<span class="notes-list-date-day">{{note.updated_at | convertdate | date : 'd'}}</span>
-							<span class="notes-list-date-month">{{note.updated_at | convertdate | date : 'MMM'}}</span>
-							<span class="notes-list-date-year">{{note.updated_at | convertdate | date : 'yyyy'}}</span>
-						</span>
-						<span class="notes-list-content notes-list-content-gradient">{{note.content}}</span>
+				<li class="notes-list-item" ng-repeat="note in notes" ng-click="noteSelect(note.notebook_id, note.id)" ng-dblclick="editNote(note.notebook_id, note.id)" ng-class="{ 'active': (note.notebook_id + '-' + note.id == getNoteSelectedId() || notesSelectedIds[note.id]) }">
+					<div class="notes-list-item-checkbox col-sm-1" ng-show="editMultipleNotes">
+						<input name="notes[]" type="checkbox" value="{{ note.id }}" ng-model="notesSelectedIds[note.id]" ng-click="$event.stopPropagation();" ng-dblclick="$event.stopPropagation();">
+					</div>
+					<a class="{{ editMultipleNotes ? 'col-sm-11' : '' }}" href="#{{getNoteLink(note.notebook_id, note.id)}}">
+						<div class="">
+							<span class="notes-list-title notes-list-title-gradient">{{note.title}}</span>
+							<span class="notes-list-date">
+								<span class="notes-list-date-day">{{note.updated_at | convertdate | date : 'd'}}</span>
+								<span class="notes-list-date-month">{{note.updated_at | convertdate | date : 'MMM'}}</span>
+								<span class="notes-list-date-year">{{note.updated_at | convertdate | date : 'yyyy'}}</span>
+							</span>
+							<span class="notes-list-content notes-list-content-gradient">{{note.content}}</span>
+						</div>
 					</a>
+					<div class="clear"></div>
 				</li>
 			</ul>
 		</div>

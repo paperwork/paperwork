@@ -7,11 +7,14 @@ paperworkModule.controller('paperworkNotesAllController', function($scope, $root
     }
     paperworkNotesService.getNotesInNotebook($rootScope.getNotebookSelectedId(), function() {
       // $rootScope.setNoteSelectedId($rootScope.getNotebookSelectedId(), $rootScope.notes[0].id);
-      $location.path("/n/" + $scope.notebookSelectedId + "/" + $rootScope.notes[0].id);
+      if($rootScope.notes.length > 0) {
+        $location.path("/n/" + $scope.notebookSelectedId + "/" + $rootScope.notes[0].id);
+      }
     });
-    // $rootScope.navbarMainMenu = true;
-    // $rootScope.navbarSearchForm = true;
-    // $rootScope.expandedNoteLayout = false;
+
+    $rootScope.navbarMainMenu = true;
+    $rootScope.navbarSearchForm = true;
+    $rootScope.expandedNoteLayout = false;
 
     // ---
     // $rootScope.note = null; // TODO: Do we still need this?

@@ -56,6 +56,14 @@ paperworkModule.controller('paperworkSidebarNotesController', function($scope, $
     $location.path("/n/" + notebookId + "/" + noteId + "/edit");
   };
 
+  $scope.editNotes = function (notebookId, noteId) {
+    if($rootScope.editMultipleNotes == true) {
+      $rootScope.editMultipleNotes = false;
+    } else {
+      $rootScope.editMultipleNotes = true;
+    }
+  };
+
   $scope.updateNote = function() {
     // if(typeof $rootScope.templateNoteEdit == "undefined" || $rootScope.templateNoteEdit == null) {
     //   $rootScope.templateNoteEdit = {};
