@@ -12,13 +12,8 @@
 
 	[[ HTML::style('css/bootstrap.min.css') ]]
     [[ HTML::style('css/bootstrap-theme.min.css') ]]
-
-    [[ HTML::style('css/bootstrap-tagsinput.min.css') ]]
-
     [[ HTML::style('css/freqselector.min.css') ]]
-
     [[ HTML::style('css/paperwork.min.css') ]]
-
 
 </head>
   <body ng-app="paperworkNotes">
@@ -95,43 +90,24 @@
 	@yield("content")
 
 	[[ HTML::script('js/jquery.min.js') ]]
-	[[ HTML::script('js/jquery.overscroll.min.js') ]]
-	[[ HTML::script('js/jquery.scrollTo.min.js') ]]
-
-	[[ HTML::script('js/retina.min.js') ]]
-
 	[[ HTML::script('js/freqselector.min.js') ]]
-
+	[[ HTML::script('js/retina.min.js') ]]
 	[[ HTML::script('js/angular.min.js') ]]
-	[[ HTML::script('js/angular-resource.min.js') ]]
-	[[ HTML::script('js/angular-route.min.js') ]]
-	[[ HTML::script('js/angular-sanitize.min.js') ]]
-	[[ HTML::script('js/angular-animate.min.js') ]]
-	[[ HTML::script('js/angular-file-upload.min.js') ]]
-
-	<!-- [[ HTML::script('js/typeahead.min.js') ]] -->
-
-	<!-- [[ HTML::script('js/bootstrap-tagsinput.min.js') ]] -->
-	<!-- [[ HTML::script('js/bootstrap-tagsinput-angular.min.js') ]] -->
 
 	[[ HTML::script('js/paperwork.min.js') ]]
 
-	[[ HTML::script('js/transition.min.js') ]]
-	[[ HTML::script('js/collapse.min.js') ]]
-
+	[[ HTML::script('js/bootstrap.min.js') ]]
 	[[ HTML::script('js/bootstrap-tree.min.js') ]]
-	[[ HTML::script('js/bootstrap-dropdown.min.js') ]]
-	[[ HTML::script('js/bootstrap-modal.min.js') ]]
 
 	[[ HTML::script('ckeditor/ckeditor.js') ]]
 
-	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-	<!--[if lt IE 9]>
-	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-	<![endif]-->
-
-	[[ HTML::script('js/ie10-viewport-bug-workaround.js') ]]
-
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    [[ HTML::script('js/html5shiv.min.js') ]]
+    [[ HTML::script('js/respond.min.js') ]]
+  <![endif]-->
+  <!--[if lt IE 11]>
+    [[ HTML::script('js/ie10-viewport-bug-workaround.js') ]]
+  <![endif]-->
 </body>
 </html>

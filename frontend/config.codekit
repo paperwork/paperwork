@@ -295,57 +295,57 @@
 		},
 	"\/app\/js\/angular-animate.js": {
 		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
 		"inputAbbreviatedPath": "\/app\/js\/angular-animate.js",
 		"outputAbbreviatedPath": "\/public\/js\/angular-animate.min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 1,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
+		"outputStyle": 0,
+		"syntaxCheckerStyle": 0
 		},
 	"\/app\/js\/angular-file-upload.js": {
 		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
 		"inputAbbreviatedPath": "\/app\/js\/angular-file-upload.js",
 		"outputAbbreviatedPath": "\/public\/js\/angular-file-upload.min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 1,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
+		"outputStyle": 0,
+		"syntaxCheckerStyle": 0
 		},
 	"\/app\/js\/angular-resource.js": {
 		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
 		"inputAbbreviatedPath": "\/app\/js\/angular-resource.js",
 		"outputAbbreviatedPath": "\/public\/js\/angular-resource.min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 1,
-		"outputStyle": 1,
+		"outputStyle": 0,
 		"syntaxCheckerStyle": 0
 		},
 	"\/app\/js\/angular-route.js": {
 		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
 		"inputAbbreviatedPath": "\/app\/js\/angular-route.js",
 		"outputAbbreviatedPath": "\/public\/js\/angular-route.min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 1,
-		"outputStyle": 1,
+		"outputStyle": 0,
 		"syntaxCheckerStyle": 0
 		},
 	"\/app\/js\/angular-sanitize.js": {
 		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
 		"inputAbbreviatedPath": "\/app\/js\/angular-sanitize.js",
 		"outputAbbreviatedPath": "\/public\/js\/angular-sanitize.min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 1,
-		"outputStyle": 1,
+		"outputStyle": 0,
 		"syntaxCheckerStyle": 1
 		},
 	"\/app\/js\/angular.js": {
@@ -394,8 +394,8 @@
 		},
 	"\/app\/js\/bootstrap\/affix.js": {
 		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
 		"inputAbbreviatedPath": "\/app\/js\/bootstrap\/affix.js",
 		"outputAbbreviatedPath": "\/public\/js\/bootstrap.min.js",
 		"outputPathIsOutsideProject": 0,
@@ -405,9 +405,20 @@
 		},
 	"\/app\/js\/bootstrap\/alert.js": {
 		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
+		"inputAbbreviatedPath": "\/app\/js\/bootstrap\/alert.js",
+		"outputAbbreviatedPath": "\/public\/js\/bootstrap.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 1,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 0
+		},
+	"\/app\/js\/bootstrap\/bootstrap.js": {
+		"fileType": 64,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/app\/js\/bootstrap\/alert.js",
+		"inputAbbreviatedPath": "\/app\/js\/bootstrap\/bootstrap.js",
 		"outputAbbreviatedPath": "\/public\/js\/bootstrap.min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 1,
@@ -416,8 +427,8 @@
 		},
 	"\/app\/js\/bootstrap\/button.js": {
 		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
 		"inputAbbreviatedPath": "\/app\/js\/bootstrap\/button.js",
 		"outputAbbreviatedPath": "\/public\/js\/bootstrap.min.js",
 		"outputPathIsOutsideProject": 0,
@@ -427,8 +438,8 @@
 		},
 	"\/app\/js\/bootstrap\/carousel.js": {
 		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
 		"inputAbbreviatedPath": "\/app\/js\/bootstrap\/carousel.js",
 		"outputAbbreviatedPath": "\/public\/js\/bootstrap.min.js",
 		"outputPathIsOutsideProject": 0,
@@ -438,8 +449,8 @@
 		},
 	"\/app\/js\/bootstrap\/collapse.js": {
 		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
 		"inputAbbreviatedPath": "\/app\/js\/bootstrap\/collapse.js",
 		"outputAbbreviatedPath": "\/public\/js\/collapse.min.js",
 		"outputPathIsOutsideProject": 0,
@@ -449,8 +460,8 @@
 		},
 	"\/app\/js\/bootstrap\/dropdown.js": {
 		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
 		"inputAbbreviatedPath": "\/app\/js\/bootstrap\/dropdown.js",
 		"outputAbbreviatedPath": "\/public\/js\/bootstrap-dropdown.min.js",
 		"outputPathIsOutsideProject": 0,
@@ -460,8 +471,8 @@
 		},
 	"\/app\/js\/bootstrap\/modal.js": {
 		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
 		"inputAbbreviatedPath": "\/app\/js\/bootstrap\/modal.js",
 		"outputAbbreviatedPath": "\/public\/js\/bootstrap-modal.min.js",
 		"outputPathIsOutsideProject": 0,
@@ -471,8 +482,8 @@
 		},
 	"\/app\/js\/bootstrap\/popover.js": {
 		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
 		"inputAbbreviatedPath": "\/app\/js\/bootstrap\/popover.js",
 		"outputAbbreviatedPath": "\/public\/js\/bootstrap.min.js",
 		"outputPathIsOutsideProject": 0,
@@ -482,8 +493,8 @@
 		},
 	"\/app\/js\/bootstrap\/scrollspy.js": {
 		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
 		"inputAbbreviatedPath": "\/app\/js\/bootstrap\/scrollspy.js",
 		"outputAbbreviatedPath": "\/public\/js\/bootstrap.min.js",
 		"outputPathIsOutsideProject": 0,
@@ -493,8 +504,8 @@
 		},
 	"\/app\/js\/bootstrap\/tab.js": {
 		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
 		"inputAbbreviatedPath": "\/app\/js\/bootstrap\/tab.js",
 		"outputAbbreviatedPath": "\/public\/js\/bootstrap.min.js",
 		"outputPathIsOutsideProject": 0,
@@ -504,8 +515,8 @@
 		},
 	"\/app\/js\/bootstrap\/tooltip.js": {
 		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
 		"inputAbbreviatedPath": "\/app\/js\/bootstrap\/tooltip.js",
 		"outputAbbreviatedPath": "\/public\/js\/bootstrap.min.js",
 		"outputPathIsOutsideProject": 0,
@@ -515,8 +526,8 @@
 		},
 	"\/app\/js\/bootstrap\/transition.js": {
 		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
 		"inputAbbreviatedPath": "\/app\/js\/bootstrap\/transition.js",
 		"outputAbbreviatedPath": "\/public\/js\/transition.min.js",
 		"outputPathIsOutsideProject": 0,
@@ -530,6 +541,17 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/app\/js\/freqselector.js",
 		"outputAbbreviatedPath": "\/public\/js\/freqselector.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 1,
+		"outputStyle": 0,
+		"syntaxCheckerStyle": 0
+		},
+	"\/app\/js\/html5shiv.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/js\/html5shiv.js",
+		"outputAbbreviatedPath": "\/public\/js\/html5shiv.min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 1,
 		"outputStyle": 0,
@@ -559,24 +581,24 @@
 		},
 	"\/app\/js\/jquery.overscroll.js": {
 		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
 		"inputAbbreviatedPath": "\/app\/js\/jquery.overscroll.js",
 		"outputAbbreviatedPath": "\/public\/js\/jquery.overscroll.min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 1,
-		"outputStyle": 1,
+		"outputStyle": 0,
 		"syntaxCheckerStyle": 1
 		},
 	"\/app\/js\/jquery.scrollTo.js": {
 		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
 		"inputAbbreviatedPath": "\/app\/js\/jquery.scrollTo.js",
 		"outputAbbreviatedPath": "\/public\/js\/jquery.scrollTo.min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 1,
-		"outputStyle": 1,
+		"outputStyle": 0,
 		"syntaxCheckerStyle": 1
 		},
 	"\/app\/js\/paperwork\/paperwork.js": {
@@ -831,6 +853,17 @@
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
+		},
+	"\/app\/js\/respond.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/js\/respond.js",
+		"outputAbbreviatedPath": "\/public\/js\/respond.min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 1,
+		"outputStyle": 0,
+		"syntaxCheckerStyle": 0
 		},
 	"\/app\/js\/retina.js": {
 		"fileType": 64,
@@ -5985,89 +6018,12 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/public\/js\/angular-animate.min.js": {
-		"fileType": 64,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/public\/js\/angular-animate.min.js",
-		"outputAbbreviatedPath": "\/public\/js\/min\/angular-animate.min-min.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/public\/js\/angular-file-upload.min.js": {
-		"fileType": 64,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/public\/js\/angular-file-upload.min.js",
-		"outputAbbreviatedPath": "\/public\/js\/min\/angular-file-upload.min-min.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/public\/js\/angular-resource.min.js": {
-		"fileType": 64,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/public\/js\/angular-resource.min.js",
-		"outputAbbreviatedPath": "\/public\/js\/min\/angular-resource.min-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/public\/js\/angular-route.min.js": {
-		"fileType": 64,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/public\/js\/angular-route.min.js",
-		"outputAbbreviatedPath": "\/public\/js\/min\/angular-route.min-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/public\/js\/angular-sanitize.min.js": {
-		"fileType": 64,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/public\/js\/angular-sanitize.min.js",
-		"outputAbbreviatedPath": "\/public\/js\/min\/angular-sanitize.min-min.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
 	"\/public\/js\/angular.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/public\/js\/angular.min.js",
 		"outputAbbreviatedPath": "\/public\/js\/min\/angular.min-ck.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/public\/js\/bootstrap-dropdown.min.js": {
-		"fileType": 64,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/public\/js\/bootstrap-dropdown.min.js",
-		"outputAbbreviatedPath": "\/public\/js\/min\/bootstrap-dropdown.min-min.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/public\/js\/bootstrap-modal.min.js": {
-		"fileType": 64,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/public\/js\/bootstrap-modal.min.js",
-		"outputAbbreviatedPath": "\/public\/js\/min\/bootstrap-modal.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
@@ -6106,12 +6062,12 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/public\/js\/collapse.min.js": {
+	"\/public\/js\/bootstrap.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/public\/js\/collapse.min.js",
-		"outputAbbreviatedPath": "\/public\/js\/min\/collapse.min-ck.js",
+		"inputAbbreviatedPath": "\/public\/js\/bootstrap.min.js",
+		"outputAbbreviatedPath": "\/public\/js\/min\/bootstrap.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
@@ -6123,6 +6079,17 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/public\/js\/freqselector.min.js",
 		"outputAbbreviatedPath": "\/public\/js\/min\/freqselector.min-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/public\/js\/html5shiv.min.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/public\/js\/html5shiv.min.js",
+		"outputAbbreviatedPath": "\/public\/js\/min\/html5shiv.min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
@@ -6150,28 +6117,6 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/public\/js\/jquery.overscroll.min.js": {
-		"fileType": 64,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/public\/js\/jquery.overscroll.min.js",
-		"outputAbbreviatedPath": "\/public\/js\/min\/jquery.overscroll.min-min.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/public\/js\/jquery.scrollTo.min.js": {
-		"fileType": 64,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/public\/js\/jquery.scrollTo.min.js",
-		"outputAbbreviatedPath": "\/public\/js\/min\/jquery.scrollTo.min-min.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
 	"\/public\/js\/paperwork.min.js": {
 		"fileType": 64,
 		"ignore": 1,
@@ -6183,23 +6128,23 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
+	"\/public\/js\/respond.min.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/public\/js\/respond.min.js",
+		"outputAbbreviatedPath": "\/public\/js\/min\/respond.min-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/public\/js\/retina.min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/public\/js\/retina.min.js",
 		"outputAbbreviatedPath": "\/public\/js\/min\/retina.min-min.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/public\/js\/transition.min.js": {
-		"fileType": 64,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/public\/js\/transition.min.js",
-		"outputAbbreviatedPath": "\/public\/js\/min\/transition.min-ck.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
@@ -31951,12 +31896,153 @@
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/thiagoalessio\/tesseract_ocr\/README.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/thiagoalessio\/tesseract_ocr\/README.md",
+		"outputAbbreviatedPath": "\/vendor\/thiagoalessio\/tesseract_ocr\/README.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/thiagoalessio\/tesseract_ocr\/TesseractOCR\/TesseractOCR.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/thiagoalessio\/tesseract_ocr\/TesseractOCR\/TesseractOCR.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/thiagoalessio\/tesseract_ocr\/test\/images\/german.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 7723,
+		"inputAbbreviatedPath": "\/vendor\/thiagoalessio\/tesseract_ocr\/test\/images\/german.png",
+		"outputAbbreviatedPath": "\/vendor\/thiagoalessio\/tesseract_ocr\/test\/images\/german.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/vendor\/thiagoalessio\/tesseract_ocr\/test\/images\/gotz.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 6072,
+		"inputAbbreviatedPath": "\/vendor\/thiagoalessio\/tesseract_ocr\/test\/images\/gotz.png",
+		"outputAbbreviatedPath": "\/vendor\/thiagoalessio\/tesseract_ocr\/test\/images\/gotz.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/vendor\/thiagoalessio\/tesseract_ocr\/test\/images\/hello.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 9590,
+		"inputAbbreviatedPath": "\/vendor\/thiagoalessio\/tesseract_ocr\/test\/images\/hello.png",
+		"outputAbbreviatedPath": "\/vendor\/thiagoalessio\/tesseract_ocr\/test\/images\/hello.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/vendor\/thiagoalessio\/tesseract_ocr\/test\/TesseractOCRTest.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/thiagoalessio\/tesseract_ocr\/test\/TesseractOCRTest.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
 		}
 	},
 "hooks": [
 	],
 "lastSavedByUser": "Marius M.",
 "manualImportLinks": {
+	"\/app\/js\/angular.js": [
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/angular-resource.js",
+			"position": 0,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/angular-route.js",
+			"position": 1,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/angular-sanitize.js",
+			"position": 2,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/angular-animate.js",
+			"position": 3,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/angular-file-upload.js",
+			"position": 4,
+			"type": 1
+			}
+		],
+	"\/app\/js\/bootstrap\/bootstrap.js": [
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/bootstrap\/transition.js",
+			"position": 0,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/bootstrap\/collapse.js",
+			"position": 1,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/bootstrap\/dropdown.js",
+			"position": 2,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/bootstrap\/modal.js",
+			"position": 3,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/bootstrap\/tab.js",
+			"position": 4,
+			"type": 1
+			}
+		],
+	"\/app\/js\/jquery.js": [
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/jquery.overscroll.js",
+			"position": 0,
+			"type": 1
+			},
+		{
+			"followForSyntaxChecking": 1,
+			"linkedFileAbbreviatedPath": "\/app\/js\/jquery.scrollTo.js",
+			"position": 1,
+			"type": 1
+			}
+		],
 	"\/app\/js\/paperwork\/paperwork.js": [
 		{
 			"followForSyntaxChecking": 1,
