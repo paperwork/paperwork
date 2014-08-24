@@ -48,43 +48,11 @@
 					</form>
 				</div>
 
-				<ul class="nav navbar-nav animate-panel" ng-show="navbarMainMenu">
-					<li class="dropdown">
-						<a href="" class="dropdown-toggle" data-toggle="dropdown">[[Lang::get('keywords.file')]] <span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-							<li ng-controller="paperworkSidebarNotesController" class="{{getNotebookSelectedId() == 0 ? 'disabled' : ''}}"><a href="" ng-click="newNote(getNotebookSelectedId())"><i class="fa fa-file"></i> [[Lang::get('keywords.new_note')]]</a></li>
-							<li ng-controller="paperworkSidebarNotebooksController"><a href="" ng-click="modalNewNotebook()"><i class="fa fa-book"></i> [[Lang::get('keywords.new_notebook')]]</a></li>
-							<li><a href="" data-toggle="modal" data-target="#modalCollection"><i class="fa fa-folder"></i> [[Lang::get('keywords.new_collection')]]</a></li>
-							<li class="divider"></li>
-							<li><a href=""><i class="fa fa-upload"></i> [[Lang::get('keywords.upload_document')]]</a></li>
-						</ul>
-					</li>
-					<li class="dropdown">
-						<a href="" class="dropdown-toggle" data-toggle="dropdown">[[Lang::get('keywords.edit')]] <span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-							<li ng-controller="paperworkSidebarNotesController" class="{{getNoteSelectedId(true) == null ? 'disabled' : ''}}"><a href="" ng-click="editNote(getNotebookSelectedId(), (getNoteSelectedId(true).noteId))"><i class="fa fa-pencil"></i> [[Lang::get('keywords.edit_note')]]</a></li>
-							<li><a href=""><i class="fa fa-files-o"></i> [[Lang::get('keywords.edit_notes')]]</a></li>
-							<li ng-controller="paperworkSidebarNotesController" class="{{getNoteSelectedId(true) == null ? 'disabled' : ''}}"><a href="" ng-click="modalDeleteNote(getNotebookSelectedId(), (getNoteSelectedId(true)).noteId)"><i class="fa fa-trash-o"></i> [[Lang::get('keywords.delete_note')]]</a></li>
-							<li class="divider"></li>
-							<li ng-controller="paperworkSidebarNotebooksController" class="{{getNotebookSelectedId() == 0 ? 'disabled' : ''}}"><a href="" ng-click="modalEditNotebook(getNotebookSelectedId())"><i class="fa fa-pencil"></i> [[Lang::get('keywords.edit_notebook')]]</a></li>
-							<li ng-controller="paperworkSidebarNotebooksController" class="{{getNotebookSelectedId() == 0 ? 'disabled' : ''}}"><a href="" ng-click="modalDeleteNotebook(getNotebookSelectedId())"><i class="fa fa-trash-o"></i> [[Lang::get('keywords.delete_notebook')]]</a></li>
-						</ul>
-					</li>
-				</ul>
+				@include('partials/menu-main')
 
-				<form ng-controller="paperworkSidebarNotesController" ng-show="navbarSearchForm" class="navbar-form navbar-left animate-panel" id="searchForm" role="form" ng-submit="submitSearch()">
-					<div class="form-group">
-						<input type="text" class="form-control navbar-search" placeholder="[[Lang::get('keywords.search_dotdotdot')]]" ng-model="search">
-					</div>
-				</form>
+				@include('partials/search-main')
 
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="[[ URL::route("/") ]]" class="transition-effect"><i class="fa fa-book"></i> [[Lang::get('keywords.library')]]</a></li>
-					<li><a href="[[ URL::route("user/profile") ]]" class="transition-effect"><i class="fa fa-user"></i> [[Lang::get('keywords.profile')]]</a></li>
-					<li><a href="[[ URL::route("user/settings") ]]" class="transition-effect"><i class="fa fa-cog"></i> [[Lang::get('keywords.settings')]]</a></li>
-					<li><a href="[[ URL::route("user/help") ]]" class="transition-effect"><i class="fa fa-question"></i> [[Lang::get('keywords.help')]]</a></li>
-					<li><a href="[[ URL::route("user/logout") ]]" class="transition-effect"><i class="fa fa-sign-out"></i> [[Lang::get('keywords.sign_out')]]</a></li>
-				</ul>
+				@include('partials/navigation-main')
 			</div>
 		</div>
 	</div>
