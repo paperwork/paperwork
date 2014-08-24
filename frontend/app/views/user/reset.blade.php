@@ -20,7 +20,7 @@
 @endforeach
 
 [[ Form::open(array('class' => 'form-signin', 'role' => 'form')) ]]
-<h2 class="form-signin-heading">[[Lang::get('users.title_reset')]]</h2>
+<h1 class="form-signin-heading">[[Lang::get('users.title_reset')]]</h1>
 <div class="form-group [[ $errors->first('username') ? 'has-error' : '' ]]">
 	[[ Form::text("username", Input::old("username"), array('class' => 'form-control', 'placeholder' => Lang::get('keywords.email_address'), 'required', 'autofocus')) ]]
 </div>

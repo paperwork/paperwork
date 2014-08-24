@@ -2,7 +2,7 @@
 @section("content")
 
 <div class="container-narrow">
-<h2>[[ Lang::get('keywords.profile') ]]: [[ $user->username ]]</h2>
+<h1>[[ Lang::get('keywords.profile') ]]: [[ $user->username ]]</h1>
 @if (Session::get("error"))
   <div class="alert alert-danger" role="alert">
     [[ Session::get("error") ]]
