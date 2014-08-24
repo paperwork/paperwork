@@ -5,7 +5,8 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.2.*",
-		"erusev/parsedown": "dev-master"
+		"erusev/parsedown": "dev-master",
+		"thiagoalessio/tesseract_ocr": ">= 0.2.0"
 	},
 	"autoload": {
 		"classmap": [
