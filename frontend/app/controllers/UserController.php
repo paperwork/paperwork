@@ -138,9 +138,55 @@ class UserController extends BaseController {
 		});
 	}
 
-	public function help()
+	public function help($topic = "index")
 	{
- 		return View::make("user/help");
+		if($topic[0] == '.') {
+			$topic = "index";
+		}
+
+		$topic_path = $this->helpGenerateTopicPath($topic);
+		if(is_null($topic_path)) {
+			return View::make('404');
+		}
+
+		$topic_content = $this->helpGetAndPrepareContent($topic_path);
+
+ 		return View::make("user/help")->with(array('topic' => $topic_content));
+ 	}
+
+ 	private function helpGenerateTopicPath($topic) {
+		$topic_clean = str_replace('.', '/', $topic);
+
+		$topic_path = app_path() . '/help/' . $topic_clean . '.' . App::getLocale() . '.md';
+		$topic_path_alternative = app_path() . '/help/' . $topic_clean . '/index.' . App::getLocale() . '.md';
+
+		if(File::exists($topic_path)) {
+			return $topic_path;
+		} else if(File::exists($topic_path_alternative)) {
+			return $topic_path_alternative;
+		} else {
+			return null;
+		}
+ 	}
+
+ 	private function helpGetAndPrepareContent($path) {
+		$content = File::get($path);
+
+		$conent_prepared = preg_replace_callback('/(\@(help|image))((.[A-Za-z0-9]+)+)/', function($match) {
+			if(is_null($match) || count($match) < 4) {
+				return $match;
+			}
+			$topic = ltrim($match[3], '.');
+			if($match[1] === "@help") {
+				return URL::route("user/help", $topic);
+			}
+			else if($match[1] === "@image") {
+				return url('/images/help/' . $topic);
+			}
+		}, $content);
+
+		$pdown = new Parsedown();
+		return $pdown->text($conent_prepared);
  	}
 
 	public function logout() {

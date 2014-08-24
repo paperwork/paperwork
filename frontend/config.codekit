@@ -281,6 +281,18 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/app\/help\/index.en.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 1,
+		"ignoreWasSetByUser": 1,
+		"inputAbbreviatedPath": "\/app\/help\/index.en.md",
+		"outputAbbreviatedPath": "\/app\/help\/index.en.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/app\/js\/angular-animate.js": {
 		"fileType": 64,
 		"ignore": 0,
@@ -6528,6 +6540,1116 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/vendor\/erusev\/parsedown\/Parsedown.php": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/Parsedown.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/README.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/README.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/README.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/bootstrap.php": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/bootstrap.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/aesthetic_table.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/aesthetic_table.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/aesthetic_table.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/aesthetic_table.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/aesthetic_table.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/aligned_table.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/aligned_table.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/aligned_table.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/aligned_table.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/aligned_table.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/atx_heading.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/atx_heading.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/atx_heading.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/atx_heading.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/atx_heading.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/automatic_link.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/automatic_link.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/automatic_link.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/automatic_link.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/automatic_link.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/block-level_html.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/block-level_html.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/block-level_html.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/block-level_html.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/block-level_html.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/code_block.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/code_block.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/code_block.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/code_block.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/code_block.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/code_span.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/code_span.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/code_span.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/code_span.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/code_span.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/compound_blockquote.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/compound_blockquote.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/compound_blockquote.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/compound_blockquote.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/compound_blockquote.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/compound_emphasis.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/compound_emphasis.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/compound_emphasis.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/compound_emphasis.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/compound_emphasis.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/compound_list.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/compound_list.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/compound_list.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/compound_list.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/compound_list.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/deeply_nested_list.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/deeply_nested_list.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/deeply_nested_list.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/deeply_nested_list.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/deeply_nested_list.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/em_strong.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/em_strong.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/em_strong.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/em_strong.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/em_strong.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/email.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/email.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/email.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/email.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/email.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/emphasis.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/emphasis.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/emphasis.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/emphasis.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/emphasis.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/escaping.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/escaping.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/escaping.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/escaping.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/escaping.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/fenced_code_block.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/fenced_code_block.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/fenced_code_block.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/fenced_code_block.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/fenced_code_block.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/horizontal_rule.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/horizontal_rule.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/horizontal_rule.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/horizontal_rule.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/horizontal_rule.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/HTML_Comment.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/HTML_Comment.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/HTML_Comment.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/HTML_Comment.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/HTML_Comment.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/html_entity.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/html_entity.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/html_entity.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/html_entity.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/html_entity.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/image_reference.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/image_reference.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/image_reference.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/image_reference.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/image_reference.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/image_title.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/image_title.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/image_title.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/image_title.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/image_title.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/implicit_reference.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/implicit_reference.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/implicit_reference.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/implicit_reference.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/implicit_reference.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/inline_link.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/inline_link.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/inline_link.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/inline_link.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/inline_link.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/inline_link_title.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/inline_link_title.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/inline_link_title.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/inline_link_title.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/inline_link_title.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/inline_title.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/inline_title.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/inline_title.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/inline_title.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/inline_title.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/lazy_blockquote.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/lazy_blockquote.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/lazy_blockquote.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/lazy_blockquote.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/lazy_blockquote.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/lazy_list.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/lazy_list.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/lazy_list.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/lazy_list.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/lazy_list.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/line_break.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/line_break.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/line_break.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/line_break.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/line_break.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/multiline_list_paragraph.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/multiline_list_paragraph.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/multiline_list_paragraph.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/multiline_list_paragraph.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/multiline_list_paragraph.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/nested_block-level_html.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/nested_block-level_html.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/nested_block-level_html.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/nested_block-level_html.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/nested_block-level_html.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/ordered_list.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/ordered_list.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/ordered_list.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/ordered_list.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/ordered_list.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/paragraph_list.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/paragraph_list.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/paragraph_list.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/paragraph_list.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/paragraph_list.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/reference_title.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/reference_title.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/reference_title.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/reference_title.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/reference_title.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/self-closing_html.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/self-closing_html.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/self-closing_html.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/self-closing_html.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/self-closing_html.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/separated_nested_list.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/separated_nested_list.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/separated_nested_list.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/separated_nested_list.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/separated_nested_list.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/setext_header.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/setext_header.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/setext_header.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/setext_header.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/setext_header.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/simple_blockquote.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/simple_blockquote.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/simple_blockquote.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/simple_blockquote.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/simple_blockquote.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/simple_table.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/simple_table.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/simple_table.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/simple_table.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/simple_table.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/span-level_html.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/span-level_html.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/span-level_html.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/span-level_html.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/span-level_html.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/sparse_dense_list.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/sparse_dense_list.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/sparse_dense_list.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/sparse_dense_list.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/sparse_dense_list.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/sparse_list.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/sparse_list.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/sparse_list.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/sparse_list.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/sparse_list.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/special_characters.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/special_characters.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/special_characters.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/special_characters.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/special_characters.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/strikethrough.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/strikethrough.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/strikethrough.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/strikethrough.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/strikethrough.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/strong_em.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/strong_em.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/strong_em.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/strong_em.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/strong_em.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/tab-indented_code_block.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/tab-indented_code_block.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/tab-indented_code_block.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/tab-indented_code_block.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/tab-indented_code_block.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/table_inline_markdown.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/table_inline_markdown.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/table_inline_markdown.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/table_inline_markdown.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/table_inline_markdown.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/text_reference.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/text_reference.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/text_reference.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/text_reference.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/text_reference.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/unordered_list.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/unordered_list.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/unordered_list.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/unordered_list.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/unordered_list.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/untidy_table.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/untidy_table.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/untidy_table.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/untidy_table.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/untidy_table.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/url_autolinking.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/url_autolinking.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/url_autolinking.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/url_autolinking.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/url_autolinking.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/whitespace.html": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/whitespace.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/data\/whitespace.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/whitespace.md",
+		"outputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/data\/whitespace.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/erusev\/parsedown\/test\/Test.php": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/erusev\/parsedown\/test\/Test.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/vendor\/filp\/whoops\/CONTRIBUTING.md": {
 		"enableFootnoteSupport": 0,
 		"enableSmartyPants": 1,
@@ -6937,6 +8059,15 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/vendor\/filp\/whoops\/tests\/Whoops\/Exception\/FormatterTest.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/filp\/whoops\/tests\/Whoops\/Exception\/FormatterTest.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/vendor\/filp\/whoops\/tests\/Whoops\/Exception\/FrameCollectionTest.php": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -7023,6 +8154,15 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/filp\/whoops\/tests\/Whoops\/TestCase.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/filp\/whoops\/tests\/Whoops\/Util\/MiscTest.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/filp\/whoops\/tests\/Whoops\/Util\/MiscTest.php",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -8947,6 +10087,24 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Testing\/ApplicationTrait.php": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Testing\/ApplicationTrait.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Testing\/AssertionsTrait.php": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Testing\/AssertionsTrait.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/vendor\/laravel\/framework\/src\/Illuminate\/Foundation\/Testing\/Client.php": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -9927,6 +11085,15 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/laravel\/framework\/src\/Illuminate\/Session\/TokenMismatchException.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/laravel\/framework\/src\/Illuminate\/Support\/Arr.php": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/laravel\/framework\/src\/Illuminate\/Support\/Arr.php",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -14134,15 +15301,6 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
-	"\/vendor\/patchwork\/utf8\/class\/Patchwork\/Utf8\/WinFsStreamWrapper.php": {
-		"fileType": 8192,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/vendor\/patchwork\/utf8\/class\/Patchwork\/Utf8\/WinFsStreamWrapper.php",
-		"outputAbbreviatedPath": "No Output Path",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0
-		},
 	"\/vendor\/patchwork\/utf8\/README.md": {
 		"enableFootnoteSupport": 0,
 		"enableSmartyPants": 1,
@@ -15133,6 +16291,33 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/vendor\/predis\/predis\/lib\/Predis\/Command\/HyperLogLogAdd.php": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/predis\/predis\/lib\/Predis\/Command\/HyperLogLogAdd.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/predis\/predis\/lib\/Predis\/Command\/HyperLogLogCount.php": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/predis\/predis\/lib\/Predis\/Command\/HyperLogLogCount.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/predis\/predis\/lib\/Predis\/Command\/HyperLogLogMerge.php": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/predis\/predis\/lib\/Predis\/Command\/HyperLogLogMerge.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/vendor\/predis\/predis\/lib\/Predis\/Command\/KeyDelete.php": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -15624,6 +16809,15 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/predis\/predis\/lib\/Predis\/Command\/ServerClient.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/predis\/predis\/lib\/Predis\/Command\/ServerCommand.php": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/predis\/predis\/lib\/Predis\/Command\/ServerCommand.php",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -16213,11 +17407,29 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/vendor\/predis\/predis\/lib\/Predis\/Command\/ZSetLexCount.php": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/predis\/predis\/lib\/Predis\/Command\/ZSetLexCount.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/vendor\/predis\/predis\/lib\/Predis\/Command\/ZSetRange.php": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/predis\/predis\/lib\/Predis\/Command\/ZSetRange.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/predis\/predis\/lib\/Predis\/Command\/ZSetRangeByLex.php": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/predis\/predis\/lib\/Predis\/Command\/ZSetRangeByLex.php",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -16245,6 +17457,15 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/predis\/predis\/lib\/Predis\/Command\/ZSetRemove.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/predis\/predis\/lib\/Predis\/Command\/ZSetRemoveRangeByLex.php": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/predis\/predis\/lib\/Predis\/Command\/ZSetRemoveRangeByLex.php",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -16812,6 +18033,15 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/predis\/predis\/lib\/Predis\/Profile\/ServerVersion28.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/predis\/predis\/lib\/Predis\/Profile\/ServerVersion30.php": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/predis\/predis\/lib\/Predis\/Profile\/ServerVersion30.php",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -17449,6 +18679,33 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/vendor\/predis\/predis\/tests\/Predis\/Command\/HyperLogLogAddTest.php": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/predis\/predis\/tests\/Predis\/Command\/HyperLogLogAddTest.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/predis\/predis\/tests\/Predis\/Command\/HyperLogLogCountTest.php": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/predis\/predis\/tests\/Predis\/Command\/HyperLogLogCountTest.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/predis\/predis\/tests\/Predis\/Command\/HyperLogLogMergeTest.php": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/predis\/predis\/tests\/Predis\/Command\/HyperLogLogMergeTest.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/vendor\/predis\/predis\/tests\/Predis\/Command\/KeyDeleteTest.php": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -17904,6 +19161,15 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/predis\/predis\/tests\/Predis\/Command\/ServerClientTest.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/predis\/predis\/tests\/Predis\/Command\/ServerCommandTest.php": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/predis\/predis\/tests\/Predis\/Command\/ServerCommandTest.php",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -18493,6 +19759,24 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/vendor\/predis\/predis\/tests\/Predis\/Command\/ZSetLexCountTest.php": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/predis\/predis\/tests\/Predis\/Command\/ZSetLexCountTest.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/predis\/predis\/tests\/Predis\/Command\/ZSetRangeByLexTest.php": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/predis\/predis\/tests\/Predis\/Command\/ZSetRangeByLexTest.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/vendor\/predis\/predis\/tests\/Predis\/Command\/ZSetRangeByScoreTest.php": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -18516,6 +19800,15 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/predis\/predis\/tests\/Predis\/Command\/ZSetRankTest.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/predis\/predis\/tests\/Predis\/Command\/ZSetRemoveRangeByLexTest.php": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/predis\/predis\/tests\/Predis\/Command\/ZSetRemoveRangeByLexTest.php",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -18930,6 +20223,15 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/predis\/predis\/tests\/Predis\/Profile\/ServerVersion28Test.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/predis\/predis\/tests\/Predis\/Profile\/ServerVersion30Test.php": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/predis\/predis\/tests\/Predis\/Profile\/ServerVersion30Test.php",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -24070,6 +25372,15 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/vendor\/symfony\/debug\/Symfony\/Component\/Debug\/Tests\/Fixtures\/ClassAlias.php": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/symfony\/debug\/Symfony\/Component\/Debug\/Tests\/Fixtures\/ClassAlias.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/vendor\/symfony\/debug\/Symfony\/Component\/Debug\/Tests\/Fixtures\/notPsr0Bis.php": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -25851,6 +27162,15 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/http-foundation\/Symfony\/Component\/HttpFoundation\/Tests\/ExpressionRequestMatcherTest.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/symfony\/http-foundation\/Symfony\/Component\/HttpFoundation\/Tests\/File\/FakeFile.php": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/symfony\/http-foundation\/Symfony\/Component\/HttpFoundation\/Tests\/File\/FakeFile.php",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -27928,6 +29248,15 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/vendor\/symfony\/process\/Symfony\/Component\/Process\/Tests\/ExecutableFinderTest.php": {
+		"fileType": 8192,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/symfony\/process\/Symfony\/Component\/Process\/Tests\/ExecutableFinderTest.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/vendor\/symfony\/process\/Symfony\/Component\/Process\/Tests\/NonStopableProcess.php": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -29892,7 +31221,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Catalogue\/AbstractOperation.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Catalogue\/AbstractOperation.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -29901,7 +31230,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Catalogue\/DiffOperation.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Catalogue\/DiffOperation.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -29910,7 +31239,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Catalogue\/MergeOperation.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Catalogue\/MergeOperation.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -29919,7 +31248,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Catalogue\/OperationInterface.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Catalogue\/OperationInterface.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -29940,7 +31269,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Dumper\/CsvFileDumper.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Dumper\/CsvFileDumper.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -29949,7 +31278,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Dumper\/DumperInterface.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Dumper\/DumperInterface.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -29958,7 +31287,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Dumper\/FileDumper.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Dumper\/FileDumper.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -29967,7 +31296,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Dumper\/IcuResFileDumper.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Dumper\/IcuResFileDumper.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -29976,7 +31305,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Dumper\/IniFileDumper.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Dumper\/IniFileDumper.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -29985,7 +31314,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Dumper\/JsonFileDumper.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Dumper\/JsonFileDumper.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -29994,7 +31323,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Dumper\/MoFileDumper.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Dumper\/MoFileDumper.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30003,7 +31332,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Dumper\/PhpFileDumper.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Dumper\/PhpFileDumper.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30012,7 +31341,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Dumper\/PoFileDumper.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Dumper\/PoFileDumper.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30021,7 +31350,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Dumper\/QtFileDumper.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Dumper\/QtFileDumper.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30030,7 +31359,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Dumper\/XliffFileDumper.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Dumper\/XliffFileDumper.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30039,7 +31368,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Dumper\/YamlFileDumper.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Dumper\/YamlFileDumper.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30048,7 +31377,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Exception\/ExceptionInterface.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Exception\/ExceptionInterface.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30057,7 +31386,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Exception\/InvalidResourceException.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Exception\/InvalidResourceException.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30066,7 +31395,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Exception\/NotFoundResourceException.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Exception\/NotFoundResourceException.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30075,7 +31404,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Extractor\/ChainExtractor.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Extractor\/ChainExtractor.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30084,7 +31413,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Extractor\/ExtractorInterface.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Extractor\/ExtractorInterface.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30093,7 +31422,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/IdentityTranslator.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/IdentityTranslator.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30102,7 +31431,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Interval.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Interval.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30111,7 +31440,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Loader\/ArrayLoader.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Loader\/ArrayLoader.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30120,7 +31449,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Loader\/CsvFileLoader.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Loader\/CsvFileLoader.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30129,7 +31458,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Loader\/IcuDatFileLoader.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Loader\/IcuDatFileLoader.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30138,7 +31467,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Loader\/IcuResFileLoader.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Loader\/IcuResFileLoader.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30147,7 +31476,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Loader\/IniFileLoader.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Loader\/IniFileLoader.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30156,7 +31485,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Loader\/JsonFileLoader.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Loader\/JsonFileLoader.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30165,7 +31494,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Loader\/LoaderInterface.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Loader\/LoaderInterface.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30174,7 +31503,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Loader\/MoFileLoader.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Loader\/MoFileLoader.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30183,7 +31512,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Loader\/PhpFileLoader.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Loader\/PhpFileLoader.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30192,7 +31521,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Loader\/PoFileLoader.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Loader\/PoFileLoader.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30201,7 +31530,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Loader\/QtFileLoader.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Loader\/QtFileLoader.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30210,7 +31539,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Loader\/XliffFileLoader.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Loader\/XliffFileLoader.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30219,7 +31548,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Loader\/YamlFileLoader.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Loader\/YamlFileLoader.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30228,7 +31557,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/MessageCatalogue.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/MessageCatalogue.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30237,7 +31566,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/MessageCatalogueInterface.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/MessageCatalogueInterface.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30246,7 +31575,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/MessageSelector.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/MessageSelector.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30255,7 +31584,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/MetadataAwareInterface.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/MetadataAwareInterface.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30264,7 +31593,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/PluralizationRules.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/PluralizationRules.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30285,7 +31614,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Catalogue\/AbstractOperationTest.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Catalogue\/AbstractOperationTest.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30294,7 +31623,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Catalogue\/DiffOperationTest.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Catalogue\/DiffOperationTest.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30303,7 +31632,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Catalogue\/MergeOperationTest.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Catalogue\/MergeOperationTest.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30312,7 +31641,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Dumper\/CsvFileDumperTest.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Dumper\/CsvFileDumperTest.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30321,7 +31650,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Dumper\/FileDumperTest.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Dumper\/FileDumperTest.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30330,7 +31659,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Dumper\/IcuResFileDumperTest.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Dumper\/IcuResFileDumperTest.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30339,7 +31668,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Dumper\/IniFileDumperTest.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Dumper\/IniFileDumperTest.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30348,7 +31677,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Dumper\/JsonFileDumperTest.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Dumper\/JsonFileDumperTest.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30357,7 +31686,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Dumper\/MoFileDumperTest.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Dumper\/MoFileDumperTest.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30366,7 +31695,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Dumper\/PhpFileDumperTest.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Dumper\/PhpFileDumperTest.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30375,7 +31704,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Dumper\/PoFileDumperTest.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Dumper\/PoFileDumperTest.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30384,7 +31713,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Dumper\/QtFileDumperTest.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Dumper\/QtFileDumperTest.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30393,7 +31722,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Dumper\/XliffFileDumperTest.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Dumper\/XliffFileDumperTest.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30402,7 +31731,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Dumper\/YamlFileDumperTest.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Dumper\/YamlFileDumperTest.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30411,7 +31740,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/fixtures\/resources.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/fixtures\/resources.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30436,7 +31765,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/IdentityTranslatorTest.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/IdentityTranslatorTest.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30445,7 +31774,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/IntervalTest.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/IntervalTest.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30454,7 +31783,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Loader\/CsvFileLoaderTest.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Loader\/CsvFileLoaderTest.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30463,7 +31792,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Loader\/IcuDatFileLoaderTest.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Loader\/IcuDatFileLoaderTest.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30472,7 +31801,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Loader\/IcuResFileLoaderTest.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Loader\/IcuResFileLoaderTest.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30481,7 +31810,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Loader\/IniFileLoaderTest.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Loader\/IniFileLoaderTest.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30490,7 +31819,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Loader\/JsonFileLoaderTest.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Loader\/JsonFileLoaderTest.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30499,7 +31828,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Loader\/LocalizedTestCase.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Loader\/LocalizedTestCase.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30508,7 +31837,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Loader\/MoFileLoaderTest.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Loader\/MoFileLoaderTest.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30517,7 +31846,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Loader\/PhpFileLoaderTest.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Loader\/PhpFileLoaderTest.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30526,7 +31855,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Loader\/PoFileLoaderTest.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Loader\/PoFileLoaderTest.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30535,7 +31864,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Loader\/QtFileLoaderTest.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Loader\/QtFileLoaderTest.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30544,7 +31873,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Loader\/XliffFileLoaderTest.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Loader\/XliffFileLoaderTest.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30553,7 +31882,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Loader\/YamlFileLoaderTest.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/Loader\/YamlFileLoaderTest.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30562,7 +31891,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/MessageCatalogueTest.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/MessageCatalogueTest.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30571,7 +31900,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/MessageSelectorTest.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/MessageSelectorTest.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30580,7 +31909,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/PluralizationRulesTest.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/PluralizationRulesTest.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30589,7 +31918,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/TranslatorTest.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Tests\/TranslatorTest.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30598,7 +31927,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Translator.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Translator.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30607,7 +31936,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/TranslatorInterface.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/TranslatorInterface.php",
 		"outputAbbreviatedPath": "No Output Path",
@@ -30616,7 +31945,7 @@
 		},
 	"\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Writer\/TranslationWriter.php": {
 		"fileType": 8192,
-		"ignore": 0,
+		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/symfony\/translation\/Symfony\/Component\/Translation\/Writer\/TranslationWriter.php",
 		"outputAbbreviatedPath": "No Output Path",

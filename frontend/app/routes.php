@@ -30,7 +30,7 @@ Route::any("/reset/{token}",[ "as" => "user/reset","uses" => "UserController@res
 Route::group(["before" => "auth"],function(){
 	Route::any("/profile",["as" => "user/profile","uses" => "UserController@profile"]);
 	Route::any("/settings",["as" => "user/settings","uses" => "UserController@settings"]);
-	Route::any("/help",["as" => "user/help","uses" => "UserController@help"]);
+	Route::any("/help/{topic?}",["as" => "user/help","uses" => "UserController@help"]);
 	Route::any("/logout",["as" => "user/logout","uses" => "UserController@logout"]);
 
 	Route::get('/',["as" => "/","uses" => "LibraryController@show"]);
