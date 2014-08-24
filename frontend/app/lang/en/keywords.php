@@ -54,6 +54,7 @@ return array(
 	'edit' => 'Edit',
 	'upload_document' => 'Upload document...',
 	'edit_notes' => 'Edit multiple notes...',
-
+	'ui_language' => 'User Interface Language',
+	'document_languages' => 'Document Languages'
 
 );

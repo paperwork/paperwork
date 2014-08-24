@@ -15,6 +15,8 @@
     [[ HTML::style('css/freqselector.min.css') ]]
     [[ HTML::style('css/paperwork.min.css') ]]
 
+    [[ HTML::style('css/bootstrap-tagsinput.min.css') ]]
+
 </head>
   <body ng-app="paperworkNotes">
   	<div ng-controller="paperworkConstructorController"></div>
@@ -98,6 +100,8 @@
 
 	[[ HTML::script('js/bootstrap.min.js') ]]
 	[[ HTML::script('js/bootstrap-tree.min.js') ]]
+	[[ HTML::script('js/typeahead.min.js') ]]
+	[[ HTML::script('js/bootstrap-tagsinput.min.js') ]]
 
 	[[ HTML::script('ckeditor/ckeditor.js') ]]
 
@@ -109,5 +113,6 @@
   <!--[if lt IE 11]>
     [[ HTML::script('js/ie10-viewport-bug-workaround.js') ]]
   <![endif]-->
+
 </body>
 </html>

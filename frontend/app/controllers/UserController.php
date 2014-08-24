@@ -8,8 +8,10 @@ class UserController extends BaseController {
 			if($validator->passes()) {
 				// $credentials = $this->getRegistrationCredentials();
 
-				$user = User::create(Input::except('_token', 'password_confirmation'));
+				$user = User::create(Input::except('_token', 'password_confirmation', 'ui_language'));
 				if ($user) {
+					$user->save();
+					$setting = Setting::create(array('ui_language' => Input::get('ui_language'), 'user_id' => $user->id));
 					Auth::login($user);
 					return Redirect::route("/");
 				}
@@ -61,6 +63,10 @@ class UserController extends BaseController {
 		return Validator::make(Input::all(), [ "password" => "min:5|confirmed", "firstname" => "required|alpha_num", "lastname" => "required|alpha_num"]);
 	}
 
+	protected function getSettingsValidator() {
+		return Validator::make(Input::all(), [ "ui_language" => "required" ]);
+	}
+
 	// protected function getRegistrationCredentials() {
 	// 	return ["username" => Input::get("username"), "password" => Input::get("password"), "firstname" => Input::get("firstname"), "lastname" => Input::get("lastname")];
 	// }
@@ -97,7 +103,39 @@ class UserController extends BaseController {
 
 	public function settings()
 	{
- 		return View::make("user/settings");
+		$user = User::find(Auth::user()->id);
+		$settings = Setting::where('user_id', '=',$user->id);
+
+		if($this->isPostRequest()) {
+			$validator = $this->getSettingsValidator();
+
+			if($validator->passes()) {
+				$settings->ui_language = Input::get('ui_language');
+				$document_languages = Input::get('document_languages');
+
+				// TODO: I think this whole thing could be done nicer...
+				DB::Table('language_user')->where('user_id', '=', $user->id)->delete();
+
+				foreach($document_languages as $document_lang) {
+					$foundLanguage = Language::where('language_code', '=', $document_lang)->first();
+					if(!is_null($foundLanguage)) {
+						$user->languages()->save($foundLanguage);
+					}
+				}
+			} else {
+				return Redirect::back()->withInput()->withErrors($validator);
+			}
+		}
+
+		$languages = array();
+		$userDocumentLanguages = $user->languages()->get();
+		foreach($userDocumentLanguages as $userDocumentLanguage) {
+			$languages[$userDocumentLanguage->language_code] = true;
+		}
+ 		return View::make("user/settings")->with('settings', $settings)->with('languages', $languages);
+
+ 		// TODO:
+ 		// Think about whether we need to run an OCRing process in background, if document languages selection changed.
  	}
 
  	public function request() {

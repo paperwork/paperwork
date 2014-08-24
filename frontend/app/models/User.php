@@ -39,4 +39,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function shortcuts() {
 		return $this->hasMany('Shortcut');
 	}
+
+	public function languages() {
+		return $this->belongsToMany('Language');
+	}
 }

@@ -36,6 +36,10 @@
 <div class="form-group [[ $errors->first('password_confirmation') ? 'has-error' : '' ]]">
   [[ Form::password("password_confirmation", array('class' => 'form-control', 'placeholder' => Lang::get('keywords.confirm'), 'required')) ]]
 </div>
+<div class="form-group [[ $errors->first('ui_language') ? 'has-error' : '' ]]">
+  <label for="ui_language" class="control-label">[[ Lang::get('keywords.ui_language') ]]</label>
+  [[ Form::select("ui_language", PaperworkHelpers::getUiLanguages(), 'en', array('id' => 'ui_language', 'class' => 'form-control')) ]]
+</div>
 <div class="checkbox">
 </div>
 <div class="form-group">
