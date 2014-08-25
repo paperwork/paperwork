@@ -12,12 +12,10 @@ paperworkModule.controller('paperworkNotesAllController', function($scope, $root
       }
     });
 
+    $rootScope.editMultipleNotes = false;
     $rootScope.navbarMainMenu = true;
     $rootScope.navbarSearchForm = true;
     $rootScope.expandedNoteLayout = false;
 
-    // ---
-    // $rootScope.note = null; // TODO: Do we still need this?
-
-    // $location.path("/notebook/" + $scope.notebookSelectedId + "/note/" + $rootScope.notes[0].id);
+    $rootScope.note = null;
 });

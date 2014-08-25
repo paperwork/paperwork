@@ -146,8 +146,8 @@ paperworkModule.controller('paperworkSidebarNotesController', function($scope, $
 
 
     $rootScope.messageBox({
-      'title': $rootScope.i18n.keywords.delete_note_question,
-      'content': $rootScope.i18n.keywords.delete_note_message,
+      'title': ($rootScope.editMultipleNotes ? $rootScope.i18n.keywords.delete_notes_question : $rootScope.i18n.keywords.delete_note_question),
+      'content': ($rootScope.editMultipleNotes ? $rootScope.i18n.keywords.delete_notes_message : $rootScope.i18n.keywords.delete_note_message),
       'buttons': [
         {
           // We don't need an id for the dismiss button.
@@ -160,7 +160,16 @@ paperworkModule.controller('paperworkSidebarNotesController', function($scope, $
           'label': $rootScope.i18n.keywords.yes,
           'class': 'btn-warning',
           'click': function() {
-            paperworkNotesService.deleteNote(noteId, callback);
+            if($rootScope.editMultipleNotes) {
+              angular.forEach($rootScope.notesSelectedIds, function(isChecked, noteId) {
+                if(isChecked) {
+                  paperworkNotesService.deleteNote(noteId, function() {});
+                }
+              });
+              $location.path("/n/" + notebookId);
+            } else {
+              paperworkNotesService.deleteNote(noteId, callback);
+            }
             return true;
           },
         }
