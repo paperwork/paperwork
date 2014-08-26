@@ -85,4 +85,11 @@ paperworkModule.controller('paperworkConstructorController', function($scope, $r
         });
       }
     };
+
+  // $rootScope.modalNotebookSelect = function(notebookSelectData) {
+  //   $rootScope.modalNotebookSelect = {
+  //   };
+  //   $('#modalNotebookSelect').modal("show");
+  // };
+
 });

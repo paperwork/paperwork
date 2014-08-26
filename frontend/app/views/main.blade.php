@@ -3,6 +3,7 @@
 
 @include('modal/messagebox')
 @include('modal/notebook')
+@include('modal/notebookSelect')
 
 <div class="container-fluid">
 	<div class="row">

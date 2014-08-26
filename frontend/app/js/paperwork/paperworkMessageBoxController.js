@@ -1,4 +1,4 @@
-paperworkModule.controller('paperworkMessageBoxController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService){
+paperworkModule.controller('paperworkMessageBoxController', function($scope, $rootScope, $location, $routeParams){
   $scope.onClick = function(buttonId) {
     if(typeof buttonId == "undefined" || buttonId == null || buttonId == "") {
       return false;

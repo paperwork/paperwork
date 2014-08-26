@@ -177,6 +177,25 @@ paperworkModule.controller('paperworkSidebarNotesController', function($scope, $
     });
   };
 
+  // $scope.modalMoveNote = function(notebookId, noteId) {
+  //   var callback = (function() {
+  //     return function(status, data) {
+  //       switch(status) {
+  //         case 200:
+  //           $location.path("/n/" + notebookId);
+  //           break;
+  //         case 400:
+  //           // TODO: Show some kind of error
+  //           break;
+  //       }
+  //     };
+  //   })();
+
+
+  //   $rootScope.modalNotebookSelect({
+  //   });
+  // };
+
   $scope.submitSearch = function() {
     if($scope.search == "") {
       $location.path("/");
