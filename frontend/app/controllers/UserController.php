@@ -34,6 +34,10 @@ class UserController extends BaseController {
 				$credentials = $this->getLoginCredentials();
 
 				if (Auth::attempt($credentials)) {
+					$settings = Setting::where('user_id', '=',Auth::user()->id);
+
+					App::setLocale($settings->ui_language);
+
 					return Redirect::route("/");
 				}
 				return Redirect::back()->withErrors([ "password" => [Lang::get('messages.invalid_credentials')]]);
@@ -104,7 +108,7 @@ class UserController extends BaseController {
 	public function settings()
 	{
 		$user = User::find(Auth::user()->id);
-		$settings = Setting::where('user_id', '=',$user->id);
+		$settings = Setting::where('user_id', '=',$user->id)->first();
 
 		if($this->isPostRequest()) {
 			$validator = $this->getSettingsValidator();
@@ -122,6 +126,8 @@ class UserController extends BaseController {
 						$user->languages()->save($foundLanguage);
 					}
 				}
+
+				App::setLocale($settings->ui_language);
 			} else {
 				return Redirect::back()->withInput()->withErrors($validator);
 			}

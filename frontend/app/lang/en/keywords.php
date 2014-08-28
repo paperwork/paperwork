@@ -34,7 +34,6 @@ return array(
 	'new_collection' => 'New collection',
 	'edit_collection' => 'Edit collection',
 	'delete_collection' => 'Delete collection',
-	'new_note' => 'New note',
 	'delete_note_question' => 'Delete note?',
 	'delete_note_message' => 'This will delete the selected note and all its attachments. Are you sure?',
 	'delete_notes_question' => 'Delete notes?',

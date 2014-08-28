@@ -2,7 +2,7 @@
 		<div class="form-group [[ $errors->first('ui_language') ? 'has-error' : '' ]]">
 			<label for="ui_language" class="col-sm-5 control-label">[[ Lang::get('keywords.ui_language') ]]</label>
 			<div class="col-sm-7">
-				[[ Form::select("ui_language", PaperworkHelpers::getUiLanguages(), null, array('id' => 'ui_language', 'class' => 'form-control')) ]]
+				[[ Form::select("ui_language", PaperworkHelpers::getUiLanguages(), $settings->ui_language, array('id' => 'ui_language', 'class' => 'form-control')) ]]
 			</div>
 		</div>
 
