@@ -11,7 +11,7 @@
          syntaxCheck="false"
 >
     <testsuites>
-        <testsuite name="Application Test Suite">
+        <testsuite name="Paperwork Test Suite">
             <directory>./app/tests/</directory>
         </testsuite>
     </testsuites>
