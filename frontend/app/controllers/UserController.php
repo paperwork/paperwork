@@ -12,7 +12,11 @@ class UserController extends BaseController {
 				if ($user) {
 					$user->save();
 					$setting = Setting::create(array('ui_language' => Input::get('ui_language'), 'user_id' => $user->id));
+
 					Auth::login($user);
+
+					Session::put('ui_language', $setting->ui_language);
+
 					return Redirect::route("/");
 				}
 				return Redirect::back()->withErrors([ "password" => [Lang::get('messages.account_creation_failed')]]);
@@ -36,7 +40,7 @@ class UserController extends BaseController {
 				if (Auth::attempt($credentials)) {
 					$settings = Setting::where('user_id', '=',Auth::user()->id)->first();
 
-					App::setLocale($settings->ui_language);
+					Session::put('ui_language', $settings->ui_language);
 
 					return Redirect::route("/");
 				}
@@ -120,13 +124,16 @@ class UserController extends BaseController {
 				// TODO: I think this whole thing could be done nicer...
 				DB::Table('language_user')->where('user_id', '=', $user->id)->delete();
 
-				foreach($document_languages as $document_lang) {
-					$foundLanguage = Language::where('language_code', '=', $document_lang)->first();
-					if(!is_null($foundLanguage)) {
-						$user->languages()->save($foundLanguage);
+				if(!is_null($document_languages)) {
+					foreach($document_languages as $document_lang) {
+						$foundLanguage = Language::where('language_code', '=', $document_lang)->first();
+						if(!is_null($foundLanguage)) {
+							$user->languages()->save($foundLanguage);
+						}
 					}
 				}
 
+				Session::put('ui_language', $settings->ui_language);
 				App::setLocale($settings->ui_language);
 			} else {
 				return Redirect::back()->withInput()->withErrors($validator);
