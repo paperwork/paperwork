@@ -34,7 +34,7 @@ class UserController extends BaseController {
 				$credentials = $this->getLoginCredentials();
 
 				if (Auth::attempt($credentials)) {
-					$settings = Setting::where('user_id', '=',Auth::user()->id);
+					$settings = Setting::where('user_id', '=',Auth::user()->id)->first();
 
 					App::setLocale($settings->ui_language);
 
