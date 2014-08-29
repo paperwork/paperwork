@@ -32,6 +32,34 @@ class PaperworkHelpers {
 		return $uiLanguages;
 	}
 
+	public function hasUiLanguage($languageCode) {
+		$directories = \File::directories(app_path() . '/lang/');
+		$uiLanguages = array();
+
+		foreach($directories as $directory) {
+			$dir = basename($directory);
+			if($dir === $languageCode) {
+				return true;
+			}
+		}
+		return false;
+
+	}
+
+	public function getUiLanguageFromSession() {
+	    $setLanguage = \Session::get('ui_language', \Config::get('app.locale'));
+	    if(\Config::get('paperwork.userAgentLanguage')) {
+	        $uaLanguages = \Agent::languages();
+	        foreach($uaLanguages as $uaLanguage) {
+	            if(PaperworkHelpers::hasUiLanguage($uaLanguage)) {
+	                $setLanguage = $uaLanguage;
+	                break;
+	            }
+	        }
+	    }
+	    return $setLanguage;
+	}
+
 	public function getDocumentLanguages() {
 		$languages = \Language::all();
 		$documentLanguages = array();

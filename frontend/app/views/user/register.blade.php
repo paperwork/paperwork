@@ -38,7 +38,7 @@
 </div>
 <div class="form-group [[ $errors->first('ui_language') ? 'has-error' : '' ]]">
   <label for="ui_language" class="control-label">[[ Lang::get('keywords.ui_language') ]]</label>
-  [[ Form::select("ui_language", PaperworkHelpers::getUiLanguages(), 'en', array('id' => 'ui_language', 'class' => 'form-control')) ]]
+  [[ Form::select("ui_language", PaperworkHelpers::getUiLanguages(), PaperworkHelpers::getUiLanguageFromSession(), array('id' => 'ui_language', 'class' => 'form-control')) ]]
 </div>
 <div class="checkbox">
 </div>

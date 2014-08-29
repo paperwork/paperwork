@@ -13,6 +13,7 @@ return array(
 	|
 	*/
 
-	'registration' => true
+	'registration' => true,
+	'userAgentLanguage' => false,
 
 );

@@ -28,7 +28,7 @@ Route::any("/request",["as" => "user/request","uses" => "UserController@request"
 Route::any("/reset/{token}",[ "as" => "user/reset","uses" => "UserController@reset"]);
 
 Route::group(["before" => "auth"],function(){
-    App::setLocale(Session::get('ui_language', Config::get('app.locale')));
+    App::setLocale(PaperworkHelpers::getUiLanguageFromSession());
 	Route::any("/profile",["as" => "user/profile","uses" => "UserController@profile"]);
 	Route::any("/settings",["as" => "user/settings","uses" => "UserController@settings"]);
 	Route::any("/help/{topic?}",["as" => "user/help","uses" => "UserController@help"]);

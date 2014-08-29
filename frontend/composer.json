@@ -5,6 +5,7 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.2.*",
+		"jenssegers/agent": "*",
 		"erusev/parsedown": "dev-master",
 		"thiagoalessio/tesseract_ocr": ">= 0.2.0"
 	},
