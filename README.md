@@ -1,5 +1,6 @@
 Paperwork - OpenSource note-taking & archiving
 ==============================================
+[![Build Status](https://travis-ci.org/twostairs/paperwork.svg?branch=master)](https://travis-ci.org/twostairs/paperwork)
 
 ![paperwork-logo](paperwork-logo.png)
 
