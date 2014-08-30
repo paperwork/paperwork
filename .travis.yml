@@ -8,8 +8,8 @@ php:
 
 before_script:
   - composer self-update
-  - composer install --dev --no-interaction
+  - composer install --dev --no-interaction -d "$(pwd)/frontend/"
 
 script:
   - mkdir -p build/logs
-  - phpunit
+  - (cd "$(pwd)/frontend/"; phpunit)
