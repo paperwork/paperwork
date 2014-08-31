@@ -44,6 +44,7 @@ Route::get('/templates/{angularTemplate}', function($angularTemplate) {
 
 Route::group(array('prefix' => 'api/v1', 'before' => 'auth'), function()
 {
+    App::setLocale(PaperworkHelpers::getUiLanguageFromSession());
     // Route::any('notebook/{num?}', 'ApiNotebooksController@index')->where('num','([0-9]*)');
     Route::resource('notebooks', 'ApiNotebooksController');
     Route::resource('notebooks.notes', 'ApiNotesController');
