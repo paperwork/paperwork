@@ -69,27 +69,28 @@ paperworkModule.controller('paperworkConstructorController', function($scope, $r
       return $rootScope.versionSelectedId.notebookId + "-" + $rootScope.versionSelectedId.noteId + "-" + $rootScope.versionSelectedId.versionId;
     };
 
-    $rootScope.messageBox = function(messageBoxData) {
+    $rootScope.modalGeneric = function(modalId, modalData) {
       var callback = function(data) {
         $rootScope.modalMessageBox = data;
-        $('#modalMessageBox').modal('show');
+        $('#' + modalId).modal('show');
       };
       if($rootScope.modal.active === false) {
-        callback(messageBoxData);
+        callback(modalData);
       } else {
         $rootScope.modal.next.push({
-          'id': 'modalMessageBox',
+          'id': modalId,
           'callback': function() {
-            callback(messageBoxData);
+            callback(modalData);
           }
         });
       }
     };
 
-  // $rootScope.modalNotebookSelect = function(notebookSelectData) {
-  //   $rootScope.modalNotebookSelect = {
-  //   };
-  //   $('#modalNotebookSelect').modal("show");
-  // };
+    $rootScope.messageBox = function(messageBoxData) {
+      $rootScope.modalGeneric('modalMessageBox', messageBoxData);
+    };
 
+    $rootScope.modalNotebookSelect = function(modalData) {
+      $rootScope.modalGeneric('modalNotebookSelect', modalData);
+    };
 });
