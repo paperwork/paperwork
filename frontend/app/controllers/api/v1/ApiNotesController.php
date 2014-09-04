@@ -209,7 +209,7 @@ class ApiNotesController extends BaseController {
 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $note);
 	}
 
-	public function destroy($notebookId, $noteId = null)
+	public function destroy($notebookId, $noteId)
 	{
 		$note = User::find(Auth::user()->id)->notes()->where('notes.id', '=', $noteId)->whereNull('notes.deleted_at')->first();
 
@@ -219,6 +219,33 @@ class ApiNotesController extends BaseController {
 
 		$deletedNote = $note;
 		$note->delete();
+		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $note);
+	}
+
+	public function move($notebookId, $noteId, $toNotebookId) {
+		$note = Note::find($noteId);
+		if(is_null($note)){
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array('item'=>'note', 'id'=>$noteId));
+		}
+
+		$user = $note->users()->where('users.id', '=', Auth::user()->id)->first();
+		if(is_null($user)){
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array('item'=>'user'));
+		}
+
+		$toNotebook = Notebook::find($toNotebookId);
+		if(is_null($toNotebook)){
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array('item'=>'notebook', 'id'=>$toNotebookId));
+		}
+
+		$toNotebookUser = $toNotebook->users()->where('notebook_user.user_id', '=', Auth::user()->id)->first();
+		if(is_null($toNotebookUser)){
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array('item'=>'toNotebookUser'));
+		}
+
+		$note->notebook()->associate($toNotebook);
+		$note->save();
+
 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $note);
 	}
 }
