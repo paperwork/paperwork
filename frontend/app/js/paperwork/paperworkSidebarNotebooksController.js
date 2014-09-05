@@ -83,6 +83,10 @@ paperworkModule.controller('paperworkSidebarNotebooksController', function($scop
     }
   };
 
+  $scope.modalNotebookSelectSubmit = function() {
+
+  };
+
   $scope.modalEditNotebook = function(notebookId) {
     var notebook = paperworkNotebooksService.getNotebookByIdLocal(notebookId);
 
