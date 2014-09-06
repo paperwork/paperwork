@@ -61,6 +61,7 @@ return array(
 	'edit_notes_cancel' => 'Stop editing multiple notes',
 	'ui_language' => 'User Interface Language',
 	'document_languages' => 'Document Languages',
-	'select_notebook_title' => 'Select notebook'
+	'select_notebook_title' => 'Select notebook',
+	'select' => 'Select'
 
 );

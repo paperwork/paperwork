@@ -61,6 +61,7 @@ return array(
 	'edit_notes_cancel' => 'Bearbeitung mehrerer Notizen beenden',
 	'ui_language' => 'Benutzeroberflächen-Sprache',
 	'document_languages' => 'Dokumenten Sprachen',
-	'select_notebook_title' => 'Notizbuch auswählen'
+	'select_notebook_title' => 'Notizbuch auswählen',
+	'select' => 'Auswählen'
 
 );
