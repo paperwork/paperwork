@@ -180,7 +180,13 @@ paperworkModule.controller('paperworkSidebarNotesController', function($scope, $
   $scope.modalMoveNote = function(notebookId, noteId) {
     $rootScope.modalNotebookSelect({
       'notebookId': notebookId,
-      'noteId': noteId
+      'noteId': noteId,
+      'theCallback': function(notebookId, noteId, toNotebookId) {
+        paperworkNotesService.moveNote(notebookId, noteId, toNotebookId, function(_notebookId, _noteId, _toNotebookId) {
+          $('#modalNotebookSelect').modal('hide');
+          $location.path("/n/" + parseInt(_toNotebookId));
+        });
+      }
     });
   };
 

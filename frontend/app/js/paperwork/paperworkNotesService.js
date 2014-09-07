@@ -15,6 +15,17 @@ paperworkModule.factory('paperworkNotesService', ['$rootScope', '$http', 'paperw
     paperworkNetService.apiDelete('/notebooks/0/notes/' + noteId, callback);
   };
 
+  paperworkNotesServiceFactory.moveNote = function(notebookId, noteId, toNotebookId, callback) {
+    paperworkNetService.apiGet('/notebooks/' + notebookId + '/notes/' + noteId + '/move/' + toNotebookId, function(status, data) {
+      if(status == 200) {
+        // $rootScope.notes = data.response;
+        if(typeof callback != "undefined") {
+          callback(notebookId, noteId, toNotebookId);
+        }
+      }
+    });
+  };
+
   paperworkNotesServiceFactory.getNotesInNotebook = function(notebookId, callback) {
     paperworkNetService.apiGet('/notebooks/' + notebookId + '/notes', function(status, data) {
       if(status == 200) {

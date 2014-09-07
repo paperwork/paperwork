@@ -83,8 +83,9 @@ paperworkModule.controller('paperworkSidebarNotebooksController', function($scop
     }
   };
 
-  $scope.modalNotebookSelectSubmit = function() {
-
+  $scope.notebookSelectedModel = 0;
+  $scope.modalNotebookSelectSubmit = function(notebookId, noteId, toNotebookId) {
+    $rootScope.modalMessageBox.theCallback(notebookId, noteId, toNotebookId);
   };
 
   $scope.modalEditNotebook = function(notebookId) {
