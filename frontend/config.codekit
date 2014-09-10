@@ -1,6 +1,6 @@
 {
 "CodeKitInfo": "This is a CodeKit 2.x project configuration file. It is designed to sync project settings across multiple machines. MODIFYING THE CONTENTS OF THIS FILE IS A POOR LIFE DECISION. If you do so, you will likely cause CodeKit to crash. This file is not useful unless accompanied by the project that created it in CodeKit 2. This file is not backwards-compatible with CodeKit 1.x. For more information, see: http:\/\/incident57.com\/codekit",
-"creatorBuild": "17682",
+"creatorBuild": "17756",
 "files": {
 	"\/app\/config\/app.php": {
 		"fileType": 8192,
@@ -886,6 +886,78 @@
 		"outputPathIsSetByUser": 1,
 		"outputStyle": 0,
 		"syntaxCheckerStyle": 0
+		},
+	"\/app\/lang\/de\/keywords.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/lang\/de\/keywords.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/app\/lang\/de\/languages.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/lang\/de\/languages.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/app\/lang\/de\/messages.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/lang\/de\/messages.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/app\/lang\/de\/notebooks.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/lang\/de\/notebooks.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/app\/lang\/de\/pagination.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/lang\/de\/pagination.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/app\/lang\/de\/reminders.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/lang\/de\/reminders.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/app\/lang\/de\/users.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/lang\/de\/users.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/app\/lang\/de\/validation.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/lang\/de\/validation.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
 		},
 	"\/app\/lang\/en\/keywords.php": {
 		"fileType": 8192,
@@ -2959,6 +3031,15 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/app\/tests\/PaperworkHelpersTest.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/tests\/PaperworkHelpersTest.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/app\/tests\/TestCase.php": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -3031,11 +3112,47 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/app\/views\/modal\/notebookSelect.blade.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/views\/modal\/notebookSelect.blade.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/app\/views\/partials\/file-uploader.blade.php": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/app\/views\/partials\/file-uploader.blade.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/app\/views\/partials\/menu-main.blade.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/views\/partials\/menu-main.blade.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/app\/views\/partials\/navigation-main.blade.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/views\/partials\/navigation-main.blade.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/app\/views\/partials\/search-main.blade.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/views\/partials\/search-main.blade.php",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -3126,6 +3243,24 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/app\/views\/user\/settings.blade.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/app\/views\/user\/settings\/import.blade.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/views\/user\/settings\/import.blade.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/app\/views\/user\/settings\/language.blade.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/views\/user\/settings\/language.blade.php",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -8226,6 +8361,81 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/vendor\/jenssegers\/agent\/README.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/jenssegers\/agent\/README.md",
+		"outputAbbreviatedPath": "\/vendor\/jenssegers\/agent\/README.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/jenssegers\/agent\/src\/Agent.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/jenssegers\/agent\/src\/Agent.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/jenssegers\/agent\/src\/AgentServiceProvider.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/jenssegers\/agent\/src\/AgentServiceProvider.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/jenssegers\/agent\/src\/Facades\/Agent.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/jenssegers\/agent\/src\/Facades\/Agent.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/jenssegers\/agent\/tests\/AgentTest.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/jenssegers\/agent\/tests\/AgentTest.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/jenssegers\/agent\/tests\/BasicTest.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/jenssegers\/agent\/tests\/BasicTest.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/jenssegers\/agent\/tests\/UserAgentTest.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/jenssegers\/agent\/tests\/UserAgentTest.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/jenssegers\/agent\/tests\/VendorsTest.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/jenssegers\/agent\/tests\/VendorsTest.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/vendor\/jeremeamia\/SuperClosure\/demo\/factorial.php": {
 		"fileType": 8192,
 		"ignore": 0,
@@ -11768,6 +11978,108 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/vendor\/laravel\/framework\/src\/Illuminate\/Workbench\/WorkbenchServiceProvider.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/mobiledetect\/mobiledetectlib\/examples\/demo.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/mobiledetect\/mobiledetectlib\/examples\/demo.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/mobiledetect\/mobiledetectlib\/examples\/session_example.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/mobiledetect\/mobiledetectlib\/examples\/session_example.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/mobiledetect\/mobiledetectlib\/export\/exportToJSON.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/mobiledetect\/mobiledetectlib\/export\/exportToJSON.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/mobiledetect\/mobiledetectlib\/Mobile_Detect.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/mobiledetect\/mobiledetectlib\/Mobile_Detect.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/mobiledetect\/mobiledetectlib\/namespaced\/Detection\/MobileDetect.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/mobiledetect\/mobiledetectlib\/namespaced\/Detection\/MobileDetect.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/mobiledetect\/mobiledetectlib\/README.md": {
+		"enableFootnoteSupport": 0,
+		"enableSmartyPants": 1,
+		"expandTabs": 1,
+		"fileType": 4096,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/mobiledetect\/mobiledetectlib\/README.md",
+		"outputAbbreviatedPath": "\/vendor\/mobiledetect\/mobiledetectlib\/README.html",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/mobiledetect\/mobiledetectlib\/tests\/BasicsTest.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/mobiledetect\/mobiledetectlib\/tests\/BasicsTest.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/mobiledetect\/mobiledetectlib\/tests\/bootstrap.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/mobiledetect\/mobiledetectlib\/tests\/bootstrap.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/mobiledetect\/mobiledetectlib\/tests\/UA_List.inc.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/mobiledetect\/mobiledetectlib\/tests\/UA_List.inc.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/mobiledetect\/mobiledetectlib\/tests\/UserAgentTest.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/mobiledetect\/mobiledetectlib\/tests\/UserAgentTest.php",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/vendor\/mobiledetect\/mobiledetectlib\/tests\/VendorsTest.php": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/vendor\/mobiledetect\/mobiledetectlib\/tests\/VendorsTest.php",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -31992,218 +32304,6 @@
 	],
 "lastSavedByUser": "Marius M.",
 "manualImportLinks": {
-	"\/app\/js\/angular.js": [
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/angular-resource.js",
-			"position": 0,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/angular-route.js",
-			"position": 1,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/angular-sanitize.js",
-			"position": 2,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/angular-animate.js",
-			"position": 3,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/angular-file-upload.js",
-			"position": 4,
-			"type": 1
-			}
-		],
-	"\/app\/js\/bootstrap\/bootstrap.js": [
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/bootstrap\/transition.js",
-			"position": 0,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/bootstrap\/collapse.js",
-			"position": 1,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/bootstrap\/dropdown.js",
-			"position": 2,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/bootstrap\/modal.js",
-			"position": 3,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/bootstrap\/tab.js",
-			"position": 4,
-			"type": 1
-			}
-		],
-	"\/app\/js\/jquery.js": [
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/jquery.overscroll.js",
-			"position": 0,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/jquery.scrollTo.js",
-			"position": 1,
-			"type": 1
-			}
-		],
-	"\/app\/js\/paperwork\/paperwork.js": [
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkRoutes.js",
-			"position": 0,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkNetService.js",
-			"position": 1,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkNotebooksService.js",
-			"position": 2,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkNotesService.js",
-			"position": 3,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkVersionsService.js",
-			"position": 4,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkMessageBoxService.js",
-			"position": 5,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkConstructorController.js",
-			"position": 6,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkDefaultController.js",
-			"position": 7,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkNotesAllController.js",
-			"position": 8,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkNotesShowController.js",
-			"position": 9,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkNotesEditController.js",
-			"position": 10,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkNotesListController.js",
-			"position": 11,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkSidebarNotebooksController.js",
-			"position": 12,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkSidebarNotesController.js",
-			"position": 13,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkVersionsController.js",
-			"position": 14,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkSearchController.js",
-			"position": 15,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkViewController.js",
-			"position": 16,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkFileUploadController.js",
-			"position": 17,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkMessageBoxController.js",
-			"position": 18,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkWaybackController.js",
-			"position": 19,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkFourOhFourController.js",
-			"position": 20,
-			"type": 1
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/app\/js\/paperwork\/paperworkFilters.js",
-			"position": 21,
-			"type": 1
-			}
-		]
 	},
 "projectAttributes": {
 	"bowerAbbreviatedPath": "",
@@ -32331,6 +32431,10 @@
 			"flagValue": -1
 			},
 		"non_empty_constructor_needs_parens": {
+			"active": 0,
+			"flagValue": -1
+			},
+		"prefer_english_operator": {
 			"active": 0,
 			"flagValue": -1
 			},
@@ -32809,6 +32913,7 @@
 	"stylusAutoOutputPathReplace1": "stylus",
 	"stylusAutoOutputPathReplace2": "css",
 	"stylusAutoOutputPathStyle": 2,
+	"stylusCreateSourceMap": 0,
 	"stylusDebugStyle": 0,
 	"stylusImportCSS": 0,
 	"stylusOutputStyle": 0,

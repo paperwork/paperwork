@@ -19,7 +19,7 @@ For the back-end part a MySQL database stores everything. With such common requi
 
 ## Demo (yes, there is one!)
 
-At [paperwork.twostairs.com](http://paperwork.twostairs.com/) you can actually see the current development status of Paperwork. Every night at 3am (CET) the database is being dropped and newly created, and the latest sources from GitHub are being deployed on the machine.
+At [demo.paperwork.rocks](http://demo.paperwork.rocks) you can actually see the current development status of Paperwork. Every night at 3am (CET) the database is being dropped and newly created, and the latest sources from GitHub are being deployed on the machine.
 
 Feel free to create/modify/delete accounts, notebooks and notes. This demo can be used for heavy playing without regrets. Just try not to take down that thing. :)
 
