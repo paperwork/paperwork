@@ -161,15 +161,16 @@ paperworkModule.controller('paperworkSidebarNotesController', function($scope, $
           'class': 'btn-warning',
           'click': function() {
             if($rootScope.editMultipleNotes) {
-              angular.forEach($rootScope.notesSelectedIds, function(isChecked, noteId) {
+              noteId = [];
+              angular.forEach($rootScope.notesSelectedIds, function(isChecked, checkedNoteId) {
                 if(isChecked) {
-                  paperworkNotesService.deleteNote(noteId, function() {});
+                  noteId.push(checkedNoteId);
                 }
               });
-              $location.path("/n/" + notebookId);
-            } else {
-              paperworkNotesService.deleteNote(noteId, callback);
             }
+            paperworkNotesService.deleteNote(noteId, callback, function() {
+              $location.path("/n/" + notebookId);
+            });
             return true;
           },
         }
@@ -182,10 +183,19 @@ paperworkModule.controller('paperworkSidebarNotesController', function($scope, $
       'notebookId': notebookId,
       'noteId': noteId,
       'theCallback': function(notebookId, noteId, toNotebookId) {
+        if($rootScope.editMultipleNotes) {
+          noteId = [];
+          angular.forEach($rootScope.notesSelectedIds, function(isChecked, checkedNoteId) {
+            if(isChecked) {
+              noteId.push(checkedNoteId);
+            }
+          });
+        }
         paperworkNotesService.moveNote(notebookId, noteId, toNotebookId, function(_notebookId, _noteId, _toNotebookId) {
           $('#modalNotebookSelect').modal('hide');
           $location.path("/n/" + parseInt(_toNotebookId));
         });
+        return true;
       }
     });
   };
