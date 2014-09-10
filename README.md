@@ -25,4 +25,4 @@ Feel free to create/modify/delete accounts, notebooks and notes. This demo can b
 
 ## Some last words
 
-The current development status is far from being worth called "version 1.0". However, if I could get you interested in this project and you feel like contributing, don't hesitate to ping me by e-mail (marius at twostairs dot com) or twitter (@devilx) so we can talk. :-)
+The current development status is far from being worth called "version 1.0". However, if I could get you interested in this project and you feel like contributing, don't hesitate to ping me by e-mail ([marius@twostairs.com](mailto:marius@twostairs.com)) or twitter ([@devilx](https://twitter.com/devilx)) so we can talk. :-)
