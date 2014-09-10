@@ -209,44 +209,85 @@ class ApiNotesController extends BaseController {
 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $note);
 	}
 
-	public function destroy($notebookId, $noteId)
+	private function destroyNote($notebookId, $noteId)
 	{
 		$note = User::find(Auth::user()->id)->notes()->where('notes.id', '=', $noteId)->whereNull('notes.deleted_at')->first();
 
 		if(is_null($note)){
-			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array('item'=>'note', 'id'=>$noteId));
+			// return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array('item'=>'note', 'id'=>$noteId));
+			return null;
 		}
 
 		$deletedNote = $note;
 		$note->delete();
-		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $note);
+		// return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $deletedNote);
+		return $deletedNote;
 	}
 
-	public function move($notebookId, $noteId, $toNotebookId) {
+	public function destroy($notebookId, $noteId)
+	{
+		$noteIds = explode(PaperworkHelpers::MULTIPLE_REST_RESOURCE_DELIMITER, $noteId);
+		$responses = array();
+		$status = PaperworkHelpers::STATUS_SUCCESS;
+
+		foreach($noteIds as $singleNoteId) {
+			 $tmp = $this->destroyNote($notebookId, $singleNoteId);
+			 if(is_null($tmp)) {
+			 	$status = PaperworkHelpers::STATUS_ERROR;
+			 	$responses[] = array('error_id' => $singleNoteId);
+			 } else {
+			 	$responses[] = $tmp;
+			 }
+		}
+		return PaperworkHelpers::apiResponse($status, $responses);
+	}
+
+	private function moveNote($notebookId, $noteId, $toNotebookId) {
 		$note = Note::find($noteId);
 		if(is_null($note)){
-			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array('item'=>'note', 'id'=>$noteId));
+			// return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array('item'=>'note', 'id'=>$noteId));
+			return null;
 		}
 
 		$user = $note->users()->where('users.id', '=', Auth::user()->id)->first();
 		if(is_null($user)){
-			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array('item'=>'user'));
+			// return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array('item'=>'user'));
+			return null;
 		}
 
 		$toNotebook = Notebook::find($toNotebookId);
 		if(is_null($toNotebook)){
-			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array('item'=>'notebook', 'id'=>$toNotebookId));
+			// return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array('item'=>'notebook', 'id'=>$toNotebookId));
+			return null;
 		}
 
 		$toNotebookUser = $toNotebook->users()->where('notebook_user.user_id', '=', Auth::user()->id)->first();
 		if(is_null($toNotebookUser)){
-			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array('item'=>'toNotebookUser'));
+			// return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array('item'=>'toNotebookUser'));
+			return null;
 		}
 
 		$note->notebook()->associate($toNotebook);
 		$note->save();
 
-		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $note);
+		return $note;
+	}
+
+	public function move($notebookId, $noteId, $toNotebookId) {
+		$noteIds = explode(PaperworkHelpers::MULTIPLE_REST_RESOURCE_DELIMITER, $noteId);
+		$responses = array();
+		$status = PaperworkHelpers::STATUS_SUCCESS;
+
+		foreach($noteIds as $singleNoteId) {
+			 $tmp = $this->moveNote($notebookId, $singleNoteId, $toNotebookId);
+			 if(is_null($tmp)) {
+			 	$status = PaperworkHelpers::STATUS_ERROR;
+			 	$responses[] = array('error_id' => $singleNoteId);
+			 } else {
+			 	$responses[] = $tmp;
+			 }
+		}
+		return PaperworkHelpers::apiResponse($status, $responses);
 	}
 }
 
