@@ -5,7 +5,7 @@
 	      <ul class="nav navbar-nav">
 	      	<li>
 		      	<div class="btn-group">
-		      		<button class="btn btn-default navbar-btn"><i class="fa fa-book"></i> {{note.notebook_title}}</button>
+		      		<button ng-controller="paperworkSidebarNotesController" class="btn btn-default navbar-btn" ng-click="modalMoveNote(note.notebook_id, note.id)"><i class="fa fa-book"></i> {{note.notebook_title}}</button>
 		      		<button class="btn btn-default navbar-btn"><i class="fa fa-tags"></i></button>
 	      		</div>
 	      	</li>
