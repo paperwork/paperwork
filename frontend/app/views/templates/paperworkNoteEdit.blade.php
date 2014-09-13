@@ -4,8 +4,8 @@
 		      <ul class="nav navbar-nav">
 		      	<li>
 			      	<div class="btn-group">
-			      		<button class="btn btn-default navbar-btn"><i class="fa fa-book"></i> {{templateNoteEdit.notebook_title}}</button>
-			      		<button class="btn btn-default navbar-btn"><i class="fa fa-tags"></i></button>
+<!-- 			      		<button ng-controller="paperworkSidebarNotesController" class="btn btn-default navbar-btn"><i class="fa fa-book"></i> {{templateNoteEdit.notebook_title}}</button>
+			      		<button class="btn btn-default navbar-btn"><i class="fa fa-tags"></i></button> -->
 		      		</div>
 		      	</li>
 		      </ul>
