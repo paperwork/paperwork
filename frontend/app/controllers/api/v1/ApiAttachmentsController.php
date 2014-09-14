@@ -5,7 +5,6 @@ class ApiAttachmentsController extends BaseController {
 
     protected $dates = ['deleted_at'];
 	public $restful = true;
-	private $attachmentsPath = '/attachments';
 
 	public function index($notebookId, $noteId, $versionId)
 	{
@@ -96,8 +95,8 @@ class ApiAttachmentsController extends BaseController {
 			));
 			$newAttachment->save();
 
-			// Move file to /app/storage/attachments/$newAttachment->id/$newAttachment->filename
-			$destinationFolder = storage_path() . $this->attachmentsPath . '/' . $newAttachment->id;
+			// Move file to (default) /app/storage/attachments/$newAttachment->id/$newAttachment->filename
+			$destinationFolder = Config::get('paperwork.attachmentsDirectory') . '/' . $newAttachment->id;
 
 			if(!File::makeDirectory($destinationFolder, 0700)) {
 				$newAttachment->delete();
@@ -148,6 +147,9 @@ class ApiAttachmentsController extends BaseController {
 
 			$fileUpload->move($destinationFolder, $fileUpload->getClientOriginalName());
 			$version->attachments()->attach($newAttachment);
+
+			// Let's push that parsing job, which analyzes the document, converts it if needed and parses the crap out of it.
+			Queue::push('DocumentParserWorker', array('user_id' => Auth::user()->id, 'document_id' => $newAttachment->id));
 
 			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $newAttachment);
 		} else {
