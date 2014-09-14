@@ -15,5 +15,6 @@ return array(
 
 	'registration' => true,
 	'userAgentLanguage' => false,
-
+	'attachmentsDirectory' => storage_path() . '/attachments',
+	'tesseractTempDirectory' => storage_path() . '/cache'
 );
