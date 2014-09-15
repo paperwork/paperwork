@@ -12,10 +12,10 @@ For the back-end part a MySQL database stores everything. With such common requi
 
 ## Screenshots (might not be up to date, please use the demo below!)
 
-![01](https://raw.githubusercontent.com/twostairs/paperwork/master/Screenshots/01.png)
-![02](https://raw.githubusercontent.com/twostairs/paperwork/master/Screenshots/02.png)
-![03](https://raw.githubusercontent.com/twostairs/paperwork/master/Screenshots/03.png)
-![04](https://raw.githubusercontent.com/twostairs/paperwork/master/Screenshots/04.png)
+![01](https://raw.githubusercontent.com/twostairs/paperwork/gh-pages/images/screenshots/01.png)
+![02](https://raw.githubusercontent.com/twostairs/paperwork/gh-pages/images/screenshots/02.png)
+![03](https://raw.githubusercontent.com/twostairs/paperwork/gh-pages/images/screenshots/03.png)
+![04](https://raw.githubusercontent.com/twostairs/paperwork/gh-pages/images/screenshots/04.png)
 
 ## Demo (yes, there is one!)
 
