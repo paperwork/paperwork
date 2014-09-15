@@ -70,6 +70,40 @@ class DocumentParserWorker {
 		return $attachment;
 	}
 
+	private function runPreviewImagesGenerator($attachmentId, $attachmentExtension, $attachmentMimetype, $fileUri) {
+		switch($attachmentMimetype) {
+			case 'application/pdf':
+				return $this->generatePreviewImagesFromPdf($attachmentId, $attachmentExtension, $fileUri);
+			case 'image/png':
+			case 'image/jpeg':
+			case 'image/tiff':
+			case 'image/bmp':
+			case 'image/gif':
+			case 'image/x-icon':
+				return $this->generatePreviewImages($attachmentId, $attachmentExtension, $fileUri);
+		}
+	}
+
+	private function generatePreviewImages($attachmentId, $attachmentExtension, $fileUri) {
+		$previewImageConfig = Config::get('paperwork.attachmentsPreview');
+		$previewImagePath = $previewImageConfig['directory'] . '/' . $attachmentId . '/' . basename($fileUri, '.' . $attachmentExtension) . '_preview';
+		$previewImageVersions = array('.png', '@2x.png');
+
+		$previewImage = new Imagick($fileUri);
+		$previewImage->setImageFormat("png");
+
+		foreach($previewImageVersions as $imageVersion) {
+			$previewImage->setResolution(intval($previewImageConfig['resolution']['x']), intval($previewImageConfig['resolution']['y']));
+			$previewImage->writeImage($previewImagePath . $imageVersion);
+		}
+
+		return true;
+	}
+
+	private function generatePreviewImagesFromPdf($attachmentId, $attachmentExtension, $fileUri) {
+		return $this->$generatePreviewImage($attachmentId, $attachmentExtension, $fileUri  . '[1]');
+	}
+
 	private function parseContent($fileUri, $language) {
 		if(!File::exists($fileUri)) {
 			throw new Exception('Document parsing job #' . $this->job->getJobId() . ' received a uri to a file that does not seem to exist.');

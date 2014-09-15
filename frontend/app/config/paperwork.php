@@ -16,5 +16,12 @@ return array(
 	'registration' => true,
 	'userAgentLanguage' => false,
 	'attachmentsDirectory' => storage_path() . '/attachments',
-	'tesseractTempDirectory' => storage_path() . '/cache'
+	'attachmentsPreview' => array(
+		'resolution' => array(
+			'x' => 500,
+			'y' => 500
+		),
+		'directory' => storage_path() . '/attachments'
+	)
+	'tesseractTempDirectory' => storage_path() . '/cache',
 );
