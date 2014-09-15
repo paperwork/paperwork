@@ -184,7 +184,9 @@ class ApiNotesController extends BaseController {
 			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array('item'=>'user'));
 		}
 
-		$version = new Version(array('title' => $updateNote->get("title"), 'content' => $updateNote->get("content")));
+		// TODO: This is a temporary workaround for the content_preview. We need to check, whether there is content or at least one attachment.
+		// If there's no content, parse the attachment and set the result as content_preview. This should somehow be done within the DocumentParser, I guess.
+		$version = new Version(array('title' => $updateNote->get("title"), 'content' => $updateNote->get("content"), 'content_preview' => strip_tags($updateNote->get("content"))));
 		$version->save();
 
 		$previousVersion = $note->version()->first();

@@ -59,7 +59,7 @@
 								<span class="notes-list-date-month">{{note.updated_at | convertdate | date : 'MMM'}}</span>
 								<span class="notes-list-date-year">{{note.updated_at | convertdate | date : 'yyyy'}}</span>
 							</span>
-							<span class="notes-list-content notes-list-content-gradient">{{note.content}}</span>
+							<span class="notes-list-content notes-list-content-gradient">{{note.content_preview}}</span>
 						</div>
 					</a>
 					<div class="clear"></div>
