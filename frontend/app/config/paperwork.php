@@ -22,6 +22,6 @@ return array(
 			'y' => 500
 		),
 		'directory' => storage_path() . '/attachments'
-	)
+	),
 	'tesseractTempDirectory' => storage_path() . '/cache',
 );
