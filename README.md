@@ -23,6 +23,16 @@ At [demo.paperwork.rocks](http://demo.paperwork.rocks) you can actually see the 
 
 Feel free to create/modify/delete accounts, notebooks and notes. This demo can be used for heavy playing without regrets. Just try not to take down that thing. :)
 
+## Run using Docker
+
+Basically you just have to:
+
+    fig up
+
+To run the migrations (once):
+
+    fig run web php artisan migrate --force
+
 ## Some last words
 
 The current development status is far from being worth called "version 1.0". However, if I could get you interested in this project and you feel like contributing, don't hesitate to ping me by e-mail ([marius@twostairs.com](mailto:marius@twostairs.com)) or twitter ([@devilx](https://twitter.com/devilx)) so we can talk. :-)
