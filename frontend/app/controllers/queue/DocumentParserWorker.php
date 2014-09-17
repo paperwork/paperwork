@@ -45,8 +45,12 @@ class DocumentParserWorker {
 		$this->attachment->content = json_encode($content);
 		$this->attachment->save();
 
-		Log::info('Document parsing job #' . $this->job->getJobId() . ' finished successfully.');
-		$this->job->delete();
+		if(!$this->runPreviewImagesGenerator($this->attachment->id, $this->attachment->fileextensions, $this->attachment->mimetype, $this->fileUri)) {
+			// What to do now?
+		} else {
+			Log::info('Document parsing job #' . $this->job->getJobId() . ' finished successfully.');
+			$this->job->delete();
+		}
 		return;
 	}
 
@@ -92,11 +96,15 @@ class DocumentParserWorker {
 		$previewImage = new Imagick($fileUri);
 		$previewImage->setImageFormat("png");
 
-		foreach($previewImageVersions as $imageVersion) {
-			$previewImage->setResolution(intval($previewImageConfig['resolution']['x']), intval($previewImageConfig['resolution']['y']));
-			$previewImage->writeImage($previewImagePath . $imageVersion);
+		try {
+			foreach($previewImageVersions as $imageVersion) {
+				$previewImage->setResolution(intval($previewImageConfig['resolution']['x']), intval($previewImageConfig['resolution']['y']));
+				$previewImage->writeImage($previewImagePath . $imageVersion);
+			}
+		} catch(Exception $e) {
+			Log::info('Document parsing job #' . $this->job->getJobId() . ' received an exception while generating preview images: ' . $e->getMessage());
+			return false;
 		}
-
 		return true;
 	}
 
