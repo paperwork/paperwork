@@ -1,3 +1,4 @@
+// @codekit-append "/app/js/jquery.overscroll.js", "/app/js/jquery.scrollTo.js";
 /*!
  * jQuery JavaScript Library v1.11.1
  * http://jquery.com/
