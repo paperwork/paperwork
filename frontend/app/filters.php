@@ -35,7 +35,7 @@ App::after(function($request, $response)
 
 Route::filter('auth', function()
 {
-	if(Input::get('basic') === null) {
+	if(Request::header('Authorization') === null) {
 		if (Auth::guest())
 		{
 			if (Request::ajax())
