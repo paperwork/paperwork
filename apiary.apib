@@ -6,8 +6,8 @@ This documentation (hopefully) provides all required information for working wit
 All API endpoints start at ``http://yourhost/api/v1/``.
 There are two ways of using this API:
 
-- by simply callind the endpoints and passing a Laravel-cookie to them, just the way the Paperwork AngularJS front-end does it
-- by calling the endpoints with an appended `?basic` parameter to the URL and providing auth information through a regular HTTP Basic Auth header:
+- by simply passing a Laravel-cookie, just the way the Paperwork AngularJS front-end does it
+- by providing auth information through a regular HTTP Basic Auth header:
 ``
     Authorization: Basic <hash>
 ``            
@@ -18,6 +18,12 @@ Notebook related resources
 
 ## Notebooks Collection [/api/v1/notebooks]
 ### List all Notebooks [GET]
++ Request (application/json)
+
+    + Headers
+    
+            Authorization: Basic dGVzdEBwYXBlcndvcmsucm9ja3M6dGVzdDEyMw==
+
 + Response 200 (application/json)
 
         {"success":true,"response":[{"id":"0","type":"2","title":"All Notes"},{"id":"1","type":"0","title":"First Notebook","children":[]},{"id":"2","type":"0","title":"Second Notebook","children":[]}]}
@@ -25,7 +31,13 @@ Notebook related resources
 ### Create a Notebook [POST]
 + Request (application/json)
 
-        {"type":0,"title":"Third Notebook","shortcut":""}
+    + Headers
+    
+            Authorization: Basic dGVzdEBwYXBlcndvcmsucm9ja3M6dGVzdDEyMw==
+            
+    + Body
+
+            {"type":0,"title":"Third Notebook","shortcut":""}
 
 + Response 200 (application/json)
 
@@ -38,6 +50,11 @@ A single Notebook object with all its details
     + id (required, number, `1`) ... Numeric `id` of the Notebook to perform action with.
 
 ### Retrieve a Notebook [GET]
++ Request (application/json)
+    + Headers
+    
+            Authorization: Basic dGVzdEBwYXBlcndvcmsucm9ja3M6dGVzdDEyMw==
+
 + Response 200 (application/json)
 
     + Body
@@ -47,7 +64,13 @@ A single Notebook object with all its details
 ### Update a Notebook [PUT]
 + Request (application/json)
 
-        {"type":0,"title":"Third Notebook Updated","shortcut":false}
+    + Headers
+    
+            Authorization: Basic dGVzdEBwYXBlcndvcmsucm9ja3M6dGVzdDEyMw==
+    
+    + Body
+    
+            {"type":0,"title":"Third Notebook Updated","shortcut":false}
         
 + Response 200 (application/json)
 
@@ -56,6 +79,12 @@ A single Notebook object with all its details
             {"success":true,"response":{"id":"3","parent_id":null,"type":0,"title":"Third Notebook Updated","created_at":"2014-09-19 19:08:51","updated_at":"2014-09-19 19:11:51","deleted_at":null,"pivot":{"user_id":"1","notebook_id":"3"}}}
 
 ### Remove a Notebook [DELETE]
++ Request (application/json)
+
+    + Headers
+    
+            Authorization: Basic dGVzdEBwYXBlcndvcmsucm9ja3M6dGVzdDEyMw==
+
 + Response 200
 
     + Body
