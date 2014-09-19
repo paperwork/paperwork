@@ -2,7 +2,7 @@ Paperwork - OpenSource note-taking & archiving
 ==============================================
 [![Build Status](https://travis-ci.org/twostairs/paperwork.svg?branch=master)](https://travis-ci.org/twostairs/paperwork)
 
-![paperwork-logo](paperwork-logo.png)
+![paperwork-logo](https://raw.githubusercontent.com/twostairs/paperwork/master/paperwork-logo.png)
 
 Paperwork aims to be an open-source, self-hosted alternative to services like Evernote (R), Microsoft OneNote (R) or Google Keep (R).
 
