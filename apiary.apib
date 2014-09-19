@@ -2,46 +2,62 @@ FORMAT: 1A
 HOST: http://demo.paperwork.rocks
 
 # paperwork
-Notes API is a *short texts saving* service similar to its physical paper presence on your table.
+This documentation (hopefully) provides all required information for working with the Paperwork APIv1.
+All API endpoints start at ``http://yourhost/api/v1/``.
+There are two ways of using this API:
 
-# Group Notes
-Notes related resources of the **Notes API**
+- by simply callind the endpoints and passing a Laravel-cookie to them, just the way the Paperwork AngularJS front-end does it
+- by calling the endpoints with an appended `?basic` parameter to the URL and providing auth information through a regular HTTP Basic Auth header:
+``
+    Authorization: Basic <hash>
+``            
 
-## Notes Collection [/notes]
-### List all Notes [GET]
+
+# Group Notebooks
+Notebook related resources
+
+## Notebooks Collection [/notebooks]
+### List all Notebooks [GET]
 + Response 200 (application/json)
 
-        [{
-          "id": 1, "title": "Jogging in park"
-        }, {
-          "id": 2, "title": "Pick-up posters from post-office"
-        }]
-
-### Create a Note [POST]
+        {"success":true,"response":[{"id":"0","type":"2","title":"All Notes"},{"id":"1","type":"0","title":"First Notebook","children":[]},{"id":"2","type":"0","title":"Second Notebook","children":[]}]}
+    
+### Create a Notebook [POST]
 + Request (application/json)
 
-        { "title": "Buy cheese and bread for breakfast." }
+        {"type":0,"title":"Third Notebook","shortcut":""}
 
-+ Response 201 (application/json)
-
-        { "id": 3, "title": "Buy cheese and bread for breakfast." }
-
-## Note [/notes/{id}]
-A single Note object with all its details
-
-+ Parameters
-    + id (required, number, `1`) ... Numeric `id` of the Note to perform action with. Has example value.
-
-### Retrieve a Note [GET]
 + Response 200 (application/json)
 
-    + Header
+        {"success":true,"response":{"title":"Third Notebook","type":0,"updated_at":"2014-09-19 19:08:51","created_at":"2014-09-19 19:08:51","id":3}}
 
-            X-My-Header: The Value
+## Notebook [/notebooks/{id}]
+A single Notebook object with all its details
+
++ Parameters
+    + id (required, number, `1`) ... Numeric `id` of the Notebook to perform action with.
+
+### Retrieve a Notebook [GET]
++ Response 200 (application/json)
 
     + Body
 
-            { "id": 2, "title": "Pick-up posters from post-office" }
+            {"success":true,"response":{"id":"3","type":"0","title":"Third Notebook","children":[]}}
 
-### Remove a Note [DELETE]
-+ Response 204
+### Update a Notebook [PUT]
++ Request (application/json)
+
+        {"type":0,"title":"Third Notebook Updated","shortcut":false}
+        
++ Response 200 (application/json)
+
+    + Body
+
+            {"success":true,"response":{"id":"3","parent_id":null,"type":0,"title":"Third Notebook Updated","created_at":"2014-09-19 19:08:51","updated_at":"2014-09-19 19:11:51","deleted_at":null,"pivot":{"user_id":"1","notebook_id":"3"}}}
+
+### Remove a Notebook [DELETE]
++ Response 200
+
+    + Body
+            
+            {"success":true,"response":{"id":"3","parent_id":null,"type":"0","title":"Third Notebook Updated","created_at":"2014-09-19 19:08:51","updated_at":"2014-09-19 19:11:51","deleted_at":{"date":"2014-09-19 19:13:27","timezone_type":3,"timezone":"UTC"},"pivot":{"user_id":"1","notebook_id":"3"}}}
