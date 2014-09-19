@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-		<meta name="google-site-verification" content="EbzeQljTMYom_Pt2KO8-Tyyot8vCE5QCkzOam01xkB4" />
     <title>Paperwork by twostairs</title>
 
     <link rel="stylesheet" href="stylesheets/styles.css">
@@ -29,7 +28,10 @@
         </ul>
       </header>
       <section>
-        <p><a href="https://travis-ci.org/twostairs/paperwork"><img src="https://travis-ci.org/twostairs/paperwork.svg?branch=master" alt="Build Status"></a></p>
+        <h1>
+<a name="paperwork---opensource-note-taking--archiving" class="anchor" href="#paperwork---opensource-note-taking--archiving"><span class="octicon octicon-link"></span></a>Paperwork - OpenSource note-taking &amp; archiving</h1>
+
+<p><a href="https://travis-ci.org/twostairs/paperwork"><img src="https://travis-ci.org/twostairs/paperwork.svg?branch=master" alt="Build Status"></a></p>
 
 <p><img src="https://raw.githubusercontent.com/twostairs/paperwork/master/paperwork-logo.png" alt="paperwork-logo"></p>
 
@@ -52,9 +54,27 @@
 <p>Feel free to create/modify/delete accounts, notebooks and notes. This demo can be used for heavy playing without regrets. Just try not to take down that thing. :)</p>
 
 <h2>
+<a name="run-using-docker" class="anchor" href="#run-using-docker"><span class="octicon octicon-link"></span></a>Run using Docker</h2>
+
+<p>Basically you just have to:</p>
+
+<pre><code>fig up
+</code></pre>
+
+<p>To run the migrations (once):</p>
+
+<pre><code>fig run web php artisan migrate --force
+</code></pre>
+
+<h2>
+<a name="api-documentation" class="anchor" href="#api-documentation"><span class="octicon octicon-link"></span></a>API documentation</h2>
+
+<p>The API documentation can be found at <a href="http://docs.paperwork.apiary.io/">docs.paperwork.apiary.io</a> or built using the <code>apiary.apib</code> file from this repository. It's not yet complete and could change at any time!</p>
+
+<h2>
 <a name="some-last-words" class="anchor" href="#some-last-words"><span class="octicon octicon-link"></span></a>Some last words</h2>
 
-<p>The current development status is far from being worth called "version 1.0". However, if I could get you interested in this project and you feel like contributing, don't hesitate to ping me by e-mail (marius at twostairs dot com) or twitter (<a href="https://github.com/devilx" class="user-mention">@devilx</a>) so we can talk. :-)</p>
+<p>The current development status is far from being worth called "version 1.0". However, if I could get you interested in this project and you feel like contributing, don't hesitate to ping me by e-mail (<a href="mailto:marius@twostairs.com">marius@twostairs.com</a>) or twitter (<a href="https://twitter.com/devilx">@devilx</a>) so we can talk. :-)</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/twostairs">twostairs</a></p>
