@@ -1,41 +1,38 @@
-paperworkModule.service('paperworkNetService', ['$rootScope', '$http', function($rootScope, $http) {
-  this.apiGet = function(url, callback) {
-    $http({method: 'GET', url: paperworkApi + url}).
+paperworkModule.service('paperworkNetService', ['$rootScope', '$http', '$location', function($rootScope, $http, $location) {
+  this.apiGeneric = function(method, url, data, callback) {
+    $opts = {method: method, url: paperworkApi + url};
+    if(typeof data != "undefined" && data != null) {
+      $opts.data = data;
+    }
+    $http($opts).
       success(function(data, status, headers, config) {
+        if(status == 302) {
+          $headrz = headers();
+          if(typeof $headrz.location != "undefined" && $headrz.location != null && $headrz.location != "") {
+            $location.path($headrz.location);
+            return false;
+          }
+        }
         callback(status, data);
       }).
       error(function(data, status, headers, config) {
         callback(status, data);
       });
+  };
+
+  this.apiGet = function(url, callback) {
+    this.apiGeneric('GET', url, null, callback);
   };
 
   this.apiPost = function(url, data, callback) {
-    $http.post(paperworkApi + url, data).
-      success(function(data, status, headers, config) {
-        callback(status, data);
-      }).
-      error(function(data, status, headers, config) {
-        callback(status, data);
-      });
+    this.apiGeneric('POST', url, data, callback);
   };
 
   this.apiPut = function(url, data, callback) {
-    $http.put(paperworkApi + url, data).
-      success(function(data, status, headers, config) {
-        callback(status, data);
-      }).
-      error(function(data, status, headers, config) {
-        callback(status, data);
-      });
+    this.apiGeneric('PUT', url, data, callback);
   };
 
   this.apiDelete = function(url, callback) {
-    $http.delete(paperworkApi + url).
-      success(function(data, status, headers, config) {
-        callback(status, data);
-      }).
-      error(function(data, status, headers, config) {
-        callback(status, data);
-      });
+    this.apiGeneric('DELETE', url, null, callback);
   };
 }]);
