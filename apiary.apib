@@ -10,31 +10,31 @@ There are two ways of using this API:
 - by providing auth information through a regular HTTP Basic Auth header:
 ``
     Authorization: Basic <hash>
-``            
+``
 
 
 # Group Notebooks
 Notebook related resources
 
-## Notebooks Collection [/api/v1/notebooks]
-### List all Notebooks [GET]
+## Notebooks collection [/api/v1/notebooks]
+### List all notebooks [GET]
 + Request (application/json)
 
     + Headers
-    
+
             Authorization: Basic dGVzdEBwYXBlcndvcmsucm9ja3M6dGVzdDEyMw==
 
 + Response 200 (application/json)
 
         {"success":true,"response":[{"id":"0","type":"2","title":"All Notes"},{"id":"1","type":"0","title":"First Notebook","children":[]},{"id":"2","type":"0","title":"Second Notebook","children":[]}]}
-    
-### Create a Notebook [POST]
+
+### Create a notebook [POST]
 + Request (application/json)
 
     + Headers
-    
+
             Authorization: Basic dGVzdEBwYXBlcndvcmsucm9ja3M6dGVzdDEyMw==
-            
+
     + Body
 
             {"type":0,"title":"Third Notebook","shortcut":""}
@@ -43,16 +43,16 @@ Notebook related resources
 
         {"success":true,"response":{"title":"Third Notebook","type":0,"updated_at":"2014-09-19 19:08:51","created_at":"2014-09-19 19:08:51","id":3}}
 
-## Notebook [/api/v1/notebooks/{id}]
-A single Notebook object with all its details
+## Notebook [/api/v1/notebooks/{notebookId}]
+A single notebook object with all its details
 
 + Parameters
-    + id (required, number, `1`) ... Numeric `id` of the Notebook to perform action with.
+    + notebookId (required, number, `1`) ... Numeric `id` of the Notebook to perform action with.
 
-### Retrieve a Notebook [GET]
+### Retrieve a notebook [GET]
 + Request (application/json)
     + Headers
-    
+
             Authorization: Basic dGVzdEBwYXBlcndvcmsucm9ja3M6dGVzdDEyMw==
 
 + Response 200 (application/json)
@@ -61,32 +61,114 @@ A single Notebook object with all its details
 
             {"success":true,"response":{"id":"3","type":"0","title":"Third Notebook","children":[]}}
 
-### Update a Notebook [PUT]
+### Update a notebook [PUT]
 + Request (application/json)
 
     + Headers
-    
+
             Authorization: Basic dGVzdEBwYXBlcndvcmsucm9ja3M6dGVzdDEyMw==
-    
+
     + Body
-    
+
             {"type":0,"title":"Third Notebook Updated","shortcut":false}
-        
+
 + Response 200 (application/json)
 
     + Body
 
             {"success":true,"response":{"id":"3","parent_id":null,"type":0,"title":"Third Notebook Updated","created_at":"2014-09-19 19:08:51","updated_at":"2014-09-19 19:11:51","deleted_at":null,"pivot":{"user_id":"1","notebook_id":"3"}}}
 
-### Remove a Notebook [DELETE]
+### Remove a notebook [DELETE]
 + Request (application/json)
 
     + Headers
-    
+
             Authorization: Basic dGVzdEBwYXBlcndvcmsucm9ja3M6dGVzdDEyMw==
 
 + Response 200
 
     + Body
-            
+
             {"success":true,"response":{"id":"3","parent_id":null,"type":"0","title":"Third Notebook Updated","created_at":"2014-09-19 19:08:51","updated_at":"2014-09-19 19:11:51","deleted_at":{"date":"2014-09-19 19:13:27","timezone_type":3,"timezone":"UTC"},"pivot":{"user_id":"1","notebook_id":"3"}}}
+
+# Group Notes
+Note related resources
+
+## Notes collection [/api/v1/notebooks/{notebookId}/notes]
+### List all notes in a notebook [GET]
++ Parameters
+    + notebookId (required, number, `1`) ... Numeric `id` of the Notebook to perform action with.
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Basic dGVzdEBwYXBlcndvcmsucm9ja3M6dGVzdDEyMw==
+
++ Response 200 (application/json)
+
+        {"success":true,"response":[{"id":"8","notebook_id":"2","notebook_title":"Second Notebook","title":"Hello World!","content_preview":"Hello World!\n","content":"<p>Hello World!<\/p>\n","created_at":"2014-09-13 17:36:25","updated_at":"2014-09-15 20:09:49","umask":"0"},{"id":"9","notebook_id":"2","notebook_title":"Second Notebook","title":"Here I am!","content_preview":"A new note!\n","content":"<p>A new note!<\/p>\n","created_at":"2014-09-14 20:12:45","updated_at":"2014-09-19 19:05:52","umask":"0"}]}
+
+### Create a note in a notebook [POST]
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Basic dGVzdEBwYXBlcndvcmsucm9ja3M6dGVzdDEyMw==
+
+    + Body
+
+            {"title":"","content":""}
+
++ Response 200 (application/json)
+
+        {"success":true,"response":{"version_id":23,"notebook_id":"1","updated_at":"2014-09-20 19:43:59","created_at":"2014-09-20 19:43:59","id":11,"version":{"title":"","content":"","updated_at":"2014-09-20 19:43:59","created_at":"2014-09-20 19:43:59","id":23}}}
+
+## Note in a notebook [/api/v1/notebooks/{notebookId}/notes/{noteId}]
+A single note object with all its details, within a notebook
+
++ Parameters
+    + notebookId (required, number, `1`) ... Numeric `id` of the notebook to perform action with.
+    + noteId (required, number, `1`) ... Numeric `id` of the note to perform action with. Can also be a comma-separated list of IDs in specific cases (GET, DELETE), e.g. 2,3,4,5.
+
+### Retrieve a note from a notebook [GET]
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic dGVzdEBwYXBlcndvcmsucm9ja3M6dGVzdDEyMw==
+
++ Response 200 (application/json)
+
+    + Body
+
+            {"success":true,"response":{"id":"11","notebook_id":"1","notebook_title":"First Notebook","title":"New Note","content_preview":"This is a new note!\n","content":"<p>This is a new note!<\/p>\n","created_at":"2014-09-20 19:43:59","updated_at":"2014-09-20 19:45:56","umask":"0","tags":[],"versions":[{"id":"24","previous_id":"23","next_id":null,"latest":true,"timestamp":1411242356},{"id":"23","previous_id":null,"next_id":"24","latest":false,"timestamp":1411242239}]}}
+
+### Update a note within a notebook [PUT]
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Basic dGVzdEBwYXBlcndvcmsucm9ja3M6dGVzdDEyMw==
+
+    + Body
+
+            {"title":"New Note","content":"<p>This is a new note!</p>\n"}
+
++ Response 200 (application/json)
+
+    + Body
+
+            {"success":true,"response":{"id":"11","notebook_id":"1","version_id":24,"created_at":"2014-09-20 19:43:59","updated_at":"2014-09-20 19:45:56","deleted_at":null}}
+
+### Remove a note within a notebook [DELETE]
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Basic dGVzdEBwYXBlcndvcmsucm9ja3M6dGVzdDEyMw==
+
++ Response 200
+
+    + Body
+
+            {"success":true,"response":[{"id":"11","notebook_id":"1","version_id":"24","created_at":"2014-09-20 19:43:59","updated_at":"2014-09-20 19:45:56","deleted_at":{"date":"2014-09-20 19:52:56","timezone_type":3,"timezone":"UTC"},"pivot":{"user_id":"1","note_id":"11"}}]}
