@@ -172,3 +172,42 @@ A single note object with all its details, within a notebook
     + Body
 
             {"success":true,"response":[{"id":"11","notebook_id":"1","version_id":"24","created_at":"2014-09-20 19:43:59","updated_at":"2014-09-20 19:45:56","deleted_at":{"date":"2014-09-20 19:52:56","timezone_type":3,"timezone":"UTC"},"pivot":{"user_id":"1","note_id":"11"}}]}
+
+# Group Versions
+Version related resources
+
+## Versions collection [/api/v1/notebooks/{notebookId}/notes/{noteId}/versions]
+### List all versions of a note [GET]
++ Parameters
+    + notebookId (required, number, `1`) ... Numeric `id` of the Notebook to perform action with.
+    + noteId (required, number, `1`) ... Numeric `id` of the note to perform action with. Can also be a comma-separated list of IDs in specific cases (GET, DELETE), e.g. 2,3,4,5.
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Basic dGVzdEBwYXBlcndvcmsucm9ja3M6dGVzdDEyMw==
+
++ Response 200 (application/json)
+
+        {"success":true,"response":[{"id":"20","previous_id":"19","next_id":null,"title":"Hello World!","content_preview":"Hello World!\n","content":"<p>Hello World!<\/p>\n","created_at":"2014-09-15 20:09:49","updated_at":"2014-09-15 20:09:49","deleted_at":null},{"id":"19","previous_id":"16","next_id":"20","title":"Hello World!","content_preview":"","content":"<p>Hello World!<\/p>\n","created_at":"2014-09-15 20:07:21","updated_at":"2014-09-15 20:09:49","deleted_at":null},{"id":"16","previous_id":"15","next_id":"19","title":"Hello World!","content_preview":"","content":"","created_at":"2014-09-13 17:36:31","updated_at":"2014-09-15 20:07:21","deleted_at":null},{"id":"15","previous_id":null,"next_id":"16","title":"","content_preview":"","content":"","created_at":"2014-09-13 17:36:25","updated_at":"2014-09-13 17:36:31","deleted_at":null}]}
+
+## Version of a note [/api/v1/notebooks/{notebookId}/notes/{noteId}/versions/{versionId}]
+A single note object with all its details, within a notebook
+
++ Parameters
+    + notebookId (required, number, `1`) ... Numeric `id` of the notebook to perform action with.
+    + noteId (required, number, `1`) ... Numeric `id` of the note to perform action with. Can also be a comma-separated list of IDs in specific cases (GET, DELETE), e.g. 2,3,4,5.
+    + versionId (required, number, `1`) ... Numeric `id` of the version to perform action with.
+
+### Retrieve a version of a note [GET]
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic dGVzdEBwYXBlcndvcmsucm9ja3M6dGVzdDEyMw==
+
++ Response 200 (application/json)
+
+    + Body
+
+            {"success":true,"response":{"id":"20","previous_id":"19","next_id":null,"title":"Hello World!","content_preview":"Hello World!\n","content":"<p>Hello World!<\/p>\n","created_at":"2014-09-15 20:09:49","updated_at":"2014-09-15 20:09:49","deleted_at":null}}
