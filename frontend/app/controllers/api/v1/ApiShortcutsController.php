@@ -42,21 +42,21 @@ class ApiShortcutsController extends BaseController {
 		}
 	}
 
+	// TODO: We don't really need those, do we?
+	// public function create()
+	// {
+	// 	return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notebook);
+	// }
 
-	public function create()
-	{
-		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notebook);
-	}
+	// public function store()
+	// {
+	// 	return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notebook);
+	// }
 
-	public function store()
-	{
-		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notebook);
-	}
-
-	public function delete()
-	{
-		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $deletedNotebook);
-	}
+	// public function delete()
+	// {
+	// 	return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $deletedNotebook);
+	// }
 }
 
 ?>
