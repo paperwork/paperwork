@@ -157,12 +157,12 @@ class ApiAttachmentsController extends BaseController {
 		}
 	}
 
-	public function update($notebookId, $noteId, $versionId, $attachmentId)
-	{
+	// public function update($notebookId, $noteId, $versionId, $attachmentId)
+	// {
 		// We actually don't need this. If the user wants to update an attachment, he'd probably
 		// upload the new version and delete the old one, right?
-		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, null);
-	}
+		// return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, null);
+	// }
 
 	public function destroy($notebookId, $noteId, $versionId, $attachmentId)
 	{
