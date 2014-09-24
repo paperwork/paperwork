@@ -22,12 +22,12 @@
                     <td class="status-td">
                         <i class="fa fa-file-o"></i>
                     </td>
-                    <td><a href="#"><strong>{{ item.filename }}</strong></a></td>
+                    <td><a href=""><strong>{{ item.filename }}</strong></a></td>
                     @if ($actionsEnabled)
                     <td>
-                        <a class="">[[Lang::get('keywords.insert')]]</a>
-                        &nbsp;|&nbsp;
-                        <a class="">[[Lang::get('keywords.delete')]]</a>
+                        <a class="btn btn-default btn-xs btn-block">[[Lang::get('keywords.insert')]]</a>
+
+                        <a class="btn btn-danger btn-xs btn-block" ng-click="fileUploadDeleteFile(getNotebookSelectedId(), (getNoteSelectedId(true)).noteId, (getVersionSelectedId(true)).versionId, item.id)">[[Lang::get('keywords.delete')]]</a>
                     </td>
                     @endif
                 </tr>

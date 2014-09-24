@@ -47,4 +47,16 @@ paperworkModule.controller('paperworkFileUploadController', ['$scope', '$rootSco
         uploader.clearQueue();
       });
   };
+
+  $scope.fileUploadDeleteFile = function(notebookId, noteId, versionId, attachmentId) {
+    paperworkNotesService.deleteNoteVersionAttachment(notebookId, noteId, versionId, attachmentId, function(response) {
+      var i, l = $rootScope.fileList.length;
+      for(i=0; i<l; i++) {
+        if(typeof $rootScope.fileList[i] != "undefined" && typeof $rootScope.fileList[i].id != "undefined" && $rootScope.fileList[i].id == attachmentId) {
+          $rootScope.fileList.splice(i, 1);
+        }
+      }
+    });
+    // console.log("notebookId " + notebookId + ' noteId ' + noteId + ' versionId ' + versionId + ' attachmentId ' + attachmentId);
+  };
 }]);

@@ -63,5 +63,9 @@ paperworkModule.factory('paperworkNotesService', ['$rootScope', '$http', 'paperw
     });
   };
 
+  paperworkNotesServiceFactory.deleteNoteVersionAttachment = function(notebookId, noteId, versionId, attachmentId, callback) {
+    paperworkNetService.apiDelete('/notebooks/' + notebookId + '/notes/' + noteId + '/versions/' + versionId + '/attachments/' + attachmentId, callback);
+  };
+
   return paperworkNotesServiceFactory;
 }]);
