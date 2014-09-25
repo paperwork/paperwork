@@ -84,15 +84,31 @@ class ApiAttachmentsController extends BaseController {
 
 	public function store($notebookId, $noteId, $versionId)
 	{
-		if(Input::hasFile('file') && Input::file('file')->isValid()) {
-			$fileUpload = Input::file('file');
+		if((Input::hasFile('file') && Input::file('file')->isValid()) || (Input::json() != null && Input::json() != "")) {
+			$fileUpload = null;
+			$newAttachment = null;
 
-			$newAttachment = new Attachment(array(
-				'filename' => $fileUpload->getClientOriginalName(),
-				'fileextension' => $fileUpload->getClientOriginalExtension(),
-				'mimetype' => $fileUpload->getMimeType(),
-				'filesize' => $fileUpload->getSize()
-			));
+			if(Input::hasFile('file')) {
+				$fileUpload = Input::file('file');
+
+				$newAttachment = new Attachment(array(
+					'filename' => $fileUpload->getClientOriginalName(),
+					'fileextension' => $fileUpload->getClientOriginalExtension(),
+					'mimetype' => $fileUpload->getMimeType(),
+					'filesize' => $fileUpload->getSize()
+				));
+			} else {
+				$fileUploadJson = Input::json();
+				$fileUpload = base64_decode($fileUploadJson->get('file'));
+
+				$newAttachment = new Attachment(array(
+					'filename' => $fileUploadJson->get('clientOriginalName'),
+					'fileextension' => $fileUploadJson->get('clientOriginalExtension'),
+					'mimetype' => $fileUploadJson->get('mimeType'),
+					'filesize' => count($fileUpload)
+				));
+			}
+
 			$newAttachment->save();
 
 			// Move file to (default) /app/storage/attachments/$newAttachment->id/$newAttachment->filename
@@ -145,7 +161,11 @@ class ApiAttachmentsController extends BaseController {
 				return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array('message' => 'version'));
 			}
 
-			$fileUpload->move($destinationFolder, $fileUpload->getClientOriginalName());
+			if(Input::hasFile('file')) {
+				$fileUpload->move($destinationFolder, $fileUpload->getClientOriginalName());
+			} else {
+				file_put_contents($destinationFolder . '/' . $fileUploadJson->get('clientOriginalName'), $fileUpload);
+			}
 			$version->attachments()->attach($newAttachment);
 
 			// Let's push that parsing job, which analyzes the document, converts it if needed and parses the crap out of it.
