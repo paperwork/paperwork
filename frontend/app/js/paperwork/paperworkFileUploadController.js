@@ -48,15 +48,39 @@ paperworkModule.controller('paperworkFileUploadController', ['$scope', '$rootSco
       });
   };
 
-  $scope.fileUploadDeleteFile = function(notebookId, noteId, versionId, attachmentId) {
-    paperworkNotesService.deleteNoteVersionAttachment(notebookId, noteId, versionId, attachmentId, function(response) {
-      var i, l = $rootScope.fileList.length;
-      for(i=0; i<l; i++) {
-        if(typeof $rootScope.fileList[i] != "undefined" && typeof $rootScope.fileList[i].id != "undefined" && $rootScope.fileList[i].id == attachmentId) {
-          $rootScope.fileList.splice(i, 1);
+  $scope.fileUploadDeleteFile = function(notebookId, noteId, versionId, attachmentId, isSure) {
+    if(isSure != true) {
+      $rootScope.messageBox({
+        'title': $rootScope.i18n.keywords.delete_attachment_question,
+        'content': $rootScope.i18n.keywords.delete_attachment_message,
+        'buttons': [
+          {
+            // We don't need an id for the dismiss button.
+            // 'id': 'button-no',
+            'label': $rootScope.i18n.keywords.cancel,
+            'isDismiss': true
+          },
+          {
+            'id': 'button-yes',
+            'label': $rootScope.i18n.keywords.yes,
+            'class': 'btn-warning',
+            'click': function() {
+              return $scope.fileUploadDeleteFile(notebookId, noteId, versionId, attachmentId, true);
+            },
+          }
+        ]
+      });
+    } else {
+      paperworkNotesService.deleteNoteVersionAttachment(notebookId, noteId, versionId, attachmentId, function(response) {
+        var i, l = $rootScope.fileList.length;
+        for(i=0; i<l; i++) {
+          if(typeof $rootScope.fileList[i] != "undefined" && typeof $rootScope.fileList[i].id != "undefined" && $rootScope.fileList[i].id == attachmentId) {
+            $rootScope.fileList.splice(i, 1);
+          }
         }
-      }
-    });
+      });
+    }
+    return true;
     // console.log("notebookId " + notebookId + ' noteId ' + noteId + ' versionId ' + versionId + ' attachmentId ' + attachmentId);
   };
 }]);

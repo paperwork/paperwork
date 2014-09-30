@@ -38,6 +38,8 @@ return array(
 	'delete_note_message' => 'Die ausgewählte Notiz, samt aller Anhänge wird gelöscht. Sind Sie sicher?',
 	'delete_notes_question' => 'Notizen löschen?',
 	'delete_notes_message' => 'Die ausgewählten Notizen, samt aller Anhänge werden gelöscht. Sind Sie sicher?',
+	'delete_attachment_question' => 'Anhang löschen?',
+	'delete_attachment_message' => 'Der ausgewählte Anhang wird gelöscht. Sind Sie sicher?',
 	'close_without_saving_question' => 'Notiz schließen ohne zu sichern?',
 	'close_without_saving_message' => 'Es befinden sich nicht gespeicherte Änderungen in Ihrer Notiz. Möchten Sie diese Notiz wirklich schließen und damit alle Änderungen verwerfen?',
 	'search_dotdotdot' => 'Suchen...',
