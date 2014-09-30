@@ -22,7 +22,7 @@
                     <td class="status-td">
                         <i class="fa fa-file-o"></i>
                     </td>
-                    <td><a href=""><strong>{{ item.filename }}</strong></a></td>
+                    <td><a href="{{'/api/v1/notebooks/' + getNotebookSelectedId() + '/notes/' + (getNoteSelectedId(true)).noteId + '/versions/' + (getVersionSelectedId(true)).versionId + '/attachments/' + item.id + '/raw' }}" target="_blank"><strong>{{ item.filename }}</strong></a></td>
                     @if ($actionsEnabled)
                     <td>
                         <a class="btn btn-default btn-xs btn-block">[[Lang::get('keywords.insert')]]</a>

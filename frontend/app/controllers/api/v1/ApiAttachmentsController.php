@@ -229,6 +229,63 @@ class ApiAttachmentsController extends BaseController {
 
 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $oldAttachment);
 	}
+
+
+	public function raw ($notebookId, $noteId, $versionId, $attachmentId) {
+		// This is the same source as used in ApiVersionsController@show
+		// -> TODO: DRY it.
+
+		$note = Note::with(
+			array(
+			'users' => function($query) {
+				$query->where('note_user.user_id', '=', Auth::user()->id);
+			},
+			'notebook' => function($query) use(&$notebookId) {
+				$query->where('id', ($notebookId>0 ? '=' : '>'), ($notebookId>0 ? $notebookId : '0'));
+			},
+			'version' => function($query) {
+			}
+			)
+		)->where('id', '=', $noteId)->whereNull('deleted_at')->first();
+
+		$tmp = $note->version()->first();
+		$version = null;
+
+		if(is_null($tmp)) {
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+		}
+
+		while(!is_null($tmp)) {
+			if($tmp->id == $versionId || $versionId == 0) {
+				$version = $tmp;
+				break;
+			}
+			$tmp = $tmp->previous()->first();
+		}
+
+		$attachment = $version->attachments()->where('attachments.id', '=', $attachmentId)->whereNull('attachments.deleted_at')->first();
+
+		// $version->attachments()->detach($attachment);
+		if(is_null($attachment)) {
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+		}
+
+		$destinationFolder = Config::get('paperwork.attachmentsDirectory') . '/' . $attachment->id;
+
+		$headers = array(
+			'Content-Type' 				=> $attachment->mimetype,
+			'Content-Transfer-Encoding' => 'binary',
+			'Content-Disposition' 		=> 'inline; filename="' . $attachment->filename . '"',
+			'Expires'                   => 0,
+			'Cache-Control'             => 'must-revalidate, post-check=0, pre-check=0',
+			'Pragma'                    => 'public',
+			'Content-Length'	=> $attachment->filesize
+		);
+
+		// $headers are not being set correctly and I don't really know why. Workaround:
+		header('Content-Type: ' . $attachment->mimetype);
+		return Response::make(readfile($destinationFolder . '/' . $attachment->filename), 200, $headers);
+	}
 }
 
 ?>
