@@ -32,6 +32,24 @@ paperworkModule.controller('paperworkNotesEditController', function($scope, $roo
     });
   }
 
+  $scope.$on('insertAttachmentLink', function(ev, args) {
+    if(typeof args == "undefined" || typeof args.url == "undefined" || typeof args.mimetype == "undefined") {
+      return false;
+    }
+
+    var insertHtml = "";
+
+    switch(args.mimetype.match(/^[a-z]+\/*/g)[0]) {
+      case "image/":
+        insertHtml = '<a href="' + args.url + '" title="' + args.filename + '" target="_blank">' + '<img src="' + args.url + '" alt="' + args.filename + '">' + '</a>';
+        break;
+      default:
+        insertHtml = '<a href="' + args.url + '" title="' + args.filename + '" target="_blank">' + args.filename + '</a>';
+    }
+
+    CKEDITOR.instances['content'].insertHtml(insertHtml);
+  });
+
   $rootScope.uploadUrl = paperworkApi + '/notebooks/' + parseInt($routeParams.notebookId) + '/notes/' + parseInt($routeParams.noteId) + '/versions/0/attachments';
 
   if(typeof $rootScope.notes == "undefined") {

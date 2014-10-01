@@ -25,7 +25,7 @@
                     <td><a href="{{'/api/v1/notebooks/' + getNotebookSelectedId() + '/notes/' + (getNoteSelectedId(true)).noteId + '/versions/' + (getVersionSelectedId(true)).versionId + '/attachments/' + item.id + '/raw' }}" target="_blank"><strong>{{ item.filename }}</strong></a></td>
                     @if ($actionsEnabled)
                     <td>
-                        <a class="btn btn-default btn-xs btn-block">[[Lang::get('keywords.insert')]]</a>
+                        <a class="btn btn-default btn-xs btn-block" ng-click="fileUploadInsertFile(getNotebookSelectedId(), (getNoteSelectedId(true)).noteId, (getVersionSelectedId(true)).versionId, item.id, item)">[[Lang::get('keywords.insert')]]</a>
 
                         <a class="btn btn-danger btn-xs btn-block" ng-click="fileUploadDeleteFile(getNotebookSelectedId(), (getNoteSelectedId(true)).noteId, (getVersionSelectedId(true)).versionId, item.id)">[[Lang::get('keywords.delete')]]</a>
                     </td>

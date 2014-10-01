@@ -83,4 +83,9 @@ paperworkModule.controller('paperworkFileUploadController', ['$scope', '$rootSco
     return true;
     // console.log("notebookId " + notebookId + ' noteId ' + noteId + ' versionId ' + versionId + ' attachmentId ' + attachmentId);
   };
+
+  $scope.fileUploadInsertFile = function(notebookId, noteId, versionId, attachmentId, attachment) {
+    var fileUrl = '/api/v1/notebooks/' + notebookId + '/notes/' + noteId + '/versions/' + versionId + '/attachments/' + attachmentId + '/raw';
+    $rootScope.$broadcast('insertAttachmentLink', { 'url': fileUrl, 'filename': attachment.filename, 'mimetype': attachment.mimetype });
+  };
 }]);
