@@ -20,33 +20,38 @@
 .btn-warning,
 .btn-danger {
   text-shadow: 0 -1px 0 rgba(0,0,0,.2);
-  @shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 1px 1px rgba(0,0,0,.075);
-  .box-shadow(@shadow);
+  // @shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 1px 1px rgba(0,0,0,.075);
+  // .box-shadow(@shadow);
 
   // Reset the shadow
   &:active,
   &.active {
-    .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+    // .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
   }
 }
 
 // Mixin for generating new styles
-.btn-styles(@btn-color: #555) {
-  #gradient > .vertical(@start-color: @btn-color; @end-color: darken(@btn-color, 12%));
-  .reset-filter(); // Disable gradients for IE9 because filter bleeds through rounded corners
+.btn-styles(@btn-color: #555, @btn-highlight: #777, @btn-highlight-color: @white) {
+  // #gradient > .vertical(@start-color: @btn-color; @end-color: darken(@btn-color, 12%));
+  // .reset-filter(); // Disable gradients for IE9 because filter bleeds through rounded corners
   background-repeat: repeat-x;
   border-color: darken(@btn-color, 14%);
 
   &:hover,
   &:focus  {
-    background-color: darken(@btn-color, 12%);
+    background-color: @btn-highlight;
+    border-color: darken(@btn-highlight, 4%);
+    color: @btn-highlight-color;
+    text-shadow: 0 0 0;
     background-position: 0 -15px;
   }
 
   &:active,
   &.active {
-    background-color: darken(@btn-color, 12%);
-    border-color: darken(@btn-color, 14%);
+    background-color: @btn-highlight;
+    border-color: darken(@btn-highlight, 14%);
+    color: @btn-highlight-color;
+    text-shadow: 0 0 0;
   }
 
   &:disabled,
@@ -66,12 +71,12 @@
 }
 
 // Apply the mixin to the buttons
-.btn-default { .btn-styles(@btn-default-bg); text-shadow: 0 1px 0 #fff; border-color: #ccc; }
-.btn-primary { .btn-styles(@btn-primary-bg); }
-.btn-success { .btn-styles(@btn-success-bg); }
-.btn-info    { .btn-styles(@btn-info-bg); }
-.btn-warning { .btn-styles(@btn-warning-bg); }
-.btn-danger  { .btn-styles(@btn-danger-bg); }
+.btn-default { .btn-styles(@btn-default-bg, @gray-lighter, @gray-darker); text-shadow: 0 1px 0 #fff; border-color: @gray; }
+.btn-primary { .btn-styles(@btn-primary-bg, darken(@btn-primary-bg, 12%)); }
+.btn-success { .btn-styles(@btn-success-bg, darken(@btn-success-bg, 12%)); }
+.btn-info    { .btn-styles(@btn-info-bg, darken(@btn-info-bg, 12%)); }
+.btn-warning { .btn-styles(@btn-warning-bg, darken(@btn-warning-bg, 12%)); }
+.btn-danger  { .btn-styles(@btn-danger-bg, darken(@btn-danger-bg, 12%)); }
 
 
 
@@ -110,15 +115,15 @@
 
 // Default navbar
 .navbar-default {
-  #gradient > .vertical(@start-color: lighten(@navbar-default-bg, 10%); @end-color: @navbar-default-bg);
+  // #gradient > .vertical(@start-color: lighten(@navbar-default-bg, 10%); @end-color: @navbar-default-bg);
   .reset-filter(); // Remove gradient in IE<10 to fix bug where dropdowns don't get triggered
   border-radius: @navbar-border-radius;
-  @shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 1px 5px rgba(0,0,0,.075);
-  .box-shadow(@shadow);
+  // @shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 1px 5px rgba(0,0,0,.075);
+  // .box-shadow(@shadow);
 
   .navbar-nav > .active > a {
-    #gradient > .vertical(@start-color: darken(@navbar-default-bg, 5%); @end-color: darken(@navbar-default-bg, 2%));
-    .box-shadow(inset 0 3px 9px rgba(0,0,0,.075));
+    // #gradient > .vertical(@start-color: darken(@navbar-default-bg, 5%); @end-color: darken(@navbar-default-bg, 2%));
+    // .box-shadow(inset 0 3px 9px rgba(0,0,0,.075));
   }
 }
 .navbar-brand,

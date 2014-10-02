@@ -108,7 +108,7 @@ body {
   overflow-y: auto;
   overflow-x: hidden;
 
-  border: @gray-lighter 1px solid;
+  border: @gray-medium 1px solid;
   border-radius: @border-radius-base;
 
   padding: 0px 0px 8px 0px;
@@ -124,7 +124,7 @@ label {
 
 .sub-header {
   padding-bottom: 10px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid @gray;
 }
 
 /*
@@ -154,8 +154,8 @@ label {
     padding: 20px;
     overflow-x: hidden;
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-    background-color: #f5f5f5;
-    border-right: 1px solid #eee;
+    background-color: @white;
+    border-right: 1px solid @gray;
   }
 }
 
@@ -172,8 +172,8 @@ label {
 .nav-sidebar > .active > a,
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {
-  color: #fff;
-  background-color: #428bca;
+  color: @white;
+  background-color: @brand-primary;
 }
 
 /* Tabs within Forms */
@@ -293,23 +293,23 @@ ul.nav-tabs-margin {
       }
 
       .notes-list-title-gradient {
-        background-image: -webkit-gradient(linear, left top, right top, color-stop(0.75, rgba(0, 0, 0, 1)), color-stop(1, rgba(0, 0, 0, 0)));
-        background-image: -o-linear-gradient(right, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 100%);
-        background-image: -moz-linear-gradient(right, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 100%);
-        background-image: -webkit-linear-gradient(right, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 100%);
-        background-image: -ms-linear-gradient(right, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 100%);
-        background-image: linear-gradient(to right, rgba(0, 0, 0, 1) 75%, rgba(0, 0, 0, 0) 100%);
+        background-image: -webkit-gradient(linear, left top, right top, color-stop(0.75, rgba(97, 97, 97,1)), color-stop(1, rgba(97, 97, 97,0)));
+        background-image: -o-linear-gradient(right, rgba(97, 97, 97,1) 75%, rgba(97, 97, 97,0) 100%);
+        background-image: -moz-linear-gradient(right, rgba(97, 97, 97,1) 75%, rgba(97, 97, 97,0) 100%);
+        background-image: -webkit-linear-gradient(right, rgba(97, 97, 97,1) 75%, rgba(97, 97, 97,0) 100%);
+        background-image: -ms-linear-gradient(right, rgba(97, 97, 97,1) 75%, rgba(97, 97, 97,0) 100%);
+        background-image: linear-gradient(to right, rgba(97, 97, 97,1) 75%, rgba(97, 97, 97,0) 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
 
       .notes-list-content-gradient {
-        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.50, rgba(33, 33, 33, 1)), color-stop(1, rgba(33, 33, 33, 0)));
-        background-image: -o-linear-gradient(bottom, rgba(33, 33, 33, 1) 50%, rgba(33, 33, 33, 0) 100%);
-        background-image: -moz-linear-gradient(bottom, rgba(33, 33, 33, 1) 50%, rgba(33, 33, 33, 0) 100%);
-        background-image: -webkit-linear-gradient(bottom, rgba(33, 33, 33, 1) 50%, rgba(33, 33, 33, 0) 100%);
-        background-image: -ms-linear-gradient(bottom, rgba(33, 33, 33, 1) 50%, rgba(33, 33, 33, 0) 100%);
-        background-image: linear-gradient(to bottom, rgba(33, 33, 33, 1) 50%, rgba(33, 33, 33, 0) 100%);
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.50, rgba(97, 97, 97,1)), color-stop(1, rgba(97, 97, 97,0)));
+        background-image: -o-linear-gradient(bottom, rgba(97, 97, 97,1) 50%, rgba(97, 97, 97,0) 100%);
+        background-image: -moz-linear-gradient(bottom, rgba(97, 97, 97,1) 50%, rgba(97, 97, 97,0) 100%);
+        background-image: -webkit-linear-gradient(bottom, rgba(97, 97, 97,1) 50%, rgba(97, 97, 97,0) 100%);
+        background-image: -ms-linear-gradient(bottom, rgba(97, 97, 97,1) 50%, rgba(97, 97, 97,0) 100%);
+        background-image: linear-gradient(to bottom, rgba(97, 97, 97,1) 50%, rgba(97, 97, 97,0) 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
@@ -329,7 +329,7 @@ ul.nav-tabs-margin {
       }
 
       .notes-list-content-gradient {
-        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.50, rgba(0, 0, 0, 1)), color-stop(1, rgba(0, 0, 0, 0)));
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.50, rgba(97, 97, 97,1)), color-stop(1, rgba(97, 97, 97,0)));
         background-image: -o-linear-gradient(bottom, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
         background-image: -moz-linear-gradient(bottom, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
         background-image: -webkit-linear-gradient(bottom, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
@@ -343,15 +343,15 @@ ul.nav-tabs-margin {
 
 // Search
 .navbar-search {
-  border: @navbar-inverse-bg;
-  background-color: lighten(@navbar-inverse-bg, 10%);
-  color: @navbar-inverse-color;
+  border: @navbar-default-bg;
+  background-color: lighten(@navbar-default-bg, 10%);
+  color: @navbar-default-color;
 }
 
 // Tree List
 #sidebarNotebooks {
-  background-color: @gray-lighter;
-  color: @gray;
+  background-color: @white;
+  color: @gray-darker;
   // top: 50px;
 }
 
