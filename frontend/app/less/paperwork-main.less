@@ -238,7 +238,14 @@ ul.nav-tabs-margin {
 // Notes List
 .notes-list {
   .notes-list-item {
+      margin-right: 1px;
       border-bottom: 1px solid @gray-light;
+      a {
+        border: 2px solid @white;
+      }
+      a:hover {
+        border: 2px solid @gray-lighter;
+      }
 
       .notes-list-item-checkbox {
         height: 88px;
@@ -257,6 +264,7 @@ ul.nav-tabs-margin {
       }
 
       .notes-list-date {
+        color: @brand-primary;
         font-weight: 400;
         display: block;
         float: left;
@@ -316,25 +324,45 @@ ul.nav-tabs-margin {
   }
 
   .notes-list-item.active {
+      a {
+        border: 2px solid @brand-primary;
+        background-color: @white;
+      }
+
+      .notes-list-date {
+        color: @brand-primary;
+      }
 
       .notes-list-title-gradient {
-        background-image: -webkit-gradient(linear, left top, right top, color-stop(0.75, rgba(255, 255, 255, 1)), color-stop(1, rgba(255, 255, 255, 0)));
-        background-image: -o-linear-gradient(right, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0) 100%);
-        background-image: -moz-linear-gradient(right, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0) 100%);
-        background-image: -webkit-linear-gradient(right, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0) 100%);
-        background-image: -ms-linear-gradient(right, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0) 100%);
-        background-image: linear-gradient(to right, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0) 100%);
+        // background-image: -webkit-gradient(linear, left top, right top, color-stop(0.75, rgba(255, 255, 255, 1)), color-stop(1, rgba(255, 255, 255, 0)));
+        // background-image: -o-linear-gradient(right, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0) 100%);
+        // background-image: -moz-linear-gradient(right, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0) 100%);
+        // background-image: -webkit-linear-gradient(right, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0) 100%);
+        // background-image: -ms-linear-gradient(right, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0) 100%);
+        // background-image: linear-gradient(to right, rgba(255, 255, 255, 1) 75%, rgba(255, 255, 255, 0) 100%);
+        background-image: -webkit-gradient(linear, left top, right top, color-stop(0.75, rgba(red(@text-color), green(@text-color), blue(@text-color), 1)), color-stop(1, rgba(red(@text-color), green(@text-color), blue(@text-color), 0)));
+        background-image: -o-linear-gradient(right, rgba(red(@text-color), green(@text-color), blue(@text-color), 1) 75%, rgba(red(@text-color), green(@text-color), blue(@text-color), 0) 100%);
+        background-image: -moz-linear-gradient(right, rgba(red(@text-color), green(@text-color), blue(@text-color), 1) 75%, rgba(red(@text-color), green(@text-color), blue(@text-color), 0) 100%);
+        background-image: -webkit-linear-gradient(right, rgba(red(@text-color), green(@text-color), blue(@text-color), 1) 75%, rgba(red(@text-color), green(@text-color), blue(@text-color), 0) 100%);
+        background-image: -ms-linear-gradient(right, rgba(red(@text-color), green(@text-color), blue(@text-color), 1) 75%, rgba(red(@text-color), green(@text-color), blue(@text-color), 0) 100%);
+        background-image: linear-gradient(to right, rgba(red(@text-color), green(@text-color), blue(@text-color), 1) 75%, rgba(red(@text-color), green(@text-color), blue(@text-color), 0) 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
 
       .notes-list-content-gradient {
+        // background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.50, rgba(red(@text-color), green(@text-color), blue(@text-color), 1)), color-stop(1, rgba(red(@text-color), green(@text-color), blue(@text-color), 0)));
+        // background-image: -o-linear-gradient(bottom, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+        // background-image: -moz-linear-gradient(bottom, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+        // background-image: -webkit-linear-gradient(bottom, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+        // background-image: -ms-linear-gradient(bottom, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+        // background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
         background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.50, rgba(red(@text-color), green(@text-color), blue(@text-color), 1)), color-stop(1, rgba(red(@text-color), green(@text-color), blue(@text-color), 0)));
-        background-image: -o-linear-gradient(bottom, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
-        background-image: -moz-linear-gradient(bottom, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
-        background-image: -webkit-linear-gradient(bottom, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
-        background-image: -ms-linear-gradient(bottom, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
-        background-image: linear-gradient(to bottom, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+        background-image: -o-linear-gradient(bottom, rgba(red(@text-color), green(@text-color), blue(@text-color), 1) 50%, rgba(red(@text-color), green(@text-color), blue(@text-color), 0) 100%);
+        background-image: -moz-linear-gradient(bottom, rgba(red(@text-color), green(@text-color), blue(@text-color), 1) 50%, rgba(red(@text-color), green(@text-color), blue(@text-color), 0) 100%);
+        background-image: -webkit-linear-gradient(bottom, rgba(red(@text-color), green(@text-color), blue(@text-color), 1) 50%, rgba(red(@text-color), green(@text-color), blue(@text-color), 0) 100%);
+        background-image: -ms-linear-gradient(bottom, rgba(red(@text-color), green(@text-color), blue(@text-color), 1) 50%, rgba(red(@text-color), green(@text-color), blue(@text-color), 0) 100%);
+        background-image: linear-gradient(to bottom, rgba(red(@text-color), green(@text-color), blue(@text-color), 1) 50%, rgba(red(@text-color), green(@text-color), blue(@text-color), 0) 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
