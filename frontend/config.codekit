@@ -5231,6 +5231,28 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
+	"\/public\/images\/paperwork-logo.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 134876,
+		"inputAbbreviatedPath": "\/public\/images\/paperwork-logo.png",
+		"outputAbbreviatedPath": "\/public\/images\/paperwork-logo.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/public\/images\/paperwork-logo@2x.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 24311,
+		"inputAbbreviatedPath": "\/public\/images\/paperwork-logo@2x.png",
+		"outputAbbreviatedPath": "\/public\/images\/paperwork-logo@2x.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/public\/index.php": {
 		"fileType": 8192,
 		"ignore": 0,

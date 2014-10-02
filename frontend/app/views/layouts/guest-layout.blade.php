@@ -18,6 +18,9 @@
   <body>
 
     <div class="container">
+      <div class="guest-logo">
+        <img class="guest-logo-img" src="/images/paperwork-logo.png">
+      </div>
       @yield("content")
     </div> <!-- /container -->
 
@@ -29,5 +32,6 @@
   <!--[if lt IE 11]>
     [[ HTML::script('js/ie10-viewport-bug-workaround.js') ]]
   <![endif]-->
+  [[ HTML::script('js/retina.min.js') ]]
   </body>
 </html>
