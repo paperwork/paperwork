@@ -6,9 +6,9 @@ jQuery(function () {
           var $elemIcon = $(this).find(' > i');
           var elemIconOpen = "", elemIconClose = "";
 
-          if($elemIcon.hasClass('fa-chevron-circle-right') || $elemIcon.hasClass('fa-chevron-circle-down')) {
-            elemIconOpen = "fa-chevron-circle-down";
-            elemIconClose = "fa-chevron-circle-right";
+          if($elemIcon.hasClass('fa-chevron-right') || $elemIcon.hasClass('fa-chevron-down')) {
+            elemIconOpen = "fa-chevron-down";
+            elemIconClose = "fa-chevron-right";
           } else if($elemIcon.hasClass('fa-folder') || $elemIcon.hasClass('fa-folder-open')) {
             elemIconOpen = "fa-folder-open";
             elemIconClose = "fa-folder";

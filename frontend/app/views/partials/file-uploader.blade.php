@@ -7,7 +7,7 @@
         </div>
         @endif
 
-        <table class="table" ng-show="(uploader.queue.length > 0 || fileList.length > 0)">
+        <table class="table table-striped" ng-show="(uploader.queue.length > 0 || fileList.length > 0)">
             <thead>
                 <tr>
                     <th class="status-th"></th>
