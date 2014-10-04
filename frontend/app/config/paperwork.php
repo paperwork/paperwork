@@ -24,4 +24,5 @@ return array(
 		'directory' => storage_path() . '/attachments'
 	),
 	'tesseractTempDirectory' => storage_path() . '/cache',
+	'showIssueReportingLink' => true,
 );
