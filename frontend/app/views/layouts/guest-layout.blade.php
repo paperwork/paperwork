@@ -24,6 +24,14 @@
       @yield("content")
     </div> <!-- /container -->
 
+    <div class="footer [[ Config::get('paperwork.showIssueReportingLink') ? '' : 'hide' ]]">
+      <div class="container">
+        <div class="alert alert-warning" role="alert">
+          <p>[[Lang::get('messages.found_bug')]]</p>
+        </div>
+      </div>
+    </div>
+
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
     [[ HTML::script('js/html5shiv.min.js') ]]
