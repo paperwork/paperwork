@@ -16,6 +16,9 @@ For the back-end part a MySQL database stores everything. With such common requi
 ![02](https://raw.githubusercontent.com/twostairs/paperwork/gh-pages/images/screenshots/02.png)
 ![03](https://raw.githubusercontent.com/twostairs/paperwork/gh-pages/images/screenshots/03.png)
 ![04](https://raw.githubusercontent.com/twostairs/paperwork/gh-pages/images/screenshots/04.png)
+![05](https://raw.githubusercontent.com/twostairs/paperwork/gh-pages/images/screenshots/05.png)
+![06](https://raw.githubusercontent.com/twostairs/paperwork/gh-pages/images/screenshots/06.png)
+![07](https://raw.githubusercontent.com/twostairs/paperwork/gh-pages/images/screenshots/07.png)
 
 ## Demo (yes, there is one!)
 
