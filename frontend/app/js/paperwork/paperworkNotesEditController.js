@@ -19,7 +19,9 @@ paperworkModule.controller('paperworkNotesEditController', function($scope, $roo
       removePlugins: 'sourcearea,save,newpage,preview,print,forms',
       toolbarCanCollapse: true,
       toolbarStartupExpanded : false,
-      tabSpaces: 4
+      tabSpaces: 4,
+      skin: 'bootstrapck',
+      height: '400px'
     });
 
     ck.on('change', function() {
