@@ -54,6 +54,36 @@
 <p>Feel free to create/modify/delete accounts, notebooks and notes. This demo can be used for heavy playing without regrets. Just try not to take down that thing. :)</p>
 
 <h2>
+<a name="run-quick--dirty-documented" class="anchor" href="#run-quick--dirty-documented"><span class="octicon octicon-link"></span></a>Run (quick &amp; dirty documented)</h2>
+
+<p>First of all, you need to clone this project to your machine. After that, make sure that you have one of the latest PHP versions &gt; 5.1 and an up-to-date "composer" installed. If you're not sure how composer works, please continue reading here: <a href="https://getcomposer.org/">https://getcomposer.org/</a></p>
+
+<p>Second, you need to switch to the command line: "cd" into the "frontend" directory of your local paperwork clone. There, run "composer install" and/or "composer update". This will install all the needed dependencies.</p>
+
+<p>Now, before you do anything else, please check the files within the frontend/app/config/ directory. Especially the database.php. If you'd like to use the default DB settings (MySQL/MariaDB), you'll just need to have the database server running on port 3306 and create a database named "paperwork". You could use this SQL:</p>
+
+<pre><code>DROP DATABASE IF EXISTS paperwork; CREATE DATABASE IF NOT EXISTS paperwork DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+</code></pre>
+
+<p>In addition, you need the "paperwork" user to have full access to this database:</p>
+
+<pre><code>GRANT ALL PRIVILEGES ON paperwork.* TO 'paperwork'@'localhost' IDENTIFIED BY 'paperwork' WITH GRANT OPTION; FLUSH PRIVILEGES;
+</code></pre>
+
+<p>With these settings, you won't need to modify the database.php configuration file.</p>
+
+<p>After completing these steps, run the migration jobs, that fill the database:</p>
+
+<pre><code>php artisan migrate
+</code></pre>
+
+<p>If anything here should fail, it's most likely an authentication/connection issue, so check your database setup again.</p>
+
+<p>Now, for the last step, make sure that your Webserver has the right to create/modify/delete files within the frontend/app/storage/attachments/ folder. This folder is being used for uploaded documents.</p>
+
+<p>That's pretty much it. From here on, you should be able to access your paperwork instance through the web.</p>
+
+<h2>
 <a name="run-using-docker" class="anchor" href="#run-using-docker"><span class="octicon octicon-link"></span></a>Run using Docker</h2>
 
 <p>Basically you just have to:</p>
