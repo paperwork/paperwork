@@ -26,6 +26,38 @@ At [demo.paperwork.rocks](http://demo.paperwork.rocks) you can actually see the 
 
 Feel free to create/modify/delete accounts, notebooks and notes. This demo can be used for heavy playing without regrets. Just try not to take down that thing. :)
 
+## Run (quick & dirty documented)
+
+First of all, you need to clone this project to your machine. After that, make sure that you have one of the latest PHP versions > 5.1 and an up-to-date "composer" installed. If you're not sure how composer works, please continue reading here: https://getcomposer.org/
+
+Second, you need to switch to the command line: "cd" into the "frontend" directory of your local paperwork clone. There, run "composer install" and/or "composer update". This will install all the needed dependencies.
+
+Now, before you do anything else, please check the files within the frontend/app/config/ directory. Especially the database.php. If you'd like to use the default DB settings (MySQL/MariaDB), you'll just need to have the database server running on port 3306 and create a database named "paperwork". You could use this SQL:
+
+```
+DROP DATABASE IF EXISTS paperwork; CREATE DATABASE IF NOT EXISTS paperwork DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+```
+
+In addition, you need the "paperwork" user to have full access to this database:
+
+```
+GRANT ALL PRIVILEGES ON paperwork.* TO 'paperwork'@'localhost' IDENTIFIED BY 'paperwork' WITH GRANT OPTION; FLUSH PRIVILEGES;
+```
+
+With these settings, you won't need to modify the database.php configuration file.
+
+After completing these steps, run the migration jobs, that fill the database:
+
+```
+php artisan migrate
+```
+
+If anything here should fail, it's most likely an authentication/connection issue, so check your database setup again.
+
+Now, for the last step, make sure that your Webserver has the right to create/modify/delete files within the frontend/app/storage/attachments/ folder. This folder is being used for uploaded documents.
+
+That's pretty much it. From here on, you should be able to access your paperwork instance through the web.
+
 ## Run using Docker
 
 Basically you just have to:
