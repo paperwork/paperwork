@@ -16,6 +16,7 @@
     [[ HTML::style('css/paperwork.min.css') ]]
 
     [[ HTML::style('css/bootstrap-tagsinput.min.css') ]]
+    [[ HTML::style('css/typeahead.min.css') ]]
 
 </head>
   <body ng-app="paperworkNotes">
