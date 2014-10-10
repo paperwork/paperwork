@@ -36,16 +36,12 @@ paperworkModule.controller('paperworkNotesEditController', function($scope, $roo
     ck.on('change', _onChangeFunction);
   };
 
+  var loadedTags = $rootScope.tags;
+  console.log(loadedTags);
   var userTags = new Bloodhound({
-    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+    datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title'),
     queryTokenizer: Bloodhound.tokenizers.whitespace,
-    prefetch: {
-      url: 'TODO://SET-THIS-URL',
-      filter: function(list) {
-        return $.map(list, function(tagName) {
-          return { name: tagName }; });
-      }
-    }
+    local: loadedTags
   });
 
   userTags.initialize();
@@ -54,8 +50,8 @@ paperworkModule.controller('paperworkNotesEditController', function($scope, $roo
     allowDuplicates: false,
     typeaheadjs: {
       name: 'tags',
-      displayKey: 'name',
-      valueKey: 'name',
+      displayKey: 'title',
+      valueKey: 'id',
       source: userTags.ttAdapter()
     }
   })
