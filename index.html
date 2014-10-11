@@ -44,7 +44,13 @@
 <h2>
 <a name="screenshots-might-not-be-up-to-date-please-use-the-demo-below" class="anchor" href="#screenshots-might-not-be-up-to-date-please-use-the-demo-below"><span class="octicon octicon-link"></span></a>Screenshots (might not be up to date, please use the demo below!)</h2>
 
-<p><img src="https://raw.githubusercontent.com/twostairs/paperwork/gh-pages/images/screenshots/01.png" alt="01"><img src="https://raw.githubusercontent.com/twostairs/paperwork/gh-pages/images/screenshots/02.png" alt="02"><img src="https://raw.githubusercontent.com/twostairs/paperwork/gh-pages/images/screenshots/03.png" alt="03"><img src="https://raw.githubusercontent.com/twostairs/paperwork/gh-pages/images/screenshots/04.png" alt="04"><img src="https://raw.githubusercontent.com/twostairs/paperwork/gh-pages/images/screenshots/05.png" alt="05"><img src="https://raw.githubusercontent.com/twostairs/paperwork/gh-pages/images/screenshots/06.png" alt="06"><img src="https://raw.githubusercontent.com/twostairs/paperwork/gh-pages/images/screenshots/07.png" alt="07"></p>
+<p><img src="https://raw.githubusercontent.com/twostairs/paperwork/gh-pages/images/screenshots/01.png" alt="01">
+<img src="https://raw.githubusercontent.com/twostairs/paperwork/gh-pages/images/screenshots/02.png" alt="02">
+<img src="https://raw.githubusercontent.com/twostairs/paperwork/gh-pages/images/screenshots/03.png" alt="03">
+<img src="https://raw.githubusercontent.com/twostairs/paperwork/gh-pages/images/screenshots/04.png" alt="04">
+<img src="https://raw.githubusercontent.com/twostairs/paperwork/gh-pages/images/screenshots/05.png" alt="05">
+<img src="https://raw.githubusercontent.com/twostairs/paperwork/gh-pages/images/screenshots/06.png" alt="06">
+<img src="https://raw.githubusercontent.com/twostairs/paperwork/gh-pages/images/screenshots/07.png" alt="07"></p>
 
 <h2>
 <a name="demo-yes-there-is-one" class="anchor" href="#demo-yes-there-is-one"><span class="octicon octicon-link"></span></a>Demo (yes, there is one!)</h2>
@@ -79,7 +85,7 @@
 
 <p>If anything here should fail, it's most likely an authentication/connection issue, so check your database setup again.</p>
 
-<p>Now, for the last step, make sure that your Webserver has the right to create/modify/delete files within the frontend/app/storage/attachments/ folder. This folder is being used for uploaded documents. Also, set the docroot of your webserver to the folder <code>frontend/public/</code> inside of the Paperwork directory.</p>
+<p>Now, for the last step, make sure that your webserver has the right to create/modify/delete files within the <code>frontend/app/storage/attachments/</code>. the <code>frontend/app/storage/logs/</code> and the <code>frontend/app/storage/sessions/</code> folders. Also, be sure to set the document root (docroot) of your webserver to the folder <code>frontend/public/</code>.</p>
 
 <p>That's pretty much it. From here on, you should be able to access your paperwork instance through the web.</p>
 
@@ -105,6 +111,24 @@
 <a name="some-last-words" class="anchor" href="#some-last-words"><span class="octicon octicon-link"></span></a>Some last words</h2>
 
 <p>The current development status is far from being worth called "version 1.0". However, if I could get you interested in this project and you feel like contributing, don't hesitate to ping me by e-mail (<a href="mailto:marius@twostairs.com">marius@twostairs.com</a>) or twitter (<a href="https://twitter.com/devilx">@devilx</a>) so we can talk. :-)</p>
+
+<h2>
+<a name="faq" class="anchor" href="#faq"><span class="octicon octicon-link"></span></a>FAQ</h2>
+
+<h3>
+<a name="can-i-run-paperwork-on-a-shared-host-environment-where-im-not-able-to-set-frontendpublic-as-document-root" class="anchor" href="#can-i-run-paperwork-on-a-shared-host-environment-where-im-not-able-to-set-frontendpublic-as-document-root"><span class="octicon octicon-link"></span></a>Can I run Paperwork on a shared host environment, where I'm not able to set <code>frontend/public</code> as document root?</h3>
+
+<p>Basically you can. This has nothing to do with Paperwork specifically, though. The foundation ontop of which Paperwork is built up (Laravel) needs to be reconfigured to support a shared host environment. <a href="https://www.google.com/search?q=laravel+4+shared+host">Here</a> you can find more info about how to do so.</p>
+
+<h3>
+<a name="are-you-planning-to-implement--into-paperwork-soon" class="anchor" href="#are-you-planning-to-implement--into-paperwork-soon"><span class="octicon octicon-link"></span></a>Are you planning to implement ... into Paperwork soon?</h3>
+
+<p>Maybe. Check out more detailed information about the features we are currently working on <a href="https://trello.com/paperwork">here</a>.</p>
+
+<h3>
+<a name="i-would-like-to-join-paperwork-development-whats-the-best-way-to-do-so" class="anchor" href="#i-would-like-to-join-paperwork-development-whats-the-best-way-to-do-so"><span class="octicon octicon-link"></span></a>I would like to join Paperwork development, what's the best way to do so?</h3>
+
+<p>Contribute. Simply fork the Paperwork repository here on GitHub, add you contributions and send us pull-requests. In addition, make sure to shoot us an e-mail at <a href="mailto:paperwork-dev@googlegroups.com">paperwork-dev@googlegroups.com</a> and inform us about your interest in joining the team. We will then make sure to give you the required access to our <a href="https://trello.com/paperwork">Trello</a> as well.</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/twostairs">twostairs</a></p>
