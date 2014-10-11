@@ -54,7 +54,7 @@ php artisan migrate
 
 If anything here should fail, it's most likely an authentication/connection issue, so check your database setup again.
 
-Now, for the last step, make sure that your Webserver has the right to create/modify/delete files within the frontend/app/storage/attachments/ folder. This folder is being used for uploaded documents. Also, set the docroot of your webserver to the folder `frontend/public/` inside of the Paperwork directory.
+Now, for the last step, make sure that your webserver has the right to create/modify/delete files within the `frontend/app/storage/attachments/`. the `frontend/app/storage/logs/` and the `frontend/app/storage/sessions/` folders. Also, be sure to set the document root (docroot) of your webserver to the folder `frontend/public/`.
 
 That's pretty much it. From here on, you should be able to access your paperwork instance through the web.
 
@@ -75,3 +75,18 @@ The API documentation can be found at [docs.paperwork.apiary.io](http://docs.pap
 ## Some last words
 
 The current development status is far from being worth called "version 1.0". However, if I could get you interested in this project and you feel like contributing, don't hesitate to ping me by e-mail ([marius@twostairs.com](mailto:marius@twostairs.com)) or twitter ([@devilx](https://twitter.com/devilx)) so we can talk. :-)
+
+## FAQ
+
+### Can I run Paperwork on a shared host environment, where I'm not able to set `frontend/public` as document root?
+
+Basically you can. This has nothing to do with Paperwork specifically, though. The foundation ontop of which Paperwork is built up (Laravel) needs to be reconfigured to support a shared host environment. [Here](https://www.google.com/search?q=laravel+4+shared+host) you can find more info about how to do so.
+
+### Are you planning to implement ... into Paperwork soon?
+
+Maybe. Check out more detailed information about the features we are currently working on [here](https://trello.com/paperwork).
+
+### I would like to join Paperwork development, what's the best way to do so?
+
+Contribute. Simply fork the Paperwork repository here on GitHub, add you contributions and send us pull-requests. In addition, make sure to shoot us an e-mail at [paperwork-dev@googlegroups.com](mailto:paperwork-dev@googlegroups.com) and inform us about your interest in joining the team. We will then make sure to give you the required access to our [Trello](https://trello.com/paperwork) as well.
+
