@@ -54,7 +54,7 @@ php artisan migrate
 
 If anything here should fail, it's most likely an authentication/connection issue, so check your database setup again.
 
-Now, for the last step, make sure that your webserver has the right to create/modify/delete files within the `frontend/app/storage/attachments/`. the `frontend/app/storage/logs/` and the `frontend/app/storage/sessions/` folders. Also, be sure to set the document root (docroot) of your webserver to the folder `frontend/public/`.
+Now, for the last step, make sure that your webserver has the right to create/modify/delete files within the `frontend/app/storage/attachments/`, the `frontend/app/storage/cache/`, the `frontend/app/storage/logs/` and the `frontend/app/storage/sessions/` folders. Also, be sure to set the document root (docroot) of your webserver to the folder `frontend/public/`.
 
 That's pretty much it. From here on, you should be able to access your paperwork instance through the web.
 
