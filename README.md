@@ -26,7 +26,7 @@ At [demo.paperwork.rocks](http://demo.paperwork.rocks) you can actually see the 
 
 Feel free to create/modify/delete accounts, notebooks and notes. This demo can be used for heavy playing without regrets. Just try not to take down that thing. :)
 
-## Run (quick & dirty documented)
+## Initial installation (quick & dirty documented)
 
 First of all, you need to clone this project to your machine. After that, make sure that you have one of the latest PHP versions > 5.1 and an up-to-date "composer" installed. If you're not sure how composer works, please continue reading here: https://getcomposer.org/
 
@@ -68,13 +68,17 @@ To run the migrations (once):
 
     fig run web php artisan migrate --force
 
+## Upgrading
+
+Upgrading to the latest GIT version of Paperwork is fairly easy. Update your local repository running `git pull`, then `cd` into the `frontend/` directory and run `php artisan migrate`. In most cases this should work. If you're experiencing issues, you might need to clear the database completely and re-run the initial installation.
+
 ## API documentation
 
 The API documentation can be found at [docs.paperwork.apiary.io](http://docs.paperwork.apiary.io/) or built using the ``apiary.apib`` file from this repository. It's not yet complete and could change at any time!
 
 ## Some last words
 
-The current development status is far from being worth called "version 1.0". However, if I could get you interested in this project and you feel like contributing, don't hesitate to ping me by e-mail ([marius@twostairs.com](mailto:marius@twostairs.com)) or twitter ([@devilx](https://twitter.com/devilx)) so we can talk. :-)
+The current development status is far from being worth called "version 1.0". However, if I could get you interested in this project and you feel like contributing, don't hesitate to ping me by e-mail ([marius@paperwork.rocks](mailto:marius@paperwork.rocks)) or twitter ([@devilx](https://twitter.com/devilx)) so we can talk. :-)
 
 ## FAQ
 
