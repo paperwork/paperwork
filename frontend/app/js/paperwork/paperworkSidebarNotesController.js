@@ -73,7 +73,8 @@ paperworkModule.controller('paperworkSidebarNotesController', function($scope, $
 
     var data = {
       'title': $rootScope.templateNoteEdit.title,
-      'content': $rootScope.templateNoteEdit.content
+      'content': $rootScope.templateNoteEdit.content,
+      'tags': $('input#tags').tagsinput('items')
     };
 
     var callback = (function() {

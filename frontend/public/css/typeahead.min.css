@@ -127,7 +127,7 @@ select[multiple].input-group.input-group-lg .twitter-typeahead .tt-hint {
   border-top-right-radius: 6px;
 }
 .twitter-typeahead {
-  width: 100%;
+  width: 90%;
 }
 .input-group .twitter-typeahead {
   display: table-cell !important;

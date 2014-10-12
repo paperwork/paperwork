@@ -37,7 +37,7 @@ paperworkModule.controller('paperworkNotesEditController', function($scope, $roo
   };
 
   var loadedTags = $rootScope.tags;
-  console.log(loadedTags);
+
   var userTags = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title'),
     queryTokenizer: Bloodhound.tokenizers.whitespace,
@@ -51,7 +51,7 @@ paperworkModule.controller('paperworkNotesEditController', function($scope, $roo
     typeaheadjs: {
       name: 'tags',
       displayKey: 'title',
-      valueKey: 'id',
+      valueKey: 'title',
       source: userTags.ttAdapter()
     }
   })
