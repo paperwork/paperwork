@@ -8,5 +8,6 @@ return array(
 	'note_version_info' => 'You are previewing an older version of this note.',
 	'document_languages_description' => 'The languages you select here will be used for parsing text within attachments you upload, allowing you to search for the content of these. An attachment could be a photo of a document you took with your smartphone, for example. Select the languages these documents are usually written in.',
 	'found_bug' => 'Found a bug? <a href="https://github.com/twostairs/paperwork/issues/new" target="_blank" title="Submit Issue">Submit it on GitHub!</a>',
+	'error_message' => 'Whooops!',
 
 );

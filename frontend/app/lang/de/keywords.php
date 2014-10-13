@@ -64,6 +64,6 @@ return array(
 	'ui_language' => 'Benutzeroberflächen-Sprache',
 	'document_languages' => 'Dokumenten Sprachen',
 	'select_notebook_title' => 'Notizbuch auswählen',
-	'select' => 'Auswählen'
-
+	'select' => 'Auswählen',
+	'damn' => 'Verdammt.',
 );

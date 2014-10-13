@@ -64,6 +64,7 @@ return array(
 	'ui_language' => 'User Interface Language',
 	'document_languages' => 'Document Languages',
 	'select_notebook_title' => 'Select notebook',
-	'select' => 'Select'
+	'select' => 'Select',
+	'damn' => 'Damn.',
 
 );

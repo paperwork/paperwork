@@ -87,7 +87,18 @@ paperworkModule.controller('paperworkSidebarNotesController', function($scope, $
             break;
           case 400:
             $rootScope.errors = data.errors;
-            // TODO: Show some kind of error
+            $rootScope.messageBox({
+              'title': $rootScope.i18n.messages.error_message,
+              'content': data.errors,
+              'buttons': [
+                {
+                  // We don't need an id for the dismiss button.
+                  // 'id': 'button-no',
+                  'label': $rootScope.i18n.keywords.damn,
+                  'isDismiss': true
+                }
+              ]
+            });
             break;
         }
       };
