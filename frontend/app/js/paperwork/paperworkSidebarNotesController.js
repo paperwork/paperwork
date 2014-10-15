@@ -1,4 +1,4 @@
-paperworkModule.controller('paperworkSidebarNotesController', function($scope, $rootScope, $location, $timeout, $routeParams, paperworkNotesService){
+paperworkModule.controller('paperworkSidebarNotesController', function($scope, $rootScope, $location, $timeout, $routeParams, paperworkNotebooksService, paperworkNotesService){
   $scope.isVisible = function() {
     return !$rootScope.expandedNoteLayout;
   };
@@ -113,6 +113,7 @@ paperworkModule.controller('paperworkSidebarNotesController', function($scope, $
       $location.path("/n/" + $rootScope.getNotebookSelectedId() + "/" + currentNote.noteId);
       CKEDITOR.instances.content.destroy();
       $rootScope.templateNoteEdit = {};
+      paperworkNotebooksService.getTags();
       return true;
     }
 
