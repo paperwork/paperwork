@@ -68,7 +68,15 @@ class ApiNotesController extends BaseController {
 			->whereNull('notebooks.deleted_at')
 			->get();
 
-		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notes);
+		if(is_null($notes)){
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+		} else {
+			foreach($notes as $note) {
+				$note->tags = $this->getNoteTags($note->id);
+				$note->versions = $this->getNoteVersionsBrief($note->id);
+			}
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notes);
+		}
 	}
 
 	public function tagIndex($tagId)
@@ -208,6 +216,11 @@ class ApiNotesController extends BaseController {
 		$note->version_id = $version->id;
 
 		$note->save();
+
+		$tagIds = ApiTagsController::createOrGetTags($updateNote->get('tags'));
+
+		$note->tags()->sync($tagIds);
+
 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $note);
 	}
 
