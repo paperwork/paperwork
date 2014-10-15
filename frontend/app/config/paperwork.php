@@ -74,4 +74,22 @@ return array(
 	|
 	*/
 	'showIssueReportingLink' => true,
+
+	/*
+	|--------------------------------------------------------------------------
+	| Prefix character that describes a public tag
+	|--------------------------------------------------------------------------
+	|
+	| The prefix character that describes a public tag. Example:
+	| When a user adds a new tag (e.g. "meeting") without this character, the
+	| tag is only visible to him, even when the note is being shared with
+	| other users.
+	| If the user prefixes the tag with this character (e.g. "+meeting"), this
+	| tag will be visible to him and others he shared the note with.
+	|
+	| The maximum accepted length of this variable is exactly one character.
+	|
+	*/
+	'tagsPublicPrefixCharacter' => '+',
+
 );
