@@ -17,10 +17,20 @@ paperworkModule.controller('paperworkNotesEditController', function($scope, $roo
       $rootScope.templateNoteEdit = {};
     }
 
-
     paperworkNotesService.getNoteVersionAttachments($rootScope.getNotebookSelectedId(), ($rootScope.getNoteSelectedId(true)).noteId, $rootScope.getVersionSelectedId(true).versionId, function(response) {
       $rootScope.fileList = response;
     });
+
+    for(var i=0;i<$rootScope.templateNoteEdit.tags.length;i++) {
+      $('input#tags').tagsinput('add', $rootScope.templateNoteEdit.tags[i].title);
+    }
+
+    $('input#tags').on('itemAdded', function() {
+      window.onCkeditChangeFunction();
+    }).on('itemRemoved', function() {
+      window.onCkeditChangeFunction();
+    });
+
 
     var ck =  CKEDITOR.replace('content', {
       fullPage: false,
@@ -48,17 +58,13 @@ paperworkModule.controller('paperworkNotesEditController', function($scope, $roo
 
   $('input#tags').tagsinput({
     allowDuplicates: false,
+    freeInput: true,
     typeaheadjs: {
       name: 'tags',
       displayKey: 'title',
       valueKey: 'title',
       source: userTags.ttAdapter()
     }
-  })
-  $('input#tags').on('itemAdded', function() {
-    window.onCkeditChangeFunction();
-  }).on('itemRemoved', function() {
-    window.onCkeditChangeFunction();
   });
 
   $scope.$on('insertAttachmentLink', function(ev, args) {
