@@ -170,6 +170,10 @@ class ApiNotesController extends BaseController {
 
 		$note->users()->attach(Auth::user()->id);
 
+		$tagIds = ApiTagsController::createOrGetTags($newNote->get('tags'));
+
+		$note->tags()->sync($tagIds);
+
 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $note);
 	}
 
