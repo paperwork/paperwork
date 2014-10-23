@@ -58,6 +58,8 @@ Route::group(array('prefix' => 'api/v1', 'before' => 'auth'), function()
     Route::resource('i18n', 'ApiI18nController');
     Route::get('/tagged/{num}', 'ApiNotesController@tagIndex');
 
+    Route::resource('users', 'ApiUsersController');
+    Route::resource('settings', 'ApiSettingsController');
 });
 
 // Route::any('/api/v1/notebooks/(:num?)', array('as' => 'api.v1.notebooks', 'uses' => 'ApiNotebooksController@index'));
