@@ -7,6 +7,10 @@ class ApiTagsController extends BaseController {
 		$tagsPublicPrefixCharacter = Config::get('paperwork.tagsPublicPrefixCharacter')[0];
 		$createdOrFoundIds = array();
 
+		if(is_null($tagsArray)) {
+			return null;
+		}
+
 		foreach($tagsArray as $tagItem) {
 			$tagTitle = '';
 			$tagVisibility = 0;

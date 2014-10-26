@@ -172,7 +172,9 @@ class ApiNotesController extends BaseController {
 
 		$tagIds = ApiTagsController::createOrGetTags($newNote->get('tags'));
 
-		$note->tags()->sync($tagIds);
+		if(!is_null($tagIds)) {
+			$note->tags()->sync($tagIds);
+		}
 
 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $note);
 	}
@@ -223,7 +225,9 @@ class ApiNotesController extends BaseController {
 
 		$tagIds = ApiTagsController::createOrGetTags($updateNote->get('tags'));
 
-		$note->tags()->sync($tagIds);
+		if(!is_null($tagIds)) {
+			$note->tags()->sync($tagIds);
+		}
 
 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $note);
 	}
