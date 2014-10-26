@@ -21,8 +21,10 @@ paperworkModule.controller('paperworkNotesEditController', function($scope, $roo
       $rootScope.fileList = response;
     });
 
-    for(var i=0;i<$rootScope.templateNoteEdit.tags.length;i++) {
-      $('input#tags').tagsinput('add', $rootScope.templateNoteEdit.tags[i].title);
+    if(typeof $rootScope.templateNoteEdit.tags != "undefined" && $rootScope.templateNoteEdit.tags.length > 0) {
+      for(var i=0;i<$rootScope.templateNoteEdit.tags.length;i++) {
+        $('input#tags').tagsinput('add', $rootScope.templateNoteEdit.tags[i].title);
+      }
     }
 
     $('input#tags').on('itemAdded', function() {
