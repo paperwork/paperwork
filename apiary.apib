@@ -323,6 +323,40 @@ A single note object with all its details, within a notebook
 
             TODO
 
+# Group Tags
+Tag related resources
+
+## Attachments collection [/api/v1/tags]
+### List all attachments of a version [GET]
+
++ Request (application/json)
+
+    + Headers
+
+            Authorization: Basic dGVzdEBwYXBlcndvcmsucm9ja3M6dGVzdDEyMw==
+
++ Response 200 (application/json)
+
+        { TDB }
+
+## Tag by ID [/api/v1/tags/{tagId}]
+A single tag object with all its details
+
++ Parameters
+    + tagId (required, number, `1`) ... Numeric `id` of the tag to perform action with.
+
+### Retrieve a version of a note [GET]
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic dGVzdEBwYXBlcndvcmsucm9ja3M6dGVzdDEyMw==
+
++ Response 200 (application/json)
+
+    + Body
+
+            { TBD }
+
 # Group Users
 User related resources
 
