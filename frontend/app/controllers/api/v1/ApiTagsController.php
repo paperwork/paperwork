@@ -58,7 +58,7 @@ class ApiTagsController extends BaseController {
 				$join->on('tags.id', '=', 'tag_user.tag_id')
 					->where('tag_user.user_id', '=', Auth::user()->id);
 			})
-			->select('tags.id', 'tags.title')
+			->select('tags.id', 'tags.visibility', 'tags.title')
 			->get();
 
 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $tags);
@@ -77,7 +77,7 @@ class ApiTagsController extends BaseController {
 				$join->on('tags.id', '=', 'tag_user.tag_id')
 					->where('tag_user.user_id', '=', Auth::user()->id);
 			})
-			->select('tags.id', 'tags.title')
+			->select('tags.id', 'tags.visibility', 'tags.title')
 			->where('tags.id', '=', $id)
 			->first();
 
