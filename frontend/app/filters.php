@@ -13,7 +13,34 @@
 
 App::before(function($request)
 {
-	//
+	$access = Config::get('paperwork.access');
+	$requestServerName = Request::server ("SERVER_NAME");
+	$zones = array('external', 'internal');
+
+    App::singleton('paperworkSession', function(){
+        $app = new stdClass;
+        $app->currentZone = null;
+        return $app;
+    });
+    $paperworkSession = App::make('paperworkSession');
+
+	foreach($zones as $zone) {
+		if(array_key_exists($zone, $access) &&
+		array_key_exists('dns', $access[$zone]) &&
+		$access[$zone]['dns'] == $requestServerName) {
+			if(array_key_exists('ports', $access[$zone]) &&
+			array_key_exists('forceHttps', $access[$zone]['ports'])) {
+
+				if($access[$zone]['ports']['forceHttps'] === true && !Request::secure()) {
+			        return Redirect::secure(Request::path());
+				}
+			}
+
+			$paperworkSession->currentZone = $zone;
+		}
+	}
+
+	View::share('paperworkSession', $paperworkSession);
 });
 
 
