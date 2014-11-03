@@ -1,6 +1,46 @@
 <?php
 
 return array(
+	/*
+	|--------------------------------------------------------------------------
+	| Access settings
+	|--------------------------------------------------------------------------
+	|
+	| Configure under what DNS entries and ports your Paperwork server is
+	| accessible for clients.
+	|
+	| 'external' defines the settings for access Paperwork from an external
+	| network. Example: If you're hosting Paperwork within your LAN
+	| (192.168.1.0/24) and use port-forwarding on your router to allow access
+	| from outside of your LAN, this configuration tells clients, which
+	| host-/domainname and ports to use for reaching Paperwork.
+	|
+	| 'internal' defines the settings for access Paperwork within your LAN. If
+	| your Paperwork installation is reachable from your LAN using the
+	| previously defined 'external' settings, you can skip the 'internal'
+	| configuration.
+	|
+	*/
+	'access' => array(
+		'external' => array(
+			'dns'	=> 'paperwork.example.com',
+			'ports' => array(
+				'http'		 => 80,
+				'https' 	 => 443,
+				'forceHttps' => true
+			)
+		),
+	//  if same as external:
+	//	'internal' => null
+		'internal' => array(
+			'dns' => 'localhost',
+			'ports' => array(
+				'http'		 => 8888,
+				'https' 	 => 8443,
+				'forceHttps' => false
+			)
+		)
+	),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -41,8 +81,10 @@ return array(
 	|--------------------------------------------------------------------------
 	|
 	| Settings regarding attachments preview generation.
+	|
 	| 'resolution' defines the generated resolution. The higher this is, the
 	| more disk space previews will consume.
+	|
 	| 'directory' defines the directory in which to store the previews.
 	| This usually is the same as 'attachmentsDirectory'.
 	|
