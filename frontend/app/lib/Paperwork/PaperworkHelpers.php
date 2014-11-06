@@ -71,6 +71,20 @@ class PaperworkHelpers {
 		return $documentLanguages;
 	}
 
+	public function generateClientQrCodeJson() {
+		$data = array(
+			'paperwork' => array(
+				'user' => array(
+					'username' => \Auth::user()->username,
+					'firstname' => \Auth::user()->firstname,
+					'lastname' => \Auth::user()->lastname,
+					'language' => $this->getUiLanguageFromSession()
+				),
+				'access' => \Config::get('paperwork.access')
+			)
+		);
+		return json_encode($data);
+	}
 }
 
 ?>

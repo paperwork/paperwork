@@ -7,7 +7,8 @@
 		"laravel/framework": "4.2.*",
 		"jenssegers/agent": "*",
 		"erusev/parsedown": "dev-master",
-		"thiagoalessio/tesseract_ocr": ">= 0.2.0"
+		"thiagoalessio/tesseract_ocr": ">= 0.2.0",
+		"simplesoftwareio/simple-qrcode": "1.1.*"
 	},
 	"autoload": {
 		"classmap": [
