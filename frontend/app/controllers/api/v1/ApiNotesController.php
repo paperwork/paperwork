@@ -97,6 +97,7 @@ class ApiNotesController extends BaseController {
 			->join('tag_note', function($join) {
 				$join->on('notes.id', '=', 'tag_note.tag_id');
 			})
+			->where('tag_note.tag_id', '=', $tagId)
 			->select('notes.id', 'notes.notebook_id', 'notebooks.title as notebook_title', 'versions.title', 'versions.content_preview', 'versions.content', 'notes.created_at', 'notes.updated_at', 'note_user.umask')
 			->get();
 
