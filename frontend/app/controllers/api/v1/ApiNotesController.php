@@ -79,9 +79,37 @@ class ApiNotesController extends BaseController {
 		}
 	}
 
-	public function tagIndex($tagId)
+	public function tagged($tagId)
 	{
-		$notes = null;
+		$notes = DB::table('notes')
+			->join('note_user', function($join) {
+				$join->on('notes.id', '=', 'note_user.note_id')
+					->where('note_user.user_id', '=', Auth::user()->id);
+			})
+			->join('notebooks', function($join) {
+				$join->on('notes.notebook_id', '=', 'notebooks.id');
+			})
+			->join('versions', function($join) {
+				$join->on('notes.version_id', '=', 'versions.id');
+			})
+			->join('tag_note', function($join) {
+				$join->on('notes.id', '=', 'tag_note.note_id');
+			})
+			->where('tag_note.tag_id', '=', $tagId)
+			->whereNull('notes.deleted_at')
+			->whereNull('notebooks.deleted_at')
+			->select('notes.id', 'notes.notebook_id', 'notebooks.title as notebook_title', 'versions.title', 'versions.content_preview', 'versions.content', 'notes.created_at', 'notes.updated_at', 'note_user.umask')
+			->get();
+		if(is_null($notes)){
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+		} else {
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notes);
+		}
+	}
+
+	public function search($queryBase64Encoded)
+	{
+		$searchQuery = base64_decode($queryBase64Encoded);
 
 		$notes = DB::table('notes')
 			->join('note_user', function($join) {
@@ -95,13 +123,23 @@ class ApiNotesController extends BaseController {
 				$join->on('notes.version_id', '=', 'versions.id');
 			})
 			->join('tag_note', function($join) {
-				$join->on('notes.id', '=', 'tag_note.tag_id');
+				$join->on('notes.id', '=', 'tag_note.note_id');
 			})
-			->where('tag_note.tag_id', '=', $tagId)
+			->where('versions.title', 'LIKE', '%' . $searchQuery . '%')
+			->orWhere('versions.content', 'LIKE', '%' . $searchQuery . '%')
+			->orWhere('versions.content_preview', 'LIKE', '%' . $searchQuery . '%')
+			// ->orWhere('attachment.content', 'LIKE', '%' . $searchQuery . '%')
+			->whereNull('notes.deleted_at')
+			->whereNull('notebooks.deleted_at')
 			->select('notes.id', 'notes.notebook_id', 'notebooks.title as notebook_title', 'versions.title', 'versions.content_preview', 'versions.content', 'notes.created_at', 'notes.updated_at', 'note_user.umask')
+			->distinct()
 			->get();
 
-		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notes);
+		if(is_null($notes)){
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+		} else {
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notes);
+		}
 	}
 
 	public function show($notebookId, $id = null)
