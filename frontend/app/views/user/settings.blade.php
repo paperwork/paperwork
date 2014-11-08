@@ -21,13 +21,13 @@
 </ul>
 
 <div class="tab-content">
-	<div class="tab-pane active" id="language">
+	<div class="tab-pane fade in active" id="language">
 		@include('user/settings/language', array('settings' => $settings, 'languages' => $languages))
 	</div>
-	<div class="tab-pane" id="client">
+	<div class="tab-pane fade" id="client">
 		@include('user/settings/client', array())
 	</div>
-	<div class="tab-pane" id="import">
+	<div class="tab-pane fade" id="import">
 		@include('user/settings/import', array())
 	</div>
 </div>
