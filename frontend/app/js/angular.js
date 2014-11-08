@@ -1,4 +1,4 @@
-// @codekit-append "angular-resource.js","angular-route.js","angular-sanitize.js","angular-animate.js","angular-file-upload.js";
+// @codekit-append "angular-resource.js","angular-route.js","angular-sanitize.js","angular-animate.js","angular-file-upload.js","angular-utf8-base64.js";
 /**
  * @license AngularJS v1.2.21
  * (c) 2010-2014 Google, Inc. http://angularjs.org
