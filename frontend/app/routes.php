@@ -56,10 +56,12 @@ Route::group(array('prefix' => 'api/v1', 'before' => 'auth'), function()
     Route::resource('shortcuts', 'ApiShortcutsController');
     Route::resource('tags', 'ApiTagsController');
     Route::resource('i18n', 'ApiI18nController');
-    Route::get('/tagged/{num}', 'ApiNotesController@tagIndex');
-
     Route::resource('users', 'ApiUsersController');
     Route::resource('settings', 'ApiSettingsController');
+
+    // Special routes
+    Route::get('/tagged/{num}', 'ApiNotesController@tagged');
+    Route::get('/search/{query}', 'ApiNotesController@search');
 });
 
 // Route::any('/api/v1/notebooks/(:num?)', array('as' => 'api.v1.notebooks', 'uses' => 'ApiNotebooksController@index'));
