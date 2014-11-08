@@ -1,4 +1,4 @@
-paperworkModule.factory('paperworkNotesService', ['$rootScope', '$http', 'paperworkNetService', function($rootScope, $http, paperworkNetService) {
+paperworkModule.factory('paperworkNotesService', ['$rootScope', '$http', 'base64', 'paperworkNetService', function($rootScope, $http, base64, paperworkNetService) {
   var paperworkNotesServiceFactory = {};
 
   // paperworkNotesServiceFactory.selectedNoteIndex = 0;
@@ -49,6 +49,14 @@ paperworkModule.factory('paperworkNotesService', ['$rootScope', '$http', 'paperw
     paperworkNetService.apiGet('/notebooks/0/notes/' + noteId, function(status, data) {
       if(status == 200) {
         $rootScope.note = data.response;
+      }
+    });
+  };
+
+  paperworkNotesServiceFactory.getNotesFromSearch = function(query) {
+    paperworkNetService.apiGet('/search/' + base64.encode(query), function(status, data) {
+      if(status == 200) {
+        $rootScope.notes = data.response;
       }
     });
   };
