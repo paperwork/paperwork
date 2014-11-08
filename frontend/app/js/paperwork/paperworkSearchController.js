@@ -3,12 +3,19 @@ paperworkModule.controller('paperworkSearchController', function($scope, $rootSc
 
   $rootScope.search = sQ;
 
-  var tagId = sQ.match(/tagid\:([0-9]+)/i);
-  if(tagId != null) {
-    $rootScope.notes = paperworkNotesService.getNotesInTag(tagId[1]);
+  var searchMatch = /([a-zA-Z]+)(\:(\d+))?(\/.+)?/g.exec(sQ);
+  if(typeof searchMatch != "undefined" && searchMatch != null && searchMatch.length > 0) {
+    switch(searchMatch[1]) {
+      case "tagid":
+        paperworkNotesService.getNotesInTag(searchMatch[3]);
+      break;
+      default:
+        paperworkNotesService.getNotesFromSearch(searchMatch[0]);
+      break;
+    }
     $rootScope.note = null;
-    // $rootScope.noteSelectedId = -1;
   }
+
   $rootScope.navbarMainMenu = true;
   $rootScope.navbarSearchForm = true;
   $rootScope.expandedNoteLayout = false;
