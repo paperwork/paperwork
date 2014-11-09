@@ -17,7 +17,6 @@
 
     [[ HTML::style('css/freqselector.min.css') ]]
 
-    [[ HTML::style('css/bootstrap-tagsinput.min.css') ]]
     [[ HTML::style('css/typeahead.min.css') ]]
 
 </head>
