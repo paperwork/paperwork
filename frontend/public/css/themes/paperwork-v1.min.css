@@ -8328,6 +8328,7 @@ ul.nav-tabs-margin {
   font-size: 1.2em;
   white-space: nowrap;
   display: block;
+  color: #424242;
 }
 .notes-list .notes-list-item .notes-list-date {
   color: #03a9f4;
@@ -8357,26 +8358,7 @@ ul.nav-tabs-margin {
   font-weight: 400;
   display: block;
   overflow: hidden;
-}
-.notes-list .notes-list-item .notes-list-title-gradient {
-  background-image: -webkit-gradient(linear, left top, right top, color-stop(0.75, #424242), color-stop(1, rgba(66, 66, 66, 0)));
-  background-image: -o-linear-gradient(right, #424242 75%, rgba(66, 66, 66, 0) 100%);
-  background-image: -moz-linear-gradient(right, #424242 75%, rgba(66, 66, 66, 0) 100%);
-  background-image: -webkit-linear-gradient(right, #424242 75%, rgba(66, 66, 66, 0) 100%);
-  background-image: -ms-linear-gradient(right, #424242 75%, rgba(66, 66, 66, 0) 100%);
-  background-image: linear-gradient(to right, #424242 75%, rgba(66, 66, 66, 0) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.notes-list .notes-list-item .notes-list-content-gradient {
-  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.5, #424242), color-stop(1, rgba(66, 66, 66, 0)));
-  background-image: -o-linear-gradient(bottom, #424242 50%, rgba(66, 66, 66, 0) 100%);
-  background-image: -moz-linear-gradient(bottom, #424242 50%, rgba(66, 66, 66, 0) 100%);
-  background-image: -webkit-linear-gradient(bottom, #424242 50%, rgba(66, 66, 66, 0) 100%);
-  background-image: -ms-linear-gradient(bottom, #424242 50%, rgba(66, 66, 66, 0) 100%);
-  background-image: linear-gradient(to bottom, #424242 50%, rgba(66, 66, 66, 0) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #424242;
 }
 .notes-list .notes-list-item.active a {
   border: 2px solid #03a9f4;
