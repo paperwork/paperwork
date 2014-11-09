@@ -8,6 +8,13 @@ paperworkModule.controller('paperworkNotesEditController', function($scope, $roo
     });
   };
 
+  window.hasCkeditChangedFunction = function() {
+    // Let's access our $rootScope from within jQuery (this)
+    _$scope = $('body').scope();
+    _$rootScope = _$scope.$root;
+    return _$rootScope.templateNoteEdit.modified;
+  };
+
   var thisController = function(notebookId, noteId, _onChangeFunction) {
     $rootScope.noteSelectedId = { 'notebookId': notebookId, 'noteId': noteId };
     $rootScope.versionSelectedId = { 'notebookId': notebookId, 'noteId': noteId, 'versionId': 0 };
@@ -27,7 +34,9 @@ paperworkModule.controller('paperworkNotesEditController', function($scope, $roo
       }
     }
 
-    $('input#tags').on('itemAdded', function() {
+    $('input#tags').on('beforeItemAdd', function(ev) {
+      // console.log(ev.item);
+      // ev.item = ev.item.replace('+', '');
       window.onCkeditChangeFunction();
     }).on('itemRemoved', function() {
       window.onCkeditChangeFunction();
@@ -46,6 +55,13 @@ paperworkModule.controller('paperworkNotesEditController', function($scope, $roo
     });
 
     ck.on('change', _onChangeFunction);
+
+    window.onbeforeunloadInfo = $rootScope.i18n.messages.onbeforeunload_info;
+    window.onbeforeunload = function() {
+      if(window.hasCkeditChangedFunction()) {
+        return window.onbeforeunloadInfo;
+      }
+    };
   };
 
   var loadedTags = $rootScope.tags;
@@ -60,7 +76,15 @@ paperworkModule.controller('paperworkNotesEditController', function($scope, $roo
 
   $('input#tags').tagsinput({
     allowDuplicates: false,
+    trimValue: true,
     freeInput: true,
+    tagClass: function(item) {
+      if(item[0] == '+') {
+        return "input-tag-public";
+      } else {
+        return "input-tag-private";
+      }
+    },
     typeaheadjs: {
       name: 'tags',
       displayKey: 'title',
