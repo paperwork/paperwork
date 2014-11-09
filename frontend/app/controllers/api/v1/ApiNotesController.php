@@ -12,7 +12,8 @@ class ApiNotesController extends BaseController {
 		foreach($note->tags as $tag) {
 			$tags[] = array(
 				'id' => $tag->id,
-				'title' => $tag->title
+				'title' => $tag->title,
+				'visibility' => $tag->visibility
 			);
 		}
 		return $tags;
