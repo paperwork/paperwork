@@ -8555,6 +8555,12 @@ body.paperwork-guest .form-signin .control-label {
 /*
  * Bootstrap foo
  */
+.modal-backdrop {
+  z-index: 9998;
+}
+.modal {
+  z-index: 9999;
+}
 .form-control {
   -webkit-box-shadow: 0;
   box-shadow: 0;
