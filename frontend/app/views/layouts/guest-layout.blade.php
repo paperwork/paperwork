@@ -11,11 +11,12 @@
     <title>Paperwork</title>
 
     [[ HTML::style('css/bootstrap.min.css') ]]
-    [[ HTML::style('css/bootstrap-theme.min.css') ]]
-    [[ HTML::style('css/paperwork-login.min.css') ]]
+    <!-- [[ HTML::style('css/bootstrap-theme.min.css') ]] -->
+
+    [[ HTML::style('css/themes/paperwork-v1.min.css') ]]
 
   </head>
-  <body>
+  <body class="paperwork-guest">
 
     <div class="container">
       <div class="guest-logo">

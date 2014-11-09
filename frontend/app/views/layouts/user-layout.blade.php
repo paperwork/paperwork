@@ -11,9 +11,11 @@
     <title>Paperwork</title>
 
 	[[ HTML::style('css/bootstrap.min.css') ]]
-    [[ HTML::style('css/bootstrap-theme.min.css') ]]
+    <!-- [[ HTML::style('css/bootstrap-theme.min.css') ]] -->
+
+    [[ HTML::style('css/themes/paperwork-v1.min.css') ]]
+
     [[ HTML::style('css/freqselector.min.css') ]]
-    [[ HTML::style('css/paperwork.min.css') ]]
 
     [[ HTML::style('css/bootstrap-tagsinput.min.css') ]]
     [[ HTML::style('css/typeahead.min.css') ]]
