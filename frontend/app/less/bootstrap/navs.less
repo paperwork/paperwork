@@ -36,7 +36,7 @@
         color: @nav-disabled-link-hover-color;
         text-decoration: none;
         background-color: transparent;
-        cursor: not-allowed;
+        cursor: @cursor-disabled;
       }
     }
   }
@@ -84,7 +84,6 @@
     > a {
       margin-right: 2px;
       line-height: @line-height-base;
-      color: @nav-tabs-link-color;
       border: 1px solid transparent;
       border-radius: @border-radius-base @border-radius-base 0 0;
       &:hover {
@@ -224,9 +223,11 @@
 .tab-content {
   > .tab-pane {
     display: none;
+    visibility: hidden;
   }
   > .active {
     display: block;
+    visibility: visible;
   }
 }
 
