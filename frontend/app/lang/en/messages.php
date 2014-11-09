@@ -8,6 +8,7 @@ return array(
 	'note_version_info' => 'You are previewing an older version of this note.',
 	'found_bug' => 'Found a bug? <a href="https://github.com/twostairs/paperwork/issues/new" target="_blank" title="Submit Issue">Submit it on GitHub!</a>',
 	'error_message' => 'Whooops!',
+	'onbeforeunload_info' => 'Data will be lost if you leave the page, are you sure?',
 	'user' => array(
 		'settings' => array(
 			'language' => array(
