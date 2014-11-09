@@ -131,6 +131,10 @@ return array(
 	|
 	| The maximum accepted length of this variable is exactly one character.
 	|
+	| WARNING: This value may only be changed during setup, as long as no
+	| tags have been added. If you change this afterwards, things will
+	| break.
+	|
 	*/
 	'tagsPublicPrefixCharacter' => '+',
 
