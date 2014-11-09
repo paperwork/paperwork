@@ -4,6 +4,15 @@ paperworkModule.controller('paperworkConstructorController', function($scope, $r
     }
     $rootScope.initDone = true;
 
+    // We need to close popovers, else they will hang up if the ng-view is being switched.
+    $('body').on('mousedown', function (e) {
+        $('[data-toggle="popover"]').each(function () {
+            if (!$(this).is(e.target) && $(this).has(e.target).length === 0 && $('.popover').has(e.target).length === 0) {
+                $(this).popover('hide');
+            }
+        });
+    });
+
     paperworkNetService.apiGet('/i18n', function(status, data) {
       if(status == 200) {
         $rootScope.i18n = data.response;
