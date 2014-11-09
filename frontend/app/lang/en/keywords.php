@@ -26,6 +26,7 @@ return array(
 	'move_notes' => 'Move notes',
 	'delete_note' => 'Delete note',
 	'delete_notes' => 'Delete notes',
+	'note_info' => 'Note info',
 	'new_notebook' => 'New notebook',
 	'edit_notebook' => 'Edit notebook',
 	'delete_notebook' => 'Delete notebook',
@@ -64,5 +65,7 @@ return array(
 	'select_notebook_title' => 'Select notebook',
 	'select' => 'Select',
 	'damn' => 'Damn.',
+	'created_at' => 'Created',
+	'updated_at' => 'Updated',
 
 );
