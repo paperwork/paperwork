@@ -8574,6 +8574,7 @@ ul.nav-tabs-margin {
   line-height: 42px;
   text-align: center;
   margin: 0px 0px 12px 0px;
+  cursor: pointer;
 }
 .file-upload-dropzone-active {
   border: 1px solid #03a9f4;
