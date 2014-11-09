@@ -357,6 +357,48 @@ A single tag object with all its details
 
             {"success":true,"response":{"id":"1","title":"Testing"}}
 
+# Group Tagged
+Special resource, listing notes tagged with a specific tagid
+
+## Notes tagged with TagID [/api/v1/tagged/{tagId}]
+An array of notes, tagged with tagId, including all their details
+
++ Parameters
+    + tagId (required, number, `1`) ... Numeric `id` of the tag to perform action with.
+
+### Retrieve a version of a note [GET]
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic dGVzdEBwYXBlcndvcmsucm9ja3M6dGVzdDEyMw==
+
++ Response 200 (application/json)
+
+    + Body
+
+            {"success":true,"response":[{"id":"8","notebook_id":"1","notebook_title":"First Notebook","title":"Hello World!","content_preview":"Hello World!\n\n\n\n&nbsp;\n","content":"<p>Hello World!<\/p>\n\n<p><a href=\"\/api\/v1\/notebooks\/0\/notes\/8\/versions\/0\/attachments\/36\/raw\" title=\"twostairs-combi01-small.png\"><img alt=\"twostairs-combi01-small.png\" src=\"\/api\/v1\/notebooks\/0\/notes\/8\/versions\/0\/attachments\/36\/raw\" \/><\/a><\/p>\n\n<p>&nbsp;<\/p>\n","created_at":"2014-09-13 17:36:25","updated_at":"2014-10-15 22:43:12","umask":"0","tags":[{"id":"1","title":"Testing"},{"id":"2","title":"hello"},{"id":"3","title":"test"},{"id":"4","title":"dawd"},{"id":"5","title":"lol"}],"versions":[{"id":"40","previous_id":"39","next_id":null,"latest":true,"timestamp":1413412992},{"id":"39","previous_id":"38","next_id":"40","latest":false,"timestamp":1413412984},{"id":"38","previous_id":"37","next_id":"39","latest":false,"timestamp":1413412964},{"id":"37","previous_id":"36","next_id":"38","latest":false,"timestamp":1413412575},{"id":"36","previous_id":"35","next_id":"37","latest":false,"timestamp":1413411820},{"id":"35","previous_id":"34","next_id":"36","latest":false,"timestamp":1413408377},{"id":"34","previous_id":"33","next_id":"35","latest":false,"timestamp":1413408337},{"id":"33","previous_id":"32","next_id":"34","latest":false,"timestamp":1413408297},{"id":"32","previous_id":"30","next_id":"33","latest":false,"timestamp":1413408120},{"id":"30","previous_id":"29","next_id":"32","latest":false,"timestamp":1413140110},{"id":"29","previous_id":"28","next_id":"30","latest":false,"timestamp":1412199944},{"id":"28","previous_id":"27","next_id":"29","latest":false,"timestamp":1411579558},{"id":"27","previous_id":"20","next_id":"28","latest":false,"timestamp":1411579541},{"id":"20","previous_id":"19","next_id":"27","latest":false,"timestamp":1410811789},{"id":"19","previous_id":"16","next_id":"20","latest":false,"timestamp":1410811641},{"id":"16","previous_id":"15","next_id":"19","latest":false,"timestamp":1410629791},{"id":"15","previous_id":null,"next_id":"16","latest":false,"timestamp":1410629785}]}]}
+
+# Group Search
+Special resource, listing notes containing a specific keyword
+
+## Notes containing keyword [/api/v1/search/{keyword}]
+An array of notes, containing keyword, including all their details
+
++ Parameters
+    + keyword (required, string, `dGVzdA==`) ... String, base64 encoded keyword to perform action with.
+
+### Retrieve a version of a note [GET]
++ Request (application/json)
+    + Headers
+
+            Authorization: Basic dGVzdEBwYXBlcndvcmsucm9ja3M6dGVzdDEyMw==
+
++ Response 200 (application/json)
+
+    + Body
+
+            {"success":true,"response":[{"id":"12","notebook_id":"1","notebook_title":"First Notebook","title":"Test","content_preview":"Test\n","content":"<p>Test<\/p>\n","created_at":"2014-09-20 23:20:08","updated_at":"2014-09-20 23:20:13","umask":"0","tags":[],"versions":[{"id":"26","previous_id":"25","next_id":null,"latest":true,"timestamp":1411255213},{"id":"25","previous_id":null,"next_id":"26","latest":false,"timestamp":1411255208}]}]}
+
 # Group Users
 User related resources
 
