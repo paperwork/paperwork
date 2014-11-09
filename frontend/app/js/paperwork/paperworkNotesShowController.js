@@ -17,6 +17,17 @@ paperworkModule.controller('paperworkNotesShowController', function($scope, $roo
     $rootScope.fileList = response;
   });
 
+  $('body').popover({
+    selector: '#note-info',
+    container: 'body',
+    viewport: {
+      selector: '#paperworkView',
+      padding: 16
+    },
+    trigger: 'click',
+    html: true
+  });
+
   $rootScope.navbarMainMenu = true;
   $rootScope.navbarSearchForm = true;
   $rootScope.expandedNoteLayout = false;
