@@ -48,6 +48,10 @@ paperworkModule.controller('paperworkFileUploadController', ['$scope', '$rootSco
       });
   };
 
+  $('#file-upload-dropzone').click(function() {
+    $('#file-upload-input').click();
+  });
+
   $scope.fileUploadDeleteFile = function(notebookId, noteId, versionId, attachmentId, isSure) {
     if(isSure != true) {
       $rootScope.messageBox({

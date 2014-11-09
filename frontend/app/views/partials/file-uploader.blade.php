@@ -1,10 +1,11 @@
-<div ng-controller="paperworkFileUploadController" class="file-upload-wrapper padding-twenty" uploader="uploader" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
+<div class="padding-twenty">
 
     <div class="file-uploader">
         @if ($uploadEnabled)
-        <div class="file-upload-dropzone" over-class="file-upload-dropzone-active" nv-file-over="" uploader="uploader">
+        <div ng-show="uploader.isHTML5" id="file-upload-dropzone" class="file-upload-dropzone" over-class="file-upload-dropzone-active" nv-file-over="" uploader="uploader">
             <span><i class="fa fa-upload"></i> [[Lang::get('keywords.upload_document')]]</span>
         </div>
+        <input id="file-upload-input" class="{{ uploader.isHTML5 ? 'file-upload-input-hidden' : '' }}" type="file" nv-file-select="" uploader="uploader" multiple="">
         @endif
 
         <table class="table table-striped" ng-show="(uploader.queue.length > 0 || fileList.length > 0)">

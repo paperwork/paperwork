@@ -1,6 +1,7 @@
+<div ng-controller="paperworkFileUploadController" class="file-upload-wrapper" uploader="uploader" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
 	<nav class="navbar navbar-inverse" role="navigation">
 		<div class="container-fluid">
-		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		    <div class="collapse navbar-collapse" id="navbar-paperwork-note-edit">
 		      <ul class="nav navbar-nav">
 		      	<li>
 			      	<div class="btn-group">
@@ -45,3 +46,4 @@
   			</div>
   		</div>
 	</div>
+</div>
