@@ -47,6 +47,111 @@ label {
   padding: 0px 0px 8px 0px;
 }
 
+.note-tags-bar {
+  margin: 16px 0px 10px 0px;
+}
+
+.label-tag {
+  padding: 4px 8px;
+  margin: 3px 6px 3px 0px;
+  font-size: 0.9em;
+  line-height: 1em;
+  font-weight: 100;
+
+  i.fa {
+    font-size: 0.9em;
+  }
+}
+
+.label-tag-private {
+  color: @tag-private-color;
+  background-color: @tag-private-bg;
+}
+
+.label-tag-public {
+  color: @tag-public-color;
+  background-color: @tag-public-bg;
+}
+
+#wayback-machine {
+  margin-bottom: 16px;
+}
+
+/* Bootstrap Tagsinput */
+
+.bootstrap-tagsinput {
+  background-color: @white;
+  border: 1px solid @gray-medium;
+  display: block;
+  padding: 4px 6px;
+  color: @text-color;
+  vertical-align: middle;
+  border-radius: 4px;
+  max-width: 100%;
+  line-height: 22px;
+  cursor: text;
+  font-size: 1.1em;
+
+  input {
+    border: none;
+    box-shadow: none;
+    outline: none;
+    background-color: transparent;
+    padding: 0 6px;
+    margin: 0;
+    width: auto !important;
+    min-width: 120px;
+    max-width: inherit;
+  }
+
+  input:focus {
+    border: none;
+    box-shadow: none;
+  }
+
+  .tag {
+    border-radius: 0.25em;
+    padding: 4px 8px;
+    margin: 3px 6px 3px 0px;
+    font-size: 0.9em;
+    line-height: 1em;
+    font-weight: 100;
+  }
+  .tag [data-role="remove"] {
+    font-weight: 600;
+    margin-left: 8px;
+    cursor: pointer;
+  }
+  .tag [data-role="remove"]:after {
+    content: "x";
+    padding: 0px 2px;
+  }
+  .tag [data-role="remove"]:hover {
+  }
+  .tag [data-role="remove"]:hover:active {
+  }
+  .input-tag-private {
+    color: @tag-private-color !important;
+    background-color: @tag-private-bg;
+  }
+
+  .input-tag-public {
+    color: @tag-public-color !important;
+    background-color: @tag-public-bg;
+  }
+}
+
+.bootstrap-tagsinput.form-control input::-moz-placeholder {
+  color: @text-disabled-color;
+  opacity: 1;
+}
+.bootstrap-tagsinput.form-control input:-ms-input-placeholder {
+  color: @text-disabled-color;
+}
+.bootstrap-tagsinput.form-control input::-webkit-input-placeholder {
+  color: @text-disabled-color;
+}
+
 /* Customize container */
 @media (min-width: 768px) {
   .container-narrow {
@@ -516,6 +621,12 @@ ul.nav-tabs-margin {
 
 .file-upload-dropzone-active {
   border: 1px solid @brand-primary;
+}
+
+.file-upload-input-hidden {
+  display: block;
+  visibility: hidden;
+  height: 0px;
 }
 
 .table {
