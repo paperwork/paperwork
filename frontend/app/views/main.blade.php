@@ -35,7 +35,7 @@
 						<li>
 							<span class="tree-header"><i class="fa fa-chevron-down"></i> [[Lang::get('keywords.tags')]]</span>
 							<ul class="tree-child">
-								<li class="tree-tag" ng-repeat="tag in tags">
+								<li class="tree-tag" ng-repeat="tag in tags | orderBy:'title':reverse">
 									<span ng-click="openTag(tag.id)" ng-class="{ 'active': tag.id == tagsSelectedId }"><i class="fa fa-tag"></i> {{tag.title}}</span>
 								</li>
 							</ul>
