@@ -92,4 +92,35 @@ paperworkModule.controller('paperworkFileUploadController', ['$scope', '$rootSco
     var fileUrl = '/api/v1/notebooks/' + notebookId + '/notes/' + noteId + '/versions/' + versionId + '/attachments/' + attachmentId + '/raw';
     $rootScope.$broadcast('insertAttachmentLink', { 'url': fileUrl, 'filename': attachment.filename, 'mimetype': attachment.mimetype });
   };
+
+  $scope.getFaClassFromMimetype = function(mimetype) {
+    var mimematch = /(.+)\/(.+)/g.exec(mimetype);
+    switch(mimematch[1]) {
+      case 'image':
+        return 'fa-file-image-o';
+      break;
+      case 'video':
+        return 'fa-file-movie-o';
+      break;
+      case 'audio':
+        return 'fa-file-audio-o';
+      break;
+      case 'application':
+        switch(mimematch[2]) {
+          case 'pdf':
+            return 'fa-file-pdf-o';
+          break;
+          case 'zip':
+            return 'fa-file-archive-o';
+          break;
+          default:
+            return 'fa-file-o';
+          break;
+        }
+      break;
+      default:
+        return 'fa-file-o';
+      break;
+    }
+  };
 }]);
