@@ -29,10 +29,10 @@
 					<div>
 						<div class="page-header">
 							<div class="form-group {{ errors.title ? 'has-error' : '' }}">
-								<input type="text" class="form-control input-lg" id="title" placeholder="Note title" ng-model="templateNoteEdit.title">
+								<input type="text" class="form-control input-lg" id="title" placeholder="[[Lang::get('keywords.note_title')]]" ng-model="templateNoteEdit.title">
 							</div>
 							<div class="form-group {{ errors.tags ? 'has-error' : '' }}">
-								<input type="text" class="form-control input-lg" id="tags">
+								<input type="text" class="form-control input-lg" id="tags" placeholder="[[Lang::get('keywords.tags')]]">
 							</div>
 						</div>
 						<div class="page-content">
