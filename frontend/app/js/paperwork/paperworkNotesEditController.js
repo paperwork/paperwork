@@ -92,6 +92,12 @@ paperworkModule.controller('paperworkNotesEditController', function($scope, $roo
       source: userTags.ttAdapter()
     }
   });
+  // This doesn't seem to be working. I might be patching the tagsinput plugin someday to get this working cleanly.
+  // $('input#tags').tagsinput('focus');
+  // $('input#tags').find('input.tt-input').blur(function() {
+  //   var e = jQuery.Event('keydown', { which: 13 });
+  //   $(this).trigger(e);
+  // });
 
   $scope.$on('insertAttachmentLink', function(ev, args) {
     if(typeof args == "undefined" || typeof args.url == "undefined" || typeof args.mimetype == "undefined") {
