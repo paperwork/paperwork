@@ -528,6 +528,17 @@
 		"outputStyle": 0,
 		"syntaxCheckerStyle": 0
 		},
+	"\/app\/js\/paperwork\/paperworkSidebarNotesController.js": {
+		"fileType": 64,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/app\/js\/paperwork\/paperworkSidebarNotesController.js",
+		"outputAbbreviatedPath": "\/app\/js\/paperwork\/min\/paperworkSidebarNotesController-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/app\/js\/paperwork\/paperworkVersionsController.js": {
 		"fileType": 64,
 		"ignore": 1,
@@ -2271,7 +2282,7 @@
 		"disableJavascript": 0,
 		"fileType": 1,
 		"ieCompatibility": 1,
-		"ignore": 1,
+		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/app\/less\/font-lato.less",
 		"outputAbbreviatedPath": "\/app\/css\/font-lato.css",
