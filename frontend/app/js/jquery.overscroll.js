@@ -5,7 +5,7 @@
  *
  * Intended for use with the latest jQuery
  *  http://code.jquery.com/jquery-latest.js
- *  
+ *
  * Copyright 2014, Jonathan Azoff
  * Licensed under the MIT license.
  *  https://github.com/azoff/overscroll/blob/master/mit.license
@@ -120,7 +120,7 @@
 		(function() {
 			var div = dom.createElement('div');
 			var prefixes = ['webkit', 'moz'];
-			var gmail = 'https://mail.google.com/mail/images/2/';
+			var gmail = '/images/';
 			cursorStyles = {
 				grab:     'url('+gmail+'openhand.cur), move',
 				grabbing: 'url('+gmail+'closedhand.cur), move'
