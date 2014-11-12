@@ -70,5 +70,6 @@ return array(
 	'damn' => 'Damn.',
 	'created_at' => 'Created',
 	'updated_at' => 'Updated',
+	'untitled' => 'Untitled',
 
 );

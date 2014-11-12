@@ -45,10 +45,13 @@ paperworkModule.factory('paperworkNotesService', ['$rootScope', '$http', 'base64
     });
   };
 
-  paperworkNotesServiceFactory.getNoteById = function(noteId) {
+  paperworkNotesServiceFactory.getNoteById = function(noteId, callback) {
     paperworkNetService.apiGet('/notebooks/0/notes/' + noteId, function(status, data) {
       if(status == 200) {
         $rootScope.note = data.response;
+        if(typeof callback != "undefined") {
+          callback(data.response);
+        }
       }
     });
   };

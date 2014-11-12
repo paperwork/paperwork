@@ -31,7 +31,7 @@ paperworkModule.controller('paperworkSidebarNotesController', function($scope, $
     }
 
     var data = {
-      'title': '',
+      'title': $rootScope.i18n.keywords.untitled,
       'content': ''
     };
 
