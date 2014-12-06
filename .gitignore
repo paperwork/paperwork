@@ -1,3 +1,4 @@
 .DS_Store
 .codekit-cache
 frontend/app/storage/attachments/*
+frontend/node_modules
