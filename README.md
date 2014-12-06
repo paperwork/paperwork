@@ -76,6 +76,20 @@ Upgrading to the latest GIT version of Paperwork is fairly easy. Update your loc
 
 The API documentation can be found at [docs.paperwork.apiary.io](http://docs.paperwork.apiary.io/) or built using the ``apiary.apib`` file from this repository. It's not yet complete and could change at any time!
 
+## Developing
+
+Developing on Paperwork is fairly easy for anyone who's familiar with Laravel 4. Within `frontend/app/` all internal code can be found, including all source LESS and JavaScript files that are being used to generate the output files that lie in `frontend/public/css/` and `frontend/public/js`.
+
+If you need to modify the stylesheet or JavaScript, *DO NOT TOUCH ANY OF THE FILES IN `frontend/public/`*, as they will be overwritten by the generator process. Instead, modify the files in `frontend/app/less/` and `frontend/app/js/`. For building, you'll need Gulp.js.
+
+Switch into `frontend` directory on a command line and execute the following:
+
+```
+npm install
+```
+
+npm will install all dependencies required through the `package.json`, so that you'll be able to run the generator process yourself. For doing so, simply run the command `gulp` within your `frontend` directory.
+
 ## Some last words
 
 The current development status is far from being worth called "version 1.0". However, if I could get you interested in this project and you feel like contributing, don't hesitate to ping me by e-mail ([marius@paperwork.rocks](mailto:marius@paperwork.rocks)) or twitter ([@devilx](https://twitter.com/devilx)) so we can talk. :-)
