@@ -29,7 +29,7 @@
       </header>
       <section>
         <h1>
-<a name="paperwork---opensource-note-taking--archiving" class="anchor" href="#paperwork---opensource-note-taking--archiving"><span class="octicon octicon-link"></span></a>Paperwork - OpenSource note-taking &amp; archiving</h1>
+<a id="paperwork---opensource-note-taking--archiving" class="anchor" href="#paperwork---opensource-note-taking--archiving" aria-hidden="true"><span class="octicon octicon-link"></span></a>Paperwork - OpenSource note-taking &amp; archiving</h1>
 
 <p><a href="https://travis-ci.org/twostairs/paperwork"><img src="https://travis-ci.org/twostairs/paperwork.svg?branch=master" alt="Build Status"></a></p>
 
@@ -42,7 +42,7 @@
 <p>For the back-end part a MySQL database stores everything. With such common requirements (Linux, Apache, MySQL, PHP), Paperwork will be able to run not only on dedicated servers, but also on small to mid-size NAS devices (Synology (R), QNAP (R), etc.).</p>
 
 <h2>
-<a name="screenshots-might-not-be-up-to-date-please-use-the-demo-below" class="anchor" href="#screenshots-might-not-be-up-to-date-please-use-the-demo-below"><span class="octicon octicon-link"></span></a>Screenshots (might not be up to date, please use the demo below!)</h2>
+<a id="screenshots-might-not-be-up-to-date-please-use-the-demo-below" class="anchor" href="#screenshots-might-not-be-up-to-date-please-use-the-demo-below" aria-hidden="true"><span class="octicon octicon-link"></span></a>Screenshots (might not be up to date, please use the demo below!)</h2>
 
 <p><img src="https://raw.githubusercontent.com/twostairs/paperwork/gh-pages/images/screenshots/01.png" alt="01">
 <img src="https://raw.githubusercontent.com/twostairs/paperwork/gh-pages/images/screenshots/02.png" alt="02">
@@ -53,14 +53,14 @@
 <img src="https://raw.githubusercontent.com/twostairs/paperwork/gh-pages/images/screenshots/07.png" alt="07"></p>
 
 <h2>
-<a name="demo-yes-there-is-one" class="anchor" href="#demo-yes-there-is-one"><span class="octicon octicon-link"></span></a>Demo (yes, there is one!)</h2>
+<a id="demo-yes-there-is-one" class="anchor" href="#demo-yes-there-is-one" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo (yes, there is one!)</h2>
 
 <p>At <a href="http://demo.paperwork.rocks">demo.paperwork.rocks</a> you can actually see the current development status of Paperwork. Every night at 3am (CET) the database is being dropped and newly created, and the latest sources from GitHub are being deployed on the machine.</p>
 
 <p>Feel free to create/modify/delete accounts, notebooks and notes. This demo can be used for heavy playing without regrets. Just try not to take down that thing. :)</p>
 
 <h2>
-<a name="initial-installation-quick--dirty-documented" class="anchor" href="#initial-installation-quick--dirty-documented"><span class="octicon octicon-link"></span></a>Initial installation (quick &amp; dirty documented)</h2>
+<a id="initial-installation-quick--dirty-documented" class="anchor" href="#initial-installation-quick--dirty-documented" aria-hidden="true"><span class="octicon octicon-link"></span></a>Initial installation (quick &amp; dirty documented)</h2>
 
 <p>First of all, you need to clone this project to your machine. After that, make sure that you have one of the latest PHP versions &gt; 5.1 and an up-to-date "composer" installed. If you're not sure how composer works, please continue reading here: <a href="https://getcomposer.org/">https://getcomposer.org/</a></p>
 
@@ -90,7 +90,7 @@
 <p>That's pretty much it. From here on, you should be able to access your paperwork instance through the web.</p>
 
 <h2>
-<a name="run-using-docker" class="anchor" href="#run-using-docker"><span class="octicon octicon-link"></span></a>Run using Docker</h2>
+<a id="run-using-docker" class="anchor" href="#run-using-docker" aria-hidden="true"><span class="octicon octicon-link"></span></a>Run using Docker</h2>
 
 <p>Basically you just have to:</p>
 
@@ -103,35 +103,49 @@
 </code></pre>
 
 <h2>
-<a name="upgrading" class="anchor" href="#upgrading"><span class="octicon octicon-link"></span></a>Upgrading</h2>
+<a id="upgrading" class="anchor" href="#upgrading" aria-hidden="true"><span class="octicon octicon-link"></span></a>Upgrading</h2>
 
 <p>Upgrading to the latest GIT version of Paperwork is fairly easy. Update your local repository running <code>git pull</code>, then <code>cd</code> into the <code>frontend/</code> directory and run <code>php artisan migrate</code>. In most cases this should work. If you're experiencing issues, you might need to clear the database completely and re-run the initial installation.</p>
 
 <h2>
-<a name="api-documentation" class="anchor" href="#api-documentation"><span class="octicon octicon-link"></span></a>API documentation</h2>
+<a id="api-documentation" class="anchor" href="#api-documentation" aria-hidden="true"><span class="octicon octicon-link"></span></a>API documentation</h2>
 
 <p>The API documentation can be found at <a href="http://docs.paperwork.apiary.io/">docs.paperwork.apiary.io</a> or built using the <code>apiary.apib</code> file from this repository. It's not yet complete and could change at any time!</p>
 
 <h2>
-<a name="some-last-words" class="anchor" href="#some-last-words"><span class="octicon octicon-link"></span></a>Some last words</h2>
+<a id="developing" class="anchor" href="#developing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Developing</h2>
+
+<p>Developing on Paperwork is fairly easy for anyone who's familiar with Laravel 4. Within <code>frontend/app/</code> all internal code can be found, including all source LESS and JavaScript files that are being used to generate the output files that lie in <code>frontend/public/css/</code> and <code>frontend/public/js</code>.</p>
+
+<p>If you need to modify the stylesheet or JavaScript, <em>DO NOT TOUCH ANY OF THE FILES IN <code>frontend/public/</code></em>, as they will be overwritten by the generator process. Instead, modify the files in <code>frontend/app/less/</code> and <code>frontend/app/js/</code>. For building, you'll need Gulp.js.</p>
+
+<p>Switch into <code>frontend</code> directory on a command line and execute the following:</p>
+
+<pre><code>npm install
+</code></pre>
+
+<p>npm will install all dependencies required through the <code>package.json</code>, so that you'll be able to run the generator process yourself. For doing so, simply run the command <code>gulp</code> within your <code>frontend</code> directory.</p>
+
+<h2>
+<a id="some-last-words" class="anchor" href="#some-last-words" aria-hidden="true"><span class="octicon octicon-link"></span></a>Some last words</h2>
 
 <p>The current development status is far from being worth called "version 1.0". However, if I could get you interested in this project and you feel like contributing, don't hesitate to ping me by e-mail (<a href="mailto:marius@paperwork.rocks">marius@paperwork.rocks</a>) or twitter (<a href="https://twitter.com/devilx">@devilx</a>) so we can talk. :-)</p>
 
 <h2>
-<a name="faq" class="anchor" href="#faq"><span class="octicon octicon-link"></span></a>FAQ</h2>
+<a id="faq" class="anchor" href="#faq" aria-hidden="true"><span class="octicon octicon-link"></span></a>FAQ</h2>
 
 <h3>
-<a name="can-i-run-paperwork-on-a-shared-host-environment-where-im-not-able-to-set-frontendpublic-as-document-root" class="anchor" href="#can-i-run-paperwork-on-a-shared-host-environment-where-im-not-able-to-set-frontendpublic-as-document-root"><span class="octicon octicon-link"></span></a>Can I run Paperwork on a shared host environment, where I'm not able to set <code>frontend/public</code> as document root?</h3>
+<a id="can-i-run-paperwork-on-a-shared-host-environment-where-im-not-able-to-set-frontendpublic-as-document-root" class="anchor" href="#can-i-run-paperwork-on-a-shared-host-environment-where-im-not-able-to-set-frontendpublic-as-document-root" aria-hidden="true"><span class="octicon octicon-link"></span></a>Can I run Paperwork on a shared host environment, where I'm not able to set <code>frontend/public</code> as document root?</h3>
 
 <p>Basically you can. This has nothing to do with Paperwork specifically, though. The foundation ontop of which Paperwork is built up (Laravel) needs to be reconfigured to support a shared host environment. <a href="https://www.google.com/search?q=laravel+4+shared+host">Here</a> you can find more info about how to do so.</p>
 
 <h3>
-<a name="are-you-planning-to-implement--into-paperwork-soon" class="anchor" href="#are-you-planning-to-implement--into-paperwork-soon"><span class="octicon octicon-link"></span></a>Are you planning to implement ... into Paperwork soon?</h3>
+<a id="are-you-planning-to-implement--into-paperwork-soon" class="anchor" href="#are-you-planning-to-implement--into-paperwork-soon" aria-hidden="true"><span class="octicon octicon-link"></span></a>Are you planning to implement ... into Paperwork soon?</h3>
 
 <p>Maybe. Check out more detailed information about the features we are currently working on <a href="https://trello.com/paperwork">here</a>.</p>
 
 <h3>
-<a name="i-would-like-to-join-paperwork-development-whats-the-best-way-to-do-so" class="anchor" href="#i-would-like-to-join-paperwork-development-whats-the-best-way-to-do-so"><span class="octicon octicon-link"></span></a>I would like to join Paperwork development, what's the best way to do so?</h3>
+<a id="i-would-like-to-join-paperwork-development-whats-the-best-way-to-do-so" class="anchor" href="#i-would-like-to-join-paperwork-development-whats-the-best-way-to-do-so" aria-hidden="true"><span class="octicon octicon-link"></span></a>I would like to join Paperwork development, what's the best way to do so?</h3>
 
 <p>Contribute. Simply fork the Paperwork repository here on GitHub, add you contributions and send us pull-requests. In addition, make sure to shoot us an e-mail at <a href="mailto:paperwork-dev@googlegroups.com">paperwork-dev@googlegroups.com</a> and inform us about your interest in joining the team. We will then make sure to give you the required access to our <a href="https://trello.com/paperwork">Trello</a> as well.</p>
       </section>
