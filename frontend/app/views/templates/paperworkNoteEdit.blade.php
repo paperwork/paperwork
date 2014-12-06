@@ -32,7 +32,7 @@
 								<input type="text" class="form-control input-lg" id="title" placeholder="[[Lang::get('keywords.note_title')]]" ng-model="templateNoteEdit.title">
 							</div>
 							<div class="form-group {{ errors.tags ? 'has-error' : '' }}">
-								<input type="text" class="form-control input-lg" id="tags" placeholder="[[Lang::get('keywords.tags')]]">
+								<input type="text" class="form-control input-lg" id="tags" placeholder="[[Lang::get('keywords.tags_separated')]]">
 							</div>
 						</div>
 						<div class="page-content">
