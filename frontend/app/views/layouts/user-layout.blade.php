@@ -10,7 +10,7 @@
 
     <title>Paperwork</title>
 
-	[[ HTML::style('css/bootstrap.min.css') ]]
+	<!-- [[ HTML::style('css/bootstrap.min.css') ]] -->
     <!-- [[ HTML::style('css/bootstrap-theme.min.css') ]] -->
 
     [[ HTML::style('css/themes/paperwork-v1.min.css') ]]
@@ -70,26 +70,22 @@
     </div>
 
 	[[ HTML::script('js/jquery.min.js') ]]
-	[[ HTML::script('js/freqselector.min.js') ]]
-	[[ HTML::script('js/retina.min.js') ]]
+	[[ HTML::script('js/libraries.min.js') ]]
 	[[ HTML::script('js/angular.min.js') ]]
 
 	[[ HTML::script('js/paperwork.min.js') ]]
 
 	[[ HTML::script('js/bootstrap.min.js') ]]
-	[[ HTML::script('js/bootstrap-tree.min.js') ]]
-	[[ HTML::script('js/typeahead.min.js') ]]
-	[[ HTML::script('js/bootstrap-tagsinput.min.js') ]]
+	[[ HTML::script('js/tagsinput.min.js') ]]
 
 	[[ HTML::script('ckeditor/ckeditor.js') ]]
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
-    [[ HTML::script('js/html5shiv.min.js') ]]
-    [[ HTML::script('js/respond.min.js') ]]
+    [[ HTML::script('js/ltie9compat.min.js') ]]
   <![endif]-->
   <!--[if lt IE 11]>
-    [[ HTML::script('js/ie10-viewport-bug-workaround.js') ]]
+    [[ HTML::script('js/ltie11compat.js') ]]
   <![endif]-->
 
 </body>
