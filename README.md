@@ -102,9 +102,9 @@ Basically you can. This has nothing to do with Paperwork specifically, though. T
 
 ### Are you planning to implement ... into Paperwork soon?
 
-Maybe. Check out more detailed information about the features we are currently working on [here](https://trello.com/paperwork).
+Maybe. Check out more detailed information about the features we are currently working on [here](https://github.com/twostairs/paperwork/issues).
 
 ### I would like to join Paperwork development, what's the best way to do so?
 
-Contribute. Simply fork the Paperwork repository here on GitHub, add you contributions and send us pull-requests. In addition, make sure to shoot us an e-mail at [paperwork-dev@googlegroups.com](mailto:paperwork-dev@googlegroups.com) and inform us about your interest in joining the team. We will then make sure to give you the required access to our [Trello](https://trello.com/paperwork) as well.
+Contribute. Simply fork the Paperwork repository here on GitHub, add you contributions and send us pull-requests. In addition, make sure to shoot us an e-mail at [paperwork-dev@googlegroups.com](mailto:paperwork-dev@googlegroups.com) and inform us about your interest in joining the team. We will then make sure to give you the required access to our [GitHub Issues](https://github.com/twostairs/paperwork/issues) as well.
 
