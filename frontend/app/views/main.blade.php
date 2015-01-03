@@ -12,7 +12,7 @@
 				<div class="tree ">
 					<ul class="tree-base">
 						<li>
-							<span class="tree-header"><i class="fa fa-chevron-down"></i> [[Lang::get('keywords.shortcuts')]]</span>
+							<span class="tree-header tree-header-shortcuts"><i class="fa fa-chevron-down"></i> [[Lang::get('keywords.shortcuts')]]</span>
 							<ul class="tree-child">
 								<li class="tree-notebook" ng-repeat="shortcut in shortcuts | orderBy:'sortkey'">
 									<span ng-click="openNotebook(shortcut.id, shortcut.type, notebook.id)" ng-class="{ 'active': notebook.id == getNotebookSelectedId() }"><i class="fa fa-book"></i> {{shortcut.title}}</span>
@@ -20,7 +20,7 @@
 							</ul>
 						</li>
 						<li>
-							<span class="tree-header"><i class="fa fa-chevron-down"></i> [[Lang::get('keywords.notebooks')]]</span>
+							<span class="tree-header tree-header-notebooks"><i class="fa fa-chevron-down"></i> [[Lang::get('keywords.notebooks')]]</span>
 							<ul class="tree-child">
 								<li class="tree-notebook" ng-repeat="notebook in notebooks | orderBy:'title'">
 									<span ng-click="openNotebook(notebook.id, notebook.type, notebook.id)" ng-class="{ 'active': notebook.id == getNotebookSelectedId() }"><i class="fa {{ notebookIconByType(notebook.type) }}"></i> {{notebook.title}}</span>
@@ -33,7 +33,7 @@
 							</ul>
 						</li>
 						<li>
-							<span class="tree-header"><i class="fa fa-chevron-down"></i> [[Lang::get('keywords.tags')]]</span>
+							<span class="tree-header tree-header-tags"><i class="fa fa-chevron-down"></i> [[Lang::get('keywords.tags')]]</span>
 							<ul class="tree-child">
 								<li class="tree-tag" ng-repeat="tag in tags | orderBy:'title':reverse">
 									<span ng-click="openTag(tag.id)" ng-class="{ 'active': tag.id == tagsSelectedId }"><i class="fa fa-tag"></i> {{tag.title}}</span>
