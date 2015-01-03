@@ -3,6 +3,7 @@
     "gulp": "^3.8.10",
     "gulp-concat": "^2.4.2",
     "gulp-less": "^2.0.1",
+    "gulp-livereload": "^3.2.0",
     "gulp-rename": "^1.2.0"
   }
 }

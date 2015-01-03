@@ -2,6 +2,7 @@ var gulp = require('gulp');
 var less = require('gulp-less');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
+var livereload = require('gulp-livereload');
 
 gulp.task('compileLessBootstrapTheme', function() {
 	gulp
@@ -12,7 +13,8 @@ gulp.task('compileLessBootstrapTheme', function() {
 		.pipe(rename({
 			basename: 'bootstrap-theme.min'
 		}))
-		.pipe(gulp.dest('public/css'));
+		.pipe(gulp.dest('public/css'))
+		.pipe(livereload());
 });
 
 gulp.task('compileLessPaperworkThemeV1', function() {
@@ -24,7 +26,8 @@ gulp.task('compileLessPaperworkThemeV1', function() {
 		.pipe(rename({
 			basename: 'paperwork-v1.min'
 		}))
-		.pipe(gulp.dest('public/css/themes'));
+		.pipe(gulp.dest('public/css/themes'))
+		.pipe(livereload());
 });
 
 gulp.task('compileLessFontLato', function() {
@@ -36,7 +39,8 @@ gulp.task('compileLessFontLato', function() {
 		.pipe(rename({
 			basename: 'font-lato'
 		}))
-		.pipe(gulp.dest('public/css'));
+		.pipe(gulp.dest('public/css'))
+		.pipe(livereload());
 });
 
 gulp.task('compileLessFreqselector', function() {
@@ -48,7 +52,8 @@ gulp.task('compileLessFreqselector', function() {
 		.pipe(rename({
 			basename: 'freqselector.min'
 		}))
-		.pipe(gulp.dest('public/css'));
+		.pipe(gulp.dest('public/css'))
+		.pipe(livereload());
 });
 
 gulp.task('compileLessTypeahead', function() {
@@ -60,7 +65,8 @@ gulp.task('compileLessTypeahead', function() {
 		.pipe(rename({
 			basename: 'typeahead.min'
 		}))
-		.pipe(gulp.dest('public/css'));
+		.pipe(gulp.dest('public/css'))
+		.pipe(livereload());
 });
 
 gulp.task('compileJsBootstrap', function() {
@@ -76,7 +82,8 @@ gulp.task('compileJsBootstrap', function() {
 			'app/js/bootstrap-tree.js'
 		])
 		.pipe(concat('bootstrap.min.js'))
-		.pipe(gulp.dest('public/js'));
+		.pipe(gulp.dest('public/js'))
+		.pipe(livereload());
 });
 
 gulp.task('compileJsPaperwork', function() {
@@ -107,7 +114,8 @@ gulp.task('compileJsPaperwork', function() {
 			'app/js/paperwork/paperworkFourOhFourController.js'
 		])
 		.pipe(concat('paperwork.min.js'))
-		.pipe(gulp.dest('public/js'));
+		.pipe(gulp.dest('public/js'))
+		.pipe(livereload());
 });
 
 gulp.task('compileJsAngular', function() {
@@ -122,7 +130,8 @@ gulp.task('compileJsAngular', function() {
 			'app/js/angular-utf8-base64.js'
 		])
 		.pipe(concat('angular.min.js'))
-		.pipe(gulp.dest('public/js'));
+		.pipe(gulp.dest('public/js'))
+		.pipe(livereload());
 });
 
 gulp.task('compileJsJquery', function() {
@@ -133,7 +142,8 @@ gulp.task('compileJsJquery', function() {
 			'app/js/jquery.scrollTo.js'
 		])
 		.pipe(concat('jquery.min.js'))
-		.pipe(gulp.dest('public/js'));
+		.pipe(gulp.dest('public/js'))
+		.pipe(livereload());
 });
 
 gulp.task('compileJsTagsinput', function() {
@@ -144,7 +154,8 @@ gulp.task('compileJsTagsinput', function() {
 			'app/js/typeahead.js'
 		])
 		.pipe(concat('tagsinput.min.js'))
-		.pipe(gulp.dest('public/js'));
+		.pipe(gulp.dest('public/js'))
+		.pipe(livereload());
 });
 
 gulp.task('compileJsLibraries', function() {
@@ -154,7 +165,8 @@ gulp.task('compileJsLibraries', function() {
 			'app/js/retina.js'
 		])
 		.pipe(concat('libraries.min.js'))
-		.pipe(gulp.dest('public/js'));
+		.pipe(gulp.dest('public/js'))
+		.pipe(livereload());
 });
 
 gulp.task('compileJsLtIe9Compat', function() {
@@ -164,7 +176,8 @@ gulp.task('compileJsLtIe9Compat', function() {
 			'app/js/respond.js'
 		])
 		.pipe(concat('ltie9compat.min.js'))
-		.pipe(gulp.dest('public/js'));
+		.pipe(gulp.dest('public/js'))
+		.pipe(livereload());
 });
 
 gulp.task('compileJsLtIe11Compat', function() {
@@ -173,10 +186,22 @@ gulp.task('compileJsLtIe11Compat', function() {
 			'app/js/ie10-viewport-bug-workaround.js'
 		])
 		.pipe(concat('ltie11compat.min.js'))
-		.pipe(gulp.dest('public/js'));
+		.pipe(gulp.dest('public/js'))
+		.pipe(livereload());
 });
 
 gulp.task('less', ['compileLessBootstrapTheme', 'compileLessPaperworkThemeV1', 'compileLessFontLato', 'compileLessFreqselector', 'compileLessTypeahead']);
 gulp.task('js', ['compileJsBootstrap', 'compileJsPaperwork', 'compileJsAngular', 'compileJsJquery', 'compileJsTagsinput', 'compileJsLibraries', 'compileJsLtIe9Compat', 'compileJsLtIe11Compat']);
 
 gulp.task('default', ['less', 'js']);
+
+gulp.task('watch', function() {
+  livereload.listen();
+  gulp.watch('app/less/*.less', ['less']);
+  gulp.watch('app/less/bootstrap/*.less', ['less']);
+  gulp.watch('app/less/font-fontawesome/*.less', ['less']);
+  gulp.watch('app/less/paperwork-themes/paperwork-v1/*.less', ['less']);
+  gulp.watch('app/js/*.js', ['js']);
+  gulp.watch('app/js/bootstrap/*.js', ['compileJsBootstrap']);
+  gulp.watch('app/js/paperwork/*.js', ['compileJsPaperwork']);
+});
