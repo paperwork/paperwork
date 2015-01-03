@@ -2,3 +2,4 @@
 .codekit-cache
 frontend/app/storage/attachments/*
 frontend/node_modules
+Thumbs.db
