@@ -26,7 +26,7 @@
     this.initializeFreqselector();
   };
 
-  Freqselector.VERSION  = '1.0.1';
+  Freqselector.VERSION  = '1.0.2';
 
   Freqselector.DEFAULTS = {
     show: false
@@ -112,6 +112,7 @@
       captureWheel: false
     });
     this.initializeOverscroll();
+    this.initializeItemClick();
     this.show();
   };
 
@@ -142,6 +143,24 @@
       }
       };
     })(this)).trigger('overscroll:dragend');
+  };
+
+  Freqselector.prototype.initializeItemClick = function() {
+    var _this = this;
+    this.$content.off('mouseup').on('mouseup', '.freqselector-item-not-dummy', function(_ev) {
+      if(!_this.$background.data('overscroll').dragging) {
+        var clickedItem = this;
+
+        // That's one lousy hack. If _this.pick is being called right away,
+        // it looks like the mouseup event still intervents and makes the freqselector
+        // jump back to its old value.
+        setTimeout(function() {
+          _this.pick('#' + jQuery(clickedItem).find('.freqselector-item-snap').attr('id'));
+        }, 10);
+        _ev.stopPropagation();
+        return false;
+      }
+    });
   };
 
   Freqselector.prototype.pick = function (item) {
