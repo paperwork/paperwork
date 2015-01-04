@@ -2,11 +2,11 @@
 
 return array(
 
-	'all_notes' => 'All Notes',
-	'title_new_notebook' => 'New notebook',
-	'title_edit_notebook' => 'Edit notebook',
-	'notebook_title' => 'Enter notebook title',
-	'add_shortcut' => 'Add this notebook to my shortcuts',
-	'delete_notebook' => 'I want to delete this notebook (+ its contents) and I\'m damn sure about that!',
+	'all_notes' => 'Toutes les Notes',
+	'title_new_notebook' => 'Nouveau cahier',
+	'title_edit_notebook' => 'Editer cahier',
+	'notebook_title' => 'Entrer le titre du cahier',
+	'add_shortcut' => 'Ajouter ce cahier à mes raccourcis',
+	'delete_notebook' => 'Je veux supprimer ce cahier et son contenu et dommage, il y a un problème !',
 
 );

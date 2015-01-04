@@ -12,6 +12,7 @@ return array(
 	'user' => array(
 		'settings' => array(
 			'language' => array(
+				'language' => 'Langage',
 				'ui_language' => 'Langage de l\'interface utilisateur',
 				'document_languages' => 'Langages des documents',
 				'document_languages_description' => 'The languages you select here will be used for parsing text within attachments you upload, allowing you to search for the content of these. An attachment could be a photo of a document you took with your smartphone, for example. Select the languages these documents are usually written in.',
