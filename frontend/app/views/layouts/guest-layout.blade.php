@@ -26,6 +26,8 @@
       </div>
     </div>
 
+  [[ HTML::script('js/jquery.min.js') ]]
+
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
     [[ HTML::script('js/ltie9compat.min.js') ]]
