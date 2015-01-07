@@ -46,7 +46,7 @@ paperworkModule.controller('paperworkNotesEditController', function($scope, $roo
     var ck =  CKEDITOR.replace('content', {
       fullPage: false,
       // extraPlugins: 'myplugin,anotherplugin',
-      removePlugins: 'sourcearea,save,newpage,preview,print,forms',
+      // removePlugins: 'sourcearea,save,newpage,preview,print,forms',
       toolbarCanCollapse: true,
       toolbarStartupExpanded : false,
       tabSpaces: 4,
