@@ -7,7 +7,7 @@ class Attachment extends Eloquent {
 	protected $fillable = array('filename', 'fileextension', 'content', 'mimetype', 'filesize');
 
 	public function versions() {
-		return $this->belongsToMany('Version');
+		return $this->belongsToMany('Version')->withTimestamps();
 	}
 }
 

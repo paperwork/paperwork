@@ -6,7 +6,7 @@ class Notebook extends Eloquent {
 	protected $table = 'notebooks';
 
 	public function users() {
-		return $this->belongsToMany('User');
+		return $this->belongsToMany('User')->withTimestamps();
 	}
 
 	public function shortcuts() {
@@ -14,7 +14,7 @@ class Notebook extends Eloquent {
 	}
 
 	public function notes() {
-		return $this->hasMany('Note');
+		return $this->hasMany('Note')->withTimestamps();
 	}
 }
 

@@ -19,7 +19,7 @@ class Version extends Eloquent {
 	}
 
 	public function attachments() {
-		return $this->belongsToMany('Attachment');
+		return $this->belongsToMany('Attachment')->withTimestamps();
 	}
 }
 

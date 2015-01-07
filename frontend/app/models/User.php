@@ -29,11 +29,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 
 	public function notebooks() {
-		return $this->belongsToMany('Notebook');
+		return $this->belongsToMany('Notebook')->withTimestamps();
 	}
 
 	public function notes() {
-		return $this->belongsToMany('Note');
+		return $this->belongsToMany('Note')->withTimestamps();
 	}
 
 	public function shortcuts() {
