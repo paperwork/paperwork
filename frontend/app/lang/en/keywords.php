@@ -71,5 +71,9 @@ return array(
 	'created_at' => 'Created',
 	'updated_at' => 'Updated',
 	'untitled' => 'Untitled',
+	'not_implemented' => 'This feature has not been implemented yet. ',
+	'experimental' => 'Experimental',
+	'import' => 'Import',
+	'export' => 'Export'
 
 );

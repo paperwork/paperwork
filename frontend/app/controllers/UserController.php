@@ -245,4 +245,89 @@ class UserController extends BaseController {
 		Session::flush();
 		return Redirect::route("user/login");
 	}
+
+    public function export() {
+		$file_content = "";
+		$noteNumber = 0;
+
+		$notes = DB::table('notes')
+                    ->join('note_user', function($join) {
+                        $join->on('notes.id', '=', 'note_user.note_id')
+                            ->where('note_user.user_id', '=', Auth::user()->id)
+                            ->where('note_user.umask', '=', '0');
+                    })
+                    ->join('notebooks', function ($join) {
+                        $join->on('notes.notebook_id', '=', 'notebooks.id');
+                    })
+                    ->join('versions', function($join) {
+                        $join->on('notes.version_id', '=', 'versions.id');
+                    })
+                    ->select('notes.id', 'notebooks.title as notebook_title', 'versions.id as version_id', 'versions.title', 'versions.content', 'notes.created_at', 'notes.updated_at')
+                    ->whereNull('notes.deleted_at')
+                    ->whereNull('notebooks.deleted_at')
+                    ->get();
+
+        $noteCount = count($notes);
+        foreach($notes as $note) {
+            $noteNumber++;
+            $versionId = $note->version_id;
+            $noteid = $note->id;
+            $noteArray = [
+                'title' => $note->title,
+                'content' => $note->content,
+                'created' => date('omd', strtotime($note->created_at)).'T'.date('His', strtotime($note->created_at)).'Z',
+                'updated' => date('omd', strtotime($note->updated_at)).'T'.date('His', strtotime($note->updated_at)).'Z'
+            ];
+
+            $attachments = DB::table('attachment_version')
+                        ->join('versions', function($join) use( &$versionId) {
+                            $join->on('attachment_version.version_id', '=', 'versions.id')
+                                ->where('versions.id', '=', $versionId);
+                        })
+                        ->join('attachments', function($join) {
+                            $join->on('attachment_version.attachment_id', '=', 'attachments.id');
+                        })
+                        ->select('attachments.id', 'attachments.filename', 'attachments.mimetype')
+                        ->whereNull('attachments.deleted_at')
+                        ->get();
+
+            $tags = DB::table('tags')
+                        ->join('tag_note', function($join) use( &$noteid) {
+                            $join->on('tags.id', '=', 'tag_note.tag_id')
+                                ->where('tag_note.note_id', '=', $noteid);
+                        })
+                        ->select('tags.title')
+                        ->get();
+
+            foreach($tags as $tag) {
+                $noteArray['tags'][] = ['title' => $tag->title];
+            }
+
+            $noteArray['firstname'] = Auth::user()->firstname;
+            $noteArray['lastname'] = Auth::user()->lastname;
+
+            foreach($attachments as $attachment) {
+                $data = base64_encode(File::get(Config::get('paperwork.attachmentsDirectory')."/".$attachment->id."/".$attachment->filename));
+                $noteArray['attachments'][] = [
+                    'hash' => md5(File::get(Config::get('paperwork.attachmentsDirectory')."/".$attachment->id."/".$attachment->filename)),
+                    'filename' => $attachment->filename,
+                    'mimetype' => $attachment->mimetype,
+                    'encoded' => $data
+                ];
+            }
+
+            if($noteNumber == 1) {
+                $noteArray['start'] = 1;
+            }else if($noteNumber == $noteCount) {
+                $noteArray['end'] = 1;
+            }
+
+            $file_content .= View::make('user/settings/export_file', $noteArray)->render();
+        }
+        $headers = array(
+            "Content-Type" => "text/plain",
+            "Content-Disposition" => "attachment; filename=\"export.enex\""
+        );
+        return Response::make(rtrim($file_content, "\r\n"), 200, $headers);
+    }
 }

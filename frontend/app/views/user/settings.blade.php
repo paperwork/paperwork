@@ -17,7 +17,7 @@
 <ul class="nav nav-tabs nav-tabs-margin" role="tablist">
 	<li class="active"><a href="#language" role="tab" data-toggle="tab">Language</a></li>
 	<li><a href="#client" role="tab" data-toggle="tab">Client</a></li>
-	<li><a href="#import" role="tab" data-toggle="tab">Import</a></li>
+	<li><a href="#import" role="tab" data-toggle="tab">Import/Export</a></li>
 </ul>
 
 <div class="tab-content">
