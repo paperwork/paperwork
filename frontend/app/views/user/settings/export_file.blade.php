@@ -1,14 +1,14 @@
 [[-- This is the template for the Evernote Export file --]]
 @if(isset($start))
-<?xml version="1.0" encoding="UTF-8"?>
+{{ '<'.'?'.'xml version="1.0" encoding="UTF-8"?>' }}
 <!DOCTYPE en-export SYSTEM "http://xml.evernote.com/pub/evernote-export3.dtd">
 <en-export export-date="{{ date('omd').'T'.date('His').'Z' }}">
 @endif
     <note>
-    <title>[[ $title ]]</title><content><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+    <title>[[ $title ]]</title><content><![CDATA[{{ '<'.'?'.'xml version="1.0" encoding="UTF-8" standalone="no"?>' }}
     <!DOCTYPE en-note SYSTEM "http://xml.evernote.com/pub/enml2.dtd">
     <en-note>
- 
+
     [[ $content ]]
     @if(isset($tags))
     @foreach ($attachments as $attachment)
@@ -27,7 +27,7 @@
     @endif
     <note-attributes>
     <author>[[ $firstname ]] [[ $lastname ]]</author>
-    </note-attributes>                                                                         
+    </note-attributes>
     @if(isset($attachments))
     @foreach ($attachments as $attachment)
         <resource>
@@ -35,9 +35,9 @@
         <width>0</width><height>0</height>
         <resource-attributes><file-name>[[ $attachment['filename'] ]]</file-name></resource-attributes>
         </resource>
-    @endforeach                                                                                
-    @endif                                                                                     
-    </note>                                                                                    
-@if(isset($end))                                                                               
-</en-export>   
+    @endforeach
+    @endif
+    </note>
+@if(isset($end))
+</en-export>
 @endif
