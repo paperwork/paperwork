@@ -78,7 +78,7 @@ class ApiNotebooksController extends BaseController {
 			$notebook->type = $newNotebook->get('type');
 			$notebook->save();
 
-			$notebook->users()->attach(Auth::user()->id);
+			$notebook->users()->attach(Auth::user()->id, array('umask' => PaperworkHelpers::UMASK_OWNER));
 
 			if($newNotebook->get('shortcut')) {
 				$shortcut = new Shortcut(array('sortkey' => 255, 'user_id' => Auth::user()->id));
