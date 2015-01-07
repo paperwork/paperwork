@@ -33,7 +33,7 @@ Route::group(["before" => "auth"],function(){
 	Route::any("/settings",["as" => "user/settings","uses" => "UserController@settings"]);
 	Route::any("/help/{topic?}",["as" => "user/help","uses" => "UserController@help"]);
 	Route::any("/logout",["as" => "user/logout","uses" => "UserController@logout"]);
-
+	Route::any("/settings/export",["as" => "user/settings/export","uses" => "UserController@export"]);
 	Route::get('/',["as" => "/","uses" => "LibraryController@show"]);
 });
 
