@@ -51,7 +51,10 @@ paperworkModule.controller('paperworkNotesEditController', function($scope, $roo
       toolbarStartupExpanded : false,
       tabSpaces: 4,
       skin: 'bootstrapck',
-      height: '400px'
+      height: '400px',
+
+      autosave_saveOnDestroy: true,
+      autosave_saveDetectionSelectors: "[id*='updateNote']"
     });
 
     ck.on('change', _onChangeFunction);

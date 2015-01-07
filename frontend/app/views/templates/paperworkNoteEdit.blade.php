@@ -13,7 +13,7 @@
 		      <ul class="nav navbar-nav navbar-right">
 		      	<li>
 			      	<div class="btn-group" ng-controller="paperworkSidebarNotesController">
-			      		<a href="" ng-click="updateNote()" class="btn btn-default navbar-btn" title="[[Lang::get('keywords.save')]]"><i class="fa fa-floppy-o"></i></a>
+			      		<a id="updateNote" href="" ng-click="updateNote()" class="btn btn-default navbar-btn" title="[[Lang::get('keywords.save')]]"><i class="fa fa-floppy-o"></i></a>
 			      		<a href="" ng-click="closeNote()" class="btn btn-default navbar-btn" title="[[Lang::get('keywords.close')]]"><i class="fa fa-times-circle"></i></a>
 		      		</div>
 		      	</li>

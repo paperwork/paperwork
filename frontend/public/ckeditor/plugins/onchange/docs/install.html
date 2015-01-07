@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+	"http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>OnChange event plugin</title>
+<link href="styles.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<h1>On Change event Plugin for CKEditor</h1>
+
+<h2>Introduction</h2>
+<p>This is a plugin that tries to fire a 'change' event whenever the content of a <a href="http://www.ckeditor.com">CKEditor</a> instance is changed.</p>
+
+<h3 id="contact">Author:</h3>
+<p><a href="mailto:amla70@gmail.com">Alfonso Mart&iacute;nez de Lizarrondo</a></p>
+<h3>Sponsored by:</h3>
+<p>Falcana</p>
+<h3>Version history: </h3>
+<ol>
+  <li>1.0: 21-January-2011. First version.</li>
+  <li>1.1: 3-September-2011. Fixed issues with the UndoManager events. Detect changes in Source mode.</li>
+  <li>1.2: 18-September-2011. Avoid too many events in CKEditor 3.6.2. Filter keyboard to skip control and movement keys.</li>
+  <li>1.3: 22-December-2011 Avoid firing the event after the editor has been destroyed.</li>
+  <li>1.4: 7-September-2012 Don't fire events if the editor is readonly, thanks to Ulrich Gabor. Included code to use Mutation Observers.</li>
+  <li>1.5: 20-October-2012 Detect Cut and Paste for IE in source mode thanks to Jacki.</li>
+  <li>1.6: 18-November-2012 Detect multibyte characters thanks to Wouter.</li>
+  <li>1.7: 6-December-2012 Compatibility with Source mode in CKEditor 4.</li>
+  <li>1.8: 8-June-2013 Use setInterval fix by Roman Minkin.</li>
+</ol>
+
+<h2>Installation</h2>
+<h3>1. Copying the files</h3>
+<p>Extract the contents of the zip in you plugins directory, so it ends up like
+    this<br>
+    <!--<img src="installation.png" alt="Screenshot of installation" width="311" height="346" longdesc="#install">-->
+    </p>
+<pre id="--install">
+ckeditor\
+	...
+	images\
+	lang\
+	plugins\
+		...
+		onchange\
+			plugin.js
+			docs\
+				install.html
+		...
+	skins\
+	themes\
+</pre>
+<h3>2. Adding it to CKEditor</h3>
+<p>Now add the plugin in your <em>config.js</em> or custom js configuration
+file:
+<code>config.extraPlugins='onchange'; </code>
+</p>
+
+<h3>3. Configuration</h3>
+<p>You can limit the minimum time between changes to avoid getting too many events fired:
+<code>config.minimumChangeMilliseconds = 100; // 100 milliseconds (default value)
+</code>.</p>
+
+<h3>4. Use it</h3>
+<p>Write your listener for the new 'change' event and perform whatever action you need there.
+<code>editor.on( 'change', function(e) { console.log(e) });
+</code>.</p>
+
+<!--
+<h2>Final notes</h2>
+-->
+
+<h2>Disclaimers</h2>
+<p>CKEditor is  &copy; CKSource.com</p>
+</body>
+</html>

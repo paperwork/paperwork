@@ -6,7 +6,7 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>CKEDITOR.appendTo &mdash; CKEditor Sample</title>
+	<title>Append To Page Element Using JavaScript Code &mdash; CKEditor Sample</title>
 	<script src="../ckeditor.js"></script>
 	<link rel="stylesheet" href="sample.css">
 </head>
@@ -17,8 +17,7 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 	<div id="section1">
 		<div class="description">
 			<p>
-				<code>CKEDITOR.appendTo</code> is basically to place editors
-				inside existing DOM elements. Unlike <code>CKEDITOR.replace</code>,
+				The <code><a class="samples" href="http://docs.ckeditor.com/#!/api/CKEDITOR-method-appendTo">CKEDITOR.appendTo()</a></code> method serves to to place editors inside existing DOM elements. Unlike <code><a class="samples" href="http://docs.ckeditor.com/#!/api/CKEDITOR-method-replace">CKEDITOR.replace()</a></code>,
 				a target container to be replaced is no longer necessary. A new editor
 				instance is inserted directly wherever it is desired.
 			</p>
@@ -30,11 +29,11 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
 		<script>
 
 			// This call can be placed at any point after the
-			// <textarea>, or inside a <head><script> in a
-			// window.onload event handler.
+			// DOM element to append CKEditor to or inside the <head><script>
+			// in a window.onload event handler.
 
-			// Replace the <textarea id="editor"> with an CKEditor
-			// instance, using default configurations.
+			// Append a CKEditor instance using the default configuration and the
+			// provided content to the <div> element of ID "section1".
 			CKEDITOR.appendTo( 'section1',
 				null,
 				'<p>This is some <strong>sample text</strong>. You are using <a href="http://ckeditor.com/">CKEditor</a>.</p>'
