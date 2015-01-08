@@ -10,7 +10,7 @@
     <en-note>
 
     [[ $content ]]
-    @if(isset($tags))
+    @if(isset($attachments))
     @foreach ($attachments as $attachment)
         <en-media type="[[ $attachment['mimetype'] ]]" hash="[[ $attachment['hash'] ]]" /><br />
     @endforeach
