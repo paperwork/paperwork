@@ -28,6 +28,7 @@ return array(
 	'fr' => 'French',
 	'fra'=> 'French',
 	'frk'=> 'Frankish',
+	'frm'=> 'Middle French',
 	'glg'=> 'Galician',
 	'grc'=> 'Ancient Greek',
 	'heb'=> 'Hebrew',
