@@ -797,3 +797,12 @@ body.paperwork-guest {
 .btn-info    { .paperwork-btn-styles(@btn-info-bg, darken(@btn-info-bg, 12%)); }
 .btn-warning { .paperwork-btn-styles(@btn-warning-bg, darken(@btn-warning-bg, 12%)); }
 .btn-danger  { .paperwork-btn-styles(@btn-danger-bg, darken(@btn-danger-bg, 12%)); }
+
+/*
+ * Hide Angular templating code
+ * Usually template text is displayed
+ * until Angular is invoked
+ */
+[ng-cloak] {
+  display: none !important;
+}
