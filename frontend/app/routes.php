@@ -18,10 +18,12 @@ App::missing(function($exception)
     return Response::view('404', array(), 404);
 });
 
-Route::any('/login',["as" => "user/login", "uses" => "UserController@login"]);
+Route::get('/login',["as" => "user/login", "uses" => "UserController@showLoginForm"]);
+Route::post('/login',["as" => "user/login", "uses" => "UserController@login"]);
 
 if(Config::get('paperwork.registration')) {
-Route::any("/register",["as" => "user/register","uses" => "UserController@register"]);
+    Route::get("/register",["as" => "user/register","uses" => "UserController@showRegistrationForm"]);
+    Route::post("/register",["as" => "user/register","uses" => "UserController@register"]);
 }
 
 Route::any("/request",["as" => "user/request","uses" => "UserController@request"]);
