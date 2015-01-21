@@ -1,5 +1,4 @@
 <?php
-
 class UserController extends BaseController {
 	public function register() {
 		if($this->isPostRequest()) {
@@ -7,9 +6,13 @@ class UserController extends BaseController {
 
 			if($validator->passes()) {
 				// $credentials = $this->getRegistrationCredentials();
-
+				$first_user = User::all()->count() == 0;
 				$user = User::create(Input::except('_token', 'password_confirmation', 'ui_language'));
 				if ($user) {
+					//make the first user an admin
+					if ($first_user) {
+						$user->is_admin = 1;
+					}
 					$user->save();
 					$setting = Setting::create(array('ui_language' => Input::get('ui_language'), 'user_id' => $user->id));
 
