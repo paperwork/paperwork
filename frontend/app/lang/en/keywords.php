@@ -3,6 +3,10 @@
 return array(
 
 	'admin_area' => 'Admin Area',
+	'admin_status' => 'Admin Status',
+	'deleted_at' => 'Deleted',
+	'id' => 'ID',
+	'username' => 'Username',
 	'email_address' => 'Email address',
 	'first_name' => 'First name',
 	'last_name' => 'Last name',

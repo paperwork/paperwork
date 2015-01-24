@@ -4,14 +4,14 @@
 	<h1>Users</h1>
 	<table class="table">
 		<tr>
-			<th>ID</th>
-			<th>Username</th>
-			<th>First Name</th>
-			<th>Last Name</th>
-			<th>Admin Status</th>
-			<th>Created At</th>
-			<th>Updated At</th>
-			<th>Deleted At</th>
+			<th>[[Lang::get('keywords.id')]]</th>
+			<th>[[Lang::get('keywords.username')]]</th>
+			<th>[[Lang::get('keywords.first_name')]]</th>
+			<th>[[Lang::get('keywords.last_name')]]</th>
+			<th>[[Lang::get('keywords.admin_status')]]</th>
+			<th>[[Lang::get('keywords.created_at')]]</th>
+			<th>[[Lang::get('keywords.updated_at')]]</th>
+			<th>[[Lang::get('keywords.deleted_at')]]</th>
 		</tr>
 	    @foreach($users as $user)
 	        <tr>
