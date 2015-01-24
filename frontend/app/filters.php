@@ -125,6 +125,6 @@ Route::filter('csrf', function()
 Route::filter('admin', function($route, $request)
 {
  if ( ! Auth::user()->isAdmin()) {
- return App::abort(401, 'You are not authorized.');
+	 return App::abort(401, 'You are not authorized.');
  }
 });
