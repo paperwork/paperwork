@@ -69,7 +69,7 @@ Route::group(array('prefix' => 'api/v1', 'before' => 'auth'), function()
 // Route::any('/api/v1/notebooks/(:num?)', array('as' => 'api.v1.notebooks', 'uses' => 'ApiNotebooksController@index'));
 // Route::any('/api/v1/notes/(:num?)', array('as' => 'api.v1.notes', 'uses' => 'api.v1.notes@index'));
 
-Route::group(['prefix' => 'admin', 'before' => 'auth'], function()
+Route::group(['prefix' => 'admin', 'before' => ['auth|admin']], function()
 {
     Route::get('/', 'AdminController@showConsole');
 });

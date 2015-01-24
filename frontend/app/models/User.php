@@ -43,4 +43,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function languages() {
 		return $this->belongsToMany('Language');
 	}
+	
+    public function isAdmin() {
+    	return $this->is_admin;
+    }
 }
