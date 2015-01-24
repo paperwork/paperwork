@@ -71,5 +71,5 @@ Route::group(array('prefix' => 'api/v1', 'before' => 'auth'), function()
 
 Route::group(['prefix' => 'admin', 'before' => ['auth|admin']], function()
 {
-    Route::get('/', 'AdminController@showConsole');
+    Route::get('/', ['as' => 'admin/console', 'uses' => 'AdminController@showConsole']);
 });

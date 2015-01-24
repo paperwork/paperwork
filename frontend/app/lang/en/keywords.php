@@ -2,6 +2,7 @@
 
 return array(
 
+	'admin_area' => 'Admin Area',
 	'email_address' => 'Email address',
 	'first_name' => 'First name',
 	'last_name' => 'Last name',
