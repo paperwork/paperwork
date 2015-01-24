@@ -1,11 +1,11 @@
 @extends("layouts/user-layout")
 @section("content")
 <div class="container">
-	<h1>Users</h1>
+	<h1>[[Lang::get('keywords.users')]]</h1>
 	<table class="table">
 		<tr>
 			<th>[[Lang::get('keywords.id')]]</th>
-			<th>[[Lang::get('keywords.username')]]</th>
+			<th>[[Lang::get('keywords.email_address')]]</th>
 			<th>[[Lang::get('keywords.first_name')]]</th>
 			<th>[[Lang::get('keywords.last_name')]]</th>
 			<th>[[Lang::get('keywords.admin_status')]]</th>
