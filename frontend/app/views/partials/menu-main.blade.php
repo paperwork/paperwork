@@ -1,4 +1,4 @@
-<ul class="nav navbar-nav animate-panel" ng-show="navbarMainMenu">
+<ul class="nav navbar-nav animate-panel" ng-cloak ng-show="navbarMainMenu">
 	<li class="dropdown">
 		<a href="" class="dropdown-toggle transition-effect" data-toggle="dropdown">[[Lang::get('keywords.file')]] <span class="caret"></span></a>
 		<ul class="dropdown-menu" role="menu">
