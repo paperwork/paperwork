@@ -37,6 +37,7 @@ return array(
 	'ind'=> 'Indonésien',
 	'isl'=> 'Islandais',
 	'ita'=> 'Italien',
+	'ja' => 'Japonais',
 	'jpn'=> 'Japonais',
 	'kan'=> 'Canadien',
 	'kor'=> 'Coréen',
