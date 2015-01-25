@@ -119,6 +119,11 @@ paperworkModule.controller('paperworkSidebarNotebooksController', function($scop
   };
 
   $scope.modalDeleteNotebook = function(notebookId) {
+
+    if ($rootScope.menuItemNotebookClass() == 'disabled'){
+      return false;
+    }
+    
     var callback = (function() {
       return function(status, data) {
         switch(status) {
