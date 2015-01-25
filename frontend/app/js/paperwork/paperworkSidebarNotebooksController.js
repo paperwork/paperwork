@@ -98,7 +98,7 @@ paperworkModule.controller('paperworkSidebarNotebooksController', function($scop
   $scope.modalEditNotebook = function(notebookId) {
     var notebook = paperworkNotebooksService.getNotebookByIdLocal(notebookId);
 
-    if(notebook == null) {
+    if(notebook == null || $rootScope.menuItemNotebookClass()==='disabled') {
       return false;
     }
 
