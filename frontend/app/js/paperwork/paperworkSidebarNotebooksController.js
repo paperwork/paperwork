@@ -98,7 +98,7 @@ paperworkModule.controller('paperworkSidebarNotebooksController', function($scop
   $scope.modalEditNotebook = function(notebookId) {
     var notebook = paperworkNotebooksService.getNotebookByIdLocal(notebookId);
 
-    if(notebook == null || $rootScope.menuItemNotebookClass()==='disabled') {
+    if(notebook == null || $rootScope.menuItemNotebookClass() === 'disabled') {
       return false;
     }
 
@@ -120,10 +120,10 @@ paperworkModule.controller('paperworkSidebarNotebooksController', function($scop
 
   $scope.modalDeleteNotebook = function(notebookId) {
 
-    if ($rootScope.menuItemNotebookClass() == 'disabled'){
+    if ($rootScope.menuItemNotebookClass() === 'disabled'){
       return false;
     }
-    
+
     var callback = (function() {
       return function(status, data) {
         switch(status) {
