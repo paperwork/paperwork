@@ -26,6 +26,9 @@ paperworkModule.controller('paperworkSidebarNotesController', function($scope, $
   }
 
   $scope.newNote = function(notebookId) {
+    if($rootScope.menuItemNotebookClass()==='disabled') {
+      return false;
+    }
     if(typeof notebookId == "undefined" || notebookId == 0) {
       // TODO: Show some error
     }
