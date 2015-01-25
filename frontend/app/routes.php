@@ -29,6 +29,7 @@ if(Config::get('paperwork.registration')) {
 Route::any("/request",["as" => "user/request","uses" => "UserController@request"]);
 Route::any("/reset/{token}",[ "as" => "user/reset","uses" => "UserController@reset"]);
 
+//Authorized Users
 Route::group(["before" => "auth"],function(){
     App::setLocale(PaperworkHelpers::getUiLanguageFromSession());
 	Route::any("/profile",["as" => "user/profile","uses" => "UserController@profile"]);
@@ -37,6 +38,12 @@ Route::group(["before" => "auth"],function(){
 	Route::any("/logout",["as" => "user/logout","uses" => "UserController@logout"]);
 	Route::any("/settings/export",["as" => "user/settings/export","uses" => "UserController@export"]);
 	Route::get('/',["as" => "/","uses" => "LibraryController@show"]);
+
+    //Administrators
+    Route::group(['prefix' => 'admin', 'before' => ['admin']], function()
+    {
+        Route::get('/', ['as' => 'admin/console', 'uses' => 'AdminController@showConsole']);
+    });
 });
 
 

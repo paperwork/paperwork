@@ -2,7 +2,12 @@
 
 return array(
 
+	'admin_area' => 'Admin Area',
+	'admin_status' => 'Admin Status',
+	'deleted_at' => 'Deleted',
 	'email_address' => 'Email address',
+	'id' => 'ID',
+	'users' => 'Users',
 	'first_name' => 'First name',
 	'last_name' => 'Last name',
 	'password' => 'Password',
