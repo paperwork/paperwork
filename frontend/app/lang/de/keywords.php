@@ -66,4 +66,5 @@ return array(
 	'select_notebook_title' => 'Notizbuch auswählen',
 	'select' => 'Auswählen',
 	'damn' => 'Verdammt.',
+	'untitled' => 'Unbenannt'
 );
