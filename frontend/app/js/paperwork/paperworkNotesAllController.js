@@ -1,9 +1,9 @@
 paperworkModule.controller('paperworkNotesAllController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService) {
     if(typeof $routeParams == "undefined" || $routeParams == {} || typeof $routeParams.notebookId == "undefined") {
       return;
-      $rootScope.notebookSelectedId = 0;
+      $rootScope.notebookSelectedId = '00000000-0000-0000-0000-000000000000';
     } else {
-      $rootScope.notebookSelectedId = parseInt($routeParams.notebookId);
+      $rootScope.notebookSelectedId = $routeParams.notebookId;
     }
     paperworkNotesService.getNotesInNotebook($rootScope.getNotebookSelectedId(), function() {
       // $rootScope.setNoteSelectedId($rootScope.getNotebookSelectedId(), $rootScope.notes[0].id);

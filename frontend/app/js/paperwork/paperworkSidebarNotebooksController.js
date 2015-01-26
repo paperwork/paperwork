@@ -36,14 +36,14 @@ paperworkModule.controller('paperworkSidebarNotebooksController', function($scop
       $rootScope.notebookSelectedId = parseInt(index);
       $rootScope.tagsSelectedId = -1;
       $rootScope.search = "";
-      $location.path("/n/" + parseInt(notebookId) );
+      $location.path("/n/" + (notebookId) );
     }
   };
 
   $scope.openTag = function(tagId) {
     $rootScope.notebookSelectedId = -1;
-    $rootScope.tagsSelectedId = parseInt(tagId);
-    $location.path("/s/tagid:" + parseInt(tagId));
+    $rootScope.tagsSelectedId = (tagId);
+    $location.path("/s/tagid:" + (tagId));
   };
 
   $scope.modalNewNotebook = function() {
@@ -130,7 +130,7 @@ paperworkModule.controller('paperworkSidebarNotebooksController', function($scop
           case 200:
             paperworkNotebooksService.getNotebookShortcuts(null);
             paperworkNotebooksService.getNotebooks();
-            $location.path("/n/0");
+            $location.path("/n/" + paperworkNotebookAllID);
             break;
           case 400:
             // TODO: Show some kind of error

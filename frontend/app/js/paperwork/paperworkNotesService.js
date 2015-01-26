@@ -8,11 +8,11 @@ paperworkModule.factory('paperworkNotesService', ['$rootScope', '$http', 'base64
   };
 
   paperworkNotesServiceFactory.updateNote = function(noteId, data, callback) {
-    paperworkNetService.apiPut('/notebooks/0/notes/' + noteId, data, callback);
+    paperworkNetService.apiPut('/notebooks/' + paperworkNotebookAllID + '/notes/' + noteId, data, callback);
   };
 
   paperworkNotesServiceFactory.deleteNote = function(noteId, callback) {
-    paperworkNetService.apiDelete('/notebooks/0/notes/' + noteId, callback);
+    paperworkNetService.apiDelete('/notebooks/' + paperworkNotebookAllID + '/notes/' + noteId, callback);
   };
 
   paperworkNotesServiceFactory.moveNote = function(notebookId, noteId, toNotebookId, callback) {
@@ -46,7 +46,7 @@ paperworkModule.factory('paperworkNotesService', ['$rootScope', '$http', 'base64
   };
 
   paperworkNotesServiceFactory.getNoteById = function(noteId, callback) {
-    paperworkNetService.apiGet('/notebooks/0/notes/' + noteId, function(status, data) {
+    paperworkNetService.apiGet('/notebooks/' + paperworkNotebookAllID + '/notes/' + noteId, function(status, data) {
       if(status == 200) {
         $rootScope.note = data.response;
         if(typeof callback != "undefined") {

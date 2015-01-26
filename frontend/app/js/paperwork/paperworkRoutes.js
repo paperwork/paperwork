@@ -1,7 +1,7 @@
 paperworkModule.config(function($routeProvider) {
   $routeProvider
   .when('/', {
-    redirectTo:'/n/0'
+    redirectTo:'/n/' + paperworkNotebookAllID
   })
   .when('/n/:notebookId', {
     controller:'paperworkNotesAllController',

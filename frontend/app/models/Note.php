@@ -1,9 +1,10 @@
 <?php
 
-class Note extends Eloquent {
+class Note extends PaperworkModel {
 	use SoftDeletingTrait;
 	protected $softDelete = true;
 	protected $table = 'notes';
+	protected $fillable = array('notebook_id', 'version_id');
 
 	public function version()
 	{

@@ -122,10 +122,11 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
-		'Jenssegers\Agent\AgentServiceProvider',
-		'SimpleSoftwareIO\QrCode\QrCodeServiceProvider',
+		'Paperwork\Db\PaperworkDbServiceProvider',
+		'Paperwork\Helpers\PaperworkHelpersServiceProvider',
 
-		'Paperwork\PaperworkHelpersServiceProvider',
+		'Jenssegers\Agent\AgentServiceProvider',
+		'SimpleSoftwareIO\QrCode\QrCodeServiceProvider'
 	),
 
 	/*
@@ -193,8 +194,12 @@ return array(
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
 
+		'PaperworkHelpers' => 'Paperwork\Helpers\PaperworkHelpersFacade',
+		'PaperworkDb' 	  => 'Paperwork\Db\PaperworkDbFacade',
+
 		'Agent'           => 'Jenssegers\Agent\Facades\Agent',
-		'QrCode'		  => 'SimpleSoftwareIO\QrCode\Facades\QrCode'
+		'QrCode'		  => 'SimpleSoftwareIO\QrCode\Facades\QrCode',
+		'Uuid'			  => 'Webpatser\Uuid\Uuid'
 	),
 
 );

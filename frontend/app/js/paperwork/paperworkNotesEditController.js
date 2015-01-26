@@ -120,7 +120,7 @@ paperworkModule.controller('paperworkNotesEditController', function($scope, $roo
     CKEDITOR.instances['content'].insertHtml(insertHtml);
   });
 
-  $rootScope.uploadUrl = paperworkApi + '/notebooks/' + parseInt($routeParams.notebookId) + '/notes/' + parseInt($routeParams.noteId) + '/versions/0/attachments';
+  $rootScope.uploadUrl = paperworkApi + '/notebooks/' + ($routeParams.notebookId) + '/notes/' + ($routeParams.noteId) + '/versions/' + paperworkVersionAllID + '/attachments';
 
   if(typeof $rootScope.notes == "undefined") {
     paperworkNotesService.getNotesInNotebook($rootScope.notebookSelectedId, (function(_notebookId, _noteId) {
@@ -129,9 +129,9 @@ paperworkModule.controller('paperworkNotesEditController', function($scope, $roo
           window.onCkeditChangeFunction();
         });
       }
-    })(parseInt($routeParams.notebookId), parseInt($routeParams.noteId)) );
+    })(($routeParams.notebookId), ($routeParams.noteId)) );
   } else {
-    thisController(parseInt($routeParams.notebookId), parseInt($routeParams.noteId), function() {
+    thisController(($routeParams.notebookId), ($routeParams.noteId), function() {
       window.onCkeditChangeFunction();
     });
   }
