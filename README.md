@@ -28,7 +28,7 @@ Feel free to create/modify/delete accounts, notebooks and notes. This demo can b
 
 ## Initial installation (quick & dirty documented)
 
-First of all, you need to clone this project to your machine. After that, make sure that you have one of the latest PHP versions > 5.1 and an up-to-date "composer" installed. If you're not sure how composer works, please continue reading here: https://getcomposer.org/
+First of all, you need to clone this project to your machine. After that, make sure that you have one of the latest PHP versions >= 5.4 and an up-to-date "composer" installed. If you're not sure how composer works, please continue reading here: https://getcomposer.org/
 
 Second, you need to switch to the command line: "cd" into the "frontend" directory of your local paperwork clone. There, run "composer install" and/or "composer update". This will install all the needed dependencies.
 
