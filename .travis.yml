@@ -16,3 +16,4 @@ script:
   - cd ..
   - mkdir -p build/logs
   - (cd "$(pwd)/frontend/"; phpunit)
+  
