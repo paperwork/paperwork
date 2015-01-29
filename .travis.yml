@@ -10,5 +10,9 @@ before_script:
   - composer install --dev --no-interaction -d "$(pwd)/frontend/"
 
 script:
+  - cd frontend
+  - npm install 
+  - gulp
+  - cd ..
   - mkdir -p build/logs
   - (cd "$(pwd)/frontend/"; phpunit)
