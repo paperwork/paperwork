@@ -169,7 +169,7 @@ class UserController extends BaseController {
 	protected function getPasswordRemindResponse() {
 		return Password::remind(Input::only("username"), function($message)
 			{
-				$message->subject('Reset your Paperwork Password');
+				$message->subject(Lang::get('keywords.password_reset_request'));
 			});
 	}
 
