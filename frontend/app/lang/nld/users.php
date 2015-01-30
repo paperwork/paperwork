@@ -2,10 +2,10 @@
 
 return array(
 
-	'title_login' => 'Sign in',
-	'title_register' => 'Register',
-	'title_request' => 'Forgot password',
-	'title_reset' => 'Reset password',
-	'link_forgot_password' => 'Forgot your password?',
-	'profile_change_password_info' => 'To change your account password, please enter a new password here:',
+	'title_login' => 'Aanmelden',
+	'title_register' => 'Registreren',
+	'title_request' => 'Wachtwoord vergeten',
+	'title_reset' => 'Wachtwoord herinstellen',
+	'link_forgot_password' => 'Je wachtwoord vergeten?',
+	'profile_change_password_info' => 'Om je wachtwoord te veranderen, voer hier een nieuw in:',
 );
