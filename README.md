@@ -94,6 +94,8 @@ npm will install all dependencies required through the `package.json`, so that y
 
 The current development status is far from being worth called "version 1.0". However, if I could get you interested in this project and you feel like contributing, don't hesitate to ping me by e-mail ([marius@paperwork.rocks](mailto:marius@paperwork.rocks)) or twitter ([@devilx](https://twitter.com/devilx)) so we can talk. :-)
 
+There is an irc channel #paperwork on freenode.net.
+
 ## FAQ
 
 ### Can I run Paperwork on a shared host environment, where I'm not able to set `frontend/public` as document root?
