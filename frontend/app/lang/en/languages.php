@@ -59,6 +59,7 @@ return array(
 	'spa'=> 'Spanish',
 	'sqi'=> 'Albanian',
 	'srp'=> 'Serbian',
+	'sv' => 'Swedish',
 	'swa'=> 'Swahili',
 	'swe'=> 'Swedish',
 	'tam'=> 'Tamil',
