@@ -28,7 +28,7 @@ return array(
 		"array"   => "De :attribute moet tussen :min en :max dingen hebben.", /*Not the best translation*/
 	),
 	"boolean"              => "De :attribute moet \"true\" of \"false\" zijn.",
-	"confirmed"            => "De :attribute confirmation does not match.",
+	"confirmed"            => "De :attribute va",
 	"date"                 => "De :attribute is not a valid date.",
 	"date_format"          => "De :attribute does not match the format :format.",
 	"different"            => "De :attribute and :other must be different.",
