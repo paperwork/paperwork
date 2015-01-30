@@ -61,6 +61,7 @@ return array(
 	'srp'=> 'Serbian',
 	'swa'=> 'Swahili',
 	'swe'=> 'Swedish',
+	'sv' => 'Swedish',
 	'tam'=> 'Tamil',
 	'tel'=> 'Telugu',
 	'tgl'=> 'Tagalog',
