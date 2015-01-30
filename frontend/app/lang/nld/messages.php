@@ -2,31 +2,31 @@
 
 return array(
 
-	'account_creation_failed' => 'Could not create account.',
-	'account_update_failed' => 'Could not update account.',
-	'invalid_credentials' => 'Your credentials are invalid.',
-	'note_version_info' => 'You are previewing an older version of this note.',
-	'found_bug' => 'Found a bug? <a href="https://github.com/twostairs/paperwork/issues/new" target="_blank" title="Submit Issue">Submit it on GitHub!</a>',
-	'error_message' => 'Whooops!',
-	'onbeforeunload_info' => 'Data will be lost if you leave the page, are you sure?',
+	'account_creation_failed' => 'Kon gebruiker niet aanmaken.',
+	'account_update_failed' => 'Kon gebruiker niet updaten.',
+	'invalid_credentials' => 'Foute gebruikersnaam of wachtwoord.',
+	'note_version_info' => 'Je bekijkt een oudere versie van deze notitie.',
+	'found_bug' => 'Een foutje gevonden? <a href="https://github.com/twostairs/paperwork/issues/new" target="_blank" title="Submit Issue">Laat het weten op Github!</a>',
+	'error_message' => 'Oepsie!',
+	'onbeforeunload_info' => 'Data zal verloren gaan als je deze pagina verlaat. Ben je het zeker?',
 	'user' => array(
 		'settings' => array(
 			'language' => array(
-				'ui_language' => 'User Interface Language',
-				'document_languages' => 'Document Languages',
-				'document_languages_description' => 'The languages you select here will be used for parsing text within attachments you upload, allowing you to search for the content of these. An attachment could be a photo of a document you took with your smartphone, for example. Select the languages these documents are usually written in.',
+				'ui_language' => 'Gebruikersinterfacetaal',
+				'document_languages' => 'Documenttalen',
+				'document_languages_description' => 'De taal die je hier kiest zal bepalen in welke taal je je notities normaal gezien schrijft. Dit zal er voor zorgen dat de bijlagen die je bijvoorbeeld met je smartphone upload de juiste taal zullen krijgen.',
 			),
 			'client' => array(
-				'qrcode' => 'QR Code',
-				'scan' => 'Scan this QR code with your mobile app to auto-configure your Paperwork account.'
+				'qrcode' => 'QR-code',
+				'scan' => 'Scan deze QR-code met je smartphone om Paperwork automatisch in te stellen.'
 			),
 			'import' => array(
 				'evernotexml' => 'Evernote XML:',
-				'upload_evernotexml' => 'Upload your Evernote XML export here, to import your Evernote notes into Paperwork.'
+				'upload_evernotexml' => 'Upload hier de XML van Evernote om je Evernote-notities in Paperwork te hebben.'
 			),
 			'export' => array(
-			    'evernotexml' => 'Export as Evernote XML:',
-			    'download_evernotexml' => 'Download an ENEX file compatible with Evernote to move your notes from Paperwork. '
+			    'evernotexml' => 'Exporteer als Evernote XML:',
+			    'download_evernotexml' => 'Download een ENEX-bestand om je Paperwork-bestanden in Evernote te kunnen openen'
 			)
 		)
 	)

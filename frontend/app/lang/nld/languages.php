@@ -48,6 +48,7 @@ return array(
 	'mkd'=> 'Macedonian',
 	'mlt'=> 'Maltese',
 	'msa'=> 'Malay',
+	'nl'=> 'Dutch',
 	'nld'=> 'Dutch',
 	'nor'=> 'Norwegian',
 	'pol'=> 'Polish',
