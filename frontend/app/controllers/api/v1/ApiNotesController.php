@@ -193,7 +193,7 @@ class ApiNotesController extends BaseController {
 
 		$note = new Note();
 
-		$version = new Version(array('title' => $newNote->get("title"), 'content' => $newNote->get("content")));
+		$version = new Version(array('title' => $newNote->get("title"), 'content' => $newNote->get("content"), 'content_preview' => $newNote->get("content_preview")));
 		$version->save();
 		$note->version()->associate($version);
 
@@ -206,7 +206,7 @@ class ApiNotesController extends BaseController {
 			->where('notebooks.id', '=', $notebookId)
 			->whereNull('notebooks.deleted_at')
 			->first();
-
+        
 		if(is_null($notebook)){
 			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
 		}
@@ -215,7 +215,8 @@ class ApiNotesController extends BaseController {
 
 		$note->save();
 
-		$note->users()->attach(Auth::user()->id);
+        // TODO: Should we inherit the umask from the notebook?
+		$note->users()->attach(Auth::user()->id, array('umask' => PaperworkHelpers::UMASK_OWNER));
 
 		$tagIds = ApiTagsController::createOrGetTags($newNote->get('tags'));
 
