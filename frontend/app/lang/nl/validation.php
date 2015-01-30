@@ -64,13 +64,13 @@ return array(
 	"required_without_all" => "Het :attribute veld is verplicht geen van de :values aanwezig zijn.",
 	"same"                 => "De :attribute en :other moeten gelijk zijn.",
 	"size"                 => array(
-		"numeric" => "De :attribute moet be :size.",
-		"file"    => "De :attribute moet be :size kilobytes.",
-		"string"  => "De :attribute moet be :size characters.",
-		"array"   => "De :attribute moet contain :size items.",
+		"numeric" => "De :attribute moet :size zijn.",
+		"file"    => "De :attribute moet :size kilobytes zijn.",
+		"string"  => "De :attribute moet :size karakters zijn.",
+		"array"   => "De :attribute moet :size items bevatten.",
 	),
-	"unique"               => "De :attribute has already been taken.",
-	"url"                  => "De :attribute format is ongeldig.",
+	"unique"               => "De :attribute is al in gebruik.",
+	"url"                  => "De :attribute formaat is ongeldig.",
 
 	/*
 	|--------------------------------------------------------------------------
