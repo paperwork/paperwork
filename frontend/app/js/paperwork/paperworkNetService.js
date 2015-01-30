@@ -1,6 +1,6 @@
 paperworkModule.service('paperworkNetService', ['$rootScope', '$http', '$location', function($rootScope, $http, $location) {
   this.apiGeneric = function(method, url, data, callback) {
-    $opts = {method: method, url: paperworkApi + url};
+    var $opts = {method: method, url: paperworkApi + url};
     if(typeof data != "undefined" && data != null) {
       $opts.data = data;
     }
