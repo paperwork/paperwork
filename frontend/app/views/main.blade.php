@@ -23,10 +23,10 @@
 							<span class="tree-header tree-header-notebooks"><i class="fa fa-chevron-down"></i> [[Lang::get('keywords.notebooks')]]</span>
 							<ul class="tree-child">
 								<li class="tree-notebook" ng-repeat="notebook in notebooks | orderBy:'title'" ng-cloak>
-									<span ng-click="openNotebook(notebook.id, notebook.type, notebook.id)" ng-class="{ 'active': notebook.id == getNotebookSelectedId() }"><i class="fa {{ notebookIconByType(notebook.type) }}"></i> {{notebook.title}}</span>
+									<div class="notebook-title" ng-click="openNotebook(notebook.id, notebook.type, notebook.id)" ng-class="{ 'active': notebook.id == getNotebookSelectedId() }"><i class="fa {{ notebookIconByType(notebook.type) }}"></i> {{notebook.title}}</div>
 									<ul class="tree-child">
 										<li class="tree-notebook" ng-repeat="child in notebook.children | orderBy:'title'">
-											<span ng-click="openNotebook(child.id, child.type, child.id)" ng-class="{ 'active': child.id == getNotebookSelectedId() }"><i class="fa {{ notebookIconByType(child.type) }}"></i> {{child.title}}</span>
+											<div class="notebook-title" ng-click="openNotebook(child.id, child.type, child.id)" ng-class="{ 'active': child.id == getNotebookSelectedId() }"><i class="fa {{ notebookIconByType(child.type) }}"></i> {{child.title}}</div>
 										</li>
 									</ul>
 								</li>
