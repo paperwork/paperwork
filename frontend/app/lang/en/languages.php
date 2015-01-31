@@ -51,9 +51,11 @@ return array(
 	'nld'=> 'Dutch',
 	'nor'=> 'Norwegian',
 	'pol'=> 'Polish',
+	'pl'=> 'Polish',
 	'por'=> 'Portuguese',
 	'ron'=> 'Romanian',
 	'rus'=> 'Russian',
+	'ru' => 'Russian',
 	'slk'=> 'Slovakian',
 	'slv'=> 'Slovenian',
 	'spa'=> 'Spanish',
@@ -68,6 +70,7 @@ return array(
 	'tha'=> 'Thai',
 	'tur'=> 'Turkish',
 	'ukr'=> 'Ukranian',
+	'uk' => 'Ukranian',
 	'vie'=> 'Vietnamese',
 
 );

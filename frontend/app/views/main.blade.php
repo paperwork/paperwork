@@ -67,6 +67,9 @@
 			</ul>
 		</div>
 
+[[-- @if($welcomeNoteSaved == 1) --]
+    [[-- HTML::script('js/special_note.js') --]]
+[[-- @endif --]]
 		<div id="paperworkViewParent" class="{{ isVisible() ? 'col-xs-12 col-sm-5 col-sm-offset-7 col-md-7 col-md-offset-5 main' : 'col-xs-12 col-sm-12 col-md-12 main' }}" ng-controller="ViewController">
 			<div id="paperworkView" ng-view></div>
 		</div>
