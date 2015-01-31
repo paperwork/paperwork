@@ -4,6 +4,7 @@ var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var livereload = require('gulp-livereload');
 var uglify = require('gulp-uglify');
+var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('compileLessBootstrapTheme', function() {
 	gulp
@@ -115,8 +116,10 @@ gulp.task('compileJsPaperwork', function() {
 			'app/js/paperwork/paperworkWaybackController.js',
 			'app/js/paperwork/paperworkFourOhFourController.js'
 		])
+		.pipe(sourcemaps.init())
 		.pipe(concat('paperwork.min.js'))
 		.pipe(uglify())
+		.pipe(sourcemaps.write())
 		.pipe(gulp.dest('public/js'))
 		.pipe(livereload());
 });
