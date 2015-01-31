@@ -4,7 +4,6 @@ var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var livereload = require('gulp-livereload');
 var uglify = require('gulp-uglify');
-var sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('compileLessBootstrapTheme', function() {
 	gulp
@@ -84,7 +83,6 @@ gulp.task('compileJsBootstrap', function() {
 			'app/js/bootstrap-tree.js'
 		])
 		.pipe(concat('bootstrap.min.js'))
-		.pipe(uglify())
 		.pipe(gulp.dest('public/js'))
 		.pipe(livereload());
 });
@@ -116,10 +114,7 @@ gulp.task('compileJsPaperwork', function() {
 			'app/js/paperwork/paperworkWaybackController.js',
 			'app/js/paperwork/paperworkFourOhFourController.js'
 		])
-		.pipe(sourcemaps.init())
 		.pipe(concat('paperwork.min.js'))
-		.pipe(uglify())
-		.pipe(sourcemaps.write())
 		.pipe(gulp.dest('public/js'))
 		.pipe(livereload());
 });
@@ -136,7 +131,6 @@ gulp.task('compileJsAngular', function() {
 			'app/js/angular-utf8-base64.js'
 		])
 		.pipe(concat('angular.min.js'))
-		.pipe(uglify())
 		.pipe(gulp.dest('public/js'))
 		.pipe(livereload());
 });
@@ -149,7 +143,6 @@ gulp.task('compileJsJquery', function() {
 			'app/js/jquery.scrollTo.js'
 		])
 		.pipe(concat('jquery.min.js'))
-		.pipe(uglify())
 		.pipe(gulp.dest('public/js'))
 		.pipe(livereload());
 });
@@ -162,7 +155,6 @@ gulp.task('compileJsTagsinput', function() {
 			'app/js/typeahead.js'
 		])
 		.pipe(concat('tagsinput.min.js'))
-		.pipe(uglify())
 		.pipe(gulp.dest('public/js'))
 		.pipe(livereload());
 });
@@ -174,7 +166,6 @@ gulp.task('compileJsLibraries', function() {
 			'app/js/retina.js'
 		])
 		.pipe(concat('libraries.min.js'))
-		.pipe(uglify())
 		.pipe(gulp.dest('public/js'))
 		.pipe(livereload());
 });
@@ -186,7 +177,6 @@ gulp.task('compileJsLtIe9Compat', function() {
 			'app/js/respond.js'
 		])
 		.pipe(concat('ltie9compat.min.js'))
-		.pipe(uglify())
 		.pipe(gulp.dest('public/js'))
 		.pipe(livereload());
 });
@@ -197,15 +187,22 @@ gulp.task('compileJsLtIe11Compat', function() {
 			'app/js/ie10-viewport-bug-workaround.js'
 		])
 		.pipe(concat('ltie11compat.min.js'))
-		.pipe(uglify())
 		.pipe(gulp.dest('public/js'))
 		.pipe(livereload());
+});
+
+gulp.task('minifyJs', function() {
+	gulp
+		.src('public/js/*.js')
+		.pipe(uglify())
+		.pipe(gulp.dest('public/js'));
 });
 
 gulp.task('less', ['compileLessBootstrapTheme', 'compileLessPaperworkThemeV1', 'compileLessFontLato', 'compileLessFreqselector', 'compileLessTypeahead']);
 gulp.task('js', ['compileJsBootstrap', 'compileJsPaperwork', 'compileJsAngular', 'compileJsJquery', 'compileJsTagsinput', 'compileJsLibraries', 'compileJsLtIe9Compat', 'compileJsLtIe11Compat']);
 
 gulp.task('default', ['less', 'js']);
+gulp.task('prod', ['default', 'minifyJs']);
 
 gulp.task('watch', function() {
   livereload.listen();
