@@ -54,6 +54,7 @@ return array(
 	'por'=> 'Portuguese',
 	'ron'=> 'Romanian',
 	'rus'=> 'Russian',
+	'ru' => 'Russian',
 	'slk'=> 'Slovakian',
 	'slv'=> 'Slovenian',
 	'spa'=> 'Spanish',
@@ -68,6 +69,7 @@ return array(
 	'tha'=> 'Thai',
 	'tur'=> 'Turkish',
 	'ukr'=> 'Ukranian',
+	'uk' => 'Ukranian',
 	'vie'=> 'Vietnamese',
 
 );

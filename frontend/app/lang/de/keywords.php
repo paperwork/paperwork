@@ -2,7 +2,12 @@
 
 return array(
 
+	'admin_area' => 'Admin Area',
+	'admin_status' => 'Admin Status',
+	'deleted_at' => 'Deleted',
 	'email_address' => 'E-Mail Adresse',
+	'id' => 'ID',
+	'users' => 'Users',
 	'first_name' => 'Vorname',
 	'last_name' => 'Nachname',
 	'password' => 'Passwort',
@@ -26,6 +31,8 @@ return array(
 	'move_notes' => 'Notizen verschieben',
 	'delete_note' => 'Notiz löschen',
 	'delete_notes' => 'Notizen löschen',
+	'note_info' => 'Notizinfo',
+	'note_title' => 'Notiztitel',
 	'new_notebook' => 'Neues Notizbuch',
 	'edit_notebook' => 'Notizbuch bearbeiten',
 	'delete_notebook' => 'Notizbuch löschen',
@@ -34,6 +41,7 @@ return array(
 	'new_collection' => 'Neue Kollektion',
 	'edit_collection' => 'Kollektion bearbeiten',
 	'delete_collection' => 'Kollektion löschen',
+	'tags_separated' => 'Tags, getrennt mit "," (Komma)',
 	'delete_note_question' => 'Notiz löschen?',
 	'delete_note_message' => 'Die ausgewählte Notiz, samt aller Anhänge wird gelöscht. Sind Sie sicher?',
 	'delete_notes_question' => 'Notizen löschen?',
@@ -44,6 +52,7 @@ return array(
 	'close_without_saving_message' => 'Es befinden sich nicht gespeicherte Änderungen in Ihrer Notiz. Möchten Sie diese Notiz wirklich schließen und damit alle Änderungen verwerfen?',
 	'search_dotdotdot' => 'Suchen...',
 	'reset_password' => 'Passwort zurücksetzen',
+	'password_reset_request' => 'Reset your Paperwork Password',
 	'toggle_navigation' => 'Navigation umschalten',
 	'cancel' => 'Abbrechen',
 	'create' => 'Erstellen',
@@ -62,9 +71,15 @@ return array(
 	'edit_notes' => 'Mehrere Notizen bearbeiten...',
 	'edit_notes_cancel' => 'Bearbeitung mehrerer Notizen beenden',
 	'ui_language' => 'Benutzeroberflächen-Sprache',
-	'document_languages' => 'Dokumenten Sprachen',
 	'select_notebook_title' => 'Notizbuch auswählen',
 	'select' => 'Auswählen',
 	'damn' => 'Verdammt.',
-	'untitled' => 'Unbenannt'
+	'created_at' => 'Erstellt',
+	'updated_at' => 'Geändert',
+	'untitled' => 'Unbenannt',
+	'not_implemented' => 'Diese Funktion ist noch nicht implementiert.',
+	'experimental' => 'experimentell',
+	'import' => 'Import',
+	'export' => 'Export'
+
 );

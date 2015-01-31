@@ -2,7 +2,12 @@
 
 return array(
 
+	'admin_area' => 'Admin Area',
+	'admin_status' => 'Admin Status',
+	'deleted_at' => 'Deleted',
 	'email_address' => 'Adresse email',
+	'id' => 'ID',
+	'users' => 'Users',
 	'first_name' => 'Nom',
 	'last_name' => 'Prénom',
 	'password' => 'Mot de passe',
@@ -47,6 +52,7 @@ return array(
 	'close_without_saving_message' => 'Il y a des changements non sauvegardés dans votre note. Voulez-vous réellement quitter cette note et perdre tous les changements non sauvegardés ?',
 	'search_dotdotdot' => 'Rechercher...',
 	'reset_password' => 'Remise à zéro du mot de passe',
+	'password_reset_request' => 'Reset your Paperwork Password',
 	'toggle_navigation' => 'Cacher la navigation',
 	'cancel' => 'Annuler',
 	'create' => 'Créer',
@@ -71,5 +77,9 @@ return array(
 	'created_at' => 'Créé',
 	'updated_at' => 'Mis à jour',
 	'untitled' => 'Sans titre',
+	'not_implemented' => 'This feature has not been implemented yet. ',
+	'experimental' => 'Experimental',
+	'import' => 'Import',
+	'export' => 'Export'
 
 );
