@@ -1,5 +1,8 @@
 .DS_Store
 .codekit-cache
 frontend/app/storage/attachments/*
+frontend/public/css/themes/paperwork-v1.min.css
 frontend/node_modules
+frontend/public/js/paperwork.min.js
+frontend/public/js/tagsinput.min.js
 Thumbs.db
