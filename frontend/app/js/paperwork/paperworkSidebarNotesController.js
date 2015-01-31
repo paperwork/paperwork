@@ -26,13 +26,17 @@ paperworkModule.controller('paperworkSidebarNotesController', function($scope, $
   }
 
   $scope.newNote = function(notebookId) {
+    if($rootScope.menuItemNotebookClass() === 'disabled') {
+      return false;
+    }
     if(typeof notebookId == "undefined" || notebookId == 0) {
       // TODO: Show some error
     }
 
     var data = {
-      'title': $rootScope.i18n.keywords.untitled,
-      'content': ''
+      'title': $rootScope.i18n.keywords.untitled || 'Untitled',
+      'content': '',
+      'content_preview': ''
     };
 
     var callback = (function(_notebookId) {
@@ -53,10 +57,16 @@ paperworkModule.controller('paperworkSidebarNotesController', function($scope, $
   };
 
   $scope.editNote = function (notebookId, noteId) {
+    if ($rootScope.menuItemNoteClass('single') === 'disabled'){
+      return false;
+    }
     $location.path("/n/" + notebookId + "/" + noteId + "/edit");
   };
 
   $scope.editNotes = function (notebookId, noteId) {
+    if ($rootScope.menuItemNoteClass('multiple') === 'disabled'){
+      return false;
+    }
     if($rootScope.editMultipleNotes == true) {
       $rootScope.editMultipleNotes = false;
     } else {
@@ -144,6 +154,9 @@ paperworkModule.controller('paperworkSidebarNotesController', function($scope, $
   };
 
   $scope.modalDeleteNote = function(notebookId, noteId) {
+    if($rootScope.menuItemNoteClass('multiple') === 'disabled') {
+      return false;
+    }
     var callback = (function() {
       return function(status, data) {
         switch(status) {
@@ -192,6 +205,11 @@ paperworkModule.controller('paperworkSidebarNotesController', function($scope, $
   };
 
   $scope.modalMoveNote = function(notebookId, noteId) {
+
+    if ($rootScope.menuItemNoteClass('multiple') === 'disabled'){
+      return false;
+    }
+
     $rootScope.modalNotebookSelect({
       'notebookId': notebookId,
       'noteId': noteId,

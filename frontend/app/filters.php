@@ -26,9 +26,11 @@ App::before(function($request)
 
 	foreach($zones as $zone) {
 		if(array_key_exists($zone, $access) &&
+		is_array($access[$zone]) &&
 		array_key_exists('dns', $access[$zone]) &&
 		$access[$zone]['dns'] == $requestServerName) {
 			if(array_key_exists('ports', $access[$zone]) &&
+			is_array($access[$zone]['ports']) &&
 			array_key_exists('forceHttps', $access[$zone]['ports'])) {
 
 				if($access[$zone]['ports']['forceHttps'] === true && !Request::secure()) {
@@ -114,8 +116,15 @@ Route::filter('guest', function()
 
 Route::filter('csrf', function()
 {
-	if (Session::token() != Input::get('_token'))
+	if (Session::token() !== Input::get('_token'))
 	{
 		throw new Illuminate\Session\TokenMismatchException;
 	}
+});
+
+Route::filter('admin', function($route, $request)
+{
+ if ( ! Auth::user()->isAdmin()) {
+	 return App::abort(401, 'You are not authorized.');
+ }
 });

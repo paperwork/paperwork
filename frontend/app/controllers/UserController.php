@@ -1,78 +1,82 @@
 <?php
-
 class UserController extends BaseController {
+	public function showRegistrationForm() {
+		return View::make('user.register');
+	}
 	public function register() {
-		if($this->isPostRequest()) {
-			$validator = $this->getRegistrationValidator();
+		$validator = $this->getRegistrationValidator();
 
-			if($validator->passes()) {
-				// $credentials = $this->getRegistrationCredentials();
-
-				$user = User::create(Input::except('_token', 'password_confirmation', 'ui_language'));
-				if ($user) {
-					$user->save();
-					$setting = Setting::create(array('ui_language' => Input::get('ui_language'), 'user_id' => $user->id));
-					
-					/* Add welcome note to user - create notebook, tag and note */
-					//$notebookCreate = Notebook::create(array('title' => Lang::get('notebooks.welcome_notebook_title')));
-					$notebookCreate = new Notebook();
-					$notebookCreate->title = Lang::get('notebooks.welcome_notebook_title');
-					$notebookCreate->save();
-					$notebookCreate->users()->attach($user->id, array('umask' => PaperworkHelpers::UMASK_OWNER));
-					//$tagCreate = Tag::create(array('title' => Lang::get('notebooks.welcome_note_tag'), 'visibility' => 0));
-					$tagCreate = new Tag();
-					$tagCreate->title = Lang::get('notebooks.welcome_note_tag');
-					$tagCreate->visibility = 0;
-					$tagCreate->save();
-					$tagCreate->users()->attach($user->id);
-					$noteCreate = new Note;
-					$versionCreate = new Version(array('title' => Lang::get('notebooks.welcome_note_title'), 'content' => Lang::get('notebooks.welcome_note_content'), 'content_preview' => strip_tags(Lang::get('notebooks.welcome_note_content'))));
-					$versionCreate->save();
-					$noteCreate->version()->associate($versionCreate);
-					$noteCreate->notebook_id = $notebookCreate->id;
-					$noteCreate->save();
-					$noteCreate->users()->attach($user->id);
-					$noteCreate->tags()->sync(array($tagCreate->id));
-					// Commented code above does not work because no $fillable is in the model files
-
-					Auth::login($user);
-
-					Session::put('ui_language', $setting->ui_language);
-
-					return Redirect::route("/");
+		if($validator->passes()) {
+			// $credentials = $this->getRegistrationCredentials();
+			$first_user = User::all()->count() == 0;
+			$user = User::create(Input::except('_token', 'password_confirmation', 'ui_language'));
+			if ($user) {
+				//make the first user an admin
+				if ($first_user) {
+					$user->is_admin = 1;
 				}
-				return Redirect::back()->withErrors([ "password" => [Lang::get('messages.account_creation_failed')]]);
+				$user->save();
+				$setting = Setting::create(array('ui_language' => Input::get('ui_language'), 'user_id' => $user->id));
+					
+				/* Add welcome note to user - create notebook, tag and note */
+				//$notebookCreate = Notebook::create(array('title' => Lang::get('notebooks.welcome_notebook_title')));
+				$notebookCreate = new Notebook();
+				$notebookCreate->title = Lang::get('notebooks.welcome_notebook_title');
+				$notebookCreate->save();
+				$notebookCreate->users()->attach($user->id, array('umask' => PaperworkHelpers::UMASK_OWNER));
+				//$tagCreate = Tag::create(array('title' => Lang::get('notebooks.welcome_note_tag'), 'visibility' => 0));
+				$tagCreate = new Tag();
+				$tagCreate->title = Lang::get('notebooks.welcome_note_tag');
+			    $tagCreate->visibility = 0;
+				$tagCreate->save();
+				$tagCreate->users()->attach($user->id);
+				$noteCreate = new Note;
+				$versionCreate = new Version(array('title' => Lang::get('notebooks.welcome_note_title'), 'content' => Lang::get('notebooks.welcome_note_content'), 'content_preview' => strip_tags(Lang::get('notebooks.welcome_note_content'))));
+				$versionCreate->save();
+				$noteCreate->version()->associate($versionCreate);
+				$noteCreate->notebook_id = $notebookCreate->id;
+				$noteCreate->save();
+				$noteCreate->users()->attach($user->id);
+				$noteCreate->tags()->sync(array($tagCreate->id));
+				// Commented code above does not work because no $fillable is in the model files
 
+				Auth::login($user);
 
-			} else {
-				return Redirect::back()->withInput()->withErrors($validator);
+				Session::put('ui_language', $setting->ui_language);
+
+				return Redirect::route("/");
 			}
+			return Redirect::back()->withErrors([ "password" => [Lang::get('messages.account_creation_failed')]]);
+
+
+		} else {
+			return Redirect::back()->withInput()->withErrors($validator);
 		}
-		return View::make('user/register');
 	}
 
 	public function login()
 	{
-		if($this->isPostRequest()) {
-			$validator = $this->getLoginValidator();
+		$validator = $this->getLoginValidator();
 
-			if($validator->passes()) {
-				$credentials = $this->getLoginCredentials();
+		if($validator->passes()) {
+			$credentials = $this->getLoginCredentials();
 
-				if (Auth::attempt($credentials)) {
-					$settings = Setting::where('user_id', '=',Auth::user()->id)->first();
+			if (Auth::attempt($credentials)) {
+				$settings = Setting::where('user_id', '=',Auth::user()->id)->first();
 
-					Session::put('ui_language', $settings->ui_language);
+				Session::put('ui_language', $settings->ui_language);
 
-					return Redirect::route("/");
-				}
-				return Redirect::back()->withErrors([ "password" => [Lang::get('messages.invalid_credentials')]]);
-
-
-			} else {
-				return Redirect::back()->withInput()->withErrors($validator);
+				return Redirect::route("/");
 			}
+			return Redirect::back()->withErrors([ "password" => [Lang::get('messages.invalid_credentials')]]);
+
+
+		} else {
+			return Redirect::back()->withInput()->withErrors($validator);
 		}
+	}
+
+	public function showLoginForm() {
 		return View::make('user/login');
 	}
 
@@ -185,7 +189,10 @@ class UserController extends BaseController {
 	}
 	// TODO: Password reminders not working out of the box, since we don't have an "email" column.
 	protected function getPasswordRemindResponse() {
-		return Password::remind(Input::only("username"));
+		return Password::remind(Input::only("username"), function($message)
+			{
+				$message->subject(Lang::get('keywords.password_reset_request'));
+			});
 	}
 
 	protected function isInvalidUser($response) {

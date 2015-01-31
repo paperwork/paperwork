@@ -276,6 +276,7 @@ label {
   margin-right: -21px; /* 20px padding + 1px border */
   margin-bottom: 20px;
   margin-left: -20px;
+  padding-right: 10px;
 }
 .nav-sidebar > li > a {
   padding-right: 20px;
@@ -500,6 +501,12 @@ ul.nav-tabs-margin {
   background-color: @white;
   color: @text-color;
   // top: 50px;
+
+  .notebook-title {
+    white-space: nowrap;
+    text-overflow:ellipsis;
+    overflow:hidden;
+  }
 }
 
 .sidebar-no-border {
@@ -530,7 +537,7 @@ ul.nav-tabs-margin {
       li.tree-notebook {
         cursor: pointer;
 
-        span.active {
+        .notebook-title.active {
           color: @brand-primary;
         }
       }
@@ -797,3 +804,12 @@ body.paperwork-guest {
 .btn-info    { .paperwork-btn-styles(@btn-info-bg, darken(@btn-info-bg, 12%)); }
 .btn-warning { .paperwork-btn-styles(@btn-warning-bg, darken(@btn-warning-bg, 12%)); }
 .btn-danger  { .paperwork-btn-styles(@btn-danger-bg, darken(@btn-danger-bg, 12%)); }
+
+/*
+ * Hide Angular templating code
+ * Usually template text is displayed
+ * until Angular is invoked
+ */
+[ng-cloak] {
+  display: none !important;
+}

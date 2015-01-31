@@ -18,15 +18,18 @@ App::missing(function($exception)
     return Response::view('404', array(), 404);
 });
 
-Route::any('/login',["as" => "user/login", "uses" => "UserController@login"]);
+Route::get('/login',["as" => "user/login", "uses" => "UserController@showLoginForm"]);
+Route::post('/login',["as" => "user/login", "uses" => "UserController@login"]);
 
 if(Config::get('paperwork.registration')) {
-Route::any("/register",["as" => "user/register","uses" => "UserController@register"]);
+    Route::get("/register",["as" => "user/register","uses" => "UserController@showRegistrationForm"]);
+    Route::post("/register",["as" => "user/register","uses" => "UserController@register"]);
 }
 
 Route::any("/request",["as" => "user/request","uses" => "UserController@request"]);
 Route::any("/reset/{token}",[ "as" => "user/reset","uses" => "UserController@reset"]);
 
+//Authorized Users
 Route::group(["before" => "auth"],function(){
     App::setLocale(PaperworkHelpers::getUiLanguageFromSession());
 	Route::any("/profile",["as" => "user/profile","uses" => "UserController@profile"]);
@@ -35,6 +38,12 @@ Route::group(["before" => "auth"],function(){
 	Route::any("/logout",["as" => "user/logout","uses" => "UserController@logout"]);
 	Route::any("/settings/export",["as" => "user/settings/export","uses" => "UserController@export"]);
 	Route::get('/',["as" => "/","uses" => "LibraryController@show"]);
+
+    //Administrators
+    Route::group(['prefix' => 'admin', 'before' => ['admin']], function()
+    {
+        Route::get('/', ['as' => 'admin/console', 'uses' => 'AdminController@showConsole']);
+    });
 });
 
 

@@ -22,7 +22,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password', 'remember_token');
 
-	protected $fillable = array('username', 'password', 'firstname', 'lastname', 'remember_token');
+	protected $fillable = array('username', 'password', 'firstname', 'lastname', 'is_admin', 'remember_token');
 
 	public function setPasswordAttribute($pass) {
 		$this->attributes['password'] = Hash::make($pass);
@@ -43,4 +43,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	public function languages() {
 		return $this->belongsToMany('Language');
 	}
+	
+    public function isAdmin() {
+    	return $this->is_admin;
+    }
 }
