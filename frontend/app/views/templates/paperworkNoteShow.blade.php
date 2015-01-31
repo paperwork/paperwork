@@ -23,6 +23,7 @@
 		      			</div>
 		      		'><i class="fa fa-info-circle"></i></button>
 		      		<button class="btn btn-default navbar-btn" data-toggle="freqselector" data-target="#wayback-machine"><i class="fa fa-history"></i></button>
+				<button class="btn btn-default navbar-btn" ng-controller="paperworkSidebarNotesController" ng-click="editNote(note.notebook_id, note.id)"><i class="fa fa-pencil"></i></button>
 		      		<button class="btn btn-default navbar-btn"><i class="fa fa-share-alt"></i></button>
 	      		</div>
 	      	</li>

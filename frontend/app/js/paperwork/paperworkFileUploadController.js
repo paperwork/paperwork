@@ -76,12 +76,15 @@ paperworkModule.controller('paperworkFileUploadController', ['$scope', '$rootSco
       });
     } else {
       paperworkNotesService.deleteNoteVersionAttachment(notebookId, noteId, versionId, attachmentId, function(response) {
+        var fileUrl = '/api/v1/notebooks/' + notebookId + '/notes/' + noteId + '/versions/' + versionId + '/attachments/' + attachmentId + '/raw';
         var i, l = $rootScope.fileList.length;
         for(i=0; i<l; i++) {
           if(typeof $rootScope.fileList[i] != "undefined" && typeof $rootScope.fileList[i].id != "undefined" && $rootScope.fileList[i].id == attachmentId) {
             $rootScope.fileList.splice(i, 1);
           }
         }
+        
+        $rootScope.$broadcast('deleteAttachmentLink', { 'url': fileUrl });
       });
     }
     return true;
