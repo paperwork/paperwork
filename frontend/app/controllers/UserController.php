@@ -12,6 +12,28 @@ class UserController extends BaseController {
 				if ($user) {
 					$user->save();
 					$setting = Setting::create(array('ui_language' => Input::get('ui_language'), 'user_id' => $user->id));
+					
+					/* Add welcome note to user - create notebook, tag and note */
+					//$notebookCreate = Notebook::create(array('title' => Lang::get('notebooks.welcome_notebook_title')));
+					$notebookCreate = new Notebook();
+					$notebookCreate->title = Lang::get('notebooks.welcome_notebook_title');
+					$notebookCreate->save();
+					$notebookCreate->users()->attach($user->id, array('umask' => PaperworkHelpers::UMASK_OWNER));
+					//$tagCreate = Tag::create(array('title' => Lang::get('notebooks.welcome_note_tag'), 'visibility' => 0));
+					$tagCreate = new Tag();
+					$tagCreate->title = Lang::get('notebooks.welcome_note_tag');
+					$tagCreate->visibility = 0;
+					$tagCreate->save();
+					$tagCreate->users()->attach($user->id);
+					$noteCreate = new Note;
+					$versionCreate = new Version(array('title' => Lang::get('notebooks.welcome_note_title'), 'content' => Lang::get('notebooks.welcome_note_content'), 'content_preview' => strip_tags(Lang::get('notebooks.welcome_note_content'))));
+					$versionCreate->save();
+					$noteCreate->version()->associate($versionCreate);
+					$noteCreate->notebook_id = $notebookCreate->id;
+					$noteCreate->save();
+					$noteCreate->users()->attach($user->id);
+					$noteCreate->tags()->sync(array($tagCreate->id));
+					// Commented code above does not work because no $fillable is in the model files
 
 					Auth::login($user);
 
