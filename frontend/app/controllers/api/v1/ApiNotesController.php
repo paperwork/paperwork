@@ -240,13 +240,19 @@ class ApiNotesController extends BaseController {
 	{
 		$newNote = Input::json();
 
+		$note = new Note();
+
+		$version = new Version(array('title' => $newNote->get("title"), 'content' => $newNote->get("content"), 'content_preview' => $newNote->get("content_preview")));
+		$version->save();
+		$note->version()->associate($version);
+
 		$notebook = DB::table('notebooks')
 			->join('notebook_user', function($join) {
 				$join->on('notebooks.id', '=', 'notebook_user.notebook_id')
 					->where('notebook_user.user_id', '=', Auth::user()->id);
 			})
 			->select('notebooks.id', 'notebooks.type', 'notebooks.title')
-			->where('notebooks.uuid', '=', $notebookId)
+			->where('notebooks.id', '=', $notebookId)
 			->whereNull('notebooks.deleted_at')
 			->first();
 
@@ -254,15 +260,14 @@ class ApiNotesController extends BaseController {
 			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
 		}
 
+		$note->notebook_id = $notebookId;
 		$version = Version::create(array('title' => $newNote->get("title"), 'content' => $newNote->get("content")));
 		$version->save();
 
-		$note = Note::create(array('notebook_id' => $notebook->id, 'version_id' => $version->id));
-		// $note->version()->associate($version);
-
 		$note->save();
 
-		$note->users()->attach(Auth::user()->id);
+        // TODO: Should we inherit the umask from the notebook?
+		$note->users()->attach(Auth::user()->id, array('umask' => PaperworkHelpers::UMASK_OWNER));
 
 		$tagIds = ApiTagsController::createOrGetTags($newNote->get('tags'));
 

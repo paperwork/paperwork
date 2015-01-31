@@ -34,8 +34,9 @@ paperworkModule.controller('paperworkSidebarNotesController', function($scope, $
     }
 
     var data = {
-      'title': $rootScope.i18n.keywords.untitled,
-      'content': ''
+      'title': $rootScope.i18n.keywords.untitled || 'Untitled',
+      'content': '',
+      'content_preview': ''
     };
 
     var callback = (function(_notebookId) {

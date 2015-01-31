@@ -1,5 +1,7 @@
 Paperwork - OpenSource note-taking & archiving
 ==============================================
+
+[![Join the chat at https://gitter.im/twostairs/paperwork](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/twostairs/paperwork?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/twostairs/paperwork.svg?branch=master)](https://travis-ci.org/twostairs/paperwork)
 
 ![paperwork-logo](https://raw.githubusercontent.com/twostairs/paperwork/master/paperwork-logo.png)
@@ -28,7 +30,7 @@ Feel free to create/modify/delete accounts, notebooks and notes. This demo can b
 
 ## Initial installation (quick & dirty documented)
 
-First of all, you need to clone this project to your machine. After that, make sure that you have one of the latest PHP versions > 5.1 and an up-to-date "composer" installed. If you're not sure how composer works, please continue reading here: https://getcomposer.org/
+First of all, you need to clone this project to your machine. After that, make sure that you have one of the latest PHP versions >= 5.4 and an up-to-date "composer" installed. If you're not sure how composer works, please continue reading here: https://getcomposer.org/
 
 Second, you need to switch to the command line: "cd" into the "frontend" directory of your local paperwork clone. There, run "composer install" and/or "composer update". This will install all the needed dependencies.
 
@@ -93,6 +95,8 @@ npm will install all dependencies required through the `package.json`, so that y
 ## Some last words
 
 The current development status is far from being worth called "version 1.0". However, if I could get you interested in this project and you feel like contributing, don't hesitate to ping me by e-mail ([marius@paperwork.rocks](mailto:marius@paperwork.rocks)) or twitter ([@devilx](https://twitter.com/devilx)) so we can talk. :-)
+
+There is an irc channel #paperwork on freenode.net.
 
 ## FAQ
 
