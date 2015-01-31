@@ -17,7 +17,36 @@ class LibraryController extends BaseController {
 
 	public function show()
 	{
-		return View::make('main');
-	}
+		//TODO: Not yet implemented
+		/* Check if the Welcome one is not deleted */
+        //$userId = Auth::user()->id;
+        //$welcomeNote = Note::with(
+        //    array(
+                /*'users' => function($query) {
+                    $query->where('id', '=', Auth::user()->id);
+                },*/
+        /*        'version' => function($query) {
+                    $query->whereNull('previous_id');
+                }
+            )
+        )->join('note_user', function($join) use(&$userId) {
+            $join->on('notes.id', '=', 'note_user.note_id')->where('note_user.user_id', '=', $userId);
+        })
+        ->orderBy('notes.created_at')
+        ->whereNull('notes.deleted_at')
+        ->first();
+            
+        if(is_null($welcomeNote)) {
+            $welcomeNoteArray = array('welcomeNoteSaved' => 0);
+        }else{
+            if($welcomeNote->version->title === Lang::get('notebooks.welcome_note_title')) {
+                $welcomeNoteArray = array('welcomeNoteSaved' => 1);
+            }else{
+                $welcomeNoteArray = array('welcomeNoteSaved' => 0);
+            }
+        }*/
+        return View::make('main');
+        //return View::make('main', $welcomeNoteArray);
+    }
 
 }

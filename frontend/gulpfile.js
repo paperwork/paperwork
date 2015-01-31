@@ -3,6 +3,7 @@ var less = require('gulp-less');
 var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var livereload = require('gulp-livereload');
+var uglify = require('gulp-uglify');
 var path = require("path");
 
 var paths = {
@@ -184,10 +185,18 @@ gulp.task('compileJsLtIe11Compat', function() {
 		.pipe(livereload());
 });
 
+gulp.task('minifyJs', function() {
+	gulp
+		.src(path.join(paths.output.js, '*.js'))
+		.pipe(uglify())
+		.pipe(gulp.dest(paths.output.js));
+});
+
 gulp.task('less', ['compileLessBootstrapTheme', 'compileLessPaperworkThemeV1', 'compileLessFontLato', 'compileLessFreqselector', 'compileLessTypeahead']);
 gulp.task('js', ['compileJsBootstrap', 'compileJsPaperwork', 'compileJsAngular', 'compileJsJquery', 'compileJsTagsinput', 'compileJsLibraries', 'compileJsLtIe9Compat', 'compileJsLtIe11Compat']);
 
 gulp.task('default', ['less', 'js']);
+gulp.task('prod', ['default', 'minifyJs']);
 
 gulp.task('watch', function() {
   livereload.listen();
