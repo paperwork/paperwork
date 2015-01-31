@@ -4,6 +4,57 @@ var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var livereload = require('gulp-livereload');
 var uglify = require('gulp-uglify');
+var path = require("path");
+
+var paths = {
+	bootstrap: [
+		'app/js/bootstrap/transition.js',
+		'app/js/bootstrap/collapse.js',
+		'app/js/bootstrap/dropdown.js',
+		'app/js/bootstrap/modal.js',
+		'app/js/bootstrap/tab.js',
+		'app/js/bootstrap/tooltip.js',
+		'app/js/bootstrap/popover.js',
+		'app/js/bootstrap-tree.js'
+	],
+	paperwork: [
+		'app/js/paperwork/**/*.js'
+	],
+	angular: [
+		'app/js/angular.js',
+		'app/js/angular-resource.js',
+		'app/js/angular-route.js',
+		'app/js/angular-sanitize.js',
+		'app/js/angular-animate.js',
+		'app/js/angular-file-upload.js',
+		'app/js/angular-utf8-base64.js'
+	],
+	jQuery: [
+		'app/js/jquery.js',
+		'app/js/jquery.overscroll.js',
+		'app/js/jquery.scrollTo.js'
+	],
+	tagsinput: [
+		'app/js/bootstrap-tagsinput.js',
+		'app/js/bootstrap-tagsinput-angular.js',
+		'app/js/typeahead.js'
+	],
+	libraries: [
+		'app/js/freqselector.js',
+		'app/js/retina.js'
+	],
+	ie9compat: [
+		'app/js/html5shiv.js',
+		'app/js/respond.js'
+	],
+	ie11compat: [
+		'app/js/ie10-viewport-bug-workaround.js'
+	],
+	output: {
+		js: 'public/js',
+		css: 'public/css'
+	}
+};
 
 gulp.task('compileLessBootstrapTheme', function() {
 	gulp
@@ -14,7 +65,7 @@ gulp.task('compileLessBootstrapTheme', function() {
 		.pipe(rename({
 			basename: 'bootstrap-theme.min'
 		}))
-		.pipe(gulp.dest('public/css'))
+		.pipe(gulp.dest(paths.output.css))
 		.pipe(livereload());
 });
 
@@ -27,7 +78,7 @@ gulp.task('compileLessPaperworkThemeV1', function() {
 		.pipe(rename({
 			basename: 'paperwork-v1.min'
 		}))
-		.pipe(gulp.dest('public/css/themes'))
+		.pipe(gulp.dest(path.join(paths.output.css, 'themes')))
 		.pipe(livereload());
 });
 
@@ -40,7 +91,7 @@ gulp.task('compileLessFontLato', function() {
 		.pipe(rename({
 			basename: 'font-lato'
 		}))
-		.pipe(gulp.dest('public/css'))
+		.pipe(gulp.dest(paths.output.css))
 		.pipe(livereload());
 });
 
@@ -53,7 +104,7 @@ gulp.task('compileLessFreqselector', function() {
 		.pipe(rename({
 			basename: 'freqselector.min'
 		}))
-		.pipe(gulp.dest('public/css'))
+		.pipe(gulp.dest(paths.output.css))
 		.pipe(livereload());
 });
 
@@ -66,136 +117,79 @@ gulp.task('compileLessTypeahead', function() {
 		.pipe(rename({
 			basename: 'typeahead.min'
 		}))
-		.pipe(gulp.dest('public/css'))
+		.pipe(gulp.dest(paths.output.css))
 		.pipe(livereload());
 });
 
 gulp.task('compileJsBootstrap', function() {
 	gulp
-		.src([
-			'app/js/bootstrap/transition.js',
-			'app/js/bootstrap/collapse.js',
-			'app/js/bootstrap/dropdown.js',
-			'app/js/bootstrap/modal.js',
-			'app/js/bootstrap/tab.js',
-			'app/js/bootstrap/tooltip.js',
-			'app/js/bootstrap/popover.js',
-			'app/js/bootstrap-tree.js'
-		])
+		.src(paths.bootstrap)
 		.pipe(concat('bootstrap.min.js'))
-		.pipe(gulp.dest('public/js'))
+		.pipe(gulp.dest(paths.output.js))
 		.pipe(livereload());
 });
 
 gulp.task('compileJsPaperwork', function() {
 	gulp
-		.src([
-			'app/js/paperwork/paperwork.js',
-			'app/js/paperwork/paperworkFilters.js',
-			'app/js/paperwork/paperworkRoutes.js',
-			'app/js/paperwork/paperworkNetService.js',
-			'app/js/paperwork/paperworkNotebooksService.js',
-			'app/js/paperwork/paperworkNotesService.js',
-			'app/js/paperwork/paperworkVersionsService.js',
-			'app/js/paperwork/paperworkMessageBoxService.js',
-			'app/js/paperwork/paperworkConstructorController.js',
-			'app/js/paperwork/paperworkDefaultController.js',
-			'app/js/paperwork/paperworkNotesAllController.js',
-			'app/js/paperwork/paperworkNotesShowController.js',
-			'app/js/paperwork/paperworkNotesEditController.js',
-			'app/js/paperwork/paperworkNotesListController.js',
-			'app/js/paperwork/paperworkSidebarNotebooksController.js',
-			'app/js/paperwork/paperworkSidebarNotesController.js',
-			'app/js/paperwork/paperworkVersionsController.js',
-			'app/js/paperwork/paperworkSearchController.js',
-			'app/js/paperwork/paperworkViewController.js',
-			'app/js/paperwork/paperworkFileUploadController.js',
-			'app/js/paperwork/paperworkMessageBoxController.js',
-			'app/js/paperwork/paperworkWaybackController.js',
-			'app/js/paperwork/paperworkFourOhFourController.js'
-		])
+		.src(paths.paperwork)
 		.pipe(concat('paperwork.min.js'))
-		.pipe(gulp.dest('public/js'))
+		.pipe(gulp.dest(paths.output.js))
 		.pipe(livereload());
 });
 
 gulp.task('compileJsAngular', function() {
 	gulp
-		.src([
-			'app/js/angular.js',
-			'app/js/angular-resource.js',
-			'app/js/angular-route.js',
-			'app/js/angular-sanitize.js',
-			'app/js/angular-animate.js',
-			'app/js/angular-file-upload.js',
-			'app/js/angular-utf8-base64.js'
-		])
+		.src(paths.angular)
 		.pipe(concat('angular.min.js'))
-		.pipe(gulp.dest('public/js'))
+		.pipe(gulp.dest(paths.output.js))
 		.pipe(livereload());
 });
 
 gulp.task('compileJsJquery', function() {
 	gulp
-		.src([
-			'app/js/jquery.js',
-			'app/js/jquery.overscroll.js',
-			'app/js/jquery.scrollTo.js'
-		])
+		.src(paths.jQuery)
 		.pipe(concat('jquery.min.js'))
-		.pipe(gulp.dest('public/js'))
+		.pipe(gulp.dest(paths.output.js))
 		.pipe(livereload());
 });
 
 gulp.task('compileJsTagsinput', function() {
 	gulp
-		.src([
-			'app/js/bootstrap-tagsinput.js',
-			'app/js/bootstrap-tagsinput-angular.js',
-			'app/js/typeahead.js'
-		])
+		.src(paths.tagsinput)
 		.pipe(concat('tagsinput.min.js'))
-		.pipe(gulp.dest('public/js'))
+		.pipe(gulp.dest(paths.output.js))
 		.pipe(livereload());
 });
 
 gulp.task('compileJsLibraries', function() {
 	gulp
-		.src([
-			'app/js/freqselector.js',
-			'app/js/retina.js'
-		])
+		.src(paths.libraries)
 		.pipe(concat('libraries.min.js'))
-		.pipe(gulp.dest('public/js'))
+		.pipe(gulp.dest(paths.output.js))
 		.pipe(livereload());
 });
 
 gulp.task('compileJsLtIe9Compat', function() {
 	gulp
-		.src([
-			'app/js/html5shiv.js',
-			'app/js/respond.js'
-		])
+		.src(paths.ie9compat)
 		.pipe(concat('ltie9compat.min.js'))
-		.pipe(gulp.dest('public/js'))
+		.pipe(gulp.dest(paths.output.js))
 		.pipe(livereload());
 });
 
 gulp.task('compileJsLtIe11Compat', function() {
 	gulp
-		.src([
-			'app/js/ie10-viewport-bug-workaround.js'
-		])
+		.src(paths.ie11compat)
 		.pipe(concat('ltie11compat.min.js'))
-		.pipe(gulp.dest('public/js'))
+		.pipe(gulp.dest(paths.output.js))
 		.pipe(livereload());
 });
 
 gulp.task('minifyJs', function() {
 	gulp
-		.src('public/js/*.js')
+		.src(path.join(paths.output.js, '*.js'))
 		.pipe(uglify())
-		.pipe(gulp.dest('public/js'));
+		.pipe(gulp.dest(paths.output.js));
 });
 
 gulp.task('less', ['compileLessBootstrapTheme', 'compileLessPaperworkThemeV1', 'compileLessFontLato', 'compileLessFreqselector', 'compileLessTypeahead']);
