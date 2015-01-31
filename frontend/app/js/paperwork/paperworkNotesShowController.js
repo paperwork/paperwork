@@ -31,4 +31,11 @@ paperworkModule.controller('paperworkNotesShowController', function($scope, $roo
   $rootScope.navbarMainMenu = true;
   $rootScope.navbarSearchForm = true;
   $rootScope.expandedNoteLayout = false;
+  //TODO: Not implemented yet 
+  /*$scope.specialNoteEvents = function() {
+      if(typeof window.specialNoteEventListener !== undefined) {
+          window.specialNoteEventListener();
+      }
+  };*/
+  //setTimeout(function() { window.specialNoteEventListener(); }, 1500);
 });
