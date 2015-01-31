@@ -18,7 +18,7 @@ class Initialize extends Migration {
             $table->string('password');
             $table->string('firstname');
             $table->string('lastname');
-            $table->string('remember_token');
+            $table->string('remember_token', 100)->nullable();
             $table->timestamps();
             $table->softDeletes();
             $table->engine = 'InnoDB';

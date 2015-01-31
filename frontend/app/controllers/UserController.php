@@ -167,7 +167,10 @@ class UserController extends BaseController {
 	}
 	// TODO: Password reminders not working out of the box, since we don't have an "email" column.
 	protected function getPasswordRemindResponse() {
-		return Password::remind(Input::only("username"));
+		return Password::remind(Input::only("username"), function($message)
+			{
+				$message->subject(Lang::get('keywords.password_reset_request'));
+			});
 	}
 
 	protected function isInvalidUser($response) {

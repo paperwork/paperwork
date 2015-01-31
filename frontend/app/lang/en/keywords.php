@@ -52,6 +52,7 @@ return array(
 	'close_without_saving_message' => 'There are unsaved changes in your note. Do you really want to close this note and dismiss all unsaved changes?',
 	'search_dotdotdot' => 'Search...',
 	'reset_password' => 'Reset password',
+	'password_reset_request' => 'Reset your Paperwork Password',
 	'toggle_navigation' => 'Toggle navigation',
 	'cancel' => 'Cancel',
 	'create' => 'Create',

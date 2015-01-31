@@ -102,6 +102,24 @@ paperworkModule.controller('paperworkNotesEditController', function($scope, $roo
   //   $(this).trigger(e);
   // });
 
+
+  $scope.$on('deleteAttachmentLink', function(ev, args) {
+    if(typeof args == "undefined" || typeof args.url == "undefined") {
+      return false;
+    }
+
+    var documentNode = CKEDITOR.instances['content'].document.$,
+        elementCollection = documentNode.getElementsByTagName('a');
+
+    var i = elementCollection.length;
+    while(i--) {
+      var element = elementCollection[i];
+      if(element.getAttribute("href") == args.url) {
+        element.parentNode.removeChild(element);	
+      }
+    }
+  });
+
   $scope.$on('insertAttachmentLink', function(ev, args) {
     if(typeof args == "undefined" || typeof args.url == "undefined" || typeof args.mimetype == "undefined") {
       return false;

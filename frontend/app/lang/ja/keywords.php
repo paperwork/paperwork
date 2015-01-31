@@ -2,7 +2,12 @@
 
 return array(
 
+	'admin_area' => '管理者エリア',
+	'admin_status' => '管理者権限',
+	'deleted_at' => '削除日時',
 	'email_address' => 'メールアドレス',
+	'id' => 'ID',
+	'users' => 'ユーザー',
 	'first_name' => '名前',
 	'last_name' => '姓',
 	'password' => 'パスワード',
@@ -68,8 +73,8 @@ return array(
 	'select_notebook_title' => 'ノートブックを選択',
 	'select' => '選択',
 	'damn' => 'おい、くそっ',
-	'created_at' => '作成済み',
-	'updated_at' => '更新済み',
+	'created_at' => '作成日時',
+	'updated_at' => '更新日時',
 	'untitled' => '名称未設定',
 	'not_implemented' => 'この機能はまだ実装されていません。',
 	'experimental' => '実験的',
