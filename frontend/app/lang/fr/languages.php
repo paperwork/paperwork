@@ -51,6 +51,7 @@ return array(
 	'nld'=> 'Hollandais',
 	'nor'=> 'Norvégien',
 	'pol'=> 'Polonais',
+	'pl'=> 'Polonais',
 	'por'=> 'Portugais',
 	'ron'=> 'Roumain',
 	'rus'=> 'Russe',

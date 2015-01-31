@@ -31,12 +31,12 @@ class UserController extends BaseController {
 				$tagCreate->save();
 				$tagCreate->users()->attach($user->id);
 				$noteCreate = new Note;
-				$versionCreate = new Version(array('title' => Lang::get('notebooks.welcome_note_title'), 'content' => Lang::get('notebooks.welcome_note_content'), 'content_preview' => strip_tags(Lang::get('notebooks.welcome_note_content'))));
+				$versionCreate = new Version(array('title' => Lang::get('notebooks.welcome_note_title'), 'content' => Lang::get('notebooks.welcome_note_content'), 'content_preview' => mb_substr(strip_tags(Lang::get('notebooks.welcome_note_content')), 0, 255)));
 				$versionCreate->save();
 				$noteCreate->version()->associate($versionCreate);
 				$noteCreate->notebook_id = $notebookCreate->id;
 				$noteCreate->save();
-				$noteCreate->users()->attach($user->id);
+				$noteCreate->users()->attach($user->id, array('umask' => PaperworkHelpers::UMASK_OWNER));
 				$noteCreate->tags()->sync(array($tagCreate->id));
 				// Commented code above does not work because no $fillable is in the model files
 
