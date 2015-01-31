@@ -1,5 +1,7 @@
-paperworkModule.controller('paperworkFourOhFourController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService){
-  $rootScope.navbarMainMenu = true;
-  $rootScope.navbarSearchForm = true;
-  $rootScope.expandedNoteLayout = false;
-});
+paperworkModule.controller('FourOhFourController',
+  ['$scope', '$rootScope', '$location', '$routeParams', 'NotesService',
+    function($scope, $rootScope, $location, $routeParams, notesService) {
+      $rootScope.navbarMainMenu = true;
+      $rootScope.navbarSearchForm = true;
+      $rootScope.expandedNoteLayout = false;
+    }]);

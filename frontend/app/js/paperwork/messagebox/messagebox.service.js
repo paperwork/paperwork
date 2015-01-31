@@ -1,5 +1,7 @@
-paperworkModule.factory('paperworkMessageBoxService', ['$rootScope', '$http', 'paperworkNetService', function($rootScope, $http, paperworkNetService) {
-  var paperworkMessageBoxFactory = {};
+paperworkModule.factory('MessageBoxService',
+  ['$rootScope', '$http', 'NetService',
+   function($rootScope, $http, netService) {
+     var paperworkMessageBoxFactory = {};
 
-  return paperworkMessageBoxFactory;
-}]);
+     return paperworkMessageBoxFactory;
+   }]);

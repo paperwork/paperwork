@@ -1,3 +1,5 @@
-paperworkModule.controller('paperworkVersionsController', function($scope, $rootScope, $location, $timeout, $routeParams){
-  // TODO
-});
+paperworkModule.controller('VersionsController',
+  ['$scope', '$rootScope', '$location', '$timeout', '$routeParams',
+    function($scope, $rootScope, $location, $timeout, $routeParams){
+    // TODO
+    }]);

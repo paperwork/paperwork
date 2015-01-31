@@ -21,7 +21,7 @@
             <tbody>
                 <tr ng-repeat="item in fileList">
                     <td class="status-td">
-                        <i ng-controller="paperworkFileUploadController" class="fa {{ getFaClassFromMimetype(item.mimetype) }}"></i>
+                        <i ng-controller="FileUploadController" class="fa {{ getFaClassFromMimetype(item.mimetype) }}"></i>
                     </td>
                     <td><a href="{{'/api/v1/notebooks/' + getNotebookSelectedId() + '/notes/' + (getNoteSelectedId(true)).noteId + '/versions/' + (getVersionSelectedId(true)).versionId + '/attachments/' + item.id + '/raw' }}" target="_blank"><strong>{{ item.filename }}</strong></a></td>
                     @if ($actionsEnabled)
