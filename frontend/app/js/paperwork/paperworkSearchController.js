@@ -3,11 +3,11 @@ paperworkModule.controller('paperworkSearchController', function($scope, $rootSc
 
   $rootScope.search = sQ;
 
-  var searchMatch = /([a-zA-Z]+)(\:(\d+))?(\/.+)?/g.exec(sQ);
+  var searchMatch = /([a-zA-Z]+)(?:\:(\d+))?(\/.+)?/g.exec(sQ);
   if(typeof searchMatch != "undefined" && searchMatch != null && searchMatch.length > 0) {
     switch(searchMatch[1]) {
       case "tagid":
-        paperworkNotesService.getNotesInTag(searchMatch[3]);
+        paperworkNotesService.getNotesInTag(searchMatch[2]);
       break;
       default:
         paperworkNotesService.getNotesFromSearch(searchMatch[0]);
