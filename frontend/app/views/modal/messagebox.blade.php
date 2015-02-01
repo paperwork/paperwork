@@ -1,4 +1,4 @@
-<div ng-controller="paperworkMessageBoxController" class="modal fade" id="modalMessageBox" tabindex="-1" role="dialog" aria-labelledby="modalMessageBoxLabel" aria-hidden="true">
+<div ng-controller="MessageBoxController" class="modal fade" id="modalMessageBox" tabindex="-1" role="dialog" aria-labelledby="modalMessageBoxLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			[[ Form::open(array('class' => 'form-signin', 'role' => 'form')) ]]

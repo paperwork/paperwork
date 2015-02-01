@@ -5,7 +5,7 @@
 	      <ul class="nav navbar-nav">
 	      	<li>
 		      	<div class="btn-group">
-		      		<button ng-controller="paperworkSidebarNotesController" class="btn btn-default navbar-btn" ng-click="modalMoveNote(note.notebook_id, note.id)"><i class="fa fa-book"></i> {{note.notebook_title}}</button>
+		      		<button ng-controller="SidebarNotesController" class="btn btn-default navbar-btn" ng-click="modalMoveNote(note.notebook_id, note.id)"><i class="fa fa-book"></i> {{note.notebook_title}}</button>
 	      		</div>
 	      	</li>
 	      </ul>
@@ -23,7 +23,7 @@
 		      			</div>
 		      		'><i class="fa fa-info-circle"></i></button>
 		      		<button class="btn btn-default navbar-btn" data-toggle="freqselector" data-target="#wayback-machine"><i class="fa fa-history"></i></button>
-				<button class="btn btn-default navbar-btn" ng-controller="paperworkSidebarNotesController" ng-click="editNote(note.notebook_id, note.id)"><i class="fa fa-pencil"></i></button>
+				<button class="btn btn-default navbar-btn" ng-controller="SidebarNotesController" ng-click="editNote(note.notebook_id, note.id)"><i class="fa fa-pencil"></i></button>
 		      		<button class="btn btn-default navbar-btn"><i class="fa fa-share-alt"></i></button>
 	      		</div>
 	      	</li>
@@ -32,7 +32,7 @@
 	</div><!-- /.container-fluid -->
 </nav>
 <div id="wayback-machine" class="freqselector">
-	<div class="freqselector-fadeout-left freqselector-fadeout" ng-controller="paperworkWaybackController"></div>
+	<div class="freqselector-fadeout-left freqselector-fadeout" ng-controller="WaybackController"></div>
 	<div class="freqselector-fadeout-right freqselector-fadeout"></div>
 	<div class="freqselector-arrow-top"></div>
 	<div class="freqselector-arrow-bottom"></div>
