@@ -1,4 +1,4 @@
-paperworkModule.factory('NotebooksService',
+angular.module('paperworkNotes').factory('NotebooksService',
   ['$rootScope', '$http', 'NetService',
    function($rootScope, $http, netService) {
      var paperworkNotebooksServiceFactory = {};

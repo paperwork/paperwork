@@ -1,6 +1,6 @@
-paperworkModule.service('NetService',
-  ['$rootScope', '$http', '$location',
-   function($rootScope, $http, $location) {
+angular.module('paperworkNotes').service('NetService',
+  ['$rootScope', '$http', '$location', 'paperworkApi',
+   function($rootScope, $http, $location, paperworkApi) {
      this.apiGeneric = function(method, url, data, callback) {
        var $opts = {method: method, url: paperworkApi + url};
        if(typeof data != "undefined" && data != null) {

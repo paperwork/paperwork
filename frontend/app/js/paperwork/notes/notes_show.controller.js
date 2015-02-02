@@ -1,4 +1,4 @@
-paperworkModule.controller('NotesShowController',
+angular.module('paperworkNotes').controller('NotesShowController',
   ['$scope', '$rootScope', '$location', '$routeParams', 'NotesService', 'NetService',
    function($scope, $rootScope, $location, $routeParams, notesService, netService) {
      if(!angular.isNumber(parseInt($routeParams.noteId)) || $routeParams.noteId === "undefined") {
