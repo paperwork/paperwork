@@ -181,16 +181,22 @@ class UserController extends BaseController {
  		// Think about whether we need to run an OCRing process in background, if document languages selection changed.
  	}
 
- 	public function request() {
-		if ($this->isPostRequest()) {
-			$response = $this->getPasswordRemindResponse();
-			if ($this->isInvalidUser($response)) {
-				return Redirect::back()->withInput()->with("error", Lang::get($response));
+ 	public function request() 
+ 	{
+	    if(Config::get('paperwork.forgot_password')){
+			if ($this->isPostRequest()) {
+				$response = $this->getPasswordRemindResponse();
+				if ($this->isInvalidUser($response)) {
+					return Redirect::back()->withInput()->with("error", Lang::get($response));
+				}
+				return Redirect::back()->with("status", Lang::get($response));
 			}
-			return Redirect::back()->with("status", Lang::get($response));
-		}
-		return View::make("user/request");
+			return View::make("user/request");
+		}else{
+			return View::make("404");
+	    }
 	}
+
 	// TODO: Password reminders not working out of the box, since we don't have an "email" column.
 	protected function getPasswordRemindResponse() {
 		return Password::remind(Input::only("username"), function($message)
