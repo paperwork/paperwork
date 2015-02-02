@@ -15,8 +15,6 @@ class PaperworkHelpersFacade extends Facade {
 
 	const MULTIPLE_REST_RESOURCE_DELIMITER = ',';
 
-	const NOTEBOOK_ALL_ID = '00000000-0000-0000-0000-000000000000';
-
     protected static function getFacadeAccessor() { return 'paperworkhelpers'; }
 
 }

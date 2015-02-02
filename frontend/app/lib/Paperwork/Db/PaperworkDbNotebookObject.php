@@ -7,27 +7,23 @@ use Illuminate\Config\Repository;
 class PaperworkDbNotebookObject extends PaperworkDbObject {
 
 	public function get($argv = array()) {
-		$defaultSelect = array('notebooks.id', 'notebooks.parent_id', 'notebooks.type', 'notebooks.title', 'notebook_user.umask', 'notebooks.created_at', 'notebooks.updated_at');
+		$defaultNotebooksSelect = array('notebooks.id', 'notebooks.parent_id', 'notebooks.type', 'notebooks.title', 'notebook_user.umask', 'notebooks.created_at', 'notebooks.updated_at');
 
-		$userId = array_key_exists('userid', $argv) ? $argv['userid'] : \Auth::user()->id;
-		$id = array_key_exists('id', $argv) ?
-				(is_array($argv['id']) ?
-					$argv['id']
-				: array($argv['id']))
-			: array();
+		$userId = $this->getArg($argv, 'userid');
+		$id = $this->getArg($argv, 'id');
 
 		$data = \Notebook::with(array(
-			'children' => function($query) use(&$userId, &$defaultSelect) {
+			'children' => function($query) use(&$userId, &$defaultNotebooksSelect) {
 				$query->join('notebook_user', function($join) use(&$userId) {
 					$join->on('notebook_user.notebook_id', '=', 'notebooks.id')
 						->where('notebook_user.user_id', '=', $userId);
-				})->select($defaultSelect)
+				})->select($defaultNotebooksSelect)
 				->whereNull('deleted_at');
 			}
 		))->join('notebook_user', function($join) use(&$userId) {
 				$join->on('notebook_user.notebook_id', '=', 'notebooks.id')
 					->where('notebook_user.user_id', '=', $userId);
-		})->select($defaultSelect);
+		})->select($defaultNotebooksSelect);
 
 		$idCount = count($id);
 		if($idCount > 0) {

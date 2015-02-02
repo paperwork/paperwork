@@ -36,7 +36,7 @@ class ApiNotebooksController extends BaseController {
 		// }
 
 		$notebooks = PaperworkDb::notebook()->get()->toArray();
-		array_unshift($notebooks, array('id' => PaperworkHelpers::NOTEBOOK_ALL_ID, 'type' => '2', 'title' => Lang::get('notebooks.all_notes')));
+		array_unshift($notebooks, array('id' => PaperworkDb::DB_ALL_ID, 'type' => '2', 'title' => Lang::get('notebooks.all_notes')));
 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notebooks);
 	}
 
@@ -65,7 +65,10 @@ class ApiNotebooksController extends BaseController {
 		// 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notebook);
 		// 	}
 		// }
-		$notebooks = PaperworkDb::notebook()->get(array('id' => explode(',', $id)))->toArray();
+		$notebooks = PaperworkDb::notebook()->get(array('id' => explode(PaperworkHelpers::MULTIPLE_REST_RESOURCE_DELIMITER, $id)))->toArray();
+		if(empty($notebooks)) {
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+		}
 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notebooks);
 	}
 

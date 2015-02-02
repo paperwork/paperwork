@@ -114,7 +114,7 @@ paperworkModule.controller('paperworkSidebarNotesController', function($scope, $
       };
     })();
 
-    paperworkNotesService.updateNote($rootScope.note.id, data, callback);
+    paperworkNotesService.updateNote($rootScope.getNoteSelectedId(true).noteId, data, callback);
   };
 
   $scope.closeNote = function() {
