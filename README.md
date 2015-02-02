@@ -56,7 +56,24 @@ php artisan migrate
 
 If anything here should fail, it's most likely an authentication/connection issue, so check your database setup again.
 
-Now, for the last step, make sure that your webserver has the right to create/modify/delete files within the `frontend/app/storage/attachments/`, the `frontend/app/storage/cache/`, the `frontend/app/storage/logs/` and the `frontend/app/storage/sessions/` folders. Also, be sure to set the document root (docroot) of your webserver to the folder `frontend/public/`.
+Now, for the last step, make sure that your webserver has the right to create/modify/delete files within the `frontend/app/storage/attachments/`, the `frontend/app/storage/cache/`, the `frontend/app/storage/logs/` and the `frontend/app/storage/sessions/` folders. 
+
+Also, be sure to set the document root (docroot) of your webserver to the folder `frontend/public/`. If you don't have access to or don't want/know how to do this, you can use .htaccess to set up temporary rewrite rules to experience Paperwork fully. In the example below, it is assumed that you have all your papaerwork files in a folder named paperwork folder as child of the document root folder. 
+
+1. Create a new file named `.htaccess`
+2. Copy and paste this code in it:
+
+```
+RewriteEngine on
+RewriteCond %{REQUEST_URI} !paperwork/frontend/public/
+RewriteRule (.*) /paperwork/frontend/public/$1 [L]
+```
+
+3. Save the file 
+
+You can access Paperwork by going to http://localhost or any URL you use to access your machine. 
+
+When you need to access any other files from the document root (all folders will be inaccessible), rename the file to something different from `.htaccess`. 
 
 That's pretty much it. From here on, you should be able to access your paperwork instance through the web.
 
