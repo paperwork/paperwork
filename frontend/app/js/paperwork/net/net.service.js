@@ -1,4 +1,4 @@
-paperworkModule.service('NetService',
+angular.module('paperworkNotes').service('NetService',
   ['$rootScope', '$http', '$location',
    function($rootScope, $http, $location) {
      this.apiGeneric = function(method, url, data, callback) {

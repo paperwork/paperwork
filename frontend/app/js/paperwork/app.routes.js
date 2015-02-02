@@ -1,4 +1,4 @@
-paperworkModule.config(function($routeProvider) {
+angular.module('paperworkNotes').config(function($routeProvider) {
   $routeProvider
   .when('/', {
     redirectTo:'/n/0'

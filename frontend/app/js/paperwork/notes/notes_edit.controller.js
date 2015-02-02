@@ -1,4 +1,4 @@
-paperworkModule.controller('NotesEditController',
+angular.module('paperworkNotes').controller('NotesEditController',
   ['$scope', '$rootScope', '$location', '$routeParams', 'NotesService',
     function($scope, $rootScope, $location, $routeParams, notesService) {
       window.onCkeditChangeFunction = function() {

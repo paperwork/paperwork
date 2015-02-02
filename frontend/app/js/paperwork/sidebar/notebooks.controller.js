@@ -1,4 +1,4 @@
-paperworkModule.controller('SidebarNotebooksController',
+angular.module('paperworkNotes').controller('SidebarNotebooksController',
   ['$scope', '$rootScope', '$location', '$routeParams', 'NotebooksService',
    function($scope, $rootScope, $location, $routeParams, notebooksService) {
      $rootScope.notebookSelectedId = 0;
