@@ -20,23 +20,19 @@ return array(
         'aan je notities toevoegen. Dit laat je toe belangrijke bestanden en informatie rechtstreeks in je notities '.
         'bij te hebben. Als je de link naar het bestand aanklikt, kom je direct bij dat bestand uit. Doordat Paperwork '.
         'op je eigen machines gehost is, heb je er meer privacy bij dan bij alternatieven.</p><h3><strong>Tags</strong><h3><p>'.
-        ''.
-
-        '<h3><strong>Tags</strong></h3><p>Tags are one of Paperwork&#39;s powerful features. Tags allow you to search '.
-        'for related notes but which are not in the same notebook. Do you have an idea and want to save it for later now? '.
-        'Put it in a notebook (like &#39;dinner cooking&#39;) and tag it with cooking. Later, when you&#39;ve got time you '.
-        'can just click on cooking from the sidebar and all cooking-related notes are there, no matter if they&#39;re for lunch,'.
-        'dinner or breakfast.</p><h3><strong>Search</strong></h3><p>If you want to search with a more detailed criteria, you can '.
-        'use Paperwork&#39;s feature. Just <a id="search_handler" href="#">write your query</a> and Paperwork will show you the results from '.
-        'all your notes, no matter in which notebook they are or tag they have.</p><h3><strong>Version Control</strong></h3><p>Everytime '.
-        'you save a note in Paperwork, a new version is created. This feature allows you to be able to see what changed throughout the '.
-        'life of your note in a detailed manner.</p><h3><strong>Shareable</strong></h3><p>Each note you write on Paperwork can be shared '.
-        'with any other user of Paperwork. Are you a company employee and would like to share those draft guidelines for that project? No '.
-        'worries, just sare the note with those users you want to share it with while keeping total control of your note. You can control '.
-        'who sees and edits the note and you can also who did what thanks to version control.</p><p>We hope that you like your experience '.
-        'with Paperwork. If you have any feedback or encounter any issues, just submit an issue <a href="https://github.com/twostairs/paperwork/issues/new">'.
-        'on Github</a>. If you want to be informed on what we&#39;re planning for Paperwork and be able to participate in the discussion, please join '.
-        'our mailing list <a href="mailto:paperwork-dev@googlegroups.com">here</a>.</p><p><strong>Thanks for choosing Paperwork,</strong></p><p><strong>'.
-        'The Paperwork Team. </strong></p>',
-    'welcome_note_title' => 'Welcome to Paperwork'
+        'Tags zijn een van Paperwork&#39;s krachtige features. Tags laten je toe om te zoeken naar gerelateerde notities in andere '.
+        'notitieboeken. Heb je een idee en wil je het nu opslaan voor later? Stop het in een notitieboek (zoals &#39;avondeten&#39;) en '.
+        'tag het met &#39;avondeten koken&#39;. Later wanneer je tijd hebt, kan je gewoon in de zijbalk op &#39;koken&#39; klikken, waar al '.
+        'je kook-gerelateerde notities zullen te vinden zijn, of het nu lunch of avondeten is.</p><h3><strong>Zoeken</strong></h3><p>Als '.
+        'je met meer gedetailleerde criteria wil zoeken, kan je Paperwork&#39;s zoekfunctie gebruiken. Gewoon een <a id="search_handler" href="#">trefwoord</a> '.
+        'ingeven en Paperwork zal je resultaten uit alle notitieboeken weergeven.</p><h3><strong>Versiewijzigingen</strong></h3><p>'.
+        'Elke keer je een notitie opslaat in Paperwork wordt er een nieuwe versie opgeslagen. Hierdoor kan je makkelijk naar oudere '.
+        'versies van je notities kijken en wat er veranderd is.</p><h3><strong>Delen</strong></h3><p>Elke notitie die je in Paperwork '.
+        'schrijft kan met andere Paperwork-gebruikers gedeeld worden. Wil je een bestandje delen met collega&#39;s? Dankzij versiewijzigingen '.
+        'blijf jij de baas van je bestand. Je ziet wie wat veranderde aan je bestand met Paperwork.</p><p>We hopen dat je je ervaring met '.
+        'Paperwork een goeie is. Als je feedback hebt of problemen, voeg gewoon een &#39;issue&#39; <a href="https://github.com/twostairs/paperwork/issues/new">'.
+        'op Github</a> toe. Als je wil weten wat we gepland hebben voor de toekomst van Paperwork en iets te zeggen wil hebbben in de '.
+        'discussie, volg dan onze mailinglijst <a href="mailto:paperwork-dev@googlegroups.com">hier</a>.</p><p><strong>Bedankt om voor Paperwork te kiezen</strong></p><p><strong>'.
+        'het Paperwork-team. </strong></p>',
+    'welcome_note_title' => 'Welkom bij Paperwork'
 );
