@@ -8054,6 +8054,7 @@ label .label-description {
   /* 20px padding + 1px border */
   margin-bottom: 20px;
   margin-left: -20px;
+  padding-right: 10px;
 }
 .nav-sidebar > li > a {
   padding-right: 20px;
@@ -8180,6 +8181,11 @@ ul.nav-tabs-margin {
   background-color: #ffffff;
   color: #424242;
 }
+#sidebarNotebooks .notebook-title {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
 .sidebar-no-border {
   margin-top: -20px;
 }
@@ -8201,7 +8207,7 @@ ul.nav-tabs-margin {
 .tree ul.tree-child li.tree-notebook {
   cursor: pointer;
 }
-.tree ul.tree-child li.tree-notebook span.active {
+.tree ul.tree-child li.tree-notebook .notebook-title.active {
   color: #03a9f4;
 }
 .tree ul.tree-child li.tree-tag {
@@ -8526,6 +8532,14 @@ body.paperwork-guest .form-signin .control-label {
 .btn-danger[disabled] {
   background-color: #e43700;
   background-image: none;
+}
+/*
+ * Hide Angular templating code
+ * Usually template text is displayed
+ * until Angular is invoked
+ */
+[ng-cloak] {
+  display: none !important;
 }
 .clearfix:before,
 .clearfix:after,
