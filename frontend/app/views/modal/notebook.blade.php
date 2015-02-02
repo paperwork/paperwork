@@ -1,4 +1,4 @@
-<div ng-controller="paperworkSidebarNotebooksController" class="modal fade" id="modalNotebook" tabindex="-1" role="dialog" aria-labelledby="modalNotebookLabel" aria-hidden="true">
+<div ng-controller="SidebarNotebooksController" class="modal fade" id="modalNotebook" tabindex="-1" role="dialog" aria-labelledby="modalNotebookLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<form method="POST" accept-charset="UTF-8" class="form ng-pristine ng-invalid ng-invalid-required" role="form" ng-submit="modalNotebookSubmit()">

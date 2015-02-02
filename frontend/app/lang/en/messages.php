@@ -11,6 +11,9 @@ return array(
 	'onbeforeunload_info' => 'Data will be lost if you leave the page, are you sure?',
 	'user' => array(
 		'settings' => array(
+		    'language_label' => 'Language',
+		    'client_label' => 'Client',
+		    'import_slash_export' => 'Import/Export',
 			'language' => array(
 				'ui_language' => 'User Interface Language',
 				'document_languages' => 'Document Languages',
