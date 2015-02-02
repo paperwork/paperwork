@@ -27,7 +27,7 @@ class UserController extends BaseController {
 				//$tagCreate = Tag::create(array('title' => Lang::get('notebooks.welcome_note_tag'), 'visibility' => 0));
 				$tagCreate = new Tag();
 				$tagCreate->title = Lang::get('notebooks.welcome_note_tag');
-			    $tagCreate->visibility = 0;
+                $tagCreate->visibility = 0;
 				$tagCreate->save();
 				$tagCreate->users()->attach($user->id);
 				$noteCreate = new Note;
@@ -86,7 +86,11 @@ class UserController extends BaseController {
 	}
 
 	protected function getRegistrationValidator() {
-		return Validator::make(Input::all(), [ "username" => "required|email|unique:users", "password" => "required|min:5|confirmed", "password_confirmation" => "required", "firstname" => "required|alpha_num", "lastname" => "required|alpha_num"]);
+		$attributes = [ "username" => "email address" ];
+		$validator = Validator::make(Input::all(), [ "username" => "required|email|unique:users", "password" => "required|min:5|confirmed", "password_confirmation" => "required", "firstname" => "required|alpha_num", "lastname" => "required|alpha_num"]);
+		$validator->setAttributeNames($attributes);
+		return $validator;
+		//return Validator::make(Input::all(), [ "username" => "required|email|unique:users", "password" => "required|min:5|confirmed", "password_confirmation" => "required", "firstname" => "required|alpha_num", "lastname" => "required|alpha_num"]);
 	}
 
 	protected function getLoginValidator() {
