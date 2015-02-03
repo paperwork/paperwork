@@ -111,7 +111,9 @@ npm will install all dependencies required through the `package.json`, so that y
 
 ## Contributing
 
-We're using [this style of git branching](http://nvie.com/posts/a-successful-git-branching-model/). So for development, you should clone the Paperwork repository here on Github, and checkout a new feature branch off from the develop branch (rather than master) such as issue-48-feature. Commit your changes to that branch and then sund us pull-requests back into the develop branch.
+We're using [this style of git branching](http://nvie.com/posts/a-successful-git-branching-model/). So for development, you should clone the Paperwork repository here on Github, and checkout a new feature branch off from the develop branch (rather than master) such as issue-48-feature. Commit your changes to that branch and then send us pull-requests back into the develop branch.
+
+The exception to this rule is urgent hotfixes to master. To perform a hotfix, make a new branch off of master. When you're ready to submit the changes, make a pull request to both the master and develop branches.
 
 ## Some last words
 
