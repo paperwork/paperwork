@@ -109,6 +109,10 @@ npm install
 
 npm will install all dependencies required through the `package.json`, so that you'll be able to run the generator process yourself. For doing so, simply run the command `gulp` within your `frontend` directory.
 
+## Contributing
+
+We're using [this style of git branching](http://nvie.com/posts/a-successful-git-branching-model/). So for development, you should clone the Paperwork repository here on Github, and checkout a new feature branch off from the develop branch (rather than master) such as issue-48-feature. Commit your changes to that branch and then sund us pull-requests back into the develop branch.
+
 ## Some last words
 
 The current development status is far from being worth called "version 1.0". However, if I could get you interested in this project and you feel like contributing, don't hesitate to ping me by e-mail ([marius@paperwork.rocks](mailto:marius@paperwork.rocks)) or twitter ([@devilx](https://twitter.com/devilx)) so we can talk. :-)
@@ -127,5 +131,4 @@ Maybe. Check out more detailed information about the features we are currently w
 
 ### I would like to join Paperwork development, what's the best way to do so?
 
-Contribute. Simply fork the Paperwork repository here on GitHub, add your contributions and send us pull-requests. In addition, make sure to shoot us an e-mail at [paperwork-dev@googlegroups.com](mailto:paperwork-dev@googlegroups.com) and inform us about your interest in joining the team. We will then make sure to give you the required access to our [GitHub Issues](https://github.com/twostairs/paperwork/issues) as well.
-
+In addition to contributing, make sure to shoot us an e-mail at [paperwork-dev@googlegroups.com](mailto:paperwork-dev@googlegroups.com), or hop on the [gitter group](https://gitter.im/twostairs/paperwork) and inform us about your interest in joining the team. We will then make sure to give you the required access to our [GitHub Issues](https://github.com/twostairs/paperwork/issues) as well.
