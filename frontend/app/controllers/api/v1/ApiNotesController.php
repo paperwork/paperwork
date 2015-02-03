@@ -114,7 +114,9 @@ class ApiNotesController extends BaseController {
 
 	public function search($queryBase64Encoded)
 	{
-		$searchQuery = base64_decode($queryBase64Encoded);
+		// Warning: For some reason the decoded value contains encoded signs?
+		// How to fix?
+		$searchQuery = urldecode(base64_decode($queryBase64Encoded));
 
 		$notes = DB::table('notes')
 			->join('note_user', function($join) {
@@ -126,10 +128,48 @@ class ApiNotesController extends BaseController {
 			})
 			->join('versions', function($join) {
 				$join->on('notes.version_id', '=', 'versions.id');
-			})
-			->whereNull('notes.deleted_at')
+			});
+
+		$dateFilter = preg_match_all("/date\:((?:19|20)\d\d)(?:[-\.\/](0[1-9]|1[012])(?:[-\.\/](0[1-9]|[12][0-9]|3[01]))?)?\s*/", $searchQuery, $matches, PREG_SET_ORDER);
+		if($dateFilter !== false && $dateFilter > 0) {
+			// Only use last date
+			$date = end($matches);
+
+			$notes = $notes->where(DB::raw('YEAR(notes.updated_at)'), '=', $date[1]);
+			if(isset($date[2])) {
+				$notes = $notes->where(DB::raw('MONTH(notes.updated_at)'), '=', sprintf("%02s", $date[2]));
+			}
+			if(isset($date[3])) {
+				$notes = $notes->where(DB::raw('DAY(notes.updated_at)'), '=', sprintf("%02s", $date[3]));
+			}
+
+			$searchQuery = PaperworkHelpers::cleanupMatches($searchQuery, $matches);
+		}
+
+		$filters = preg_match_all("/(tagid|note(?:book)?id)\:(\d+)\s*/", $searchQuery, $matches, PREG_SET_ORDER);
+		if($filters !== false && $filters > 0) {
+			foreach($matches as $match) {
+				switch($match[1]) {
+					case "tagid" :
+						$notes = $notes->join('tag_note', function($join) {
+							$join->on('notes.id', '=', 'tag_note.note_id');
+						})
+						->where('tag_note.tag_id', '=', $match[2]);
+						break;
+					case "noteid" :
+						$notes = $notes->where('notes.id', '=', $match[2]);
+					case "notebookid" :
+						$notes = $notes->where('notes.notebook_id', '=', $match[2]);
+					break;
+				}
+			}
+
+			$searchQuery = PaperworkHelpers::cleanupMatches($searchQuery, $matches);
+		}
+
+		$notes = $notes->whereNull('notes.deleted_at')
 			->whereNull('notebooks.deleted_at')
-			->where(function($query) use( &$searchQuery) {
+			->where(function($query) use( &$searchQuery ) {
 				$query->orWhere('versions.title', 'LIKE', '%' . $searchQuery . '%')
 						->orWhere('versions.content', 'LIKE', '%' . $searchQuery . '%')
 						->orWhere('versions.content_preview', 'LIKE', '%' . $searchQuery . '%');
@@ -206,7 +246,7 @@ class ApiNotesController extends BaseController {
 			->where('notebooks.id', '=', $notebookId)
 			->whereNull('notebooks.deleted_at')
 			->first();
-        
+
 		if(is_null($notebook)){
 			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
 		}
