@@ -1,5 +1,5 @@
 angular.module('paperworkNotes').controller('NotesEditController',
-  ['$scope', '$rootScope', '$location', '$routeParams', 'NotesService', 'paperworkApi'
+  ['$scope', '$rootScope', '$location', '$routeParams', 'NotesService', 'paperworkApi',
     function($scope, $rootScope, $location, $routeParams, notesService, paperworkApi) {
       window.onCkeditChangeFunction = function() {
         // FIXME jQuery un angular is anti-pattern
