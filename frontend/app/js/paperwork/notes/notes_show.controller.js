@@ -1,6 +1,4 @@
-angular.module('paperworkNotes').controller('NotesShowController',
-  ['$scope', '$rootScope', '$location', '$routeParams', 'NotesService', 'NetService',
-   function($scope, $rootScope, $location, $routeParams, notesService, netService) {
+angular.module('paperworkNotes').controller('NotesShowController', function($scope, $rootScope, $location, $routeParams, notesService, netService) {
      if(!angular.isNumber(parseInt($routeParams.noteId)) || $routeParams.noteId === "undefined") {
        return;
      }
@@ -34,4 +32,4 @@ angular.module('paperworkNotes').controller('NotesShowController',
      $rootScope.navbarMainMenu = true;
      $rootScope.navbarSearchForm = true;
      $rootScope.expandedNoteLayout = false;
-   }]);
+   });

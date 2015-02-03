@@ -1,6 +1,4 @@
-angular.module('paperworkNotes').controller('ConstructorController',
-  ['$scope', '$rootScope', '$location', '$routeParams', 'NetService',
-   function($scope, $rootScope, $location, $routeParams, paperworkNetService) {
+angular.module('paperworkNotes').controller('ConstructorController', function($scope, $rootScope, $location, $routeParams, paperworkNetService) {
      if($rootScope.initDone) {
        return;
      }
@@ -104,4 +102,4 @@ angular.module('paperworkNotes').controller('ConstructorController',
      $rootScope.modalNotebookSelect = function(modalData) {
        $rootScope.modalGeneric('modalNotebookSelect', modalData);
      };
-   }]);
+   });

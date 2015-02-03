@@ -1,6 +1,4 @@
-angular.module('paperworkNotes').controller('SidebarNotebooksController',
-  ['$scope', '$rootScope', '$location', '$routeParams', 'NotebooksService',
-   function($scope, $rootScope, $location, $routeParams, notebooksService) {
+angular.module('paperworkNotes').controller('SidebarNotebooksController', function($scope, $rootScope, $location, $routeParams, notebooksService) {
      $rootScope.notebookSelectedId = 0;
      $rootScope.tagsSelectedId = -1;
 
@@ -171,4 +169,4 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
      notebooksService.getNotebookShortcuts(null);
      notebooksService.getNotebooks();
      $rootScope.tags = notebooksService.getTags();
-   }]);
+   });

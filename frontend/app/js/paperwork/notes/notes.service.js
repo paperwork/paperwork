@@ -1,6 +1,4 @@
-angular.module('paperworkNotes').factory('NotesService',
-  ['$rootScope', '$http', 'base64', 'NetService',
-   function($rootScope, $http, base64, netService) {
+angular.module('paperworkNotes').factory('NotesService', function($rootScope, $http, base64, netService) {
      var paperworkNotesServiceFactory = {};
 
      // paperworkNotesServiceFactory.selectedNoteIndex = 0;
@@ -81,4 +79,4 @@ angular.module('paperworkNotes').factory('NotesService',
      };
 
      return paperworkNotesServiceFactory;
-   }]);
+   });

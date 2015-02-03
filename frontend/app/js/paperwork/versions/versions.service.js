@@ -1,6 +1,4 @@
-angular.module('paperworkNotes').factory('VersionsService',
-  ['$rootScope', '$http', 'NetService',
-   function($rootScope, $http, NetService) {
+angular.module('paperworkNotes').factory('VersionsService', function($rootScope, $http, NetService) {
      var paperworkVersionsServiceFactory = {};
 
      paperworkVersionsServiceFactory.getVersionById = function(notebookId, noteId, versionId) {
@@ -22,4 +20,4 @@ angular.module('paperworkNotes').factory('VersionsService',
      };
 
      return paperworkVersionsServiceFactory;
-   }]);
+   });
