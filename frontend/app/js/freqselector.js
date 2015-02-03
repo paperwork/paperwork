@@ -46,6 +46,7 @@
     this.isShown = true;
 
     if($.support.transition) {
+    this.$element.css("display", "block");
     this.$element.animate({
       opacity: 1.0,
       height: "80px"
@@ -74,6 +75,7 @@
       .off('click.dismiss.freqselector');
 
     if($.support.transition) {
+      this.$element.css("display", "none");
       this.$element.animate({
       opacity: 0.0,
       height: "0px"
@@ -87,12 +89,12 @@
 
   Freqselector.prototype.showFreqselector = function () {
     this.isShown = true;
-    this.$element.css("height", "80px").css("opacity", "1");
+    this.$element.css("display", "block").css("height", "80px").css("opacity", "1");
   };
 
   Freqselector.prototype.hideFreqselector = function () {
     this.isShown = false;
-    this.$element.css("height", "0px").css("opacity", "0");
+    this.$element.css("display", "none").css("height", "0px").css("opacity", "0");
   };
 
   Freqselector.prototype.initializeFreqselector = function () {
