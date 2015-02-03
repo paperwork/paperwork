@@ -1,6 +1,5 @@
 angular.module('paperworkNotes').controller('FileUploadController',
-  ['$scope', '$rootScope', '$location', '$routeParams', 'FileUploader', 'NotesService',
-   function($scope, $rootScope, $location, $routeParams, FileUploader, paperworkNotesService) {
+    function($scope, $rootScope, $location, $routeParams, FileUploader, paperworkNotesService) {
      var uploader = $scope.uploader = new FileUploader({
        url: $rootScope.uploadUrl
      });
@@ -129,4 +128,4 @@ angular.module('paperworkNotes').controller('FileUploadController',
            break;
        }
      };
-   }]);
+   });

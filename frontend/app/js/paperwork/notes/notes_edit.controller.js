@@ -1,6 +1,4 @@
-angular.module('paperworkNotes').controller('NotesEditController',
-  ['$scope', '$rootScope', '$location', '$routeParams', 'NotesService', 'paperworkApi',
-    function($scope, $rootScope, $location, $routeParams, notesService, paperworkApi) {
+angular.module('paperworkNotes').controller('NotesEditController', function($scope, $rootScope, $location, $routeParams, notesService, paperworkApi) {
       window.onCkeditChangeFunction = function() {
         // FIXME jQuery un angular is anti-pattern
         // Let's access our $rootScope from within jQuery (this)
@@ -159,4 +157,4 @@ angular.module('paperworkNotes').controller('NotesEditController',
       $rootScope.navbarMainMenu = false;
       $rootScope.navbarSearchForm = false;
       $rootScope.expandedNoteLayout = true;
-    }]);
+    });

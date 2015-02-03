@@ -1,6 +1,4 @@
-angular.module('paperworkNotes').service('NetService',
-  ['$rootScope', '$http', '$location', 'paperworkApi',
-   function($rootScope, $http, $location, paperworkApi) {
+angular.module('paperworkNotes').service('NetService', function($rootScope, $http, $location, paperworkApi) {
      this.apiGeneric = function(method, url, data, callback) {
        var $opts = {method: method, url: paperworkApi + url};
        if(typeof data != "undefined" && data != null) {
@@ -37,4 +35,4 @@ angular.module('paperworkNotes').service('NetService',
      this.apiDelete = function(url, callback) {
        this.apiGeneric('DELETE', url, null, callback);
      };
-   }]);
+   });

@@ -1,6 +1,4 @@
-angular.module('paperworkNotes').controller('WaybackController',
-  ['$scope', '$rootScope', '$location', '$routeParams', 'NetService', 'NotesService',
-   function($scope, $rootScope, $location, $routeParams, netService, notesService) {
+angular.module('paperworkNotes').controller('WaybackController', function($scope, $rootScope, $location, $routeParams, netService, notesService) {
      // FIXME
      $('#paperworkViewParent').off('picked.freqselector').on('picked.freqselector', function(e) {
        var itemId = $(e.item).data('itemid');
@@ -22,4 +20,4 @@ angular.module('paperworkNotes').controller('WaybackController',
        });
 
      });
-   }]);
+   });

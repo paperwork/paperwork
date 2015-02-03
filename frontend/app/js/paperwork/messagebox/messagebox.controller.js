@@ -1,6 +1,4 @@
-angular.module('paperworkNotes').controller('MessageBoxController',
-  ['$scope', '$rootScope', '$location', '$routeParams',
-   function($scope, $rootScope, $location, $routeParams) {
+angular.module('paperworkNotes').controller('MessageBoxController', function($scope, $rootScope, $location, $routeParams) {
      $scope.onClick = function(buttonId) {
        if(typeof buttonId == "undefined" || buttonId == null || buttonId == "") {
          return false;
@@ -19,4 +17,4 @@ angular.module('paperworkNotes').controller('MessageBoxController',
          }
        }
      };
-   }]);
+   });

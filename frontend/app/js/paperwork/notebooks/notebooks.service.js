@@ -1,6 +1,4 @@
-angular.module('paperworkNotes').factory('NotebooksService',
-  ['$rootScope', '$http', 'NetService',
-   function($rootScope, $http, netService) {
+angular.module('paperworkNotes').factory('NotebooksService', function($rootScope, $http, netService) {
      var paperworkNotebooksServiceFactory = {};
 
      // paperworkNotebooksServiceFactory.selectedNotebookId = 0;
@@ -70,4 +68,4 @@ angular.module('paperworkNotes').factory('NotebooksService',
      };
 
      return paperworkNotebooksServiceFactory;
-   }]);
+   });
