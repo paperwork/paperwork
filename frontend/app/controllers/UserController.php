@@ -27,7 +27,7 @@ class UserController extends BaseController {
 				//$tagCreate = Tag::create(array('title' => Lang::get('notebooks.welcome_note_tag'), 'visibility' => 0));
 				$tagCreate = new Tag();
 				$tagCreate->title = Lang::get('notebooks.welcome_note_tag');
-			    $tagCreate->visibility = 0;
+                $tagCreate->visibility = 0;
 				$tagCreate->save();
 				$tagCreate->users()->attach($user->id);
 				$noteCreate = new Note;
@@ -86,7 +86,11 @@ class UserController extends BaseController {
 	}
 
 	protected function getRegistrationValidator() {
-		return Validator::make(Input::all(), [ "username" => "required|email|unique:users", "password" => "required|min:5|confirmed", "password_confirmation" => "required", "firstname" => "required|alpha_num", "lastname" => "required|alpha_num"]);
+		$attributes = [ "username" => "email address" ];
+		$validator = Validator::make(Input::all(), [ "username" => "required|email|unique:users", "password" => "required|min:5|confirmed", "password_confirmation" => "required", "firstname" => "required|alpha_num", "lastname" => "required|alpha_num"]);
+		$validator->setAttributeNames($attributes);
+		return $validator;
+		//return Validator::make(Input::all(), [ "username" => "required|email|unique:users", "password" => "required|min:5|confirmed", "password_confirmation" => "required", "firstname" => "required|alpha_num", "lastname" => "required|alpha_num"]);
 	}
 
 	protected function getLoginValidator() {
@@ -177,16 +181,22 @@ class UserController extends BaseController {
  		// Think about whether we need to run an OCRing process in background, if document languages selection changed.
  	}
 
- 	public function request() {
-		if ($this->isPostRequest()) {
-			$response = $this->getPasswordRemindResponse();
-			if ($this->isInvalidUser($response)) {
-				return Redirect::back()->withInput()->with("error", Lang::get($response));
+ 	public function request() 
+ 	{
+	    if(Config::get('paperwork.forgot_password')){
+			if ($this->isPostRequest()) {
+				$response = $this->getPasswordRemindResponse();
+				if ($this->isInvalidUser($response)) {
+					return Redirect::back()->withInput()->with("error", Lang::get($response));
+				}
+				return Redirect::back()->with("status", Lang::get($response));
 			}
-			return Redirect::back()->with("status", Lang::get($response));
-		}
-		return View::make("user/request");
+			return View::make("user/request");
+		}else{
+			return View::make("404");
+	    }
 	}
+
 	// TODO: Password reminders not working out of the box, since we don't have an "email" column.
 	protected function getPasswordRemindResponse() {
 		return Password::remind(Input::only("username"), function($message)

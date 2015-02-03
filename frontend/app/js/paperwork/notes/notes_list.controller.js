@@ -1,11 +1,13 @@
-paperworkModule.controller('paperworkNotesListController', function($scope, $rootScope, $location, $routeParams, paperworkNotesService) {
+angular.module('paperworkNotes').controller('NotesListController',
+  ['$scope', '$rootScope', '$location', '$routeParams', 'NotesService',
+    function($scope, $rootScope, $location, $routeParams, notesService) {
     $rootScope.noteSelectedId = {};
     $rootScope.notesSelectedIds = [];
-    paperworkNotesService.getNotesInNotebook(0);
+    notesService.getNotesInNotebook(0);
 
     $scope.noteSelect = function($notebookId, $noteId) {
       $rootScope.noteSelectedId = { 'notebookId': parseInt($notebookId), 'noteId': parseInt($noteId) };
-    }
+    };
 
     $scope.getNoteLink = function(notebookId, noteId) {
 
@@ -17,4 +19,4 @@ paperworkModule.controller('paperworkNotesListController', function($scope, $roo
       return path;
     };
 
-});
+}]);

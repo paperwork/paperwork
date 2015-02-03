@@ -15,9 +15,11 @@
 <div class="form-group [[ $errors->first('password') ? 'has-error' : '' ]]">
 	[[ Form::password('password', array('class' => 'form-control', 'placeholder' => Lang::get('keywords.password'), 'required')) ]]
 </div>
-<div class="checkbox">
-	<a href="[[ URL::route("user/request") ]]"><i class="fa fa-life-saver"></i> [[Lang::get('users.link_forgot_password')]]</a>
-</div>
+@if (Config::get('paperwork.forgot_password'))
+	<div class="checkbox">
+		<a href="[[ URL::route("user/request") ]]"><i class="fa fa-life-saver"></i> [[Lang::get('users.link_forgot_password')]]</a>
+	</div>
+@endif
 <div class="form-group">
 	[[ Form::submit(Lang::get('keywords.sign_in'), array('class' => 'btn btn-lg btn-primary btn-block')) ]]
 </div>

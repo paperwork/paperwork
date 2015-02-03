@@ -14,7 +14,7 @@
 
 </head>
   <body ng-app="paperworkNotes">
-  	<div ng-controller="paperworkConstructorController"></div>
+  	<div ng-controller="ConstructorController"></div>
 
 	<div class="navbar navbar-default navbar-fixed-top" role="navigation">
 		<div class="container-fluid">
@@ -30,12 +30,12 @@
 			<div class="navbar-collapse collapse">
 				<div class="visible-xs">
 					<form class="navbar-form" role="form">
-				  		<div class="form-group" ng-controller="paperworkSidebarNotebooksController">
+				  		<div class="form-group" ng-controller="SidebarNotebooksController">
 				  			<select class="form-control navbar-search">
 							  <option ng-repeat="notebook in notebooks" data-notebookid="{{ notebook.children.length > 0 ? '' : notebook.id }}">{{notebook.title}}</option>
 							</select>
 						</div>
-				  		<div class="form-group" ng-controller="paperworkSidebarNotesController">
+				  		<div class="form-group" ng-controller="SidebarNotesController">
 				  			<select class="form-control navbar-search">
 							  <option ng-repeat="note in notes">{{note.title}}</option>
 							</select>

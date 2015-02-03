@@ -7,7 +7,7 @@
 
 <div class="container-fluid">
 	<div class="row">
-		<div id="sidebarNotebooks" class="col-sm-3 col-md-2 sidebar hidden-xs animate-panel disable-selection" ng-controller="paperworkSidebarNotebooksController" ng-show="isVisible()">
+		<div id="sidebarNotebooks" class="col-sm-3 col-md-2 sidebar hidden-xs animate-panel disable-selection" ng-controller="SidebarNotebooksController" ng-show="isVisible()">
 			<ul class="nav nav-sidebar sidebar-no-border">
 				<div class="tree ">
 					<ul class="tree-base">
@@ -45,8 +45,8 @@
 			</ul>
 		</div>
 
-		<div id="sidebarNotes" class="col-sm-4 col-sm-offset-3 col-md-3 col-md-offset-2 sidebar hidden-xs animate-panel" ng-controller="paperworkSidebarNotesController" ng-show="isVisible()">
-			<ul id="notes-list" class="nav nav-sidebar notes-list sidebar-no-border" ng-controller="paperworkNotesListController">
+		<div id="sidebarNotes" class="col-sm-4 col-sm-offset-3 col-md-3 col-md-offset-2 sidebar hidden-xs animate-panel" ng-controller="SidebarNotesController" ng-show="isVisible()">
+			<ul id="notes-list" class="nav nav-sidebar notes-list sidebar-no-border" ng-controller="NotesListController">
 				<li class="notes-list-item" ng-cloak ng-repeat="note in notes" ng-click="noteSelect(note.notebook_id, note.id)" ng-dblclick="editNote(note.notebook_id, note.id)" ng-class="{ 'active': (note.notebook_id + '-' + note.id == getNoteSelectedId() || (editMultipleNotes && notesSelectedIds[note.id])) }">
 					<div class="notes-list-item-checkbox col-sm-1" ng-show="editMultipleNotes">
 						<input name="notes[]" type="checkbox" value="{{ note.id }}" ng-model="notesSelectedIds[note.id]" ng-click="$event.stopPropagation();" ng-dblclick="$event.stopPropagation();">
@@ -70,7 +70,7 @@
 [[-- @if($welcomeNoteSaved == 1) --]
     [[-- HTML::script('js/special_note.js') --]]
 [[-- @endif --]]
-		<div id="paperworkViewParent" class="{{ isVisible() ? 'col-xs-12 col-sm-5 col-sm-offset-7 col-md-7 col-md-offset-5 main' : 'col-xs-12 col-sm-12 col-md-12 main' }}" ng-controller="paperworkViewController">
+		<div id="paperworkViewParent" class="{{ isVisible() ? 'col-xs-12 col-sm-5 col-sm-offset-7 col-md-7 col-md-offset-5 main' : 'col-xs-12 col-sm-12 col-md-12 main' }}" ng-controller="ViewController">
 			<div id="paperworkView" ng-view></div>
 		</div>
 	</div>

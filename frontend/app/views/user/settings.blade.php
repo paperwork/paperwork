@@ -15,9 +15,9 @@
 @endif
 
 <ul class="nav nav-tabs nav-tabs-margin" role="tablist">
-	<li class="active"><a href="#language" role="tab" data-toggle="tab">Language</a></li>
-	<li><a href="#client" role="tab" data-toggle="tab">Client</a></li>
-	<li><a href="#import" role="tab" data-toggle="tab">Import/Export</a></li>
+	<li class="active"><a href="#language" role="tab" data-toggle="tab">[[ Lang::get('messages.user.settings.language_label') ]]</a></li>
+	<li><a href="#client" role="tab" data-toggle="tab">[[ Lang::get('messages.user.settings.client_label') ]]</a></li>
+	<li><a href="#import" role="tab" data-toggle="tab">[[ Lang::get('messages.user.settings.import_slash_export') ]]</a></li>
 </ul>
 
 <div class="tab-content">
