@@ -80,38 +80,6 @@ class ApiNotesController extends BaseController {
 		}
 	}
 
-	public function tagged($tagId)
-	{
-		$notes = DB::table('notes')
-			->join('note_user', function($join) {
-				$join->on('notes.id', '=', 'note_user.note_id')
-					->where('note_user.user_id', '=', Auth::user()->id);
-			})
-			->join('notebooks', function($join) {
-				$join->on('notes.notebook_id', '=', 'notebooks.id');
-			})
-			->join('versions', function($join) {
-				$join->on('notes.version_id', '=', 'versions.id');
-			})
-			->join('tag_note', function($join) {
-				$join->on('notes.id', '=', 'tag_note.note_id');
-			})
-			->where('tag_note.tag_id', '=', $tagId)
-			->whereNull('notes.deleted_at')
-			->whereNull('notebooks.deleted_at')
-			->select('notes.id', 'notes.notebook_id', 'notebooks.title as notebook_title', 'versions.title', 'versions.content_preview', 'versions.content', 'notes.created_at', 'notes.updated_at', 'note_user.umask')
-			->get();
-		if(is_null($notes)){
-			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
-		} else {
-			foreach($notes as $note) {
-				$note->tags = $this->getNoteTags($note->id);
-				$note->versions = $this->getNoteVersionsBrief($note->id);
-			}
-			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notes);
-		}
-	}
-
 	public function search($queryBase64Encoded)
 	{
 		// Warning: For some reason the decoded value contains encoded signs?
@@ -130,7 +98,7 @@ class ApiNotesController extends BaseController {
 				$join->on('notes.version_id', '=', 'versions.id');
 			});
 
-		$dateFilter = preg_match_all("/date\:((?:19|20)\d\d)(?:[-\.\/](0[1-9]|1[012])(?:[-\.\/](0[1-9]|[12][0-9]|3[01]))?)?\s*/", $searchQuery, $matches, PREG_SET_ORDER);
+		$dateFilter = preg_match_all("/\s*date\:((?:19|20)\d\d)(?:[-\.\/](0[1-9]|1[012])(?:[-\.\/](0[1-9]|[12][0-9]|3[01]))?)?/", $searchQuery, $matches, PREG_SET_ORDER);
 		if($dateFilter !== false && $dateFilter > 0) {
 			// Only use last date
 			$date = end($matches);
@@ -146,7 +114,7 @@ class ApiNotesController extends BaseController {
 			$searchQuery = PaperworkHelpers::cleanupMatches($searchQuery, $matches);
 		}
 
-		$filters = preg_match_all("/(tagid|note(?:book)?id)\:(\d+)\s*/", $searchQuery, $matches, PREG_SET_ORDER);
+		$filters = preg_match_all("/\s*(tagid|note(?:book)?id)\:(\d+)/", $searchQuery, $matches, PREG_SET_ORDER);
 		if($filters !== false && $filters > 0) {
 			foreach($matches as $match) {
 				switch($match[1]) {
