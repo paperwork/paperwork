@@ -2,5 +2,6 @@
 .codekit-cache
 frontend/app/storage/attachments/*
 frontend/node_modules
-frontend/public
+frontend/public/css
+frontend/public/js
 Thumbs.db
