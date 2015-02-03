@@ -133,7 +133,7 @@ gulp.task('compileJsBootstrap', function() {
 gulp.task('compileJsPaperwork', function() {
 	gulp
 		.src(paths.paperwork)
-        .pipe(ngAnnotate())
+		.pipe(ngAnnotate())
 		.pipe(concat('paperwork.min.js'))
 		.pipe(gulp.dest(paths.output.js))
 		.pipe(livereload());
