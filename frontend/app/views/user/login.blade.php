@@ -15,6 +15,11 @@
 <div class="form-group [[ $errors->first('password') ? 'has-error' : '' ]]">
 	[[ Form::password('password', array('class' => 'form-control', 'placeholder' => Lang::get('keywords.password'), 'required')) ]]
 </div>
+<div class="checkbox">
+    <label>
+        [[ Form::checkbox('remember_me') ]] [[Lang::get('users.label_remember_me')]]
+    </label>
+</div>
 @if (Config::get('paperwork.forgot_password'))
 	<div class="checkbox">
 		<a href="[[ URL::route("user/request") ]]"><i class="fa fa-life-saver"></i> [[Lang::get('users.link_forgot_password')]]</a>

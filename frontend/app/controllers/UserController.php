@@ -61,7 +61,7 @@ class UserController extends BaseController {
 		if($validator->passes()) {
 			$credentials = $this->getLoginCredentials();
 
-			if (Auth::attempt($credentials)) {
+            if (Auth::attempt($credentials, Input::has('remember_me'))) {
 				$settings = Setting::where('user_id', '=',Auth::user()->id)->first();
 
 				Session::put('ui_language', $settings->ui_language);
