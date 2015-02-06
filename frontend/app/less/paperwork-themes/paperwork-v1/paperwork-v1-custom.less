@@ -249,6 +249,16 @@ label {
   }
 }
 
+//Move note toolbar to next line when width is too small
+@media (min-width: 768px) and (max-width: 850px) {
+    #notebook-selector{
+      margin-right:5px;
+    }
+    #note-toolbar{
+      float:left !important;
+    }
+}
+
 /*
  * Top navigation
  * Hide default border to remove 1px line.
