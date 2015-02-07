@@ -30,11 +30,44 @@ Feel free to create/modify/delete accounts, notebooks and notes. This demo can b
 
 ## Initial installation (quick & dirty documented)
 
-First of all, you need to clone this project to your machine. After that, make sure that you have one of the latest PHP versions >= 5.4 and an up-to-date "composer" installed. If you're not sure how composer works, please continue reading here: https://getcomposer.org/
+First of all, you need to clone this project to your machine.
+After that, make sure that you have PHP >= 5.4.
 
-Second, you need to switch to the command line: "cd" into the "frontend" directory of your local paperwork clone. There, run "composer install" and/or "composer update". This will install all the needed dependencies.
+Currently, we don't ship any prebuilt versions, so you need to build the app yourself.
+To do this you must install [composer](http://getcomposer.com) and npm (nodejs package manager,
+on how to install npm read [here](http://blog.npmjs.org/post/85484771375/how-to-install-npm))
 
-Now, before you do anything else, please check the files within the frontend/app/config/ directory. Especially the database.php. If you'd like to use the default DB settings (MySQL/MariaDB), you'll just need to have the database server running on port 3306 and create a database named "paperwork". You could use this SQL:
+Composer is needed to install third-party application components,
+without them application will not run.
+
+After you have finished the installation of npm and composer run:
+
+    cd frontend
+    composer install
+
+At the point, you now have php dependencies installed.
+It is now time to install tools to build the frontend files. We are using [gulp](http://gulpjs.com)
+to build our frontend dependencies.
+
+First you need to install gulp cli globally:
+
+    sudo npm install -g gulp
+
+And then npm dependencies inside project
+
+    npm install
+
+Then you just run the default task
+
+    gulp
+
+After these steps, you have all components installed and styles and js build,
+it is time to configure your database.
+
+Database settings are stored in frontend/app/config/database.php
+If you'd like to use the default DB settings (MySQL/MariaDB), you'll just need
+to have the database server running on port 3306 and create a database named
+"paperwork". You could use the following SQL:
 
 ```
 DROP DATABASE IF EXISTS paperwork; CREATE DATABASE IF NOT EXISTS paperwork DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
@@ -56,7 +89,24 @@ php artisan migrate
 
 If anything here should fail, it's most likely an authentication/connection issue, so check your database setup again.
 
-Now, for the last step, make sure that your webserver has the right to create/modify/delete files within the `frontend/app/storage/attachments/`, the `frontend/app/storage/cache/`, the `frontend/app/storage/logs/` and the `frontend/app/storage/sessions/` folders. Also, be sure to set the document root (docroot) of your webserver to the folder `frontend/public/`.
+Now, for the last step, make sure that your webserver has the right to create/modify/delete files within the `frontend/app/storage/attachments/`, the `frontend/app/storage/cache/`, the `frontend/app/storage/logs/` and the `frontend/app/storage/sessions/` folders.
+
+Also, be sure to set the document root (docroot) of your webserver to the folder `frontend/public/`. If you don't have access to or don't want/know how to do this, you can use .htaccess to set up temporary rewrite rules to experience Paperwork fully. In the example below, it is assumed that you have all your papaerwork files in a folder named paperwork folder as child of the document root folder.
+
+1. Create a new file named `.htaccess`
+2. Copy and paste this code in it:
+
+```
+RewriteEngine on
+RewriteCond %{REQUEST_URI} !paperwork/frontend/public/
+RewriteRule (.*) /paperwork/frontend/public/$1 [L]
+```
+
+3. Save the file
+
+You can access Paperwork by going to http://localhost or any URL you use to access your machine.
+
+When you need to access any other files from the document root (all folders will be inaccessible), rename the file to something different from `.htaccess`.
 
 That's pretty much it. From here on, you should be able to access your paperwork instance through the web.
 
@@ -92,11 +142,17 @@ npm install
 
 npm will install all dependencies required through the `package.json`, so that you'll be able to run the generator process yourself. For doing so, simply run the command `gulp` within your `frontend` directory.
 
+## Contributing
+
+We're using [this style of git branching](http://nvie.com/posts/a-successful-git-branching-model/). So for development, you should clone the Paperwork repository here on Github, and checkout a new feature branch off from the develop branch (rather than master) such as issue-48-feature. Commit your changes to that branch and then send us pull-requests back into the develop branch.
+
+The exception to this rule is urgent hotfixes to master. To perform a hotfix, make a new branch off of master. When you're ready to submit the changes, make a pull request to both the master and develop branches.
+
 ## Some last words
 
 The current development status is far from being worth called "version 1.0". However, if I could get you interested in this project and you feel like contributing, don't hesitate to ping me by e-mail ([marius@paperwork.rocks](mailto:marius@paperwork.rocks)) or twitter ([@devilx](https://twitter.com/devilx)) so we can talk. :-)
 
-There is an irc channel #paperwork on freenode.net.
+There is a #paperwork IRC channel on freenode.net and there is a [gitter](https://gitter.im/twostairs/paperwork) group as well.
 
 ## FAQ
 
@@ -110,5 +166,5 @@ Maybe. Check out more detailed information about the features we are currently w
 
 ### I would like to join Paperwork development, what's the best way to do so?
 
-Contribute. Simply fork the Paperwork repository here on GitHub, add your contributions and send us pull-requests. In addition, make sure to shoot us an e-mail at [paperwork-dev@googlegroups.com](mailto:paperwork-dev@googlegroups.com) and inform us about your interest in joining the team. We will then make sure to give you the required access to our [GitHub Issues](https://github.com/twostairs/paperwork/issues) as well.
+In addition to contributing, make sure to shoot us an e-mail at [paperwork-dev@googlegroups.com](mailto:paperwork-dev@googlegroups.com), or hop on the [gitter group](https://gitter.im/twostairs/paperwork) and inform us about your interest in joining the team. We will then make sure to give you the required access to our [GitHub Issues](https://github.com/twostairs/paperwork/issues) as well.
 

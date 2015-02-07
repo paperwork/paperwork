@@ -47,4 +47,8 @@ class User extends PaperworkModel implements UserInterface, RemindableInterface 
     public function isAdmin() {
     	return $this->is_admin;
     }
+    
+    public function getReminderEmail() {
+        return $this->username;
+    }
 }
