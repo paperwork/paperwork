@@ -88,11 +88,11 @@ class UserController extends BaseController {
 	protected function getRegistrationValidator() {
 		$attributes = [ "username" => "email address" ];
 		$validator = Validator::make(Input::all(), [
-			"username" 				=> "required|email|unique:users", 
-			"password" 				=> "required|min:5|confirmed", 
+			"username" => "required|email|unique:users", 
+			"password" => "required|min:5|confirmed", 
 			"password_confirmation" => "required", 
-			"firstname" 			=> "required|alpha_dash_spaces", 
-			"lastname" 				=> "required|alpha_dash_spaces"
+			"firstname" => "required|alpha_dash_spaces", 
+			"lastname" => "required|alpha_dash_spaces"
 			]);
 
 		$validator->setAttributeNames($attributes);
