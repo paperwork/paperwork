@@ -44,6 +44,7 @@
 </div>
 <div class="form-group">
   [[ Form::submit(Lang::get('keywords.sign_up'), array('class' => 'btn btn-lg btn-primary btn-block')) ]]
+  <a class="btn btn-lg btn-default btn-block" href="[[ URL::route("/")]]">[[Lang::get('keywords.back')]]</a>
 </div>
 [[ Form::close() ]]
 @stop
