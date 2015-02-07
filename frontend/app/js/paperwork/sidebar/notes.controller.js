@@ -226,7 +226,7 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
             }
             notesService.moveNote(notebookId, noteId, toNotebookId, function(_notebookId, _noteId, _toNotebookId) {
               $('#modalNotebookSelect').modal('hide');
-              $location.path("/n/" + parseInt(_toNotebookId));
+              $location.path("/n/" + (_toNotebookId));
             });
             return true;
           }

@@ -7,7 +7,7 @@ angular.module('paperworkNotes').controller('NotesAllController',
        // fixme
        // $rootScope.notebookSelectedId = 0;
      } else {
-       $rootScope.notebookSelectedId = parseInt($routeParams.notebookId);
+       $rootScope.notebookSelectedId = ($routeParams.notebookId);
      }
      notesService.getNotesInNotebook($rootScope.getNotebookSelectedId(), function() {
        // $rootScope.setNoteSelectedId($rootScope.getNotebookSelectedId(), $rootScope.notes[0].id);
