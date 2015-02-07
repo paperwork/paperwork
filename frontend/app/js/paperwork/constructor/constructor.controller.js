@@ -54,7 +54,7 @@ angular.module('paperworkNotes').controller('ConstructorController',
      });
 
      $rootScope.menuItemNotebookClass = function() {
-       if($rootScope.getNotebookSelectedId() != 0) {
+       if($rootScope.getNotebookSelectedId() != paperworkDbAllId) {
          return '';
        } else {
          return 'disabled';

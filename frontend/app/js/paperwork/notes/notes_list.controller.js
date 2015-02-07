@@ -3,7 +3,7 @@ angular.module('paperworkNotes').controller('NotesListController',
     function($scope, $rootScope, $location, $routeParams, notesService) {
     $rootScope.noteSelectedId = {};
     $rootScope.notesSelectedIds = [];
-    notesService.getNotesInNotebook(paperworkNotebookAllID);
+    notesService.getNotesInNotebook(paperworkDbAllId);
 
     $scope.noteSelect = function($notebookId, $noteId) {
       $rootScope.noteSelectedId = { 'notebookId': ($notebookId), 'noteId': ($noteId) };

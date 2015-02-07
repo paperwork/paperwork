@@ -10,11 +10,11 @@ angular.module('paperworkNotes').factory('NotesService',
      };
 
      paperworkNotesServiceFactory.updateNote = function(noteId, data, callback) {
-       netService.apiPut('/notebooks/0/notes/' + noteId, data, callback);
+       netService.apiPut('/notebooks/' + paperworkDbAllId + '/notes/' + noteId, data, callback);
      };
 
      paperworkNotesServiceFactory.deleteNote = function(noteId, callback) {
-       netService.apiDelete('/notebooks/0/notes/' + noteId, callback);
+       netService.apiDelete('/notebooks/' + paperworkDbAllId + '/notes/' + noteId, callback);
      };
 
      paperworkNotesServiceFactory.moveNote = function(notebookId, noteId, toNotebookId, callback) {
@@ -48,7 +48,7 @@ angular.module('paperworkNotes').factory('NotesService',
      };
 
      paperworkNotesServiceFactory.getNoteById = function(noteId, callback) {
-       netService.apiGet('/notebooks/0/notes/' + noteId, function(status, data) {
+       netService.apiGet('/notebooks/' + paperworkDbAllId + '/notes/' + noteId, function(status, data) {
          if(status == 200) {
            $rootScope.note = data.response;
            if(typeof callback != "undefined") {

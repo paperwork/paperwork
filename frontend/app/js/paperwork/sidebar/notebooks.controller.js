@@ -1,7 +1,7 @@
 angular.module('paperworkNotes').controller('SidebarNotebooksController',
   ['$scope', '$rootScope', '$location', '$routeParams', 'NotebooksService',
    function($scope, $rootScope, $location, $routeParams, notebooksService) {
-     $rootScope.notebookSelectedId = 0;
+     $rootScope.notebookSelectedId = paperworkDbAllId;
      $rootScope.tagsSelectedId = -1;
 
      $scope.isVisible = function() {
@@ -35,17 +35,17 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
            $treeHeaderNotebooks.click();
          }
 
-         $rootScope.notebookSelectedId = parseInt(index);
+         $rootScope.notebookSelectedId = (index);
          $rootScope.tagsSelectedId = -1;
          $rootScope.search = "";
-         $location.path("/n/" + parseInt(notebookId));
+         $location.path("/n/" + (notebookId));
        }
      };
 
      $rootScope.openTag = function(tagId) {
        $rootScope.notebookSelectedId = -1;
-       $rootScope.tagsSelectedId = parseInt(tagId);
-       $location.path("/s/tagid:" + parseInt(tagId));
+       $rootScope.tagsSelectedId = (tagId);
+       $location.path("/s/tagid:" + (tagId));
      };
 
      $scope.modalNewNotebook = function() {
@@ -136,7 +136,7 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
              case 200:
                notebooksService.getNotebookShortcuts(null);
                notebooksService.getNotebooks();
-               $location.path("/n/0");
+               $location.path("/n/" + paperworkDbAllId);
                break;
              case 400:
                // TODO: Show some kind of error

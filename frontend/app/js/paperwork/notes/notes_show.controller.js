@@ -1,19 +1,19 @@
 angular.module('paperworkNotes').controller('NotesShowController',
   ['$scope', '$rootScope', '$location', '$routeParams', 'NotesService', 'NetService',
    function($scope, $rootScope, $location, $routeParams, notesService, netService) {
-     if(!angular.isNumber(parseInt($routeParams.noteId)) || $routeParams.noteId === "undefined") {
+     if($routeParams.noteId === "undefined") {
        return;
      }
 
-     $rootScope.notebookSelectedId = parseInt($routeParams.notebookId);
-     $rootScope.noteSelectedId = {'notebookId': parseInt($routeParams.notebookId), 'noteId': parseInt($routeParams.noteId)};
-     $rootScope.versionSelectedId = {'notebookId': parseInt($routeParams.notebookId), 'noteId': parseInt($routeParams.noteId), 'versionId': 0};
+     $rootScope.notebookSelectedId = ($routeParams.notebookId);
+     $rootScope.noteSelectedId = {'notebookId': ($routeParams.notebookId), 'noteId': ($routeParams.noteId)};
+     $rootScope.versionSelectedId = {'notebookId': ($routeParams.notebookId), 'noteId': ($routeParams.noteId), 'versionId': paperworkDbAllId};
 
      if(typeof $routeParams.searchQuery == "undefined" || $routeParams.searchQuery == null || $routeParams.searchQuery.length <= 0) {
        notesService.getNotesInNotebook($rootScope.getNotebookSelectedId());
      }
 
-     notesService.getNoteById(parseInt($routeParams.noteId));
+     notesService.getNoteById(($routeParams.noteId));
 
      notesService.getNoteVersionAttachments($rootScope.getNotebookSelectedId(), ($rootScope.getNoteSelectedId(true)).noteId, $rootScope.getVersionSelectedId(true).versionId,
        function(response) {
