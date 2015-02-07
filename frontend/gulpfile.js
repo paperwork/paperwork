@@ -4,7 +4,9 @@ var concat = require('gulp-concat');
 var rename = require('gulp-rename');
 var livereload = require('gulp-livereload');
 var uglify = require('gulp-uglify');
-var path = require("path");
+var jshint = require('gulp-jshint');
+var stylish = require('jshint-stylish');
+var path = require('path');
 
 var paths = {
 	bootstrap: [
@@ -192,10 +194,18 @@ gulp.task('minifyJs', function() {
 		.pipe(gulp.dest(paths.output.js));
 });
 
+gulp.task('lintJs', function() {
+	gulp
+		.src(paths.paperwork)
+		.pipe(jshint())
+		.pipe(jshint.reporter(stylish)); 
+		//.pipe(jshint.reporter('default')); 
+});
+
 gulp.task('less', ['compileLessBootstrapTheme', 'compileLessPaperworkThemeV1', 'compileLessFontLato', 'compileLessFreqselector', 'compileLessTypeahead']);
 gulp.task('js', ['compileJsBootstrap', 'compileJsPaperwork', 'compileJsAngular', 'compileJsJquery', 'compileJsTagsinput', 'compileJsLibraries', 'compileJsLtIe9Compat', 'compileJsLtIe11Compat']);
 
-gulp.task('default', ['less', 'js']);
+gulp.task('default', ['less', 'js', 'lintJs']);
 gulp.task('prod', ['default', 'minifyJs']);
 
 gulp.task('watch', function() {
