@@ -108,8 +108,7 @@ class ApiNotesController extends BaseController {
 		// 	// }
 		// 	return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notes);
 		// }
-
-		$notes = PaperworkDb::note()->get()->toArray();
+		$notes = PaperworkDb::note()->get(array('notebookid' => $notebookId))->toArray();
 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notes);
 	}
 
@@ -246,7 +245,7 @@ class ApiNotesController extends BaseController {
 		// }
 
 		$notes = PaperworkDb::note()->get(array('id' => explode(PaperworkHelpers::MULTIPLE_REST_RESOURCE_DELIMITER, $id)));
-		print_r($notes[0]->version()->title);
+		// print_r($notes[0]->version()->title);
 		if(empty($notes)) {
 			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
 		}
