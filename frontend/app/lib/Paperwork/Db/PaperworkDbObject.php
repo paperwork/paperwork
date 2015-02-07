@@ -20,6 +20,9 @@ class PaperworkDbObject {
 						: ($argv[$arg] === \PaperworkDb::DB_ALL_ID ? array() : array($argv[$arg])))
 					: array();
 			break;
+			case 'notebookid':
+				$ret = array_key_exists($arg, $argv) ? $argv[$arg] : null;
+			break;
 		}
 
 		return $ret;

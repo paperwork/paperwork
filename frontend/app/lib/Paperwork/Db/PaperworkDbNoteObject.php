@@ -7,12 +7,13 @@ use Illuminate\Config\Repository;
 class PaperworkDbNoteObject extends PaperworkDbObject {
 
 	public function get($argv = array()) {
-		$defaultNotesSelect = array('notes.id', 'notes.created_at', 'notes.updated_at');
+		$defaultNotesSelect = array('notes.id', 'notes.notebook_id', 'notes.created_at', 'notes.updated_at');
 		$defaultVersionsSelect = array('versions.title', 'versions.content_preview', 'versions.content');
 		$defaultTagsSelect = array('tags.visibility', 'tags.title');
 
 		$userId = $this->getArg($argv, 'userid');
 		$id = $this->getArg($argv, 'id');
+		$notebookId = $this->getArg($argv, 'notebookid');
 
 		$data = \Note::with(array(
 			'version' => function($query) use(&$defaultVersionsSelect) {
@@ -35,7 +36,9 @@ class PaperworkDbNoteObject extends PaperworkDbObject {
 				$data->orWhere('notes.id', '=', $argv['id'][$i]);
 			}
 		}
-
+		if(isset($notebookId)) {
+			$data->where('notes.notebook_id', '=', $notebookId);
+		}
 		$data->whereNull('deleted_at');
 
 		return $data->get();
