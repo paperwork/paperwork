@@ -2,14 +2,14 @@
 <nav class="navbar navbar-inverse" role="navigation">
 	<div class="">
 	    <div class="collapse navbar-collapse" id="navbar-paperwork-note-show">
-	      <ul class="nav navbar-nav">
+	      <ul class="nav navbar-nav" id="notebook-selector">
 	      	<li>
 		      	<div class="btn-group">
 		      		<button ng-controller="SidebarNotesController" class="btn btn-default navbar-btn" ng-click="modalMoveNote(note.notebook_id, note.id)"><i class="fa fa-book"></i> {{note.notebook_title}}</button>
 	      		</div>
 	      	</li>
 	      </ul>
-	      <ul class="nav navbar-nav navbar-right">
+	      <ul class="nav navbar-nav navbar-right" id="note-toolbar">
 	      	<li>
 		      	<div class="btn-group">
 		      		<button id="note-info" class="btn btn-default navbar-btn" data-toggle="popover" data-placement="bottom" data-title="[[Lang::get('keywords.note_info')]]" data-content='
