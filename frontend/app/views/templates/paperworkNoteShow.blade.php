@@ -63,7 +63,7 @@
 	<div class="page-header">
 		<h1>{{note.title}}</h1>
 		<div class="note-tags-bar">
-			<span ng-repeat="tag in note.tags" class="label label-tag label-tag-{{ tag.visibility < 1 ? 'private' : 'public' }}"><i class="fa fa-tags"></i> {{ tag.title }}</span>
+			<span ng-repeat="tag in note.tags" ng-click="openTag(tag.id)"class="label label-tag label-tag-{{ tag.visibility < 1 ? 'private' : 'public' }}"><i class="fa fa-tags"></i> {{ tag.title }}</span>
 		</div>
 	</div>
 
