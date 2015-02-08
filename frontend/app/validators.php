@@ -10,7 +10,8 @@
 |
 */
 
-//Allow Alphanumerics, -, ', and spaces
+//Custom validator that calls custom settings from app/config/paperwork
+//used for first and last names
 Validator::extend('name_validator', function($attribute, $value)
 {
 	$allowed = Config::get('paperwork.nameCharactersAllowed');
