@@ -82,19 +82,6 @@ gulp.task('compileLessPaperworkThemeV1', function() {
 		.pipe(livereload());
 });
 
-gulp.task('compileLessFontLato', function() {
-	gulp
-		.src('app/less/font-lato.less')
-		.pipe(less({
-			paths: ['app/less/']
-		}))
-		.pipe(rename({
-			basename: 'font-lato'
-		}))
-		.pipe(gulp.dest(paths.output.css))
-		.pipe(livereload());
-});
-
 gulp.task('compileLessFreqselector', function() {
 	gulp
 		.src('app/less/freqselector.less')
@@ -192,7 +179,7 @@ gulp.task('minifyJs', function() {
 		.pipe(gulp.dest(paths.output.js));
 });
 
-gulp.task('less', ['compileLessBootstrapTheme', 'compileLessPaperworkThemeV1', 'compileLessFontLato', 'compileLessFreqselector', 'compileLessTypeahead']);
+gulp.task('less', ['compileLessBootstrapTheme', 'compileLessPaperworkThemeV1', 'compileLessFreqselector', 'compileLessTypeahead']);
 gulp.task('js', ['compileJsBootstrap', 'compileJsPaperwork', 'compileJsAngular', 'compileJsJquery', 'compileJsTagsinput', 'compileJsLibraries', 'compileJsLtIe9Compat', 'compileJsLtIe11Compat']);
 
 gulp.task('default', ['less', 'js']);
