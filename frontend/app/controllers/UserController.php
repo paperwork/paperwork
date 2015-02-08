@@ -8,11 +8,14 @@ class UserController extends BaseController {
 
 		if($validator->passes()) {
 			// $credentials = $this->getRegistrationCredentials();
-			$first_user = User::all()->count() == 0;
+
+			$user->firstname = trim($user->firstname);
+			$user->lastname = trim($user->lastname);
+
 			$user = User::create(Input::except('_token', 'password_confirmation', 'ui_language'));
 			if ($user) {
 				//make the first user an admin
-				if ($first_user) {
+				if (User::all()->count() <= 1) {
 					$user->is_admin = 1;
 				}
 				$user->save();
@@ -91,8 +94,8 @@ class UserController extends BaseController {
 			"username" => "required|email|unique:users", 
 			"password" => "required|min:5|confirmed", 
 			"password_confirmation" => "required", 
-			"firstname" => "required|alpha_dash_spaces", 
-			"lastname" => "required|alpha_dash_spaces"
+			"firstname" => "required|name_validator", 
+			"lastname" => "required|name_validator"
 			]);
 
 		$validator->setAttributeNames($attributes);
@@ -107,8 +110,8 @@ class UserController extends BaseController {
 	protected function getProfileValidator() {
 		return Validator::make(Input::all(), [ 
 			"password" => "min:5|confirmed", 
-			"firstname" => "required|alpha_dash_spaces", 
-			"lastname" => "required|alpha_dash_spaces"
+			"firstname" => "required|name_validator", 
+			"lastname" => "required|name_validator"
 			]);
 	}
 
