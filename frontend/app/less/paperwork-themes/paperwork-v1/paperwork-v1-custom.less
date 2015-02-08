@@ -845,3 +845,58 @@ body.paperwork-guest {
 [ng-cloak] {
   display: none !important;
 }
+
+// Modal: Manage tags
+#modalManageTags {
+  .manage-tags-content {
+    .row {
+      margin-bottom: 5px;
+
+      .tag-line {
+        display: inline-block;
+        margin-top: 5px;
+      }
+
+      .col-sm-10, .col-sm-2 {
+        height: 28px;
+      }
+
+      .btn-danger {
+        margin-top: 4px;
+      }
+    }
+  }
+  .editable-container {
+    .editableform {
+      .editable-input {
+        input {
+          width: 155px;
+          margin: 0;
+        }
+      }
+      .glyphicon-ok {
+        font-family: FontAwesome;
+
+        &:before {
+          content: "\f00c";
+        }
+      }
+      .glyphicon-remove {
+        font-family: FontAwesome;
+
+        &:before {
+          content: "\f00d";
+        }
+      }
+    }
+  }
+  .tooltip {
+    .tooltip-arrow {
+      border-top-color: #CF4848;
+    }
+    .tooltip-inner {
+      background-color: #CF4848;
+    }
+  }
+}
+// End of Modal: Manage tags

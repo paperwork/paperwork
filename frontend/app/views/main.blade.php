@@ -4,6 +4,7 @@
 @include('modal/messagebox')
 @include('modal/notebook')
 @include('modal/notebookSelect')
+@include('modal/manageTags')
 
 <div class="container-fluid">
 	<div class="row">
@@ -33,7 +34,7 @@
 							</ul>
 						</li>
 						<li>
-							<span class="tree-header tree-header-tags"><i class="fa fa-chevron-down"></i> [[Lang::get('keywords.tags')]]</span>
+							<span class="tree-header tree-header-tags"><i class="fa fa-chevron-down"></i> [[Lang::get('keywords.tags')]] <button class="btn btn-default btn-xs pull-right" ng-click="modalManageTags();$event.stopPropagation();">[[Lang::get('keywords.manage_tags')]]</button></span>
 							<ul class="tree-child">
 								<li class="tree-tag" ng-repeat="tag in tags | orderBy:'title':reverse" ng-cloak>
 									<span ng-click="openTag(tag.id)" ng-class="{ 'active': tag.id == tagsSelectedId }"><i class="fa fa-tag"></i> {{tag.title}}</span>

@@ -168,6 +168,10 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
        });
      };
 
+     $scope.modalManageTags = function () {
+         $('#modalManageTags').modal("show");
+     };
+
      notebooksService.getNotebookShortcuts(null);
      notebooksService.getNotebooks();
      $rootScope.tags = notebooksService.getTags();
