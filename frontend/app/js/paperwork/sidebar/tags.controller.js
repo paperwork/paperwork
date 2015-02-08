@@ -1,41 +1,54 @@
-angular.module('paperworkNotes').controller('SidebarTagsController',
-    ['$scope', '$rootScope', '$location', '$routeParams', 'NotebooksService', 'paperworkApi', '$timeout',
-        function ($scope, $rootScope, $location, $routeParams, notebooksService, paperworkApi, $timeout) {
+angular.module('paperworkNotes').directive('onFinishRender', function ($timeout) {
+    return {
+        restrict: 'A',
+        link: function (scope, element, attr) {
+            if (scope.$last === true) {
+                $timeout(function () {
+                    scope.$emit('ngRepeatFinished');
+                });
+            }
+        }
+    }}).controller('SidebarTagsController',
+    ['$scope', '$rootScope', '$location', '$routeParams', 'NotebooksService', 'paperworkApi', 'NotesService',
+        function ($scope, $rootScope, $location, $routeParams, notebooksService, paperworkApi, notesService) {
             $scope.modalTags = [];
 
             $('#modalManageTags').on('hidden.bs.modal', function (e) {
                 $scope.modalTags = [];
-                $scope.$apply();    // TODO: need think how to get rid of this, but we need rebuild lines on next show
+                $scope.$apply();    // Because not angular scope
             });
             $('#modalManageTags').on('show.bs.modal', function (e) {
                 $scope.modalTags = $rootScope.tags;
-                // TODO: rewtite it without timeout. Need wait until DOM will rebuilt
-                $timeout(function () {
-                    $('#modalManageTags .tag-line').editable({
-                        mode: 'inline',
-                        url: function (data) {
-                            $.ajax({
-                                url: paperworkApi + '/tags/' + data['pk'],
-                                data: {
-                                    title: data['value']
-                                },
-                                type: 'PUT',
-                                error: function (jqXHR) {
-                                    $('#modalManageTags').find(".tag-line[data-pk='" + data['pk'] + "']").tooltip({
-                                        title: jqXHR.responseJSON.errors.title,
-                                        trigger: 'manual'
-                                    }).tooltip('show');
-                                },
-                                success: function () {
-                                    notebooksService.getTags();
-                                },
-                                dataType: 'json'
-                            });
-                        }
-                    }).on('shown', function (e, editable) {
-                        editable.$element.tooltip('destroy');
-                    });
-                }, 0);
+            });
+
+            $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
+                $('#modalManageTags .tag-line').editable({
+                    mode: 'inline',
+                    url: function (data) {
+                        $.ajax({
+                            url: paperworkApi + '/tags/' + data['pk'],
+                            data: {
+                                title: data['value']
+                            },
+                            type: 'PUT',
+                            error: function (jqXHR) {
+                                $('#modalManageTags').find(".tag-line[data-pk='" + data['pk'] + "']").tooltip({
+                                    title: jqXHR.responseJSON.errors.title,
+                                    trigger: 'manual'
+                                }).tooltip('show');
+                            },
+                            success: function () {
+                                notebooksService.getTags();
+                                if($rootScope.note) {
+                                    notesService.getNoteById(parseInt($rootScope.note.id));
+                                }
+                            },
+                            dataType: 'json'
+                        });
+                    }
+                }).on('shown', function (e, editable) {
+                    editable.$element.tooltip('destroy');
+                });
             });
 
             $scope.deleteTag = function (tagId) {
@@ -45,12 +58,8 @@ angular.module('paperworkNotes').controller('SidebarTagsController',
                     'content': $rootScope.i18n.keywords.delete_tag_message,
                     'buttons': [
                         {
-                            'label': $rootScope.i18n.keywords.cancel,
-                            'isDismiss': true,
-                            'id': 'button-cancel',
-                            'click': function () {
-                                $('#modalMessageBox').css('z-index', '');
-                            }
+                            'label':     $rootScope.i18n.keywords.cancel,
+                            'isDismiss': true
                         },
                         {
                             'id': 'button-yes',
@@ -59,14 +68,16 @@ angular.module('paperworkNotes').controller('SidebarTagsController',
                             'click': function () {
                                 notebooksService.deleteTag(tagId, function () {
                                     notebooksService.getTags();
+                                    if($rootScope.note) {
+                                        notesService.getNoteById(parseInt($rootScope.note.id));
+                                    }
                                     $('#modalManageTags').find(".tag-line[data-pk='" + tagId + "']").closest('.row').remove();
                                 });
-                                $('#modalMessageBox').css('z-index', '');
                                 return true;
                             }
                         }
                     ]
                 };
-                $('#modalMessageBox').modal('show').css('z-index', 10000);
+                $('#modalMessageBox').modal('show');
             }
         }]);
