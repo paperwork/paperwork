@@ -10,8 +10,20 @@
 |
 */
 
-//Allow Alphanumerics, -, _, and whitespace
-Validator::extend('alpha_dash_spaces', function($attribute, $value)
+//Custom validator that calls custom settings from app/config/paperwork
+//used for first and last names
+Validator::extend('name_validator', function($attribute, $value)
 {
-    return preg_match('/^[\pL0-9\-_\s]+$/u', $value);
+	$allowed = Config::get('paperwork.nameCharactersAllowed');
+
+	$alpha      = $allowed['alpha']      ? '\pL' : '';
+	$hyphen     = $allowed['hyphen']     ? '\-'  : '';
+	$num        = $allowed['num']        ? '0-9' : '';
+	$underscore = $allowed['underscore'] ? '_'   : '';
+	$apostrophe = $allowed['apostrophe'] ? '\''  : '';
+	$space      = $allowed['space']      ? ' '   : '';
+
+	$regex = '/^['.$alpha.$hyphen.$num.$underscore.$apostrophe.$space.']+$/u';
+
+    return preg_match($regex, $value);
 });
