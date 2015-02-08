@@ -10,8 +10,8 @@
 |
 */
 
-//Allow Alphanumerics, -, _, and whitespace
+//Allow Alphanumerics, -, ', and whitespace
 Validator::extend('alpha_dash_spaces', function($attribute, $value)
 {
-    return preg_match('/^[\pL0-9\-_\s]+$/u', $value);
+    return preg_match('/^[\pL0-9\'\-\s]+$/u', $value);
 });
