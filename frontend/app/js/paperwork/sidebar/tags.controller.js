@@ -1,14 +1,4 @@
-angular.module('paperworkNotes').directive('onFinishRender', function ($timeout) {
-    return {
-        restrict: 'A',
-        link: function (scope, element, attr) {
-            if (scope.$last === true) {
-                $timeout(function () {
-                    scope.$emit('ngRepeatFinished');
-                });
-            }
-        }
-    }}).controller('SidebarTagsController',
+angular.module('paperworkNotes').controller('SidebarTagsController',
     ['$scope', '$rootScope', '$location', '$routeParams', 'NotebooksService', 'paperworkApi', 'NotesService',
         function ($scope, $rootScope, $location, $routeParams, notebooksService, paperworkApi, notesService) {
             $scope.modalTags = [];
