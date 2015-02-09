@@ -12,6 +12,8 @@
 
     [[ HTML::style('css/typeahead.min.css') ]]
 
+    [[ HTML::style('//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css') ]]
+
 </head>
   <body ng-app="paperworkNotes">
   	<div ng-controller="ConstructorController"></div>
@@ -72,6 +74,7 @@
 	[[ HTML::script('js/tagsinput.min.js') ]]
 
 	[[ HTML::script('ckeditor/ckeditor.js') ]]
+	[[ HTML::script('//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js') ]]
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
