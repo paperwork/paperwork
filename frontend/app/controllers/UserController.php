@@ -20,7 +20,7 @@ class UserController extends BaseController {
 				}
 				$user->save();
 				$setting = Setting::create(array('ui_language' => Input::get('ui_language'), 'user_id' => $user->id));
-					
+
 				/* Add welcome note to user - create notebook, tag and note */
 				//$notebookCreate = Notebook::create(array('title' => Lang::get('notebooks.welcome_notebook_title')));
 				$notebookCreate = new Notebook();
@@ -91,10 +91,10 @@ class UserController extends BaseController {
 	protected function getRegistrationValidator() {
 		$attributes = [ "username" => "email address" ];
 		$validator = Validator::make(Input::all(), [
-			"username" => "required|email|unique:users", 
-			"password" => "required|min:5|confirmed", 
-			"password_confirmation" => "required", 
-			"firstname" => "required|name_validator", 
+			"username" => "required|email|unique:users",
+			"password" => "required|min:5|confirmed",
+			"password_confirmation" => "required",
+			"firstname" => "required|name_validator",
 			"lastname" => "required|name_validator"
 			]);
 
@@ -108,9 +108,9 @@ class UserController extends BaseController {
 	}
 
 	protected function getProfileValidator() {
-		return Validator::make(Input::all(), [ 
-			"password" => "min:5|confirmed", 
-			"firstname" => "required|name_validator", 
+		return Validator::make(Input::all(), [
+			"password" => "min:5|confirmed",
+			"firstname" => "required|name_validator",
 			"lastname" => "required|name_validator"
 			]);
 	}
@@ -195,7 +195,7 @@ class UserController extends BaseController {
  		// Think about whether we need to run an OCRing process in background, if document languages selection changed.
  	}
 
- 	public function request() 
+ 	public function request()
  	{
 	    if(Config::get('paperwork.forgot_password')){
 			if ($this->isPostRequest()) {
@@ -378,7 +378,7 @@ class UserController extends BaseController {
             $file_content .= View::make('user/settings/export_file', $noteArray)->render();
         }
         $headers = array(
-            "Content-Type" => "text/plain",
+            "Content-Type" => "application/xml",
             "Content-Disposition" => "attachment; filename=\"export.enex\""
         );
         return Response::make(rtrim($file_content, "\r\n"), 200, $headers);
