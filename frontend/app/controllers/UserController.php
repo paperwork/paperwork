@@ -9,9 +9,6 @@ class UserController extends BaseController {
 		if($validator->passes()) {
 			// $credentials = $this->getRegistrationCredentials();
 
-			$user->firstname = trim($user->firstname);
-			$user->lastname = trim($user->lastname);
-
 			$user = User::create(Input::except('_token', 'password_confirmation', 'ui_language'));
 			if ($user) {
 				//make the first user an admin
