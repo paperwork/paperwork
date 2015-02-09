@@ -80,6 +80,7 @@ return array(
 	'not_implemented' => 'This feature has not been implemented yet. ',
 	'experimental' => 'Experimental',
 	'import' => 'Import',
-	'export' => 'Export'
+	'export' => 'Export',
+	'back' => 'Back'
 
 );
