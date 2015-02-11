@@ -5,6 +5,7 @@
 @include('modal/notebook')
 @include('modal/notebookSelect')
 @include('modal/manageTags')
+@include('modal/manageNotebooks')
 
 <div class="container-fluid">
 	<div class="row">
@@ -21,7 +22,7 @@
 							</ul>
 						</li>
 						<li>
-							<span class="tree-header tree-header-notebooks"><i class="fa fa-chevron-down"></i> [[Lang::get('keywords.notebooks')]]</span>
+							<span class="tree-header tree-header-notebooks"><i class="fa fa-chevron-down"></i> [[Lang::get('keywords.notebooks')]] <button class="btn btn-default btn-xs pull-right" ng-click="modalManageNotebooks();$event.stopPropagation();" title="[[Lang::get('keywords.manage_notebooks')]]"><span class="fa fa-cog"></span></button></span>
 							<ul class="tree-child">
 								<li class="tree-notebook" ng-repeat="notebook in notebooks | orderBy:'title'" ng-cloak>
 									<div class="notebook-title" ng-click="openNotebook(notebook.id, notebook.type, notebook.id)" ng-class="{ 'active': notebook.id == getNotebookSelectedId() }"><i class="fa {{ notebookIconByType(notebook.type) }}"></i> {{notebook.title}}</div>
@@ -34,7 +35,7 @@
 							</ul>
 						</li>
 						<li>
-							<span class="tree-header tree-header-tags"><i class="fa fa-chevron-down"></i> [[Lang::get('keywords.tags')]] <button class="btn btn-default btn-xs pull-right" ng-click="modalManageTags();$event.stopPropagation();">[[Lang::get('keywords.manage_tags')]]</button></span>
+							<span class="tree-header tree-header-tags"><i class="fa fa-chevron-down"></i> [[Lang::get('keywords.tags')]] <button class="btn btn-default btn-xs pull-right" ng-click="modalManageTags();$event.stopPropagation();" title="[[Lang::get('keywords.manage_tags')]]"><span class="fa fa-cog"></span></button></span>
 							<ul class="tree-child">
 								<li class="tree-tag" ng-repeat="tag in tags | orderBy:'title':reverse" ng-cloak>
 									<span ng-click="openTag(tag.id)" ng-class="{ 'active': tag.id == tagsSelectedId }"><i class="fa fa-tag"></i> {{tag.title}}</span>
