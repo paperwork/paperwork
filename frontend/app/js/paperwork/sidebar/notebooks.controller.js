@@ -1,6 +1,6 @@
 angular.module('paperworkNotes').controller('SidebarNotebooksController',
-  ['$scope', '$rootScope', '$location', '$routeParams', 'NotebooksService',
-   function($scope, $rootScope, $location, $routeParams, notebooksService) {
+  ['$scope', '$rootScope', '$location', '$routeParams', 'NotebooksService', 'ngDraggable', 'NotesService',
+   function($scope, $rootScope, $location, $routeParams, notebooksService, ngDraggable, notesService) {
      $rootScope.notebookSelectedId = 0;
      $rootScope.tagsSelectedId = -1;
 
@@ -166,6 +166,28 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
            }
          ]
        });
+     };
+
+     $scope.onDropSuccess = function(data, event) {
+         console.log("test2");
+         //console.log(data);
+         //console.log(event);
+         //console.log(1);
+         //console.log(notebook.id);
+         //console.log($rootScope.notebookSelectedId);
+         //console.log(" ");
+         console.log($rootScope.note.notebook_id);
+         console.log($rootScope.note.id);
+         //console.log($rootScope.notebook.id);
+         //console.log($rootScope.notebook);
+         //console.log($rootScope);
+         //console.log($scope);
+         console.log(this.notebook.id);
+         console.log(notebooksService);
+         console.log(notesService);
+         notesService.moveNote($rootScope.note.notebook_id, $rootScope.note.id, this.notebook.id);
+         console.log("success");
+         //notebooksService.getNotebookById(this.notebook.id);
      };
 
      notebooksService.getNotebookShortcuts(null);

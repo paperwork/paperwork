@@ -1,6 +1,6 @@
 angular.module('paperworkNotes').controller('SidebarNotesController',
-  ['$scope', '$rootScope', '$location', '$timeout', '$routeParams', 'NotebooksService', 'NotesService',
-    function($scope, $rootScope, $location, $timeout, $routeParams, notebooksService, notesService) {
+  ['$scope', '$rootScope', '$location', '$timeout', '$routeParams', 'NotebooksService', 'NotesService', 'ngDraggable',
+    function($scope, $rootScope, $location, $timeout, $routeParams, notebooksService, notesService, ngDraggable) {
       $scope.isVisible = function() {
         return !$rootScope.expandedNoteLayout;
       };
@@ -240,4 +240,17 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
           $location.path("/s/" + encodeURIComponent($scope.search));
         }
       };
+      
+     $scope.onDragSuccess = function(data, event) {
+         console.log("test1");
+         console.log(data);
+         console.log(event);
+         //console.log(notebook.id);
+         console.log(2);
+         // Required: current notebook id, current note id, destination
+         //console.log($rootScope.getNoteSelectedId);
+         console.log($rootScope.note.notebook_id);
+         console.log($rootScope.note.id);
+     };
+
     }]);
