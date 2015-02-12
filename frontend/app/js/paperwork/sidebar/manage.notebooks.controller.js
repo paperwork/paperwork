@@ -12,7 +12,7 @@ angular.module('paperworkNotes').controller('SidebarManageNotebooksController',
             // Added watch to rebuild list when we add new element
             $rootScope.$watch('notebooks', function(newValue, oldValue) {
                 // Remove 'All Notes' item
-                var data = $rootScope.notebooks.slice();
+                var data = ($.isArray($rootScope.notebooks)) ? $rootScope.notebooks.slice() : [];
                 for(var i in data){
                     if(data[i]['id'] == 0) {
                         data.splice(i,1);
