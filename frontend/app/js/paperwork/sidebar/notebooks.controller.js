@@ -181,13 +181,14 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
          //console.log($rootScope.notebook.id);
          //console.log($rootScope.notebook);
          //console.log($rootScope);
-         //console.log($scope);
+         console.log($scope);
          console.log(this.notebook.id);
          console.log(notebooksService);
          console.log(notesService);
          notesService.moveNote($rootScope.note.notebook_id, $rootScope.note.id, this.notebook.id);
          console.log("success");
          //notebooksService.getNotebookById(this.notebook.id);
+         $scope.openNotebook(this.notebook.id, this.notebook.type, this.notebook.id);
      };
 
      notebooksService.getNotebookShortcuts(null);
