@@ -242,15 +242,7 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
       };
       
      $scope.onDragSuccess = function(data, event) {
-         console.log("test1");
-         console.log(data);
-         console.log(event);
-         //console.log(notebook.id);
-         console.log(2);
-         // Required: current notebook id, current note id, destination
-         //console.log($rootScope.getNoteSelectedId);
-         console.log($rootScope.note.notebook_id);
-         console.log($rootScope.note.id);
+         //u
      };
 
     }]);
