@@ -2,6 +2,7 @@
 
 .paperwork-logo {
   padding: 9px 6px;
+  margin-left: 0px !important;
 
   img {
     width: 32px;
@@ -57,6 +58,7 @@ label {
   font-size: 0.9em;
   line-height: 1em;
   font-weight: 100;
+  cursor: pointer;
 
   i.fa {
     font-size: 0.9em;
@@ -238,6 +240,26 @@ label {
     opacity: 0;
 }
 
+/*
+ * Customize navbars
+ */
+ 
+//Hide empty space on top of notes in small screens
+@media (max-width: 767px) {
+  .navbar.navbar-inverse{
+    display: none;
+  }
+}
+
+//Move note toolbar to next line when width is too small
+@media (min-width: 768px) and (max-width: 850px) {
+    #notebook-selector{
+      margin-right:5px;
+    }
+    #note-toolbar{
+      float:left !important;
+    }
+}
 
 /*
  * Top navigation
@@ -245,6 +267,10 @@ label {
  */
 .navbar-fixed-top {
   border: 0;
+  
+  .navbar-right{
+      margin-right:10px;
+  }
 }
 
 /*
@@ -258,7 +284,7 @@ label {
 @media (min-width: 768px) {
   .sidebar {
     position: fixed;
-    top: 51px;
+    top: 60px;
     bottom: 0;
     left: 0;
     z-index: 1000;
@@ -275,7 +301,7 @@ label {
 .nav-sidebar {
   margin-right: -21px; /* 20px padding + 1px border */
   margin-bottom: 20px;
-  margin-left: -20px;
+  margin-left: -10px;
   padding-right: 10px;
 }
 .nav-sidebar > li > a {
@@ -516,6 +542,7 @@ ul.nav-tabs-margin {
 .tree {
     min-height:20px;
     margin-bottom:20px;
+    margin-left:5px;
 
     ul.tree-base {
       padding-left: 0px;
@@ -583,7 +610,8 @@ ul.nav-tabs-margin {
     li span {
         display:inline-block;
         padding:1px 3px;
-        text-decoration:none
+        text-decoration:none;
+        width:100%
     }
     li.parent_li>span {
         cursor:pointer
@@ -674,17 +702,21 @@ body.paperwork-guest {
       width: 220px;
       height: 220px;
     }
-    margin-bottom: 14px;
   }
 
   .form-signin {
     max-width: 330px;
     padding: 15px;
     margin: 0 auto;
+    
+    .form-signin-heading{
+        margin-bottom:17.5px;
+    }
 
     .checkbox {
       font-weight: normal;
       margin-bottom: 16px;
+      line-height: 1.9;
     }
     .form-control {
       position: relative;
@@ -813,3 +845,64 @@ body.paperwork-guest {
 [ng-cloak] {
   display: none !important;
 }
+
+// Modal: Message
+#modalMessageBox {
+  z-index: 10000;
+}
+// End of Modal: Message
+
+// Modal: Manage tags
+#modalManageTags {
+  .manage-tags-content {
+    .row {
+      margin-bottom: 5px;
+
+      .tag-line {
+        display: inline-block;
+        margin-top: 5px;
+      }
+
+      .col-sm-10, .col-sm-2 {
+        height: 28px;
+      }
+
+      .btn-danger {
+        margin-top: 4px;
+      }
+    }
+  }
+  .editable-container {
+    .editableform {
+      .editable-input {
+        input {
+          width: 155px;
+          margin: 0;
+        }
+      }
+      .glyphicon-ok {
+        font-family: FontAwesome;
+
+        &:before {
+          content: "\f00c";
+        }
+      }
+      .glyphicon-remove {
+        font-family: FontAwesome;
+
+        &:before {
+          content: "\f00d";
+        }
+      }
+    }
+  }
+  .tooltip {
+    .tooltip-arrow {
+      border-top-color: #CF4848;
+    }
+    .tooltip-inner {
+      background-color: #CF4848;
+    }
+  }
+}
+// End of Modal: Manage tags

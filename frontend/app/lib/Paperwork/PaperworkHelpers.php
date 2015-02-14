@@ -85,6 +85,17 @@ class PaperworkHelpers {
 		);
 		return json_encode($data);
 	}
+
+	public function cleanupMatches($string, $matches, $key = 0) {
+		foreach($matches as $match) {
+			$pos = strpos($string, $match[$key]);
+			if($pos !== false) {
+				$string = substr_replace($string, "", $pos, strlen($match[$key]));
+			}
+		}
+
+		return $string;
+	}
 }
 
 ?>

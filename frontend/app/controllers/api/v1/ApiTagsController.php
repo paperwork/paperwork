@@ -98,6 +98,44 @@ class ApiTagsController extends BaseController {
 	{
 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notebook);
 	}
+
+    protected function getSaveTagValidator() {
+        return Validator::make(Input::all(), [ "title" => "required|unique:tags"]);
+    }
+
+    public function update($tagId)
+    {
+        $validator = $this->getSaveTagValidator();
+        if($validator->passes()) {
+
+            $tag = Tag::find($tagId);
+
+            if(is_null($tag) || !$tag->users->contains(Auth::user()->id)) {
+                return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+            }
+
+            $tag->title = Input::get('title');
+            $tag->save();
+
+            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $tagId);
+        }
+        else {
+            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, $validator->getMessageBag()->toArray());
+        }
+    }
+
+    public function destroy($tagId)
+    {
+        $tag = Tag::find($tagId);
+
+        if(is_null($tag) || !$tag->users->contains(Auth::user()->id)) {
+            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+        }
+
+        $tag->delete();
+
+        return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $tagId);
+    }
 }
 
 ?>

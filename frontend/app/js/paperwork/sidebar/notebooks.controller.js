@@ -42,7 +42,7 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
        }
      };
 
-     $scope.openTag = function(tagId) {
+     $rootScope.openTag = function(tagId) {
        $rootScope.notebookSelectedId = -1;
        $rootScope.tagsSelectedId = parseInt(tagId);
        $location.path("/s/tagid:" + parseInt(tagId));
@@ -189,6 +189,10 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
          console.log("success");
          //notebooksService.getNotebookById(this.notebook.id);
          $scope.openNotebook(this.notebook.id, this.notebook.type, this.notebook.id);
+     };
+     
+     $scope.modalManageTags = function () {
+         $('#modalManageTags').modal("show");
      };
 
      notebooksService.getNotebookShortcuts(null);

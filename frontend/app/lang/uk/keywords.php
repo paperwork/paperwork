@@ -52,7 +52,7 @@ return array(
 	'close_without_saving_message' => 'У вашій нотатці є незбережені зміни. Ви дійсно бажаєте зачинити нотатку і відкинути всі незбережені зміни?',
 	'search_dotdotdot' => 'Пошук...',
 	'reset_password' => 'Скинути пароль',
-	'password_reset_request' => 'Reset your Paperwork Password',
+	'password_reset_request' => 'Скинути ваш пароль Paperwork',
 	'toggle_navigation' => 'Перемкнути навігацію',
 	'cancel' => 'Відмінити',
 	'create' => 'Створити',

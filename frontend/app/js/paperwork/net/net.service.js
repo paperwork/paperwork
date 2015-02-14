@@ -1,8 +1,8 @@
 angular.module('paperworkNotes').service('NetService',
-  ['$rootScope', '$http', '$location', 'paperworkApi',
-   function($rootScope, $http, $location, paperworkApi) {
+  ['$rootScope', '$http', '$location', '$window', 'paperworkApi',
+   function($rootScope, $http, $location, $window, paperworkApi) {
      this.apiGeneric = function(method, url, data, callback) {
-       var $opts = {method: method, url: paperworkApi + url};
+       var $opts = {method: method, url: paperworkApi + url, headers:{"X-Requested-With" : "XMLHttpRequest"}};
        if(typeof data != "undefined" && data != null) {
          $opts.data = data;
        }
@@ -18,6 +18,10 @@ angular.module('paperworkNotes').service('NetService',
            callback(status, data);
          }).
          error(function(data, status, headers, config) {
+           if(status == 401) {
+             $window.location.reload();
+             return false;
+           }
            callback(status, data);
          });
      };
