@@ -1,6 +1,6 @@
 angular.module('paperworkNotes').controller('SidebarNotebooksController',
-  ['$scope', '$rootScope', '$location', '$routeParams', 'NotebooksService',
-   function($scope, $rootScope, $location, $routeParams, notebooksService) {
+  ['$scope', '$rootScope', '$location', '$routeParams', 'NotebooksService', 'ngDraggable', 'NotesService',
+   function($scope, $rootScope, $location, $routeParams, notebooksService, ngDraggable, notesService) {
      $rootScope.notebookSelectedId = 0;
      $rootScope.tagsSelectedId = -1;
 
@@ -168,6 +168,13 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
        });
      };
 
+     $scope.onDropSuccess = function(data, event) {
+         notesService.moveNote($rootScope.note.notebook_id, $rootScope.note.id, this.notebook.id);
+         console.log("Moved");
+         // Try to make the openNotebook dependant on the result of the move
+         $scope.openNotebook(this.notebook.id, this.notebook.type, this.notebook.id);
+     };
+     
      $scope.modalManageTags = function () {
          $('#modalManageTags').modal("show");
      };
