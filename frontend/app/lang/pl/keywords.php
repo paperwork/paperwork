@@ -22,6 +22,7 @@ return array(
 	'shortcuts' => 'Skróty',
 	'notebooks' => 'Notatniki',
 	'tags' => 'Tagi',
+	'manage_tags' => 'Zarządzaj tagami'
 	'note' => 'Notatka',
 	'notebook' => 'Notatnik',
 	'collection' => 'Kolekcja',
@@ -38,6 +39,8 @@ return array(
 	'delete_notebook' => 'Usuń notatnik',
 	'delete_notebook_question' => 'Usunąć notatnik?',
 	'delete_notebook_message' => 'Notatnik wraz z całą zawrtością zostanie skasowany? Czy kontynuować?',
+	'delete_tag_question' => 'Skasować tag?'
+	'delete_tag_message' => 'Ta akcja skasuje tag. Jesteś pewien?'
 	'new_collection' => 'Nowa kolekcja',
 	'edit_collection' => 'Edytuj kolekcję',
 	'delete_collection' => 'Usuń kolekcję',
@@ -81,5 +84,6 @@ return array(
 	'experimental' => 'Eksperymentalne',
 	'import' => 'Import',
 	'export' => 'Eksort'
+	'back' => 'Wróć'
 
 );
