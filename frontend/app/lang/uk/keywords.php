@@ -22,6 +22,7 @@ return array(
 	'shortcuts' => 'Скорочення',
 	'notebooks' => 'Записники',
 	'tags' => 'Теґи',
+    'manage_notebooks' => 'Редагувати записники',
 	'note' => 'Нотатка',
 	'notebook' => 'Записник',
 	'collection' => 'Колекція',

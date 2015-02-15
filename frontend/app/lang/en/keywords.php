@@ -23,6 +23,7 @@ return array(
 	'notebooks' => 'Notebooks',
 	'tags' => 'Tags',
 	'manage_tags' => 'Manage tags',
+	'manage_notebooks' => 'Manage notebooks',
 	'note' => 'Note',
 	'notebook' => 'Notebook',
 	'collection' => 'Collection',
