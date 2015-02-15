@@ -2,8 +2,8 @@
 
 return array(
 
-	'admin_area' => 'Panel Admina',
-	'admin_status' => 'Status Admina',
+	'admin_area' => 'Panel administratora',
+	'admin_status' => 'Status administratora',
 	'deleted_at' => 'Skasowano',
 	'email_address' => 'Adres e-mail',
 	'id' => 'ID',
