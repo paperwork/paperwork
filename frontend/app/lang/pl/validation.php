@@ -30,6 +30,7 @@ return array(
 	"after"                => ":attribute musi być po :date.",
 	"alpha"                => ":attribute może składać się wyłącznie z liter.",
 	"alpha_dash"           => ":attribute może zawierać tylko litery, cyfry i myślniki.",
+	"alpha_dash_spaces" => "The :attribute may only contain letters, numbers, dashes, apostrophes, and spaces.",
 	"alpha_num"            => ":attribute może zawierać tylko litery i cyfry.",
 	"array"                => ":attribute musi być tablicą.",
 	"before"               => ":attribute musi być po :date.",
