@@ -1,5 +1,16 @@
 <?php
 
+$allowed_name_chars = Config::get('paperwork.nameCharactersAllowed');
+$name_error_message = ":attribute może zawierać tylko";
+$name_error_message.= $allowed_name_chars['alpha'] ? ' litery,' : '';
+$name_error_message.= $allowed_name_chars['hyphen'] ? ' myślniki,' : '';
+$name_error_message.= $allowed_name_chars['num'] ? ' liczby,' : '';
+$name_error_message.= $allowed_name_chars['underscore'] ? ' podkreślniki,': '';
+$name_error_message.= $allowed_name_chars['apostrophe'] ? ' apostrofy,': '';
+$name_error_message.= $allowed_name_chars['space'] ? ' spacje,' : '';
+//replace last , with a .
+$name_error_message = substr($name_error_message, 0, -1).'.';
+
 return array(
 
 	/*
