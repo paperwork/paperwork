@@ -11,6 +11,7 @@ $name_error_message.= $allowed_name_chars['space'] ? ' spacje,' : '';
 //replace last , with a .
 $name_error_message = substr($name_error_message, 0, -1).'.';
 
+
 return array(
 
 	/*
@@ -64,6 +65,7 @@ return array(
 		"string"  => ":attribute musi co najmniej :min znaków.",
 		"array"   => ":attribute musi mieć co najmniej :min pozycji.",
 	),
+	"name_validator" => $name_error_message,
 	"not_in"               => "Wybrany :attribute jest nie poprawny.",
 	"numeric"              => ":attribute musi liczbą.",
 	"regex"                => ":attribute ma niepoprawny format.",
