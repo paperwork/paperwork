@@ -1,5 +1,17 @@
 <?php
 
+$allowed_name_chars = Config::get('paperwork.nameCharactersAllowed');
+$name_error_message = ":attribute może zawierać tylko";
+$name_error_message.= $allowed_name_chars['alpha'] ? ' litery,' : '';
+$name_error_message.= $allowed_name_chars['hyphen'] ? ' myślniki,' : '';
+$name_error_message.= $allowed_name_chars['num'] ? ' liczby,' : '';
+$name_error_message.= $allowed_name_chars['underscore'] ? ' podkreślniki,': '';
+$name_error_message.= $allowed_name_chars['apostrophe'] ? ' apostrofy,': '';
+$name_error_message.= $allowed_name_chars['space'] ? ' spacje,' : '';
+//replace last , with a .
+$name_error_message = substr($name_error_message, 0, -1).'.';
+
+
 return array(
 
 	/*
@@ -18,6 +30,7 @@ return array(
 	"after"                => ":attribute musi być po :date.",
 	"alpha"                => ":attribute może składać się wyłącznie z liter.",
 	"alpha_dash"           => ":attribute może zawierać tylko litery, cyfry i myślniki.",
+	"alpha_dash_spaces" => "The :attribute may only contain letters, numbers, dashes, apostrophes, and spaces.",
 	"alpha_num"            => ":attribute może zawierać tylko litery i cyfry.",
 	"array"                => ":attribute musi być tablicą.",
 	"before"               => ":attribute musi być po :date.",
@@ -53,6 +66,7 @@ return array(
 		"string"  => ":attribute musi co najmniej :min znaków.",
 		"array"   => ":attribute musi mieć co najmniej :min pozycji.",
 	),
+	"name_validator" => $name_error_message,
 	"not_in"               => "Wybrany :attribute jest nie poprawny.",
 	"numeric"              => ":attribute musi liczbą.",
 	"regex"                => ":attribute ma niepoprawny format.",
