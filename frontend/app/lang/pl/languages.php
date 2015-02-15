@@ -1,6 +1,7 @@
 <?php
 
 return array(
+	
 	'afr'=> 'Afrykański',
 	'ara'=> 'Arabski',
 	'aze'=> 'Azerski',
@@ -73,4 +74,5 @@ return array(
 	'ukr'=> 'Ukraiński',
 	'uk' => 'Ukraiński',
 	'vie'=> 'Wietnamski',
+	
 );
