@@ -1,6 +1,7 @@
 <?php
 
 return array(
+	
 	'afr'=> 'Afrykański',
 	'ara'=> 'Arabski',
 	'aze'=> 'Azerski',
@@ -47,6 +48,7 @@ return array(
 	'mkd'=> 'Macedoński',
 	'mlt'=> 'Maltański',
 	'msa'=> 'Malajski',
+	'nl' => 'Niderlandzki',
 	'nld'=> 'Niderlandzki',
 	'nor'=> 'Norweski',
 	'pol'=> 'Polski',
@@ -57,6 +59,7 @@ return array(
 	'ru' => 'Rosyjska',
 	'slk'=> 'Słowacki',
 	'slv'=> 'Słoweński',
+	'sp' => 'Hiszpański',
 	'spa'=> 'Hiszpański',
 	'sqi'=> 'Albański',
 	'srp'=> 'Serbski',
@@ -71,4 +74,5 @@ return array(
 	'ukr'=> 'Ukraiński',
 	'uk' => 'Ukraiński',
 	'vie'=> 'Wietnamski',
+	
 );

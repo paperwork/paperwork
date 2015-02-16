@@ -56,6 +56,7 @@ Route::group(array('prefix' => 'api/v1', 'before' => 'auth'), function()
     App::setLocale(PaperworkHelpers::getUiLanguageFromSession());
     // Route::any('notebook/{num?}', 'ApiNotebooksController@index')->where('num','([0-9]*)');
     Route::resource('notebooks', 'ApiNotebooksController');
+    Route::resource('tags', 'ApiTagsController');
     Route::resource('notebooks.notes', 'ApiNotesController');
         // I really don't know whether that's a great way to solve this...
         Route::get('/notebooks/{notebookId}/notes/{noteId}/move/{toNotebookId}', 'ApiNotesController@move');

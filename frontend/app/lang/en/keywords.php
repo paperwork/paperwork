@@ -22,6 +22,7 @@ return array(
 	'shortcuts' => 'Shortcuts',
 	'notebooks' => 'Notebooks',
 	'tags' => 'Tags',
+	'manage_tags' => 'Manage tags',
 	'note' => 'Note',
 	'notebook' => 'Notebook',
 	'collection' => 'Collection',
@@ -38,6 +39,8 @@ return array(
 	'delete_notebook' => 'Delete notebook',
 	'delete_notebook_question' => 'Delete notebook?',
 	'delete_notebook_message' => 'This will delete the selected notebook and all its notes. Are you sure?',
+    	'delete_tag_question' => 'Delete tag?',
+    	'delete_tag_message' => 'This will delete the selected tag. Are you sure?',
 	'new_collection' => 'New collection',
 	'edit_collection' => 'Edit collection',
 	'delete_collection' => 'Delete collection',
@@ -80,6 +83,7 @@ return array(
 	'not_implemented' => 'This feature has not been implemented yet. ',
 	'experimental' => 'Experimental',
 	'import' => 'Import',
-	'export' => 'Export'
+	'export' => 'Export',
+	'back' => 'Back'
 
 );
