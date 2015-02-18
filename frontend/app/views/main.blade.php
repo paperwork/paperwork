@@ -42,6 +42,11 @@
 								</li>
 							</ul>
 						</li>
+
+						<li>
+							<span class="tree-header tree-header-tags"><i class="fa fa-chevron-down"></i> Calendar</span>
+							<datepicker datepicker-refresh="sidebarCalendarPromise" id="sidebarCalendar" date-disabled="sidebarCalendarIsDisabled(date)" ng-change="openDate(sidebarCalendar)" ng-model="sidebarCalendar" show-weeks="false" ></datepicker>
+						</li>
 					</ul>
 				</div>
 			</ul>
