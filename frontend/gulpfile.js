@@ -27,7 +27,8 @@ var paths = {
 		'app/js/angular-sanitize.js',
 		'app/js/angular-animate.js',
 		'app/js/angular-file-upload.js',
-		'app/js/angular-utf8-base64.js'
+		'app/js/angular-utf8-base64.js',
+		'app/js/angular-ui-bootstrap.js'
 	],
 	jQuery: [
 		'app/js/jquery.js',
