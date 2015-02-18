@@ -60,6 +60,7 @@ Route::group(array('prefix' => 'api/v1', 'before' => 'auth'), function()
     Route::resource('notebooks.notes', 'ApiNotesController');
         // I really don't know whether that's a great way to solve this...
         Route::get('/notebooks/{notebookId}/notes/{noteId}/move/{toNotebookId}', 'ApiNotesController@move');
+        Route::get('/notebooks/{notebookId}/notes/{noteId}/tag/{toTagId}', 'ApiNotesController@tagNote');
     Route::resource('notebooks.notes.versions', 'ApiVersionsController');
     Route::resource('notebooks.notes.versions.attachments', 'ApiAttachmentsController');
         Route::get('/notebooks/{notebookId}/notes/{noteId}/versions/{versionId}/attachments/{attachmentId}/raw', 'ApiAttachmentsController@raw');

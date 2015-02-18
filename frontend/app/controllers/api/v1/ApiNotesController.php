@@ -373,6 +373,11 @@ class ApiNotesController extends BaseController {
 		}
 		return PaperworkHelpers::apiResponse($status, $responses);
 	}
+
+    public function tagNote($notebookId, $noteId, $toTagId) {
+        Note::find($noteId)->tags()->attach($toTagId);
+        return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $noteId);
+    }
 }
 
 ?>

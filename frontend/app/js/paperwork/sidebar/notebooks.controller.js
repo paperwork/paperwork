@@ -178,6 +178,11 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
      $scope.modalManageTags = function () {
          $('#modalManageTags').modal("show");
      };
+     
+     $scope.onDropToTag = function(data, event) {
+         notesService.tagNote($rootScope.note.notebook_id, $rootScope.note.id, this.tag.id);
+         $scope.openTag(this.tag.id);
+     };
 
      notebooksService.getNotebookShortcuts(null);
      notebooksService.getNotebooks();
