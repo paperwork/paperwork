@@ -220,7 +220,11 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
 
      $scope.sidebarCalendarEnabledDates = [];
      $scope.sidebarCalendarPromise = sidebarCalendarDefer.promise;
-     $scope.sidebarCalendarIsDisabled = function(date) {
+     $scope.sidebarCalendarIsDisabled = function(date, mode) {
+       if(mode !== "day") {
+         return false;
+       }
+       
        var shortDate = $filter('date')(date, "shortDate");
        return $.inArray(shortDate, $scope.sidebarCalendarEnabledDates) == -1;
      };
