@@ -1,8 +1,8 @@
 angular.module('paperworkNotes').controller('NotesListController',
-  function($scope, $rootScope, $location, $routeParams, notesService) {
+  function($scope, $rootScope, $location, $routeParams, NotesService) {
     $rootScope.noteSelectedId = {};
     $rootScope.notesSelectedIds = [];
-    notesService.getNotesInNotebook(0);
+    NotesService.getNotesInNotebook(0);
 
     $scope.noteSelect = function($notebookId, $noteId) {
       $rootScope.noteSelectedId = {'notebookId': parseInt($notebookId), 'noteId': parseInt($noteId)};

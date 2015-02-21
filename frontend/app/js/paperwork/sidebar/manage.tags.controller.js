@@ -1,5 +1,5 @@
 angular.module('paperworkNotes').controller('SidebarManageTagsController',
-  function($scope, $rootScope, $location, $routeParams, notebooksService) {
+  function($scope, $rootScope, $location, $routeParams, NotebooksService) {
     $scope.modalTags = [];
 
     $('#modalManageTags').on('hidden.bs.modal', function(e) {
@@ -20,10 +20,10 @@ angular.module('paperworkNotes').controller('SidebarManageTagsController',
           };
         },
         url:    function(data) {
-          notebooksService.updateTag(data['id'], data, function(status, responseData) {
+          NotebooksService.updateTag(data['id'], data, function(status, responseData) {
             switch(status) {
               case 200:
-                notebooksService.getTags();
+                NotebooksService.getTags();
                 break;
               case 400:
                 for(var i in responseData.errors) {
@@ -57,8 +57,8 @@ angular.module('paperworkNotes').controller('SidebarManageTagsController',
             'label': $rootScope.i18n.keywords.yes,
             'class': 'btn-warning',
             'click': function() {
-              notebooksService.deleteTag(tagId, function() {
-                notebooksService.getTags();
+              NotebooksService.deleteTag(tagId, function() {
+                NotebooksService.getTags();
                 $('#modalManageTags').find(".line[data-pk='" + tagId + "']").closest('.row').remove();
               });
               return true;

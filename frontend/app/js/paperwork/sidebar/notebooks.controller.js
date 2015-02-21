@@ -1,5 +1,5 @@
 angular.module('paperworkNotes').controller('SidebarNotebooksController',
-  function($scope, $rootScope, $location, $routeParams, $filter, $q, notebooksService, notesService, ngDraggable) {
+  function($scope, $rootScope, $location, $routeParams, $filter, $q, NotebooksService, NotesService, ngDraggable) {
     $rootScope.notebookSelectedId = 0;
     $rootScope.tagsSelectedId = -1;
     $rootScope.dateSelected = -1;
@@ -119,15 +119,15 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
               break;
           }
         };
-      })(notebooksService);
+      })(NotebooksService);
 
       if($rootScope.modalNotebook.action == "create") {
-        notebooksService.createNotebook(data, callback);
+        NotebooksService.createNotebook(data, callback);
       } else if($rootScope.modalNotebook.action == "edit") {
         // if($rootScope.modalNotebook.delete) {
         // NotebooksService.deleteNotebook($rootScope.modalNotebook.id, callback);
         // } else {
-        notebooksService.updateNotebook($rootScope.modalNotebook.id, data, callback);
+        NotebooksService.updateNotebook($rootScope.modalNotebook.id, data, callback);
         // }
       }
     };
@@ -138,7 +138,7 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
     };
 
     $scope.modalEditNotebook = function(notebookId) {
-      var notebook = notebooksService.getNotebookByIdLocal(notebookId);
+      var notebook = NotebooksService.getNotebookByIdLocal(notebookId);
 
       if(notebook == null || $rootScope.menuItemNotebookClass() === 'disabled') {
         return false;
@@ -150,7 +150,7 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
         'title':  notebook.title
       };
 
-      var shortcut = notebooksService.getShortcutByNotebookIdLocal(notebookId);
+      var shortcut = NotebooksService.getShortcutByNotebookIdLocal(notebookId);
 
       if(shortcut == null) {
         $rootScope.modalNotebook.shortcut = false;
@@ -172,8 +172,8 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
         return function(status, data) {
           switch(status) {
             case 200:
-              notebooksService.getNotebookShortcuts(null);
-              notebooksService.getNotebooks();
+              NotebooksService.getNotebookShortcuts(null);
+              NotebooksService.getNotebooks();
               $location.path("/n/0");
               break;
             case 400:
@@ -198,7 +198,7 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
             'label': $rootScope.i18n.keywords.yes,
             'class': 'btn-warning',
             'click': function() {
-              notebooksService.deleteNotebook(notebookId, callback);
+              NotebooksService.deleteNotebook(notebookId, callback);
               return true;
             },
           }
@@ -207,7 +207,7 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
     };
 
     $scope.onDropSuccess = function(data, event) {
-      notesService.moveNote($rootScope.note.notebook_id, $rootScope.note.id, this.notebook.id);
+      NotesService.moveNote($rootScope.note.notebook_id, $rootScope.note.id, this.notebook.id);
       //console.log("Moved");
       // Try to make the openNotebook dependant on the result of the move
       $scope.openNotebook(this.notebook.id, this.notebook.type, this.notebook.id);
@@ -218,7 +218,7 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
     };
 
     $scope.onDropToTag = function(data, event) {
-      notesService.tagNote($rootScope.note.notebook_id, $rootScope.note.id, this.tag.id);
+      NotesService.tagNote($rootScope.note.notebook_id, $rootScope.note.id, this.tag.id);
       $scope.openTag(this.tag.id);
     };
 
@@ -259,7 +259,7 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
       sidebarCalendarDefer.notify(new Date().getTime());
     });
 
-    notebooksService.getNotebookShortcuts(null);
-    notebooksService.getNotebooks();
-    $rootScope.tags = notebooksService.getTags();
-  })
+    NotebooksService.getNotebookShortcuts(null);
+    NotebooksService.getNotebooks();
+    $rootScope.tags = NotebooksService.getTags();
+  });

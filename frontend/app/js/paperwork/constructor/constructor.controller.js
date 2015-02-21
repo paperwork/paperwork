@@ -1,5 +1,5 @@
 angular.module('paperworkNotes').controller('ConstructorController',
-  function($scope, $rootScope, $location, $routeParams, netService) {
+  function($scope, $rootScope, $location, $routeParams, NetService) {
     if($rootScope.initDone) {
       return;
     }
@@ -14,7 +14,7 @@ angular.module('paperworkNotes').controller('ConstructorController',
       });
     });
 
-    netService.apiGet('/i18n', function(status, data) {
+    NetService.apiGet('/i18n', function(status, data) {
       if(status == 200) {
         $rootScope.i18n = data.response;
       }

@@ -1,10 +1,10 @@
 angular.module('paperworkNotes').controller('WaybackController',
-  function($scope, $rootScope, $location, $routeParams, netService, notesService) {
+  function($scope, $rootScope, $location, $routeParams, NetService, NotesService) {
     // FIXME
     $('#paperworkViewParent').off('picked.freqselector').on('picked.freqselector', function(e) {
       var itemId = $(e.item).data('itemid');
 
-      netService.apiGet('/notebooks/' + $rootScope.getNotebookSelectedId() + '/notes/' + ($rootScope.getNoteSelectedId(true)).noteId + '/versions/' + itemId,
+      NetService.apiGet('/notebooks/' + $rootScope.getNotebookSelectedId() + '/notes/' + ($rootScope.getNoteSelectedId(true)).noteId + '/versions/' + itemId,
         function(status, data) {
           if(status == 200) {
             $rootScope.note.title = data.response.title;
@@ -16,7 +16,7 @@ angular.module('paperworkNotes').controller('WaybackController',
           }
         });
 
-      notesService.getNoteVersionAttachments($rootScope.getNotebookSelectedId(), ($rootScope.getNoteSelectedId(true)).noteId, itemId, function(response) {
+      NotesService.getNoteVersionAttachments($rootScope.getNotebookSelectedId(), ($rootScope.getNoteSelectedId(true)).noteId, itemId, function(response) {
         $rootScope.fileList = response;
       });
 

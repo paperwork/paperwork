@@ -1,31 +1,31 @@
 angular.module('paperworkNotes').factory('NotebooksService',
-  function($rootScope, $http, netService) {
+  function($rootScope, $http, NetService) {
     var paperworkNotebooksServiceFactory = {};
 
     // paperworkNotebooksServiceFactory.selectedNotebookId = 0;
 
     paperworkNotebooksServiceFactory.createNotebook = function(data, callback) {
-      netService.apiPost('/notebooks', data, callback);
+      NetService.apiPost('/notebooks', data, callback);
     };
 
     paperworkNotebooksServiceFactory.updateNotebook = function(notebookId, data, callback) {
-      netService.apiPut('/notebooks/' + notebookId, data, callback);
+      NetService.apiPut('/notebooks/' + notebookId, data, callback);
     };
 
     paperworkNotebooksServiceFactory.updateTag = function(tagId, data, callback) {
-      netService.apiPut('/tags/' + tagId, data, callback);
+      NetService.apiPut('/tags/' + tagId, data, callback);
     };
 
     paperworkNotebooksServiceFactory.deleteNotebook = function(notebookId, callback) {
-      netService.apiDelete('/notebooks/' + notebookId, callback);
+      NetService.apiDelete('/notebooks/' + notebookId, callback);
     };
 
     paperworkNotebooksServiceFactory.deleteTag = function(tagId, callback) {
-      netService.apiDelete('/tags/' + tagId, callback);
+      NetService.apiDelete('/tags/' + tagId, callback);
     };
 
     paperworkNotebooksServiceFactory.getNotebooks = function() {
-      netService.apiGet('/notebooks', function(status, data) {
+      NetService.apiGet('/notebooks', function(status, data) {
         if(status == 200) {
           $rootScope.notebooks = data.response;
         }
@@ -33,7 +33,7 @@ angular.module('paperworkNotes').factory('NotebooksService',
     };
 
     paperworkNotebooksServiceFactory.getNotebookById = function(notebookId) {
-      netService.apiGet('/notebooks/' + notebookId, function(status, data) {
+      NetService.apiGet('/notebooks/' + notebookId, function(status, data) {
         if(status == 200) {
           $rootScope.notebook = data.response;
         }
@@ -51,7 +51,7 @@ angular.module('paperworkNotes').factory('NotebooksService',
     };
 
     paperworkNotebooksServiceFactory.getNotebookShortcuts = function() {
-      netService.apiGet('/shortcuts', function(status, data) {
+      NetService.apiGet('/shortcuts', function(status, data) {
         if(status == 200) {
           $rootScope.shortcuts = data.response;
         }
@@ -69,7 +69,7 @@ angular.module('paperworkNotes').factory('NotebooksService',
     };
 
     paperworkNotebooksServiceFactory.getTags = function() {
-      netService.apiGet('/tags', function(status, data) {
+      NetService.apiGet('/tags', function(status, data) {
         if(status == 200) {
           $rootScope.tags = data.response;
         }

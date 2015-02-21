@@ -1,5 +1,5 @@
 angular.module('paperworkNotes').controller('SidebarNotesController',
-  function($scope, $rootScope, $location, $timeout, $routeParams, notebooksService, notesService, ngDraggable) {
+  function($scope, $rootScope, $location, $timeout, $routeParams, NotebooksService, NotesService, ngDraggable) {
     $scope.isVisible = function() {
       return !$rootScope.expandedNoteLayout;
     };
@@ -54,7 +54,7 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
         };
       })(notebookId);
 
-      notesService.createNote(notebookId, data, callback);
+      NotesService.createNote(notebookId, data, callback);
     };
 
     $scope.editNote = function(notebookId, noteId) {
@@ -116,7 +116,7 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
         };
       })();
 
-      notesService.updateNote($rootScope.note.id, data, callback);
+      NotesService.updateNote($rootScope.note.id, data, callback);
     };
 
     $scope.closeNote = function() {
@@ -125,7 +125,7 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
         $location.path("/n/" + $rootScope.getNotebookSelectedId() + "/" + currentNote.noteId);
         CKEDITOR.instances.content.destroy();
         $rootScope.templateNoteEdit = {};
-        notebooksService.getTags();
+        NotebooksService.getTags();
         return true;
       };
 
@@ -195,7 +195,7 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
                   }
                 });
               }
-              notesService.deleteNote(noteId, callback, function() {
+              NotesService.deleteNote(noteId, callback, function() {
                 $location.path("/n/" + notebookId);
               });
               return true;
@@ -223,7 +223,7 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
               }
             });
           }
-          notesService.moveNote(notebookId, noteId, toNotebookId, function(_notebookId, _noteId, _toNotebookId) {
+          NotesService.moveNote(notebookId, noteId, toNotebookId, function(_notebookId, _noteId, _toNotebookId) {
             $('#modalNotebookSelect').modal('hide');
             $location.path("/n/" + parseInt(_toNotebookId));
           });

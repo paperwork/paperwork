@@ -1,5 +1,5 @@
 angular.module('paperworkNotes').controller('SidebarManageNotebooksController',
-  function($scope, $rootScope, $location, $routeParams, notebooksService) {
+  function($scope, $rootScope, $location, $routeParams, NotebooksService) {
     $scope.modalList = [];
 
     $('#modalManageNotebooks').on('hidden.bs.modal', function(e) {
@@ -24,7 +24,7 @@ angular.module('paperworkNotes').controller('SidebarManageNotebooksController',
     var buildShortcutChk = function(editable, newRow) {
       var shortcut = false;
       if(!newRow) {
-        shortcut = !!notebooksService.getShortcutByNotebookIdLocal(editable.options.pk);
+        shortcut = !!NotebooksService.getShortcutByNotebookIdLocal(editable.options.pk);
       }
 
       editable.container.$form.find('.control-group').after(
@@ -55,11 +55,11 @@ angular.module('paperworkNotes').controller('SidebarManageNotebooksController',
         send:         'always',
         savenochange: true,
         url:          function(data) {
-          notebooksService.updateNotebook(data['id'], data, function(status, responseData) {
+          NotebooksService.updateNotebook(data['id'], data, function(status, responseData) {
             switch(status) {
               case 200:
-                notebooksService.getNotebooks();
-                notebooksService.getNotebookShortcuts(null);
+                NotebooksService.getNotebooks();
+                NotebooksService.getNotebookShortcuts(null);
                 break;
               case 400:
                 for(var i in responseData.errors) {
@@ -94,9 +94,9 @@ angular.module('paperworkNotes').controller('SidebarManageNotebooksController',
             'label': $rootScope.i18n.keywords.yes,
             'class': 'btn-warning',
             'click': function() {
-              notebooksService.deleteNotebook(id, function(status, data) {
-                notebooksService.getNotebooks();
-                notebooksService.getNotebookShortcuts();
+              NotebooksService.deleteNotebook(id, function(status, data) {
+                NotebooksService.getNotebooks();
+                NotebooksService.getNotebookShortcuts();
               });
               $('#modalManageNotebooks').find(".line[data-pk='" + id + "']").closest('.row').remove();
               return true;
@@ -123,11 +123,11 @@ angular.module('paperworkNotes').controller('SidebarManageNotebooksController',
       $row.find('a').editable({
         params: parseParams,
         url:    function(data) {
-          notebooksService.createNotebook(data, function(status, responseData) {
+          NotebooksService.createNotebook(data, function(status, responseData) {
             switch(status) {
               case 200:
-                notebooksService.getNotebooks();
-                notebooksService.getNotebookShortcuts(null);
+                NotebooksService.getNotebooks();
+                NotebooksService.getNotebookShortcuts(null);
 
                 $row.remove();
                 //$scope.modalList.push(responseData.response);  --- we will  use $watch instead

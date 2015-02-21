@@ -1,5 +1,5 @@
 angular.module('paperworkNotes').controller('NotesEditController',
-  function($scope, $rootScope, $location, $routeParams, notesService, paperworkApi) {
+  function($scope, $rootScope, $location, $routeParams, NotesService, paperworkApi) {
     window.onCkeditChangeFunction = function() {
       // FIXME jQuery un angular is anti-pattern
       // Let's access our $rootScope from within jQuery (this)
@@ -20,13 +20,13 @@ angular.module('paperworkNotes').controller('NotesEditController',
     var thisController = function(notebookId, noteId, _onChangeFunction) {
       $rootScope.noteSelectedId = {'notebookId': notebookId, 'noteId': noteId};
       $rootScope.versionSelectedId = {'notebookId': notebookId, 'noteId': noteId, 'versionId': 0};
-      notesService.getNoteById(noteId);
+      NotesService.getNoteById(noteId);
       $rootScope.templateNoteEdit = $rootScope.getNoteByIdLocal(noteId);
       if(typeof $rootScope.templateNoteEdit == "undefined" || $rootScope.templateNoteEdit == null) {
         $rootScope.templateNoteEdit = {};
       }
 
-      notesService.getNoteVersionAttachments($rootScope.getNotebookSelectedId(), ($rootScope.getNoteSelectedId(true)).noteId, $rootScope.getVersionSelectedId(true).versionId,
+      NotesService.getNoteVersionAttachments($rootScope.getNotebookSelectedId(), ($rootScope.getNoteSelectedId(true)).noteId, $rootScope.getVersionSelectedId(true).versionId,
         function(response) {
           $rootScope.fileList = response;
         });
@@ -142,7 +142,7 @@ angular.module('paperworkNotes').controller('NotesEditController',
     $rootScope.uploadUrl = paperworkApi + '/notebooks/' + parseInt($routeParams.notebookId) + '/notes/' + parseInt($routeParams.noteId) + '/versions/0/attachments';
 
     if(typeof $rootScope.notes == "undefined") {
-      notesService.getNotesInNotebook($rootScope.notebookSelectedId, (function(_notebookId, _noteId) {
+      NotesService.getNotesInNotebook($rootScope.notebookSelectedId, (function(_notebookId, _noteId) {
         return function() {
           thisController(_notebookId, _noteId, function() {
             window.onCkeditChangeFunction();

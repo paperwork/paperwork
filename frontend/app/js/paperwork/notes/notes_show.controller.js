@@ -1,5 +1,5 @@
 angular.module('paperworkNotes').controller('NotesShowController',
-  function($scope, $rootScope, $location, $routeParams, notesService, netService) {
+  function($scope, $rootScope, $location, $routeParams, notesService, NetService) {
     if(!angular.isNumber(parseInt($routeParams.noteId)) || $routeParams.noteId === "undefined") {
       return;
     }

@@ -1,5 +1,5 @@
 angular.module('paperworkNotes').controller('FileUploadController',
-  function($scope, $rootScope, $location, $routeParams, FileUploader, paperworkNotesService) {
+  function($scope, $rootScope, $location, $routeParams, FileUploader, NotesService) {
     var uploader = $scope.uploader = new FileUploader({
       url: $rootScope.uploadUrl
     });
@@ -43,7 +43,7 @@ angular.module('paperworkNotes').controller('FileUploadController',
     };
     uploader.onCompleteAll = function() {
       // console.info('onCompleteAll');
-      paperworkNotesService.getNoteVersionAttachments($rootScope.getNotebookSelectedId(), ($rootScope.getNoteSelectedId(true)).noteId,
+      NotesService.getNoteVersionAttachments($rootScope.getNotebookSelectedId(), ($rootScope.getNoteSelectedId(true)).noteId,
         $rootScope.getVersionSelectedId(true).versionId, function(response) {
           $rootScope.fileList = response;
           uploader.clearQueue();
@@ -77,7 +77,7 @@ angular.module('paperworkNotes').controller('FileUploadController',
           ]
         });
       } else {
-        paperworkNotesService.deleteNoteVersionAttachment(notebookId, noteId, versionId, attachmentId, function(response) {
+        NotesService.deleteNoteVersionAttachment(notebookId, noteId, versionId, attachmentId, function(response) {
           var fileUrl = '/api/v1/notebooks/' + notebookId + '/notes/' + noteId + '/versions/' + versionId + '/attachments/' + attachmentId + '/raw';
           var i, l = $rootScope.fileList.length;
           for(i = 0; i < l; i++) {
