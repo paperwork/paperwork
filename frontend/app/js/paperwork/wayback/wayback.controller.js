@@ -1,5 +1,4 @@
 angular.module('paperworkNotes').controller('WaybackController',
-  ['$scope', '$rootScope', '$location', '$routeParams', 'NetService', 'NotesService',
    function($scope, $rootScope, $location, $routeParams, netService, notesService) {
      // FIXME
      $('#paperworkViewParent').off('picked.freqselector').on('picked.freqselector', function(e) {
@@ -22,4 +21,4 @@ angular.module('paperworkNotes').controller('WaybackController',
        });
 
      });
-   }]);
+   };

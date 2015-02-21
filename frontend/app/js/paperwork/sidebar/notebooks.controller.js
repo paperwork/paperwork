@@ -1,5 +1,4 @@
 angular.module('paperworkNotes').controller('SidebarNotebooksController',
-  ['$scope', '$rootScope', '$location', '$routeParams', '$filter', '$q', 'NotebooksService', 'NotesService', 'ngDraggable',
    function($scope, $rootScope, $location, $routeParams, $filter, $q, notebooksService, notesService, ngDraggable) {
      $rootScope.notebookSelectedId = 0;
      $rootScope.tagsSelectedId = -1;
@@ -264,20 +263,4 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
      notebooksService.getNotebookShortcuts(null);
      notebooksService.getNotebooks();
      $rootScope.tags = notebooksService.getTags();
-   }])
-.directive('datepickerRefresh',function() {
-  var noop = function(){};
-  var refresh = function(dpCtrl) {
-    return function() {
-      dpCtrl.refreshView();
-    };
-  };
-
-  return {
-    require: 'datepicker',
-    link: function(scope, elem, attrs, dpCtrl) {
-      var refreshPromise = scope[attrs.datepickerRefresh];
-      refreshPromise.then(noop, noop, refresh(dpCtrl));
-    }
-  };
-});
+   })

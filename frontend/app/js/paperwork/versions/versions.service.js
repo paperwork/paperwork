@@ -1,5 +1,4 @@
 angular.module('paperworkNotes').factory('VersionsService',
-  ['$rootScope', '$http', 'NetService',
    function($rootScope, $http, NetService) {
      var paperworkVersionsServiceFactory = {};
 
@@ -22,4 +21,4 @@ angular.module('paperworkNotes').factory('VersionsService',
      };
 
      return paperworkVersionsServiceFactory;
-   }]);
+   });
