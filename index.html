@@ -31,7 +31,8 @@
         <h1>
 <a id="paperwork---opensource-note-taking--archiving" class="anchor" href="#paperwork---opensource-note-taking--archiving" aria-hidden="true"><span class="octicon octicon-link"></span></a>Paperwork - OpenSource note-taking &amp; archiving</h1>
 
-<p><a href="https://travis-ci.org/twostairs/paperwork"><img src="https://travis-ci.org/twostairs/paperwork.svg?branch=master" alt="Build Status"></a></p>
+<p><a href="https://gitter.im/twostairs/paperwork?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Join the chat at https://gitter.im/twostairs/paperwork"></a>
+<a href="https://travis-ci.org/twostairs/paperwork"><img src="https://travis-ci.org/twostairs/paperwork.svg?branch=master" alt="Build Status"></a></p>
 
 <p><img src="https://raw.githubusercontent.com/twostairs/paperwork/master/paperwork-logo.png" alt="paperwork-logo"></p>
 
@@ -62,11 +63,48 @@
 <h2>
 <a id="initial-installation-quick--dirty-documented" class="anchor" href="#initial-installation-quick--dirty-documented" aria-hidden="true"><span class="octicon octicon-link"></span></a>Initial installation (quick &amp; dirty documented)</h2>
 
-<p>First of all, you need to clone this project to your machine. After that, make sure that you have one of the latest PHP versions &gt; 5.1 and an up-to-date "composer" installed. If you're not sure how composer works, please continue reading here: <a href="https://getcomposer.org/">https://getcomposer.org/</a></p>
+<p>First of all, you need to clone this project to your machine.
+After that, make sure that you have PHP &gt;= 5.4.</p>
 
-<p>Second, you need to switch to the command line: "cd" into the "frontend" directory of your local paperwork clone. There, run "composer install" and/or "composer update". This will install all the needed dependencies.</p>
+<p>Currently, we don't ship any prebuilt versions, so you need to build the app yourself.
+To do this you must install <a href="http://getcomposer.org">composer</a> and npm (nodejs package manager,
+on how to install npm read <a href="http://blog.npmjs.org/post/85484771375/how-to-install-npm">here</a>)</p>
 
-<p>Now, before you do anything else, please check the files within the frontend/app/config/ directory. Especially the database.php. If you'd like to use the default DB settings (MySQL/MariaDB), you'll just need to have the database server running on port 3306 and create a database named "paperwork". You could use this SQL:</p>
+<p>Composer is needed to install third-party application components,
+without them application will not run.</p>
+
+<p>After you have finished the installation of npm and composer run:</p>
+
+<pre><code>cd frontend
+composer install
+</code></pre>
+
+<p>At the point, you now have php dependencies installed.
+It is now time to install tools to build the frontend files. We are using <a href="http://gulpjs.com">gulp</a>
+to build our frontend dependencies.</p>
+
+<p>First you need to install gulp cli globally:</p>
+
+<pre><code>sudo npm install -g gulp
+</code></pre>
+
+<p>And then npm dependencies inside project</p>
+
+<pre><code>npm install
+</code></pre>
+
+<p>Then you just run the default task</p>
+
+<pre><code>gulp
+</code></pre>
+
+<p>After these steps, you have all components installed and styles and js build,
+it is time to configure your database.</p>
+
+<p>Database settings are stored in frontend/app/config/database.php
+If you'd like to use the default DB settings (MySQL/MariaDB), you'll just need
+to have the database server running on port 3306 and create a database named
+"paperwork". You could use the following SQL:</p>
 
 <pre><code>DROP DATABASE IF EXISTS paperwork; CREATE DATABASE IF NOT EXISTS paperwork DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 </code></pre>
@@ -85,7 +123,28 @@
 
 <p>If anything here should fail, it's most likely an authentication/connection issue, so check your database setup again.</p>
 
-<p>Now, for the last step, make sure that your webserver has the right to create/modify/delete files within the <code>frontend/app/storage/attachments/</code>, the <code>frontend/app/storage/cache/</code>, the <code>frontend/app/storage/logs/</code> and the <code>frontend/app/storage/sessions/</code> folders. Also, be sure to set the document root (docroot) of your webserver to the folder <code>frontend/public/</code>.</p>
+<p>Now, for the last step, make sure that your webserver has the right to create/modify/delete files within the <code>frontend/app/storage/attachments/</code>, the <code>frontend/app/storage/cache/</code>, the <code>frontend/app/storage/logs/</code> and the <code>frontend/app/storage/sessions/</code> folders.</p>
+
+<p>Also, be sure to set the document root (docroot) of your webserver to the folder <code>frontend/public/</code>. If you don't have access to or don't want/know how to do this, you can use .htaccess to set up temporary rewrite rules to experience Paperwork fully. In the example below, it is assumed that you have all your papaerwork files in a folder named paperwork folder as child of the document root folder.</p>
+
+<ol>
+<li>Create a new file named <code>.htaccess</code>
+</li>
+<li>Copy and paste this code in it:</li>
+</ol>
+
+<pre><code>RewriteEngine on
+RewriteCond %{REQUEST_URI} !paperwork/frontend/public/
+RewriteRule (.*) /paperwork/frontend/public/$1 [L]
+</code></pre>
+
+<ol>
+<li>Save the file</li>
+</ol>
+
+<p>You can access Paperwork by going to http://localhost or any URL you use to access your machine.</p>
+
+<p>When you need to access any other files from the document root (all folders will be inaccessible), rename the file to something different from <code>.htaccess</code>.</p>
 
 <p>That's pretty much it. From here on, you should be able to access your paperwork instance through the web.</p>
 
@@ -127,9 +186,18 @@
 <p>npm will install all dependencies required through the <code>package.json</code>, so that you'll be able to run the generator process yourself. For doing so, simply run the command <code>gulp</code> within your <code>frontend</code> directory.</p>
 
 <h2>
+<a id="contributing" class="anchor" href="#contributing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Contributing</h2>
+
+<p>We're using <a href="http://nvie.com/posts/a-successful-git-branching-model/">this style of git branching</a>. So for development, you should clone the Paperwork repository here on Github, and checkout a new feature branch off from the develop branch (rather than master) such as issue-48-feature. Commit your changes to that branch and then send us pull-requests back into the develop branch.</p>
+
+<p>The exception to this rule is urgent hotfixes to master. To perform a hotfix, make a new branch off of master. When you're ready to submit the changes, make a pull request to both the master and develop branches.</p>
+
+<h2>
 <a id="some-last-words" class="anchor" href="#some-last-words" aria-hidden="true"><span class="octicon octicon-link"></span></a>Some last words</h2>
 
 <p>The current development status is far from being worth called "version 1.0". However, if I could get you interested in this project and you feel like contributing, don't hesitate to ping me by e-mail (<a href="mailto:marius@paperwork.rocks">marius@paperwork.rocks</a>) or twitter (<a href="https://twitter.com/devilx">@devilx</a>) so we can talk. :-)</p>
+
+<p>There is a #paperwork IRC channel on freenode.net and there is a <a href="https://gitter.im/twostairs/paperwork">gitter</a> group as well.</p>
 
 <h2>
 <a id="faq" class="anchor" href="#faq" aria-hidden="true"><span class="octicon octicon-link"></span></a>FAQ</h2>
@@ -147,7 +215,7 @@
 <h3>
 <a id="i-would-like-to-join-paperwork-development-whats-the-best-way-to-do-so" class="anchor" href="#i-would-like-to-join-paperwork-development-whats-the-best-way-to-do-so" aria-hidden="true"><span class="octicon octicon-link"></span></a>I would like to join Paperwork development, what's the best way to do so?</h3>
 
-<p>Contribute. Simply fork the Paperwork repository here on GitHub, add you contributions and send us pull-requests. In addition, make sure to shoot us an e-mail at <a href="mailto:paperwork-dev@googlegroups.com">paperwork-dev@googlegroups.com</a> and inform us about your interest in joining the team. We will then make sure to give you the required access to our <a href="https://github.com/twostairs/paperwork/issues">GitHub Issues</a> as well.</p>
+<p>In addition to contributing, make sure to shoot us an e-mail at <a href="mailto:paperwork-dev@googlegroups.com">paperwork-dev@googlegroups.com</a>, or hop on the <a href="https://gitter.im/twostairs/paperwork">gitter group</a> and inform us about your interest in joining the team. We will then make sure to give you the required access to our <a href="https://github.com/twostairs/paperwork/issues">GitHub Issues</a> as well.</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/twostairs">twostairs</a></p>
