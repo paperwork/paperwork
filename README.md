@@ -34,7 +34,7 @@ First of all, you need to clone this project to your machine.
 After that, make sure that you have PHP >= 5.4.
 
 Currently, we don't ship any prebuilt versions, so you need to build the app yourself.
-To do this you must install [composer](http://getcomposer.com) and npm (nodejs package manager,
+To do this you must install [composer](http://getcomposer.org) and npm (nodejs package manager,
 on how to install npm read [here](http://blog.npmjs.org/post/85484771375/how-to-install-npm))
 
 Composer is needed to install third-party application components,

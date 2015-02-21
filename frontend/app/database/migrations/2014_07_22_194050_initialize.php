@@ -158,7 +158,7 @@ class Initialize extends Migration {
             $table->timestamps();
             $table->string('filename');
             $table->string('fileextension');
-            $table->text('content');
+            $table->text('content')->nullable();
             $table->string('mimetype');
             $table->bigInteger('filesize')->unsigned();
             $table->softDeletes();
