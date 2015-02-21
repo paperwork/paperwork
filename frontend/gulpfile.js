@@ -5,6 +5,7 @@ var rename = require('gulp-rename');
 var livereload = require('gulp-livereload');
 var uglify = require('gulp-uglify');
 var path = require("path");
+var annotate = require('gulp-ng-annotate');
 
 var paths = {
 	bootstrap: [
@@ -122,6 +123,7 @@ gulp.task('compileJsPaperwork', function() {
 	gulp
 		.src(paths.paperwork)
 		.pipe(concat('paperwork.min.js'))
+		.pipe(annotate())
 		.pipe(gulp.dest(paths.output.js))
 		.pipe(livereload());
 });

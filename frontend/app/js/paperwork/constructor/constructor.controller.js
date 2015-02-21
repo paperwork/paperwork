@@ -1,5 +1,5 @@
 angular.module('paperworkNotes').controller('ConstructorController',
-  function($scope, $rootScope, $location, $routeParams, paperworkNetService) {
+  function($scope, $rootScope, $location, $routeParams, netService) {
     if($rootScope.initDone) {
       return;
     }
@@ -14,7 +14,7 @@ angular.module('paperworkNotes').controller('ConstructorController',
       });
     });
 
-    paperworkNetService.apiGet('/i18n', function(status, data) {
+    netService.apiGet('/i18n', function(status, data) {
       if(status == 200) {
         $rootScope.i18n = data.response;
       }
@@ -44,11 +44,13 @@ angular.module('paperworkNotes').controller('ConstructorController',
       $(this).find('input[name="title"]').parents('.form-group').removeClass('has-warning');
     });
 
-    $('.modal').on('hidden.bs.modal', function(e) {
+    var $modal = $('.modal');
+
+    $modal.on('hidden.bs.modal', function(e) {
       $rootScope.$broadcast('paperworkModalHidden', e);
     });
 
-    $('.modal').on('show.bs.modal', function(e) {
+    $modal.on('show.bs.modal', function(e) {
       $rootScope.$broadcast('paperworkModalVisible', e);
     });
 
