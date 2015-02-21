@@ -1,6 +1,6 @@
 angular.module('paperworkNotes')
-  .directive('pwDatepickerRefresh',function() {
-    var noop = function(){};
+  .directive('pwDatepickerRefresh', function() {
+    var noop = function() {};
     var refresh = function(dpCtrl) {
       return function() {
         dpCtrl.refreshView();
@@ -9,7 +9,7 @@ angular.module('paperworkNotes')
 
     return {
       require: 'datepicker',
-      link: function(scope, elem, attrs, dpCtrl) {
+      link:    function(scope, elem, attrs, dpCtrl) {
         var refreshPromise = scope[attrs.datepickerRefresh];
         refreshPromise.then(noop, noop, refresh(dpCtrl));
       }
