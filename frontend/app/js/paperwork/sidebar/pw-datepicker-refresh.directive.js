@@ -10,7 +10,7 @@ angular.module('paperworkNotes')
     return {
       require: 'datepicker',
       link:    function(scope, elem, attrs, dpCtrl) {
-        var refreshPromise = scope[attrs.datepickerRefresh];
+        var refreshPromise = scope[attrs.pwDatepickerRefresh];
         refreshPromise.then(noop, noop, refresh(dpCtrl));
       }
     };
