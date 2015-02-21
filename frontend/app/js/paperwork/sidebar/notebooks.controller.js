@@ -1,8 +1,9 @@
 angular.module('paperworkNotes').controller('SidebarNotebooksController',
-  ['$scope', '$rootScope', '$location', '$routeParams', 'NotebooksService',
-   function($scope, $rootScope, $location, $routeParams, notebooksService) {
+  ['$scope', '$rootScope', '$location', '$routeParams', '$filter', '$q', 'NotebooksService', 'NotesService', 'ngDraggable',
+   function($scope, $rootScope, $location, $routeParams, $filter, $q, notebooksService, notesService, ngDraggable) {
      $rootScope.notebookSelectedId = paperworkDbAllId;
      $rootScope.tagsSelectedId = -1;
+     $rootScope.dateSelected = -1;
 
      $scope.isVisible = function() {
        return !$rootScope.expandedNoteLayout;
@@ -35,17 +36,55 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
            $treeHeaderNotebooks.click();
          }
 
-         $rootScope.notebookSelectedId = (index);
+         $rootScope.notebookSelectedId = parseInt(index);
+         $rootScope.dateSelected = -1;
          $rootScope.tagsSelectedId = -1;
          $rootScope.search = "";
          $location.path("/n/" + (notebookId));
        }
      };
 
+     $scope.openFilter = function() {
+       var s = "", i = 0;
+       if($rootScope.notebookSelectedId != 0) {
+         s += "notebookid:" + parseInt($rootScope.notebookSelectedId) + " ";
+       }
+
+       if($rootScope.tagsSelectedId != -1) {
+         s += "tagid:" + parseInt($rootScope.tagsSelectedId) + " ";
+       }
+
+       if($rootScope.dateSelected != -1) {
+         s +=  "date:" + $filter('date')($rootScope.dateSelected, 'yyyy-MM-dd');
+       }
+
+       $rootScope.search = s;
+       if(s.length) {
+         $location.path("/s/" + $rootScope.search);
+       } else {
+         $location.path("/n/0");
+       }
+     };
+
      $rootScope.openTag = function(tagId) {
-       $rootScope.notebookSelectedId = -1;
-       $rootScope.tagsSelectedId = (tagId);
-       $location.path("/s/tagid:" + (tagId));
+       if($rootScope.tagsSelectedId === parseInt(tagId)) {
+         $rootScope.tagsSelectedId = -1;
+       } else {
+         $rootScope.tagsSelectedId = parseInt(tagId);
+       }
+
+       $scope.openFilter();
+     };
+
+     $scope.openDate = function(date) {
+       if($filter('date')($rootScope.dateSelected, "shortDate") === $filter('date')(date, "shortDate")) {
+         $rootScope.dateSelected = -1;
+         $scope.sidebarCalendar = undefined;
+       } else {
+         $rootScope.dateSelected = date;
+       }
+
+       $scope.openFilter();
      };
 
      $scope.modalNewNotebook = function() {
@@ -168,7 +207,77 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
        });
      };
 
+     $scope.onDropSuccess = function(data, event) {
+         notesService.moveNote($rootScope.note.notebook_id, $rootScope.note.id, this.notebook.id);
+         //console.log("Moved");
+         // Try to make the openNotebook dependant on the result of the move
+         $scope.openNotebook(this.notebook.id, this.notebook.type, this.notebook.id);
+     };
+
+     $scope.modalManageTags = function () {
+         $('#modalManageTags').modal("show");
+     };
+
+     $scope.onDropToTag = function(data, event) {
+         notesService.tagNote($rootScope.note.notebook_id, $rootScope.note.id, this.tag.id);
+         $scope.openTag(this.tag.id);
+     };
+
+     $scope.modalManageNotebooks = function () {
+         $('#modalManageNotebooks').modal("show");
+     };
+
+
+     var sidebarCalendarDefer =  $q.defer();
+
+     $scope.sidebarCalendarEnabledDates = [];
+     $scope.sidebarCalendarPromise = sidebarCalendarDefer.promise;
+     $scope.sidebarCalendarIsDisabled = function(date, mode) {
+       if(mode !== "day") {
+         return false;
+       }
+
+       var shortDate = $filter('date')(date, "shortDate");
+       return $.inArray(shortDate, $scope.sidebarCalendarEnabledDates) == -1;
+     };
+
+     $scope.$watchCollection("notes", function(notes) {
+       if(typeof notes === "undefined") {
+         return;
+       }
+
+       var i = $scope.sidebarCalendarEnabledDates.length;
+       while(i--) {
+         $scope.sidebarCalendarEnabledDates.pop();
+       }
+
+       $.each(notes, function(key, note) {
+         var shortDate = $filter('date')(
+           $filter('convertdate')(note.updated_at),
+           "shortDate");
+         $scope.sidebarCalendarEnabledDates.push(shortDate);
+       });
+
+       sidebarCalendarDefer.notify(new Date().getTime());
+     });
+
      notebooksService.getNotebookShortcuts(null);
      notebooksService.getNotebooks();
      $rootScope.tags = notebooksService.getTags();
-   }]);
+   }])
+.directive('datepickerRefresh',function() {
+  var noop = function(){};
+  var refresh = function(dpCtrl) {
+    return function() {
+      dpCtrl.refreshView();
+    };
+  };
+
+  return {
+    require: 'datepicker',
+    link: function(scope, elem, attrs, dpCtrl) {
+      var refreshPromise = scope[attrs.datepickerRefresh];
+      refreshPromise.then(noop, noop, refresh(dpCtrl));
+    }
+  };
+});

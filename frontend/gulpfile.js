@@ -27,7 +27,9 @@ var paths = {
 		'app/js/angular-sanitize.js',
 		'app/js/angular-animate.js',
 		'app/js/angular-file-upload.js',
-		'app/js/angular-utf8-base64.js'
+		'app/js/angular-utf8-base64.js',
+		'app/js/angular-ui-bootstrap.js',
+		'app/js/ngDraggable.js'
 	],
 	jQuery: [
 		'app/js/jquery.js',
@@ -79,19 +81,6 @@ gulp.task('compileLessPaperworkThemeV1', function() {
 			basename: 'paperwork-v1.min'
 		}))
 		.pipe(gulp.dest(path.join(paths.output.css, 'themes')))
-		.pipe(livereload());
-});
-
-gulp.task('compileLessFontLato', function() {
-	gulp
-		.src('app/less/font-lato.less')
-		.pipe(less({
-			paths: ['app/less/']
-		}))
-		.pipe(rename({
-			basename: 'font-lato'
-		}))
-		.pipe(gulp.dest(paths.output.css))
 		.pipe(livereload());
 });
 
@@ -192,7 +181,7 @@ gulp.task('minifyJs', function() {
 		.pipe(gulp.dest(paths.output.js));
 });
 
-gulp.task('less', ['compileLessBootstrapTheme', 'compileLessPaperworkThemeV1', 'compileLessFontLato', 'compileLessFreqselector', 'compileLessTypeahead']);
+gulp.task('less', ['compileLessBootstrapTheme', 'compileLessPaperworkThemeV1', 'compileLessFreqselector', 'compileLessTypeahead']);
 gulp.task('js', ['compileJsBootstrap', 'compileJsPaperwork', 'compileJsAngular', 'compileJsJquery', 'compileJsTagsinput', 'compileJsLibraries', 'compileJsLtIe9Compat', 'compileJsLtIe11Compat']);
 
 gulp.task('default', ['less', 'js']);

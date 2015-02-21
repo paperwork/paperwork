@@ -28,6 +28,13 @@ angular.module('paperworkNotes').factory('NotesService',
        });
      };
 
+     paperworkNotesServiceFactory.tagNote = function(notebookId, noteId, toTagId, callback) {
+       console.log("test");
+       netService.apiGet('/notebooks/' + notebookId + '/notes/' + noteId + '/tag/' + toTagId, function(status, data) {
+           //
+       });
+     };
+
      paperworkNotesServiceFactory.getNotesInNotebook = function(notebookId, callback) {
        netService.apiGet('/notebooks/' + notebookId + '/notes', function(status, data) {
          if(status == 200) {
