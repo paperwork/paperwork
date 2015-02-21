@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
                 <div class="manage-list-content">
-                    <div class="row" ng-repeat="tag in modalTags | orderBy:'title':reverse" on-finish-render="ngRepeatFinished">
+                    <div class="row" ng-repeat="tag in modalTags | orderBy:'title':reverse" pw-on-finish-render="ngRepeatFinished">
                         <div class="col-sm-10">
                             <a class="line" href="#" data-name="title" data-type="text" data-pk="{{tag.id}}">{{tag.title}}</a>
                         </div>
