@@ -26,8 +26,10 @@ if(Config::get('paperwork.registration')) {
     Route::post("/register",["as" => "user/register","uses" => "UserController@register"]);
 }
 
-Route::any("/request",["as" => "user/request","uses" => "UserController@request"]);
-Route::any("/reset/{token}",[ "as" => "user/reset","uses" => "UserController@reset"]);
+if(Config::get('paperwork.forgot_password')) {
+    Route::any("/request",["as" => "user/request","uses" => "UserController@request"]);
+    Route::any("/reset/{token}",[ "as" => "user/reset","uses" => "UserController@reset"]);
+}
 
 //Authorized Users
 Route::group(["before" => "auth"],function(){
