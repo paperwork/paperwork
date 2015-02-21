@@ -193,7 +193,7 @@ gulp.task('watch', function() {
   gulp.watch('app/less/bootstrap/*.less', ['less']);
   gulp.watch('app/less/font-fontawesome/*.less', ['less']);
   gulp.watch('app/less/paperwork-themes/paperwork-v1/*.less', ['less']);
-  gulp.watch('app/js/*.js', ['js']);
+  gulp.watch('app/js/**/*.js', ['js']);
   gulp.watch('app/js/bootstrap/*.js', ['compileJsBootstrap']);
   gulp.watch('app/js/paperwork/*.js', ['compileJsPaperwork']);
 });
