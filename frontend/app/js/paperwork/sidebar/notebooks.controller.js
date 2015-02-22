@@ -1,8 +1,8 @@
 angular.module('paperworkNotes').controller('SidebarNotebooksController',
   ['$scope', '$rootScope', '$location', '$routeParams', 'NotebooksService',
    function($scope, $rootScope, $location, $routeParams, notebooksService) {
-     $rootScope.notebookSelectedId = 0;
-     $rootScope.tagsSelectedId = -1;
+     $rootScope.notebookSelectedId = 0
+     $rootScope.tagsSelectedId = -1
 
      $scope.isVisible = function() {
        return !$rootScope.expandedNoteLayout;
@@ -23,7 +23,7 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
      };
 
      $rootScope.getNotebookSelectedId = function() {
-       return $rootScope.notebookSelectedId;
+       return $rootScope.notebookSelectedId
      };
 
      $scope.openNotebook = function(notebookId, type, index) {
@@ -38,7 +38,7 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
          $rootScope.notebookSelectedId = parseInt(index);
          $rootScope.tagsSelectedId = -1;
          $rootScope.search = "";
-         $location.path("/n/" + parseInt(notebookId));
+         $location.path("/n/" + parseInt(notebookId))
        }
      };
 
