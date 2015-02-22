@@ -538,11 +538,58 @@ ul.nav-tabs-margin {
 #sidebarCalendar {
   table {
     width: 100%;
+    border-collapse: collapse;
+
+    td {
+      border: 1px solid @gray-light;
+
+      .btn-default:disabled {
+        background: white;
+
+        border: none;
+
+        color: @text-color;
+      }
+
+      .btn-default {
+        font-weight: bold;
+
+        border: none;
+
+        &.active {
+          -webkit-box-shadow: none;
+          box-shadow: none;
+        }
+      }
+
+      .btn-info {
+        background: @brand-primary;
+
+        border-radius: 0;
+      }
+    }
+  }
+
+  thead tr:first-child th {
+    padding-bottom: 7px;
+  }
+
+  .glyphicon {
+    font-size: large;
+
+    &.glyphicon-chevron-right:before {
+      content: "\f054" !important;
+    }
+
+    &.glyphicon-chevron-left:before {
+      content: "\f053" !important;
+    }
   }
 
   .btn-sm, .btn-group-sm > .btn {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
+    border: none;
   }
 }
 

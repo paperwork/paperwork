@@ -5,6 +5,7 @@ var rename = require('gulp-rename');
 var livereload = require('gulp-livereload');
 var uglify = require('gulp-uglify');
 var path = require("path");
+var annotate = require('gulp-ng-annotate');
 
 var paths = {
 	bootstrap: [
@@ -122,6 +123,7 @@ gulp.task('compileJsPaperwork', function() {
 	gulp
 		.src(paths.paperwork)
 		.pipe(concat('paperwork.min.js'))
+		.pipe(annotate())
 		.pipe(gulp.dest(paths.output.js))
 		.pipe(livereload());
 });
@@ -193,7 +195,7 @@ gulp.task('watch', function() {
   gulp.watch('app/less/bootstrap/*.less', ['less']);
   gulp.watch('app/less/font-fontawesome/*.less', ['less']);
   gulp.watch('app/less/paperwork-themes/paperwork-v1/*.less', ['less']);
-  gulp.watch('app/js/*.js', ['js']);
+  gulp.watch('app/js/**/*.js', ['js']);
   gulp.watch('app/js/bootstrap/*.js', ['compileJsBootstrap']);
   gulp.watch('app/js/paperwork/*.js', ['compileJsPaperwork']);
 });
