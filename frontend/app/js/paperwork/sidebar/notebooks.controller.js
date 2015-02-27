@@ -235,31 +235,24 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
         return false;
       }
 
-      var shortDate = $filter('date')(date, "shortDate");
-      return $.inArray(shortDate, $scope.sidebarCalendarEnabledDates) == -1;
+      var date = $filter('date')(date, "yyyy-MM-dd");
+      return $.inArray(date, $scope.sidebarCalendarEnabledDates) == -1;
     };
 
-    $scope.$watchCollection("notes", function(notes) {
-      if(typeof notes === "undefined") {
-        return;
-      }
-
-      var i = $scope.sidebarCalendarEnabledDates.length;
-      while(i--) {
+    $scope.sidebarCalendar = function(data) {
+      while($scope.sidebarCalendarEnabledDates.length) {
         $scope.sidebarCalendarEnabledDates.pop();
       }
 
-      $.each(notes, function(key, note) {
-        var shortDate = $filter('date')(
-          $filter('convertdate')(note.updated_at),
-          "shortDate");
-        $scope.sidebarCalendarEnabledDates.push(shortDate);
+      $.each(data, function(key) {
+        $scope.sidebarCalendarEnabledDates.push(key);
       });
 
       sidebarCalendarDefer.notify(new Date().getTime());
-    });
+    };
 
+    NotebooksService.getCalendar($scope.sidebarCalendar);
     NotebooksService.getNotebookShortcuts(null);
     NotebooksService.getNotebooks();
-    $rootScope.tags = NotebooksService.getTags();
+    NotebooksService.getTags();
   });
