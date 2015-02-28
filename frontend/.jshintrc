@@ -1,0 +1,7 @@
+{
+    
+	"funcscope": true,
+    "-W041": false,
+    "eqeqeq": false,
+    "asi": true
+}
