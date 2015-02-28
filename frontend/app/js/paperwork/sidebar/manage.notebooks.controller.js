@@ -13,7 +13,7 @@ angular.module('paperworkNotes').controller('SidebarManageNotebooksController',
       // Remove 'All Notes' item
       var data = ($.isArray($rootScope.notebooks)) ? $rootScope.notebooks.slice() : [];
       for(var i in data) {
-        if(data[i]['id'] == 0) {
+        if(data[i].id == 0) {
           data.splice(i, 1);
           break;
         }
@@ -42,8 +42,8 @@ angular.module('paperworkNotes').controller('SidebarManageNotebooksController',
 
     var parseParams = function(params) {
       return {
-        id:       params['pk'],
-        title:    params['value'],
+        id:       params.pk,
+        title:    params.value,
         shortcut: $(this).parent().find("input[name='shortcut']").is(':checked'),
         type:     0
       };
@@ -55,7 +55,7 @@ angular.module('paperworkNotes').controller('SidebarManageNotebooksController',
         send:         'always',
         savenochange: true,
         url:          function(data) {
-          NotebooksService.updateNotebook(data['id'], data, function(status, responseData) {
+          NotebooksService.updateNotebook(data.id, data, function(status, responseData) {
             switch(status) {
               case 200:
                 NotebooksService.getNotebooks();
@@ -66,7 +66,7 @@ angular.module('paperworkNotes').controller('SidebarManageNotebooksController',
                   var msg = responseData.errors[i];
                   break;
                 }
-                $('#modalManageNotebooks').find(".line[data-pk='" + data['id'] + "']").tooltip({
+                $('#modalManageNotebooks').find(".line[data-pk='" + data.id + "']").tooltip({
                   title:   msg,
                   trigger: 'manual'
                 }).tooltip('show');

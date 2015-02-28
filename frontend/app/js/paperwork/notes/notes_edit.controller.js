@@ -109,7 +109,7 @@ angular.module('paperworkNotes').controller('NotesEditController',
         return false;
       }
 
-      var documentNode = CKEDITOR.instances['content'].document.$,
+      var documentNode = CKEDITOR.instances.content.document.$,
         elementCollection = documentNode.getElementsByTagName('a');
 
       var i = elementCollection.length;
@@ -136,7 +136,7 @@ angular.module('paperworkNotes').controller('NotesEditController',
           insertHtml = '<a href="' + args.url + '" title="' + args.filename + '" target="_blank">' + args.filename + '</a>';
       }
 
-      CKEDITOR.instances['content'].insertHtml(insertHtml);
+      CKEDITOR.instances.content.insertHtml(insertHtml);
     });
 
     $rootScope.uploadUrl = paperworkApi + '/notebooks/' + parseInt($routeParams.notebookId) + '/notes/' + parseInt($routeParams.noteId) + '/versions/0/attachments';

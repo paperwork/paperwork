@@ -12,13 +12,10 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
       switch(parseInt(type)) {
         case 0:
           return 'fa-book';
-          break;
         case 1:
           return 'fa-folder-open';
-          break;
         case 2:
           return 'fa-archive';
-          break;
       }
     };
 
