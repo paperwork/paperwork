@@ -1,10 +1,38 @@
 <ul class="nav navbar-nav navbar-right">
-	<li><a href="[[ URL::route("/") ]]" class="transition-effect"><i class="fa fa-book"></i> <span class="hidden-sm hidden-md">[[Lang::get('keywords.library')]]</span></a></li>
-	<li><a href="[[ URL::route("user/profile") ]]" class="transition-effect"><i class="fa fa-user"></i> <span class="hidden-sm hidden-md">[[Lang::get('keywords.profile')]]</span></a></li>
-	<li><a href="[[ URL::route("user/settings") ]]" class="transition-effect"><i class="fa fa-cog"></i> <span class="hidden-sm hidden-md">[[Lang::get('keywords.settings')]]</span></a></li>
+	@include("partials.navbar.navbar-link", [
+			"route" => URL::route("/"),
+			"title" => Lang::get("keywords.library"), 
+			"fa_icon" => "fa-book"
+		])
+
+	@include("partials.navbar.navbar-link", [
+			"route" => URL::route("user/profile"),
+			"title" => Lang::get("keywords.profile"), 
+			"fa_icon" => "fa-user"
+		])
+
+	@include("partials.navbar.navbar-link", [
+			"route" => URL::route("user/settings"),
+			"title" => Lang::get("keywords.settings"), 
+			"fa_icon" => "fa-cog"
+		])
+
 	@if (Auth::user() && Auth::user()->isAdmin())
-		<li><a href="[[ URL::route("admin/console") ]]" class="transition-effect"><i class="fa fa-star"></i> <span class="hidden-sm hidden-md">[[Lang::get('keywords.admin_area')]]</span></a></li>
+		@include("partials.navbar.navbar-link", [
+				"route" => URL::route("admin/console"),
+				"title" => Lang::get("keywords.admin_area"), 
+				"fa_icon" => "fa-star"
+			])
 	@endif
-	<li><a href="[[ URL::route("user/help") ]]" class="transition-effect"><i class="fa fa-question"></i> <span class="hidden-sm hidden-md">[[Lang::get('keywords.help')]]</span></a></li>
-	<li><a href="[[ URL::route("user/logout") ]]" class="transition-effect"><i class="fa fa-sign-out"></i> <span class="hidden-sm hidden-md">[[Lang::get('keywords.sign_out')]]</span></a></li>
+
+	@include("partials.navbar.navbar-link", [
+			"route" => URL::route("user/help"),
+			"title" => Lang::get("keywords.help"), 
+			"fa_icon" => "fa-question"
+		])
+	@include("partials.navbar.navbar-link", [
+			"route" => URL::route("user/logout"),
+			"title" => Lang::get("keywords.sign_out"), 
+			"fa_icon" => "fa-sign-out"
+		])
 </ul>
