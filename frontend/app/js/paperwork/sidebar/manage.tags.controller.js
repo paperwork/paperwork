@@ -15,12 +15,12 @@ angular.module('paperworkNotes').controller('SidebarManageTagsController',
         mode:   'inline',
         params: function(params) {
           return {
-            id:    params['pk'],
-            title: params['value']
+            id:    params.pk,
+            title: params.value
           };
         },
         url:    function(data) {
-          NotebooksService.updateTag(data['id'], data, function(status, responseData) {
+          NotebooksService.updateTag(data.id, data, function(status, responseData) {
             switch(status) {
               case 200:
                 NotebooksService.getTags();
@@ -30,7 +30,7 @@ angular.module('paperworkNotes').controller('SidebarManageTagsController',
                   var msg = responseData.errors[i];
                   break;
                 }
-                $('#modalManageTags').find(".line[data-pk='" + data['id'] + "']").tooltip({
+                $('#modalManageTags').find(".line[data-pk='" + data.id + "']").tooltip({
                   title:   msg,
                   trigger: 'manual'
                 }).tooltip('show');

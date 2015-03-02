@@ -103,29 +103,22 @@ angular.module('paperworkNotes').controller('FileUploadController',
       switch(mimematch[1]) {
         case 'image':
           return 'fa-file-image-o';
-          break;
         case 'video':
           return 'fa-file-movie-o';
-          break;
         case 'audio':
           return 'fa-file-audio-o';
-          break;
         case 'application':
           switch(mimematch[2]) {
             case 'pdf':
               return 'fa-file-pdf-o';
-              break;
             case 'zip':
               return 'fa-file-archive-o';
-              break;
             default:
               return 'fa-file-o';
-              break;
           }
           break;
         default:
           return 'fa-file-o';
-          break;
       }
     };
   });
