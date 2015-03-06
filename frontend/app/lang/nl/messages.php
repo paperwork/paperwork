@@ -11,6 +11,9 @@ return array(
 	'onbeforeunload_info' => 'Data zal verloren gaan als je deze pagina verlaat. Ben je het zeker?',
 	'user' => array(
 		'settings' => array(
+			'language_label' => 'Taal',
+			'client_label' => 'Client',
+			'import_slash_export' => 'Importeren/Exporteren',
 			'language' => array(
 				'ui_language' => 'Gebruikersinterfacetaal',
 				'document_languages' => 'Documenttalen',
