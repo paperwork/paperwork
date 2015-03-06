@@ -16,14 +16,21 @@
 	[[ Form::password('password', array('class' => 'form-control', 'placeholder' => Lang::get('keywords.password'), 'required')) ]]
 </div>
 <div class="checkbox">
-	<a href="[[ URL::route("user/request") ]]"><i class="fa fa-life-saver"></i> [[Lang::get('users.link_forgot_password')]]</a>
+    <label>
+        [[ Form::checkbox('remember_me') ]] [[Lang::get('users.label_remember_me')]]
+    </label>
 </div>
+@if (Config::get('paperwork.forgot_password'))
+	<div class="checkbox">
+		<a href="[[ URL::route("user/request") ]]"><i class="fa fa-life-saver"></i> [[Lang::get('users.link_forgot_password')]]</a>
+	</div>
+@endif
 <div class="form-group">
 	[[ Form::submit(Lang::get('keywords.sign_in'), array('class' => 'btn btn-lg btn-primary btn-block')) ]]
 </div>
 <div class="[[ Config::get('paperwork.registration') ? '' : 'hide' ]]">
 	<div class="form-group">
-		<a class="btn btn-lg btn-default btn-block" href="[[ Config::get('paperwork.registration') ? URL::route("user/register") : '#' ]]"><i class="fa fa-sign-up"></i> [[Lang::get('keywords.sign_up')]]</a>
+		<a class="btn btn-lg btn-default btn-block" href="[[ Config::get('paperwork.registration') ? URL::route("user/register") : '#' ]]">[[Lang::get('keywords.sign_up')]]</a>
 	</div>
 </div>
 

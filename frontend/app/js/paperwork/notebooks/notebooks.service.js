@@ -1,4 +1,4 @@
-paperworkModule.factory('NotebooksService',
+angular.module('paperworkNotes').factory('NotebooksService',
   ['$rootScope', '$http', 'NetService',
    function($rootScope, $http, netService) {
      var paperworkNotebooksServiceFactory = {};
@@ -15,6 +15,10 @@ paperworkModule.factory('NotebooksService',
 
      paperworkNotebooksServiceFactory.deleteNotebook = function(notebookId, callback) {
        netService.apiDelete('/notebooks/' + notebookId, callback);
+     };
+
+     paperworkNotebooksServiceFactory.deleteTag = function(tagId, callback) {
+       netService.apiDelete('/tags/' + tagId, callback);
      };
 
      paperworkNotebooksServiceFactory.getNotebooks = function() {

@@ -24,7 +24,7 @@ return array(
         'Put it in a notebook (like &#39;dinner cooking&#39;) and tag it with cooking. Later, when you&#39;ve got time you '.
         'can just click on cooking from the sidebar and all cooking-related notes are there, no matter if they&#39;re for lunch,'.
         'dinner or breakfast.</p><h3><strong>Search</strong></h3><p>If you want to search with a more detailed criteria, you can '.
-        'use Paperwork&#39;s feature. Just <a id="search_handler" href="#">write your query</a> and Paperwork will show you the results from '.
+        'use Paperwork&#39;s search feature. Just <a id="search_handler" href="#">write your query</a> and Paperwork will show you the results from '.
         'all your notes, no matter in which notebook they are or tag they have.</p><h3><strong>Version Control</strong></h3><p>Everytime '.
         'you save a note in Paperwork, a new version is created. This feature allows you to be able to see what changed throughout the '.
         'life of your note in a detailed manner.</p><h3><strong>Shareable</strong></h3><p>Each note you write on Paperwork can be shared '.

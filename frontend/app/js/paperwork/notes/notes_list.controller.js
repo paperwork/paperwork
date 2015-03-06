@@ -1,4 +1,4 @@
-paperworkModule.controller('NotesListController',
+angular.module('paperworkNotes').controller('NotesListController',
   ['$scope', '$rootScope', '$location', '$routeParams', 'NotesService',
     function($scope, $rootScope, $location, $routeParams, notesService) {
     $rootScope.noteSelectedId = {};

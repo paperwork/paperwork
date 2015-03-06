@@ -1,4 +1,4 @@
-paperworkModule.controller('NotesAllController',
+angular.module('paperworkNotes').controller('NotesAllController',
   ['$scope', '$rootScope', '$location', '$routeParams', 'NotesService',
    function($scope, $rootScope, $location, $routeParams, notesService) {
      if(typeof $routeParams == "undefined" || $routeParams == {} || typeof $routeParams.notebookId == "undefined") {
