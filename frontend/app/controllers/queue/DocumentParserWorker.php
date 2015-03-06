@@ -34,7 +34,7 @@ class DocumentParserWorker {
 
 		try {
 			foreach($this->languages as $language) {
-				$content[$language->language_code] = $this->parseContent($this->fileUri, $language->language_code);
+				$this->content[$language->language_code] = $this->parseContent($this->fileUri, $language->language_code);
 			}
 		} catch(Exception $e) {
 			Log::error($e->getMessage());
@@ -42,7 +42,7 @@ class DocumentParserWorker {
 			return;
 		}
 
-		$this->attachment->content = json_encode($content);
+		$this->attachment->content = json_encode($this->content);
 		$this->attachment->save();
 
 		if(!$this->runPreviewImagesGenerator($this->attachment->id, $this->attachment->fileextensions, $this->attachment->mimetype, $this->fileUri)) {

@@ -2,8 +2,8 @@
 
 return array(
 
-	'admin_area' => 'Panel Admina',
-	'admin_status' => 'Status Admina',
+	'admin_area' => 'Panel administratora',
+	'admin_status' => 'Status administratora',
 	'deleted_at' => 'Skasowano',
 	'email_address' => 'Adres e-mail',
 	'id' => 'ID',
@@ -22,6 +22,7 @@ return array(
 	'shortcuts' => 'Skróty',
 	'notebooks' => 'Notatniki',
 	'tags' => 'Tagi',
+	'manage_tags' => 'Zarządzaj tagami'
 	'note' => 'Notatka',
 	'notebook' => 'Notatnik',
 	'collection' => 'Kolekcja',
@@ -38,6 +39,8 @@ return array(
 	'delete_notebook' => 'Usuń notatnik',
 	'delete_notebook_question' => 'Usunąć notatnik?',
 	'delete_notebook_message' => 'Notatnik wraz z całą zawrtością zostanie skasowany? Czy kontynuować?',
+	'delete_tag_question' => 'Skasować tag?'
+	'delete_tag_message' => 'Ta akcja skasuje tag. Jesteś pewien?'
 	'new_collection' => 'Nowa kolekcja',
 	'edit_collection' => 'Edytuj kolekcję',
 	'delete_collection' => 'Usuń kolekcję',
@@ -81,5 +84,6 @@ return array(
 	'experimental' => 'Eksperymentalne',
 	'import' => 'Import',
 	'export' => 'Eksort'
+	'back' => 'Wróć'
 
 );

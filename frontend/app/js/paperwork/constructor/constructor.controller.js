@@ -1,4 +1,4 @@
-paperworkModule.controller('ConstructorController',
+angular.module('paperworkNotes').controller('ConstructorController',
   ['$scope', '$rootScope', '$location', '$routeParams', 'NetService',
    function($scope, $rootScope, $location, $routeParams, paperworkNetService) {
      if($rootScope.initDone) {

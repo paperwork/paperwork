@@ -1,4 +1,4 @@
-paperworkModule.controller('MessageBoxController',
+angular.module('paperworkNotes').controller('MessageBoxController',
   ['$scope', '$rootScope', '$location', '$routeParams',
    function($scope, $rootScope, $location, $routeParams) {
      $scope.onClick = function(buttonId) {

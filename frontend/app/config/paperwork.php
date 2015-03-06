@@ -55,6 +55,16 @@ return array(
 
 	/*
 	|--------------------------------------------------------------------------
+	| Enable "forgot password" link
+	|--------------------------------------------------------------------------
+	|
+	| If set to true, forgot password link is enabled.
+	|
+	*/
+	'forgot_password' => true,
+
+	/*
+	|--------------------------------------------------------------------------
 	| Automatically detect language through user agent
 	|--------------------------------------------------------------------------
 	|
@@ -64,6 +74,30 @@ return array(
 	|
 	*/
 	'userAgentLanguage' => false,
+
+	/*
+	|--------------------------------------------------------------------------
+	| Set which characters are allowed in user first and last names
+	|--------------------------------------------------------------------------
+	|
+	| By default, alpha, hyphen, apostrophe, and space are allowed
+	|
+	*/
+
+	'nameCharactersAllowed' => array(
+			//Alphabetic characters
+			'alpha' => true,
+			//-
+			'hyphen' => true,
+			// 0-9
+			'num' => false,
+			//_
+			'underscore' => false,
+			//'
+			'apostrophe' => true,
+			//" " Note, leading and trailing spaces are still trimmed
+			'space' => true,
+		),
 
 	/*
 	|--------------------------------------------------------------------------

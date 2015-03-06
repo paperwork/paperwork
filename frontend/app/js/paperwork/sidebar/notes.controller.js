@@ -1,4 +1,4 @@
-paperworkModule.controller('SidebarNotesController',
+angular.module('paperworkNotes').controller('SidebarNotesController',
   ['$scope', '$rootScope', '$location', '$timeout', '$routeParams', 'NotebooksService', 'NotesService',
     function($scope, $rootScope, $location, $timeout, $routeParams, notebooksService, notesService) {
       $scope.isVisible = function() {
