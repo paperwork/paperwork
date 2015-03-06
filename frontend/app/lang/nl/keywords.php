@@ -55,7 +55,7 @@ return array(
 	'close_without_saving_message' => 'Er zijn niet-opgeslagen wijzigingen. Wil je deze notitie sluiten en alle niet-opgeslagen wijzigingen niet toepassen?',
 	'search_dotdotdot' => 'Zoeken…',
 	'reset_password' => 'Wachtwoord herinstellen',
-	'password_reset_request' => 'Stel je wachtwoord opnieuw in.',
+	'password_reset_request' => 'Stel je wgachtwoord opnieuw in.',
 	'toggle_navigation' => 'Toggle navigation', /*I Don't know a good translation*/
 	'cancel' => 'Annuleren',
 	'create' => 'Aanmaken',
