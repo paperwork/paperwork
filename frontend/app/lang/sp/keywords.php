@@ -22,6 +22,7 @@ return array(
 	'shortcuts' => 'Accesos directos',
 	'notebooks' => 'Libretas',
 	'tags' => 'Etiquetas',
+	'manage_tags' => 'Administrar etiquetas',
 	'note' => 'Nota',
 	'notebook' => 'Libreta',
 	'collection' => 'Colección',
@@ -38,6 +39,8 @@ return array(
 	'delete_notebook' => 'Eliminar libreta',
 	'delete_notebook_question' => 'Eliminar libreta?',
 	'delete_notebook_message' => 'Esto eliminará la libreta seleccionada y todas sus notas. ¿Está seguro?',
+		'delete_tag_question' => 'Eliminar etiqueta?',
+    	'delete_tag_message' => 'Esto eliminará la etiqueta seleccionada. Está seguro?',
 	'new_collection' => 'Nueva colección',
 	'edit_collection' => 'Editar colección',
 	'delete_collection' => 'Eliminar colección',
@@ -80,6 +83,7 @@ return array(
 	'not_implemented' => 'Esta característica no ha sido implementada todavía. ',
 	'experimental' => 'Experimental',
 	'import' => 'Importar',
-	'export' => 'Exportar'
+	'export' => 'Exportar',
+	'back' => 'Atrás'
 
 );
