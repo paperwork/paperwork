@@ -1,5 +1,18 @@
 <?php
 
+$allowed_name_chars = Config::get('paperwork.nameCharactersAllowed');
+$name_error_message = "El :attribute solo puede contener";
+$name_error_message.= $allowed_name_chars['alpha']      ? ' letras,'    : '';
+$name_error_message.= $allowed_name_chars['hyphen']     ? ' guiones,'    : '';
+$name_error_message.= $allowed_name_chars['num']        ? ' números,'    : '';
+$name_error_message.= $allowed_name_chars['underscore'] ? ' guiones bajos,': '';
+$name_error_message.= $allowed_name_chars['apostrophe'] ? ' apóstrofes,': '';
+$name_error_message.= $allowed_name_chars['space']      ? ' espacios,'     : '';
+//replace last , with a .
+$name_error_message = substr($name_error_message, 0, -1).'.';
+
+
+
 return array(
 
 	/*
@@ -18,6 +31,7 @@ return array(
 	"after"                => "El :attribute debe ser una fecha posterior a :date.",
 	"alpha"                => "El :attribute solo puede contener letras.",
 	"alpha_dash"           => "El :attribute solo puede contener letras, números y guiones.",
+	"alpha_dash_spaces"    => "El :attribute solo puede contener letras, números, guiones, apóstrofes, y espacios.",
 	"alpha_num"            => "El :attribute solo puede contener letras y números.",
 	"array"                => "El :attribute debe ser un array.",
 	"before"               => "El :attribute debe ser una fecha anterior a :date.",
