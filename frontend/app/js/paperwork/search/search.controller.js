@@ -1,14 +1,13 @@
 angular.module('paperworkNotes').controller('SearchController',
-  ['$scope', '$rootScope', '$location', '$routeParams', 'NotesService',
-   function($scope, $rootScope, $location, $routeParams, notesService) {
-     var sQ = $routeParams.searchQuery;
+  function($scope, $rootScope, $location, $routeParams, NotesService) {
+    var searchQuery = $routeParams.searchQuery;
 
-     $rootScope.search = sQ;
+    $rootScope.search = searchQuery;
 
-     notesService.getNotesFromSearch(sQ);
-     $rootScope.note = null;
+    NotesService.getNotesFromSearch(searchQuery);
+    $rootScope.note = null;
 
-     $rootScope.navbarMainMenu = true;
-     $rootScope.navbarSearchForm = true;
-     $rootScope.expandedNoteLayout = false;
-   }]);
+    $rootScope.navbarMainMenu = true;
+    $rootScope.navbarSearchForm = true;
+    $rootScope.expandedNoteLayout = false;
+  });

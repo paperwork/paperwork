@@ -5,6 +5,7 @@
 @include('modal/notebook')
 @include('modal/notebookSelect')
 @include('modal/manageTags')
+@include('modal/manageNotebooks')
 
 <div class="container-fluid">
 	<div class="row">
@@ -21,10 +22,10 @@
 							</ul>
 						</li>
 						<li>
-							<span class="tree-header tree-header-notebooks"><i class="fa fa-chevron-down"></i> [[Lang::get('keywords.notebooks')]]</span>
+							<span class="tree-header tree-header-notebooks"><i class="fa fa-chevron-down"></i> [[Lang::get('keywords.notebooks')]] <button class="btn btn-default btn-xs pull-right" ng-click="modalManageNotebooks();$event.stopPropagation();" title="[[Lang::get('keywords.manage_notebooks')]]"><span class="fa fa-pencil"></span></button></span>
 							<ul class="tree-child">
 								<li class="tree-notebook" ng-repeat="notebook in notebooks | orderBy:'title'" ng-cloak>
-									<div class="notebook-title" ng-click="openNotebook(notebook.id, notebook.type, notebook.id)" ng-class="{ 'active': notebook.id == getNotebookSelectedId() }"><i class="fa {{ notebookIconByType(notebook.type) }}"></i> {{notebook.title}}</div>
+									<div class="notebook-title" ng-click="openNotebook(notebook.id, notebook.type, notebook.id)" ng-class="{ 'active': notebook.id == getNotebookSelectedId() }" ng-drop="true" ng-drop-success="onDropSuccess($data,$event)"><i class="fa {{ notebookIconByType(notebook.type) }}"></i> {{notebook.title}}</div>
 									<ul class="tree-child">
 										<li class="tree-notebook" ng-repeat="child in notebook.children | orderBy:'title'">
 											<div class="notebook-title" ng-click="openNotebook(child.id, child.type, child.id)" ng-class="{ 'active': child.id == getNotebookSelectedId() }"><i class="fa {{ notebookIconByType(child.type) }}"></i> {{child.title}}</div>
@@ -34,10 +35,18 @@
 							</ul>
 						</li>
 						<li>
-							<span class="tree-header tree-header-tags"><i class="fa fa-chevron-down"></i> [[Lang::get('keywords.tags')]] <button class="btn btn-default btn-xs pull-right" ng-click="modalManageTags();$event.stopPropagation();">[[Lang::get('keywords.manage_tags')]]</button></span>
+							<span class="tree-header tree-header-tags"><i class="fa fa-chevron-down"></i> [[Lang::get('keywords.tags')]] <button class="btn btn-default btn-xs pull-right" ng-click="modalManageTags();$event.stopPropagation();" title="[[Lang::get('keywords.manage_tags')]]"><span class="fa fa-pencil"></span></button></span>
 							<ul class="tree-child">
 								<li class="tree-tag" ng-repeat="tag in tags | orderBy:'title':reverse" ng-cloak>
-									<span ng-click="openTag(tag.id)" ng-class="{ 'active': tag.id == tagsSelectedId }"><i class="fa fa-tag"></i> {{tag.title}}</span>
+									<span ng-click="openTag(tag.id)" ng-class="{ 'active': tag.id == tagsSelectedId }" ng-drop="true" ng-drop-success="onDropToTag($data, $event)"><i class="fa fa-tag"></i> {{tag.title}}</span>
+								</li>
+							</ul>
+						</li>
+						<li>
+							<span class="tree-header tree-header-calendar"><i class="fa fa-chevron-down"></i> Calendar</span>
+							<ul class="tree-child">
+								<li class="tree-calendar">
+										<datepicker pw-datepicker-refresh="sidebarCalendarPromise" id="sidebarCalendar" date-disabled="sidebarCalendarIsDisabled(date, mode)" ng-change="openDate(sidebarCalendar)" ng-model="sidebarCalendar" show-weeks="false" ></datepicker>
 								</li>
 							</ul>
 						</li>
@@ -48,7 +57,7 @@
 
 		<div id="sidebarNotes" class="col-sm-4 col-sm-offset-3 col-md-3 col-md-offset-2 sidebar hidden-xs animate-panel" ng-controller="SidebarNotesController" ng-show="isVisible()">
 			<ul id="notes-list" class="nav nav-sidebar notes-list sidebar-no-border" ng-controller="NotesListController">
-				<li class="notes-list-item" ng-cloak ng-repeat="note in notes" ng-click="noteSelect(note.notebook_id, note.id)" ng-dblclick="editNote(note.notebook_id, note.id)" ng-class="{ 'active': (note.notebook_id + '-' + note.id == getNoteSelectedId() || (editMultipleNotes && notesSelectedIds[note.id])) }">
+				<li class="notes-list-item" ng-cloak ng-repeat="note in notes" ng-click="noteSelect(note.notebook_id, note.id)" ng-dblclick="editNote(note.notebook_id, note.id)" ng-class="{ 'active': (note.notebook_id + '-' + note.id == getNoteSelectedId() || (editMultipleNotes && notesSelectedIds[note.id])) }" ng-drag="true" ng-drag-success="onDragSuccess($data,$event)" ng-drag-data="notebook">
 					<div class="notes-list-item-checkbox col-sm-1" ng-show="editMultipleNotes">
 						<input name="notes[]" type="checkbox" value="{{ note.id }}" ng-model="notesSelectedIds[note.id]" ng-click="$event.stopPropagation();" ng-dblclick="$event.stopPropagation();">
 					</div>
