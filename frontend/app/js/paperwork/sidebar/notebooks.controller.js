@@ -41,16 +41,18 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
     };
 
     $scope.openFilter = function() {
-      var s = "", i = 0;
+      var s = "";
       if($rootScope.notebookSelectedId != 0) {
-        s += "notebookid:" + parseInt($rootScope.notebookSelectedId) + " ";
+        s += "notebookid:" + parseInt($rootScope.notebookSelectedId);
       }
 
       if($rootScope.tagsSelectedId != -1) {
-        s += "tagid:" + parseInt($rootScope.tagsSelectedId) + " ";
+        if (s.length > 0) s += " "; 
+        s += "tagid:" + parseInt($rootScope.tagsSelectedId);
       }
 
       if($rootScope.dateSelected != -1) {
+        if (s.length > 0) s += " "; 
         s += "date:" + $filter('date')($rootScope.dateSelected, 'yyyy-MM-dd');
       }
 
@@ -68,6 +70,9 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
       } else {
         $rootScope.tagsSelectedId = parseInt(tagId);
       }
+
+      $rootScope.notebookSelectedId = 0;
+      $rootScope.dateSelected = -1;
 
       $scope.openFilter();
     };
