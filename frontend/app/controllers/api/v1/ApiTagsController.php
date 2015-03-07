@@ -108,13 +108,15 @@ class ApiTagsController extends BaseController {
         $validator = $this->getSaveTagValidator();
         if($validator->passes()) {
 
+            $updateTag = Input::json();
+
             $tag = Tag::find($tagId);
 
             if(is_null($tag) || !$tag->users->contains(Auth::user()->id)) {
                 return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
             }
 
-            $tag->title = Input::get('title');
+            $tag->title = $updateTag->get('title');
             $tag->save();
 
             return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $tagId);

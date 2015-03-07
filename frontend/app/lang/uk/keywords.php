@@ -23,6 +23,7 @@ return array(
 	'notebooks' => 'Записники',
 	'tags' => 'Теґи',
 	'manage_tags' => 'Керування теґами',
+        'manage_notebooks' => 'Редагувати записники',
 	'note' => 'Нотатка',
 	'notebook' => 'Записник',
 	'collection' => 'Колекція',

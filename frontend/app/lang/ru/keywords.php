@@ -23,6 +23,7 @@ return array(
 	'notebooks' => 'Блокноты',
 	'tags' => 'Метки',
 	'manage_tags' => 'Управление тегами',
+        'manage_notebooks' => 'Редактировать блокноты',
 	'note' => 'Запись',
 	'notebook' => 'Блокнот',
 	'collection' => 'Коллекция',

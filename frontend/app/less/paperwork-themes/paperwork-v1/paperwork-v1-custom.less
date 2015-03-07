@@ -243,7 +243,7 @@ label {
 /*
  * Customize navbars
  */
- 
+
 //Hide empty space on top of notes in small screens
 @media (max-width: 767px) {
   .navbar.navbar-inverse{
@@ -267,7 +267,7 @@ label {
  */
 .navbar-fixed-top {
   border: 0;
-  
+
   .navbar-right{
       margin-right:10px;
   }
@@ -535,6 +535,64 @@ ul.nav-tabs-margin {
   }
 }
 
+#sidebarCalendar {
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    td {
+      border: 1px solid @gray-light;
+
+      .btn-default:disabled {
+        background: white;
+
+        border: none;
+
+        color: @text-color;
+      }
+
+      .btn-default {
+        font-weight: bold;
+
+        border: none;
+
+        &.active {
+          -webkit-box-shadow: none;
+          box-shadow: none;
+        }
+      }
+
+      .btn-info {
+        background: @brand-primary;
+
+        border-radius: 0;
+      }
+    }
+  }
+
+  thead tr:first-child th {
+    padding-bottom: 7px;
+  }
+
+  .glyphicon {
+    font-size: large;
+
+    &.glyphicon-chevron-right:before {
+      content: "\f054" !important;
+    }
+
+    &.glyphicon-chevron-left:before {
+      content: "\f053" !important;
+    }
+  }
+
+  .btn-sm, .btn-group-sm > .btn {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+}
+
 .sidebar-no-border {
   margin-top: -20px;
 }
@@ -564,7 +622,7 @@ ul.nav-tabs-margin {
       li.tree-notebook {
         cursor: pointer;
 
-        .notebook-title.active {
+        .notebook-title.active, [ng-drop].drag-enter {
           color: @brand-primary;
         }
       }
@@ -708,7 +766,7 @@ body.paperwork-guest {
     max-width: 330px;
     padding: 15px;
     margin: 0 auto;
-    
+
     .form-signin-heading{
         margin-bottom:17.5px;
     }
@@ -853,12 +911,12 @@ body.paperwork-guest {
 // End of Modal: Message
 
 // Modal: Manage tags
-#modalManageTags {
-  .manage-tags-content {
+.modal-manage-list {
+  .manage-list-content {
     .row {
       margin-bottom: 5px;
 
-      .tag-line {
+      .line {
         display: inline-block;
         margin-top: 5px;
       }
@@ -902,6 +960,14 @@ body.paperwork-guest {
     }
     .tooltip-inner {
       background-color: #CF4848;
+    }
+  }
+
+  .shortcut-chk {
+    margin-top: 5px;
+
+    input {
+      margin-right: 5px;
     }
   }
 }
