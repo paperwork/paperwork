@@ -46,7 +46,7 @@
 					</form>
 				</div>
 
-				@if (preg_match('/Paperwork for Mac/', $_SERVER['HTTP_USER_AGENT']) === 0)
+				@if (array_key_exists('HTTP_USER_AGENT', $_SERVER) && preg_match('/Paperwork for Mac/', $_SERVER['HTTP_USER_AGENT']) === 0)
 					@include('partials/menu-main')
 				@endif
 
