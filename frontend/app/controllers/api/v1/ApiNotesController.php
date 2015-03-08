@@ -160,9 +160,9 @@ class ApiNotesController extends BaseController {
 
 	public function show($notebookId, $id = null)
 	{
-		if (is_null($id ))
+		if (is_null($id))
 		{
-			return index($notebookId);
+			return $this->index($notebookId);
 		}
 		else
 		{
