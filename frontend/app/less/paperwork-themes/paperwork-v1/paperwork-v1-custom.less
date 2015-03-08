@@ -2,7 +2,7 @@
 
 .paperwork-logo {
   padding: 9px 6px;
-  margin-left: 0px !important;
+  margin: 0px 5px 0px 0px !important;
 
   img {
     width: 32px;
@@ -793,6 +793,45 @@ body.paperwork-guest {
     }
     .control-label {
       font-size: 16px;
+    }
+  }
+}
+
+/*
+ * Error
+ */
+
+body.paperwork-error {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: @white;
+
+  .error-logo {
+    display: inline-block;
+    vertical-align: middle;
+    
+    .error-logo-img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 220px;
+      height: 220px;
+    }
+    
+  }
+  
+  .error-content {
+      display: inline-block;
+      vertical-align: middle;
+  }
+  
+  @media (max-width: 485px) {
+    .error-logo {
+        display: block;
+    }
+    
+    .error-content {
+        margin-bottom:15px;
     }
   }
 }
