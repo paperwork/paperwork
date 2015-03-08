@@ -22,7 +22,8 @@ return array(
 	'shortcuts' => 'Скорочення',
 	'notebooks' => 'Записники',
 	'tags' => 'Теґи',
-    'manage_notebooks' => 'Редагувати записники',
+	'manage_tags' => 'Керування теґами',
+        'manage_notebooks' => 'Редагувати записники',
 	'note' => 'Нотатка',
 	'notebook' => 'Записник',
 	'collection' => 'Колекція',
@@ -39,6 +40,8 @@ return array(
 	'delete_notebook' => 'Видалити записник',
 	'delete_notebook_question' => 'Видалити записник?',
 	'delete_notebook_message' => 'Ця дія видалить вибрані записники та всі їх нотатки. Ви впевнені?',
+    	'delete_tag_question' => 'Видалити теґ?',
+    	'delete_tag_message' => 'Ця дія видалить вибраний теґ. Ви впевнені?',
 	'new_collection' => 'Нова колекція',
 	'edit_collection' => 'Редагувати колекцію',
 	'delete_collection' => 'Видалити колекцію',
@@ -81,6 +84,7 @@ return array(
 	'not_implemented' => 'Цю можливість ще не реалізовано.',
 	'experimental' => 'Экспериментальне',
 	'import' => 'Імпотрувати',
-	'export' => 'Экспортувати'
+	'export' => 'Экспортувати',
+	'back' => 'Назад'
 
 );
