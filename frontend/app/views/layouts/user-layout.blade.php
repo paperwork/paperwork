@@ -46,7 +46,9 @@
 					</form>
 				</div>
 
-				@include('partials/menu-main')
+				@if (preg_match('/Paperwork for Mac/', $_SERVER['HTTP_USER_AGENT']) === 0)
+					@include('partials/menu-main')
+				@endif
 
 				@include('partials/search-main')
 
@@ -70,6 +72,7 @@
 	[[ HTML::script('js/angular.min.js') ]]
 
 	[[ HTML::script('js/paperwork.min.js') ]]
+	[[ HTML::script('js/paperwork-native.min.js') ]]
 
 	[[ HTML::script('js/bootstrap.min.js') ]]
 	[[ HTML::script('js/tagsinput.min.js') ]]
