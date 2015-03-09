@@ -1,6 +1,5 @@
 angular.module('paperworkNotes').controller('NotesShowController',
-  ['$scope', '$rootScope', '$location', '$routeParams', 'NotesService', 'NetService',
-   function($scope, $rootScope, $location, $routeParams, notesService, netService) {
+   function($scope, $rootScope, $location, $routeParams, NotesService, NetService) {
      if($routeParams.noteId === "undefined") {
        return;
      }
@@ -13,7 +12,7 @@ angular.module('paperworkNotes').controller('NotesShowController',
       NotesService.getNotesInNotebook($rootScope.getNotebookSelectedId());
     }
 
-     notesService.getNoteById(($routeParams.noteId));
+    NotesService.getNoteById(($routeParams.noteId));
 
     NotesService.getNoteVersionAttachments($rootScope.getNotebookSelectedId(), ($rootScope.getNoteSelectedId(true)).noteId, $rootScope.getVersionSelectedId(true).versionId,
       function(response) {

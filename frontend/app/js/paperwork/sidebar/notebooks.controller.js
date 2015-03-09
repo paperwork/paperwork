@@ -1,5 +1,4 @@
 angular.module('paperworkNotes').controller('SidebarNotebooksController',
-  ['$scope', '$rootScope', '$location', '$routeParams', '$filter', '$q', 'NotebooksService', 'NotesService', 'ngDraggable',
    function($scope, $rootScope, $location, $routeParams, $filter, $q, NotebooksService, NotesService, ngDraggable) {
      $rootScope.notebookSelectedId = paperworkDbAllId;
      $rootScope.tagsSelectedId = -1;
@@ -48,12 +47,12 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
       }
 
       if($rootScope.tagsSelectedId != -1) {
-        if (s.length > 0) s += " "; 
+        if (s.length > 0) s += " ";
         s += "tagid:" + parseInt($rootScope.tagsSelectedId);
       }
 
       if($rootScope.dateSelected != -1) {
-        if (s.length > 0) s += " "; 
+        if (s.length > 0) s += " ";
         s += "date:" + $filter('date')($rootScope.dateSelected, 'yyyy-MM-dd');
       }
 

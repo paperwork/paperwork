@@ -142,7 +142,7 @@ angular.module('paperworkNotes').controller('NotesEditController',
       $rootScope.uploadUrl = paperworkApi + '/notebooks/' + ($routeParams.notebookId) + '/notes/' + parseInt($routeParams.noteId) + '/versions/' + paperworkDbAllId + '/attachments';
 
       if(typeof $rootScope.notes == "undefined") {
-        notesService.getNotesInNotebook($rootScope.notebookSelectedId, (function(_notebookId, _noteId) {
+        NotesService.getNotesInNotebook($rootScope.notebookSelectedId, (function(_notebookId, _noteId) {
           return function() {
             thisController(_notebookId, _noteId, function() {
               window.onCkeditChangeFunction();

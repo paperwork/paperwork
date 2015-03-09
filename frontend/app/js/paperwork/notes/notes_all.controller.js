@@ -8,7 +8,7 @@ angular.module('paperworkNotes').controller('NotesAllController',
      } else {
        $rootScope.notebookSelectedId = ($routeParams.notebookId);
      }
-     notesService.getNotesInNotebook($rootScope.getNotebookSelectedId(), function() {
+     NotesService.getNotesInNotebook($rootScope.getNotebookSelectedId(), function() {
        // $rootScope.setNoteSelectedId($rootScope.getNotebookSelectedId(), $rootScope.notes[0].id);
        if($rootScope.notes.length > 0) {
          $location.path("/n/" + $scope.notebookSelectedId + "/" + $rootScope.notes[0].id);
