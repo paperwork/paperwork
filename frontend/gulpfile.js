@@ -5,6 +5,10 @@ var rename = require('gulp-rename');
 var livereload = require('gulp-livereload');
 var uglify = require('gulp-uglify');
 var path = require("path");
+var annotate = require('gulp-ng-annotate');
+var jshint = require('gulp-jshint');
+var jshint_stylish = require('jshint-stylish');
+
 
 var paths = {
 	bootstrap: [
@@ -19,6 +23,9 @@ var paths = {
 	],
 	paperwork: [
 		'app/js/paperwork/**/*.js'
+	],
+	paperworknative: [
+		'app/js/paperwork-native.js'
 	],
 	angular: [
 		'app/js/angular.js',
@@ -122,6 +129,16 @@ gulp.task('compileJsPaperwork', function() {
 	gulp
 		.src(paths.paperwork)
 		.pipe(concat('paperwork.min.js'))
+		.pipe(annotate())
+		.pipe(gulp.dest(paths.output.js))
+		.pipe(livereload());
+});
+
+gulp.task('compileJsPaperworkNative', function() {
+	gulp
+		.src(paths.paperworknative)
+		.pipe(concat('paperwork-native.min.js'))
+		.pipe(annotate())
 		.pipe(gulp.dest(paths.output.js))
 		.pipe(livereload());
 });
@@ -174,6 +191,14 @@ gulp.task('compileJsLtIe11Compat', function() {
 		.pipe(livereload());
 });
 
+gulp.task('lint', function() {
+	gulp
+		.src(paths.paperwork)
+		.pipe(jshint())
+	    .pipe(jshint.reporter('jshint-stylish'))
+	    .pipe(jshint.reporter('fail'));
+});
+
 gulp.task('minifyJs', function() {
 	gulp
 		.src(path.join(paths.output.js, '*.js'))
@@ -182,9 +207,9 @@ gulp.task('minifyJs', function() {
 });
 
 gulp.task('less', ['compileLessBootstrapTheme', 'compileLessPaperworkThemeV1', 'compileLessFreqselector', 'compileLessTypeahead']);
-gulp.task('js', ['compileJsBootstrap', 'compileJsPaperwork', 'compileJsAngular', 'compileJsJquery', 'compileJsTagsinput', 'compileJsLibraries', 'compileJsLtIe9Compat', 'compileJsLtIe11Compat']);
+gulp.task('js', ['compileJsBootstrap', 'compileJsPaperwork', 'compileJsPaperworkNative', 'compileJsAngular', 'compileJsJquery', 'compileJsTagsinput', 'compileJsLibraries', 'compileJsLtIe9Compat', 'compileJsLtIe11Compat']);
 
-gulp.task('default', ['less', 'js']);
+gulp.task('default', ['less', 'lint', 'js']);
 gulp.task('prod', ['default', 'minifyJs']);
 
 gulp.task('watch', function() {
@@ -193,7 +218,7 @@ gulp.task('watch', function() {
   gulp.watch('app/less/bootstrap/*.less', ['less']);
   gulp.watch('app/less/font-fontawesome/*.less', ['less']);
   gulp.watch('app/less/paperwork-themes/paperwork-v1/*.less', ['less']);
-  gulp.watch('app/js/*.js', ['js']);
+  gulp.watch('app/js/**/*.js', ['js']);
   gulp.watch('app/js/bootstrap/*.js', ['compileJsBootstrap']);
   gulp.watch('app/js/paperwork/*.js', ['compileJsPaperwork']);
 });

@@ -22,6 +22,8 @@ return array(
 	'shortcuts' => 'Genvägar',
 	'notebooks' => 'Anteckningsblock',
 	'tags' => 'Taggar',
+	'manage_tags' => 'Hantera taggar',
+	'manage_notebooks' => 'Hantera anteckningsblock',
 	'note' => 'Anteckning',
 	'notebook' => 'Anteckningsblock',
 	'collection' => 'Samling',
@@ -31,13 +33,17 @@ return array(
 	'move_notes' => 'Flytta anteckningar',
 	'delete_note' => 'Ta bort anteckning',
 	'delete_notes' => 'Ta bort anteckningar',
+	'note_history' => 'Anteckningshistorik',
 	'note_info' => 'Anteckningsinfo',
 	'note_title' => 'Anteckningstitel',
+	'share' => 'Dela',
 	'new_notebook' => 'Nytt anteckningsblock',
 	'edit_notebook' => 'Redigera anteckningsblock',
 	'delete_notebook' => 'Ta bort anteckningsblock',
 	'delete_notebook_question' => 'Ta bort anteckningsblock?',
 	'delete_notebook_message' => 'Det här kommer att ta bort det valda anteckningsblocket samt dess anteckningar. Är du säker?',
+	'delete_tag_question' => 'Ta bort tagg?',
+	'delete_tag_message' => 'Det här kommer att ta bort den valda taggen. Är du säker?',
 	'new_collection' => 'Ny samling',
 	'edit_collection' => 'Redigera samling',
 	'delete_collection' => 'Ta bort samling',
@@ -52,6 +58,7 @@ return array(
 	'close_without_saving_message' => 'Det finns ändringar i din anteckning som inte sparats. Är du säker på att du vill stänga den här anteckningen och förlora alla ändringar?',
 	'search_dotdotdot' => 'Sök...',
 	'reset_password' => 'Återställ lösenord',
+	'password_reset_request' => 'Återställ ditt Paperwork-lösenord',
 	'toggle_navigation' => 'Växla navigering',
 	'cancel' => 'Avbryt',
 	'create' => 'Skapa',
@@ -79,6 +86,7 @@ return array(
 	'not_implemented' => 'Den här funktionen har inte implementerats än.',
 	'experimental' => 'Experimentell',
 	'import' => 'Importera',
-	'export' => 'Exportera'
+	'export' => 'Exportera',
+	'back' => 'Bakåt'
 
 );

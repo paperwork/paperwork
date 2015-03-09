@@ -1,8 +1,7 @@
 angular.module('paperworkNotes').controller('NotesAllController',
-  ['$scope', '$rootScope', '$location', '$routeParams', 'NotesService',
-   function($scope, $rootScope, $location, $routeParams, notesService) {
-     if(typeof $routeParams == "undefined" || $routeParams == {} || typeof $routeParams.notebookId == "undefined") {
-       return;
+  function($scope, $rootScope, $location, $routeParams, NotesService) {
+    if(typeof $routeParams == "undefined" || $routeParams == {} || typeof $routeParams.notebookId == "undefined") {
+      return;
 
        // fixme
        // $rootScope.notebookSelectedId = 0;
@@ -16,10 +15,10 @@ angular.module('paperworkNotes').controller('NotesAllController',
        }
      });
 
-     $rootScope.editMultipleNotes = false;
-     $rootScope.navbarMainMenu = true;
-     $rootScope.navbarSearchForm = true;
-     $rootScope.expandedNoteLayout = false;
+    $rootScope.editMultipleNotes = false;
+    $rootScope.navbarMainMenu = true;
+    $rootScope.navbarSearchForm = true;
+    $rootScope.expandedNoteLayout = false;
 
-     $rootScope.note = null;
-   }]);
+    $rootScope.note = null;
+  });

@@ -9,7 +9,7 @@
             </div>
             <div class="modal-body">
                 <div class="manage-list-content">
-                    <div class="row" ng-repeat="item in modalList | orderBy:'title':reverse" on-finish-render="ngRepeatFinished">
+                    <div class="row" ng-repeat="item in modalList | orderBy:'title':reverse" pw-on-finish-render="ngRepeatFinished">
                         <div class="col-sm-10">
                             <a class="line" href="#" data-name="title" data-type="text" data-pk="{{item.id}}">{{item.title}}</a>
                         </div>
@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success pull-left" ng-click="addNotebook();">[[Lang::get('notebooks.title_new_notebook')]]</button>
+                <button type="button" class="btn btn-primary pull-left" ng-click="addNotebook();">[[Lang::get('notebooks.title_new_notebook')]]</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">[[Lang::get('keywords.close')]]</button>
             </div>
         </div>

@@ -1,34 +1,34 @@
 <div ng-hide="note == null">
 <nav class="navbar navbar-inverse" role="navigation">
 	<div class="">
-	    <div class="collapse navbar-collapse" id="navbar-paperwork-note-show">
-	      <ul class="nav navbar-nav" id="notebook-selector">
-	      	<li>
-		      	<div class="btn-group">
-		      		<button ng-controller="SidebarNotesController" class="btn btn-default navbar-btn" ng-click="modalMoveNote(note.notebook_id, note.id)"><i class="fa fa-book"></i> {{note.notebook_title}}</button>
-	      		</div>
-	      	</li>
-	      </ul>
-	      <ul class="nav navbar-nav navbar-right" id="note-toolbar">
-	      	<li>
-		      	<div class="btn-group">
-		      		<button id="note-info" class="btn btn-default navbar-btn" data-toggle="popover" data-placement="bottom" data-title="[[Lang::get('keywords.note_info')]]" data-content='
-		      			<div class="row">
-		      				<div class="col-xs-3"><b>[[Lang::get('keywords.created_at')]]</b></div>
-		      				<div class="col-xs-9">{{ note.created_at }}</div>
-		      			</div>
-		      			<div class="row">
-		      				<div class="col-xs-3"><b>[[Lang::get('keywords.updated_at')]]</b></div>
-		      				<div class="col-xs-9">{{ note.updated_at }}</div>
-		      			</div>
-		      		'><i class="fa fa-info-circle"></i></button>
-		      		<button class="btn btn-default navbar-btn" data-toggle="freqselector" data-target="#wayback-machine"><i class="fa fa-history"></i></button>
-				<button class="btn btn-default navbar-btn" ng-controller="SidebarNotesController" ng-click="editNote(note.notebook_id, note.id)"><i class="fa fa-pencil"></i></button>
-		      		<button class="btn btn-default navbar-btn"><i class="fa fa-share-alt"></i></button>
-	      		</div>
-	      	</li>
-	      </ul>
-	    </div><!-- /.navbar-collapse -->
+		<div class="collapse navbar-collapse" id="navbar-paperwork-note-show">
+		<ul class="nav navbar-nav" id="notebook-selector">
+			<li>
+				<div class="btn-group">
+					<button ng-controller="SidebarNotesController" class="btn btn-default navbar-btn" title="[[Lang::get('keywords.move_note')]]" ng-click="modalMoveNote(note.notebook_id, note.id)"><i class="fa fa-book"></i> {{note.notebook_title}}</button>
+				</div>
+			</li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right" id="note-toolbar">
+			<li>
+				<div class="btn-group">
+					<button id="note-info" class="btn btn-default navbar-btn" data-toggle="popover" data-placement="bottom" title="[[Lang::get('keywords.note_info')]]"  data-title="[[Lang::get('keywords.note_info')]]" data-content='
+						<div class="row">
+							<div class="col-xs-3"><b>[[Lang::get('keywords.created_at')]]</b></div>
+							<div class="col-xs-9">{{ note.created_at }}</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-3"><b>[[Lang::get('keywords.updated_at')]]</b></div>
+							<div class="col-xs-9">{{ note.updated_at }}</div>
+						</div>
+					'><i class="fa fa-info-circle"></i></button>
+					<button class="btn btn-default navbar-btn" title="[[Lang::get('keywords.note_history')]]" data-toggle="freqselector" data-target="#wayback-machine"><i class="fa fa-history"></i></button>
+					<button class="btn btn-default navbar-btn" title="[[Lang::get('keywords.edit_note')]]" ng-controller="SidebarNotesController" ng-click="editNote(note.notebook_id, note.id)"><i class="fa fa-pencil"></i></button>
+					<button class="btn btn-default navbar-btn" title="[[Lang::get('keywords.share')]]" ><i class="fa fa-share-alt"></i></button>
+				</div>
+			</li>
+		</ul>
+		</div><!-- /.navbar-collapse -->
 	</div><!-- /.container-fluid -->
 </nav>
 <div id="wayback-machine" class="freqselector">

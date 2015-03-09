@@ -46,7 +46,7 @@
 							<span class="tree-header tree-header-calendar"><i class="fa fa-chevron-down"></i> Calendar</span>
 							<ul class="tree-child">
 								<li class="tree-calendar">
-										<datepicker datepicker-refresh="sidebarCalendarPromise" id="sidebarCalendar" date-disabled="sidebarCalendarIsDisabled(date, mode)" ng-change="openDate(sidebarCalendar)" ng-model="sidebarCalendar" show-weeks="false" ></datepicker>
+										<datepicker pw-datepicker-refresh="sidebarCalendarPromise" id="sidebarCalendar" date-disabled="sidebarCalendarIsDisabled(date, mode)" ng-change="openDate(sidebarCalendar)" ng-model="sidebarCalendar" show-weeks="false" ></datepicker>
 								</li>
 							</ul>
 						</li>
