@@ -281,10 +281,13 @@ label {
 .sidebar {
   display: none;
 }
+.sidebar-collapse-switch{
+  display: none;
+}
 @media (min-width: 768px) {
   .sidebar {
     position: fixed;
-    top: 60px;
+    top: 67px;
     bottom: 0;
     left: 0;
     z-index: 1000;
@@ -294,6 +297,11 @@ label {
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
     background-color: @white;
     border-right: 1px solid @gray;
+  }
+  .sidebar-collapse-switch{
+    display: block;
+    cursor: pointer;
+    position: fixed;
   }
 }
 
