@@ -174,5 +174,6 @@ In addition to contributing, make sure to shoot us an e-mail at [paperwork-dev@g
  2. edit app/config/ldap.php as appropriate for your environment
  3. change 'driver' => 'eloquent' in app/config/auth.php to 'driver' => 'ldap'
 
- For more information, see https://github.com/dsdevbe/ldap-connector
+ For more information and more ocnfiguration options, see http://adldap.sourceforge.net/
+ The config in app/config/ldap.php is passed directly to adldap, so any configuration will work as defined by adldap.
  If a user successfully authenticates against your ldap server, they will be automatically registered in paperwork
