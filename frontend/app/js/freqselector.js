@@ -75,13 +75,13 @@
       .off('click.dismiss.freqselector');
 
     if($.support.transition) {
-      this.$element.css("display", "none");
       this.$element.animate({
       opacity: 0.0,
       height: "0px"
     }, "fast", function() {
+      this.$element.css("display", "none");
       // Move it?
-    });
+    }.bind(this));
     } else {
       this.hideFreqselector();
     }
