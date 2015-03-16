@@ -15,7 +15,8 @@ return array(
 	|
 	*/
 
-	'driver' => 'eloquent',
+//	'driver' => 'eloquent',
+    'driver' => 'eloquentldap',
 
 	/*
 	|--------------------------------------------------------------------------

@@ -168,3 +168,11 @@ Maybe. Check out more detailed information about the features we are currently w
 
 In addition to contributing, make sure to shoot us an e-mail at [paperwork-dev@googlegroups.com](mailto:paperwork-dev@googlegroups.com), or hop on the [gitter group](https://gitter.im/twostairs/paperwork) and inform us about your interest in joining the team. We will then make sure to give you the required access to our [GitHub Issues](https://github.com/twostairs/paperwork/issues) as well.
 
+## Enabling LDAP
+ Follow these steps:
+ 1. uncomment extension=php_ldap.dll in your php.ini
+ 2. edit app/config/ldap.php as appropriate for your environment
+ 3. change 'driver' => 'eloquent' in app/config/auth.php to 'driver' => 'ldap'
+
+ For more information, see https://github.com/dsdevbe/ldap-connector
+ If a user successfully authenticates against your ldap server, they will be automatically registered in paperwork

@@ -138,7 +138,7 @@ class UserController extends BaseController
 
     protected function getLoginValidator()
     {
-        return Validator::make(Input::all(), ["username" => "required|email", "password" => "required"]);
+        return Validator::make(Input::all(), ["username" => "required", "password" => "required"]);
     }
 
     protected function getProfileValidator()

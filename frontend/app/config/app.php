@@ -124,6 +124,8 @@ return array(
 
 		'Jenssegers\Agent\AgentServiceProvider',
 		'SimpleSoftwareIO\QrCode\QrCodeServiceProvider',
+        
+        'Paperwork\EloquentLdapConnectorServiceProvider',
 
 		'Paperwork\PaperworkHelpersServiceProvider',
 	),
