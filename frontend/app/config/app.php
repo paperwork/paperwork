@@ -122,6 +122,8 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
+		'Paperwork\EloquentLdapConnectorServiceProvider',
+		'Paperwork\UserRegistrationProvider',
 		'Paperwork\Db\PaperworkDbServiceProvider',
 		'Paperwork\Helpers\PaperworkHelpersServiceProvider',
 

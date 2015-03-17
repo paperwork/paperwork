@@ -1,5 +1,6 @@
 <?php
 
+use \Paperwork\UserRegistrator;
 /**
  * Class UserController
  *
@@ -7,9 +8,16 @@
  * @todo provide documentation for every action.
  *       Clean up the commented legacy code. We use git for history.
  */
-class UserController extends BaseController
-{
+class UserController extends BaseController{
 
+    private $userRegistrator;
+    private $isLdap;
+    
+    public function __construct(UserRegistrator $userRegistrator){
+        $this->userRegistrator = $userRegistrator;
+        $this->isLdap = PaperworkHelpers::isLdap();
+    }
+    
     public function showRegistrationForm()
     {
         return View::make('user.register');
@@ -25,59 +33,26 @@ class UserController extends BaseController
         $validator = $this->getRegistrationValidator();
 
         if ($validator->passes()) {
-            // $credentials = $this->getRegistrationCredentials();
-
-            $user = User::create(Input::except('_token', 'password_confirmation', 'ui_language'));
-            if ($user) {
-                //make the first user an admin
-                if (User::all()->count() <= 1) {
-                    $user->is_admin = 1;
+            //only allow users to register who actually have a valid ldap account
+            if($this->isLdap){
+                if(!Auth::validate($this->getLoginCredentials())){
+                    return Redirect::back()->withErrors(["password" => [Lang::get('messages.invalid_credentials')]]);
                 }
-
-                // Trim trailing whitespace from user first and last name.
-                $user->firstname = trim($user->firstname);
-                $user->lastname  = trim($user->lastname);
-
-                $user->save();
-                $setting = Setting::create(['ui_language' => Input::get('ui_language'), 'user_id' => $user->id]);
-
-                /* Add welcome note to user - create notebook, tag and note */
-                //$notebookCreate = Notebook::create(array('title' => Lang::get('notebooks.welcome_notebook_title')));
-                $notebookCreate = new Notebook();
-
-                $notebookCreate->title = Lang::get('notebooks.welcome_notebook_title');
-                $notebookCreate->save();
-
-                $notebookCreate->users()->attach($user->id, ['umask' => PaperworkHelpers::UMASK_OWNER]);
-
-                //$tagCreate = Tag::create(array('title' => Lang::get('notebooks.welcome_note_tag'), 'visibility' => 0));
-                $tagCreate = new Tag();
-
-                $tagCreate->title      = Lang::get('notebooks.welcome_note_tag');
-                $tagCreate->visibility = 0;
-                $tagCreate->save();
-                $tagCreate->users()->attach($user->id);
-
-                $noteCreate = new Note;
-
-                $versionCreate = new Version([
-                    'title'           => Lang::get('notebooks.welcome_note_title'),
-                    'content'         => Lang::get('notebooks.welcome_note_content'),
-                    'content_preview' => mb_substr(strip_tags(Lang::get('notebooks.welcome_note_content')), 0, 255)
-                ]);
-
-                $versionCreate->save();
-
-                $noteCreate->version()->associate($versionCreate);
-                $noteCreate->notebook_id = $notebookCreate->id;
-                $noteCreate->save();
-                $noteCreate->users()->attach($user->id, ['umask' => PaperworkHelpers::UMASK_OWNER]);
-                $noteCreate->tags()->sync([$tagCreate->id]);
+            }
+            //if we are using ldap and auto registration, the user will have been created in the Auth::attemp call above
+            //thus, we need to just load the user using eloquent and not create a new one.
+            if($this->isLdap && Config::get('ldap.autoRegister')){
+                $user = User::query()->where('username',Input::get('username'))->first();
+            } else {
+                $user = $this->userRegistrator->registerUser(Input::except('_token', 'password_confirmation', 'ui_language'),Input::get('ui_language'));
+            }
+            if ($user) {
+                
                 // Commented code above does not work because no $fillable is in the model files
 
                 Auth::login($user);
 
-                Session::put('ui_language', $setting->ui_language);
+                Session::put('ui_language',  Input::get('ui_language'));
 
                 return Redirect::route("/");
             }
@@ -124,7 +99,7 @@ class UserController extends BaseController
     {
         $attributes = ["username" => "email address"];
         $validator  = Validator::make(Input::all(), [
-            "username"              => "required|email|unique:users",
+            "username"              => $this->isLdap ? "required|unique:users" : "required|email|unique:users",
             "password"              => "required|min:5|confirmed",
             "password_confirmation" => "required",
             "firstname"             => "required|name_validator",
@@ -138,7 +113,7 @@ class UserController extends BaseController
 
     protected function getLoginValidator()
     {
-        return Validator::make(Input::all(), ["username" => "required|email", "password" => "required"]);
+        return Validator::make(Input::all(), ["username" => $this->isLdap ? "required" : "required|email", "password" => "required"]);
     }
 
     protected function getProfileValidator()
