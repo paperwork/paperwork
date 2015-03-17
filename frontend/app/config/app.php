@@ -126,6 +126,7 @@ return array(
 		'SimpleSoftwareIO\QrCode\QrCodeServiceProvider',
         
         'Paperwork\EloquentLdapConnectorServiceProvider',
+        'Paperwork\UserRegistrationProvider',
 
 		'Paperwork\PaperworkHelpersServiceProvider',
 	),

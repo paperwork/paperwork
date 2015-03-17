@@ -1,7 +1,9 @@
 <?php namespace Paperwork;
 use Illuminate\Auth\EloquentUserProvider;
+use Illuminate\Auth\GenericUser;
 use Illuminate\Hashing\HasherInterface;
 use Illuminate\Auth\UserInterface;
+use Illuminate\Support\Facades\App;
 use adLDAP\adLDAP;
 
 class EloquentLdapAuthenticatedUserProvider extends EloquentUserProvider{
@@ -24,8 +26,21 @@ class EloquentLdapAuthenticatedUserProvider extends EloquentUserProvider{
      */
     public function retrieveByCredentials(array $credentials){
         $username = $credentials['username'];
-        if ($this->adLdap->authenticate($credentials['username'], $credentials['password'])){
-            return $this->createModel()->query()->where('username',$username)->first();
+        if ($this->adLdap->authenticate($username, $credentials['password'])){
+            $user = $this->createModel()->query()->where('username',$username)->first();
+            if($user == null && $this->config['autoRegister']){
+                $ldapInfo = $this->adLdap->user()->info($username,array("givenname","sn"))[0];
+                $userInfo = array();
+                $userInfo['firstname'] = isset($ldapInfo['givenname']) ? $ldapInfo['givenname'][0] : $username;
+                $userInfo['lastname'] = isset($ldapInfo['sn']) ? $ldapInfo['sn'][0] : '';
+                $userInfo['username'] = $username;
+                $userInfo['password'] = 'ldapAuth';
+                return App::make('UserRegistrator')->registerUser($userInfo,$this->config['registrationLanguage']);
+            } else {
+                //if we're not auto registering, we need to let Guard know that we are valid authentication, so
+                //we will return this dummy object here
+                return new GenericUser(array("id"=>$username));
+            }
         }
         return null;
     }

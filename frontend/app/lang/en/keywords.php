@@ -6,6 +6,7 @@ return array(
 	'admin_status' => 'Admin Status',
 	'deleted_at' => 'Deleted',
 	'email_address' => 'Email address',
+	'username' => 'Username',
 	'id' => 'ID',
 	'users' => 'Users',
 	'first_name' => 'First name',

@@ -1,6 +1,8 @@
 <?php
 return array(
-    'account_suffix'=>  "@paperwork.test.com",
-    'domain_controllers'=>  array("10.1.1.20"),
-    'base_dn'   =>  'DC=paperwork,DC=test,DC=com'
+    'account_suffix'=>  "@your.fqdn.here.com",
+    'domain_controllers'=>  array("your.first.ldap.server","your.second.ldap.server","etc..."),
+    'base_dn'   =>  'DC=your,DC=fqdn,DC=here,DC=com',
+    'autoRegister' => true,
+    'registrationLanguage' => 'en'
 );
