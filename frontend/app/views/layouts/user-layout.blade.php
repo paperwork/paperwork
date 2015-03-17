@@ -34,7 +34,8 @@
 					<form class="navbar-form" role="form">
 				  		<div class="form-group" ng-controller="SidebarNotebooksController">
 				  			<select class="form-control navbar-search">
-							  <option ng-repeat="notebook in notebooks" data-notebookid="{{ notebook.children.length > 0 ? '' : notebook.id }}">{{notebook.title}}</option>
+							  <option ng-repeat="notebook in notebooks"
+									  data-notebookid="{{ notebook.children.length > 0 ? '' : notebook.id }}">{{notebook.title}}</option>
 							</select>
 						</div>
 				  		<div class="form-group" ng-controller="SidebarNotesController">
@@ -45,7 +46,9 @@
 					</form>
 				</div>
 
-				@include('partials/menu-main')
+				@if (array_key_exists('HTTP_USER_AGENT', $_SERVER) && preg_match('/Paperwork for Mac/', $_SERVER['HTTP_USER_AGENT']) === 0)
+					@include('partials/menu-main')
+				@endif
 
 				@include('partials/search-main')
 
@@ -69,11 +72,13 @@
 	[[ HTML::script('js/angular.min.js') ]]
 
 	[[ HTML::script('js/paperwork.min.js') ]]
+	[[ HTML::script('js/paperwork-native.min.js') ]]
 
 	[[ HTML::script('js/bootstrap.min.js') ]]
 	[[ HTML::script('js/tagsinput.min.js') ]]
 
 	[[ HTML::script('ckeditor/ckeditor.js') ]]
+	[[ HTML::script('ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js') ]]
 	[[ HTML::script('//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js') ]]
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->

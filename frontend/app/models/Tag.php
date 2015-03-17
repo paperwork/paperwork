@@ -1,7 +1,8 @@
 <?php
 
-class Tag extends Eloquent {
+class Tag extends PaperworkModel {
 	protected $table = 'tags';
+	protected $fillable = array('visibility', 'title');
 
 	public function notes()
 	{

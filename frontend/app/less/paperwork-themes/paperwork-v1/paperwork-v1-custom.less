@@ -11,6 +11,10 @@
   }
 }
 
+.paperwork-logo.navbar-brand {
+    margin: 0px 5px 0px 0px !important;
+}
+
 /*
  * Base structure
  */
@@ -243,7 +247,7 @@ label {
 /*
  * Customize navbars
  */
- 
+
 //Hide empty space on top of notes in small screens
 @media (max-width: 767px) {
   .navbar.navbar-inverse{
@@ -267,7 +271,7 @@ label {
  */
 .navbar-fixed-top {
   border: 0;
-  
+
   .navbar-right{
       margin-right:10px;
   }
@@ -535,6 +539,64 @@ ul.nav-tabs-margin {
   }
 }
 
+#sidebarCalendar {
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    td {
+      border: 1px solid @gray-light;
+
+      .btn-default:disabled {
+        background: white;
+
+        border: none;
+
+        color: @text-color;
+      }
+
+      .btn-default {
+        font-weight: bold;
+
+        border: none;
+
+        &.active {
+          -webkit-box-shadow: none;
+          box-shadow: none;
+        }
+      }
+
+      .btn-info {
+        background: @brand-primary;
+
+        border-radius: 0;
+      }
+    }
+  }
+
+  thead tr:first-child th {
+    padding-bottom: 7px;
+  }
+
+  .glyphicon {
+    font-size: large;
+
+    &.glyphicon-chevron-right:before {
+      content: "\f054" !important;
+    }
+
+    &.glyphicon-chevron-left:before {
+      content: "\f053" !important;
+    }
+  }
+
+  .btn-sm, .btn-group-sm > .btn {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+}
+
 .sidebar-no-border {
   margin-top: -20px;
 }
@@ -564,7 +626,7 @@ ul.nav-tabs-margin {
       li.tree-notebook {
         cursor: pointer;
 
-        .notebook-title.active {
+        .notebook-title.active, [ng-drop].drag-enter {
           color: @brand-primary;
         }
       }
@@ -708,7 +770,7 @@ body.paperwork-guest {
     max-width: 330px;
     padding: 15px;
     margin: 0 auto;
-    
+
     .form-signin-heading{
         margin-bottom:17.5px;
     }
@@ -735,6 +797,45 @@ body.paperwork-guest {
     }
     .control-label {
       font-size: 16px;
+    }
+  }
+}
+
+/*
+ * Error
+ */
+
+body.paperwork-error {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: @white;
+
+  .error-logo {
+    display: inline-block;
+    vertical-align: middle;
+    
+    .error-logo-img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 220px;
+      height: 220px;
+    }
+    
+  }
+  
+  .error-content {
+      display: inline-block;
+      vertical-align: middle;
+  }
+  
+  @media (max-width: 485px) {
+    .error-logo {
+        display: block;
+    }
+    
+    .error-content {
+        margin-bottom:15px;
     }
   }
 }

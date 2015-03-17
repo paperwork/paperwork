@@ -1,17 +1,16 @@
 angular.module('paperworkNotes').controller('NotesListController',
-  ['$scope', '$rootScope', '$location', '$routeParams', 'NotesService',
-    function($scope, $rootScope, $location, $routeParams, notesService) {
+  function($scope, $rootScope, $location, $routeParams, NotesService) {
     $rootScope.noteSelectedId = {};
     $rootScope.notesSelectedIds = [];
-    notesService.getNotesInNotebook(0);
+    NotesService.getNotesInNotebook(paperworkDbAllId);
 
     $scope.noteSelect = function($notebookId, $noteId) {
-      $rootScope.noteSelectedId = { 'notebookId': parseInt($notebookId), 'noteId': parseInt($noteId) };
+      $rootScope.noteSelectedId = { 'notebookId': ($notebookId), 'noteId': ($noteId) };
     };
 
     $scope.getNoteLink = function(notebookId, noteId) {
 
-      var path = "/n/" + parseInt(notebookId) + "/" + parseInt(noteId);
+      var path = "/n/" + (notebookId) + "/" + (noteId);
       if($location.$$path.match(/^\/s\//i) != null) {
         var basePath = $location.$$path.match(/(^\/s\/[^\/]*)/i);
         return basePath[1] + path;
@@ -19,4 +18,4 @@ angular.module('paperworkNotes').controller('NotesListController',
       return path;
     };
 
-}]);
+  });

@@ -1,7 +1,7 @@
 angular.module('paperworkNotes').config(function($routeProvider) {
   $routeProvider
   .when('/', {
-    redirectTo:'/n/0'
+    redirectTo:'/n/' + paperworkDbAllId
   })
   .when('/n/:notebookId', {
     controller:'NotesAllController',
