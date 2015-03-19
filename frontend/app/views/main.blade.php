@@ -63,13 +63,13 @@
 					</div>
 					<a class="{{ editMultipleNotes ? 'col-sm-11' : '' }}" href="#{{getNoteLink(note.notebook_id, note.id)}}">
 						<div class="">
-							<span class="notes-list-title notes-list-title-gradient">{{note.title}}</span>
+							<span class="notes-list-title notes-list-title-gradient">{{note.version.title}}</span>
 							<span class="notes-list-date">
 								<span class="notes-list-date-day">{{note.updated_at | convertdate | date : 'd'}}</span>
 								<span class="notes-list-date-month">{{note.updated_at | convertdate | date : 'MMM'}}</span>
 								<span class="notes-list-date-year">{{note.updated_at | convertdate | date : 'yyyy'}}</span>
 							</span>
-							<span class="notes-list-content notes-list-content-gradient" ng-bind-html="note.content_preview"></span>
+							<span class="notes-list-content notes-list-content-gradient" ng-bind-html="note.version.content_preview"></span>
 						</div>
 					</a>
 					<div class="clear"></div>
