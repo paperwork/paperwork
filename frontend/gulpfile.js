@@ -50,6 +50,7 @@ var paths = {
 	],
 	libraries: [
 		'app/js/freqselector.js',
+		'app/js/mathquill.js',
 		'app/js/retina.js'
 	],
 	ie9compat: [
