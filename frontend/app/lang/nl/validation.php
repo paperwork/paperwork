@@ -1,5 +1,17 @@
 <?php
 
+$allowed_name_chars = Config::get('paperwork.nameCharactersAllowed');
+$name_error_message = "De :attribute mag enkel";
+$name_error_message.= $allowed_name_chars['alpha']      ? ' letters,'    : '';
+$name_error_message.= $allowed_name_chars['hyphen']     ? ' hyphens,'    : '';
+$name_error_message.= $allowed_name_chars['num']        ? ' numbers,'    : '';
+$name_error_message.= $allowed_name_chars['underscore'] ? ' underscores,': '';
+$name_error_message.= $allowed_name_chars['apostrophe'] ? ' apostrophes,': '';
+$name_error_message.= $allowed_name_chars['space']      ? ' spaces,'     : '';
+$name_error_message.: "bevatten";
+//replace last , with a .
+$name_error_message = substr($name_error_message, 0, -1).'.';
+
 return array(
 
 	/*
@@ -18,6 +30,7 @@ return array(
 	"after"                => "De :attribute moet na :date zijn.",
 	"alpha"                => "De :attribute mag enkel letters bevatten.",
 	"alpha_dash"           => "De :attribute mag enkel contain letters, nummers, en streepjes bevatten.",
+	"alpha_dash_spaces"    => "De :attribute mag enkel contain letters, nummers, streepjes en spaties bevatten.",
 	"alpha_num"            => "De :attribute mag enkel letters en nummers bevatten.",
 	"array"                => "De :attribute mag enkel een array bevatten. ",
 	"before"               => "De :attribute moet voor :date zijn.",
@@ -53,6 +66,7 @@ return array(
 		"string"  => "De :attribute moet minstens :min karakters bevatten.",
 		"array"   => "De :attribute moet minstens :min items hebben.",
 	),
+	"name_validator"       => $name_error_message,
 	"not_in"               => "De geselecteerde :attribute is ongeldig.",
 	"numeric"              => "De :attribute moet een nummer zijn.",
 	"regex"                => "Het :attribute formaat is ongeldig.",
@@ -94,7 +108,7 @@ return array(
 	| Custom Validation Attributes
 	|--------------------------------------------------------------------------
 	|
-	| De following language lines are used to swap attribute place-holders
+	| The following language lines are used to swap attribute place-holders
 	| with something more reader friendly such as E-Mail Address instead
 	| of "email". This simply helps us make messages a little cleaner.
 	|
