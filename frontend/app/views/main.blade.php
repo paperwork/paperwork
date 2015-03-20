@@ -9,8 +9,11 @@
 
 <div class="container-fluid">
 	<div class="row">
+        <div class="fa sidebar-collapse-switch"
+             ng-class="sidebarCollapsed ? 'fa-chevron-right sidebar-collapse-switch-closed' : 'fa-chevron-left col-sm-offset-3 col-md-offset-2'"
+             ng-click="sidebarCollapsed = !sidebarCollapsed" ng-init="sidebarCollapsed = false"></div>
 		<div id="sidebarNotebooks" class="col-sm-3 col-md-2 sidebar hidden-xs animate-panel disable-selection" ng-controller="SidebarNotebooksController" ng-show="isVisible()">
-			<ul class="nav nav-sidebar sidebar-no-border">
+			<ul class="nav nav-sidebar sidebar-no-border" ng-hide="sidebarCollapsed">
 				<div class="tree ">
 					<ul class="tree-base">
 						<li>
@@ -55,7 +58,8 @@
 			</ul>
 		</div>
 
-		<div id="sidebarNotes" class="col-sm-4 col-sm-offset-3 col-md-3 col-md-offset-2 sidebar hidden-xs animate-panel" ng-controller="SidebarNotesController" ng-show="isVisible()">
+		<div id="sidebarNotes" class="col-sm-4 col-md-3 sidebar hidden-xs animate-panel"
+             ng-controller="SidebarNotesController" ng-show="isVisible()" ng-class="sidebarCollapsed ? '' : 'col-sm-offset-3 col-md-offset-2'">
 			<ul id="notes-list" class="nav nav-sidebar notes-list sidebar-no-border" ng-controller="NotesListController">
 				<li class="notes-list-item" ng-cloak ng-repeat="note in notes" ng-click="noteSelect(note.notebook_id, note.id)" ng-dblclick="editNote(note.notebook_id, note.id)" ng-class="{ 'active': (note.notebook_id + '-' + note.id == getNoteSelectedId() || (editMultipleNotes && notesSelectedIds[note.id])) }" ng-drag="true" ng-drag-success="onDragSuccess($data,$event)" ng-drag-data="notebook">
 					<div class="notes-list-item-checkbox col-sm-1" ng-show="editMultipleNotes">
@@ -80,7 +84,8 @@
 [[-- @if($welcomeNoteSaved == 1) --]
     [[-- HTML::script('js/special_note.js') --]]
 [[-- @endif --]]
-		<div id="paperworkViewParent" class="{{ isVisible() ? 'col-xs-12 col-sm-5 col-sm-offset-7 col-md-7 col-md-offset-5 main' : 'col-xs-12 col-sm-12 col-md-12 main' }}" ng-controller="ViewController">
+		<div id="paperworkViewParent" class="main {{ isVisible() ? ( sidebarCollapsed ? 'col-xs-12 col-sm-8 col-md-9' : 'col-xs-12 col-sm-5 col-md-7' ) : 'col-xs-12 col-sm-12 col-md-12' }}"
+             ng-class="sidebarCollapsed ? 'col-sm-offset-4 col-md-offset-3' : 'col-sm-offset-7 col-md-offset-5'" ng-controller="ViewController">
 			<div id="paperworkView" ng-view></div>
 		</div>
 	</div>
