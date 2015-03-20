@@ -35,16 +35,16 @@ class UserController extends BaseController
 
         if ($validator->passes()) {
             //only allow users to register who actually have a valid ldap account
-            if($this->isLdap){
+            if ($this->isLdap){
                 $creds = $this->getLoginCredentials();
                 $creds['isRegister'] = true;
-                if(!Auth::validate($creds)){
+                if (!Auth::validate($creds)){
                     return Redirect::back()->withInput()->withErrors(["password" => [Lang::get('messages.invalid_credentials')]]);
                 }
             }
             //if we are using ldap and auto registration, the user will have been created in the Auth::attemp call above
             //thus, we need to just load the user using eloquent and not create a new one.
-            if($this->isLdap && Config::get('ldap.autoRegister')){
+            if ($this->isLdap && Config::get('ldap.autoRegister')){
                 $user = User::query()->where('username',Input::get('username'))->first();
             } else {
                 $user = $this->userRegistrator->registerUser(Input::except('_token', 'password_confirmation', 'ui_language'),Input::get('ui_language'));

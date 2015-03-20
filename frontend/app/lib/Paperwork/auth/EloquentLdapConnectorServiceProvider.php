@@ -24,7 +24,9 @@ class EloquentLdapConnectorServiceProvider extends ServiceProvider
 
     public function getConfig()
     {
-        if(!$this->app['config']['ldap']) throw new Exception('LDAP config not found. Check if app/config/ldap.php exists.');
+        if (!$this->app['config']['ldap']){
+            throw new Exception('LDAP config not found. Check if app/config/ldap.php exists.');
+        }
 
         return $this->app['config']['ldap'];
     }

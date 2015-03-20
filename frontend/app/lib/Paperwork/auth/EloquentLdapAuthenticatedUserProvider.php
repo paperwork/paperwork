@@ -31,7 +31,7 @@ class EloquentLdapAuthenticatedUserProvider extends EloquentUserProvider
         $username = $credentials['username'];
         if ($this->adLdap->authenticate($username, $credentials['password'])){
             $user = $this->createModel()->query()->where('username',$username)->first();
-            if($user == null && $this->config['autoRegister']){
+            if ($user == null && $this->config['autoRegister']){
                 $ldapInfo = $this->adLdap->user()->info($username,array("givenname","sn"))[0];
                 $userInfo = array();
                 $userInfo['firstname'] = isset($ldapInfo['givenname']) ? $ldapInfo['givenname'][0] : $username;
@@ -39,7 +39,7 @@ class EloquentLdapAuthenticatedUserProvider extends EloquentUserProvider
                 $userInfo['username'] = $username;
                 $userInfo['password'] = 'ldapAuth';
                 return App::make('UserRegistrator')->registerUser($userInfo,$this->config['registrationLanguage']);
-            } else if (isset($credentials['isRegister'])) {
+            } elseif (isset($credentials['isRegister'])) {
                 //if we're not auto registering, we need to let Guard know that we are valid authentication, so
                 //we will return this dummy object here
                 return new GenericUser(array("id"=>$username));
