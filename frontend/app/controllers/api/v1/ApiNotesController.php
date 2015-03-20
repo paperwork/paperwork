@@ -250,7 +250,7 @@ class ApiNotesController extends BaseController {
 			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
 		}
 
-		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notes->toArray());
+		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notes->first());
 
 	}
 
@@ -261,9 +261,7 @@ class ApiNotesController extends BaseController {
 
 		$note = new Note();
 
-		$version = new Version(array('title' => $newNote->get("title"), 'content' => $newNote->get("content"), 'content_preview' => $newNote->get("content_preview")));
-		$version->save();
-		$note->version()->associate($version);
+		
 
 		$notebook = DB::table('notebooks')
 			->join('notebook_user', function($join) {
@@ -279,8 +277,10 @@ class ApiNotesController extends BaseController {
 			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
 		}
 
+        $version = new Version(array('title' => $newNote->get("title"), 'content' => $newNote->get("content"), 'content_preview' => $newNote->get("content_preview")));
+        $version->save();
+        $note->version()->associate($version);
 		$note->notebook_id = $notebookId;
-		$version = Version::create(array('title' => $newNote->get("title"), 'content' => $newNote->get("content")));
 		$version->save();
 
 		$note->save();
@@ -323,7 +323,8 @@ class ApiNotesController extends BaseController {
 
 			// TODO: This is a temporary workaround for the content_preview. We need to check, whether there is content or at least one attachment.
 			// If there's no content, parse the attachment and set the result as content_preview. This should somehow be done within the DocumentParser, I guess.
-			$version = new Version(array('title' => $updateNote->get("title"), 'content' => $updateNote->get("content"), 'content_preview' => strip_tags($updateNote->get("content"))));
+			$version = new Version(array('title' => $updateNote->get("title"), 'content' => $updateNote->get("content"),
+                'content_preview' => substr(strip_tags($updateNote->get("content")),0,255)));
 			$version->save();
 
 
