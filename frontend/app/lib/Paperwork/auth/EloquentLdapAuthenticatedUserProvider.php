@@ -36,7 +36,7 @@ class EloquentLdapAuthenticatedUserProvider extends EloquentUserProvider{
                 $userInfo['username'] = $username;
                 $userInfo['password'] = 'ldapAuth';
                 return App::make('UserRegistrator')->registerUser($userInfo,$this->config['registrationLanguage']);
-            } else {
+            } else if (isset($credentials['isRegister'])) {
                 //if we're not auto registering, we need to let Guard know that we are valid authentication, so
                 //we will return this dummy object here
                 return new GenericUser(array("id"=>$username));

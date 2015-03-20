@@ -35,8 +35,10 @@ class UserController extends BaseController{
         if ($validator->passes()) {
             //only allow users to register who actually have a valid ldap account
             if($this->isLdap){
-                if(!Auth::validate($this->getLoginCredentials())){
-                    return Redirect::back()->withErrors(["password" => [Lang::get('messages.invalid_credentials')]]);
+                $creds = $this->getLoginCredentials();
+                $creds['isRegister'] = true;
+                if(!Auth::validate($creds)){
+                    return Redirect::back()->withInput()->withErrors(["password" => [Lang::get('messages.invalid_credentials')]]);
                 }
             }
             //if we are using ldap and auto registration, the user will have been created in the Auth::attemp call above
@@ -47,9 +49,6 @@ class UserController extends BaseController{
                 $user = $this->userRegistrator->registerUser(Input::except('_token', 'password_confirmation', 'ui_language'),Input::get('ui_language'));
             }
             if ($user) {
-                
-                // Commented code above does not work because no $fillable is in the model files
-
                 Auth::login($user);
 
                 Session::put('ui_language',  Input::get('ui_language'));
