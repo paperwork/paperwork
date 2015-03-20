@@ -6,13 +6,15 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Support\Facades\App;
 use adLDAP\adLDAP;
 
-class EloquentLdapAuthenticatedUserProvider extends EloquentUserProvider{
+class EloquentLdapAuthenticatedUserProvider extends EloquentUserProvider
+{
     
     private $config;
     
     private $adLdap;
     
-    public function __construct(HasherInterface $hasher, $model,  $config){
+    public function __construct(HasherInterface $hasher, $model,  $config)
+    {
         parent::__construct($hasher,$model);
         $this->config = $config;
         $this->adLdap = new adLDAP($this->config);
@@ -24,7 +26,8 @@ class EloquentLdapAuthenticatedUserProvider extends EloquentUserProvider{
      * @param  array  $credentials
      * @return \Illuminate\Auth\UserInterface|null
      */
-    public function retrieveByCredentials(array $credentials){
+    public function retrieveByCredentials(array $credentials)
+    {
         $username = $credentials['username'];
         if ($this->adLdap->authenticate($username, $credentials['password'])){
             $user = $this->createModel()->query()->where('username',$username)->first();
@@ -52,7 +55,8 @@ class EloquentLdapAuthenticatedUserProvider extends EloquentUserProvider{
      * @param  array  $credentials
      * @return bool
      */
-    public function validateCredentials(UserInterface $user, array $credentials){
+    public function validateCredentials(UserInterface $user, array $credentials)
+    {
         return $this->adLdap->authenticate($credentials['username'], $credentials['password']);
     }
 } 

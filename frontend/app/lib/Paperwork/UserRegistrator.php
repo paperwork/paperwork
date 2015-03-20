@@ -3,14 +3,16 @@
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Input;
 
-class UserRegistrator{
+class UserRegistrator
+{
     
     /**
      * This function will create a new user object and return the newly created user object.
      * @param array $userInfo This should have the properties: username, firstname, lastname, password, ui_language
      * @return mixed
      */
-    public function registerUser(array $userInfo, $userLanguage){
+    public function registerUser(array $userInfo, $userLanguage)
+    {
         $user = \User::create($userInfo);
         //make the first user an admin
         if (\User::all()->count() <= 1) {

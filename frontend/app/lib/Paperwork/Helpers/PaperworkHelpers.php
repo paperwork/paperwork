@@ -116,7 +116,8 @@ class PaperworkHelpers {
 		return $string;
 	}
     
-    public function isLdap(){
+    public function isLdap()
+    {
         return strpos(\Config::get('auth.driver'),'ldap') !== false;
     }
 }

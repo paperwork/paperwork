@@ -170,8 +170,8 @@ In addition to contributing, make sure to shoot us an e-mail at [paperwork-dev@g
 
 ## Enabling LDAP
  Follow these steps:
- 1. uncomment extension=php_ldap.dll in your php.ini
- 2. edit app/config/ldap.php as appropriate for your environment
+ 1. Enable the PHP LDAP module
+ 2. Edit app/config/ldap.php as appropriate for your environment
  3. change 'driver' => 'eloquent' in app/config/auth.php to 'driver' => 'eloquentldap'
  
  You can enable/disable automatic registration in app/config/ldap.php. You can also set the ui language you would like to use

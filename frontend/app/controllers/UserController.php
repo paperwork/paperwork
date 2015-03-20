@@ -8,7 +8,8 @@ use \Paperwork\UserRegistrator;
  * @todo provide documentation for every action.
  *       Clean up the commented legacy code. We use git for history.
  */
-class UserController extends BaseController{
+class UserController extends BaseController
+{
 
     private $userRegistrator;
     private $isLdap;

@@ -2,7 +2,8 @@
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Auth\Guard;
 use \Exception;
-class EloquentLdapConnectorServiceProvider extends ServiceProvider {
+class EloquentLdapConnectorServiceProvider extends ServiceProvider
+{
 
     public function boot(){
         $this->app['auth']->extend('eloquentldap', function($app) {
