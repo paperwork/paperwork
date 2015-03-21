@@ -1,14 +1,17 @@
-<?php namespace Paperwork;
+<?php
+namespace Paperwork;
 
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Input;
 
 class UserRegistrator
 {
-    
+
     /**
      * This function will create a new user object and return the newly created user object.
+     *
      * @param array $userInfo This should have the properties: username, firstname, lastname, password, ui_language
+     *
      * @return mixed
      */
     public function registerUser(array $userInfo, $userLanguage)
@@ -24,7 +27,10 @@ class UserRegistrator
         $user->lastname  = trim($user->lastname);
 
         $user->save();
-        \Setting::create(['ui_language' => $userLanguage, 'user_id' => $user->id]);
+        \Setting::create([
+          'ui_language' => $userLanguage,
+          'user_id'     => $user->id
+        ]);
 
         /* Add welcome note to user - create notebook, tag and note */
         //$notebookCreate = Notebook::create(array('title' => Lang::get('notebooks.welcome_notebook_title')));
@@ -33,7 +39,9 @@ class UserRegistrator
         $notebookCreate->title = Lang::get('notebooks.welcome_notebook_title');
         $notebookCreate->save();
 
-        $notebookCreate->users()->attach($user->id, ['umask' => \PaperworkHelpers::UMASK_OWNER]);
+        $notebookCreate->users()
+                       ->attach($user->id,
+                         ['umask' => \PaperworkHelpers::UMASK_OWNER]);
 
         //$tagCreate = Tag::create(array('title' => Lang::get('notebooks.welcome_note_tag'), 'visibility' => 0));
         $tagCreate = new \Tag();
@@ -46,9 +54,10 @@ class UserRegistrator
         $noteCreate = new \Note;
 
         $versionCreate = new \Version([
-            'title'           => Lang::get('notebooks.welcome_note_title'),
-            'content'         => Lang::get('notebooks.welcome_note_content'),
-            'content_preview' => mb_substr(strip_tags(Lang::get('notebooks.welcome_note_content')), 0, 255)
+          'title'           => Lang::get('notebooks.welcome_note_title'),
+          'content'         => Lang::get('notebooks.welcome_note_content'),
+          'content_preview' => mb_substr(strip_tags(Lang::get('notebooks.welcome_note_content')),
+            0, 255)
         ]);
 
         $versionCreate->save();
@@ -56,8 +65,12 @@ class UserRegistrator
         $noteCreate->version()->associate($versionCreate);
         $noteCreate->notebook_id = $notebookCreate->id;
         $noteCreate->save();
-        $noteCreate->users()->attach($user->id, ['umask' => \PaperworkHelpers::UMASK_OWNER]);
+
+        $noteCreate->users()
+                   ->attach($user->id,
+                     ['umask' => \PaperworkHelpers::UMASK_OWNER]);
         $noteCreate->tags()->sync([$tagCreate->id]);
+
         return $user;
     }
 }
