@@ -8,13 +8,13 @@ angular.module('paperworkNotes').factory('NotesService',
       NetService.apiPost('/notebooks/' + notebookId + '/notes', data, callback);
     };
 
-    paperworkNotesServiceFactory.updateNote = function(noteId, data, callback) {
-      NetService.apiPut('/notebooks/0/notes/' + noteId, data, callback);
-    };
+     paperworkNotesServiceFactory.updateNote = function(noteId, data, callback) {
+       NetService.apiPut('/notebooks/' + paperworkDbAllId + '/notes/' + noteId, data, callback);
+     };
 
-    paperworkNotesServiceFactory.deleteNote = function(noteId, callback) {
-      NetService.apiDelete('/notebooks/0/notes/' + noteId, callback);
-    };
+     paperworkNotesServiceFactory.deleteNote = function(noteId, callback) {
+       NetService.apiDelete('/notebooks/' + paperworkDbAllId + '/notes/' + noteId, callback);
+     };
 
     paperworkNotesServiceFactory.moveNote = function(notebookId, noteId, toNotebookId, callback) {
       NetService.apiGet('/notebooks/' + notebookId + '/notes/' + noteId + '/move/' + toNotebookId, function(status, data) {
@@ -53,16 +53,16 @@ angular.module('paperworkNotes').factory('NotesService',
       });
     };
 
-    paperworkNotesServiceFactory.getNoteById = function(noteId, callback) {
-      NetService.apiGet('/notebooks/0/notes/' + noteId, function(status, data) {
-        if(status == 200) {
-          $rootScope.note = data.response;
-          if(typeof callback != "undefined") {
-            callback(data.response);
-          }
-        }
-      });
-    };
+     paperworkNotesServiceFactory.getNoteById = function(noteId, callback) {
+       NetService.apiGet('/notebooks/' + paperworkDbAllId + '/notes/' + noteId, function(status, data) {
+         if(status == 200) {
+           $rootScope.note = data.response;
+           if(typeof callback != "undefined") {
+             callback(data.response);
+           }
+         }
+       });
+     };
 
     paperworkNotesServiceFactory.getNotesFromSearch = function(query) {
       NetService.apiGet('/search/' + base64.encode(query), function(status, data) {

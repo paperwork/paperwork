@@ -11,6 +11,8 @@
     [[ HTML::style('css/freqselector.min.css') ]]
 
     [[ HTML::style('css/typeahead.min.css') ]]
+    
+    [[ HTML::style('css/mathquill.css')]]
 
     [[ HTML::style('//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css') ]]
 
@@ -46,7 +48,9 @@
 					</form>
 				</div>
 
-				@include('partials/menu-main')
+				@if (array_key_exists('HTTP_USER_AGENT', $_SERVER) && preg_match('/Paperwork for Mac/', $_SERVER['HTTP_USER_AGENT']) === 0)
+					@include('partials/menu-main')
+				@endif
 
 				@include('partials/search-main')
 
@@ -70,6 +74,7 @@
 	[[ HTML::script('js/angular.min.js') ]]
 
 	[[ HTML::script('js/paperwork.min.js') ]]
+	[[ HTML::script('js/paperwork-native.min.js') ]]
 
 	[[ HTML::script('js/bootstrap.min.js') ]]
 	[[ HTML::script('js/tagsinput.min.js') ]]

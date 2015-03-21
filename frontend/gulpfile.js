@@ -24,6 +24,9 @@ var paths = {
 	paperwork: [
 		'app/js/paperwork/**/*.js'
 	],
+	paperworknative: [
+		'app/js/paperwork-native.js'
+	],
 	angular: [
 		'app/js/angular.js',
 		'app/js/angular-resource.js',
@@ -47,6 +50,7 @@ var paths = {
 	],
 	libraries: [
 		'app/js/freqselector.js',
+		'app/js/mathquill.js',
 		'app/js/retina.js'
 	],
 	ie9compat: [
@@ -131,6 +135,15 @@ gulp.task('compileJsPaperwork', function() {
 		.pipe(livereload());
 });
 
+gulp.task('compileJsPaperworkNative', function() {
+	gulp
+		.src(paths.paperworknative)
+		.pipe(concat('paperwork-native.min.js'))
+		.pipe(annotate())
+		.pipe(gulp.dest(paths.output.js))
+		.pipe(livereload());
+});
+
 gulp.task('compileJsAngular', function() {
 	gulp
 		.src(paths.angular)
@@ -195,7 +208,7 @@ gulp.task('minifyJs', function() {
 });
 
 gulp.task('less', ['compileLessBootstrapTheme', 'compileLessPaperworkThemeV1', 'compileLessFreqselector', 'compileLessTypeahead']);
-gulp.task('js', ['compileJsBootstrap', 'compileJsPaperwork', 'compileJsAngular', 'compileJsJquery', 'compileJsTagsinput', 'compileJsLibraries', 'compileJsLtIe9Compat', 'compileJsLtIe11Compat']);
+gulp.task('js', ['compileJsBootstrap', 'compileJsPaperwork', 'compileJsPaperworkNative', 'compileJsAngular', 'compileJsJquery', 'compileJsTagsinput', 'compileJsLibraries', 'compileJsLtIe9Compat', 'compileJsLtIe11Compat']);
 
 gulp.task('default', ['less', 'lint', 'js']);
 gulp.task('prod', ['default', 'minifyJs']);

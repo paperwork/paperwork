@@ -1,6 +1,6 @@
 <?php
 
-namespace Paperwork;
+namespace Paperwork\Helpers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -10,7 +10,7 @@ class PaperworkHelpersServiceProvider extends ServiceProvider {
     {
         $this->app->bind('paperworkhelpers', function()
         {
-            return new PaperworkHelpers;
+            return new \Paperwork\Helpers\PaperworkHelpers();
         });
     }
 

@@ -50,34 +50,66 @@ class ApiNotesController extends BaseController {
 
 	public function index($notebookId)
 	{
-		$notes = null;
+		// $notes = null;
 
-		$notes = DB::table('notes')
-			->join('note_user', function($join) {
-				$join->on('notes.id', '=', 'note_user.note_id')
-					->where('note_user.user_id', '=', Auth::user()->id);
-			})
-			->join('notebooks', function($join) {
-				$join->on('notes.notebook_id', '=', 'notebooks.id');
-			})
-			->join('versions', function($join) {
-				$join->on('notes.version_id', '=', 'versions.id');
-			})
-			->select('notes.id', 'notes.notebook_id', 'notebooks.title as notebook_title', 'versions.title', 'versions.content_preview', 'versions.content', 'notes.created_at', 'notes.updated_at', 'note_user.umask')
-			->where('notes.notebook_id', ($notebookId>0 ? '=' : '>'), ($notebookId>0 ? $notebookId : '0'))
-			->whereNull('notes.deleted_at')
-			->whereNull('notebooks.deleted_at')
-			->get();
+		// // $notes = DB::table('notes')
+		// // 	->join('note_user', function($join) {
+		// // 		$join->on('notes.id', '=', 'note_user.note_id')
+		// // 			->where('note_user.user_id', '=', Auth::user()->id);
+		// // 	})
+		// // 	->join('notebooks', function($join) {
+		// // 		$join->on('notes.notebook_id', '=', 'notebooks.id');
+		// // 	})
+		// // 	->join('versions', function($join) {
+		// // 		$join->on('notes.version_id', '=', 'versions.id');
+		// // 	})
+		// // 	->select('notes.uuid AS id', 'notebooks.uuid AS notebook_id', 'notebooks.title as notebook_title', 'versions.title', 'versions.content_preview', 'versions.content', 'notes.created_at', 'notes.updated_at', 'note_user.umask')
+		// // 	->whereNull('notes.deleted_at')
+		// // 	->whereNull('notebooks.deleted_at');
 
-		if(is_null($notes)){
-			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
-		} else {
-			foreach($notes as $note) {
-				$note->tags = $this->getNoteTags($note->id);
-				$note->versions = $this->getNoteVersionsBrief($note->id);
-			}
-			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notes);
-		}
+		// $notebook = Notebook::where('uuid', '=', $notebookId)->get();
+		// if(is_null($notebook)) {
+		// 	return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+		// }
+
+		// print_r($notebook);
+		// exit(–1);
+
+		// $notes = Note::with(
+		// 	array(
+		// 	'users' => function($query) {
+		// 		$query->select('users.uuid AS id');
+		// 		$query->where('note_user.user_id', '=', Auth::user()->id);
+		// 	},
+		// 	// 'notebook' => function($query) use(&$notebookId) {
+		// 	// 	$query->select('notebooks.uuid AS notebook_id', 'notebooks.title as notebook_title');
+		// 	// 	if($notebookId != PaperworkHelpers::NOTEBOOK_ALL_ID) {
+		// 	// 		$query->where('notebooks.uuid', '=', $notebookId);
+		// 	// 	}
+		// 	// 	$query->whereNull('notebooks.deleted_at');
+		// 	// },
+		// 	'version' => function($query) {
+		// 		$query->select('versions.title', 'versions.content_preview', 'versions.content');
+		// 	},
+		// 	'tags' => function($query) {
+
+		// 	}
+		// 	)
+		// )->select('notes.uuid AS id', 'notes.created_at', 'notes.updated_at')
+		// ->where('notes.notebook_id', '=', $notebook->id)
+		// ->whereNull('deleted_at')->get();
+
+		// if(is_null($notes)){
+		// 	return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+		// } else {
+		// 	// foreach($notes as $note) {
+		// 	// 	$note->tags = $this->getNoteTags($note->id);
+		// 	// 	$note->versions = $this->getNoteVersionsBrief($note->id);
+		// 	// }
+		// 	return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notes);
+		// }
+		$notes = PaperworkDb::note()->get(array('notebookid' => $notebookId))->toArray();
+		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notes);
 	}
 
 	public function search($queryBase64Encoded)
@@ -160,38 +192,66 @@ class ApiNotesController extends BaseController {
 
 	public function show($notebookId, $id = null)
 	{
-		if (is_null($id ))
-		{
-			return index($notebookId);
-		}
-		else
-		{
-			$note = null;
+		// if (is_null($id ))
+		// {
+		// 	return index($notebookId);
+		// }
+		// else
+		// {
+		// 	$note = null;
 
-			$note = DB::table('notes')
-				->join('note_user', function($join) {
-					$join->on('notes.id', '=', 'note_user.note_id')
-						->where('note_user.user_id', '=', Auth::user()->id);
-				})
-				->join('notebooks', function($join) {
-					$join->on('notes.notebook_id', '=', 'notebooks.id');
-				})
-				->join('versions', function($join) {
-					$join->on('notes.version_id', '=', 'versions.id');
-				})
-				->select('notes.id', 'notes.notebook_id', 'notebooks.title as notebook_title', 'versions.title', 'versions.content_preview', 'versions.content', 'notes.created_at', 'notes.updated_at', 'note_user.umask')
-				->where('notes.notebook_id', ($notebookId>0 ? '=' : '>'), ($notebookId>0 ? $notebookId : '0'))
-				->where('notes.id', '=', $id)
-				->whereNull('notes.deleted_at')
-				->first();
-			if(is_null($note)){
-				return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
-			} else {
-				$note->tags = $this->getNoteTags($id);
-				$note->versions = $this->getNoteVersionsBrief($id);
-				return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $note);
-			}
+		// 	// $note = DB::table('notes')
+		// 	// 	->join('note_user', function($join) {
+		// 	// 		$join->on('notes.id', '=', 'note_user.note_id')
+		// 	// 			->where('note_user.user_id', '=', Auth::user()->id);
+		// 	// 	})
+		// 	// 	->join('notebooks', function($join) {
+		// 	// 		$join->on('notes.notebook_id', '=', 'notebooks.id');
+		// 	// 	})
+		// 	// 	->join('versions', function($join) {
+		// 	// 		$join->on('notes.version_id', '=', 'versions.id');
+		// 	// 	})
+		// 	// 	->select('notes.id', 'notes.notebook_id', 'notebooks.title as notebook_title', 'versions.title', 'versions.content_preview', 'versions.content', 'notes.created_at', 'notes.updated_at', 'note_user.umask')
+		// 	// 	->where('notes.notebook_id', ($notebookId>0 ? '=' : '>'), ($notebookId>0 ? $notebookId : '0'))
+		// 	// 	->where('notes.id', '=', $id)
+		// 	// 	->whereNull('notes.deleted_at')
+		// 	// 	->first();
+
+		// 	$note = Note::with(
+		// 		array(
+		// 		'users' => function($query) {
+		// 			$query->where('note_user.user_id', '=', Auth::user()->id);
+		// 		},
+		// 		'notebook' => function($query) use(&$notebookId) {
+		// 			$query->where('uuid', '=', $notebookId);
+		// 			$query->whereNull('notebooks.deleted_at');
+		// 		},
+		// 		'version' => function($query) {
+
+		// 		},
+		// 		'tags' => function($query) {
+
+		// 		}
+		// 		)
+		// 	)->where('notes.uuid', '=', $id)->whereNull('deleted_at')->get();
+
+		// 	if(is_null($note)){
+		// 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+		// 	} else {
+		// 		// $note->tags = $this->getNoteTags($id);
+		// 		// $note->versions = $this->getNoteVersionsBrief($id);
+		// 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $note);
+		// 	}
+		// }
+
+		$notes = PaperworkDb::note()->get(array('id' => explode(PaperworkHelpers::MULTIPLE_REST_RESOURCE_DELIMITER, $id)));
+		// print_r($notes[0]->version()->title);
+		if(empty($notes)) {
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
 		}
+
+		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notes->first());
+
 	}
 
 
@@ -201,9 +261,7 @@ class ApiNotesController extends BaseController {
 
 		$note = new Note();
 
-		$version = new Version(array('title' => $newNote->get("title"), 'content' => $newNote->get("content"), 'content_preview' => $newNote->get("content_preview")));
-		$version->save();
-		$note->version()->associate($version);
+		
 
 		$notebook = DB::table('notebooks')
 			->join('notebook_user', function($join) {
@@ -219,7 +277,11 @@ class ApiNotesController extends BaseController {
 			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
 		}
 
+        $version = new Version(array('title' => $newNote->get("title"), 'content' => $newNote->get("content"), 'content_preview' => $newNote->get("content_preview")));
+        $version->save();
+        $note->version()->associate($version);
 		$note->notebook_id = $notebookId;
+		$version->save();
 
 		$note->save();
 
@@ -261,7 +323,8 @@ class ApiNotesController extends BaseController {
 
 			// TODO: This is a temporary workaround for the content_preview. We need to check, whether there is content or at least one attachment.
 			// If there's no content, parse the attachment and set the result as content_preview. This should somehow be done within the DocumentParser, I guess.
-			$version = new Version(array('title' => $updateNote->get("title"), 'content' => $updateNote->get("content"), 'content_preview' => strip_tags($updateNote->get("content"))));
+			$version = new Version(array('title' => $updateNote->get("title"), 'content' => $updateNote->get("content"),
+                'content_preview' => substr(strip_tags($updateNote->get("content")),0,255)));
 			$version->save();
 
 

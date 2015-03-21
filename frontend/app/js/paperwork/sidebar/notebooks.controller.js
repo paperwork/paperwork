@@ -1,8 +1,8 @@
 angular.module('paperworkNotes').controller('SidebarNotebooksController',
-  function($scope, $rootScope, $location, $routeParams, $filter, $q, NotebooksService, NotesService, ngDraggable) {
-    $rootScope.notebookSelectedId = 0;
-    $rootScope.tagsSelectedId = -1;
-    $rootScope.dateSelected = -1;
+   function($scope, $rootScope, $location, $routeParams, $filter, $q, NotebooksService, NotesService, ngDraggable) {
+     $rootScope.notebookSelectedId = paperworkDbAllId;
+     $rootScope.tagsSelectedId = -1;
+     $rootScope.dateSelected = -1;
 
     $scope.isVisible = function() {
       return !$rootScope.expandedNoteLayout;
@@ -32,25 +32,27 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
           $treeHeaderNotebooks.click();
         }
 
-        $rootScope.notebookSelectedId = parseInt(index);
-        $rootScope.dateSelected = -1;
-        $rootScope.tagsSelectedId = -1;
-        $rootScope.search = "";
-        $location.path("/n/" + parseInt(notebookId));
-      }
-    };
+         $rootScope.notebookSelectedId = parseInt(index);
+         $rootScope.dateSelected = -1;
+         $rootScope.tagsSelectedId = -1;
+         $rootScope.search = "";
+         $location.path("/n/" + (notebookId));
+       }
+     };
 
     $scope.openFilter = function() {
-      var s = "", i = 0;
+      var s = "";
       if($rootScope.notebookSelectedId != 0) {
-        s += "notebookid:" + parseInt($rootScope.notebookSelectedId) + " ";
+        s += "notebookid:" + parseInt($rootScope.notebookSelectedId);
       }
 
       if($rootScope.tagsSelectedId != -1) {
-        s += "tagid:" + parseInt($rootScope.tagsSelectedId) + " ";
+        if (s.length > 0) s += " ";
+        s += "tagid:" + parseInt($rootScope.tagsSelectedId);
       }
 
       if($rootScope.dateSelected != -1) {
+        if (s.length > 0) s += " ";
         s += "date:" + $filter('date')($rootScope.dateSelected, 'yyyy-MM-dd');
       }
 
@@ -68,6 +70,9 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
       } else {
         $rootScope.tagsSelectedId = parseInt(tagId);
       }
+
+      $rootScope.notebookSelectedId = 0;
+      $rootScope.dateSelected = -1;
 
       $scope.openFilter();
     };
@@ -171,7 +176,7 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
             case 200:
               NotebooksService.getNotebookShortcuts(null);
               NotebooksService.getNotebooks();
-              $location.path("/n/0");
+              $location.path("/n/0" + paperworkDbAllId);
               break;
             case 400:
               // TODO: Show some kind of error

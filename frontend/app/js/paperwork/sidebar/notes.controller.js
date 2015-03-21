@@ -81,11 +81,11 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
       //   $rootScope.templateNoteEdit = {};
       // }
 
-      $rootScope.templateNoteEdit.content = CKEDITOR.instances.content.getData();
+      $rootScope.templateNoteEdit.version.content = CKEDITOR.instances.content.getData();
 
       var data = {
-        'title':   $rootScope.templateNoteEdit.title,
-        'content': $rootScope.templateNoteEdit.content,
+        'title':   $rootScope.templateNoteEdit.version.title,
+        'content': $rootScope.templateNoteEdit.version.content,
         'tags':    $('input#tags').tagsinput('items')
       };
 
@@ -225,7 +225,7 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
           }
           NotesService.moveNote(notebookId, noteId, toNotebookId, function(_notebookId, _noteId, _toNotebookId) {
             $('#modalNotebookSelect').modal('hide');
-            $location.path("/n/" + parseInt(_toNotebookId));
+            $location.path("/n/" + (_toNotebookId));
           });
           return true;
         }

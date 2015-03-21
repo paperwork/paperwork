@@ -50,9 +50,13 @@ angular.module('paperworkNotes').controller('ConstructorController',
       $rootScope.$broadcast('paperworkModalHidden', e);
     });
 
-    $modal.on('show.bs.modal', function(e) {
-      $rootScope.$broadcast('paperworkModalVisible', e);
-    });
+     $rootScope.menuItemNotebookClass = function() {
+       if($rootScope.getNotebookSelectedId() != paperworkDbAllId) {
+         return '';
+       } else {
+         return 'disabled';
+       }
+     };
 
     $rootScope.menuItemNotebookClass = function() {
       if($rootScope.getNotebookSelectedId() != 0) {

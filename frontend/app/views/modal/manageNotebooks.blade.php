@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success pull-left" ng-click="addNotebook();">[[Lang::get('notebooks.title_new_notebook')]]</button>
+                <button type="button" class="btn btn-primary pull-left" ng-click="addNotebook();">[[Lang::get('notebooks.title_new_notebook')]]</button>
                 <button type="button" class="btn btn-default" data-dismiss="modal">[[Lang::get('keywords.close')]]</button>
             </div>
         </div>

@@ -1,6 +1,6 @@
 <?php
 
-class Version extends Eloquent {
+class Version extends PaperworkModel {
 	use SoftDeletingTrait;
 	protected $softDelete = true;
 	protected $table = 'versions';

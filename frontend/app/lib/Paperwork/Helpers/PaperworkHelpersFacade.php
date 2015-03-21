@@ -1,8 +1,10 @@
 <?php
 
+namespace Paperwork\Helpers;
+
 use Illuminate\Support\Facades\Facade;
 
-class PaperworkHelpers extends Facade {
+class PaperworkHelpersFacade extends Facade {
 	const STATUS_SUCCESS = 200;
 	const STATUS_ERROR = 400;
 	const STATUS_NOTFOUND = 404;
