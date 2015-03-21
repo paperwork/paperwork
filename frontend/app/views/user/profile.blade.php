@@ -34,27 +34,27 @@
 		  [[ Form::text("lastname", $user->lastname, array('id' => 'lastname', 'class' => 'form-control', 'placeholder' => Lang::get('keywords.last_name'), 'required')) ]]
 		</div>
 	</div>
-
-	<div class="form-group">
-		<div class="col-sm-offset-3 col-sm-9">
-		  <div>
-		  	[[ Lang::get('users.profile_change_password_info') ]]
-		  </div>
-		</div>
-	</div>
-
-	<div class="form-group [[ $errors->first('password') ? 'has-error' : '' ]]">
-		<label for="password" class="col-sm-3 control-label">[[ Lang::get('keywords.password') ]]</label>
-		<div class="col-sm-9">
-		  [[ Form::password("password", array('id' => 'password', 'class' => 'form-control', 'placeholder' => Lang::get('keywords.password'))) ]]
-		</div>
-	</div>
-	<div class="form-group [[ $errors->first('password_confirmation') ? 'has-error' : '' ]]">
-		<label for="password_confirmation" class="col-sm-3 control-label">[[ Lang::get('keywords.confirm') ]]</label>
-		<div class="col-sm-9">
-		  [[ Form::password("password_confirmation", array('id' => 'password_confirmation', 'class' => 'form-control', 'placeholder' => Lang::get('keywords.confirm'))) ]]
-		</div>
-	</div>
+    @if (!PaperworkHelpers::isLdap())
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-9">
+              <div>
+                [[ Lang::get('users.profile_change_password_info') ]]
+              </div>
+            </div>
+        </div>
+        <div class="form-group [[ $errors->first('password') ? 'has-error' : '' ]]">
+            <label for="password" class="col-sm-3 control-label">[[ Lang::get('keywords.password') ]]</label>
+            <div class="col-sm-9">
+              [[ Form::password("password", array('id' => 'password', 'class' => 'form-control', 'placeholder' => Lang::get('keywords.password'))) ]]
+            </div>
+        </div>
+        <div class="form-group [[ $errors->first('password_confirmation') ? 'has-error' : '' ]]">
+            <label for="password_confirmation" class="col-sm-3 control-label">[[ Lang::get('keywords.confirm') ]]</label>
+            <div class="col-sm-9">
+              [[ Form::password("password_confirmation", array('id' => 'password_confirmation', 'class' => 'form-control', 'placeholder' => Lang::get('keywords.confirm'))) ]]
+            </div>
+        </div>
+    @endif
 	<div class="form-group">
 		<div class="col-sm-offset-3 col-sm-9">
 			[[ Form::submit(Lang::get('keywords.save'), array('class' => 'btn btn-primary')) ]]
