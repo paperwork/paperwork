@@ -9,8 +9,9 @@
 		"erusev/parsedown": "dev-master",
 		"thiagoalessio/tesseract_ocr": ">= 0.2.0",
 		"simplesoftwareio/simple-qrcode": "1.1.*",
-		"webpatser/laravel-uuid": "1.*",
-		"barryvdh/laravel-ide-helper": "~1.11"
+		"barryvdh/laravel-ide-helper": "~1.11",
+		"adldap/adldap": "4.0.*",
+		"webpatser/laravel-uuid": "1.*"
 	},
 	"autoload": {
 		"classmap": [
