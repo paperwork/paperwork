@@ -11,7 +11,7 @@ class UserRegistrationProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind("UserRegistrator",function(){
+        $this->app->bind("UserRegistrator", function () {
             return new UserRegistrator();
         });
     }
