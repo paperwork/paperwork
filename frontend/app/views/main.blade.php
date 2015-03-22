@@ -85,9 +85,9 @@
     [[-- HTML::script('js/special_note.js') --]]
 [[-- @endif --]]
 		<div id="paperworkViewParent" 
-             class="main {{ isVisible() ? 
-                (sidebarCollapsed ? 'col-xs-12 col-sm-8 col-md-9 col-sm-offset-4 col-md-offset-3' : 'col-xs-12 col-sm-5 col-md-7 col-sm-offset-7 col-md-offset-5' )
-                : 'col-xs-12 col-sm-12 col-md-12' }}"
+             class="main col-xs-12 {{ isVisible() ?
+                (sidebarCollapsed ? 'col-sm-8 col-md-9 col-sm-offset-4 col-md-offset-3' : 'col-sm-5 col-md-7 col-sm-offset-7 col-md-offset-5' )
+                : 'col-sm-12 col-md-12' }}"
              ng-controller="ViewController">
 			<div id="paperworkView" ng-view></div>
 		</div>
