@@ -10,7 +10,7 @@ return array(
 	'delete_notebook' => 'I want to delete this notebook (+ its contents) and I\'m damn sure about that!',
     'welcome_notebook_title' => 'Welcome',
     'welcome_note_tag' => 'welcome',
-    'welcome_note_content' => 
+    'welcome_note_content' =>
         '<p>Hi there, <strong>welcome to Paperwork</strong>, the open source note-taking solution. This '.
         'is your first note and we&#39;d like to explain to you some features we hope you&#39;ll find very'.
         'interesting.</p><h3><strong>Notes</strong></h3><p>Notes are the basic form of writing in Paperwork.'.

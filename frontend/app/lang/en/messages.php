@@ -11,9 +11,9 @@ return array(
 	'onbeforeunload_info' => 'Data will be lost if you leave the page, are you sure?',
 	'user' => array(
 		'settings' => array(
-		    'language_label' => 'Language',
-		    'client_label' => 'Client',
-		    'import_slash_export' => 'Import/Export',
+			'language_label' => 'Language',
+			'client_label' => 'Client',
+			'import_slash_export' => 'Import/Export',
 			'language' => array(
 				'ui_language' => 'User Interface Language',
 				'document_languages' => 'Document Languages',
@@ -28,8 +28,8 @@ return array(
 				'upload_evernotexml' => 'Upload your Evernote XML export here, to import your Evernote notes into Paperwork.'
 			),
 			'export' => array(
-			    'evernotexml' => 'Export as Evernote XML:',
-			    'download_evernotexml' => 'Download an ENEX file compatible with Evernote to move your notes from Paperwork. '
+				'evernotexml' => 'Export as Evernote XML:',
+				'download_evernotexml' => 'Download an ENEX file compatible with Evernote to move your notes from Paperwork. '
 			)
 		)
 	)

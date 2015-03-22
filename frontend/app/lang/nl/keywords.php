@@ -23,6 +23,7 @@ return array(
 	'notebooks' => 'Notitieboeken',
 	'tags' => 'Tags',
 	'note' => 'Notitie',
+	'manage_tags' => 'Tags beheren',
 	'notebook' => 'Notitieboek',
 	'collection' => 'Verzameling',
 	'new_note' => 'Nieuwe notitie',
@@ -38,6 +39,8 @@ return array(
 	'delete_notebook' => 'Verwijder notitieboek',
 	'delete_notebook_question' => 'Verwijder notitieboek?',
 	'delete_notebook_message' => 'Dit zal het geselecteerde notitieboek en al zijn notities verwijderen. Ben je het zeker?',
+	'delete_tag_question' => 'Verwijder deze tag?',
+	'delete_tag_message' => 'Dit zal de geselecteerde tag verwijderen. Ben je het zeker?',
 	'new_collection' => 'Nieuwe verzameling',
 	'edit_collection' => 'Wijzig verzameling',
 	'delete_collection' => 'Verwijder verzameling',
@@ -52,6 +55,7 @@ return array(
 	'close_without_saving_message' => 'Er zijn niet-opgeslagen wijzigingen. Wil je deze notitie sluiten en alle niet-opgeslagen wijzigingen niet toepassen?',
 	'search_dotdotdot' => 'Zoeken…',
 	'reset_password' => 'Wachtwoord herinstellen',
+	'password_reset_request' => 'Stel je wgachtwoord opnieuw in.',
 	'toggle_navigation' => 'Toggle navigation', /*I Don't know a good translation*/
 	'cancel' => 'Annuleren',
 	'create' => 'Aanmaken',
@@ -80,5 +84,6 @@ return array(
 	'experimental' => 'Experimenteel',
 	'import' => 'Importeren',
 	'export' => 'Exporteren'
+	'back' => 'Terug'
 
 );
