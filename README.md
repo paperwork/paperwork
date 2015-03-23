@@ -122,7 +122,7 @@ To run the migrations (once):
 
 ## Upgrading
 
-Upgrading to the latest GIT version of Paperwork is fairly easy. Update your local repository running `git pull`, then `cd` into the `frontend/` directory and run `php artisan migrate`. In most cases this should work. If you're experiencing issues, you might need to clear the database completely and re-run the initial installation.
+Upgrading to the latest GIT version of Paperwork is fairly easy. Update your local repository running `git pull`, then `cd` into the `frontend/` directory, run `composer dump-autoload` to update the autoloader and `php artisan migrate`. In most cases this should work. If you're experiencing issues, you might need to clear the database completely and re-run the initial installation.
 
 ## API documentation
 
