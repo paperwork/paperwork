@@ -24,6 +24,14 @@ angular.module('paperworkNotes').factory('NotebooksService',
       NetService.apiDelete('/tags/' + tagId, callback);
     };
 
+    paperworkNotebooksServiceFactory.getCalendar = function(callback) {
+      NetService.apiGet('/calendar', function(status, data) {
+        if(status == 200) {
+          callback(data.response);
+        }
+      });
+    };
+
     paperworkNotebooksServiceFactory.getNotebooks = function() {
       NetService.apiGet('/notebooks', function(status, data) {
         if(status == 200) {
