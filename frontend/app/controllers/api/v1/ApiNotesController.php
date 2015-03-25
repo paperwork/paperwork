@@ -368,14 +368,17 @@ class ApiNotesController extends BaseController
             $previousVersion->content != $updateNote->get("content")
         ) {
 
+            $pureContent =
+              PaperworkHelpers::purgeHtml($updateNote->get("content"));
+
             // TODO: This is a temporary workaround for the content_preview. We need to check, whether there is content or at least one attachment.
             // If there's no content, parse the attachment and set the result as content_preview. This should somehow be done within the DocumentParser, I guess.
             $version = new Version(array(
               'title'           => $updateNote->get("title"),
-              'content'         => $updateNote->get("content"),
-              'content_preview' => substr(strip_tags($updateNote->get("content")),
-                0, 255)
+              'content'         => $pureContent,
+              'content_preview' => substr(strip_tags($pureContent), 0, 255)
             ));
+
             $version->save();
 
             $previousVersion->next()->associate($version);

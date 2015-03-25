@@ -2,9 +2,67 @@
 
 namespace Paperwork\Helpers;
 
+use Config;
+use DOMDocument;
 use Illuminate\Config\Repository;
 
 class PaperworkHelpers {
+
+	/**
+     * Clears html on note save
+     * @param $html
+     *
+     * @return bool|mixed|string
+     */
+	public static function purgeHtml($html)
+	{
+		if (!trim($html)) {
+			return '';
+		}
+
+		$html = mb_convert_encoding($html, 'UTF-8', mb_detect_encoding($html));
+		$html = mb_convert_encoding($html, 'html-entities', 'utf-8');
+
+		$dom                     = new DOMDocument('1.0', 'UTF-8');
+		$dom->substituteEntities = true;
+
+		// Suppress warnings about malformed html.
+		$previous_value = libxml_use_internal_errors(true);
+
+		$dom->loadHTML($html);
+
+		libxml_clear_errors();
+		libxml_use_internal_errors($previous_value);
+
+		// @formatter:off
+		$tags_to_remove = Config::get('purge.tagList', ['script']);
+		// @formatter:on
+
+		$remove = [];
+
+		foreach ($tags_to_remove as $removal_target) {
+			$sentenced = $dom->getElementsByTagName($removal_target);
+
+			foreach ($sentenced as $item) {
+				$remove[] = $item;
+			}
+		}
+
+		foreach ($remove as $sentenced_item) {
+			$sentenced_item->parentNode->removeChild($sentenced_item);
+		}
+
+		// Convert dom object back to html.
+		$html = '';
+
+		$body_node = $dom->getElementsByTagName('body')->item(0);
+
+		foreach ($body_node->childNodes as $child) {
+			$html .= $dom->saveXML($child);
+		}
+
+		return $html;
+	}
 
 	public function apiResponse($status, $data)	{
 		$return = array();
