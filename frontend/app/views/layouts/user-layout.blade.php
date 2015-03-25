@@ -63,9 +63,34 @@
 
     <div class="footer footer-issue [[ Config::get('paperwork.showIssueReportingLink') ? '' : 'hide' ]]">
       <div class="">
+        <?php
+            $branch = exec("git symbolic-ref --short HEAD");
+            $ch = curl_init();
+        	curl_setopt($ch,CURLOPT_URL,"https://api.github.com/repos/twostairs/paperwork/git/refs/heads/$branch");
+        	curl_setopt($ch,CURLOPT_RETURNTRANSFER,1); 
+        	curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,1);
+        	curl_setopt($ch,CURLOPT_USERAGENT,"Colorado");
+        	$content = curl_exec($ch);
+
+        	$jsonFromApi = array();
+        	$jsonFromApi[] = json_decode($content);
+        	$jsonResult = $jsonFromApi[0];
+        	if(isset($jsonFromApi[0]->object->sha)) {
+        	    $commitSha = str_replace('"', '', $jsonFromApi[0]->object->sha);
+        	}else{
+        	    $commitSha = "";
+        	}
+        	$lastCommitOnInstall = exec("git log | head -n 1 | awk '{ print $2 }'");
+        ?>
+        @if($lastCommitOnInstall === $commitSha)
         <div class="alert alert-warning" role="alert">
           <p>[[Lang::get('messages.found_bug')]]</p>
         </div>
+        @else
+        <div class="alert alert-danger" role="alert">
+            <p>[[Lang::get('messages.new_version_available')]]
+        </div>
+        @endif
       </div>
     </div>
 
