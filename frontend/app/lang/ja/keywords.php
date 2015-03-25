@@ -79,6 +79,7 @@ return array(
 	'not_implemented' => 'この機能はまだ実装されていません。',
 	'experimental' => '実験的',
 	'import' => '読み込み',
-	'export' => '書き出し'
+	'export' => '書き出し',
+	'back' => '戻る'
 
 );
