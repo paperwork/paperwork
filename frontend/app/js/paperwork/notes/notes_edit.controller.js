@@ -1,5 +1,5 @@
 angular.module('paperworkNotes').controller('NotesEditController',
-  function($scope, $rootScope, $location, $routeParams, NotesService, paperworkApi) {
+  function($scope, $rootScope, $location, $routeParams, NotesService, paperworkApi, paperworkDbAllId) {
     window.onCkeditChangeFunction = function() {
       // FIXME jQuery un angular is anti-pattern
       // Let's access our $rootScope from within jQuery (this)
