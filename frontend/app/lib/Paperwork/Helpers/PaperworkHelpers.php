@@ -35,7 +35,7 @@ class PaperworkHelpers {
 		libxml_use_internal_errors($previous_value);
 
 		// @formatter:off
-		$tags_to_remove = Config::get('purge.tagList', ['script']);
+		$tags_to_remove = Config::get('paperwork.purgeTagList', ['script']);
 		// @formatter:on
 
 		$remove = [];
