@@ -7,6 +7,7 @@ return array(
 	'invalid_credentials' => 'Your credentials are invalid.',
 	'note_version_info' => 'You are previewing an older version of this note.',
 	'found_bug' => 'Found a bug? <a href="https://github.com/twostairs/paperwork/issues/new" target="_blank" title="Submit Issue">Submit it on GitHub!</a>',
+	'new_version_available' => 'Found a bug? It seems like you are not running the latest version of Paperwork. Please consider updating before submitting an issue. ',
 	'error_message' => 'Whooops!',
 	'onbeforeunload_info' => 'Data will be lost if you leave the page, are you sure?',
 	'user' => array(
