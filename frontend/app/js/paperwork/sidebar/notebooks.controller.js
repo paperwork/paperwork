@@ -237,8 +237,8 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
         return false;
       }
 
-      var date = $filter('date')(date, "yyyy-MM-dd");
-      return $.inArray(date, $scope.sidebarCalendarEnabledDates) == -1;
+      var shortDate = $filter('date')(date, "yyyy-MM-dd");
+      return $.inArray(shortDate, $scope.sidebarCalendarEnabledDates) == -1;
     };
 
     $scope.sidebarCalendar = function(data) {
