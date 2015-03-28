@@ -61,19 +61,25 @@
 		<div id="sidebarNotes" class="col-sm-4 col-md-3 sidebar hidden-xs animate-panel"
              ng-controller="SidebarNotesController" ng-show="isVisible()" ng-class="sidebarCollapsed ? '' : 'col-sm-offset-3 col-md-offset-2'">
 			<ul id="notes-list" class="nav nav-sidebar notes-list sidebar-no-border" ng-controller="NotesListController">
-				<li class="notes-list-item" ng-cloak ng-repeat="note in notes" ng-click="noteSelect(note.notebook_id, note.id)" ng-dblclick="editNote(note.notebook_id, note.id)" ng-class="{ 'active': (note.notebook_id + '-' + note.id == getNoteSelectedId() || (editMultipleNotes && notesSelectedIds[note.id])) }" ng-drag="true" ng-drag-success="onDragSuccess($data,$event)" ng-drag-data="notebook">
+				<li class="notes-list-item" ng-cloak ng-repeat="note in notes"
+					ng-click="noteSelect(note.notebook_id, note.id)"
+					ng-dblclick="editNote(note.notebook_id, note.id)"
+					ng-class="{ 'active': (note.notebook_id + '-' + note.id == getNoteSelectedId() || (editMultipleNotes && notesSelectedIds[note.id])) }"
+					ng-drag="true"
+					ng-drag-success="onDragSuccess($data,$event)"
+					ng-drag-data="notebook">
 					<div class="notes-list-item-checkbox col-sm-1" ng-show="editMultipleNotes">
 						<input name="notes[]" type="checkbox" value="{{ note.id }}" ng-model="notesSelectedIds[note.id]" ng-click="$event.stopPropagation();" ng-dblclick="$event.stopPropagation();">
 					</div>
 					<a class="{{ editMultipleNotes ? 'col-sm-11' : '' }}" href="#{{getNoteLink(note.notebook_id, note.id)}}">
 						<div class="">
-							<span class="notes-list-title notes-list-title-gradient">{{note.version.title}}</span>
+							<span class="notes-list-title notes-list-title-gradient">{{note.version.title || note.title}}</span>
 							<span class="notes-list-date">
 								<span class="notes-list-date-day">{{note.updated_at | convertdate | date : 'd'}}</span>
 								<span class="notes-list-date-month">{{note.updated_at | convertdate | date : 'MMM'}}</span>
 								<span class="notes-list-date-year">{{note.updated_at | convertdate | date : 'yyyy'}}</span>
 							</span>
-							<span class="notes-list-content notes-list-content-gradient" ng-bind-html="note.version.content_preview"></span>
+							<span class="notes-list-content notes-list-content-gradient" ng-bind-html="note.version.content_preview || note.content_preview"></span>
 						</div>
 					</a>
 					<div class="clear"></div>

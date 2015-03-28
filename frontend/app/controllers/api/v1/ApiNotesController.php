@@ -146,7 +146,7 @@ class ApiNotesController extends BaseController {
 			$searchQuery = PaperworkHelpers::cleanupMatches($searchQuery, $matches);
 		}
 
-		$filters = preg_match_all("/\s*(tagid|note(?:book)?id)\:(\d+)/", $searchQuery, $matches, PREG_SET_ORDER);
+		$filters = preg_match_all("/\s*(tagid|note(?:book)?id)\:([a-f\d]{8}(-[a-f\d]{4}){3}-[a-f\d]{12}?)/", $searchQuery, $matches, PREG_SET_ORDER);
 		if($filters !== false && $filters > 0) {
 			foreach($matches as $match) {
 				switch($match[1]) {
@@ -155,6 +155,7 @@ class ApiNotesController extends BaseController {
 							$join->on('notes.id', '=', 'tag_note.note_id');
 						})
 						->where('tag_note.tag_id', '=', $match[2]);
+
 						break;
 					case "noteid" :
 						$notes = $notes->where('notes.id', '=', $match[2]);
