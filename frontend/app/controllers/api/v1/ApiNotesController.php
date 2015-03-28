@@ -130,17 +130,23 @@ class ApiNotesController extends BaseController {
 				$join->on('notes.version_id', '=', 'versions.id');
 			});
 
-		$dateFilter = preg_match_all("/\s*date\:((?:19|20)\d\d)(?:[-\.\/](0[1-9]|1[012])(?:[-\.\/](0[1-9]|[12][0-9]|3[01]))?)?/", $searchQuery, $matches, PREG_SET_ORDER);
+		$dateFilter = preg_match_all("/\s*date:(?:(\d{4})(?:[-\/.](\d{2}))?(?:[\/.-](\d{2}))?)/", $searchQuery, $matches, PREG_SET_ORDER);
+
 		if($dateFilter !== false && $dateFilter > 0) {
 			// Only use last date
 			$date = end($matches);
 
-			$notes = $notes->where(DB::raw('YEAR(notes.updated_at)'), '=', $date[1]);
-			if(isset($date[2])) {
-				$notes = $notes->where(DB::raw('MONTH(notes.updated_at)'), '=', sprintf("%02s", $date[2]));
-			}
-			if(isset($date[3])) {
-				$notes = $notes->where(DB::raw('DAY(notes.updated_at)'), '=', sprintf("%02s", $date[3]));
+			if ($date !== false) {
+
+				$notes = $notes->where(DB::raw('YEAR(notes.updated_at)'), '=', $date[1]);
+
+				if(isset($date[2])) {
+					$notes = $notes->where(DB::raw('MONTH(notes.updated_at)'), '=', sprintf("%02s", $date[2]));
+				}
+
+				if(isset($date[3])) {
+					$notes = $notes->where(DB::raw('DAY(notes.updated_at)'), '=', sprintf("%02s", $date[3]));
+				}
 			}
 
 			$searchQuery = PaperworkHelpers::cleanupMatches($searchQuery, $matches);
@@ -159,8 +165,13 @@ class ApiNotesController extends BaseController {
 						break;
 					case "noteid" :
 						$notes = $notes->where('notes.id', '=', $match[2]);
+
+						break;
 					case "notebookid" :
-						$notes = $notes->where('notes.notebook_id', '=', $match[2]);
+						if($match[2] != ApiNotebooksController::NOTEBOOK_ALL_ID) {
+							$notes = $notes->where('notes.notebook_id', '=', $match[2]);
+						}
+
 					break;
 				}
 			}
@@ -170,16 +181,26 @@ class ApiNotesController extends BaseController {
 
 		$notes = $notes->whereNull('notes.deleted_at')
 			->whereNull('notebooks.deleted_at')
-			->where(function($query) use( &$searchQuery ) {
+			->where(function($query) use ( &$searchQuery ) {
 				$query->orWhere('versions.title', 'LIKE', '%' . $searchQuery . '%')
 						->orWhere('versions.content', 'LIKE', '%' . $searchQuery . '%')
 						->orWhere('versions.content_preview', 'LIKE', '%' . $searchQuery . '%');
 						// ->orWhere('attachment.content', 'LIKE', '%' . $searchQuery . '%')
 			})
-			->select('notes.id', 'notes.notebook_id', 'notebooks.title as notebook_title', 'versions.title', 'versions.content_preview', 'versions.content', 'notes.created_at', 'notes.updated_at', 'note_user.umask')
-			->distinct()
-			// ->toSql();
+			->select(
+				'notes.id',
+				'notes.notebook_id',
+			  	'notebooks.title as notebook_title',
+			  	'versions.title',
+			  	'versions.content_preview',
+				'versions.content',
+				'notes.created_at',
+				'notes.updated_at',
+				'note_user.umask'
+			)->distinct()
+			 //->toSql();
 			->get();
+
 		if(is_null($notes)){
 			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
 		} else {
