@@ -21,6 +21,8 @@
     <div class="footer [[ Config::get('paperwork.showIssueReportingLink') ? '' : 'hide' ]]">
       <div class="container">
         <?php
+            $output = array();
+            exec("which git", $output);
             $branch = exec("git symbolic-ref --short HEAD");
             $ch = curl_init();
         	curl_setopt($ch,CURLOPT_URL,"https://api.github.com/repos/twostairs/paperwork/git/refs/heads/$branch");
@@ -39,7 +41,11 @@
         	}
         	$lastCommitOnInstall = exec("git log | head -n 1 | awk '{ print $2 }'");
         ?>
-        @if($lastCommitOnInstall === $commitSha)
+        @if(empty($output))
+        <div class="alert alert-warning" role="alert">
+          <p>[[Lang::get('messages.error_version_check')]]</p>
+        </div>
+        @elseif($lastCommitOnInstall === $commitSha)
         <div class="alert alert-warning" role="alert">
           <p>[[Lang::get('messages.found_bug')]]</p>
         </div>

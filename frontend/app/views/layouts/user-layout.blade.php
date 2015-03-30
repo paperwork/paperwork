@@ -66,7 +66,6 @@
         <?php
             $output = array();
             exec("which git", $output);
-            //die(var_dump($output));
             $branch = exec("git symbolic-ref --short HEAD");
             $ch = curl_init();
         	curl_setopt($ch,CURLOPT_URL,"https://api.github.com/repos/twostairs/paperwork/git/refs/heads/$branch");
