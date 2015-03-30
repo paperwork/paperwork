@@ -1,0 +1,3 @@
+RewriteEngine on
+RewriteCond %{REQUEST_URI} !paperwork/frontend/public/
+RewriteRule (.*) /paperwork/frontend/public/$1 [L]
