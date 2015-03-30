@@ -43,12 +43,12 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
     $scope.openFilter = function() {
       var s = "";
       if($rootScope.notebookSelectedId != 0) {
-        s += "notebookid:" + parseInt($rootScope.notebookSelectedId);
+        s += "notebookid:" + $rootScope.notebookSelectedId;
       }
 
       if($rootScope.tagsSelectedId != -1) {
         if (s.length > 0) s += " ";
-        s += "tagid:" + parseInt($rootScope.tagsSelectedId);
+        s += "tagid:" + $rootScope.tagsSelectedId;
       }
 
       if($rootScope.dateSelected != -1) {
@@ -60,15 +60,15 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
       if(s.length) {
         $location.path("/s/" + $rootScope.search);
       } else {
-        $location.path("/n/0");
+        $location.path("/n/" + paperworkDbAllId);
       }
     };
 
     $rootScope.openTag = function(tagId) {
-      if($rootScope.tagsSelectedId === parseInt(tagId)) {
+      if($rootScope.tagsSelectedId === tagId) {
         $rootScope.tagsSelectedId = -1;
       } else {
-        $rootScope.tagsSelectedId = parseInt(tagId);
+        $rootScope.tagsSelectedId = tagId;
       }
 
       $rootScope.notebookSelectedId = 0;
@@ -237,8 +237,8 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
         return false;
       }
 
-      var date = $filter('date')(date, "yyyy-MM-dd");
-      return $.inArray(date, $scope.sidebarCalendarEnabledDates) == -1;
+      var shortDate = $filter('date')(date, "yyyy-MM-dd");
+      return $.inArray(shortDate, $scope.sidebarCalendarEnabledDates) == -1;
     };
 
     $scope.sidebarCalendar = function(data) {
