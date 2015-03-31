@@ -1,5 +1,5 @@
 angular.module('paperworkNotes').controller('ConstructorController',
-  function($scope, $rootScope, $location, $routeParams, NetService) {
+  function($scope, $rootScope, $location, $routeParams, NetService, paperworkDbAllId) {
     if($rootScope.initDone) {
       return;
     }

@@ -1,5 +1,5 @@
 angular.module('paperworkNotes').factory('NotesService',
-  function($rootScope, $http, base64, NetService) {
+  function($rootScope, $http, base64, NetService, paperworkDbAllId) {
     var paperworkNotesServiceFactory = {};
 
     // paperworkNotesServiceFactory.selectedNoteIndex = 0;

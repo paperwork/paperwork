@@ -1,5 +1,5 @@
 angular.module('paperworkNotes').controller('SidebarNotebooksController',
-   function($scope, $rootScope, $location, $routeParams, $filter, $q, NotebooksService, NotesService, ngDraggable) {
+   function($scope, $rootScope, $location, $routeParams, $filter, $q, NotebooksService, NotesService, paperworkDbAllId) {
      $rootScope.notebookSelectedId = paperworkDbAllId;
      $rootScope.tagsSelectedId = -1;
      $rootScope.dateSelected = -1;
