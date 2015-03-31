@@ -47,21 +47,22 @@ After you have finished the installation of npm and composer run:
 
 At the point, you now have php dependencies installed.
 It is now time to install tools to build the frontend files. We are using [gulp](http://gulpjs.com)
-to build our frontend dependencies.
+to build our frontend dependencies and [bower](http://bower.io) to manage third-party frontend libraries.
 
-First you need to install gulp cli globally:
+First you need to install gulp cli and bower package manager globally:
 
-    sudo npm install -g gulp
+    sudo npm install -g gulp bower
 
-And then npm dependencies inside project
+And then javascript dependencies inside project(installs both build and frontend dependencies)
 
     npm install
+    bower install
 
 Then you just run the default task
 
     gulp
 
-After these steps, you have all components installed and styles and js build,
+After these steps, you have all components installed and styles and js built,
 it is time to configure your database.
 
 Database settings are stored in frontend/app/config/database.php
