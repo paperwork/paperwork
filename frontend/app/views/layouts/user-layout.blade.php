@@ -62,11 +62,7 @@
 	@yield("content")
 
     <div class="footer footer-issue [[ Config::get('paperwork.showIssueReportingLink') ? '' : 'hide' ]]">
-      <div class="">
-        <div class="alert alert-warning" role="alert">
-          <p>[[Lang::get('messages.found_bug')]]</p>
-        </div>
-      </div>
+        @include('partials/error-reporting-footer')
     </div>
 
 	[[ HTML::script('js/jquery.min.js') ]]

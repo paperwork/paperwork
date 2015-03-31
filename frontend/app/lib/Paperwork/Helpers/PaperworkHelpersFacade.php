@@ -18,5 +18,3 @@ class PaperworkHelpersFacade extends Facade {
     protected static function getFacadeAccessor() { return 'paperworkhelpers'; }
 
 }
-
-?>

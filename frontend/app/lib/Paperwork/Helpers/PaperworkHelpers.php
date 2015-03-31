@@ -5,6 +5,7 @@ namespace Paperwork\Helpers;
 use Config;
 use DOMDocument;
 use Illuminate\Config\Repository;
+use Carbon\Carbon;
 
 class PaperworkHelpers {
 
@@ -178,6 +179,63 @@ class PaperworkHelpers {
     {
         return strpos(\Config::get('auth.driver'),'ldap') !== false;
     }
-}
 
-?>
+    /**
+     * Get last commit hash and latest github hash.
+     *
+     * @return mixed
+     */
+    public function getHashes(){
+        if (!\Cache::get('paperwork.commitInfo', [null, false])) {
+            $resolver = strtolower(substr(PHP_OS, 0, 3)) == 'win' ? 'where.exe' : 'command -v';
+
+            exec("$resolver git", $output);
+
+            if (!empty($output)) {
+                $branch = exec("git symbolic-ref --short HEAD");
+
+                $ch = curl_init("https://api.github.com/repos/twostairs/paperwork/git/refs/heads/$branch");
+
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 1);
+                curl_setopt($ch, CURLOPT_USERAGENT, "Colorado");
+
+                $content = curl_exec($ch);
+
+                $jsonFromApi   = array();
+                $jsonFromApi[] = json_decode($content);
+                $jsonResult    = $jsonFromApi[0];
+
+                if (isset($jsonResult->object->sha)) {
+                    $upstreamHeadSha1 = str_replace('"', '', $jsonResult->object->sha);
+                } else {
+                    $upstreamHeadSha1 = "";
+                }
+
+                // Retrieve last commit on install.
+                preg_match('/^.*\n/', shell_exec('git log'), $matches);
+
+                $localLatestSha1 = '';
+
+                if (!empty($matches[0]) && stripos($matches[0], 'commit') !== false) {
+                    $matchSeparated = explode(' ', $matches[0]);
+
+                    $localLatestSha1 = trim(end($matchSeparated));
+                }
+
+                // Check for update daily(UTC).
+                $now = Carbon::now();
+
+                $tomorrow = Carbon::parse('tomorrow');
+
+                \Cache::put(
+                    'paperwork.commitInfo',
+                    [$localLatestSha1, $upstreamHeadSha1],
+                    $now->diffInMinutes($tomorrow));
+            }
+
+        }
+
+        return \Cache::get('paperwork.commitInfo', [null, false]);
+    }
+}

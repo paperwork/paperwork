@@ -129,7 +129,7 @@ return array(
 
 		'Jenssegers\Agent\AgentServiceProvider',
 		'SimpleSoftwareIO\QrCode\QrCodeServiceProvider',
-		'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
+        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
 	),
 
 	/*

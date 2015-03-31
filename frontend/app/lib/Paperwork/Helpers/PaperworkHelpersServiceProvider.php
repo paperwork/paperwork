@@ -15,5 +15,3 @@ class PaperworkHelpersServiceProvider extends ServiceProvider {
     }
 
 }
-
-?>

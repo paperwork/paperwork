@@ -19,11 +19,7 @@
     </div> <!-- /container -->
 
     <div class="footer [[ Config::get('paperwork.showIssueReportingLink') ? '' : 'hide' ]]">
-      <div class="container">
-        <div class="alert alert-warning" role="alert">
-          <p>[[Lang::get('messages.found_bug')]]</p>
-        </div>
-      </div>
+      @include('partials/error-reporting-footer')
     </div>
 
   [[ HTML::script('js/jquery.min.js') ]]
