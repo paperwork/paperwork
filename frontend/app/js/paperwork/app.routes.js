@@ -1,4 +1,4 @@
-angular.module('paperworkNotes').config(function($routeProvider) {
+angular.module('paperworkNotes').config(function($routeProvider, paperworkDbAllId) {
   $routeProvider
   .when('/', {
     redirectTo:'/n/' + paperworkDbAllId

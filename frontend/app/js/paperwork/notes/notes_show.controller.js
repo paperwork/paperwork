@@ -1,5 +1,5 @@
 angular.module('paperworkNotes').controller('NotesShowController',
-   function($scope, $rootScope, $location, $routeParams, NotesService, NetService) {
+   function($scope, $rootScope, $location, $routeParams, NotesService, paperworkDbAllId) {
      if($routeParams.noteId === "undefined") {
        return;
      }

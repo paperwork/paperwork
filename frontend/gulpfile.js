@@ -12,13 +12,7 @@ var jshint_stylish = require('jshint-stylish');
 
 var paths = {
 	bootstrap: [
-		'app/js/bootstrap/transition.js',
-		'app/js/bootstrap/collapse.js',
-		'app/js/bootstrap/dropdown.js',
-		'app/js/bootstrap/modal.js',
-		'app/js/bootstrap/tab.js',
-		'app/js/bootstrap/tooltip.js',
-		'app/js/bootstrap/popover.js',
+		'app/js/bower_components/bootstrap/dist/js/bootstrap.js',
 		'app/js/bootstrap-tree.js'
 	],
 	paperwork: [
@@ -28,37 +22,38 @@ var paths = {
 		'app/js/paperwork-native.js'
 	],
 	angular: [
-		'app/js/angular.js',
-		'app/js/angular-resource.js',
-		'app/js/angular-route.js',
-		'app/js/angular-sanitize.js',
-		'app/js/angular-animate.js',
-		'app/js/angular-file-upload.js',
-		'app/js/angular-utf8-base64.js',
-		'app/js/angular-ui-bootstrap.js',
-		'app/js/ngDraggable.js'
+		'app/js/bower_components/angular/angular.js',
+		'app/js/bower_components/angular-resource/angular-resource.js',
+		'app/js/bower_components/angular-route/angular-route.js',
+		'app/js/bower_components/angular-sanitize/angular-sanitize.js',
+		'app/js/bower_components/angular-animate/angular-animate.js',
+		'app/js/bower_components/angular-file-upload/angular-file-upload.js',
+		'app/js/bower_components/angular-utf8-base64/angular-utf8-base64.js',
+		'app/js/bower_components/angular-ui-bootstrap-bower/ui-bootstrap.js',
+		'app/js/bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js',
+		'app/js/bower_components/ngDraggable/ngDraggable.js'
 	],
 	jQuery: [
-		'app/js/jquery.js',
-		'app/js/jquery.overscroll.js',
-		'app/js/jquery.scrollTo.js'
+		'app/js/bower_components/jquery/dist/jquery.js',
+		'app/js/bower_components/jquery-overscroll-fixed/dist/jquery.overscroll.js',
+		'app/js/bower_components/jquery.scrollTo/jquery.scrollTo.js'
 	],
 	tagsinput: [
-		'app/js/bootstrap-tagsinput.js',
-		'app/js/bootstrap-tagsinput-angular.js',
-		'app/js/typeahead.js'
+		'app/js/bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js',
+		'app/js/bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput-angular.js',
+		'app/js/bower_components/typeahead/dist/typeahead.jquery.js'
 	],
 	libraries: [
 		'app/js/freqselector.js',
 		'app/js/mathquill.js',
-		'app/js/retina.js'
+		'app/js/bower_components/retinajs/dist/retina.js'
 	],
 	ie9compat: [
-		'app/js/html5shiv.js',
-		'app/js/respond.js'
+		'app/js/bower_components/html5shiv/dist/html5shiv.js',
+		'app/js/bower_components/respond/dest/respond.src.js'
 	],
 	ie11compat: [
-		'app/js/ie10-viewport-bug-workaround.js'
+		'app/js/bower_components/bootstrap3-ie10-viewport-bug-workaround/ie10-viewport-bug-workaround.js'
 	],
 	output: {
 		js: 'public/js',
