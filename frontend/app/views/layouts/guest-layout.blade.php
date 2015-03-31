@@ -19,42 +19,7 @@
     </div> <!-- /container -->
 
     <div class="footer [[ Config::get('paperwork.showIssueReportingLink') ? '' : 'hide' ]]">
-      <div class="container">
-        <?php
-            $output = array();
-            exec("which git", $output);
-            $branch = exec("git symbolic-ref --short HEAD");
-            $ch = curl_init();
-        	curl_setopt($ch,CURLOPT_URL,"https://api.github.com/repos/twostairs/paperwork/git/refs/heads/$branch");
-        	curl_setopt($ch,CURLOPT_RETURNTRANSFER,1); 
-        	curl_setopt($ch,CURLOPT_CONNECTTIMEOUT,1);
-        	curl_setopt($ch,CURLOPT_USERAGENT,"Colorado");
-        	$content = curl_exec($ch);
-
-        	$jsonFromApi = array();
-        	$jsonFromApi[] = json_decode($content);
-        	$jsonResult = $jsonFromApi[0];
-        	if(isset($jsonFromApi[0]->object->sha)) {
-        	    $commitSha = str_replace('"', '', $jsonFromApi[0]->object->sha);
-        	}else{
-        	    $commitSha = "";
-        	}
-        	$lastCommitOnInstall = exec("git log | head -n 1 | awk '{ print $2 }'");
-        ?>
-        @if(empty($output))
-        <div class="alert alert-warning" role="alert">
-          <p>[[Lang::get('messages.error_version_check')]]</p>
-        </div>
-        @elseif($lastCommitOnInstall === $commitSha)
-        <div class="alert alert-warning" role="alert">
-          <p>[[Lang::get('messages.found_bug')]]</p>
-        </div>
-        @else
-        <div class="alert alert-danger" role="alert">
-            <p>[[Lang::get('messages.new_version_available')]]
-        </div>
-        @endif
-      </div>
+        @include('partials/error-reporting-footer')
     </div>
 
   [[ HTML::script('js/jquery.min.js') ]]

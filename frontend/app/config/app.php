@@ -128,7 +128,8 @@ return array(
 		'Paperwork\Helpers\PaperworkHelpersServiceProvider',
 
 		'Jenssegers\Agent\AgentServiceProvider',
-		'SimpleSoftwareIO\QrCode\QrCodeServiceProvider'
+		'SimpleSoftwareIO\QrCode\QrCodeServiceProvider',
+        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
 	),
 
 	/*
