@@ -1,4 +1,4 @@
-<div class="container">
+<div class="error-reporting">
     <?php
 
     list($lastCommitOnInstall, $upstreamLatest) = PaperworkHelpers::getHashes();
