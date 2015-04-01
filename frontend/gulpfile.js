@@ -41,7 +41,7 @@ var paths = {
 	tagsinput: [
 		'app/js/bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js',
 		'app/js/bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput-angular.js',
-		'app/js/bower_components/typeahead/dist/typeahead.jquery.js'
+		'app/js/bower_components/typeahead.js/dist/typeahead.bundle.js'
 	],
 	libraries: [
 		'app/js/freqselector.js',
