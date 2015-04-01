@@ -171,5 +171,6 @@ return array(
 	|
 	*/
 	'tagsPublicPrefixCharacter' => '+',
+  	'purgeTagList' => ['script'],
 
 );

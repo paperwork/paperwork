@@ -11,9 +11,18 @@
   }
 }
 
+.paperwork-logo.navbar-brand {
+    margin: 0px 5px 0px 0px !important;
+}
+
 /*
  * Base structure
  */
+
+/* Always display scrollbar for consistency's sake */
+html {
+  overflow-y: scroll;
+}
 
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
@@ -243,7 +252,7 @@ label {
 /*
  * Customize navbars
  */
- 
+
 //Hide empty space on top of notes in small screens
 @media (max-width: 767px) {
   .navbar.navbar-inverse{
@@ -267,7 +276,7 @@ label {
  */
 .navbar-fixed-top {
   border: 0;
-  
+
   .navbar-right{
       margin-right:10px;
   }
@@ -281,10 +290,13 @@ label {
 .sidebar {
   display: none;
 }
+.sidebar-collapse-switch{
+  display: none;
+}
 @media (min-width: 768px) {
   .sidebar {
     position: fixed;
-    top: 60px;
+    top: 67px;
     bottom: 0;
     left: 0;
     z-index: 1000;
@@ -294,6 +306,11 @@ label {
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
     background-color: @white;
     border-right: 1px solid @gray;
+  }
+  .sidebar-collapse-switch{
+    display: block;
+    cursor: pointer;
+    position: fixed;
   }
 }
 
@@ -341,6 +358,10 @@ ul.nav-tabs-margin {
 }
 .main .page-header {
   margin-top: 0;
+}
+.main .page-content {
+  font-size: @font-size-large;
+  line-height: 1.7;
 }
 
 
@@ -535,6 +556,64 @@ ul.nav-tabs-margin {
   }
 }
 
+#sidebarCalendar {
+  table {
+    width: 100%;
+    border-collapse: collapse;
+
+    td {
+      border: 1px solid @gray-light;
+
+      .btn-default:disabled {
+        background: white;
+
+        border: none;
+
+        color: @text-color;
+      }
+
+      .btn-default {
+        font-weight: bold;
+
+        border: none;
+
+        &.active {
+          -webkit-box-shadow: none;
+          box-shadow: none;
+        }
+      }
+
+      .btn-info {
+        background: @brand-primary;
+
+        border-radius: 0;
+      }
+    }
+  }
+
+  thead tr:first-child th {
+    padding-bottom: 7px;
+  }
+
+  .glyphicon {
+    font-size: large;
+
+    &.glyphicon-chevron-right:before {
+      content: "\f054" !important;
+    }
+
+    &.glyphicon-chevron-left:before {
+      content: "\f053" !important;
+    }
+  }
+
+  .btn-sm, .btn-group-sm > .btn {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+}
+
 .sidebar-no-border {
   margin-top: -20px;
 }
@@ -564,7 +643,7 @@ ul.nav-tabs-margin {
       li.tree-notebook {
         cursor: pointer;
 
-        .notebook-title.active {
+        .notebook-title.active, [ng-drop].drag-enter {
           color: @brand-primary;
         }
       }
@@ -708,7 +787,7 @@ body.paperwork-guest {
     max-width: 330px;
     padding: 15px;
     margin: 0 auto;
-    
+
     .form-signin-heading{
         margin-bottom:17.5px;
     }
@@ -735,6 +814,45 @@ body.paperwork-guest {
     }
     .control-label {
       font-size: 16px;
+    }
+  }
+}
+
+/*
+ * Error
+ */
+
+body.paperwork-error {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: @white;
+
+  .error-logo {
+    display: inline-block;
+    vertical-align: middle;
+    
+    .error-logo-img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 220px;
+      height: 220px;
+    }
+    
+  }
+  
+  .error-content {
+      display: inline-block;
+      vertical-align: middle;
+  }
+  
+  @media (max-width: 485px) {
+    .error-logo {
+        display: block;
+    }
+    
+    .error-content {
+        margin-bottom:15px;
     }
   }
 }
@@ -845,3 +963,72 @@ body.paperwork-guest {
 [ng-cloak] {
   display: none !important;
 }
+
+// Modal: Message
+#modalMessageBox {
+  z-index: 10000;
+}
+// End of Modal: Message
+
+// Modal: Manage tags
+.modal-manage-list {
+  .manage-list-content {
+    .row {
+      margin-bottom: 5px;
+
+      .line {
+        display: inline-block;
+        margin-top: 5px;
+      }
+
+      .col-sm-10, .col-sm-2 {
+        height: 28px;
+      }
+
+      .btn-danger {
+        margin-top: 4px;
+      }
+    }
+  }
+  .editable-container {
+    .editableform {
+      .editable-input {
+        input {
+          width: 155px;
+          margin: 0;
+        }
+      }
+      .glyphicon-ok {
+        font-family: FontAwesome;
+
+        &:before {
+          content: "\f00c";
+        }
+      }
+      .glyphicon-remove {
+        font-family: FontAwesome;
+
+        &:before {
+          content: "\f00d";
+        }
+      }
+    }
+  }
+  .tooltip {
+    .tooltip-arrow {
+      border-top-color: #CF4848;
+    }
+    .tooltip-inner {
+      background-color: #CF4848;
+    }
+  }
+
+  .shortcut-chk {
+    margin-top: 5px;
+
+    input {
+      margin-right: 5px;
+    }
+  }
+}
+// End of Modal: Manage tags

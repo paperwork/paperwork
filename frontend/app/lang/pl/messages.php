@@ -11,6 +11,9 @@ return array(
 	'onbeforeunload_info' => 'Dane zostaną utracone, jeśli opuścisz stronę?',
 	'user' => array(
 		'settings' => array(
+		    'language_label' => 'Język',
+		    'client_label' => 'Klient',
+		    'import_slash_export' => 'Importuj/Eksportuj',
 			'language' => array(
 				'ui_language' => 'Język użytkownika',
 				'document_languages' => 'Język dokumentu',

@@ -22,6 +22,8 @@ return array(
 	'shortcuts' => 'Сокращения',
 	'notebooks' => 'Блокноты',
 	'tags' => 'Метки',
+	'manage_tags' => 'Управление тегами',
+        'manage_notebooks' => 'Редактировать блокноты',
 	'note' => 'Запись',
 	'notebook' => 'Блокнот',
 	'collection' => 'Коллекция',
@@ -38,6 +40,8 @@ return array(
 	'delete_notebook' => 'Удалить блокнот',
 	'delete_notebook_question' => 'Удалить блокнот?',
 	'delete_notebook_message' => 'Выбранный блокнот будет удален вместе со всеми записями. Вы уверены?',
+    	'delete_tag_question' => 'Удалить тег?',
+    	'delete_tag_message' => 'Это действие удалит выбранный тег. Вы уверены?',
 	'new_collection' => 'Новая коллекция',
 	'edit_collection' => 'Редактировать коллекцию',
 	'delete_collection' => 'Удалить коллецкию',
@@ -80,6 +84,7 @@ return array(
 	'not_implemented' => 'Эта возможность еще не реализована',
 	'experimental' => 'Экспериментально',
 	'import' => 'Импорт',
-	'export' => 'Экспорт'
+	'export' => 'Экспорт',
+	'back' => 'Назад'
 
 );

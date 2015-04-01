@@ -1,25 +1,24 @@
 angular.module('paperworkNotes').controller('NotesAllController',
-  ['$scope', '$rootScope', '$location', '$routeParams', 'NotesService',
-   function($scope, $rootScope, $location, $routeParams, notesService) {
-     if(typeof $routeParams == "undefined" || $routeParams == {} || typeof $routeParams.notebookId == "undefined") {
-       return;
+  function($scope, $rootScope, $location, $routeParams, NotesService) {
+    if(typeof $routeParams == "undefined" || $routeParams == {} || typeof $routeParams.notebookId == "undefined") {
+      return;
 
        // fixme
        // $rootScope.notebookSelectedId = 0;
      } else {
-       $rootScope.notebookSelectedId = parseInt($routeParams.notebookId);
+       $rootScope.notebookSelectedId = ($routeParams.notebookId);
      }
-     notesService.getNotesInNotebook($rootScope.getNotebookSelectedId(), function() {
+     NotesService.getNotesInNotebook($rootScope.getNotebookSelectedId(), function() {
        // $rootScope.setNoteSelectedId($rootScope.getNotebookSelectedId(), $rootScope.notes[0].id);
        if($rootScope.notes.length > 0) {
          $location.path("/n/" + $scope.notebookSelectedId + "/" + $rootScope.notes[0].id);
        }
      });
 
-     $rootScope.editMultipleNotes = false;
-     $rootScope.navbarMainMenu = true;
-     $rootScope.navbarSearchForm = true;
-     $rootScope.expandedNoteLayout = false;
+    $rootScope.editMultipleNotes = false;
+    $rootScope.navbarMainMenu = true;
+    $rootScope.navbarSearchForm = true;
+    $rootScope.expandedNoteLayout = false;
 
-     $rootScope.note = null;
-   }]);
+    $rootScope.note = null;
+  });

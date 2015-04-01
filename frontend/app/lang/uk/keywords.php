@@ -22,6 +22,8 @@ return array(
 	'shortcuts' => 'Скорочення',
 	'notebooks' => 'Записники',
 	'tags' => 'Теґи',
+	'manage_tags' => 'Керування теґами',
+        'manage_notebooks' => 'Редагувати записники',
 	'note' => 'Нотатка',
 	'notebook' => 'Записник',
 	'collection' => 'Колекція',
@@ -38,6 +40,8 @@ return array(
 	'delete_notebook' => 'Видалити записник',
 	'delete_notebook_question' => 'Видалити записник?',
 	'delete_notebook_message' => 'Ця дія видалить вибрані записники та всі їх нотатки. Ви впевнені?',
+    	'delete_tag_question' => 'Видалити теґ?',
+    	'delete_tag_message' => 'Ця дія видалить вибраний теґ. Ви впевнені?',
 	'new_collection' => 'Нова колекція',
 	'edit_collection' => 'Редагувати колекцію',
 	'delete_collection' => 'Видалити колекцію',
@@ -52,7 +56,7 @@ return array(
 	'close_without_saving_message' => 'У вашій нотатці є незбережені зміни. Ви дійсно бажаєте зачинити нотатку і відкинути всі незбережені зміни?',
 	'search_dotdotdot' => 'Пошук...',
 	'reset_password' => 'Скинути пароль',
-	'password_reset_request' => 'Reset your Paperwork Password',
+	'password_reset_request' => 'Скинути ваш пароль Paperwork',
 	'toggle_navigation' => 'Перемкнути навігацію',
 	'cancel' => 'Відмінити',
 	'create' => 'Створити',
@@ -80,6 +84,7 @@ return array(
 	'not_implemented' => 'Цю можливість ще не реалізовано.',
 	'experimental' => 'Экспериментальне',
 	'import' => 'Імпотрувати',
-	'export' => 'Экспортувати'
+	'export' => 'Экспортувати',
+	'back' => 'Назад'
 
 );

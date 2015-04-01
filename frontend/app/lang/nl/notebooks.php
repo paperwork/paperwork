@@ -10,7 +10,7 @@ return array(
 	'delete_notebook' => 'Ik wil dit notitieboek en zijn bijlagen zeker verwijderen.',
     'welcome_notebook_title' => 'Welkom',
     'welcome_note_tag' => 'welkom',
-    'welcome_note_content' => 
+    'welcome_note_content' =>
         '<p>Hallo, <strong>welkom bij Paperwork</strong>, de open-source oplossing voor notities. '.
         'Dit is je eerste notitie en we willen je een paar features die je zeker leuk zal vinden uitleggen. '.
         '</p><h3><strong>Notities</strong></h3><p>Notities zijn de basisvorm van schrijven bij Paperwork. '.

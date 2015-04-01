@@ -1,6 +1,6 @@
 <?php
 
-class Language extends Eloquent {
+class Language extends PaperworkModel {
 	use SoftDeletingTrait;
 	protected $softDelete = true;
 	protected $table = 'languages';

@@ -29,14 +29,14 @@
 					<div>
 						<div class="page-header">
 							<div class="form-group {{ errors.title ? 'has-error' : '' }}">
-								<input type="text" class="form-control input-lg" id="title" placeholder="[[Lang::get('keywords.note_title')]]" ng-model="templateNoteEdit.title">
+								<input type="text" class="form-control input-lg" id="title" placeholder="[[Lang::get('keywords.note_title')]]" ng-model="templateNoteEdit.version.title">
 							</div>
 							<div class="form-group {{ errors.tags ? 'has-error' : '' }}">
 								<input type="text" class="form-control input-lg" id="tags" placeholder="[[Lang::get('keywords.tags_separated')]]">
 							</div>
 						</div>
 						<div class="page-content">
-							<textarea id="content" class="form-control" rows="16" ng-model="templateNoteEdit.content"></textarea>
+							<textarea id="content" class="form-control" rows="16" ng-model="templateNoteEdit.version.content"></textarea>
 						</div>
 					</div>
 				</form>
