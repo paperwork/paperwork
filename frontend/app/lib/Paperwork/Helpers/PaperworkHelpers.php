@@ -186,7 +186,9 @@ class PaperworkHelpers {
      * @return mixed
      */
     public function getHashes(){
-        if (!\Cache::get('paperwork.commitInfo', [null, false])) {
+        $cachedInfo = !\Cache::get('paperwork.commitInfo', [null, false]);
+
+        if (!$cachedInfo[0] && !$cachedInfo[1]) {
             $resolver = strtolower(substr(PHP_OS, 0, 3)) == 'win' ? 'where.exe' : 'command -v';
 
             exec("$resolver git", $output);
