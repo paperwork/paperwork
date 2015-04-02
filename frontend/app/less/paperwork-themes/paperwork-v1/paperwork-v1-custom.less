@@ -826,7 +826,13 @@ body.paperwork-error {
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: @white;
-
+  
+  .error-wrapper {
+    width: 55em;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
   .error-logo {
     display: inline-block;
     vertical-align: middle;
@@ -846,13 +852,21 @@ body.paperwork-error {
       vertical-align: middle;
   }
   
-  @media (max-width: 485px) {
+  .error-reporting {
+      margin-top: 1em;
+  }
+  
+  @media (max-width: 500px) {
     .error-logo {
         display: block;
     }
     
     .error-content {
-        margin-bottom:15px;
+        margin-bottom: 15px;
+    }
+    
+    .error-wrapper {
+        width: auto;
     }
   }
 }
