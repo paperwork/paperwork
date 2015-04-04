@@ -1046,3 +1046,26 @@ body.paperwork-error {
   }
 }
 // End of Modal: Manage tags
+
+/*
+    Status Feedback classes
+*/
+// Common class for notification
+.request_status_feedback {
+    color: #FFFFFF;
+    padding: 10px 0;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    z-index: 1;
+    
+    // Error notification
+    &.error_status_feedback {
+        background-color: @brand-danger;
+    }
+    
+    // Success notification
+    &.success_status_feedback {
+        background-color: @brand-success;
+    }
+}
