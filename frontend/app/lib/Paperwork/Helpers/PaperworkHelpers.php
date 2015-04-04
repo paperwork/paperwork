@@ -191,9 +191,9 @@ class PaperworkHelpers {
         if (!$cachedInfo[0] && !$cachedInfo[1]) {
             $resolver = strtolower(substr(PHP_OS, 0, 3)) == 'win' ? 'where.exe' : 'command -v';
 
-            exec("$resolver git", $output);
+            exec("$resolver git", $gitOutput);
 
-            if (!empty($output)) {
+            if (!empty($gitOutput) && (function_exists('curl_init') !== false)) {
                 $branch = exec("git symbolic-ref --short HEAD");
 
                 $ch = curl_init("https://api.github.com/repos/twostairs/paperwork/git/refs/heads/$branch");
