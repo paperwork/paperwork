@@ -7,12 +7,12 @@ angular.module('paperworkNotes').controller('WaybackController',
       NetService.apiGet('/notebooks/' + $rootScope.getNotebookSelectedId() + '/notes/' + ($rootScope.getNoteSelectedId(true)).noteId + '/versions/' + itemId,
         function(status, data) {
           if(status == 200) {
-            $rootScope.note.title = data.response.title;
-            $rootScope.note.content = data.response.content;
+            $rootScope.note.version.title = data.response.title;
+            $rootScope.note.version.content = data.response.content;
             if(data.response.next_id === null) {
               itemId = 0;
             }
-            $rootScope.note.version = itemId;
+            $rootScope.note.version_id = itemId;
           }
         });
 
