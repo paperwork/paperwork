@@ -1,10 +1,14 @@
-angular.module('paperworkNotes').factory('StatusNotifications', ['$timeout', function($timeout) {
+angular.module('paperworkNotes').factory('StatusNotifications', ['$timeout', '$rootScope', function($timeout, $rootScope) {
     
     var StatusNotificationService = {};
     
-    StatusNotificationService.sendStatusFeedback = function(type, message) {
+    StatusNotificationService.sendStatusFeedback = function(type, messageKey) {
       
       var timeoutId;
+      
+      // Turn string identification into 'real' string
+      // All strings needed for this purpose are assumed to be in a separate file 
+      var message = $rootScope.i18n.notifications[messageKey];
       
       var notificationDiv = document.getElementById("status_feedback");
       
@@ -33,7 +37,7 @@ angular.module('paperworkNotes').factory('StatusNotifications', ['$timeout', fun
       angular.element(document.getElementsByClassName("sidebar-collapse-switch")[0]).css("margin-top", (notificationDivHeight + 5 + "px"));
       
       // Hide after 5 seconds
-      window.onload = function() {
+      //window.onload = function() {
           timeoutId = $timeout(function() {
               notificationDivWrapped.addClass("hidden");
               
@@ -45,7 +49,7 @@ angular.module('paperworkNotes').factory('StatusNotifications', ['$timeout', fun
               angular.element(document.getElementsByClassName("sidebar-collapse-switch")[0]).css("margin-top", (parseInt(document.getElementsByClassName("sidebar-collapse-switch")[0].style.marginTop, 10) - (notificationDivHeight + 5)));
       
           }, 15000);
-      };
+      //};
       
       // If element is removed from DON, remove timeout 
       notificationDivWrapped.bind('$destroy', function() {
