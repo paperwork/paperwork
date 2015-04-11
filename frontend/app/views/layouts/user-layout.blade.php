@@ -36,13 +36,13 @@
 					<form class="navbar-form" role="form">
 				  		<div class="form-group" ng-controller="SidebarNotebooksController">
 				  			<select class="form-control navbar-search">
-							  <option ng-repeat="notebook in notebooks"
+							  <option ng-repeat="notebook in notebooks" ng-click="openNotebook(notebook.id,notebook.type,notebook.id)"
 									  data-notebookid="{{ notebook.children.length > 0 ? '' : notebook.id }}">{{notebook.title}}</option>
 							</select>
 						</div>
 				  		<div class="form-group" ng-controller="SidebarNotesController">
-				  			<select class="form-control navbar-search">
-							  <option ng-repeat="note in notes">{{note.title}}</option>
+				  			<select class="form-control navbar-search" ng-controller="NotesListController">
+							  <option ng-repeat="note in notes" ng-click="openNote(note.notebook_id,note.id)">{{note.version.title || note.title}}</option>
 							</select>
 						</div>
 					</form>

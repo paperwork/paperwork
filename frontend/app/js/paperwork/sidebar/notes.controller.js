@@ -243,5 +243,8 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
     $scope.onDragSuccess = function(data, event) {
       //u
     };
-
+      $scope.openNote=function(notebookId, index){
+	  $rootscope.setNoteSelectedId(notebookId,index);
+	  $location.path("/n/" + (notebookId)+"/"+(index));
+     };
   });
