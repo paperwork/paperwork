@@ -20,6 +20,9 @@ angular.module('paperworkNotes').factory('StatusNotifications', ['$timeout', '$r
       //Add type class to notification  
       notificationDivWrapped.addClass(type + "_status_feedback");
       
+      // Call show() to make sure div display CSS property is correct
+      notificationDivWrapped.show();
+      
       //Remove hidden class from notification  
       notificationDivWrapped.removeClass("hidden");
       
@@ -39,6 +42,7 @@ angular.module('paperworkNotes').factory('StatusNotifications', ['$timeout', '$r
       // Hide after 5 seconds
       //window.onload = function() {
           timeoutId = $timeout(function() {
+              notificationDivWrapped.slideUp(1500);
               notificationDivWrapped.addClass("hidden");
               
               // Remove top margin from all elements 
@@ -47,7 +51,9 @@ angular.module('paperworkNotes').factory('StatusNotifications', ['$timeout', '$r
               }
               angular.element(document.getElementById("paperworkViewParent")).css("margin-top", (parseInt(document.getElementById("paperworkViewParent").style.marginTop, 10) - notificationDivHeight));
               angular.element(document.getElementsByClassName("sidebar-collapse-switch")[0]).css("margin-top", (parseInt(document.getElementsByClassName("sidebar-collapse-switch")[0].style.marginTop, 10) - (notificationDivHeight + 5)));
-      
+              notificationDivWrapped.css("display", "block"); 
+              console.log(notificationDivWrapped.css("display"));
+              
           }, 15000);
       //};
       
