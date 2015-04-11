@@ -179,9 +179,10 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
               NotebooksService.getNotebookShortcuts(null);
               NotebooksService.getNotebooks();
               $location.path("/n/0" + paperworkDbAllId);
+              StatusNotifications.sendStatusFeedback("success", "notebook_deleted_successfully");
               break;
             case 400:
-              // TODO: Show some kind of error
+              StatusNotifications.sendStatusFeedback("error", "notebook_delete_fail");
               break;
           }
         };
