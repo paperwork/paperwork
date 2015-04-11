@@ -99,7 +99,8 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
             case 200:
               $rootScope.errors = {};
               $rootScope.templateNoteEdit.modified = false;
-              // TODO: Show cool success message
+              // Temporary until related issue is closed
+              StatusNotifications.sendStatusFeedback("success", "note_saved_successfully");
               break;
             case 400:
               $rootScope.errors = data.errors;
@@ -115,6 +116,9 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
                   }
                 ]
               });
+              break;
+            default:
+              StatusNotifications.sendStatusFeedback("error", "note_save_failed");
               break;
           }
         };

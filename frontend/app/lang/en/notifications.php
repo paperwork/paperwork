@@ -12,7 +12,9 @@ return array(
     'note_tag_success' => 'Your note has been tagged successfully. ',
     'note_tag_fail' => 'Something went wrong while tagging your note. Please try again. ',
     'note_created_successfully' => 'A new note has been created. ',
-    'note_create_fail' => 'Something went wrong while creating your new note. Please try again. '
+    'note_create_fail' => 'Something went wrong while creating your new note. Please try again. ',
+    'note_saved_successfully' => 'Your note has been saved successfully. ',
+    'note_save_failed' => 'Something went wrong while saving your note. Please try again. '
     
 );
 
