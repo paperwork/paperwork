@@ -1,5 +1,5 @@
 angular.module('paperworkNotes').factory('NotesService',
-  function($rootScope, $http, base64, NetService, paperworkDbAllId) {
+  function($rootScope, $http, base64, NetService, paperworkDbAllId, StatusNotifications) {
     var paperworkNotesServiceFactory = {};
 
     // paperworkNotesServiceFactory.selectedNoteIndex = 0;
@@ -23,6 +23,9 @@ angular.module('paperworkNotes').factory('NotesService',
           if(typeof callback != "undefined") {
             callback(notebookId, noteId, toNotebookId);
           }
+          StatusNotifications.sendStatusFeedback("success", "notebook_moved_successfully");
+        }else{
+          StatusNotifications.sendStatusFeedback("error", "notebook_move_fail");
         }
       });
     };
