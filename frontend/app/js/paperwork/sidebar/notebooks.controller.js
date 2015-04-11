@@ -1,5 +1,5 @@
 angular.module('paperworkNotes').controller('SidebarNotebooksController',
-   function($scope, $rootScope, $location, $routeParams, $filter, $q, NotebooksService, NotesService, paperworkDbAllId) {
+   function($scope, $rootScope, $location, $routeParams, $filter, $q, NotebooksService, NotesService, paperworkDbAllId, StatusNotifications) {
      $rootScope.notebookSelectedId = paperworkDbAllId;
      $rootScope.tagsSelectedId = -1;
      $rootScope.dateSelected = -1;
@@ -112,12 +112,14 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
               $('#modalNotebook').modal('hide');
               _paperworkNotebooksService.getNotebooks();
               _paperworkNotebooksService.getNotebookShortcuts(null);
+              StatusNotifications.sendStatusFeedback("success", "notebook_created_successfully");
               break;
             case 400:
               if(typeof data.errors.title != "undefined") {
                 // FIXME
                 $('#modalNotebook').find('input[name="title"]').parents('.form-group').addClass('has-warning');
               }
+              //StatusNotifications.sendStatusFeedback("error", "notebook_create_failed");
               break;
           }
         };
