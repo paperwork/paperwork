@@ -1,5 +1,5 @@
 angular.module('paperworkNotes').controller('SidebarNotesController',
-  function($scope, $rootScope, $location, $timeout, $routeParams, NotebooksService, NotesService, ngDraggable) {
+  function($scope, $rootScope, $location, $timeout, $routeParams, NotebooksService, NotesService, ngDraggable, StatusNotifications) {
     $scope.isVisible = function() {
       return !$rootScope.expandedNoteLayout;
     };
@@ -46,9 +46,13 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
             case 200:
               $rootScope.templateNoteEdit = {};
               $location.path("/n/" + _notebookId + "/" + data.response.id + "/edit");
+              StatusNotifications.sendStatusFeedback("success", "note_created_successfully");
               break;
             case 400:
-              // TODO: Show some kind of error
+              StatusNotifications.sendStatusFeedback("error", "note_create_fail");
+              break;
+            default:
+              StatusNotifications.sendStatusFeedback("error", "note_create_fail");
               break;
           }
         };
