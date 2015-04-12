@@ -20,6 +20,9 @@ angular.module('paperworkNotes').factory('StatusNotifications', ['$timeout', '$r
       //Add type class to notification  
       notificationDivWrapped.addClass(type + "_status_feedback");
       
+      // Cancel timeout, if there is one 
+      $timeout.cancel(timeoutId);
+      
       // Call show() to make sure div display CSS property is correct
       notificationDivWrapped.show();
       

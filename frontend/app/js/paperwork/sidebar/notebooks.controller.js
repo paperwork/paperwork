@@ -108,7 +108,6 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
         return function(status, data) {
           var param;
           var action = $rootScope.modalNotebook.action;
-          console.log(action);
           switch(status) {
             case 200:
               // FIXME
