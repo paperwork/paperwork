@@ -106,20 +106,29 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
 
       var callback = (function(_paperworkNotebooksService) {
         return function(status, data) {
+          var param;
+          var action = $rootScope.modalNotebook.action;
+          console.log(action);
           switch(status) {
             case 200:
               // FIXME
               $('#modalNotebook').modal('hide');
               _paperworkNotebooksService.getNotebooks();
               _paperworkNotebooksService.getNotebookShortcuts(null);
-              StatusNotifications.sendStatusFeedback("success", "notebook_created_successfully");
+              param = "notebook_" + action + "_successfully";
+              StatusNotifications.sendStatusFeedback("success", param);
               break;
             case 400:
               if(typeof data.errors.title != "undefined") {
                 // FIXME
                 $('#modalNotebook').find('input[name="title"]').parents('.form-group').addClass('has-warning');
               }
-              //StatusNotifications.sendStatusFeedback("error", "notebook_create_failed");
+              //param = "notebook_" + action + "_failed";
+              //StatusNotifications.sendStatusFeedback("error", param);
+              break;
+            default:
+              param = "notebook_" + action + "_failed";
+              StatusNotifications.sendStatusFeedback("error", param);
               break;
           }
         };

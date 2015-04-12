@@ -3,7 +3,7 @@
 return array(
     
     'session_expired' => 'Your session has expired. Please login again by reloading this page. ',
-    'notebook_created_successfully' => 'A new notebook has been created. ',
+    'notebook_create_successfully' => 'A new notebook has been created. ',
     'notebook_create_failed' => 'Something went wrong while creating the new notebook. Please try again. ',
     'notebook_deleted_successfully' => 'Your notebook has been successfully deleted. ',
     'notebook_delete_failed' => 'Something went wrong while deleting your notebook. Please try again. ',
@@ -14,7 +14,9 @@ return array(
     'note_created_successfully' => 'A new note has been created. ',
     'note_create_fail' => 'Something went wrong while creating your new note. Please try again. ',
     'note_saved_successfully' => 'Your note has been saved successfully. ',
-    'note_save_failed' => 'Something went wrong while saving your note. Please try again. '
+    'note_save_failed' => 'Something went wrong while saving your note. Please try again. ',
+    'notebook_edit_successfully' => 'Your note has been updated successfully. ',
+    'notebook_edit_failed' => 'Something went wrong while updating your notebook. Please try again. '
     
 );
 
