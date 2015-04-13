@@ -1051,21 +1051,25 @@ body.paperwork-error {
     Status Feedback classes
 */
 // Common class for notification
-.request_status_feedback {
+[pw-status-notification] {
+  .request_status_feedback {
+    cursor: pointer;
     color: #FFFFFF;
     padding: 10px 0;
     position: fixed;
     text-align: center;
     width: 100%;
-    z-index: 1;
-    
+    z-index: 9999;
+    display: none;
+
     // Error notification
-    &.error_status_feedback {
-        background-color: @brand-danger;
+    &.error {
+      background-color: fade(@brand-danger, 65%);
     }
-    
+
     // Success notification
-    &.success_status_feedback {
-        background-color: @brand-success;
+    &.success {
+      background-color: fade(@brand-success, 65%);
     }
+  }
 }

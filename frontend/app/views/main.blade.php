@@ -9,9 +9,7 @@
 
 <div class="container-fluid">
 	<div class="row">
-	    <div id="status_feedback" class="request_status_feedback hidden">
-	        <p></p>
-	    </div>
+        <section pw-status-notification></section>
         <div class="fa sidebar-collapse-switch" ng-show="!expandedNoteLayout"
              ng-class="sidebarCollapsed ? 'fa-chevron-right sidebar-collapse-switch-closed' : 'fa-chevron-left col-sm-offset-3 col-md-offset-2'"
              ng-click="sidebarCollapsed = !sidebarCollapsed" ng-init="sidebarCollapsed = false"></div>
