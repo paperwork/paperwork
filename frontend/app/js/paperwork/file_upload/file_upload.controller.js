@@ -1,5 +1,5 @@
 angular.module('paperworkNotes').controller('FileUploadController',
-  function($scope, $rootScope, $location, $routeParams, FileUploader, NotesService) {
+  function($scope, $rootScope, $location, $routeParams, FileUploader, NotesService, StatusNotifications) {
     var uploader = $scope.uploader = new FileUploader({
       url: $rootScope.uploadUrl
     });
@@ -34,6 +34,7 @@ angular.module('paperworkNotes').controller('FileUploadController',
     };
     uploader.onErrorItem = function(fileItem, response, status, headers) {
       // console.info('onErrorItem', fileItem, response, status, headers);
+      StatusNotifications.sendStatusFeedback("error", "upload_failed");
     };
     uploader.onCancelItem = function(fileItem, response, status, headers) {
       // console.info('onCancelItem', fileItem, response, status, headers);
@@ -48,6 +49,7 @@ angular.module('paperworkNotes').controller('FileUploadController',
           $rootScope.fileList = response;
           uploader.clearQueue();
         });
+      StatusNotifications.sendStatusFeedback("success", "file_uploaded_sucessfully");
     };
 
     $('#file-upload-dropzone').click(function() {
@@ -87,6 +89,7 @@ angular.module('paperworkNotes').controller('FileUploadController',
           }
 
           $rootScope.$broadcast('deleteAttachmentLink', {'url': fileUrl});
+          StatusNotifications.sendStatusFeedback("success", "file_deleted_sucessfully");
         });
       }
       return true;

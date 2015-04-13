@@ -1,5 +1,5 @@
 angular.module('paperworkNotes').factory('NotesService',
-  function($rootScope, $http, base64, NetService, paperworkDbAllId) {
+  function($rootScope, $http, base64, NetService, paperworkDbAllId, StatusNotifications) {
     var paperworkNotesServiceFactory = {};
 
     // paperworkNotesServiceFactory.selectedNoteIndex = 0;
@@ -23,6 +23,9 @@ angular.module('paperworkNotes').factory('NotesService',
           if(typeof callback != "undefined") {
             callback(notebookId, noteId, toNotebookId);
           }
+          StatusNotifications.sendStatusFeedback("success", "note_moved_successfully");
+        }else{
+          StatusNotifications.sendStatusFeedback("error", "note_move_fail");
         }
       });
     };
@@ -30,7 +33,11 @@ angular.module('paperworkNotes').factory('NotesService',
     paperworkNotesServiceFactory.tagNote = function(notebookId, noteId, toTagId, callback) {
       console.log("test");
       NetService.apiGet('/notebooks/' + notebookId + '/notes/' + noteId + '/tag/' + toTagId, function(status, data) {
-        //
+        if(status == 200) {
+          StatusNotifications.sendStatusFeedback("success", "note_tag_success");
+        }else{
+          StatusNotifications.sendStatusFeedback("error", "note_tag_fail");
+        }
       });
     };
 
