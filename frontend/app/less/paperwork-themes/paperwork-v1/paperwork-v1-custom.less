@@ -1046,3 +1046,30 @@ body.paperwork-error {
   }
 }
 // End of Modal: Manage tags
+
+/*
+    Status Feedback classes
+*/
+// Common class for notification
+[pw-status-notification] {
+  .request_status_feedback {
+    cursor: pointer;
+    color: #FFFFFF;
+    padding: 10px 0;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    z-index: 9999;
+    display: none;
+
+    // Error notification
+    &.error {
+      background-color: fade(@brand-danger, 65%);
+    }
+
+    // Success notification
+    &.success {
+      background-color: fade(@brand-success, 65%);
+    }
+  }
+}

@@ -1,5 +1,5 @@
 angular.module('paperworkNotes').controller('SidebarNotesController',
-  function($scope, $rootScope, $location, $timeout, $routeParams, NotebooksService, NotesService, ngDraggable) {
+  function($scope, $rootScope, $location, $timeout, $routeParams, NotebooksService, NotesService, ngDraggable, StatusNotifications) {
     $scope.isVisible = function() {
       return !$rootScope.expandedNoteLayout;
     };
@@ -46,9 +46,13 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
             case 200:
               $rootScope.templateNoteEdit = {};
               $location.path("/n/" + _notebookId + "/" + data.response.id + "/edit");
+              StatusNotifications.sendStatusFeedback("success", "note_created_successfully");
               break;
             case 400:
-              // TODO: Show some kind of error
+              StatusNotifications.sendStatusFeedback("error", "note_create_fail");
+              break;
+            default:
+              StatusNotifications.sendStatusFeedback("error", "note_create_fail");
               break;
           }
         };
@@ -95,7 +99,8 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
             case 200:
               $rootScope.errors = {};
               $rootScope.templateNoteEdit.modified = false;
-              // TODO: Show cool success message
+              // Temporary until related issue is closed
+              StatusNotifications.sendStatusFeedback("success", "note_saved_successfully");
               break;
             case 400:
               $rootScope.errors = data.errors;
@@ -111,6 +116,9 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
                   }
                 ]
               });
+              break;
+            default:
+              StatusNotifications.sendStatusFeedback("error", "note_save_failed");
               break;
           }
         };
@@ -243,5 +251,9 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
     $scope.onDragSuccess = function(data, event) {
       //u
     };
-
+    $scope.openNote=function(notebookId, noteId){
+      $rootScope.noteSelectedId.notebookId = notebookId;
+      $rootScope.noteSelectedId.noteId = noteId;
+	  $location.path("/n/" + (notebookId)+"/"+(noteId));
+     };
   });
