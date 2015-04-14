@@ -40,6 +40,11 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
        }
      };
 
+       $scope.selectNotebook=function(){
+	   //alert($rootScope.notebookSelectedId+" "+$scope.notebookSelectedId);
+	   $scope.openNotebook($scope.notebookSelectedId,0,$scope.notebookSelectedId);
+       };
+
     $scope.openFilter = function() {
       var s = "";
       if($rootScope.notebookSelectedId != 0) {
