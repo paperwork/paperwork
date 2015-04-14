@@ -1,5 +1,5 @@
 angular.module('paperworkNotes').service('NetService',
-  function($rootScope, $http, $location, $window, paperworkApi) {
+  function($rootScope, $http, $location, $window, paperworkApi, StatusNotifications) {
     this.apiGeneric = function(method, url, data, callback) {
       var $opts = {method: method, url: paperworkApi + url, headers: {"X-Requested-With": "XMLHttpRequest"}};
       if(typeof data != "undefined" && data != null) {
@@ -18,7 +18,8 @@ angular.module('paperworkNotes').service('NetService',
         }).
         error(function(data, status, headers, config) {
           if(status == 401) {
-            $window.location.reload();
+            StatusNotifications.sendStatusFeedback("error", "session_expired");
+            //$window.location.reload();
             return false;
           }
           callback(status, data);

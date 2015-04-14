@@ -6,6 +6,7 @@ return array(
 	'admin_status' => 'Admin Status',
 	'deleted_at' => 'Deleted',
 	'email_address' => 'Adresse email',
+	'username' => 'Username',
 	'id' => 'ID',
 	'users' => 'Users',
 	'first_name' => 'Nom',
@@ -22,6 +23,8 @@ return array(
 	'shortcuts' => 'Raccourcis',
 	'notebooks' => 'Cahiers',
 	'tags' => 'Tags',
+	'manage_tags' => 'Manage tags',
+	'manage_notebooks' => 'Manage notebooks',
 	'note' => 'Note',
 	'notebook' => 'Cahier',
 	'collection' => 'Collection',
@@ -31,13 +34,17 @@ return array(
 	'move_notes' => 'Déplacer les notes',
 	'delete_note' => 'Supprimer note',
 	'delete_notes' => 'Supprimer les notes',
+	'note_history' => 'Note history',
 	'note_info' => 'Note info',
 	'note_title' => 'Titre de la note',
+	'share' => 'Share',
 	'new_notebook' => 'Nouveau cahier',
 	'edit_notebook' => 'Editer cahier',
 	'delete_notebook' => 'Supprimer cahier',
 	'delete_notebook_question' => 'Supprimer le cahier ?',
 	'delete_notebook_message' => 'Vous allez supprimer le cahier sélectionné et toutes les notes incluses dedans. Êtes vous sûre ?',
+	'delete_tag_question' => 'Delete tag?',
+	'delete_tag_message' => 'This will delete the selected tag. Are you sure?',
 	'new_collection' => 'Nouvelle collection',
 	'edit_collection' => 'Editer collection',
 	'delete_collection' => 'Supprimer collection',
@@ -80,6 +87,7 @@ return array(
 	'not_implemented' => 'This feature has not been implemented yet. ',
 	'experimental' => 'Experimental',
 	'import' => 'Import',
-	'export' => 'Export'
+	'export' => 'Export',
+	'back' => 'Back'
 
 );
