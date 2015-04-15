@@ -17,5 +17,8 @@ angular.module('paperworkNotes').controller('NotesListController',
       }
       return path;
     };
-
+      //$scope.noteSelectedId=$rootScope.noteSelectedId;
+      $scope.openSelectedNote = function(){
+	  $location.path("/n/" + ($rootScope.notebookSelectedId)+"/"+($rootScope.noteSelectedId.noteId));
+      };
   });
