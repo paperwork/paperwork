@@ -251,9 +251,4 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
     $scope.onDragSuccess = function(data, event) {
       //u
     };
-    $scope.openNote=function(notebookId, noteId){
-      $rootScope.noteSelectedId.notebookId = notebookId;
-      $rootScope.noteSelectedId.noteId = noteId;
-	  $location.path("/n/" + (notebookId)+"/"+(noteId));
-     };
   });
