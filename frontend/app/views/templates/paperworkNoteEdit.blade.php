@@ -1,8 +1,8 @@
 <div ng-controller="FileUploadController" class="file-upload-wrapper" uploader="uploader" nv-file-drop="" uploader="uploader" filters="queueLimit, customFilter">
-	<nav class="navbar navbar-inverse" role="navigation">
+	<nav class="navbar navbar-inverse navbar-edit" role="navigation">
 		<div class="container-fluid">
-		    <div class="collapse navbar-collapse" id="navbar-paperwork-note-edit">
-		      <ul class="nav navbar-nav">
+		    <div class="" id="navbar-paperwork-note-edit">
+		      <ul class="nav navbar-nav navbar-edit">
 		      	<li>
 			      	<div class="btn-group">
 <!-- 			      		<button ng-controller="SidebarNotesController" class="btn btn-default navbar-btn"><i class="fa fa-book"></i> {{templateNoteEdit.notebook_title}}</button>
@@ -10,7 +10,7 @@
 		      		</div>
 		      	</li>
 		      </ul>
-		      <ul class="nav navbar-nav navbar-right">
+		      <ul class="nav navbar-nav navbar-right navbar-edit">
 		      	<li>
 			      	<div class="btn-group" ng-controller="SidebarNotesController">
 			      		<a id="updateNote" href="" ng-click="updateNote()" class="btn btn-default navbar-btn" title="[[Lang::get('keywords.save')]]"><i class="fa fa-floppy-o"></i></a>
