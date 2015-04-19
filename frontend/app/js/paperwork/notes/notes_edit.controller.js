@@ -128,7 +128,7 @@ angular.module('paperworkNotes').controller('NotesEditController',
 
       var insertHtml = "";
 
-      switch(args.mimetype.match(/^[a-z]+\/*/g)[0]) {
+      switch(args.mimetype.match('/^[a-z]+\/*/g')[0]) {
         case "image/":
           insertHtml = '<a href="' + args.url + '" title="' + args.filename + '" target="_blank">' + '<img src="' + args.url + '" alt="' + args.filename + '">' + '</a>';
           break;
