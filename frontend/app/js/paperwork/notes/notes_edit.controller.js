@@ -6,7 +6,9 @@ angular.module('paperworkNotes').controller('NotesEditController',
       _$scope = $('body').scope();
       _$rootScope = _$scope.$root;
       _$scope.$apply(function() {
-        _$rootScope.templateNoteEdit.modified = true;
+        if (CKEDITOR.instances.content.checkDirty()) {
+          _$rootScope.templateNoteEdit.modified = true;
+        }
       });
     };
 
