@@ -3,20 +3,16 @@ angular.module('paperworkNotes').controller('NotesEditController',
     window.onCkeditChangeFunction = function() {
       // FIXME jQuery un angular is anti-pattern
       // Let's access our $rootScope from within jQuery (this)
-      _$scope = $('body').scope();
-      _$rootScope = _$scope.$root;
-      _$scope.$apply(function() {
+      $scope.$apply(function() {
         if (CKEDITOR.instances.content.checkDirty()) {
-          _$rootScope.templateNoteEdit.modified = true;
+          $rootScope.templateNoteEdit.modified = true;
         }
       });
     };
 
     window.hasCkeditChangedFunction = function() {
       // Let's access our $rootScope from within jQuery (this)
-      _$scope = $('body').scope();
-      _$rootScope = _$scope.$root;
-      return _$rootScope.templateNoteEdit.modified;
+      return $rootScope.templateNoteEdit.modified;
     };
 
     var thisController = function(notebookId, noteId, _onChangeFunction) {
