@@ -107,7 +107,7 @@ class ApiNotebooksController extends BaseController {
 		if($validator->passes()) {
 			$updateNotebook = Input::json();
 
-			$notebook = User::find(Auth::user()->id)->notebooks()->where('notebooks.uuid', '=', $notebookId)->whereNull('notebooks.deleted_at')->first();
+			$notebook = User::find(Auth::user()->id)->notebooks()->where('notebooks.id', '=', $notebookId)->whereNull('notebooks.deleted_at')->first();
 
 			if(is_null($notebook)){
 				return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
@@ -138,7 +138,7 @@ class ApiNotebooksController extends BaseController {
 
 	public function destroy($notebookId)
 	{
-		$notebook = User::find(Auth::user()->id)->notebooks()->where('notebooks.uuid', '=', $notebookId)->whereNull('notebooks.deleted_at')->first();
+		$notebook = User::find(Auth::user()->id)->notebooks()->where('notebooks.id', '=', $notebookId)->whereNull('notebooks.deleted_at')->first();
 
 		if(is_null($notebook))
 		{
