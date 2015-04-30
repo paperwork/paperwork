@@ -14,7 +14,7 @@
     <div class="container">
       <div class="error-wrapper">
         <div class="error-logo">
-          <img class="error-logo-img" src="/images/404-logo.png">
+          <img class="error-logo-img" src="[[ asset('images/404-logo.png') ]]">
         </div>
         @yield("content")
         <div class="footer [[ Config::get('paperwork.showIssueReportingLink') ? '' : 'hide' ]]">

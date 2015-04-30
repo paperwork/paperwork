@@ -29,7 +29,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="paperwork-logo navbar-brand transition-effect" href="[[ URL::route("/") ]]"><img src="/images/navbar-logo.png"> Paperwork</a>
+				<a class="paperwork-logo navbar-brand transition-effect" href="[[ URL::route("/") ]]"><img src="[[ asset('images/navbar-logo.png') ]]"> Paperwork</a>
 			</div>
 			<div class="navbar-collapse collapse">
 				<div class="visible-xs">

@@ -13,7 +13,7 @@
 
     <div class="container">
       <div class="guest-logo">
-        <img class="guest-logo-img" src="/images/paperwork-logo.png">
+        <img class="guest-logo-img" src="[[ asset('images/paperwork-logo.png') ]]">
       </div>
       @yield("content")
     </div> <!-- /container -->
