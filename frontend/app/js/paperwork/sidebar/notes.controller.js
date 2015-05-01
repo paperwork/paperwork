@@ -30,18 +30,16 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
       if($rootScope.menuItemNotebookClass() === 'disabled') {
         return false;
       }
-      if(typeof notebookId == "undefined" || notebookId == 0) {
-        // TODO: Show some error
-      }
-
+      
       var data = {
         'title':           $rootScope.i18n.keywords.untitled || 'Untitled',
         'content':         '',
         'content_preview': ''
       };
-
+      
       var callback = (function(_notebookId) {
         return function(status, data) {
+          console.log(status);
           switch(status) {
             case 200:
               $rootScope.templateNoteEdit = {};
@@ -57,8 +55,20 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
           }
         };
       })(notebookId);
-
-      NotesService.createNote(notebookId, data, callback);
+      
+      if(typeof notebookId == "undefined" || notebookId == 0 || notebookId === "00000000-0000-0000-0000-000000000000") {
+        //Open Select Notebook dialog to choose destination of new note 
+        $rootScope.modalNotebookSelect({ 
+            'notebookId': notebookId,
+            'noteId': 0,
+            'theCallback': function(notebookId, noteId, toNotebookId) {
+                $('#modalNotebookSelect').modal('hide');
+                NotesService.createNote(toNotebookId, data, callback);
+            }
+        });
+      }else{
+        NotesService.createNote(notebookId, data, callback);
+      }
     };
 
     $scope.editNote = function(notebookId, noteId) {
