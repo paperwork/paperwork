@@ -108,6 +108,7 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
             case 200:
               $rootScope.errors = {};
               $rootScope.templateNoteEdit.modified = false;
+              CKEDITOR.instances.content.resetDirty();
               // Temporary until related issue is closed
               StatusNotifications.sendStatusFeedback("success", "note_saved_successfully");
               break;
