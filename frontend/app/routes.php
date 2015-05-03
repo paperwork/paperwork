@@ -58,11 +58,13 @@ Route::group(array('prefix' => 'api/v1', 'before' => 'auth'), function()
     App::setLocale(PaperworkHelpers::getUiLanguageFromSession());
     // Route::any('notebook/{num?}', 'ApiNotebooksController@index')->where('num','([0-9]*)');
     Route::resource('notebooks', 'ApiNotebooksController');
+	Route::get('/notebooks/{notebookId}/share/{toUserId}/{toUMASK}', 'ApiNotebooksController@share');
     Route::resource('tags', 'ApiTagsController');
     Route::resource('notebooks.notes', 'ApiNotesController');
         // I really don't know whether that's a great way to solve this...
         Route::get('/notebooks/{notebookId}/notes/{noteId}/move/{toNotebookId}', 'ApiNotesController@move');
         Route::get('/notebooks/{notebookId}/notes/{noteId}/tag/{toTagId}', 'ApiNotesController@tagNote');
+	Route::get('/notebooks/{notebookId}/notes/{noteId}/share/{toUserId}/{toUMASK}', 'ApiNotesController@share');
     Route::resource('notebooks.notes.versions', 'ApiVersionsController');
     Route::resource('notebooks.notes.versions.attachments', 'ApiAttachmentsController');
         Route::get('/notebooks/{notebookId}/notes/{noteId}/versions/{versionId}/attachments/{attachmentId}/raw', 'ApiAttachmentsController@raw');

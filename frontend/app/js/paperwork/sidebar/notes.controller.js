@@ -1,5 +1,5 @@
 angular.module('paperworkNotes').controller('SidebarNotesController',
-  function($scope, $rootScope, $location, $timeout, $routeParams, NotebooksService, NotesService, ngDraggable, StatusNotifications) {
+  function($scope, $rootScope, $location, $timeout, $routeParams, NotebooksService, NotesService, ngDraggable, StatusNotifications, NetService) {
     $scope.isVisible = function() {
       return !$rootScope.expandedNoteLayout;
     };
@@ -25,6 +25,15 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
       }
       return null;
     };
+    
+    $scope.getUsers = function (noteId){
+      NetService.apiGet('/users/'+noteId, function(status, data) {
+        if(status == 200) {
+          $rootScope.users = data.response;
+        }
+      });
+    };
+    $scope.umasks=[{'name':'not shared', 'value':0},{'name':'read-only', 'value':4}, {'name':'read-write', 'value':6}];
 
     $scope.newNote = function(notebookId) {
       if($rootScope.menuItemNotebookClass() === 'disabled') {
@@ -240,6 +249,46 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
       });
     };
 
+    $scope.modalShareNote = function(notebookId,noteId){
+      if($rootScope.menuItemNoteClass('multiple') === 'disabled') {
+        return false;
+      }
+      $scope.getUsers(noteId);
+      console.log(noteId);
+      $rootScope.modalUsersSelect({
+        'notebookId': notebookId,
+        'noteId': noteId,
+        'theCallback':function(notebookId,noteId,toUsers){
+          if ($rootScope.editMultipleNotes) {
+            noteId=[];
+            console.log($rootScope.notesSelectedIds);
+            angular.forEach($rootScope.notesSelectedIds, function(isChecked, checkedNoteId) {
+              console.log(checkedNoteId);
+              if(isChecked) {
+                noteId.push(checkedNoteId);
+              }
+            });
+          }
+          toUserId=[]
+          toUMASK=[]
+          angular.forEach(toUsers, function(user,key){
+              toUserId.push(user['id']);
+              toUMASK.push(user['umask']);
+            });
+          NotesService.shareNote(notebookId,noteId,toUserId, toUMASK, function(_notebookId,_noteId){
+            $('#modalUsersSelect').modal('hide');
+            $location.path("/n/"+(_notebookId));
+          });
+          return true;
+        }
+      });
+      
+    };
+    $scope.modalUsersSelectSubmit = function(notebookId, noteId, toUserId) {
+      console.log(toUserId);
+      $rootScope.modalMessageBox.theCallback(notebookId, noteId, toUserId);
+    };
+
     $scope.submitSearch = function() {
       if($scope.search == "") {
         $location.path("/");
@@ -251,4 +300,5 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
     $scope.onDragSuccess = function(data, event) {
       //u
     };
+    $scope.getUsers($rootScope.noteSelectedId.noteId)
   });

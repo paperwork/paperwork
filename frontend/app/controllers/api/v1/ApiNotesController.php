@@ -372,17 +372,19 @@ class ApiNotesController extends BaseController
 
         $updateNote = Input::json();
 
-        $note = Note::find($noteId);
-        if (is_null($note)) {
-            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND,
-                array('item' => 'note', 'id' => $noteId));
-        }
-
-        $user =
-            $note->users()->where('users.id', '=', Auth::user()->id)->first();
+        $user=User::find(Auth::user()->id);
         if (is_null($user)) {
             return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND,
                 array('item' => 'user'));
+        }
+        //only a read-writer or owner of the note can update it.
+        $note = $user->notes()
+                    ->wherePivot('umask','>',PaperworkHelpers::UMASK_READONLY)
+                    ->where('notes.id','=',$noteId)
+                    ->first();
+        if (is_null($note)) {
+            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND,
+                array('item' => 'note', 'id' => $noteId));
         }
 
         $previousVersion     = $note->version()->first();
@@ -438,8 +440,10 @@ class ApiNotesController extends BaseController
 
     private function destroyNote($notebookId, $noteId)
     {
+        //only owner of the note can destroy it
         $note = User::find(Auth::user()->id)
                     ->notes()
+                    ->wherePivot('umask','=',PaperworkHelpers::UMASK_OWNER)
                     ->where('notes.id', '=', $noteId)
                     ->whereNull('notes.deleted_at')
                     ->first();
@@ -477,34 +481,33 @@ class ApiNotesController extends BaseController
 
     private function moveNote($notebookId, $noteId, $toNotebookId)
     {
-        $note = Note::find($noteId);
+        $user = User::find(Auth::user()->id);
+        if (is_null($user)) {
+            // return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array('item'=>'user'));
+            return null;
+        }
+        //the user shall be owner of the note
+        $note = $user->notes()
+                    ->wherePivot('umask','=',PaperworkHelpers::UMASK_OWNER)
+                    ->where('notes.id','=',$noteId)
+                    ->whereNull('notes.deleted_at')
+                    ->first();
         if (is_null($note)) {
             // return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array('item'=>'note', 'id'=>$noteId));
             return null;
         }
 
-        $user =
-            $note->users()->where('users.id', '=', Auth::user()->id)->first();
-        if (is_null($user)) {
-            // return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array('item'=>'user'));
-            return null;
-        }
-
-        $toNotebook = Notebook::find($toNotebookId);
+        //the user shall have the right to write into the destination notebook
+        $toNotebook = $user->notebooks()
+                        ->wherePivot('umask','>',PaperworkHelpers::UMASK_READONLY)
+                        ->where('notebooks.id','=',$toNotebookId)
+                        ->whereNull('notebooks.deleted_at')
+                        ->first();
         if (is_null($toNotebook)) {
             // return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array('item'=>'notebook', 'id'=>$toNotebookId));
             return null;
         }
-
-        $toNotebookUser = $toNotebook->users()
-                                     ->where('notebook_user.user_id', '=',
-                                         Auth::user()->id)
-                                     ->first();
-        if (is_null($toNotebookUser)) {
-            // return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array('item'=>'toNotebookUser'));
-            return null;
-        }
-
+    
         $note->notebook()->associate($toNotebook);
         $note->save();
 
@@ -536,6 +539,67 @@ class ApiNotesController extends BaseController
         Note::find($noteId)->tags()->attach($toTagId);
         return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS,
             $noteId);
+    }
+    private function shareNote($notebookId, $noteId, $toUserId, $toUMASK){
+        //only owner of the note can share it
+        $note=User::find(Auth::user()->id)->notes()
+                        ->wherePivot('umask','=',PaperworkHelpers::UMASK_OWNER)
+                        ->where('notes.id','=',$noteId)
+                        ->whereNull('notes.deleted_at')
+                        ->first();
+        if(is_null($note)){
+            return null;
+        }
+        $toUser=User::find($toUserId);
+        if(is_null($toUser))
+            return null; //user with whom we want to share the note doesn't exist
+        $toUser=$note->users()->where('users.id', '=', $toUserId)->first();
+        if (!is_null($toUser)){
+            if($toUser->pivot->umask==PaperworkHelpers::UMASK_OWNER)
+                return null;
+            if($toUMASK==0){//set UMASK to 0 to stop sharing
+                $note->users()->detach($toUserId);
+                $note->save();
+                return $note;
+            }
+            if($toUser->pivot->umask!=$toUMASK){
+                $note->users()->updateExistingPivot($toUserId,array('umask' => $toUMASK));
+                $note->save();
+                return $note;
+            }
+        }
+        if (is_null($toUser)) {
+            $note->users()->attach($toUserId, array('umask' => $toUMASK)); //add user
+            // return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array('item'=>'user'));
+            $note->save();
+            return $note;
+        }
+        
+    }
+    public function share($notebookId, $noteId, $toUserId, $toUMASK){
+        $noteIds   =
+            explode(PaperworkHelpers::MULTIPLE_REST_RESOURCE_DELIMITER,
+                $noteId);
+        $toUserIds = explode(PaperworkHelpers::MULTIPLE_REST_RESOURCE_DELIMITER,
+                $toUserId);
+        $toUMASKs=explode(PaperworkHelpers::MULTIPLE_REST_RESOURCE_DELIMITER,
+                $toUMASK);
+        if(count($toUserIds)!=count($toUMASKs))//as much toUsers as toUmasks, if not raise an Error.
+            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, array('error_id' => $noteId));
+        $responses = array();
+        $status    = PaperworkHelpers::STATUS_SUCCESS;
+        foreach ($noteIds as $singleNoteId) {
+            for($i=0; $i<count($toUserIds); $i++){//adding a loop to share with multiple users
+                $tmp = $this->shareNote($notebookId, $singleNoteId, $toUserIds[$i], $toUMASK[$i]);
+                if (is_null($tmp)) {
+                    $status      = PaperworkHelpers::STATUS_ERROR;
+                    $responses[] = array('error_id' => $singleNoteId);
+                } else {
+                    $responses[] = $tmp;
+                }
+            }
+        }
+        return PaperworkHelpers::apiResponse($status, $responses);        
     }
 }
 

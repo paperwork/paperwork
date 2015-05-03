@@ -41,6 +41,19 @@ angular.module('paperworkNotes').factory('NotesService',
       });
     };
 
+    paperworkNotesServiceFactory.shareNote = function(notebookId,noteId,toUserId,toUMASK,callback){
+      NetService.apiGet('/notebooks/'+notebookId+'/notes/'+noteId+'/share/'+toUserId+'/'+toUMASK, function(status,data){
+        if (status==200) {
+          if(typeof callback != "undefined") {
+            callback(notebookId, noteId);
+            }
+          StatusNotifications.sendStatusFeedback("success", "note_share_success");
+        }else{
+          StatusNotifications.sendStatusFeedback("error", "note_share_fail");
+        }
+      });
+    };
+    
     paperworkNotesServiceFactory.getNotesInNotebook = function(notebookId, callback) {
       NetService.apiGet('/notebooks/' + notebookId + '/notes', function(status, data) {
         if(status == 200) {

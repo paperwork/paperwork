@@ -5,12 +5,24 @@ class ApiUsersController extends BaseController {
 
 	public function index()
 	{
-		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, array());
+		$tmp=User::where('users.id','!=',Auth::user()->id)->orWhereNull('users.id')->get();
+		$users=$tmp;
+		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $users);
 	}
 
-	public function show()
+	public function show($noteId)
 	{
-		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, array());
+		$tmp=User::where('users.id','!=',Auth::user()->id)->orWhereNull('users.id')->get();
+		foreach($tmp as $user){
+			$notes_u=User::find($user->id)->notes()->whereIn('notes.id',explode(PaperworkHelpers::MULTIPLE_REST_RESOURCE_DELIMITER,$noteId));
+			$user->noteCount=count($notes_u->get());
+			$user->umask=0;
+			if($user->noteCount>0)
+				$user->umask=intval($notes_u->first()->pivot->umask);
+		}
+		$users=$tmp;
+		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $users);
+		//return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, array());
 	}
 
 	public function store()

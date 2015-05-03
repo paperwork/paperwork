@@ -29,11 +29,11 @@ class User extends PaperworkModel implements UserInterface, RemindableInterface 
 	}
 
 	public function notebooks() {
-		return $this->belongsToMany('Notebook')->withTimestamps();
+		return $this->belongsToMany('Notebook')->withPivot('umask')->withTimestamps();
 	}
 
 	public function notes() {
-		return $this->belongsToMany('Note')->withTimestamps();
+		return $this->belongsToMany('Note')->withPivot('umask')->withTimestamps();
 	}
 
 	public function shortcuts() {
