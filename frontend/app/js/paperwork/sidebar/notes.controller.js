@@ -252,4 +252,19 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
     $scope.onDragSuccess = function(data, event) {
       //u
     };
+
+    $scope.openShare = function(){
+      $rootScope.messageBox({
+          'title': $rootScope.i18n.keywords.coming_soon,
+          'content': $rootScope.i18n.keywords.not_implemented,
+          'buttons': [
+            {
+              'class': 'btn-primary',
+              'label': $rootScope.i18n.keywords.close,
+              'isDismiss': true
+            }
+          ]
+      });
+    };
+
   });
