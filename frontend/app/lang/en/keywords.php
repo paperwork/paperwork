@@ -88,6 +88,7 @@ return array(
 	'experimental' => 'Experimental',
 	'import' => 'Import',
 	'export' => 'Export',
-	'back' => 'Back'
+	'back' => 'Back',
+	'coming_soon' => 'Coming Soon'
 
 );
