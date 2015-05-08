@@ -9,7 +9,16 @@ class ApiNotesController extends BaseController
 
     private function getNoteTags($noteId)
     {
-        $note = Note::with('tags')->where('notes.id', '=', $noteId)->first();
+        $note = Note::with(array('tags' => function($query){
+                                                $query->where('visibility','=',1)
+                                                ->orWhereHas('users', function($query){
+                                                            $query->where('tag_user.user_id','=',Auth::user()->id);
+                                                            }
+                                                        );
+                                            }
+                                )
+                           )
+                        ->where('notes.id', '=', $noteId)->first();
         $tags = array();
         foreach ($note->tags as $tag) {
             $tags[] = array(
@@ -352,7 +361,7 @@ class ApiNotesController extends BaseController
              ->attach(Auth::user()->id,
                  array('umask' => PaperworkHelpers::UMASK_OWNER));
 
-        $tagIds = ApiTagsController::createOrGetTags($newNote->get('tags'));
+        $tagIds = ApiTagsController::createOrGetTags($newNote->get('tags'),PaperworkHelpers::UMASK_OWNER);
 
         if (!is_null($tagIds)) {
             $note->tags()->sync($tagIds);
@@ -372,19 +381,30 @@ class ApiNotesController extends BaseController
 
         $updateNote = Input::json();
 
-        $user=User::find(Auth::user()->id);
+       $user=User::find(Auth::user()->id);
         if (is_null($user)) {
             return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND,
                 array('item' => 'user'));
         }
-        //only a read-writer or owner of the note can update it.
+        //only a read-writer or owner of the note can update it. however the private tags can be saved whatever the status
         $note = $user->notes()
-                    ->wherePivot('umask','>',PaperworkHelpers::UMASK_READONLY)
                     ->where('notes.id','=',$noteId)
                     ->first();
+
         if (is_null($note)) {
             return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND,
                 array('item' => 'note', 'id' => $noteId));
+        }
+                    
+                    
+       $tagIds = ApiTagsController::createOrGetTags($updateNote->get('tags'),$note->pivot->umask);
+
+        if (!is_null($tagIds)) {
+            $note->tags()->sync($tagIds);
+        }
+        
+        if($note->pivot->umask<PaperworkHelpers::UMASK_READWRITE){
+            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, array('error' => 'Permission error'));
         }
 
         $previousVersion     = $note->version()->first();
@@ -426,12 +446,6 @@ class ApiNotesController extends BaseController
 
             $note->save();
 
-        }
-
-        $tagIds = ApiTagsController::createOrGetTags($updateNote->get('tags'));
-
-        if (!is_null($tagIds)) {
-            $note->tags()->sync($tagIds);
         }
 
         return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS,

@@ -21,8 +21,12 @@ class PaperworkDbNoteObject extends PaperworkDbObject {
 			'version' => function($query) use(&$defaultVersionsSelect) {
 				$query->select($defaultVersionsSelect);
 			},
-			'tags' => function($query) use(&$defaultTagsSelect) {
-				$query->select($defaultTagsSelect);
+			'tags' => function($query) use(&$defaultTagsSelect, &$userId) {
+				$query->select($defaultTagsSelect)->where('visibility','=',1)
+                                                ->orWhereHas('users', function($query) use(&$userId){
+                                                            $query->where('tag_user.user_id','=', $userId);
+                                                            }
+                                                        );
 			}
 		))->join('note_user', function($join) use(&$userId) {
 				$join->on('note_user.note_id', '=', 'notes.id')

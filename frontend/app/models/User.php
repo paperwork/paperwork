@@ -43,6 +43,9 @@ class User extends PaperworkModel implements UserInterface, RemindableInterface 
 	public function languages() {
 		return $this->belongsToMany('Language');
 	}
+	public function tags(){
+		return $this->belongsToMany('Tag');
+	}
 	
     public function isAdmin() {
     	return $this->is_admin;

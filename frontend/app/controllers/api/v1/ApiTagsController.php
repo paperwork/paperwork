@@ -3,7 +3,7 @@
 class ApiTagsController extends BaseController {
 	public $restful = true;
 
-	public static function createOrGetTags($tagsArray) {
+	public static function createOrGetTags($tagsArray, $noteUmask) {
 		$tagsPublicPrefixCharacter = Config::get('paperwork.tagsPublicPrefixCharacter')[0];
 		$createdOrFoundIds = array();
 
@@ -22,7 +22,7 @@ class ApiTagsController extends BaseController {
 				$tagTitle =  strtolower($tagItem);
 				$tagVisibility = 0;
 			}
-
+			
 			$tag = Tag::where('tags.title', '=', $tagTitle)->where('tags.visibility', '=', $tagVisibility)->first();
 
 				// ->where('tags.title', '=', $tagTitle)
@@ -30,7 +30,7 @@ class ApiTagsController extends BaseController {
 				// ->select('tags.id')
 				// ->first();
 
-			if(is_null($tag)) {
+			if(is_null($tag) && ($tagVisibility == 0 || ($tagVisibility==1 && $noteUmask > PaperworkHelpers::UMASK_READONLY))) {
 				$newTag = new Tag();
 				$newTag->title = $tagTitle;
 				$newTag->visibility = $tagVisibility;
@@ -41,10 +41,12 @@ class ApiTagsController extends BaseController {
 
 				$createdOrFoundIds[] = $newTag->id;
 			} else {
-				if(is_null($tag->users()->where('users.id', '=', Auth::user()->id)->first())) {
-					$tag->users()->attach(Auth::user()->id);
-				}
+				if($tagVisibility==0 || ($tagVisibility==1 && $noteUmask > PaperworkHelpers::UMASK_READONLY)){
+					if(is_null($tag->users()->where('users.id', '=', Auth::user()->id)->first())) {
+						$tag->users()->attach(Auth::user()->id);
+					}
 				$createdOrFoundIds[] = $tag->id;
+				}
 			}
 		}
 
@@ -53,14 +55,19 @@ class ApiTagsController extends BaseController {
 
 	public function index()
 	{
-		$tags = DB::table('tags')
-			->join('tag_user', function($join) {
-				$join->on('tags.id', '=', 'tag_user.tag_id')
-					->where('tag_user.user_id', '=', Auth::user()->id);
-			})
-			->select('tags.id', 'tags.visibility', 'tags.title')
-			->get();
-
+		$tags = User::find(Auth::user()->id)->tags()->get();
+		$tags = Tag::whereHas('users', function($query){
+						$query->where('tag_user.user_id','=',Auth::user()->id);
+						}
+					)
+				->orWhereHas('notes', function($query) {
+					$query-> whereHas('users', function($query){
+						$query->where('note_user.user_id','=',Auth::user()->id);
+						}
+						);
+					}
+				      )
+			->where('visibility','=',1)->get();
 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $tags);
 	}
 
@@ -72,12 +79,7 @@ class ApiTagsController extends BaseController {
 		}
 		else
 		{
-		$tags = DB::table('tags')
-			->join('tag_user', function($join) {
-				$join->on('tags.id', '=', 'tag_user.tag_id')
-					->where('tag_user.user_id', '=', Auth::user()->id);
-			})
-			->select('tags.id', 'tags.visibility', 'tags.title')
+		$tags = User::find(Auth::user()->id)->tags()
 			->where('tags.id', '=', $id)
 			->first();
 

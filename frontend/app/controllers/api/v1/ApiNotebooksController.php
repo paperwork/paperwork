@@ -138,7 +138,7 @@ class ApiNotebooksController extends BaseController {
 
 	public function destroy($notebookId)
 	{
-		$notebook = User::find(Auth::user()->id)->notebooks()->wherePivot('umask','=', PaperworkHelper::UMASK_OWNER)->where('notebooks.id', '=', $notebookId)->whereNull('notebooks.deleted_at')->first();
+		$notebook = User::find(Auth::user()->id)->notebooks()->wherePivot('umask','=', PaperworkHelpers::UMASK_OWNER)->where('notebooks.id', '=', $notebookId)->whereNull('notebooks.deleted_at')->first();
 
 		if(is_null($notebook))
 		{
