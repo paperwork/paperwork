@@ -64,7 +64,7 @@ return array(
 	'cancel' => '取消',
 	'create' => '创建',
 	'insert' => '插入',
-	'update' => '上传',
+	'update' => '更新',
 	'delete' => '删除',
 	'upload' => '上传',
 	'remove' => '移除',
