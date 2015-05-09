@@ -5,7 +5,7 @@ return array(
 	'account_creation_failed' => '无法创建账户',
 	'account_update_failed' => '无法更新账户信息',
 	'invalid_credentials' => '输入的登录信息无效',
-	'note_version_info' => '你正在查看当前密码的旧版本',
+	'note_version_info' => '你正在查看当前笔记的旧版本',
 	'found_bug' => '发现BUG？<a href="https://github.com/twostairs/paperwork/issues/new" target="_blank" title="Submit Issue">到 GitHub 提交 Issue!</a>',
 	'new_version_available' => '发现 BUG？当前运行的不是最新版 Paperwork. 请在提交 Issue 前更新至最新版',
 	'error_version_check' => '发现BUG？ Paperwork 无法检测当前是否为最新版，请在提交 Issue 前确保已经更新至最新版', 
