@@ -11,7 +11,7 @@ class Tag extends PaperworkModel {
 
 	public function users()
 	{
-	  return $this->belongsToMany('User', 'tag_user')->withTimestamps();
+	  return $this->belongsTo('User');
 	}
 }
 

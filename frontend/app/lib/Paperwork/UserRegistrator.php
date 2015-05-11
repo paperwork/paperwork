@@ -48,8 +48,9 @@ class UserRegistrator
 
         $tagCreate->title      = Lang::get('notebooks.welcome_note_tag');
         $tagCreate->visibility = 0;
+        $tagCreate->user_id=$user->id;
         $tagCreate->save();
-        $tagCreate->users()->attach($user->id);
+        //$tagCreate->users()->attach($user->id);
 
         $noteCreate = new \Note;
 

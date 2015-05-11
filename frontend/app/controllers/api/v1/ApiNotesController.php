@@ -11,10 +11,7 @@ class ApiNotesController extends BaseController
     {
         $note = Note::with(array('tags' => function($query){
                                                 $query->where('visibility','=',1)
-                                                ->orWhereHas('users', function($query){
-                                                            $query->where('tag_user.user_id','=',Auth::user()->id);
-                                                            }
-                                                        );
+                                                ->orWhere('user_id','=',Auth::user()->id);
                                             }
                                 )
                            )
@@ -361,7 +358,7 @@ class ApiNotesController extends BaseController
              ->attach(Auth::user()->id,
                  array('umask' => PaperworkHelpers::UMASK_OWNER));
 
-        $tagIds = ApiTagsController::createOrGetTags($newNote->get('tags'),PaperworkHelpers::UMASK_OWNER);
+        $tagIds = ApiTagsController::createOrGetTags($newNote->get('tags'),$note->id,PaperworkHelpers::UMASK_OWNER);
 
         if (!is_null($tagIds)) {
             $note->tags()->sync($tagIds);
@@ -397,7 +394,7 @@ class ApiNotesController extends BaseController
         }
                     
                     
-       $tagIds = ApiTagsController::createOrGetTags($updateNote->get('tags'),$note->pivot->umask);
+       $tagIds = ApiTagsController::createOrGetTags($updateNote->get('tags'),$noteId,$note->pivot->umask);
 
         if (!is_null($tagIds)) {
             $note->tags()->sync($tagIds);
