@@ -16,11 +16,10 @@
         <img class="guest-logo-img" src="[[ asset('images/paperwork-logo.png') ]]">
       </div>
       @yield("content")
-    </div> <!-- /container -->
-
-    <div class="footer [[ Config::get('paperwork.showIssueReportingLink') ? '' : 'hide' ]]">
+      <div class="footer [[ Config::get('paperwork.showIssueReportingLink') ? '' : 'hide' ]]">
         @include('partials/error-reporting-footer')
-    </div>
+      </div>
+    </div> <!-- /container -->
 
   [[ HTML::script('js/jquery.min.js') ]]
 
