@@ -1,6 +1,6 @@
 <div ng-hide="note == null">
 <nav class="navbar navbar-inverse" role="navigation">
-	<div class="">
+	<div class="row">
 		<div class="collapse navbar-collapse" id="navbar-paperwork-note-show">
 		<ul class="nav navbar-nav" id="notebook-selector">
 			<li>
@@ -9,10 +9,12 @@
 				</div>
 			</li>
 		</ul>
-		<ul class="nav navbar-nav navbar-right" id="note-toolbar">
+		<ul class="nav navbar-nav pull-right" id="note-toolbar">
 			<li>
 				<div class="btn-group">
-					<button id="note-info" class="btn btn-default navbar-btn" data-toggle="popover" data-placement="bottom" title="[[Lang::get('keywords.note_info')]]"  data-title="[[Lang::get('keywords.note_info')]]" data-content='
+					<button id="note-info" class="btn btn-default navbar-btn" data-toggle="popover" data-placement="bottom"
+							title="[[Lang::get('keywords.note_info')]]"  data-title="[[Lang::get('keywords.note_info')]]"
+							data-content='
 						<div class="row">
 							<div class="col-xs-3"><b>[[Lang::get('keywords.created_at')]]</b></div>
 							<div class="col-xs-9">{{ note.created_at }}</div>
@@ -56,18 +58,23 @@
 	</div>
 </div>
 
-<div class="container-fluid">
-	<div class="alert alert-success animate-fade" role="alert" ng-show="note.version > 0">
-	[[Lang::get('messages.note_version_info')]]
-	</div>
-	<div class="page-header">
-		<h1>{{note.version.title}}</h1>
-		<div class="note-tags-bar">
-			<span ng-repeat="tag in note.tags" ng-click="openTag(tag.id)"class="label label-tag label-tag-{{ tag.visibility < 1 ? 'private' : 'public' }}"><i class="fa fa-tags"></i> {{ tag.title }}</span>
+<div class="row">
+	<div class="col-xs-12">
+		<div class="alert alert-success animate-fade" role="alert" ng-show="note.version > 0">
+			[[Lang::get('messages.note_version_info')]]
 		</div>
-	</div>
+		<div class="page-header">
+			<h1>{{note.version.title}}</h1>
 
-	<div class="page-content" ng-bind-html="note.version.content">
+			<div class="note-tags-bar">
+				<span ng-repeat="tag in note.tags" ng-click="openTag(tag.id)"
+					  class="label label-tag label-tag-{{ tag.visibility < 1 ? 'private' : 'public' }}"><i
+							class="fa fa-tags"></i> {{ tag.title }}</span>
+			</div>
+		</div>
+
+		<div class="page-content" ng-bind-html="note.version.content">
+		</div>
 	</div>
 </div>
 	@include('partials/file-uploader', array('uploadEnabled' => false, 'actionsEnabled' => false))
