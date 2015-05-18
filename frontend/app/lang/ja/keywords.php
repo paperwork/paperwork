@@ -2,13 +2,13 @@
 
 return array(
 
-	'admin_area' => 'Admin Area',
-	'admin_status' => 'Admin Status',
-	'deleted_at' => 'Deleted',
+	'admin_area' => '管理者エリア',
+	'admin_status' => '管理者権限',
+	'deleted_at' => '削除日時',
 	'email_address' => 'メールアドレス',
 	'username' => 'Username',
 	'id' => 'ID',
-	'users' => 'Users',
+	'users' => 'ユーザー',
 	'first_name' => '名前',
 	'last_name' => '姓',
 	'password' => 'パスワード',
@@ -88,6 +88,6 @@ return array(
 	'experimental' => '実験的',
 	'import' => '読み込み',
 	'export' => '書き出し',
-	'back' => 'Back'
+	'back' => '戻る'
 
 );

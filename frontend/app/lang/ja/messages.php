@@ -11,6 +11,9 @@ return array(
 	'onbeforeunload_info' => 'ページから移動するとデータは破棄されます。よろしいですか?',
 	'user' => array(
 		'settings' => array(
+			'language_label' => '言語',
+		    'client_label' => 'クライアント',
+		    'import_slash_export' => '読み込み/書き出し',
 			'language' => array(
 				'ui_language' => 'ユーザーインターフェースの言語',
 				'document_languages' => '文書の言語',
