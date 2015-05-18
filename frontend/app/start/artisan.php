@@ -11,3 +11,8 @@
 |
 */
 
+use Paperwork\App\Commands\PaperworkInstall;
+use Paperwork\App\Commands\PaperworkUpdate;
+
+Artisan::add(new PaperworkUpdate());
+Artisan::add(new PaperworkInstall());

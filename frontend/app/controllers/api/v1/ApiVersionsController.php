@@ -58,17 +58,17 @@ class ApiVersionsController extends BaseController {
 		)->where('id', '=', $noteId)->whereNull('deleted_at')->first();
 
 
-		$tmp = $note->version()->first();
+		$currentVersion = $note->version()->first();
 
-		if(is_null($tmp)) {
+		if(is_null($currentVersion)) {
 			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
 		}
 
-		while(!is_null($tmp)) {
-			if($tmp->id == $versionId || $versionId == 0) {
-				return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $tmp);
+		while(!is_null($currentVersion)) {
+ 			if($currentVersion->id == $versionId || $versionId == '0') {
+				return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $currentVersion);
 			}
-			$tmp = $tmp->previous()->first();
+			$currentVersion = $currentVersion->previous()->first();
 		}
 
 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());

@@ -11,9 +11,18 @@
   }
 }
 
+.paperwork-logo.navbar-brand {
+    margin: 0px 5px 0px 0px !important;
+}
+
 /*
  * Base structure
  */
+
+/* Always display scrollbar for consistency's sake */
+html {
+  overflow-y: scroll;
+}
 
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
@@ -167,7 +176,8 @@ label {
   position: fixed;
   bottom: 0px;
   left: 8px;
-  width: 220px !important;
+  width: 15%;
+  min-width: 220px;
   z-index: 9999;
 }
 
@@ -243,11 +253,22 @@ label {
 /*
  * Customize navbars
  */
- 
+
 //Hide empty space on top of notes in small screens
 @media (max-width: 767px) {
   .navbar.navbar-inverse{
     display: none;
+  }
+  .navbar.navbar-inverse.navbar-edit{
+    display: block;
+    margin:0;
+  }
+  .navbar-nav.navbar-edit{
+    float:left;
+    margin:0;
+  }
+  .navbar-nav.navbar-right.navbar-edit{
+    float:right;
   }
 }
 
@@ -267,7 +288,7 @@ label {
  */
 .navbar-fixed-top {
   border: 0;
-  
+
   .navbar-right{
       margin-right:10px;
   }
@@ -281,10 +302,13 @@ label {
 .sidebar {
   display: none;
 }
+.sidebar-collapse-switch{
+  display: none;
+}
 @media (min-width: 768px) {
   .sidebar {
     position: fixed;
-    top: 60px;
+    top: 67px;
     bottom: 0;
     left: 0;
     z-index: 1000;
@@ -294,6 +318,11 @@ label {
     overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
     background-color: @white;
     border-right: 1px solid @gray;
+  }
+  .sidebar-collapse-switch{
+    display: block;
+    cursor: pointer;
+    position: fixed;
   }
 }
 
@@ -341,6 +370,10 @@ ul.nav-tabs-margin {
 }
 .main .page-header {
   margin-top: 0;
+}
+.main .page-content {
+  font-size: @font-size-large;
+  line-height: 1.7;
 }
 
 
@@ -414,6 +447,8 @@ ul.nav-tabs-margin {
 
         margin-right: 8px;
         border-right: 1px solid @gray-light;
+        
+        height:56px;
 
         .notes-list-date-day {
           display: block;
@@ -535,6 +570,67 @@ ul.nav-tabs-margin {
   }
 }
 
+#sidebarCalendar {
+
+  overflow-x: auto;
+
+  table {
+    width: 99%;
+    border-collapse: collapse;
+
+    td {
+      border: 1px solid @gray-light;
+
+      .btn-default:disabled {
+        background: white;
+
+        border: none;
+
+        color: @text-color;
+      }
+
+      .btn-default {
+        font-weight: bold;
+
+        border: none;
+
+        &.active {
+          -webkit-box-shadow: none;
+          box-shadow: none;
+        }
+      }
+
+      .btn-info {
+        background: @brand-primary;
+
+        border-radius: 0;
+      }
+    }
+  }
+
+  thead tr:first-child th {
+    padding-bottom: 7px;
+  }
+
+  .glyphicon {
+    font-size: large;
+
+    &.glyphicon-chevron-right:before {
+      content: "\f054" !important;
+    }
+
+    &.glyphicon-chevron-left:before {
+      content: "\f053" !important;
+    }
+  }
+
+  .btn-sm, .btn-group-sm > .btn {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+}
+
 .sidebar-no-border {
   margin-top: -20px;
 }
@@ -564,7 +660,7 @@ ul.nav-tabs-margin {
       li.tree-notebook {
         cursor: pointer;
 
-        .notebook-title.active {
+        .notebook-title.active, [ng-drop].drag-enter {
           color: @brand-primary;
         }
       }
@@ -708,7 +804,7 @@ body.paperwork-guest {
     max-width: 330px;
     padding: 15px;
     margin: 0 auto;
-    
+
     .form-signin-heading{
         margin-bottom:17.5px;
     }
@@ -735,6 +831,59 @@ body.paperwork-guest {
     }
     .control-label {
       font-size: 16px;
+    }
+  }
+}
+
+/*
+ * Error
+ */
+
+body.paperwork-error {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: @white;
+  
+  .error-wrapper {
+    width: 55em;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .error-logo {
+    display: inline-block;
+    vertical-align: middle;
+    
+    .error-logo-img {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      width: 220px;
+      height: 220px;
+    }
+    
+  }
+  
+  .error-content {
+      display: inline-block;
+      vertical-align: middle;
+  }
+  
+  .error-reporting {
+      margin-top: 1em;
+  }
+  
+  @media (max-width: 500px) {
+    .error-logo {
+        display: block;
+    }
+    
+    .error-content {
+        margin-bottom: 15px;
+    }
+    
+    .error-wrapper {
+        width: auto;
     }
   }
 }
@@ -853,12 +1002,12 @@ body.paperwork-guest {
 // End of Modal: Message
 
 // Modal: Manage tags
-#modalManageTags {
-  .manage-tags-content {
+.modal-manage-list {
+  .manage-list-content {
     .row {
       margin-bottom: 5px;
 
-      .tag-line {
+      .line {
         display: inline-block;
         margin-top: 5px;
       }
@@ -904,5 +1053,40 @@ body.paperwork-guest {
       background-color: #CF4848;
     }
   }
+
+  .shortcut-chk {
+    margin-top: 5px;
+
+    input {
+      margin-right: 5px;
+    }
+  }
 }
 // End of Modal: Manage tags
+
+/*
+    Status Feedback classes
+*/
+// Common class for notification
+[pw-status-notification] {
+  .request_status_feedback {
+    cursor: pointer;
+    color: #FFFFFF;
+    padding: 10px 0;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    z-index: 9999;
+    display: none;
+
+    // Error notification
+    &.error {
+      background-color: fade(@brand-danger, 65%);
+    }
+
+    // Success notification
+    &.success {
+      background-color: fade(@brand-success, 65%);
+    }
+  }
+}

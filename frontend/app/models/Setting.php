@@ -1,6 +1,6 @@
 <?php
 
-class Setting extends Eloquent {
+class Setting extends PaperworkModel {
 	use SoftDeletingTrait;
 	protected $softDelete = true;
 	protected $table = 'settings';

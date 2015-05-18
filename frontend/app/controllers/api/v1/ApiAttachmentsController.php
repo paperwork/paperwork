@@ -6,24 +6,35 @@ class ApiAttachmentsController extends BaseController {
     protected $dates = ['deleted_at'];
 	public $restful = true;
 
-	public function index($notebookId, $noteId, $versionId)
+    /**
+     * @param $notebookId
+     * @param $noteId
+     * @return \Illuminate\Database\Eloquent\Model|null|static
+     */
+	protected static function getNote($notebookId, $noteId, $versionId)
 	{
-		// This is the same source as used in ApiVersionsController@show
-		// -> TODO: DRY it.
-
 		$note = Note::with(
 			array(
-			'users' => function($query) {
-				$query->where('note_user.user_id', '=', Auth::user()->id);
-			},
-			'notebook' => function($query) use( &$notebookId) {
-				$query->where('id', ($notebookId>0 ? '=' : '>'), ($notebookId>0 ? $notebookId : '0'));
-			},
-			'version' => function($query) {
-			}
+				'users' => function ($query) {
+					$query->where('note_user.user_id', '=', Auth::user()->id);
+				},
+				'notebook' => function ($query) use ($notebookId) {
+					$query->where('id', ($notebookId > 0 ? '=' : '>'), ($notebookId > 0 ? $notebookId : '0'));
+				},
+				'version' => function ($query) use ($versionId) {
+                   // Reserved for future use.
+                   // $query->where('id', $versionId);
+				}
 			)
 		)->where('id', '=', $noteId)->whereNull('deleted_at')->first();
 
+		return $note;
+	}
+
+	public function index($notebookId, $noteId, $versionId)
+	{
+		// This is the same source as used in ApiVersionsController@show
+        $note = self::getNote($notebookId, $noteId, $versionId);
 
 		$tmp = $note->version()->first();
 		$version = null;
@@ -45,21 +56,7 @@ class ApiAttachmentsController extends BaseController {
 
 	public function show($notebookId, $noteId, $versionId, $attachmentId)
 	{
-		// This is the same source as used in ApiVersionsController@show
-		// -> TODO: DRY it.
-
-		$note = Note::with(
-			array(
-			'users' => function($query) {
-				$query->where('note_user.user_id', '=', Auth::user()->id);
-			},
-			'notebook' => function($query) use(&$notebookId) {
-				$query->where('id', ($notebookId>0 ? '=' : '>'), ($notebookId>0 ? $notebookId : '0'));
-			},
-			'version' => function($query) {
-			}
-			)
-		)->where('id', '=', $noteId)->whereNull('deleted_at')->first();
+        $note = self::getNote($notebookId, $noteId);
 
 		$tmp = $note->version()->first();
 		$version = null;
@@ -120,25 +117,9 @@ class ApiAttachmentsController extends BaseController {
 			}
 
 			// Get Version with versionId
-			// This code is pretty much the same as in ApiVersionsController@show
-			// -> TODO: DRY it.
+			$note = self::getNote($notebookId, $noteId, $versionId);
 
-			$note = Note::with(
-				array(
-				'users' => function($query) {
-					$query->where('note_user.user_id', '=', Auth::user()->id);
-				},
-				'notebook' => function($query) use( &$notebookId) {
-					$query->where('id', ($notebookId>0 ? '=' : '>'), ($notebookId>0 ? $notebookId : '0'));
-				},
-				'version' => function($query) {
-
-				}
-				)
-			)->where('id', '=', $noteId)->whereNull('deleted_at')->first();
-
-
-			$tmp = $note->version()->first();
+			$tmp = $note ? $note->version()->first() : null;
 			$version = null;
 
 			if(is_null($tmp)) {
@@ -186,21 +167,7 @@ class ApiAttachmentsController extends BaseController {
 
 	public function destroy($notebookId, $noteId, $versionId, $attachmentId)
 	{
-		// This is the same source as used in ApiVersionsController@show
-		// -> TODO: DRY it.
-
-		$note = Note::with(
-			array(
-			'users' => function($query) {
-				$query->where('note_user.user_id', '=', Auth::user()->id);
-			},
-			'notebook' => function($query) use(&$notebookId) {
-				$query->where('id', ($notebookId>0 ? '=' : '>'), ($notebookId>0 ? $notebookId : '0'));
-			},
-			'version' => function($query) {
-			}
-			)
-		)->where('id', '=', $noteId)->whereNull('deleted_at')->first();
+        $note = self::getNote($notebookId, $noteId, $versionId);
 
 		$tmp = $note->version()->first();
 		$version = null;
@@ -232,21 +199,7 @@ class ApiAttachmentsController extends BaseController {
 
 
 	public function raw ($notebookId, $noteId, $versionId, $attachmentId) {
-		// This is the same source as used in ApiVersionsController@show
-		// -> TODO: DRY it.
-
-		$note = Note::with(
-			array(
-			'users' => function($query) {
-				$query->where('note_user.user_id', '=', Auth::user()->id);
-			},
-			'notebook' => function($query) use(&$notebookId) {
-				$query->where('id', ($notebookId>0 ? '=' : '>'), ($notebookId>0 ? $notebookId : '0'));
-			},
-			'version' => function($query) {
-			}
-			)
-		)->where('id', '=', $noteId)->whereNull('deleted_at')->first();
+        $note = self::getNote($notebookId, $noteId, $versionId);
 
 		$tmp = $note->version()->first();
 		$version = null;
@@ -287,5 +240,3 @@ class ApiAttachmentsController extends BaseController {
 		return Response::make(readfile($destinationFolder . '/' . $attachment->filename), 200, $headers);
 	}
 }
-
-?>

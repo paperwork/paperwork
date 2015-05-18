@@ -11,6 +11,9 @@ return array(
 	'onbeforeunload_info' => 'Los datos se perderán si sale de la página, ¿está seguro?',
 	'user' => array(
 		'settings' => array(
+		    'language_label' => 'Idioma',
+		    'client_label' => 'Cliente',
+		    'import_slash_export' => 'Importar/Exportar',
 			'language' => array(
 				'ui_language' => 'Idioma de la Interfaz de Usuario',
 				'document_languages' => 'Idiomas del Documento',

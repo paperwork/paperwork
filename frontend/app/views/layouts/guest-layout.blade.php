@@ -13,18 +13,13 @@
 
     <div class="container">
       <div class="guest-logo">
-        <img class="guest-logo-img" src="/images/paperwork-logo.png">
+        <img class="guest-logo-img" src="[[ asset('images/paperwork-logo.png') ]]">
       </div>
       @yield("content")
-    </div> <!-- /container -->
-
-    <div class="footer [[ Config::get('paperwork.showIssueReportingLink') ? '' : 'hide' ]]">
-      <div class="container">
-        <div class="alert alert-warning" role="alert">
-          <p>[[Lang::get('messages.found_bug')]]</p>
-        </div>
+      <div class="footer [[ Config::get('paperwork.showIssueReportingLink') ? '' : 'hide' ]]">
+        @include('partials/error-reporting-footer')
       </div>
-    </div>
+    </div> <!-- /container -->
 
   [[ HTML::script('js/jquery.min.js') ]]
 

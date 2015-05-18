@@ -9,6 +9,7 @@ class ApiI18nController extends BaseController {
 			'keywords' => Lang::get('keywords'),
 			'messages' => Lang::get('messages'),
 			'notebooks' => Lang::get('notebooks'),
+			'notifications' => Lang::get('notifications'),
 			'pagination' => Lang::get('pagination'),
 			'reminders' => Lang::get('reminders'),
 			'users' => Lang::get('users'),

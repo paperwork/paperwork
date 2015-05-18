@@ -1,0 +1,48 @@
+{
+  "name": "Paperwork",
+  "version": "0.0.0",
+  "homepage": "https://github.com/twostairs/paperwork",
+  "authors": [
+    "Paperwork authors"
+  ],
+  "description": "Paperwork - OpenSource note-taking & archiving",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/js/bower_components",
+    "test",
+    "tests"
+  ],
+  "resolutions": {
+    "angular": "~1.2",
+    "angular-animate": "~1.2",
+    "angular-resource": "~1.2",
+    "angular-route": "~1.2",
+    "angular-sanitize": "~1.2",
+    "jquery": "~1.11"
+  },
+  "dependencies": {
+    "angular": "~1.2",
+    "angular-animate": "~1.2",
+    "angular-route": "~1.2",
+    "angular-resource": "~1.2",
+    "angular-sanitize": "~1.2",
+    "angular-file-upload": "~1.1.5",
+    "jquery": "~1.11",
+    "angular-utf8-base64": "~0.0.5",
+    "ngDraggable": "~0.1.3",
+    "html5shiv": "~3.7.2",
+    "respond": "~1.4.2",
+    "jquery-overscroll-fixed": "~1.7.7",
+    "angular-ui-bootstrap-bower": "~0.12.1",
+    "bootstrap": "~3.3.4",
+    "jquery.scrollTo": "~2.1.0",
+    "retinajs": "~1.3.0",
+    "bootstrap-tagsinput": "~0.4.2",
+    "typeahead.js": "~0.10.5",
+    "bootstrap3-ie10-viewport-bug-workaround": "~1.0.0"
+  }
+}

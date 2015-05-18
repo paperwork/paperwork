@@ -6,6 +6,7 @@ return array(
 	'admin_status' => 'Admin Status',
 	'deleted_at' => 'Deleted',
 	'email_address' => 'E-Mail Adresse',
+	'username' => 'Username',
 	'id' => 'ID',
 	'users' => 'Users',
 	'first_name' => 'Vorname',
@@ -22,6 +23,8 @@ return array(
 	'shortcuts' => 'Verknüpfungen',
 	'notebooks' => 'Notizbücher',
 	'tags' => 'Tags',
+	'manage_tags' => 'Manage tags',
+	'manage_notebooks' => 'Manage notebooks',
 	'note' => 'Notiz',
 	'notebook' => 'Notizbuch',
 	'collection' => 'Kollektion',
@@ -31,13 +34,17 @@ return array(
 	'move_notes' => 'Notizen verschieben',
 	'delete_note' => 'Notiz löschen',
 	'delete_notes' => 'Notizen löschen',
+	'note_history' => 'Note history',
 	'note_info' => 'Notizinfo',
 	'note_title' => 'Notiztitel',
+	'share' => 'Share',
 	'new_notebook' => 'Neues Notizbuch',
 	'edit_notebook' => 'Notizbuch bearbeiten',
 	'delete_notebook' => 'Notizbuch löschen',
 	'delete_notebook_question' => 'Notizbuch löschen?',
 	'delete_notebook_message' => 'Das ausgewählte Notizbuch wird, samt aller Inhalte gelöscht. Sind Sie sicher?',
+	'delete_tag_question' => 'Delete tag?',
+	'delete_tag_message' => 'This will delete the selected tag. Are you sure?',
 	'new_collection' => 'Neue Kollektion',
 	'edit_collection' => 'Kollektion bearbeiten',
 	'delete_collection' => 'Kollektion löschen',
@@ -80,6 +87,7 @@ return array(
 	'not_implemented' => 'Diese Funktion ist noch nicht implementiert.',
 	'experimental' => 'experimentell',
 	'import' => 'Import',
-	'export' => 'Export'
+	'export' => 'Export',
+	'back' => 'Back'
 
 );

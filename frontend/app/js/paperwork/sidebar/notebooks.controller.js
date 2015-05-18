@@ -1,178 +1,270 @@
 angular.module('paperworkNotes').controller('SidebarNotebooksController',
-  ['$scope', '$rootScope', '$location', '$routeParams', 'NotebooksService',
-   function($scope, $rootScope, $location, $routeParams, notebooksService) {
-     $rootScope.notebookSelectedId = 0;
+   function($scope, $rootScope, $location, $routeParams, $filter, $q, NotebooksService, NotesService, paperworkDbAllId, StatusNotifications) {
+     $rootScope.notebookSelectedId = paperworkDbAllId;
      $rootScope.tagsSelectedId = -1;
+     $rootScope.dateSelected = -1;
 
-     $scope.isVisible = function() {
-       return !$rootScope.expandedNoteLayout;
-     };
+    $scope.isVisible = function() {
+      return !$rootScope.expandedNoteLayout;
+    };
 
-     $scope.notebookIconByType = function(type) {
-       switch(parseInt(type)) {
-         case 0:
-           return 'fa-book';
-           break;
-         case 1:
-           return 'fa-folder-open';
-           break;
-         case 2:
-           return 'fa-archive';
-           break;
-       }
-     };
+    $scope.notebookIconByType = function(type) {
+      switch(parseInt(type)) {
+        case 0:
+          return 'fa-book';
+        case 1:
+          return 'fa-folder-open';
+        case 2:
+          return 'fa-archive';
+      }
+    };
 
-     $rootScope.getNotebookSelectedId = function() {
-       return $rootScope.notebookSelectedId;
-     };
+    $rootScope.getNotebookSelectedId = function() {
+      return $rootScope.notebookSelectedId;
+    };
 
-     $scope.openNotebook = function(notebookId, type, index) {
-       if(parseInt(type) == 0 || parseInt(type) == 2) {
-         // If the notebooks tree should be collapsed, expand it,
-         // so the user sees which notebook is being selected through the shortcut.
-         var $treeHeaderNotebooks = jQuery('.tree-header-notebooks');
-         if($treeHeaderNotebooks.children('.fa').hasClass('fa-chevron-right')) {
-           $treeHeaderNotebooks.click();
-         }
+    $scope.openNotebook = function(notebookId, type, index) {
+      if(parseInt(type) == 0 || parseInt(type) == 2) {
+        // If the notebooks tree should be collapsed, expand it,
+        // so the user sees which notebook is being selected through the shortcut.
+        var $treeHeaderNotebooks = jQuery('.tree-header-notebooks');
+        if($treeHeaderNotebooks.children('.fa').hasClass('fa-chevron-right')) {
+          $treeHeaderNotebooks.click();
+        }
 
          $rootScope.notebookSelectedId = parseInt(index);
+         $rootScope.dateSelected = -1;
          $rootScope.tagsSelectedId = -1;
          $rootScope.search = "";
-         $location.path("/n/" + parseInt(notebookId));
+         $location.path("/n/" + (notebookId));
        }
      };
 
-     $rootScope.openTag = function(tagId) {
-       $rootScope.notebookSelectedId = -1;
-       $rootScope.tagsSelectedId = parseInt(tagId);
-       $location.path("/s/tagid:" + parseInt(tagId));
-     };
+    $scope.openFilter = function() {
+      var s = "";
+      if($rootScope.notebookSelectedId != 0) {
+        s += "notebookid:" + $rootScope.notebookSelectedId;
+      }
 
-     $scope.modalNewNotebook = function() {
-       $rootScope.modalNotebook = {
-         'action':   'create',
-         'shortcut': '',
-         'title':    ''
-       };
-       $('#modalNotebook').modal("show");
-     };
+      if($rootScope.tagsSelectedId != -1) {
+        if (s.length > 0) s += " ";
+        s += "tagid:" + $rootScope.tagsSelectedId;
+      }
 
-     $scope.modalNotebookSubmit = function() {
-       var data = {
-         'type':     0,
-         'title':    $rootScope.modalNotebook.title,
-         'shortcut': $rootScope.modalNotebook.shortcut
-       };
+      if($rootScope.dateSelected != -1) {
+        if (s.length > 0) s += " ";
+        s += "date:" + $filter('date')($rootScope.dateSelected, 'yyyy-MM-dd');
+      }
 
-       var callback = (function(_paperworkNotebooksService) {
-         return function(status, data) {
-           switch(status) {
-             case 200:
-               // FIXME
-               $('#modalNotebook').modal('hide');
-               _paperworkNotebooksService.getNotebooks();
-               _paperworkNotebooksService.getNotebookShortcuts(null);
-               break;
-             case 400:
-               if(typeof data.errors.title != "undefined") {
-                 // FIXME
-                 $('#modalNotebook').find('input[name="title"]').parents('.form-group').addClass('has-warning');
-               }
-               break;
-           }
-         };
-       })(notebooksService);
+      $rootScope.search = s;
+      if(s.length) {
+        $location.path("/s/" + $rootScope.search);
+      } else {
+        $location.path("/n/" + paperworkDbAllId);
+      }
+    };
 
-       if($rootScope.modalNotebook.action == "create") {
-         notebooksService.createNotebook(data, callback);
-       } else if($rootScope.modalNotebook.action == "edit") {
-         // if($rootScope.modalNotebook.delete) {
-         // NotebooksService.deleteNotebook($rootScope.modalNotebook.id, callback);
-         // } else {
-         notebooksService.updateNotebook($rootScope.modalNotebook.id, data, callback);
-         // }
-       }
-     };
+    $rootScope.openTag = function(tagId) {
+      if($rootScope.tagsSelectedId === tagId) {
+        $rootScope.tagsSelectedId = -1;
+      } else {
+        $rootScope.tagsSelectedId = tagId;
+      }
 
-     $scope.notebookSelectedModel = 0;
-     $scope.modalNotebookSelectSubmit = function(notebookId, noteId, toNotebookId) {
-       $rootScope.modalMessageBox.theCallback(notebookId, noteId, toNotebookId);
-     };
+      $rootScope.notebookSelectedId = 0;
+      $rootScope.dateSelected = -1;
 
-     $scope.modalEditNotebook = function(notebookId) {
-       var notebook = notebooksService.getNotebookByIdLocal(notebookId);
+      $scope.openFilter();
+    };
 
-       if(notebook == null || $rootScope.menuItemNotebookClass() === 'disabled') {
-         return false;
-       }
+    $scope.openDate = function(date) {
+      if($filter('date')($rootScope.dateSelected, "shortDate") === $filter('date')(date, "shortDate")) {
+        $rootScope.dateSelected = -1;
+        $scope.sidebarCalendar = undefined;
+      } else {
+        $rootScope.dateSelected = date;
+      }
 
-       $rootScope.modalNotebook = {
-         'action': 'edit',
-         'id':     notebookId,
-         'title':  notebook.title
-       };
+      $scope.openFilter();
+    };
 
-       var shortcut = notebooksService.getShortcutByNotebookIdLocal(notebookId);
+    $scope.modalNewNotebook = function() {
+      $rootScope.modalNotebook = {
+        'action':   'create',
+        'shortcut': '',
+        'title':    ''
+      };
+      $('#modalNotebook').modal("show");
+    };
 
-       if(shortcut == null) {
-         $rootScope.modalNotebook.shortcut = false;
-       } else {
-         $rootScope.modalNotebook.shortcut = true;
-       }
+    $scope.modalNotebookSubmit = function() {
+      var data = {
+        'type':     0,
+        'title':    $rootScope.modalNotebook.title,
+        'shortcut': $rootScope.modalNotebook.shortcut
+      };
 
-       // FIXME
-       $('#modalNotebook').modal("show");
-     };
+      var callback = (function(_paperworkNotebooksService) {
+        return function(status, data) {
+          var param;
+          var action = $rootScope.modalNotebook.action;
+          switch(status) {
+            case 200:
+              // FIXME
+              $('#modalNotebook').modal('hide');
+              _paperworkNotebooksService.getNotebooks();
+              _paperworkNotebooksService.getNotebookShortcuts(null);
+              param = "notebook_" + action + "_successfully";
+              StatusNotifications.sendStatusFeedback("success", param);
+              break;
+            case 400:
+              if(typeof data.errors.title != "undefined") {
+                // FIXME
+                $('#modalNotebook').find('input[name="title"]').parents('.form-group').addClass('has-warning');
+              }
+              //param = "notebook_" + action + "_failed";
+              //StatusNotifications.sendStatusFeedback("error", param);
+              break;
+            default:
+              param = "notebook_" + action + "_failed";
+              StatusNotifications.sendStatusFeedback("error", param);
+              break;
+          }
+        };
+      })(NotebooksService);
 
-     $scope.modalDeleteNotebook = function(notebookId) {
+      if($rootScope.modalNotebook.action == "create") {
+        NotebooksService.createNotebook(data, callback);
+      } else if($rootScope.modalNotebook.action == "edit") {
+        // if($rootScope.modalNotebook.delete) {
+        // NotebooksService.deleteNotebook($rootScope.modalNotebook.id, callback);
+        // } else {
+        NotebooksService.updateNotebook($rootScope.modalNotebook.id, data, callback);
+        // }
+      }
+    };
 
-       if($rootScope.menuItemNotebookClass() === 'disabled') {
-         return false;
-       }
+    $scope.notebookSelectedModel = 0;
+    $scope.modalNotebookSelectSubmit = function(notebookId, noteId, toNotebookId) {
+      $rootScope.modalMessageBox.theCallback(notebookId, noteId, toNotebookId);
+    };
 
-       var callback = (function() {
-         return function(status, data) {
-           switch(status) {
-             case 200:
-               notebooksService.getNotebookShortcuts(null);
-               notebooksService.getNotebooks();
-               $location.path("/n/0");
-               break;
-             case 400:
-               // TODO: Show some kind of error
-               break;
-           }
-         };
-       })();
+    $scope.modalEditNotebook = function(notebookId) {
+      var notebook = NotebooksService.getNotebookByIdLocal(notebookId);
 
-       $rootScope.messageBox({
-         'title':   $rootScope.i18n.keywords.delete_notebook_question,
-         'content': $rootScope.i18n.keywords.delete_notebook_message,
-         'buttons': [
-           {
-             // We don't need an id for the dismiss button.
-             // 'id': 'button-no',
-             'label':     $rootScope.i18n.keywords.cancel,
-             'isDismiss': true
-           },
-           {
-             'id':    'button-yes',
-             'label': $rootScope.i18n.keywords.yes,
-             'class': 'btn-warning',
-             'click': function() {
-               notebooksService.deleteNotebook(notebookId, callback);
-               return true;
-             },
-           }
-         ]
-       });
-     };
+      if(notebook == null || $rootScope.menuItemNotebookClass() === 'disabled') {
+        return false;
+      }
 
-     $scope.modalManageTags = function () {
-         $('#modalManageTags').modal("show");
-     };
+      $rootScope.modalNotebook = {
+        'action': 'edit',
+        'id':     notebookId,
+        'title':  notebook.title
+      };
 
-     notebooksService.getNotebookShortcuts(null);
-     notebooksService.getNotebooks();
-     $rootScope.tags = notebooksService.getTags();
-   }]);
+      var shortcut = NotebooksService.getShortcutByNotebookIdLocal(notebookId);
+
+      if(shortcut == null) {
+        $rootScope.modalNotebook.shortcut = false;
+      } else {
+        $rootScope.modalNotebook.shortcut = true;
+      }
+
+      // FIXME
+      $('#modalNotebook').modal("show");
+    };
+
+    $scope.modalDeleteNotebook = function(notebookId) {
+
+      if($rootScope.menuItemNotebookClass() === 'disabled') {
+        return false;
+      }
+
+      var callback = (function() {
+        return function(status, data) {
+          switch(status) {
+            case 200:
+              NotebooksService.getNotebookShortcuts(null);
+              NotebooksService.getNotebooks();
+              $location.path("/n/0" + paperworkDbAllId);
+              StatusNotifications.sendStatusFeedback("success", "notebook_deleted_successfully");
+              break;
+            case 400:
+              StatusNotifications.sendStatusFeedback("error", "notebook_delete_fail");
+              break;
+          }
+        };
+      })();
+
+      $rootScope.messageBox({
+        'title':   $rootScope.i18n.keywords.delete_notebook_question,
+        'content': $rootScope.i18n.keywords.delete_notebook_message,
+        'buttons': [
+          {
+            // We don't need an id for the dismiss button.
+            // 'id': 'button-no',
+            'label':     $rootScope.i18n.keywords.cancel,
+            'isDismiss': true
+          },
+          {
+            'id':    'button-yes',
+            'label': $rootScope.i18n.keywords.yes,
+            'class': 'btn-warning',
+            'click': function() {
+              NotebooksService.deleteNotebook(notebookId, callback);
+              return true;
+            },
+          }
+        ]
+      });
+    };
+
+    $scope.onDropSuccess = function(data, event) {
+      NotesService.moveNote($rootScope.note.notebook_id, $rootScope.note.id, this.notebook.id);
+      // Try to make the openNotebook dependant on the result of the move
+      $scope.openNotebook(this.notebook.id, this.notebook.type, this.notebook.id);
+    };
+
+    $scope.modalManageTags = function() {
+      $('#modalManageTags').modal("show");
+    };
+
+    $scope.onDropToTag = function(data, event) {
+      NotesService.tagNote($rootScope.note.notebook_id, $rootScope.note.id, this.tag.id);
+      $scope.openTag(this.tag.id);
+    };
+
+    $scope.modalManageNotebooks = function() {
+      $('#modalManageNotebooks').modal("show");
+    };
+
+    var sidebarCalendarDefer = $q.defer();
+
+    $scope.sidebarCalendarEnabledDates = [];
+    $scope.sidebarCalendarPromise = sidebarCalendarDefer.promise;
+    $scope.sidebarCalendarIsDisabled = function(date, mode) {
+      if(mode !== "day") {
+        return false;
+      }
+
+      var shortDate = $filter('date')(date, "yyyy-MM-dd");
+      return $.inArray(shortDate, $scope.sidebarCalendarEnabledDates) == -1;
+    };
+
+    $scope.sidebarCalendarCallback = function(data) {
+      while($scope.sidebarCalendarEnabledDates.length) {
+        $scope.sidebarCalendarEnabledDates.pop();
+      }
+
+      $.each(data, function(key) {
+        $scope.sidebarCalendarEnabledDates.push(key);
+      });
+
+      sidebarCalendarDefer.notify(new Date().getTime());
+    };
+
+    NotebooksService.getCalendar($scope.sidebarCalendarCallback);
+    NotebooksService.getNotebookShortcuts(null);
+    NotebooksService.getNotebooks();
+    NotebooksService.getTags();
+  });
