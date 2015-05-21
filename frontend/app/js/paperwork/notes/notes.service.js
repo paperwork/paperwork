@@ -1,22 +1,22 @@
 angular.module('paperworkNotes').factory('NotesService',
   function($rootScope, $http, base64, NetService, paperworkDbAllId, StatusNotifications) {
-    var paperworkNotesServiceFactory = {};
+    var factory = {};
 
     // paperworkNotesServiceFactory.selectedNoteIndex = 0;
 
-    paperworkNotesServiceFactory.createNote = function(notebookId, data, callback) {
+    factory.createNote = function(notebookId, data, callback) {
       NetService.apiPost('/notebooks/' + notebookId + '/notes', data, callback);
     };
 
-     paperworkNotesServiceFactory.updateNote = function(noteId, data, callback) {
+     factory.updateNote = function(noteId, data, callback) {
        NetService.apiPut('/notebooks/' + paperworkDbAllId + '/notes/' + noteId, data, callback);
      };
 
-     paperworkNotesServiceFactory.deleteNote = function(noteId, callback) {
+     factory.deleteNote = function(noteId, callback) {
        NetService.apiDelete('/notebooks/' + paperworkDbAllId + '/notes/' + noteId, callback);
      };
 
-    paperworkNotesServiceFactory.moveNote = function(notebookId, noteId, toNotebookId, callback) {
+    factory.moveNote = function(notebookId, noteId, toNotebookId, callback) {
       NetService.apiGet('/notebooks/' + notebookId + '/notes/' + noteId + '/move/' + toNotebookId, function(status, data) {
         if(status == 200) {
           // $rootScope.notes = data.response;
@@ -30,7 +30,7 @@ angular.module('paperworkNotes').factory('NotesService',
       });
     };
 
-    paperworkNotesServiceFactory.tagNote = function(notebookId, noteId, toTagId, callback) {
+    factory.tagNote = function(notebookId, noteId, toTagId, callback) {
       console.log("test");
       NetService.apiGet('/notebooks/' + notebookId + '/notes/' + noteId + '/tag/' + toTagId, function(status, data) {
         if(status == 200) {
@@ -41,7 +41,7 @@ angular.module('paperworkNotes').factory('NotesService',
       });
     };
 
-    paperworkNotesServiceFactory.getNotesInNotebook = function(notebookId, callback) {
+    factory.getNotesInNotebook = function(notebookId, callback) {
       NetService.apiGet('/notebooks/' + notebookId + '/notes', function(status, data) {
         if(status == 200) {
           $rootScope.notes = data.response;
@@ -52,7 +52,7 @@ angular.module('paperworkNotes').factory('NotesService',
       });
     };
 
-    paperworkNotesServiceFactory.getNotesInTag = function(tagId) {
+    factory.getNotesInTag = function(tagId) {
       NetService.apiGet('/tagged/' + tagId, function(status, data) {
         if(status == 200) {
           $rootScope.notes = data.response;
@@ -60,7 +60,7 @@ angular.module('paperworkNotes').factory('NotesService',
       });
     };
 
-     paperworkNotesServiceFactory.getNoteById = function(noteId, callback) {
+     factory.getNoteById = function(noteId, callback) {
        NetService.apiGet('/notebooks/' + paperworkDbAllId + '/notes/' + noteId, function(status, data) {
          if(status == 200) {
            $rootScope.note = data.response;
@@ -71,7 +71,7 @@ angular.module('paperworkNotes').factory('NotesService',
        });
      };
 
-    paperworkNotesServiceFactory.getNotesFromSearch = function(query) {
+    factory.getNotesFromSearch = function(query) {
       NetService.apiGet('/search/' + base64.encode(query), function(status, data) {
         if(status == 200) {
           $rootScope.notes = data.response;
@@ -79,7 +79,7 @@ angular.module('paperworkNotes').factory('NotesService',
       });
     };
 
-    paperworkNotesServiceFactory.getNoteVersionAttachments = function(notebookId, noteId, versionId, callback) {
+    factory.getNoteVersionAttachments = function(notebookId, noteId, versionId, callback) {
       NetService.apiGet('/notebooks/' + notebookId + '/notes/' + noteId + '/versions/' + versionId + '/attachments', function(status, data) {
         if(status == 200) {
           if(typeof callback != "undefined") {
@@ -89,9 +89,9 @@ angular.module('paperworkNotes').factory('NotesService',
       });
     };
 
-    paperworkNotesServiceFactory.deleteNoteVersionAttachment = function(notebookId, noteId, versionId, attachmentId, callback) {
+    factory.deleteNoteVersionAttachment = function(notebookId, noteId, versionId, attachmentId, callback) {
       NetService.apiDelete('/notebooks/' + notebookId + '/notes/' + noteId + '/versions/' + versionId + '/attachments/' + attachmentId, callback);
     };
 
-    return paperworkNotesServiceFactory;
+    return factory;
   });
