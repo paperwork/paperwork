@@ -401,7 +401,7 @@ class ApiNotesController extends BaseController
         }
         
         if($note->pivot->umask<PaperworkHelpers::UMASK_READWRITE){
-            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, array('error' => 'Permission error'));
+            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, array('message' => 'Permission error. The private tags have been saved though.'));
         }
 
         $previousVersion     = $note->version()->first();
@@ -604,7 +604,7 @@ class ApiNotesController extends BaseController
                 $tmp = $this->shareNote($notebookId, $singleNoteId, $toUserIds[$i], $toUMASK[$i]);
                 if (is_null($tmp)) {
                     $status      = PaperworkHelpers::STATUS_ERROR;
-                    $responses[] = array('error_id' => $singleNoteId);
+                    $responses[] = array('error_id' => $singleNoteId, 'error_user' => $toUserIds[$i]);
                 } else {
                     $responses[] = $tmp;
                 }

@@ -27,14 +27,16 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
     };
     
     $scope.getUsers = function (noteId){
-      NetService.apiGet('/users/'+noteId, function(status, data) {
+        if(typeof $rootScope.i18n != "undefined")
+	    $rootScope.umasks=[{'name':$rootScope.i18n.keywords.not_shared, 'value':0},
+		   {'name':$rootScope.i18n.keywords.read_only, 'value':4},
+		   {'name':$rootScope.i18n.keywords.read_write, 'value':6}];
+	NetService.apiGet('/users/'+noteId, function(status, data) {
         if(status == 200) {
           $rootScope.users = data.response;
         }
       });
     };
-    $scope.umasks=[{'name':'not shared', 'value':0},{'name':'read-only', 'value':4}, {'name':'read-write', 'value':6}];
-
     $scope.newNote = function(notebookId) {
       if($rootScope.menuItemNotebookClass() === 'disabled') {
         return false;
@@ -301,5 +303,6 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
     $scope.onDragSuccess = function(data, event) {
       //u
     };
-    $scope.getUsers($rootScope.noteSelectedId.noteId)
+
+   // $scope.getUsers($rootScope.noteSelectedId.noteId)
   });

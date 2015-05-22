@@ -24,7 +24,7 @@
 					'><i class="fa fa-info-circle"></i></button>
 					<button class="btn btn-default navbar-btn" title="[[Lang::get('keywords.note_history')]]" data-toggle="freqselector" data-target="#wayback-machine"><i class="fa fa-history"></i></button>
 					<button class="btn btn-default navbar-btn" title="[[Lang::get('keywords.edit_note')]]" ng-controller="SidebarNotesController" ng-click="editNote(note.notebook_id, note.id)"><i class="fa fa-pencil"></i></button>
-					<button class="btn btn-default navbar-btn" title="[[Lang::get('keywords.share')]]" ><i class="fa fa-share-alt"></i></button>
+					<button class="btn btn-default navbar-btn" title="[[Lang::get('keywords.share')]]" ng-controller="SidebarNotesController" ng-click="modalShareNote(note.notebook_id, note.id)" ><i class="fa fa-share-alt"></i></button>
 				</div>
 			</li>
 		</ul>
