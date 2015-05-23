@@ -1,13 +1,14 @@
-var gulp = require('gulp');
-var less = require('gulp-less');
-var concat = require('gulp-concat');
-var rename = require('gulp-rename');
-var livereload = require('gulp-livereload');
-var uglify = require('gulp-uglify');
-var path = require("path");
-var annotate = require('gulp-ng-annotate');
-var jshint = require('gulp-jshint');
-var jshint_stylish = require('jshint-stylish');
+var gulp           = require('gulp'),
+	less           = require('gulp-less'),
+	concat         = require('gulp-concat'),
+	rename         = require('gulp-rename'),
+	livereload     = require('gulp-livereload'),
+	uglify         = require('gulp-uglify'),
+	path           = require("path"),
+	annotate       = require('gulp-ng-annotate'),
+	jshint         = require('gulp-jshint'),
+	jshint_stylish = require('jshint-stylish'),
+	bower		   = require('gulp-bower');
 
 
 var paths = {
@@ -200,6 +201,14 @@ gulp.task('minifyJs', function() {
 		.src(path.join(paths.output.js, '*.js'))
 		.pipe(uglify())
 		.pipe(gulp.dest(paths.output.js));
+});
+
+gulp.task('bower', function() {
+	return bower().pipe(gulp.dest('js'));
+});
+
+gulp.task('bower-update', function() {
+   return bower({cmd: 'update'}).pipe(gulp.dest('js'));
 });
 
 gulp.task('less', ['compileLessBootstrapTheme', 'compileLessPaperworkThemeV1', 'compileLessFreqselector', 'compileLessTypeahead']);
