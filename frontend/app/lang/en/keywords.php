@@ -95,6 +95,7 @@ return array(
 	'not_shared' => 'Do not share',
 	'read_only' => 'Read only',
 	'read_write' => 'Read and write',
-	'coming_soon' => 'Coming Soon'
+	'coming_soon' => 'Coming Soon',
+        'by' => 'by'
 
 );

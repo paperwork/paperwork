@@ -46,6 +46,9 @@ class User extends PaperworkModel implements UserInterface, RemindableInterface 
 	public function tags(){
 		return $this->hasMany('Tag');
 	}
+	public function versions(){
+	  return $this->hasMany('Version')->withTimestamps();
+	}
 	
     public function isAdmin() {
     	return $this->is_admin;

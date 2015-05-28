@@ -26,8 +26,16 @@
 							<div class="col-xs-9">{{ note.created_at }}</div>
 						</div>
 						<div class="row">
+							<div class="col-xs-3"><b>[[Lang::get('keywords.by')]]</b></div>
+							<div class="col-xs-9">{{ note.users[0].firstname }} {{ note.users[0].lastname }}</div>
+						</div>
+						<div class="row">
 							<div class="col-xs-3"><b>[[Lang::get('keywords.updated_at')]]</b></div>
 							<div class="col-xs-9">{{ note.updated_at }}</div>
+						</div>
+						<div class="row">
+							<div class="col-xs-3"><b>[[Lang::get('keywords.by')]]</b></div>
+							<div class="col-xs-9">{{ note.version.user.firstname }} {{ note.version.user.lastname }}</div>
 						</div>
 					'><i class="fa fa-info-circle"></i></button>
                             <button class="btn btn-default navbar-btn" title="[[Lang::get('keywords.note_history')]]"
@@ -63,6 +71,7 @@
                     <div>
                         <div class="freqselector-item-title">{{version.timestamp * 1000 | date:'yyyy-MM-dd'}}</div>
                         <div class="freqselector-item-subtitle">{{version.timestamp * 1000 | date:'HH:mm'}}</div>
+                        <div class="freqselector-item-subtitle">{{version.username}}</div>
                     </div>
                 </div>
                 <div class="freqselector-item freqselector-item-dummy">

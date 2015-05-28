@@ -43,13 +43,14 @@ class ApiNotesController extends BaseController
         $versions = array();
         while (!is_null($tmp)) {
             $versionsArray[] = $tmp;
-
+	    $user=$tmp->user()->first();
             $versions[] = array(
                 'id'          => $tmp->id,
                 'previous_id' => $tmp->previous_id,
                 'next_id'     => $tmp->next_id,
                 'latest'      => $isLatest,
-                'timestamp'   => $tmp->created_at->getTimestamp()
+                'timestamp'   => $tmp->created_at->getTimestamp(),
+		'username'    => $user->firstname.' '.$user->lastname
             );
             $isLatest   = false;
             $tmp        = $tmp->previous()->first();
@@ -343,7 +344,8 @@ class ApiNotesController extends BaseController
         $version = new Version([
             'title'           => $newNote->get("title"),
             'content'         => $newNote->get("content"),
-            'content_preview' => $newNote->get("content_preview")
+            'content_preview' => $newNote->get("content_preview"),
+	    'user_id' => Auth::user()->id
         ]);
 
         $version->save();
@@ -419,7 +421,8 @@ class ApiNotesController extends BaseController
             $version = new Version(array(
                 'title'           => $updateNote->get("title"),
                 'content'         => $pureContent,
-                'content_preview' => substr(strip_tags($pureContent), 0, 255)
+                'content_preview' => substr(strip_tags($pureContent), 0, 255),
+		'user_id' => $user->id
             ));
 
             $version->save();
