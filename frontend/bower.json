@@ -43,6 +43,7 @@
     "retinajs": "~1.3.0",
     "bootstrap-tagsinput": "~0.4.2",
     "typeahead.js": "~0.10.5",
-    "bootstrap3-ie10-viewport-bug-workaround": "~1.0.0"
+    "bootstrap3-ie10-viewport-bug-workaround": "~1.0.0",
+    "placeholders": "~4.0.1"
   }
 }
