@@ -61,7 +61,7 @@ return array(
 	| If set to true, forgot password link is enabled.
 	|
 	*/
-	'forgot_password' => false,
+	'forgot_password' => true,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -149,7 +149,7 @@ return array(
 	| If set to true, a link for reporting issues is being displayed.
 	|
 	*/
-	'showIssueReportingLink' => false,
+	'showIssueReportingLink' => true,
 
 	/*
 	|--------------------------------------------------------------------------
