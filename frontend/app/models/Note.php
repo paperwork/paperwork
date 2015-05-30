@@ -23,7 +23,7 @@ class Note extends PaperworkModel {
 
 	public function users()
 	{
-	  return $this->belongsToMany('User');
+	  return $this->belongsToMany('User')->withPivot('umask');
 	}
 }
 

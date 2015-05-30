@@ -110,4 +110,8 @@ angular.module('paperworkNotes').controller('ConstructorController',
       $rootScope.modalGeneric('modalNotebookSelect', modalData);
     };
     
+    $rootScope.modalUsersSelect = function(modalData){
+      $rootScope.modalGeneric('modalUsersSelect',modalData);
+    }
+    
   });

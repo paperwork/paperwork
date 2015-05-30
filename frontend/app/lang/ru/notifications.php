@@ -18,5 +18,7 @@ return array(
     'notebook_edit_failed'          => 'Что-то пошло не так во время обновления блокнота. Попробуйте еще раз.',
     'upload_finished_successfully'  => 'Ваша загрузка удалась.',
     'upload_failed'                 => 'Ваша загрузка не удалась. Попробуйте еще раз.',
-    'file_deleted_successfully'     => 'Что-то пошло не так во время удаления файла. Попробуйте еще раз.'
+    'file_deleted_successfully'     => 'Что-то пошло не так во время удаления файла. Попробуйте еще раз.',
+    'note_share_success'            => 'Your note was shared successfully.',
+    'note_share_fail'               => 'Something went wrong while sharing your note. You might not have permission to share.'
 );
