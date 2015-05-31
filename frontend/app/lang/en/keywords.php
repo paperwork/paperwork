@@ -96,6 +96,9 @@ return array(
 	'read_only' => 'Read only',
 	'read_write' => 'Read and write',
 	'coming_soon' => 'Coming Soon',
-        'by' => 'by'
+        'by' => 'by',
+        'share_notebook' => 'Share notebook',
+        'select_user_notebook_title' => 'Invite users to share the notebook',
+        'propagate_permissions' => 'Propagate sharing status to the notes currently in the notebook?'
 
 );

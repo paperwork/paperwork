@@ -24,6 +24,21 @@ class ApiUsersController extends BaseController {
 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $users);
 		//return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, array());
 	}
+	
+	public function showNotebook($notebookId)
+	{
+		$tmp=User::where('users.id','!=',Auth::user()->id)->orWhereNull('users.id')->get();
+		foreach($tmp as $user){
+			$notebooks_u=User::find($user->id)->notebooks()->whereIn('notebooks.id',explode(PaperworkHelpers::MULTIPLE_REST_RESOURCE_DELIMITER,$notebookId));
+			$user->notebookCount=count($notebooks_u->get());
+			$user->umask=0;
+			if($user->notebookCount>0)
+				$user->umask=intval($notebooks_u->first()->pivot->umask);
+		}
+		$users=$tmp;
+		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $users);
+		//return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, array());
+	}
 
 	public function store()
 	{
