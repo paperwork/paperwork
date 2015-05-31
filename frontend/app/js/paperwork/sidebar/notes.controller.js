@@ -301,7 +301,13 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
       console.log(toUserId);
       $rootScope.modalMessageBox.theCallback(notebookId, noteId, toUserId);
     };
-
+    $scope.modalUsersSelectInherit = function(notebookId){
+      NetService.apiGet('/users/notebooks/'+notebookId, function(status, data) {
+        if(status == 200) {
+          $rootScope.users = data.response;
+        }
+      });
+    }
     $scope.submitSearch = function() {
       if($scope.search == "") {
         $location.path("/");

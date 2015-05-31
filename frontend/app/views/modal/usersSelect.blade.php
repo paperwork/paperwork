@@ -24,6 +24,7 @@
 	</div>
       </div>
       <div class="modal-footer">
+	<button type="button" class="btn btn-default pull-left" ng-click="modalUsersSelectInherit(modalMessageBox.notebookId)">[[Lang::get('keywords.inherit_from_notebook')]]</button>
 	<button type="button" class="btn btn-default" data-dismiss="modal">[[Lang::get('keywords.cancel')]]</button>
 	<button type="button" class="btn btn-primary" ng-click="modalUsersSelectSubmit(modalMessageBox.notebookId, modalMessageBox.noteId, users)">[[Lang::get('keywords.select')]]</button>
       </div>

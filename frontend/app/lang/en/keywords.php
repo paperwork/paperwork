@@ -99,6 +99,7 @@ return array(
         'by' => 'by',
         'share_notebook' => 'Share notebook',
         'select_user_notebook_title' => 'Invite users to share the notebook',
-        'propagate_permissions' => 'Propagate sharing status to the notes currently in the notebook?'
+        'propagate_permissions' => 'Propagate sharing status to the notes currently in the notebook?',
+        'inherit_from_notebook' => 'Inherit from notebook'
 
 );
