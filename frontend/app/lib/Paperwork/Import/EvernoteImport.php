@@ -38,35 +38,38 @@ class EvernoteImport extends AbstractImport
      * Identify parser class for xml
      * Use @attributes property
      *
-     * @return bool|string
+     * @return bool
      */
-    protected function checkXmlSource()
+    protected function isEvernote()
     {
-        if (isset($this->xml['@attributes'], $this->xml['@attributes']['application']) && preg_match('/evernote/i', $this->xml['@attributes']['application'])) {
-            return 'Paperwork\PaperwokImportEvernote';
-        }
+        $rootHasAttributes = isset($this->xml['@attributes']);
+        $isAppSet          = isset($this->xml['@attributes']['application']);
+        $isEvernote        = preg_match('/evernote/i', $this->xml['@attributes']['application']);
 
-        return false;
+        return $rootHasAttributes && $isAppSet && $isEvernote;
     }
 
     /**
      * Try parse file by SimpleXml
      *
      * @param UploadedFile $file
-     * @return bool|uid
+     *
+     * @return bool|int
      */
     public function import(UploadedFile $file)
     {
         try {
-            $this->xml = simplexml_load_file($file->getRealPath(), 'SimpleXMLElement', LIBXML_PARSEHUGE | LIBXML_NOCDATA);
+            $this->xml = simplexml_load_file($file->getRealPath(), 'SimpleXMLElement',
+                LIBXML_PARSEHUGE | LIBXML_NOCDATA);
             $this->xml = json_decode(json_encode($this->xml), true);
 
-            if ($this->xml && $parser = $this->checkXmlSource()) {
+            if ($this->xml && $this->isEvernote()) {
                 $this->process();
 
                 return $this->notebook->id;
             }
         } catch (Exception $e) {
+            return false;
         }
 
         return false;
@@ -86,10 +89,11 @@ class EvernoteImport extends AbstractImport
         $doc->loadHTML($note['content']);
 
         // Remove xml, doctype and body tags
-        $body = new \DOMDocument();
+        $body   = new \DOMDocument();
         $cloned = $doc->getElementsByTagName('body')->item(0)->cloneNode(true);
         $body->appendChild($body->importNode($cloned, true));
-        $res = str_replace(array('<body>', '</body>', '<en-note', '</en-note>'), array('', '', '<div', '</div>'), $body->saveHTML());
+        $res = str_replace(array('<body>', '</body>', '<en-note', '</en-note>'), array('', '', '<div', '</div>'),
+            $body->saveHTML());
         return mb_convert_encoding($res, 'UTF-8', 'HTML-ENTITIES');
     }
 
@@ -102,7 +106,8 @@ class EvernoteImport extends AbstractImport
      */
     protected function createEvernoteNote($xmlNote, $content)
     {
-        $noteInstance = $this->createNote($xmlNote['title'], $content, strtotime($xmlNote['created']), (isset($xmlNote['updated'])) ? strtotime($xmlNote['updated']) : strtotime($xmlNote['created']));
+        $noteInstance = $this->createNote($xmlNote['title'], $content, strtotime($xmlNote['created']),
+            (isset($xmlNote['updated'])) ? strtotime($xmlNote['updated']) : strtotime($xmlNote['created']));
 
         if (isset($xmlNote['tag'])) {
             $this->processTag($xmlNote, $noteInstance);
@@ -153,10 +158,11 @@ class EvernoteImport extends AbstractImport
 
         foreach ($xmlNote['resource'] as $attachment) {
             // No name? Use rand
-            $fileName = (isset($attachment['resource-attributes'], $attachment['resource-attributes']['file-name'])) ? $attachment['resource-attributes']['file-name'] : uniqid(rand(), true);
+            $fileName = (isset($attachment['resource-attributes'], $attachment['resource-attributes']['file-name'])) ? $attachment['resource-attributes']['file-name'] : uniqid(rand(),
+                true);
 
             $fileContent = base64_decode($attachment['data']);
-            $fileHash = md5($fileContent);
+            $fileHash    = md5($fileContent);
 
             $newAttachment = $this->createAttachment($fileContent, $fileName, $attachment['mime']);
 
@@ -166,9 +172,13 @@ class EvernoteImport extends AbstractImport
             // TODO: review regexp - need to fetch style attribute in another way.
             // replace en-media tag by img
             if (str_contains($attachment['mime'], 'image')) {
-                $noteVersion->content = preg_replace('/<en-media[^>]*hash="' . $fileHash . '"([^>]*)><\/en-media>/', '<img $1 src="/api/v1/notebooks/' . $this->notebook->id . '/notes/' . $noteInstance->id . '/versions/' . $noteVersion->id . '/attachments/' . $newAttachment->id . '/raw" />', $noteVersion->content);
+                $noteVersion->content = preg_replace('/<en-media[^>]*hash="' . $fileHash . '"([^>]*)><\/en-media>/',
+                    '<img $1 src="/api/v1/notebooks/' . $this->notebook->id . '/notes/' . $noteInstance->id . '/versions/' . $noteVersion->id . '/attachments/' . $newAttachment->id . '/raw" />',
+                    $noteVersion->content);
             } else {
-                $noteVersion->content = preg_replace('/<en-media[^>]*hash="' . $fileHash . '"([^>]*)><\/en-media>/', '<a $1 href="/api/v1/notebooks/' . $this->notebook->id . '/notes/' . $noteInstance->id . '/versions/' . $noteVersion->id . '/attachments/' . $newAttachment->id . '/raw">' . $fileName . '</a>', $noteVersion->content);
+                $noteVersion->content = preg_replace('/<en-media[^>]*hash="' . $fileHash . '"([^>]*)><\/en-media>/',
+                    '<a $1 href="/api/v1/notebooks/' . $this->notebook->id . '/notes/' . $noteInstance->id . '/versions/' . $noteVersion->id . '/attachments/' . $newAttachment->id . '/raw">' . $fileName . '</a>',
+                    $noteVersion->content);
             }
 
             $noteVersion->attachments()->attach($newAttachment);
