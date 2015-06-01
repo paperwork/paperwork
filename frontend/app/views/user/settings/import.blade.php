@@ -1,4 +1,4 @@
-[[ Form::open(array('id' => 'form-import', 'class' => 'form', 'role' => 'form', 'files' => true)) ]]
+[[ Form::open(array('id' => 'form-import', 'class' => 'form', 'role' => 'form', 'files' => true, 'action' => 'UserController@import')) ]]
 	<div class="form-group">
 		<label for="exampleInputFile">[[ Lang::get('messages.user.settings.import.evernotexml') ]]</label>
 		[[ Form::file('enex'); ]]
