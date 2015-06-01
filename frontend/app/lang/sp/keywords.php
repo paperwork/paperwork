@@ -86,6 +86,12 @@ return array(
 	'experimental' => 'Experimental',
 	'import' => 'Importar',
 	'export' => 'Exportar',
-	'back' => 'Atrás'
+	'back' => 'Atrás',
+	'share_note' => 'Share note',
+	'share_notes' => 'Share notes',
+	'select_user_title' => 'Invite users to share the note(s)',
+	'not_shared' => 'Do not share',
+	'read_only' => 'Read only',
+	'read_write' => 'Read and write'
 
 );

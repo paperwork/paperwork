@@ -18,5 +18,7 @@ return array(
     'notebook_edit_failed'          => 'Щось пішло не так під час оновлення записника. Спробуйте ще раз.',
     'upload_finished_successfully'  => 'Ваше завантаження успішно завершено.',
     'upload_failed'                 => 'Не вдалося заванажити файл. Спробуйте ще раз.',
-    'file_deleted_successfully'     => 'Щось пішло не так під час видалення файлу. Спробуйте ще раз.'
+    'file_deleted_successfully'     => 'Щось пішло не так під час видалення файлу. Спробуйте ще раз.',
+    'note_share_success'            => 'Your note was shared successfully.',
+    'note_share_fail'               => 'Something went wrong while sharing your note. You might not have permission to share.'
 );

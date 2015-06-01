@@ -6,6 +6,7 @@
 @include('modal/notebookSelect')
 @include('modal/manageTags')
 @include('modal/manageNotebooks')
+@include('modal/usersSelect')
 
 <div class="container-fluid">
 	<div class="row">

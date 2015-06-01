@@ -12,6 +12,10 @@ angular.module('paperworkNotes').factory('NotebooksService',
       NetService.apiPut('/notebooks/' + notebookId, data, callback);
     };
 
+    paperworkNotebooksServiceFactory.shareNotebook = function(notebookId, toUserId, toUMASK, callback) {
+      NetService.apiGet('/notebooks/' + notebookId+'/share/'+toUserId+'/'+toUMASK, callback);
+    };
+
     paperworkNotebooksServiceFactory.updateTag = function(tagId, data, callback) {
       NetService.apiPut('/tags/' + tagId, data, callback);
     };
