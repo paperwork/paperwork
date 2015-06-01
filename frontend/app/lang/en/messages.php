@@ -23,7 +23,8 @@ return array(
 			),
 			'client' => array(
 				'qrcode' => 'QR Code',
-				'scan' => 'Scan this QR code with your mobile app to auto-configure your Paperwork account.'
+				'scan' => 'Scan this QR code with your mobile app to auto-configure your Paperwork account.',
+				'loading_message' => 'Loading...'
 			),
 			'import' => array(
 				'evernotexml' => 'Evernote XML:',
