@@ -61,7 +61,7 @@ class EvernoteImport extends AbstractImport
         try {
             $this->xml = simplexml_load_file($file->getRealPath(), 'SimpleXMLElement',
                 LIBXML_PARSEHUGE | LIBXML_NOCDATA);
-            $this->xml = json_decode(json_encode($this->xml), true);
+             $this->xml = json_decode(json_encode($this->xml), true);
 
             if ($this->xml && $this->isEvernote()) {
                 $this->process();
@@ -176,9 +176,9 @@ class EvernoteImport extends AbstractImport
             if (str_contains($attachment['mime'], 'image')) {
                 $imageTag = sprintf(
                     '<img $1 src="/api/v1/notebooks/%s/notes/%s/versions/%s/attachments/%s/raw" />',
-                    $noteVersion->id,
                     $this->notebook->id,
                     $noteInstance->id,
+                    $noteVersion->id,
                     $newAttachment->id
                 );
 
