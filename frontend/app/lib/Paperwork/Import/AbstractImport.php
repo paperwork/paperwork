@@ -5,55 +5,19 @@
  * Date: 02.02.2015
  */
 
-namespace Paperwork;
+namespace Paperwork\Import;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-class PaperworkImport
+abstract class AbstractImport implements Import
 {
     protected $xml;
 
     protected $notebook;
 
-    /**
-     * Identify parser class for xml
-     * Use @attributes property
-     *
-     * @return bool|string
-     */
-    protected function checkXmlSource()
-    {
-        if(isset($this->xml['@attributes'], $this->xml['@attributes']['application']) && preg_match('/evernote/i', $this->xml['@attributes']['application'])) {
-            return 'Paperwork\PaperwokImportEvernote';
-        }
+    public abstract function import(UploadedFile $file);
 
-        return false;
-    }
-
-    /**
-     * Try parse file by SimpleXml
-     *
-     * @param UploadedFile $file
-     * @return bool|uid
-     */
-    public function import(UploadedFile $file)
-    {
-        try {
-            $this->xml = simplexml_load_file($file->getRealPath(), 'SimpleXMLElement', LIBXML_PARSEHUGE | LIBXML_NOCDATA);
-            $this->xml = json_decode(json_encode($this->xml), true);
-
-            if ($this->xml && $parser = $this->checkXmlSource()) {
-                // TODO: need to think how better put xml to child class without copying.
-                $obj = new $parser($this->xml);
-                $obj->process();
-
-                return $obj->notebook->id;
-            }
-        }
-        catch(Exception $e) {}
-
-        return false;
-    }
+    public abstract function process();
 
     /**
      * @param $title

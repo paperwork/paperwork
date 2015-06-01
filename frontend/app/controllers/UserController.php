@@ -365,7 +365,7 @@ class UserController extends BaseController
     {
         if ($this->isPostRequest()) {
             if(Input::hasFile('enex')) {
-                $notebookId = with(new \Paperwork\PaperworkImport)->import(Input::file('enex'));
+                $notebookId = with(new \Paperwork\Import\EvernoteImport())->import(Input::file('enex'));
                 if($notebookId) {
                     // TODO: redirect to notebook
                     return Redirect::route("/");
