@@ -158,8 +158,11 @@ class EvernoteImport extends AbstractImport
 
         foreach ($xmlNote['resource'] as $attachment) {
             // No name? Use rand
-            $fileName = (isset($attachment['resource-attributes'], $attachment['resource-attributes']['file-name'])) ? $attachment['resource-attributes']['file-name'] : uniqid(rand(),
-                true);
+            $hasResourceAttr = isset($attachment['resource-attributes']);
+            $hasFileName     = isset($attachment['resource-attributes']['file-name']);
+
+            $fileName = $attachment['resource-attributes']['file-name'];
+            $fileName = ($hasResourceAttr && $hasFileName) ? $fileName : uniqid(rand(), true);
 
             $fileContent = base64_decode($attachment['data']);
             $fileHash    = md5($fileContent);
@@ -168,17 +171,37 @@ class EvernoteImport extends AbstractImport
 
             $noteVersion = $noteInstance->version()->first();
 
-            // FIXME THAT'S MESS
             // TODO: review regexp - need to fetch style attribute in another way.
             // replace en-media tag by img
             if (str_contains($attachment['mime'], 'image')) {
-                $noteVersion->content = preg_replace('/<en-media[^>]*hash="' . $fileHash . '"([^>]*)><\/en-media>/',
-                    '<img $1 src="/api/v1/notebooks/' . $this->notebook->id . '/notes/' . $noteInstance->id . '/versions/' . $noteVersion->id . '/attachments/' . $newAttachment->id . '/raw" />',
-                    $noteVersion->content);
+                $imageTag = sprintf(
+                    '<img $1 src="/api/v1/notebooks/%s/notes/%s/versions/%s/attachments/%s/raw" />',
+                    $noteVersion->id,
+                    $this->notebook->id,
+                    $noteInstance->id,
+                    $newAttachment->id
+                );
+
+                $noteVersion->content = preg_replace(
+                    '/<en-media[^>]*hash="' . $fileHash . '"([^>]*)><\/en-media>/',
+                    $imageTag,
+                    $noteVersion->content
+                );
             } else {
-                $noteVersion->content = preg_replace('/<en-media[^>]*hash="' . $fileHash . '"([^>]*)><\/en-media>/',
-                    '<a $1 href="/api/v1/notebooks/' . $this->notebook->id . '/notes/' . $noteInstance->id . '/versions/' . $noteVersion->id . '/attachments/' . $newAttachment->id . '/raw">' . $fileName . '</a>',
-                    $noteVersion->content);
+                $linkTag = sprintf(
+                    '<a $1 href="/api/v1/notebooks/%s/notes/%s/versions/%s/attachments/%s/raw">%s</a>',
+                    $this->notebook->id,
+                    $noteInstance->id,
+                    $noteVersion->id,
+                    $newAttachment->id,
+                    $fileName
+                );
+
+                $noteVersion->content = preg_replace(
+                    '/<en-media[^>]*hash="' . $fileHash . '"([^>]*)><\/en-media>/',
+                    $linkTag,
+                    $noteVersion->content
+                );
             }
 
             $noteVersion->attachments()->attach($newAttachment);
