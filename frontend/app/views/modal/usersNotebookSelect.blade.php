@@ -12,11 +12,20 @@
 	<div class="container-scrollable">
 	  <form id="user-select" name="user-select">
 	    <div ng-repeat="user in users | orderBy:'firstname'">
-	      <div ng-hide="(user.umask == 7)">
+	      <div ng-hide="(user.is_current_user)">
 		<div class="user-row">
+		  <i class="fa fa-warning" title="[[Lang::get('keywords.owner_warning')]]" ng-show="(user.owner)"></i>
 		  {{ user.firstname }} {{user.lastname}}
 		  <select class="perm-select" ng-model="user.umask" ng-options="u.value as (u.name) for u in umasks">
 		  </select>
+		</div>
+	      </div>
+	      <div ng-show="(user.is_current_user)">
+		<div class="user-row">
+		  {{ user.firstname }} {{user.lastname}}
+		  <div class="perm-select">
+		  [[Lang::get('keywords.current_user')]]
+		  </div>
 		</div>
 	      </div>
 	    </div>
@@ -24,7 +33,7 @@
 	</div>
 	  <div class="checkbox">
 	    <label>
-	      <input type="checkbox" name="permission_propagation" ng-model="propagationToNotes"> [[Lang::get('keywords.propagate_permissions')]]
+	      <input type="checkbox" name="permission_propagation" ng-model="propagationToNotes" ng-change="modalUsersNotebookSelectCheck(modalMessageBox.notebookId,propagationToNotes)"> [[Lang::get('keywords.propagate_permissions')]]
 	    </label>
 	  </div>	
       </div>

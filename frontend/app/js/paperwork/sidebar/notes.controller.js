@@ -285,8 +285,10 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
           toUserId=[]
           toUMASK=[]
           angular.forEach(toUsers, function(user,key){
-              toUserId.push(user['id']);
-              toUMASK.push(user['umask']);
+              if (!user['is_current_user']) {
+                toUserId.push(user['id']);
+                toUMASK.push(user['umask']);
+              }
             });
           NotesService.shareNote(notebookId,noteId,toUserId, toUMASK, function(_notebookId,_noteId){
             $('#modalUsersSelect').modal('hide');

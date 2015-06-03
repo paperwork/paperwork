@@ -100,6 +100,8 @@ return array(
         'share_notebook' => 'Share notebook',
         'select_user_notebook_title' => 'Invite users to share the notebook',
         'propagate_permissions' => 'Propagate sharing status to the notes currently in the notebook?',
-        'inherit_from_notebook' => 'Inherit from notebook'
+        'inherit_from_notebook' => 'Inherit from notebook',
+        'owner_warning' => 'This user is owner of a selected note or notebook.',
+        'current_user' => 'This is yourself!'
 
 );

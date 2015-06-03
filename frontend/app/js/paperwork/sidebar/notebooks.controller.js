@@ -24,7 +24,7 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
     };
 
     
-    $scope.getUsers = function (notebookId){
+    $scope.getUsers = function (notebookId, propagationToNotes){
         if(typeof $rootScope.i18n != "undefined")
 	    $rootScope.umasks=[{'name':$rootScope.i18n.keywords.not_shared, 'value':0},
 		   {'name':$rootScope.i18n.keywords.read_only, 'value':4},
@@ -32,6 +32,19 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
 	NetService.apiGet('/users/notebooks/'+notebookId, function(status, data) {
         if(status == 200) {
           $rootScope.users = data.response;
+        }
+        if (propagationToNotes) {
+          noteId=[];
+          angular.forEach($rootScope.notes, function(value,key){
+            noteId.push(value['id']);
+          });
+          NetService.apiGet('/users/'+noteId, function(status, data){
+            if (status==200) {
+              angular.forEach($rootScope.users, function(value,key){
+                value['owner']=data.response[key]['owner'];
+              });
+            }
+          });
         }
       });
     };
@@ -231,14 +244,13 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
         ]
       });
     };
-
+    
+    $rootScope.propagationToNotes=false;
     $scope.modalShareNotebook = function(notebookId){
       if($rootScope.menuItemNotebookClass() === 'disabled') {
         return false;
       }
-      $scope.getUsers(notebookId);
-      $rootScope.propagationToNotes=false;
-      console.log(notebookId);
+      $scope.getUsers(notebookId, $rootScope.propagationToNotes);
       $rootScope.modalUsersSelect({
         'notebookId': notebookId,
         'theCallback':function(notebookId,toUsers, propagationToNotes){
@@ -248,14 +260,15 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
               toUserId.push(user['id']);
               toUMASK.push(user['umask']);
             });
-          console.log(propagationToNotes);
           NotebooksService.shareNotebook(notebookId,toUserId, toUMASK, function(_notebookId){
             $('#modalUsersNotebookSelect').modal('hide');
             $location.path("/n/"+(_notebookId));
             if (propagationToNotes) {
-            angular.forEach($rootScope.notes, function(value,key){
-              NotesService.shareNote(_notebookId,value['id'],toUserId, toUMASK,function(){});
+              noteId=[]
+              angular.forEach($rootScope.notes, function(value,key){
+                noteId.push(value['id']);
               });
+              NotesService.shareNote(_notebookId,noteId,toUserId, toUMASK,function(){});
             }
           });
           return true;
@@ -264,9 +277,13 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
       
     };
     $scope.modalUsersNotebookSelectSubmit = function(notebookId, toUserId, propagationToNotes) {
-      console.log(toUserId);
       $rootScope.modalMessageBox.theCallback(notebookId, toUserId, propagationToNotes);
     };
+    
+    $scope.modalUsersNotebookSelectCheck = function(notebookId,_prop){
+      $rootScope.propagationToNotes=_prop;
+      $scope.getUsers(notebookId, _prop);  
+    }
     
     $scope.onDropSuccess = function(data, event) {
       NotesService.moveNote($rootScope.note.notebook_id, $rootScope.note.id, this.notebook.id);
