@@ -26,7 +26,10 @@
 	</div>
 	<div class="tab-pane fade" id="client">
 		<div ng-bind-html="tabs.client.content"></div>
-		<div ng-hide="tabs.client.isLoaded"><h3>[[ Lang::get('messages.user.settings.client.loading_message') ]]</h3></div>
+		<div ng-hide="tabs.client.isLoaded" class="load3 text-center">
+			<div class="loader"></div>
+			<h3>[[ Lang::get('keywords.loading_message') ]]</h3>
+		</div>
 	</div>
 	<div class="tab-pane fade" id="import">
 		@include('user/settings/import', array())

@@ -96,6 +96,6 @@ return array(
 	'read_only' => 'Read only',
 	'read_write' => 'Read and write',
 	'coming_soon' => 'Coming Soon',
-        'by' => 'by'
-
+	'by' => 'by',
+	'loading_message' => 'Loading...'
 );
