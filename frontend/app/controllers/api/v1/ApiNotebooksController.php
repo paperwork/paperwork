@@ -155,6 +155,8 @@ class ApiNotebooksController extends BaseController {
 
 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $deletedNotebook);
 	}
+	
+	
 	private function shareNotebook($notebookId,$toUserId,$toUMASK){
 		$notebook=User::find(Auth::user()->id)->notebooks()
 						->wherePivot('umask','=',PaperworkHelpers::UMASK_OWNER)
@@ -189,6 +191,7 @@ class ApiNotebooksController extends BaseController {
 		    return $notebook;
 		}
 	}
+	
 	public function share($notebookId,$toUserId,$toUMASK){
 		$toUserIds = explode(PaperworkHelpers::MULTIPLE_REST_RESOURCE_DELIMITER,
 			$toUserId);

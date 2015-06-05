@@ -1,5 +1,5 @@
 angular.module('paperworkNotes').factory('NotebooksService',
-  function($rootScope, $http, NetService) {
+  function($rootScope, $http, NetService, StatusNotifications) {
     var paperworkNotebooksServiceFactory = {};
 
     // paperworkNotebooksServiceFactory.selectedNotebookId = 0;
@@ -13,7 +13,16 @@ angular.module('paperworkNotes').factory('NotebooksService',
     };
 
     paperworkNotebooksServiceFactory.shareNotebook = function(notebookId, toUserId, toUMASK, callback) {
-      NetService.apiGet('/notebooks/' + notebookId+'/share/'+toUserId+'/'+toUMASK, callback);
+      NetService.apiGet('/notebooks/' + notebookId+'/share/'+toUserId+'/'+toUMASK, function(status,data){
+        if (status==200) {
+          if(typeof callback != "undefined") {
+            callback(notebookId);
+            }
+          StatusNotifications.sendStatusFeedback("success", "notebook_share_success");
+        }else{
+          StatusNotifications.sendStatusFeedback("error", "notebook_share_fail");
+        }
+      });
     };
 
     paperworkNotebooksServiceFactory.updateTag = function(tagId, data, callback) {
