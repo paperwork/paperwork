@@ -258,7 +258,9 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
             $location.path("/n/" + (_toNotebookId));
           });
           return true;
-        }
+        },
+        'header':      $rootScope.i18n.keywords.select_notebook_title,
+        'description': $rootScope.i18n.notebooks.move_note_description
       });
     };
 

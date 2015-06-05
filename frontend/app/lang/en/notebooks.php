@@ -35,5 +35,6 @@ return array(
         on Github</a>. If you want to be informed on what we&#39;re planning for Paperwork and be able to participate in the discussion, please join
         our mailing list <a href="mailto:paperwork-dev@googlegroups.com">here</a>.</p><p><strong>Thanks for choosing Paperwork,</strong></p><p><strong>
         The Paperwork Team. </strong></p>',
-    'welcome_note_title' => 'Welcome to Paperwork'
+    'welcome_note_title' => 'Welcome to Paperwork',
+    'move_note_description' => 'Please click on the radio button next to the name of the notebook you want to move this note to. '
 );
