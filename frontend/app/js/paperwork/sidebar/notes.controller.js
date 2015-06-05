@@ -26,7 +26,8 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
       return null;
     };
     
-    $scope.getUsers = function (noteId){
+    $scope.getUsers = function (noteId, callback){
+      $scope.can_share=false;
         if(typeof $rootScope.i18n != "undefined")
 	    $rootScope.umasks=[{'name':$rootScope.i18n.keywords.not_shared, 'value':0},
 		   {'name':$rootScope.i18n.keywords.read_only, 'value':4},
@@ -34,6 +35,12 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
 	NetService.apiGet('/users/'+noteId, function(status, data) {
         if(status == 200) {
           $rootScope.users = data.response;
+          angular.forEach(data.response,function(user,key){
+            if (user['is_current_user'] && user['owner']) {
+              $scope.can_share=true;
+            }
+            });
+          callback(noteId);
         }
       });
     };
@@ -266,43 +273,58 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
       if($rootScope.menuItemNoteClass('multiple') === 'disabled') {
         return false;
       }
-      $scope.getUsers(noteId);
-      console.log(noteId);
-      $rootScope.modalUsersSelect({
-        'notebookId': notebookId,
-        'noteId': noteId,
-        'theCallback':function(notebookId,noteId,toUsers){
-          if ($rootScope.editMultipleNotes) {
-            noteId=[];
-            console.log($rootScope.notesSelectedIds);
-            angular.forEach($rootScope.notesSelectedIds, function(isChecked, checkedNoteId) {
-              console.log(checkedNoteId);
-              if(isChecked) {
-                noteId.push(checkedNoteId);
-              }
-            });
-          }
-          toUserId=[]
-          toUMASK=[]
-          angular.forEach(toUsers, function(user,key){
-              if (!user['is_current_user']) {
-                toUserId.push(user['id']);
-                toUMASK.push(user['umask']);
-              }
-            });
-          NotesService.shareNote(notebookId,noteId,toUserId, toUMASK, function(_notebookId,_noteId){
-            $('#modalUsersSelect').modal('hide');
-            $location.path("/n/"+(_notebookId));
-          });
-          return true;
+      $scope.getUsers(noteId,function(noteId){
+        if (!$scope.can_share) {
+          $rootScope.messageBox({
+        'title':   $rootScope.i18n.keywords.cannot_share_title,
+        'content':  $rootScope.i18n.keywords.cannot_share_message,
+        'buttons': [
+          {
+            // We don't need an id for the dismiss button.
+            // 'id': 'button-no',
+            'label':     $rootScope.i18n.keywords.close,
+            'isDismiss': true
+          }]});
+          return false;
         }
+        console.log(noteId);
+        $rootScope.modalUsersSelect({
+          'notebookId': notebookId,
+          'noteId': noteId,
+          'theCallback':function(notebookId,noteId,toUsers){
+            if ($rootScope.editMultipleNotes) {
+              noteId=[];
+              console.log($rootScope.notesSelectedIds);
+              angular.forEach($rootScope.notesSelectedIds, function(isChecked, checkedNoteId) {
+                console.log(checkedNoteId);
+                if(isChecked) {
+                  noteId.push(checkedNoteId);
+                }
+              });
+            }
+            toUserId=[]
+            toUMASK=[]
+            angular.forEach(toUsers, function(user,key){
+                if (!user['is_current_user']) {
+                  toUserId.push(user['id']);
+                  toUMASK.push(user['umask']);
+                }
+              });
+            NotesService.shareNote(notebookId,noteId,toUserId, toUMASK, function(_notebookId,_noteId){
+              $('#modalUsersSelect').modal('hide');
+              $location.path("/n/"+(_notebookId));
+            });
+            return true;
+          }
+        });
       });
-      
     };
+    
     $scope.modalUsersSelectSubmit = function(notebookId, noteId, toUserId) {
       console.log(toUserId);
       $rootScope.modalMessageBox.theCallback(notebookId, noteId, toUserId);
     };
+    
     $scope.modalUsersSelectInherit = function(notebookId){
       NetService.apiGet('/users/notebooks/'+notebookId, function(status, data) {
         if(status == 200) {

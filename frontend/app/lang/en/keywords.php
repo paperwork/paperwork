@@ -102,6 +102,10 @@ return array(
         'propagate_permissions' => 'Propagate sharing status to the notes currently in the notebook?',
         'inherit_from_notebook' => 'Inherit from notebook',
         'owner_warning' => 'This user is owner of a selected note or notebook.',
-        'current_user' => 'This is yourself!'
+        'current_user' => 'This is yourself!',
+        'cannot_share_title' => 'You cannot share this note !',
+        'cannot_share_message' => 'You can only share a note if you are the owner of that note. The note(s) that you have selected cannot be shared. Try to contact the owner of the note if you want this note to be shared with another user.',
+        'cannot_share_notebook_warning' => 'You are not the owner of the selected notebook. You will not be able to share it with other users. You can still share the notes you own that belong to this notebook.',
+        'cannot_share_notes_warning' => 'You do not own any notes in the selected notebook. You will not be able to share anything.'
 
 );

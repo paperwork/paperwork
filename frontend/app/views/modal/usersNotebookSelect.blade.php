@@ -9,6 +9,8 @@
 	</h4>
       </div>
       <div class="modal-body">
+	<div ng-show="showWarningNotebook">[[Lang::get('keywords.cannot_share_notebook_warning')]]</div>
+	<div ng-show="showWarningNotes">[[Lang::get('keywords.cannot_share_notes_warning')]]</div>
 	<div class="container-scrollable">
 	  <form id="user-select" name="user-select">
 	    <div ng-repeat="user in users | orderBy:'firstname'">

@@ -29,9 +29,16 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
 	    $rootScope.umasks=[{'name':$rootScope.i18n.keywords.not_shared, 'value':0},
 		   {'name':$rootScope.i18n.keywords.read_only, 'value':4},
 		   {'name':$rootScope.i18n.keywords.read_write, 'value':6}];
+        $rootScope.showWarningNotebook=false;
+        $rootScope.showWarningNotes=false;
 	NetService.apiGet('/users/notebooks/'+notebookId, function(status, data) {
         if(status == 200) {
           $rootScope.users = data.response;
+          angular.forEach($rootScope.users, function(value,key){
+                if (value['is_current_user'] && ! value['owner']) {
+                  $rootScope.showWarningNotebook=true;
+                }
+            });
         }
         if (propagationToNotes) {
           noteId=[];
@@ -42,6 +49,9 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
             if (status==200) {
               angular.forEach($rootScope.users, function(value,key){
                 value['owner']=data.response[key]['owner'];
+                if (value['is_current_user'] && ! value['owner']) {
+                  $rootScope.showWarningNotes=true;
+                }
               });
             }
           });
@@ -257,8 +267,10 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
           toUserId=[]
           toUMASK=[]
           angular.forEach(toUsers, function(user,key){
+              if (!user['is_current_user']) {
               toUserId.push(user['id']);
               toUMASK.push(user['umask']);
+              }
             });
           NotebooksService.shareNotebook(notebookId,toUserId, toUMASK, function(_notebookId){
             $('#modalUsersNotebookSelect').modal('hide');
