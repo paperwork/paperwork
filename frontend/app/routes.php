@@ -38,6 +38,7 @@ Route::group(["before" => "auth"], function () {
     Route::any("/help/{topic?}", ["as" => "user/help", "uses" => "UserController@help"]);
     Route::any("/logout", ["as" => "user/logout", "uses" => "UserController@logout"]);
     Route::any("/settings/export", ["as" => "user/settings/export", "uses" => "UserController@export"]);
+    Route::any("/settings/import", ["as" => "user/settings/import", "uses" => "UserController@import"]);
     Route::get('/', ["as" => "/", "uses" => "LibraryController@show"]);
 
     //Administrators

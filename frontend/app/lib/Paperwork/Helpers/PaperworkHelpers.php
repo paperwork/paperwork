@@ -190,7 +190,7 @@ class PaperworkHelpers {
 
         if (!$cachedInfo[0] && !$cachedInfo[1]) {
             $resolver = strtolower(substr(PHP_OS, 0, 3)) == 'win' ? 'where.exe' : 'command -v';
-
+	    $gitOutput = "";
             exec("$resolver git", $gitOutput);
 
             if (!empty($gitOutput) && (function_exists('curl_init') !== false)) {

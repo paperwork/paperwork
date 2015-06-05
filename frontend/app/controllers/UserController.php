@@ -361,6 +361,23 @@ class UserController extends BaseController
         return Redirect::route("user/login");
     }
 
+    public function import()
+    {
+        if ($this->isPostRequest()) {
+            if(Input::hasFile('enex')) {
+                $notebookId = with(new \Paperwork\Import\EvernoteImport())->import(Input::file('enex'));
+                if($notebookId) {
+                    // TODO: redirect to notebook
+                    return Redirect::route("/");
+                }
+                else {
+                    // Show some error message
+                }
+            }
+        }
+        return Redirect::route("user/settings");
+    }
+
     public function export()
     {
         $file_content = "";
