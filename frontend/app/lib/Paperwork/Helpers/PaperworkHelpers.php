@@ -216,7 +216,7 @@ class PaperworkHelpers {
 
                 if (isset($jsonResult->object->sha)) {
                     $upstreamHeadSha1 = str_replace('"', '', $jsonResult->object->sha);
-                    $commit_url = $jsonResult->object->url;
+                    $commit_url = isset($jsonResult->object->url) ? $jsonResult->object->url : "";
                 } else {
                     $upstreamHeadSha1 = "";
                     $commit_url = "";
@@ -244,7 +244,7 @@ class PaperworkHelpers {
                     $jsonFromApiTimestamp = [];
                     $jsonFromApiTimestamp[] = json_decode($contentTimestamp);
                     $jsonResultTimestamp = $jsonFromApiTimestamp[0];
-                    $upstreamTimestamp = $jsonResultTimestamp->committer->date;
+                    $upstreamTimestamp = isset($jsonResultTimestamp->committer->date) ? $jsonResultTimestamp->committer->date : 0;
                 }
 
                 // Check for update daily(UTC).
