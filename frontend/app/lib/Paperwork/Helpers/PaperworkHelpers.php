@@ -234,7 +234,7 @@ class PaperworkHelpers {
                 }
                 
                 $localTimestamp = "";
-                $upstreamTimestamp = "";
+                $upstreamTimestamp = ""; 
                 
                 // If user is not running latest official source code, check if last commit installed is earlier than last on git 
                 if($localLatestSha1 !== $upstreamHeadSha1){
