@@ -190,7 +190,7 @@ class PaperworkHelpers {
 
         if (!$cachedInfo[0] && !$cachedInfo[1]) {
             $resolver = strtolower(substr(PHP_OS, 0, 3)) == 'win' ? 'where.exe' : 'command -v';
-
+            $gitOutput = "";
             exec("$resolver git", $gitOutput);
 
             if (!empty($gitOutput) && (function_exists('curl_init') !== false)) {
@@ -203,6 +203,12 @@ class PaperworkHelpers {
                 curl_setopt($ch, CURLOPT_USERAGENT, "Colorado");
 
                 $content = curl_exec($ch);
+                
+                /* Check if user is in a branch not found in Paperwork's source code */
+                $info = curl_getinfo($ch);
+                if($info["http_code"] != 200) {
+                    return [0, 0, 0, 0];
+                }
 
                 $jsonFromApi   = array();
                 $jsonFromApi[] = json_decode($content);
@@ -210,8 +216,10 @@ class PaperworkHelpers {
 
                 if (isset($jsonResult->object->sha)) {
                     $upstreamHeadSha1 = str_replace('"', '', $jsonResult->object->sha);
+                    $commit_url = isset($jsonResult->object->url) ? $jsonResult->object->url : "";
                 } else {
                     $upstreamHeadSha1 = "";
+                    $commit_url = "";
                 }
 
                 // Retrieve last commit on install.
@@ -224,6 +232,20 @@ class PaperworkHelpers {
 
                     $localLatestSha1 = trim(end($matchSeparated));
                 }
+                
+                $localTimestamp = "";
+                $upstreamTimestamp = ""; 
+                
+                // If user is not running latest official source code, check if last commit installed is earlier than last on git 
+                if($localLatestSha1 !== $upstreamHeadSha1){
+                    $localTimestamp = exec("git show -s --format=%ci $localLatestSha1");
+                    curl_setopt($ch, CURLOPT_URL, $commit_url);
+                    $contentTimestamp = curl_exec($ch);
+                    $jsonFromApiTimestamp = [];
+                    $jsonFromApiTimestamp[] = json_decode($contentTimestamp);
+                    $jsonResultTimestamp = $jsonFromApiTimestamp[0];
+                    $upstreamTimestamp = isset($jsonResultTimestamp->committer->date) ? $jsonResultTimestamp->committer->date : 0;
+                }
 
                 // Check for update daily(UTC).
                 $now = Carbon::now();
@@ -232,7 +254,7 @@ class PaperworkHelpers {
 
                 \Cache::put(
                     'paperwork.commitInfo',
-                    [$localLatestSha1, $upstreamHeadSha1],
+                    [$localLatestSha1, $upstreamHeadSha1, $localTimestamp, $upstreamTimestamp],
                     $now->diffInMinutes($tomorrow));
             }
 

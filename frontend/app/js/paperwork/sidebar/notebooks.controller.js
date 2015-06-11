@@ -1,5 +1,5 @@
 angular.module('paperworkNotes').controller('SidebarNotebooksController',
-   function($scope, $rootScope, $location, $routeParams, $filter, $q, NotebooksService, NotesService, paperworkDbAllId, StatusNotifications) {
+   function($scope, $rootScope, $location, $routeParams, $filter, $q, NotebooksService, NotesService, paperworkDbAllId, StatusNotifications, NetService) {
      $rootScope.notebookSelectedId = paperworkDbAllId;
      $rootScope.tagsSelectedId = -1;
      $rootScope.dateSelected = -1;
@@ -23,6 +23,42 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
       return $rootScope.notebookSelectedId;
     };
 
+    
+    $scope.getUsers = function (notebookId, propagationToNotes){
+        if(typeof $rootScope.i18n != "undefined")
+	    $rootScope.umasks=[{'name':$rootScope.i18n.keywords.not_shared, 'value':0},
+		   {'name':$rootScope.i18n.keywords.read_only, 'value':4},
+		   {'name':$rootScope.i18n.keywords.read_write, 'value':6}];
+        $rootScope.showWarningNotebook=false;
+        $rootScope.showWarningNotes=false;
+	NetService.apiGet('/users/notebooks/'+notebookId, function(status, data) {
+        if(status == 200) {
+          $rootScope.users = data.response;
+          angular.forEach($rootScope.users, function(value,key){
+                if (value['is_current_user'] && ! value['owner']) {
+                  $rootScope.showWarningNotebook=true;
+                }
+            });
+        }
+        if (propagationToNotes) {
+          noteId=[];
+          angular.forEach($rootScope.notes, function(value,key){
+            noteId.push(value['id']);
+          });
+          NetService.apiGet('/users/'+noteId, function(status, data){
+            if (status==200) {
+              angular.forEach($rootScope.users, function(value,key){
+                value['owner']=data.response[key]['owner'];
+                if (value['is_current_user'] && ! value['owner']) {
+                  $rootScope.showWarningNotes=true;
+                }
+              });
+            }
+          });
+        }
+      });
+    };
+    
     $scope.openNotebook = function(notebookId, type, index) {
       if(parseInt(type) == 0 || parseInt(type) == 2) {
         // If the notebooks tree should be collapsed, expand it,
@@ -218,7 +254,49 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
         ]
       });
     };
-
+    
+    $rootScope.propagationToNotes=false;
+    $scope.modalShareNotebook = function(notebookId){
+      if($rootScope.menuItemNotebookClass() === 'disabled') {
+        return false;
+      }
+      $scope.getUsers(notebookId, $rootScope.propagationToNotes);
+      $rootScope.modalUsersSelect({
+        'notebookId': notebookId,
+        'theCallback':function(notebookId,toUsers, propagationToNotes){
+          toUserId=[]
+          toUMASK=[]
+          angular.forEach(toUsers, function(user,key){
+              if (!user['is_current_user']) {
+              toUserId.push(user['id']);
+              toUMASK.push(user['umask']);
+              }
+            });
+          NotebooksService.shareNotebook(notebookId,toUserId, toUMASK, function(_notebookId){
+            $('#modalUsersNotebookSelect').modal('hide');
+            $location.path("/n/"+(_notebookId));
+            if (propagationToNotes) {
+              noteId=[]
+              angular.forEach($rootScope.notes, function(value,key){
+                noteId.push(value['id']);
+              });
+              NotesService.shareNote(_notebookId,noteId,toUserId, toUMASK,function(){});
+            }
+          });
+          return true;
+        }
+      });
+      
+    };
+    $scope.modalUsersNotebookSelectSubmit = function(notebookId, toUserId, propagationToNotes) {
+      $rootScope.modalMessageBox.theCallback(notebookId, toUserId, propagationToNotes);
+    };
+    
+    $scope.modalUsersNotebookSelectCheck = function(notebookId,_prop){
+      $rootScope.propagationToNotes=_prop;
+      $scope.getUsers(notebookId, _prop);  
+    }
+    
     $scope.onDropSuccess = function(data, event) {
       NotesService.moveNote($rootScope.note.notebook_id, $rootScope.note.id, this.notebook.id);
       // Try to make the openNotebook dependant on the result of the move

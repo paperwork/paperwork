@@ -111,7 +111,11 @@ angular.module('paperworkNotes').controller('ConstructorController',
     };
     
     $rootScope.modalUsersSelect = function(modalData){
-      $rootScope.modalGeneric('modalUsersSelect',modalData);
+      if (!('noteId' in modalData)) {
+        $rootScope.modalGeneric('modalUsersNotebookSelect',modalData);
+      }else{
+        $rootScope.modalGeneric('modalUsersSelect',modalData);
+      }
     }
     
   });

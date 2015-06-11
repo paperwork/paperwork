@@ -323,16 +323,11 @@ class ApiNotesController extends BaseController
 
         $note = new Note();
 
-        $notebook = DB::table('notebooks')
-                      ->join('notebook_user', function ($join) {
-                          $join->on('notebooks.id', '=',
-                              'notebook_user.notebook_id')
-                               ->where('notebook_user.user_id', '=',
-                                   Auth::user()->id);
-                      })
+        $notebook = User::find(Auth::user()->id)->notebooks()
                       ->select('notebooks.id', 'notebooks.type',
                           'notebooks.title')
                       ->where('notebooks.id', '=', $notebookId)
+                      ->wherePivot('umask','>',PaperworkHelpers::UMASK_READONLY)
                       ->whereNull('notebooks.deleted_at')
                       ->first();
 
@@ -581,6 +576,7 @@ class ApiNotesController extends BaseController
                 $note->save();
                 return $note;
             }
+            return $note;
         }
         if (is_null($toUser)) {
             $note->users()->attach($toUserId, array('umask' => $toUMASK)); //add user
