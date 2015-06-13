@@ -233,7 +233,7 @@ class ApiAttachmentsController extends BaseController {
 			'Content-Transfer-Encoding' => 'binary',
 			'Content-Disposition' 		=> 'inline; filename="' . $attachment->filename . '"',
 			'Expires'                   => 0,
-			'Cache-Control'             => 'private'//'must-revalidate, post-check=0, pre-check=0',
+			'Cache-Control'             => 'private',//'must-revalidate, post-check=0, pre-check=0',
 			'Pragma'                    => 'public',
 			'Content-Length'	=> $attachment->filesize
 		);
