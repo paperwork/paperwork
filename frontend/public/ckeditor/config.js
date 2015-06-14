@@ -31,4 +31,6 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Dialog windows are also simplified.
 	config.removeDialogTabs = 'link:advanced';
+	config.contentsCss = 'ckeditor/plugins/fontawesome/font-awesome/css/font-awesome.min.css';
+        config.allowedContent = true; 
 };
