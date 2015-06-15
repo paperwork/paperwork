@@ -1,5 +1,5 @@
 angular.module('paperworkNotes').controller('SidebarNotesController',
-  function($scope, $rootScope, $location, $timeout, $routeParams, NotebooksService, NotesService, ngDraggable, StatusNotifications) {
+  function($scope, $rootScope, $location, $timeout, $routeParams, NotebooksService, NotesService, ngDraggable, StatusNotifications, NetService) {
     $scope.isVisible = function() {
       return !$rootScope.expandedNoteLayout;
     };
@@ -25,7 +25,25 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
       }
       return null;
     };
-
+    
+    $scope.getUsers = function (noteId, callback){
+      $scope.can_share=false;
+        if(typeof $rootScope.i18n != "undefined")
+	    $rootScope.umasks=[{'name':$rootScope.i18n.keywords.not_shared, 'value':0},
+		   {'name':$rootScope.i18n.keywords.read_only, 'value':4},
+		   {'name':$rootScope.i18n.keywords.read_write, 'value':6}];
+	NetService.apiGet('/users/'+noteId, function(status, data) {
+        if(status == 200) {
+          $rootScope.users = data.response;
+          angular.forEach(data.response,function(user,key){
+            if (user['is_current_user'] && user['owner']) {
+              $scope.can_share=true;
+            }
+            });
+          callback(noteId);
+        }
+      });
+    };
     $scope.newNote = function(notebookId) {
       if($rootScope.menuItemNotebookClass() === 'disabled') {
         return false;
@@ -247,10 +265,75 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
             $location.path("/n/" + (_toNotebookId));
           });
           return true;
-        }
+        },
+        'header':      $rootScope.i18n.keywords.select_notebook_title,
+        'description': $rootScope.i18n.notebooks.move_note_description
       });
     };
 
+    $scope.modalShareNote = function(notebookId,noteId){
+      if($rootScope.menuItemNoteClass('multiple') === 'disabled') {
+        return false;
+      }
+      $scope.getUsers(noteId,function(noteId){
+        if (!$scope.can_share) {
+          $rootScope.messageBox({
+        'title':   $rootScope.i18n.keywords.cannot_share_title,
+        'content':  $rootScope.i18n.keywords.cannot_share_message,
+        'buttons': [
+          {
+            // We don't need an id for the dismiss button.
+            // 'id': 'button-no',
+            'label':     $rootScope.i18n.keywords.close,
+            'isDismiss': true
+          }]});
+          return false;
+        }
+        console.log(noteId);
+        $rootScope.modalUsersSelect({
+          'notebookId': notebookId,
+          'noteId': noteId,
+          'theCallback':function(notebookId,noteId,toUsers){
+            if ($rootScope.editMultipleNotes) {
+              noteId=[];
+              console.log($rootScope.notesSelectedIds);
+              angular.forEach($rootScope.notesSelectedIds, function(isChecked, checkedNoteId) {
+                console.log(checkedNoteId);
+                if(isChecked) {
+                  noteId.push(checkedNoteId);
+                }
+              });
+            }
+            toUserId=[]
+            toUMASK=[]
+            angular.forEach(toUsers, function(user,key){
+                if (!user['is_current_user']) {
+                  toUserId.push(user['id']);
+                  toUMASK.push(user['umask']);
+                }
+              });
+            NotesService.shareNote(notebookId,noteId,toUserId, toUMASK, function(_notebookId,_noteId){
+              $('#modalUsersSelect').modal('hide');
+              $location.path("/n/"+(_notebookId));
+            });
+            return true;
+          }
+        });
+      });
+    };
+    
+    $scope.modalUsersSelectSubmit = function(notebookId, noteId, toUserId) {
+      console.log(toUserId);
+      $rootScope.modalMessageBox.theCallback(notebookId, noteId, toUserId);
+    };
+    
+    $scope.modalUsersSelectInherit = function(notebookId){
+      NetService.apiGet('/users/notebooks/'+notebookId, function(status, data) {
+        if(status == 200) {
+          $rootScope.users = data.response;
+        }
+      });
+    }
     $scope.submitSearch = function() {
       if($scope.search == "") {
         $location.path("/");

@@ -89,5 +89,11 @@ return array(
 	'import' => '読み込み',
 	'export' => '書き出し',
 	'back' => '戻る'
+	'share_note' => 'Share note',
+	'share_notes' => 'Share notes',
+	'select_user_title' => 'Invite users to share the note(s)',
+	'not_shared' => 'Do not share',
+	'read_only' => 'Read only',
+	'read_write' => 'Read and write'
 
 );

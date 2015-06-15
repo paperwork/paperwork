@@ -38,6 +38,7 @@ Route::group(["before" => "auth"], function () {
     Route::any("/help/{topic?}", ["as" => "user/help", "uses" => "UserController@help"]);
     Route::any("/logout", ["as" => "user/logout", "uses" => "UserController@logout"]);
     Route::any("/settings/export", ["as" => "user/settings/export", "uses" => "UserController@export"]);
+    Route::any("/settings/import", ["as" => "user/settings/import", "uses" => "UserController@import"]);
     Route::get('/', ["as" => "/", "uses" => "LibraryController@show"]);
 
     //Administrators
@@ -55,17 +56,20 @@ Route::group(array('prefix' => 'api/v1', 'before' => 'auth'), function () {
     App::setLocale(PaperworkHelpers::getUiLanguageFromSession());
     // Route::any('notebook/{num?}', 'ApiNotebooksController@index')->where('num','([0-9]*)');
     Route::resource('notebooks', 'ApiNotebooksController');
+	Route::get('/notebooks/{notebookId}/share/{toUserId}/{toUMASK}', 'ApiNotebooksController@share');
     Route::resource('tags', 'ApiTagsController');
     Route::resource('notebooks.notes', 'ApiNotesController');
     // I really don't know whether that's a great way to solve this...
     Route::get('/notebooks/{notebookId}/notes/{noteId}/move/{toNotebookId}', 'ApiNotesController@move');
     Route::get('/notebooks/{notebookId}/notes/{noteId}/tag/{toTagId}', 'ApiNotesController@tagNote');
+	Route::get('/notebooks/{notebookId}/notes/{noteId}/share/{toUserId}/{toUMASK}', 'ApiNotesController@share');
     Route::resource('notebooks.notes.versions', 'ApiVersionsController');
     Route::resource('notebooks.notes.versions.attachments', 'ApiAttachmentsController');
     Route::get('/notebooks/{notebookId}/notes/{noteId}/versions/{versionId}/attachments/{attachmentId}/raw', 'ApiAttachmentsController@raw');
     Route::resource('shortcuts', 'ApiShortcutsController');
     Route::resource('tags', 'ApiTagsController');
     Route::resource('i18n', 'ApiI18nController');
+    Route::get('/users/notebooks/{notebookId}', 'ApiUsersController@showNotebook');
     Route::resource('users', 'ApiUsersController');
     Route::resource('settings', 'ApiSettingsController');
     Route::resource('calendar', 'ApiCalendarController');

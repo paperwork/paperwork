@@ -1,5 +1,11 @@
 @import "../../retina.less";
 
+@media screen and (max-width: @screen-xs-max) {
+  h1 {
+    margin-top: 0;
+  }
+}
+
 .paperwork-logo {
   padding: 9px 6px;
   margin-left: 0px !important;
@@ -179,6 +185,27 @@ label {
   width: 15%;
   min-width: 220px;
   z-index: 9999;
+
+  @media screen and (max-width: @screen-xs-max) {
+    position: static;
+    width: auto;
+    display: block;
+
+    .make-row();
+
+    &:after {
+      content: '';
+      display: block;
+
+      width: 100%;
+      clear: both;
+    }
+
+    > .error-reporting {
+      .make-xs-column(12);
+    }
+
+  }
 }
 
 .fa {
@@ -362,12 +389,14 @@ ul.nav-tabs-margin {
 .main {
   padding: 20px;
 }
-@media (min-width: 768px) {
+
+/*@media (min-width: 768px) {
   .main {
     padding-right: 40px;
     padding-left: 40px;
   }
-}
+}*/
+
 .main .page-header {
   margin-top: 0;
 }
@@ -447,7 +476,7 @@ ul.nav-tabs-margin {
 
         margin-right: 8px;
         border-right: 1px solid @gray-light;
-        
+
         height:56px;
 
         .notes-list-date-day {
@@ -843,17 +872,17 @@ body.paperwork-error {
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: @white;
-  
+
   .error-wrapper {
     width: 55em;
     margin-left: auto;
     margin-right: auto;
   }
-  
+
   .error-logo {
     display: inline-block;
     vertical-align: middle;
-    
+
     .error-logo-img {
       display: block;
       margin-left: auto;
@@ -861,27 +890,27 @@ body.paperwork-error {
       width: 220px;
       height: 220px;
     }
-    
+
   }
-  
+
   .error-content {
       display: inline-block;
       vertical-align: middle;
   }
-  
+
   .error-reporting {
       margin-top: 1em;
   }
-  
+
   @media (max-width: 500px) {
     .error-logo {
         display: block;
     }
-    
+
     .error-content {
         margin-bottom: 15px;
     }
-    
+
     .error-wrapper {
         width: auto;
     }
@@ -1001,6 +1030,17 @@ body.paperwork-error {
 }
 // End of Modal: Message
 
+// Modal : users Select
+.user-row {
+    margin-left:15px;
+    margin-right:15px;
+    margin-top:5px;
+    .perm-select {
+	float:right;
+    }
+}
+
+
 // Modal: Manage tags
 .modal-manage-list {
   .manage-list-content {
@@ -1089,4 +1129,8 @@ body.paperwork-error {
       background-color: fade(@brand-success, 65%);
     }
   }
+}
+
+.navbar-right {
+
 }
