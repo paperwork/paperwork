@@ -7,5 +7,6 @@ return array(
 	'title_request' => 'パスワード紛失',
 	'title_reset' => 'パスワードをリセット',
 	'link_forgot_password' => 'パスワードをお忘れですか?',
+	'label_remember_me' => 'サインイン情報を記憶',
 	'profile_change_password_info' => 'アカウントのパスワードを変更する場合、ここに新しいパスワードを入力して下さい:',
 );

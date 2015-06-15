@@ -5,3 +5,4 @@ frontend/node_modules
 frontend/public/css
 frontend/public/js
 Thumbs.db
+frontend/npm-debug.log

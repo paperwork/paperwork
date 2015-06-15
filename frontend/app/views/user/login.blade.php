@@ -10,10 +10,17 @@
 [[ Form::open(array('class' => 'form-signin', 'role' => 'form')) ]]
 <h1 class="form-signin-heading">[[Lang::get('users.title_login')]]</h1>
 <div class="form-group [[ $errors->first('username') ? 'has-error' : '' ]]">
-	[[ Form::text('username', '', array('class' => 'form-control', 'placeholder' => Lang::get('keywords.email_address'), 'required', 'autofocus')) ]]
+	[[ Form::text('username', '', array('class' => 'form-control',
+    'placeholder' => PaperworkHelpers::isLdap() ? Lang::get('keywords.username') : Lang::get('keywords.email_address'),
+    'required', 'autofocus')) ]]
 </div>
 <div class="form-group [[ $errors->first('password') ? 'has-error' : '' ]]">
 	[[ Form::password('password', array('class' => 'form-control', 'placeholder' => Lang::get('keywords.password'), 'required')) ]]
+</div>
+<div class="checkbox">
+    <label>
+        [[ Form::checkbox('remember_me') ]] [[Lang::get('users.label_remember_me')]]
+    </label>
 </div>
 @if (Config::get('paperwork.forgot_password'))
 	<div class="checkbox">
@@ -25,7 +32,7 @@
 </div>
 <div class="[[ Config::get('paperwork.registration') ? '' : 'hide' ]]">
 	<div class="form-group">
-		<a class="btn btn-lg btn-default btn-block" href="[[ Config::get('paperwork.registration') ? URL::route("user/register") : '#' ]]"><i class="fa fa-sign-up"></i> [[Lang::get('keywords.sign_up')]]</a>
+		<a class="btn btn-lg btn-default btn-block" href="[[ Config::get('paperwork.registration') ? URL::route("user/register") : '#' ]]">[[Lang::get('keywords.sign_up')]]</a>
 	</div>
 </div>
 

@@ -1,6 +1,6 @@
 <?php
 
-class Shortcut extends Eloquent {
+class Shortcut extends PaperworkModel {
 	protected $table = 'shortcuts';
 	protected $fillable = array('notebook_id', 'user_id', 'sortkey');
 

@@ -9,17 +9,20 @@
 		"erusev/parsedown": "dev-master",
 		"thiagoalessio/tesseract_ocr": ">= 0.2.0",
 		"simplesoftwareio/simple-qrcode": "1.1.*",
-		"barryvdh/laravel-ide-helper": "~1.11"
+		"barryvdh/laravel-ide-helper": "~1.11",
+		"adldap/adldap": "4.0.*",
+		"webpatser/laravel-uuid": "1.*"
 	},
 	"autoload": {
 		"classmap": [
 			"app/commands",
 			"app/controllers",
 			"app/models",
+			"app/extensions",
+			"app/lib",
 			"app/database/migrations",
 			"app/database/seeds",
-			"app/tests/TestCase.php",
-			"app/lib"
+			"app/tests/TestCase.php"
 		]
 	},
 	"scripts": {
@@ -29,6 +32,7 @@
 		],
 		"post-update-cmd": [
 			"php artisan clear-compiled",
+            "php artisan ide-helper:generate",
 			"php artisan optimize"
 		],
 		"post-create-project-cmd": [
