@@ -233,13 +233,11 @@ class ApiAttachmentsController extends BaseController {
 			'Content-Transfer-Encoding' => 'binary',
 			'Content-Disposition' 		=> 'inline; filename="' . $attachment->filename . '"',
 			'Expires'                   => 0,
-			'Cache-Control'             => 'must-revalidate, post-check=0, pre-check=0',
+			'Cache-Control'             => 'private',//'must-revalidate, post-check=0, pre-check=0',
 			'Pragma'                    => 'public',
 			'Content-Length'	=> $attachment->filesize
 		);
 
-		// $headers are not being set correctly and I don't really know why. Workaround:
-		header('Content-Type: ' . $attachment->mimetype);
-		return Response::make(readfile($destinationFolder . '/' . $attachment->filename), 200, $headers);
+		return Response::make(file_get_contents($destinationFolder . '/' . $attachment->filename),200,$headers);
 	}
 }
