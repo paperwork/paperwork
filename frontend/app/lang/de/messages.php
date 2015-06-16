@@ -2,12 +2,37 @@
 
 return array(
 
-	'account_creation_failed' => 'Konto konnte nicht angelegt werden.',
-	'account_update_failed' => 'Konto konnte nicht aktualisiert werden.',
-	'invalid_credentials' => 'Ihre Zugangsdaten sind ungültig.',
-	'note_version_info' => 'Sie sehen eine ältere Version dieser Notiz.',
-	'document_languages_description' => 'Die Sprachen, welche Sie hier auswählen, werden verwendet, um hochgeladene Anhänge zu analysieren und Ihnen damit eine Suche über den Inhalt dieser zu erlauben. Ein Anhang könnte beispielsweise ein Foto eines Dokuments sein, welches sie mit ihrem Smartphone aufgenommen haben. Wählen Sie die Sprachen aus, in welchen Ihre Dokumente üblicherweise geschrieben werden.',
-	'found_bug' => 'Einen Fehler gefunden? <a href="https://github.com/twostairs/paperwork/issues/new" target="_blank" title="Fehler melden">Melde ihn auf GitHub!</a>',
-	'error_message' => 'Hoppla!',
-
+	'account_creation_failed' => 'Could not create account.',
+	'account_update_failed' => 'Could not update account.',
+	'invalid_credentials' => 'Your credentials are invalid.',
+	'note_version_info' => 'You are previewing an older version of this note.',
+	'found_bug' => 'Found a bug? <a href="https://github.com/twostairs/paperwork/issues/new" target="_blank" title="Submit Issue">Submit it on GitHub!</a>',
+	'new_version_available' => 'Found a bug? It seems like you are not running the latest version of Paperwork. Please consider updating before submitting an issue. ',
+	'error_version_check' => 'Found a bug? Paperwork cannot check whether your version is the latest. Please make sure you are running the latest version before reporting any issues. ', 
+	'error_message' => 'Whooops!',
+	'onbeforeunload_info' => 'Data will be lost if you leave the page, are you sure?',
+	'user' => array(
+		'settings' => array(
+			'language_label' => 'Language',
+			'client_label' => 'Client',
+			'import_slash_export' => 'Import/Export',
+			'language' => array(
+				'ui_language' => 'Benutzeroberflächensprache',
+				'document_languages' => 'Dokumentensprachen',
+				'document_languages_description' => 'Die Sprachen, welche Sie hier auswählen, werden verwendet, um hochgeladene Anhänge zu analysieren und Ihnen damit eine Suche über den Inhalt dieser zu erlauben. Ein Anhang könnte beispielsweise ein Foto eines Dokuments sein, welches sie mit ihrem Smartphone aufgenommen haben. Wählen Sie die Sprachen aus, in welchen Ihre Dokumente üblicherweise geschrieben werden.',
+			),
+			'client' => array(
+				'qrcode' => 'QR Code',
+				'scan' => 'Scannen Sie diesen QR Code mit Ihrer mobilen App um eine Autokonfiguration Ihres Paperwork Accounts durchzuführen.'
+			),
+			'import' => array(
+				'evernotexml' => 'Evernote XML:',
+				'upload_evernotexml' => 'Laden Sie hier den Evernote XML Export hoch um Ihre Notizen aus Evernot in Paperwork zu importieren.'
+			),
+			'export' => array(
+				'evernotexml' => 'Evernote XML:',
+				'download_evernotexml' => 'Laden Sie eine ENEX kompatible Evernote Datei herunter um Ihre Paperwork Notizen zu exportieren.'
+			)
+		)
+	)
 );
