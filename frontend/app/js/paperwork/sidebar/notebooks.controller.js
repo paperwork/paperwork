@@ -24,7 +24,7 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
     };
 
     
-    $scope.getUsers = function (notebookId, propagationToNotes){
+    $scope.getUsers = function (notebookId, propagationToNotes, update){
         if(typeof $rootScope.i18n != "undefined")
 	    $rootScope.umasks=[{'name':$rootScope.i18n.keywords.not_shared, 'value':0},
 		   {'name':$rootScope.i18n.keywords.read_only, 'value':4},
@@ -33,7 +33,13 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
         $rootScope.showWarningNotes=false;
 	NetService.apiGet('/users/notebooks/'+notebookId, function(status, data) {
         if(status == 200) {
-          $rootScope.users = data.response;
+		if(update && $rootScope.users.length==data.response.length){
+			angular.forEach($rootScope.users,function(value,key){
+				value['owner']=data.response[key]['owner'];
+			});
+		}else{
+        	  $rootScope.users = data.response;
+		}
           angular.forEach($rootScope.users, function(value,key){
                 if (value['is_current_user'] && ! value['owner']) {
                   $rootScope.showWarningNotebook=true;
@@ -260,7 +266,7 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
       if($rootScope.menuItemNotebookClass() === 'disabled') {
         return false;
       }
-      $scope.getUsers(notebookId, $rootScope.propagationToNotes);
+      $scope.getUsers(notebookId, $rootScope.propagationToNotes,false);
       $rootScope.modalUsersSelect({
         'notebookId': notebookId,
         'theCallback':function(notebookId,toUsers, propagationToNotes){
@@ -294,7 +300,7 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
     
     $scope.modalUsersNotebookSelectCheck = function(notebookId,_prop){
       $rootScope.propagationToNotes=_prop;
-      $scope.getUsers(notebookId, _prop);  
+      $scope.getUsers(notebookId, _prop, true);  
     }
     
     $scope.onDropSuccess = function(data, event) {
