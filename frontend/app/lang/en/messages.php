@@ -8,7 +8,8 @@ return array(
 	'note_version_info' => 'You are previewing an older version of this note.',
 	'found_bug' => 'Found a bug? <a href="https://github.com/twostairs/paperwork/issues/new" target="_blank" title="Submit Issue">Submit it on GitHub!</a>',
 	'new_version_available' => 'Found a bug? It seems like you are not running the latest version of Paperwork. Please consider updating before submitting an issue. ',
-	'error_version_check' => 'Found a bug? Paperwork cannot check whether your version is the latest. Please make sure you are running the latest version before reporting any issues. ', 
+	'error_version_check' => 'Found a bug? Paperwork cannot check whether your version is the latest. Please make sure you are running the latest version before reporting any issues. ',
+	'found_bug_newer_commit_installed' => 'Found a bug? It seems like you have done some changes to the Paperwork code. Before opening a new issue, please check if this issue is present in the official source code available in our Github repository. ',
 	'error_message' => 'Whooops!',
 	'onbeforeunload_info' => 'Data will be lost if you leave the page, are you sure?',
 	'user' => array(

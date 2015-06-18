@@ -14,7 +14,7 @@ return array(
     'note_create_fail'              => 'Что-то пошло не так во время создания новой записи. Попробуйте еще раз.',
     'note_saved_successfully'       => 'Ваша запись была успешно сохранена.',
     'note_save_failed'              => 'Что-то пошло не так во время сохранения вашей записи. Попробуйте еще раз.',
-    'notebook_edit_successfully'    => 'Ваш блокнот был успешно обновлен.',
+    'notebook_edit_successfully'    => 'Your notebook has been updated successfully. ',
     'notebook_edit_failed'          => 'Что-то пошло не так во время обновления блокнота. Попробуйте еще раз.',
     'upload_finished_successfully'  => 'Ваша загрузка удалась.',
     'upload_failed'                 => 'Ваша загрузка не удалась. Попробуйте еще раз.',

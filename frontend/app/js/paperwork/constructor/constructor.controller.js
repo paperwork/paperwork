@@ -110,4 +110,12 @@ angular.module('paperworkNotes').controller('ConstructorController',
       $rootScope.modalGeneric('modalNotebookSelect', modalData);
     };
     
+    $rootScope.modalUsersSelect = function(modalData){
+      if (!('noteId' in modalData)) {
+        $rootScope.modalGeneric('modalUsersNotebookSelect',modalData);
+      }else{
+        $rootScope.modalGeneric('modalUsersSelect',modalData);
+      }
+    }
+    
   });

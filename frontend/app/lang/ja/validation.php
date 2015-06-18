@@ -1,5 +1,17 @@
 <?php
 
+$allowed_name_chars = Config::get('paperwork.nameCharactersAllowed');
+$name_error_message = "The :attribute may only contain";
+$name_error_message.= $allowed_name_chars['alpha']      ? ' letters,'    : '';
+$name_error_message.= $allowed_name_chars['hyphen']     ? ' hyphens,'    : '';
+$name_error_message.= $allowed_name_chars['num']        ? ' numbers,'    : '';
+$name_error_message.= $allowed_name_chars['underscore'] ? ' underscores,': '';
+$name_error_message.= $allowed_name_chars['apostrophe'] ? ' apostrophes,': '';
+$name_error_message.= $allowed_name_chars['space']      ? ' spaces,'     : '';
+//replace last , with a .
+$name_error_message = substr($name_error_message, 0, -1).'.';
+
+
 return array(
 
 	/*
@@ -13,64 +25,66 @@ return array(
 	|
 	*/
 
-	"accepted"             => ":attribute は妥当なものでなくてはなりません。",
-	"active_url"           => ":attribute が適切な URL ではありません。",
-	"after"                => ":attribute は、:date より後の日付でなくてはなりません。",
-	"alpha"                => ":attribute に含めてよいのは英字だけです。",
-	"alpha_dash"           => ":attribute に含めてよいのは英数字とダッシュだけです。",
-	"alpha_num"            => ":attribute に含めてよいのは英数字だけです。",
-	"array"                => ":attribute は配列でなくてはなりません。",
-	"before"               => ":attribute は、:date より前の日付でなくてはなりません。",
+	"accepted"             => "The :attribute must be accepted.",
+	"active_url"           => "The :attribute is not a valid URL.",
+	"after"                => "The :attribute must be a date after :date.",
+	"alpha"                => "The :attribute may only contain letters.",
+	"alpha_dash"           => "The :attribute may only contain letters, numbers, and dashes.",
+	"alpha_dash_spaces"    => "The :attribute may only contain letters, numbers, dashes, apostrophes, and spaces.",
+	"alpha_num"            => "The :attribute may only contain letters and numbers.",
+	"array"                => "The :attribute must be an array.",
+	"before"               => "The :attribute must be a date before :date.",
 	"between"              => array(
 		"numeric" => ":attribute は、:min と :max の間の値でなくてはなりません。",
 		"file"    => ":attribute は、:min 〜 :max キロバイトの値でなくてはなりません。.",
 		"string"  => ":attribute は、:min 文字から :max 文字まででなくてはなりません。",
 		"array"   => ":attribute は、:min 項目から :max 項目の間でなくてはなりません。",
 	),
-	"boolean"              => ":attribute 欄は、true もしくは false でなくてはなりません",
-	"confirmed"            => ":attribute の確認で不一致があります。",
-	"date"                 => ":attribute は適切な日付ではありません。",
-	"date_format"          => ":attribute は、:format 形式に沿っていません。",
-	"different"            => ":attribute と :other は異なるものでなくてはなりません。",
-	"digits"               => ":attribute は、:digits 桁の数字でなくてはなりません。.",
-	"digits_between"       => ":attribute は、:min と :max の間でなくてはなりません。",
-	"email"                => ":attribute は正しいメールアドレスでなくてはなりません。",
-	"exists"               => "選択した :attribute は不適切です。",
-	"image"                => ":attribute は画像でなくてはなりません。",
-	"in"                   => "選択した :attribute は不適切です。",
-	"integer"              => ":attribute は、整数でなくてはなりません。",
-	"ip"                   => ":attribute は、正規の IP アドレスでなくてはなりません。",
+	"boolean"              => "The :attribute field must be true or false",
+	"confirmed"            => "The :attribute confirmation does not match.",
+	"date"                 => "The :attribute is not a valid date.",
+	"date_format"          => "The :attribute does not match the format :format.",
+	"different"            => "The :attribute and :other must be different.",
+	"digits"               => "The :attribute must be :digits digits.",
+	"digits_between"       => "The :attribute must be between :min and :max digits.",
+	"email"                => "The :attribute must be a valid email address.",
+	"exists"               => "The selected :attribute is invalid.",
+	"image"                => "The :attribute must be an image.",
+	"in"                   => "The selected :attribute is invalid.",
+	"integer"              => "The :attribute must be an integer.",
+	"ip"                   => "The :attribute must be a valid IP address.",
 	"max"                  => array(
-		"numeric" => ":attribute は、:max が最大値です。",
-		"file"    => ":attribute は、:max キロバイトが最大サイズです。",
-		"string"  => ":attribute は、最大 :max 文字までです。",
-		"array"   => ":attribute は、最大 :max 項目までです。",
+		"numeric" => ":attribute は、:min と :max の間の値でなくてはなりません。",
+		"file"    => ":attribute は、:min 〜 :max キロバイトの値でなくてはなりません。.",
+		"string"  => ":attribute は、:min 文字から :max 文字まででなくてはなりません。",
+		"array"   => ":attribute は、:min 項目から :max 項目の間でなくてはなりません。",
 	),
-	"mimes"                => ":attribute にはファイルタイプを設定しなくてはなりません: :values.",
+	"mimes"                => "The :attribute must be a file of type: :values.",
 	"min"                  => array(
-		"numeric" => ":attribute は、:min が最小値です。",
-		"file"    => ":attribute は少なくとも :min キロバイト以上でなくてはなりません。",
-		"string"  => ":attribute は、:min 文字異常でなくてはなりません。",
-		"array"   => ":attribute は、少なくとも、:min 項目以上なくてはなりません。.",
+		"numeric" => ":attribute は、:min と :max の間の値でなくてはなりません。",
+		"file"    => ":attribute は、:min 〜 :max キロバイトの値でなくてはなりません。.",
+		"string"  => ":attribute は、:min 文字から :max 文字まででなくてはなりません。",
+		"array"   => ":attribute は、:min 項目から :max 項目の間でなくてはなりません。",
 	),
-	"not_in"               => "選択した :attribute が不適切です。",
-	"numeric"              => ":attribute は数字でなくてはなりません。",
-	"regex"                => ":attribute の形式が不適切です。",
-	"required"             => ":attribute 欄は必須です。",
-	"required_if"          => ":attribute 欄は、:other が :value の場合、必須です。",
-	"required_with"        => ":attribute 欄は、:values がある場合は、必須です。",
-	"required_with_all"    => ":attribute 欄は、:values がある場合は、必須です。",
-	"required_without"     => ":attribute 欄は、:values がない場合、必須です。",
-	"required_without_all" => ":attribute 欄は、:values がひとつもない場合には必須です。.",
-	"same"                 => ":attribute と :other は一致していなくてはなりません。.",
+	"name_validator"       => $name_error_message,
+	"not_in"               => "The selected :attribute is invalid.",
+	"numeric"              => "The :attribute must be a number.",
+	"regex"                => "The :attribute format is invalid.",
+	"required"             => "The :attribute field is required.",
+	"required_if"          => "The :attribute field is required when :other is :value.",
+	"required_with"        => "The :attribute field is required when :values is present.",
+	"required_with_all"    => "The :attribute field is required when :values is present.",
+	"required_without"     => "The :attribute field is required when :values is not present.",
+	"required_without_all" => "The :attribute field is required when none of :values are present.",
+	"same"                 => "The :attribute and :other must match.",
 	"size"                 => array(
-		"numeric" => ":attribute のサイズは、:size でなくてはなりません。",
-		"file"    => ":attribute のサイズは、:size キロバイトでなくてはなりません。.",
-		"string"  => ":attribute は、:size 文字でなくてはなりません。",
-		"array"   => ":attribute は、:size もう濃くなければなりません。",
+		"numeric" => ":attribute は、:min と :max の間の値でなくてはなりません。",
+		"file"    => ":attribute は、:min 〜 :max キロバイトの値でなくてはなりません。.",
+		"string"  => ":attribute は、:min 文字から :max 文字まででなくてはなりません。",
+		"array"   => ":attribute は、:min 項目から :max 項目の間でなくてはなりません。",
 	),
-	"unique"               => ":attribute は既に別の人が取得済みです。",
-	"url"                  => ":attribute の形式が不適切です",
+	"unique"               => "The :attribute has already been taken.",
+	"url"                  => "The :attribute format is invalid.",
 
 	/*
 	|--------------------------------------------------------------------------

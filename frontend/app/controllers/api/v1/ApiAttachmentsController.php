@@ -13,20 +13,17 @@ class ApiAttachmentsController extends BaseController {
      */
 	protected static function getNote($notebookId, $noteId, $versionId)
 	{
-		$note = Note::with(
+		$note = User::find(Auth::user()->id)->notes()->with(
 			array(
-				'users' => function ($query) {
-					$query->where('note_user.user_id', '=', Auth::user()->id);
-				},
 				'notebook' => function ($query) use ($notebookId) {
-					$query->where('id', ($notebookId > 0 ? '=' : '>'), ($notebookId > 0 ? $notebookId : '0'));
+					$query->where('notebooks.id', ($notebookId > 0 ? '=' : '>'), ($notebookId > 0 ? $notebookId : '0'));
 				},
 				'version' => function ($query) use ($versionId) {
                    // Reserved for future use.
                    // $query->where('id', $versionId);
 				}
 			)
-		)->where('id', '=', $noteId)->whereNull('deleted_at')->first();
+		)->where('notes.id', '=', $noteId)->whereNull('deleted_at')->first();
 
 		return $note;
 	}
@@ -81,6 +78,10 @@ class ApiAttachmentsController extends BaseController {
 
 	public function store($notebookId, $noteId, $versionId)
 	{
+		$note=self::getNote($notebookId,$noteId,$versionId);
+		if($note->pivot->umask < PaperworkHelpers::UMASK_READWRITE){
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, array('message' => 'Permission Error'));
+		}
 		if((Input::hasFile('file') && Input::file('file')->isValid()) || (Input::json() != null && Input::json() != "")) {
 			$fileUpload = null;
 			$newAttachment = null;
@@ -117,7 +118,7 @@ class ApiAttachmentsController extends BaseController {
 			}
 
 			// Get Version with versionId
-			$note = self::getNote($notebookId, $noteId, $versionId);
+			//$note = self::getNote($notebookId, $noteId, $versionId);
 
 			$tmp = $note ? $note->version()->first() : null;
 			$version = null;
@@ -168,7 +169,9 @@ class ApiAttachmentsController extends BaseController {
 	public function destroy($notebookId, $noteId, $versionId, $attachmentId)
 	{
         $note = self::getNote($notebookId, $noteId, $versionId);
-
+		if($note->pivot->umask < PaperworkHelpers::UMASK_READWRITE){
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, array('message' => 'Permission Error'));
+		}
 		$tmp = $note->version()->first();
 		$version = null;
 
@@ -230,13 +233,11 @@ class ApiAttachmentsController extends BaseController {
 			'Content-Transfer-Encoding' => 'binary',
 			'Content-Disposition' 		=> 'inline; filename="' . $attachment->filename . '"',
 			'Expires'                   => 0,
-			'Cache-Control'             => 'must-revalidate, post-check=0, pre-check=0',
+			'Cache-Control'             => 'private',//'must-revalidate, post-check=0, pre-check=0',
 			'Pragma'                    => 'public',
 			'Content-Length'	=> $attachment->filesize
 		);
 
-		// $headers are not being set correctly and I don't really know why. Workaround:
-		header('Content-Type: ' . $attachment->mimetype);
-		return Response::make(readfile($destinationFolder . '/' . $attachment->filename), 200, $headers);
+		return Response::make(file_get_contents($destinationFolder . '/' . $attachment->filename),200,$headers);
 	}
 }

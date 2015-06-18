@@ -28,9 +28,15 @@
 			<li ng-controller="SidebarNotesController" class="{{ menuItemNoteClass('multiple') }}">
 				<a id="menu-item-edit-sub-delete_note" href="" ng-click="modalDeleteNote(getNotebookSelectedId(), (getNoteSelectedId(true)).noteId)"><i class="fa fa-trash-o"></i> <span ng-hide="editMultipleNotes">[[Lang::get('keywords.delete_note')]]</span><span ng-show="editMultipleNotes">[[Lang::get('keywords.delete_notes')]]</span></a>
 			</li>
+			<li ng-controller="SidebarNotesController" class="{{ menuItemNoteClass('multiple') }}">
+				<a id="menu-item-edit-sub-share_note" href="" ng-click="modalShareNote(getNotebookSelectedId(), (getNoteSelectedId(true)).noteId)"><i class="fa fa-share-alt"></i> <span ng-hide="editMultipleNotes">[[Lang::get('keywords.share_note')]]</span><span ng-show="editMultipleNotes">[[Lang::get('keywords.share_notes')]]</span></a>
+			</li>
 			<li class="divider"></li>
 			<li ng-controller="SidebarNotebooksController" class="{{ menuItemNotebookClass() }}">
 				<a id="menu-item-edit-sub-edit_notebook" href="" ng-click="modalEditNotebook(getNotebookSelectedId())"><i class="fa fa-pencil"></i> [[Lang::get('keywords.edit_notebook')]]</a>
+			</li>
+			<li ng-controller="SidebarNotebooksController" class="{{ menuItemNotebookClass() }}">
+				<a id="menu-item-edit-sub-share_notebook" href="" ng-click="modalShareNotebook(getNotebookSelectedId())"><i class="fa fa-share-alt"></i> [[Lang::get('keywords.share_notebook')]]</a>
 			</li>
 			<li ng-controller="SidebarNotebooksController" class="{{ menuItemNotebookClass() }}">
 				<a id="menu-item-edit-sub-delete_notebook" href="" ng-click="modalDeleteNotebook(getNotebookSelectedId())"><i class="fa fa-trash-o"></i> [[Lang::get('keywords.delete_notebook')]]</a>

@@ -31,7 +31,7 @@ angular.module('paperworkNotes').controller('NotesEditController',
 
             if (typeof $rootScope.templateNoteEdit.tags != "undefined" && $rootScope.templateNoteEdit.tags.length > 0) {
                 for (var i = 0; i < $rootScope.templateNoteEdit.tags.length; i++) {
-                    $('input#tags').tagsinput('add', $rootScope.templateNoteEdit.tags[i].title);
+                    $('input#tags').tagsinput('add', ($rootScope.templateNoteEdit.tags[i].visibility==1 ? '+':'')+$rootScope.templateNoteEdit.tags[i].title);
                 }
             }
 
