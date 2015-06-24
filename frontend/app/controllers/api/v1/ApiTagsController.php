@@ -68,7 +68,7 @@ class ApiTagsController extends BaseController {
 	public function index()
 	{
 		//$tags = User::find(Auth::user()->id)->tags()->get();
-	    $tags = Tag::whereNull('deleted_at')->whereNull('parent_id')
+	    $tags = Tag::whereNull('deleted_at')//->whereNull('parent_id')
 				->where('user_id','=',Auth::user()->id)
 				->orWhereHas('notes', function($query) {
 					$query-> whereHas('users', function($query){
@@ -77,19 +77,26 @@ class ApiTagsController extends BaseController {
 						);
 					}
 				      )
-					  ->where('visibility','=',1)->get();
+					->where('visibility','=',1)->get();
+	    $tmp=array();
+	    $tmp_parents=array();
 	    foreach($tags as $tag){
-		$tag->children=$tag->children()->whereNull('deleted_at')
-				->where('user_id','=',Auth::user()->id)
-				->orWhereHas('notes', function($query) {
-					$query-> whereHas('users', function($query){
-						$query->where('note_user.user_id','=',Auth::user()->id);
-						}
-						);
-					}
-				      )
-					  ->where('visibility','=',1)->get();
+	      if(!is_null($tag->parent_id)){
+		if(!isset($tmp[$tag->parent_id])){
+		  $tmp[$tag->parent_id]=array();
+		}
+		$tmp[$tag->parent_id][]=$tag;
+	      }else{
+		$tmp_parents[]=$tag;
+	      }
 	    }
+	    foreach($tmp_parents as $tag){
+	      $tag->children=array();
+	      if(isset($tmp[$tag->id])){
+		$tag->children=$tmp[$tag->id];
+	      }
+	    }
+	    $tags=$tmp_parents;
 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $tags);
 	}
 
