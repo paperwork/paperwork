@@ -296,6 +296,10 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
       $rootScope.propagationToNotes=_prop;
       $scope.getUsers(notebookId, _prop);  
     }
+
+    $scope.onDragSuccess = function(data, event) {
+      //u
+    };
     
     $scope.onDropSuccess = function(data, event) {
       NotesService.moveNote($rootScope.note.notebook_id, $rootScope.note.id, this.notebook.id);
@@ -308,8 +312,31 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
     };
 
     $scope.onDropToTag = function(data, event) {
-      NotesService.tagNote($rootScope.note.notebook_id, $rootScope.note.id, this.tag.id);
-      $scope.openTag(this.tag.id);
+	toid=this.tag.id;
+	if('visibility' in data){
+	    //we're dragging a tag
+	    NotebooksService.nestTag(data.id, toid, function(status,responseData){
+            switch(status) {
+              case 200:
+                NotebooksService.getTags();
+                break;
+              case 400:
+                for(var i in responseData.errors) {
+                  var msg = responseData.errors[i];
+                  break;
+                }
+                break;
+            }
+});
+	    $scope.openTag(data.id);
+	}else{
+	    //we're dragging a note
+	    if ('child' in this) {
+		toid=this.child.id;
+	    }
+	    NotesService.tagNote($rootScope.note.notebook_id, $rootScope.note.id, toid);
+	    $scope.openTag(toid);
+	}
     };
 
     $scope.modalManageNotebooks = function() {

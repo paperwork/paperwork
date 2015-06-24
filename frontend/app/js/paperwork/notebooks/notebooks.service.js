@@ -29,6 +29,10 @@ angular.module('paperworkNotes').factory('NotebooksService',
       NetService.apiPut('/tags/' + tagId, data, callback);
     };
 
+    paperworkNotebooksServiceFactory.nestTag = function(tagId, parentTagId, callback) {
+      NetService.apiGet('/tags/' + tagId+ '/' + parentTagId, callback);
+    };
+
     paperworkNotebooksServiceFactory.deleteNotebook = function(notebookId, callback) {
       NetService.apiDelete('/notebooks/' + notebookId, callback);
     };

@@ -43,8 +43,13 @@
 						<li>
 							<span class="tree-header tree-header-tags"><i class="fa fa-chevron-down"></i> [[Lang::get('keywords.tags')]] <button class="btn btn-default btn-xs pull-right" ng-click="modalManageTags();$event.stopPropagation();" title="[[Lang::get('keywords.manage_tags')]]"><span class="fa fa-pencil"></span></button></span>
 							<ul class="tree-child">
-								<li class="tree-tag" ng-repeat="tag in tags | orderBy:'title':reverse" ng-cloak>
-									<span ng-click="openTag(tag.id)" ng-class="{ 'active': tag.id == tagsSelectedId }" ng-drop="true" ng-drop-success="onDropToTag($data, $event)"><i class="fa fa-tag"></i> {{tag.title}}</span>
+								<li class="tree-tag" ng-repeat="tag in tags | orderBy:'title':reverse" >
+									<span class="tree-child tag-parent"><i class="fa fa-chevron-down" ng-show="(tag.children.length > 0)"></i></span><div class="tree-child" ng-click="openTag(tag.id)" ng-class="{ 'active': tag.id == tagsSelectedId }" ng-drop="true" ng-drop-success="onDropToTag($data, $event)" ng-drag="(tag.children.length == 0)" ng-drag-success="onDragSuccess($data, $event)" ng-drag-data="tag"><i class="fa fa-tag" ng-show="(tag.children.length == 0)"></i> {{tag.title}}</div>
+									<ul class="tree-child">
+										<li class="tree-tag" ng-repeat="child in tag.children | orderBy:'title'" >
+											<span ng-click="openTag(child.id)" ng-class="{ 'active': child.id == tagsSelectedId }" ng-drop="true" ng-drop-success="onDropToTag($data, $event)" ng-drag="true" ng-drag-success="onDragSuccess($data, $event)" ng-drag-data="child"><i class="fa fa-tag"></i> {{child.title}}</span>
+										</li>
+									</ul>
 								</li>
 							</ul>
 						</li>
