@@ -107,5 +107,7 @@ return array(
     'cannot_share_message' => 'You can only share a note if you are the owner of that note. The note(s) that you have selected cannot be shared. Try to contact the owner of the note if you want this note to be shared with another user.',
     'cannot_share_notebook_warning' => 'You are not the owner of the selected notebook. You will not be able to share it with other users. You can still share the notes you own that belong to this notebook.',
     'cannot_share_notes_warning' => 'You do not own any notes in the selected notebook. You will not be able to share anything.',
-	'loading_message' => 'Loading...',
+    'loading_message' => 'Loading...',
+    'unnest_tag_question' => 'Unnest tag?',
+    'unnest_tag_message' => 'This will unnest the tag and move it back to the tags\' root level. Are you sure?'
 );

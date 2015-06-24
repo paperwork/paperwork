@@ -98,7 +98,7 @@ angular.module('paperworkNotes').factory('NotebooksService',
         if(status == 200) {
 	  tmp=[];//i store the collapsed info
 	  angular.forEach($rootScope.tags,function(tag,key){
-	    if(collapsed in tag){
+	    if(typeof(tag.collapsed)!="undefined"){
 	      tmp[tag.id]=tag.collapsed;
 	    }else{
 	      tmp[tag.id]=false;
