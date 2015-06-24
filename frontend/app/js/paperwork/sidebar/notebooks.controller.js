@@ -3,6 +3,11 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
      $rootScope.notebookSelectedId = paperworkDbAllId;
      $rootScope.tagsSelectedId = -1;
      $rootScope.dateSelected = -1;
+     $scope.shortcutsCollapsed=false;
+     $scope.notebooksCollapsed=false;
+     $scope.tagsCollapsed=false;
+     $scope.calentdarCollapsed=false;
+    
 
     $scope.isVisible = function() {
       return !$rootScope.expandedNoteLayout;

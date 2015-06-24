@@ -13,8 +13,8 @@ var gulp = require('gulp'),
 
 var paths = {
     bootstrap: [
-        'app/js/bower_components/bootstrap/dist/js/bootstrap.js',
-        'app/js/bootstrap-tree.js'
+        'app/js/bower_components/bootstrap/dist/js/bootstrap.js'//,
+        //'app/js/bootstrap-tree.js'
     ],
     paperwork: [
         'app/js/paperwork/**/*.js'

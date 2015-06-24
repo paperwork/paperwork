@@ -96,7 +96,22 @@ angular.module('paperworkNotes').factory('NotebooksService',
     paperworkNotebooksServiceFactory.getTags = function() {
       NetService.apiGet('/tags', function(status, data) {
         if(status == 200) {
-          $rootScope.tags = data.response;
+	  tmp=[];//i store the collapsed info
+	  angular.forEach($rootScope.tags,function(tag,key){
+	    if(collapsed in tag){
+	      tmp[tag.id]=tag.collapsed;
+	    }else{
+	      tmp[tag.id]=false;
+	    }
+	  });
+          $rootScope.tags = data.response;//updating the tags
+	  angular.forEach($rootScope.tags, function(tag,key){
+	    if(typeof(tmp[tag.id])!="undefined"){
+	      tag.collapsed=tmp[tag.id];
+	    }else{
+	      tag.collapsed=false;
+	    }
+	  });
         }
       });
     };
