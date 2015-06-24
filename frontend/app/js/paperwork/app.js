@@ -14,7 +14,10 @@
     /**
      * Defines paperwork module and its constants.
      */
-    angular.module('paperworkNotes', ['ngRoute', 'ngSanitize', 'ngAnimate', 'angularFileUpload', 'ab-base64', 'ngDraggable', 'ui.bootstrap'])
+    angular.module('paperworkNotes', ['ngRoute', 'ngSanitize', 'ngAnimate', 'angularFileUpload', 'ab-base64', 'ngDraggable', 'ui.bootstrap', 'angular-loading-bar'])
         .constant('paperworkApi', prefix + '/api/v1')
-        .constant('paperworkDbAllId', '00000000-0000-0000-0000-000000000000');
+        .constant('paperworkDbAllId', '00000000-0000-0000-0000-000000000000')
+        .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+            cfpLoadingBarProvider.includeSpinner = false;
+        }]);
 }());

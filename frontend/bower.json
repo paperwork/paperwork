@@ -44,6 +44,7 @@
     "bootstrap-tagsinput": "~0.4.2",
     "typeahead.js": "~0.10.5",
     "bootstrap3-ie10-viewport-bug-workaround": "~1.0.0",
+    "angular-loading-bar": "~0.7.1",
     "placeholders": "~4.0.1"
   }
 }
