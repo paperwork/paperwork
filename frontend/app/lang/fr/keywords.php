@@ -88,6 +88,7 @@ return array(
 	'experimental' => 'Experimental',
 	'import' => 'Import',
 	'export' => 'Export',
-	'back' => 'Back'
-
+	'back' => 'Back',
+    'unnest_tag_question' => 'Unnest tag?',
+    'unnest_tag_message' => 'This will unnest the tag and move it back to the tags\' root level. Are you sure?'
 );

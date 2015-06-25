@@ -43,6 +43,32 @@ angular.module('paperworkNotes').controller('SidebarManageTagsController',
       });
     });
 
+    $scope.unNestTag=function(tagId){
+      $rootScope.modalMessageBox = {
+        'title':   $rootScope.i18n.keywords.unnest_tag_question,
+        'content': $rootScope.i18n.keywords.unnest_tag_message,
+        'buttons': [
+          {
+            'label':     $rootScope.i18n.keywords.cancel,
+            'isDismiss': true
+          },
+          {
+            'id':    'button-yes',
+            'label': $rootScope.i18n.keywords.yes,
+            'class': 'btn-warning',
+            'click': function() {
+              NotebooksService.nestTag(tagId,null, function() {
+                NotebooksService.getTags();
+                $('#modalManageTags').find(".line[data-pk='" + tagId + "']").parent().next().remove();
+              });
+              return true;
+            }
+          }
+        ]
+      };
+      $('#modalMessageBox').modal('show');
+    }
+	
     $scope.deleteTag = function(tagId) {
       $rootScope.modalMessageBox = {
         'title':   $rootScope.i18n.keywords.delete_tag_question,

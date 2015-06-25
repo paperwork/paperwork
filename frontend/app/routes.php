@@ -67,6 +67,7 @@ Route::group(array('prefix' => 'api/v1', 'before' => 'auth'), function () {
     Route::resource('notebooks.notes.versions.attachments', 'ApiAttachmentsController');
     Route::get('/notebooks/{notebookId}/notes/{noteId}/versions/{versionId}/attachments/{attachmentId}/raw', 'ApiAttachmentsController@raw');
     Route::resource('shortcuts', 'ApiShortcutsController');
+    Route::get('/tags/{tagId}/{parentTagId}','ApiTagsController@nest');
     Route::resource('tags', 'ApiTagsController');
     Route::resource('i18n', 'ApiI18nController');
     Route::get('/users/notebooks/{notebookId}', 'ApiUsersController@showNotebook');

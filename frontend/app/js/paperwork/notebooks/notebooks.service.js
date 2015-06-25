@@ -29,6 +29,10 @@ angular.module('paperworkNotes').factory('NotebooksService',
       NetService.apiPut('/tags/' + tagId, data, callback);
     };
 
+    paperworkNotebooksServiceFactory.nestTag = function(tagId, parentTagId, callback) {
+      NetService.apiGet('/tags/' + tagId+ '/' + parentTagId, callback);
+    };
+
     paperworkNotebooksServiceFactory.deleteNotebook = function(notebookId, callback) {
       NetService.apiDelete('/notebooks/' + notebookId, callback);
     };
@@ -92,7 +96,22 @@ angular.module('paperworkNotes').factory('NotebooksService',
     paperworkNotebooksServiceFactory.getTags = function() {
       NetService.apiGet('/tags', function(status, data) {
         if(status == 200) {
-          $rootScope.tags = data.response;
+	  tmp=[];//i store the collapsed info
+	  angular.forEach($rootScope.tags,function(tag,key){
+	    if(typeof(tag.collapsed)!="undefined"){
+	      tmp[tag.id]=tag.collapsed;
+	    }else{
+	      tmp[tag.id]=false;
+	    }
+	  });
+          $rootScope.tags = data.response;//updating the tags
+	  angular.forEach($rootScope.tags, function(tag,key){
+	    if(typeof(tmp[tag.id])!="undefined"){
+	      tag.collapsed=tmp[tag.id];
+	    }else{
+	      tag.collapsed=false;
+	    }
+	  });
         }
       });
     };

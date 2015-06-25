@@ -67,8 +67,9 @@ class ApiTagsController extends BaseController {
 
 	public function index()
 	{
-		$tags = User::find(Auth::user()->id)->tags()->get();
-		$tags = Tag::where('user_id','=',Auth::user()->id)
+		//$tags = User::find(Auth::user()->id)->tags()->get();
+	    $tags = Tag::whereNull('deleted_at')//->whereNull('parent_id')
+				->where('user_id','=',Auth::user()->id)
 				->orWhereHas('notes', function($query) {
 					$query-> whereHas('users', function($query){
 						$query->where('note_user.user_id','=',Auth::user()->id);
@@ -76,7 +77,26 @@ class ApiTagsController extends BaseController {
 						);
 					}
 				      )
-			->where('visibility','=',1)->get();
+					->where('visibility','=',1)->get();
+	    $tmp=array();
+	    $tmp_parents=array();
+	    foreach($tags as $tag){
+	      if(!is_null($tag->parent_id)){
+		if(!isset($tmp[$tag->parent_id])){
+		  $tmp[$tag->parent_id]=array();
+		}
+		$tmp[$tag->parent_id][]=$tag;
+	      }else{
+		$tmp_parents[]=$tag;
+	      }
+	    }
+	    foreach($tmp_parents as $tag){
+	      $tag->children=array();
+	      if(isset($tmp[$tag->id])){
+		$tag->children=$tmp[$tag->id];
+	      }
+	    }
+	    $tags=$tmp_parents;
 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $tags);
 	}
 
@@ -148,6 +168,30 @@ class ApiTagsController extends BaseController {
         $tag->delete();
 
         return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $tagId);
+    }
+    public function nest($tagId,$parentTagId){
+	$tag=Tag::find($tagId);
+	//cannot nest a tag in itself.
+	if(is_null($tag) || $tag->user_id != Auth::user()->id || $tagId==$parentTagId){
+	    return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+	}
+	$parentTag=Tag::find($parentTagId);
+	//if trying to nest in an unexisting tag, then tag is unnested.
+	if(is_null($parentTag)){
+	    $tag->parent_id=NULL;
+	    $tag->save();
+	    return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $tagId);
+	}
+	if($parentTag->user_id != Auth::user()->id){
+	    return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+	}
+	//cannot nest a tag with children, cannot nest into a tag with parents
+	if(count($tag->children()->get())>0 || count($parentTag->parents()->get())>0){
+	    return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+	}
+	$tag->parents()->associate($parentTag);
+	$tag->save();
+	return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $tagId);
     }
 }
 
