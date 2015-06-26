@@ -13,8 +13,8 @@ var gulp = require('gulp'),
 
 var paths = {
     bootstrap: [
-        'app/js/bower_components/bootstrap/dist/js/bootstrap.js',
-        'app/js/bootstrap-tree.js'
+        'app/js/bower_components/bootstrap/dist/js/bootstrap.js'//,
+        //'app/js/bootstrap-tree.js'
     ],
     paperwork: [
         'app/js/paperwork/**/*.js'
@@ -32,7 +32,8 @@ var paths = {
         'app/js/bower_components/angular-utf8-base64/angular-utf8-base64.js',
         'app/js/bower_components/angular-ui-bootstrap-bower/ui-bootstrap.js',
         'app/js/bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js',
-        'app/js/bower_components/ngDraggable/ngDraggable.js'
+        'app/js/bower_components/ngDraggable/ngDraggable.js',
+        'app/js/bower_components/angular-loading-bar/src/loading-bar.js'
     ],
     jQuery: [
         'app/js/bower_components/jquery/dist/jquery.js',
@@ -89,17 +90,25 @@ gulp.task('compileLessPaperworkThemeV1', function () {
         .pipe(livereload());
 });
 
-gulp.task('compileLessFreqselector', function () {
-    gulp
-        .src('app/less/freqselector.less')
-        .pipe(less({
-            paths: ['app/less/']
-        }))
-        .pipe(rename({
-            basename: 'freqselector.min'
-        }))
-        .pipe(gulp.dest(paths.output.css))
-        .pipe(livereload());
+gulp.task('moveLoadingBarCSSToPublic', function() {
+	gulp
+		/* Move CSS file for loading-bar to CSS folder */
+		.src('app/js/bower_components/angular-loading-bar/src/loading-bar.css')
+		.pipe(gulp.dest(paths.output.css))
+		.pipe(livereload());
+});
+
+gulp.task('compileLessFreqselector', function() {
+	gulp
+		.src('app/less/freqselector.less')
+		.pipe(less({
+			paths: ['app/less/']
+		}))
+		.pipe(rename({
+			basename: 'freqselector.min'
+		}))
+		.pipe(gulp.dest(paths.output.css))
+		.pipe(livereload());
 });
 
 gulp.task('compileLessTypeahead', function () {
@@ -215,7 +224,7 @@ gulp.task('bower-update', function () {
 gulp.task('less', ['compileLessBootstrapTheme', 'compileLessPaperworkThemeV1', 'compileLessFreqselector', 'compileLessTypeahead']);
 gulp.task('js', ['compileJsBootstrap', 'compileJsPaperwork', 'compileJsPaperworkNative', 'compileJsAngular', 'compileJsJquery', 'compileJsTagsinput', 'compileJsLibraries', 'compileJsLtIe9Compat', 'compileJsLtIe11Compat']);
 
-gulp.task('default', ['less', 'lint', 'js']);
+gulp.task('default', ['less', 'lint', 'js', 'moveLoadingBarCSSToPublic']);
 gulp.task('prod', ['default', 'minifyJs']);
 
 gulp.task('watch', function () {

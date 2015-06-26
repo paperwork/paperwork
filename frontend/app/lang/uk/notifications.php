@@ -14,11 +14,9 @@ return array(
     'note_create_fail'              => 'Щось пішло не так під час створення нового запису. Спробуйте ще раз.',
     'note_saved_successfully'       => 'Ваш запис було успішно збережено.',
     'note_save_failed'              => 'Щось пішло не так під час зберігання запису. Спробуйте ще раз.',
-    'notebook_edit_successfully'    => 'Ваш запис було успішно оновлено.',
+    'notebook_edit_successfully'    => 'Ваш записник було успішно оновлено.',
     'notebook_edit_failed'          => 'Щось пішло не так під час оновлення записника. Спробуйте ще раз.',
     'upload_finished_successfully'  => 'Ваше завантаження успішно завершено.',
     'upload_failed'                 => 'Не вдалося заванажити файл. Спробуйте ще раз.',
-    'file_deleted_successfully'     => 'Щось пішло не так під час видалення файлу. Спробуйте ще раз.',
-    'note_share_success'            => 'Your note was shared successfully.',
-    'note_share_fail'               => 'Something went wrong while sharing your note. You might not have permission to share.'
+    'file_deleted_successfully'     => 'Щось пішло не так під час видалення файлу. Спробуйте ще раз.'
 );

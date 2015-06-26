@@ -7,6 +7,6 @@ return array(
 	'title_request' => 'Passwort vergessen',
 	'title_reset' => 'Passwort zurücksetzen',
 	'link_forgot_password' => 'Haben Sie ihr Passwort vergessen?',
-	'label_remember_me' => 'Remember me',
+	'label_remember_me' => 'Eingeloggt bleiben',
 	'profile_change_password_info' => 'Um das Passwort Ihres Kontos zu ändern, geben Sie hier ein neues ein:',
 );

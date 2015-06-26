@@ -89,13 +89,6 @@ return array(
 	'import' => 'Import',
 	'export' => 'Export',
 	'back' => 'Back',
-	'share_note' => 'Share note',
-	'share_notes' => 'Share notes',
-	'select_user_title' => 'Invite users to share the note(s)',
-	'not_shared' => 'Do not share',
-	'read_only' => 'Read only',
-	'read_write' => 'Read and write',
-        'cannot_share_title' => 'You cannot share this note !',
-        'cannot_share_message' => 'You can only share a note if you are the owner of that note. The note(s) that you have selected cannot be shared. Try to contact the owner of the note if you want this note to be shared with another user.'
-
+    'unnest_tag_question' => 'Unnest tag?',
+    'unnest_tag_message' => 'This will unnest the tag and move it back to the tags\' root level. Are you sure?'
 );

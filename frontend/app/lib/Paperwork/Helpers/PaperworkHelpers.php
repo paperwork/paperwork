@@ -260,6 +260,6 @@ class PaperworkHelpers {
 
         }
 
-        return \Cache::get('paperwork.commitInfo', [null, false]);
+        return \Cache::get('paperwork.commitInfo', [null, false, false, false]);
     }
 }
