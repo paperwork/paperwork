@@ -12,10 +12,9 @@ class ModifyTagUserRelation extends Migration {
 	 */
 	public function up()
 	{
-		        Schema::table('tag_user', function(Blueprint $table) {
-            $table->drop();
-        });
-			Schema::table('tags', function(Blueprint $table)
+        Schema::dropIfExists('tag_user');
+
+        Schema::table('tags', function(Blueprint $table)
 		{
 			$table->char('user_id', 36);
 			$table->foreign('user_id')->references('id')->on('users');
