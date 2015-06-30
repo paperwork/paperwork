@@ -156,4 +156,5 @@ angular.module('paperworkNotes').controller('NotesEditController',
         $rootScope.navbarMainMenu = false;
         $rootScope.navbarSearchForm = false;
         $rootScope.expandedNoteLayout = true;
+	CKEDITOR.dtd.$removeEmpty['span'] = false; //necessary to CKEDITOR fontawesome plugin
     });
