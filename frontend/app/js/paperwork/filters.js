@@ -3,3 +3,6 @@ angular.module('paperworkNotes').filter('convertdate', function() {
     return (!value) ? '' : value.replace(/ /g, 'T');
   };
 });
+angular.module('paperworkNotes').filter('unsafe', function($sce) {
+    return $sce.trustAsHtml;
+});
