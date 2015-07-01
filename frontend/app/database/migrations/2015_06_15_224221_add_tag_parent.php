@@ -15,6 +15,9 @@ class AddTagParent extends Migration
     {
         Schema::table('tags', function (Blueprint $table) {
             $table->char('parent_id', 36)->nullable();
+        });
+
+        Schema::table('tags', function (Blueprint $table) {
             $table->foreign('parent_id')->references('id')->on('tags')->onDelete('cascade')->onUpdate('cascade');
         });
     }

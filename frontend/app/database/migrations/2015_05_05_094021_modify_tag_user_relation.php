@@ -17,6 +17,9 @@ class ModifyTagUserRelation extends Migration
 
         Schema::table('tags', function (Blueprint $table) {
             $table->char('user_id', 36);
+        });
+
+        Schema::table('tags', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

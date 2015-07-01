@@ -15,6 +15,9 @@ class AddVersionUserRelation extends Migration
     {
         Schema::table('versions', function (Blueprint $table) {
             $table->char('user_id', 36);
+        });
+
+        Schema::table('versions', function (Blueprint $table) {
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
