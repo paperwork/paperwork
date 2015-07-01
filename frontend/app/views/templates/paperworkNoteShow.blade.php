@@ -97,7 +97,7 @@
                 </div>
             </div>
 
-            <div class="page-content" ng-bind-html="note.version.content">
+            <div class="page-content" ng-bind-html="note.version.content | unsafe">
             </div>
         </div>
     </div>
