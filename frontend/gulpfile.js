@@ -26,14 +26,15 @@ var paths = {
         'app/js/bower_components/angular/angular.js',
         'app/js/bower_components/angular-resource/angular-resource.js',
         'app/js/bower_components/angular-route/angular-route.js',
-        'app/js/bower_components/angular-sanitize/angular-sanitize.js',
+        //'app/js/bower_components/angular-sanitize/angular-sanitize.js',
         'app/js/bower_components/angular-animate/angular-animate.js',
         'app/js/bower_components/angular-file-upload/angular-file-upload.js',
         'app/js/bower_components/angular-utf8-base64/angular-utf8-base64.js',
         'app/js/bower_components/angular-ui-bootstrap-bower/ui-bootstrap.js',
         'app/js/bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js',
         'app/js/bower_components/ngDraggable/ngDraggable.js',
-        'app/js/bower_components/angular-loading-bar/src/loading-bar.js'
+        'app/js/bower_components/angular-loading-bar/src/loading-bar.js',
+	'app/js/bower_components/textAngular/src/textAngular-sanitize.js'
     ],
     jQuery: [
         'app/js/bower_components/jquery/dist/jquery.js',
