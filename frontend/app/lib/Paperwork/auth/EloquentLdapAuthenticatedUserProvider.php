@@ -33,7 +33,11 @@ class EloquentLdapAuthenticatedUserProvider extends EloquentUserProvider
         if ($user == null && ($this->config['autoRegister'] || isset($credentials['isRegister']) )){
             //if our user wasn't found, and we have auto register enabled or we're coming from the user registration
             //directly, then we'll attempt an authentication and take the appropriate action.
-            if($this->adLdap->authenticate($username, $credentials['password'])){
+            $ldap_info = $this->adLdap->user()->info($username);
+            if($ldap_info['count'] != 1)
+                return null;
+
+            if ($this->adLdap->authenticate($ldap_info[0]['dn'], $credentials['password'])){
                 if ($this->config['autoRegister']){
                     //if we have auto register enabled, create a user and such using the ldap info.
                     $ldapInfo = $this->adLdap->user()->info($username,array("givenname","sn"))[0];
@@ -64,6 +68,9 @@ class EloquentLdapAuthenticatedUserProvider extends EloquentUserProvider
      */
     public function validateCredentials(UserInterface $user, array $credentials)
     {
-        return $this->adLdap->authenticate($credentials['username'], $credentials['password']);
+        $ldap_info = $this->adLdap->user()->info($credentials['username']);
+        if($ldap_info['count'] != 1)
+            return false;
+        return $this->adLdap->authenticate($ldap_info[0]['dn'], $credentials['password']);
     }
 } 
