@@ -26,11 +26,11 @@ return array(
 				'scan' => 'Scan this QR code with your mobile app to auto-configure your Paperwork account.'
 			),
 			'import' => array(
-				'evernotexml' => 'Evernote XML:',
+				'evernotexml' => 'Import a Evernote XML:',
 				'upload_evernotexml' => 'Upload your Evernote XML export here, to import your Evernote notes into Paperwork.'
 			),
 			'export' => array(
-				'evernotexml' => 'Evernote XML:',
+				'evernotexml' => 'Export as Evernote XML:',
 				'download_evernotexml' => 'Download an ENEX file compatible with Evernote to move your notes from Paperwork. '
 			)
 		)
