@@ -26,7 +26,7 @@ return array(
 				'scan' => 'Scan this QR code with your mobile app to auto-configure your Paperwork account.'
 			),
 			'import' => array(
-				'evernotexml' => 'Import a Evernote XML:',
+				'evernotexml' => 'Import an Evernote XML:',
 				'upload_evernotexml' => 'Upload your Evernote XML export here, to import your Evernote notes into Paperwork.'
 			),
 			'export' => array(
