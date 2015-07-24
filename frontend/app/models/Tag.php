@@ -13,6 +13,12 @@ class Tag extends PaperworkModel {
 	{
 	  return $this->belongsTo('User');
 	}
+	public function children(){
+		return $this->hasMany('Tag','parent_id','id');
+	}
+	public function parents(){
+		return $this->belongsTo('Tag','parent_id','id');
+	}
 }
 
 ?>

@@ -695,8 +695,15 @@ ul.nav-tabs-margin {
       }
       li.tree-tag {
         cursor: pointer;
-
+	
+	span.tag-parent{
+	    float:left;
+	    width:auto;
+	}
         span.active {
+          color: @brand-primary;
+        }
+        div.active, [ng-drop].drag-enter {
           color: @brand-primary;
         }
       }
@@ -748,6 +755,7 @@ ul.nav-tabs-margin {
     }
 
     span.tree-header {
+      cursor:pointer;
       display: block;
       padding: 10px;
       margin: 0px 0px 6px 0px;
@@ -1057,6 +1065,9 @@ body.paperwork-error {
       }
 
       .btn-danger {
+        margin-top: 4px;
+      }
+      .btn-info {
         margin-top: 4px;
       }
     }

@@ -3,37 +3,38 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ModifyTagUserRelation extends Migration {
+class ModifyTagUserRelation extends Migration
+{
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
-		        Schema::table('tag_user', function(Blueprint $table) {
-            $table->drop();
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::dropIfExists('tag_user');
+
+        Schema::table('tags', function (Blueprint $table) {
+            $table->char('user_id', 36);
         });
-			Schema::table('tags', function(Blueprint $table)
-		{
-			$table->char('user_id', 36);
-			$table->foreign('user_id')->references('id')->on('users');
-		});
-	}
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::table('tags', function(Blueprint $table)
-		{
-			$table->dropColumn('user_id');
-		});
-		Schema::create('tag_user', function(Blueprint $table) {
+        Schema::table('tags', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::table('tags', function (Blueprint $table) {
+            $table->dropColumn('user_id');
+        });
+        Schema::create('tag_user', function (Blueprint $table) {
             $table->bigIncrements('id')->unsigned();
             $table->char('user_id', 36);
             $table->foreign('user_id')->references('id')->on('users');
@@ -42,6 +43,6 @@ class ModifyTagUserRelation extends Migration {
             $table->timestamps();
             $table->engine = 'InnoDB';
         });
-	}
+    }
 
 }
