@@ -2,20 +2,18 @@
 
 return array(
 
-	'account_creation_failed' => 'Could not create account.',
-	'account_update_failed' => 'Could not update account.',
-	'invalid_credentials' => 'Your credentials are invalid.',
-	'note_version_info' => 'You are previewing an older version of this note.',
-	'found_bug' => 'Found a bug? <a href="https://github.com/twostairs/paperwork/issues/new" target="_blank" title="Submit Issue">Submit it on GitHub!</a>',
-	'new_version_available' => 'Found a bug? It seems like you are not running the latest version of Paperwork. Please consider updating before submitting an issue. ',
-	'error_version_check' => 'Found a bug? Paperwork cannot check whether your version is the latest. Please make sure you are running the latest version before reporting any issues. ', 
-	'error_message' => 'Whooops!',
-	'onbeforeunload_info' => 'Data will be lost if you leave the page, are you sure?',
+	'account_creation_failed' => 'アカウントを作成できませんでした。',
+	'account_update_failed' => 'アカウントを更新できませんでした。',
+	'invalid_credentials' => '認証情報が正しくありません。',
+	'note_version_info' => 'このノートの古いバージョンをプレビューしています。',
+	'found_bug' => 'バグがありましたか? <a href="https://github.com/twostairs/paperwork/issues/new" target="_blank" title="問題を報告">Github で報告して下さい! (ただし英語で)</a>',
+	'error_message' => 'うわぁぁぁぁ!',
+	'onbeforeunload_info' => 'ページから移動するとデータは破棄されます。よろしいですか?',
 	'user' => array(
 		'settings' => array(
-			'language_label' => 'Language',
-			'client_label' => 'Client',
-			'import_slash_export' => 'Import/Export',
+			'language_label' => '言語',
+		    'client_label' => 'クライアント',
+		    'import_slash_export' => '読み込み/書き出し',
 			'language' => array(
 				'ui_language' => 'ユーザーインターフェースの言語',
 				'document_languages' => '文書の言語',
@@ -30,8 +28,8 @@ return array(
 				'upload_evernotexml' => 'Evernote から書き出した XML データをここにアップロードすると、Paperwork に Evernote のノートが読み込まれます。'
 			),
 			'export' => array(
-				'evernotexml' => 'Evernote XML:',
-				'download_evernotexml' => 'Paperwork からノートを他のアプリに移す場合は、Evernote と互換性のある ENEX ファイルをダウンロードします。'
+			    'evernotexml' => 'Evernote XML として書き出す:',
+			    'download_evernotexml' => 'Paperwork からノートを他のアプリに移す場合は、Evernote と互換性のある ENEX ファイルをダウンロードします。'
 			)
 		)
 	)
