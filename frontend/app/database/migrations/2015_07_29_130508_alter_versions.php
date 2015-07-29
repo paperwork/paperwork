@@ -14,7 +14,15 @@ class AlterVersions extends Migration
     public function up()
     {
         Schema::table('versions', function (Blueprint $table) {
-            $table->mediumText('content')->change();
+            $table->mediumText('content_new');
+        });
+
+        DB::update('update versions set content_new = content');
+
+        Schema::table('versions', function (Blueprint $table) {
+            $table->dropColumn('content');
+
+            $table->renameColumn('content_new', 'content');
         });
     }
 
