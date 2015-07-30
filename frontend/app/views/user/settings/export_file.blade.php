@@ -1,11 +1,11 @@
 [[-- This is the template for the Evernote Export file --]]
 @if(isset($start))
-{{ '<'.'?'.'xml version="1.0" encoding="UTF-8"?>' }}
+[[ '<'.'?'.'xml version="1.0" encoding="UTF-8"?>' ]]
 <!DOCTYPE en-export SYSTEM "http://xml.evernote.com/pub/evernote-export3.dtd">
-<en-export export-date="{{ date('omd').'T'.date('His').'Z' }}">
+<en-export export-date="[[ date('omd').'T'.date('His').'Z' ]]" application="Paperwork">
 @endif
     <note>
-    <title>[[ $title ]]</title><content><![CDATA[{{ '<'.'?'.'xml version="1.0" encoding="UTF-8" standalone="no"?>' }}
+    <title>[[ $title ]]</title><content><![CDATA[<?xml version="1.0" encoding="UTF-8" standalone="no"?>
     <!DOCTYPE en-note SYSTEM "http://xml.evernote.com/pub/enml2.dtd">
     <en-note>
 
@@ -21,12 +21,13 @@
     <created>[[ $created ]]</created>
     <updated>[[ $updated ]]</updated>
     @if(isset($tags))
-    @foreach ($tags as $tag)
-        <tag>[[ $tag['title'] ]]</tag>
-    @endforeach
+        @foreach ($tags as $tag)
+            <tag>[[ $tag['title'] ]]</tag>
+        @endforeach
     @endif
     <note-attributes>
-    <author>[[ $firstname ]] [[ $lastname ]]</author>
+        <author>[[ $firstname ]] [[ $lastname ]]</author>
+        <reminder-order>0</reminder-order>
     </note-attributes>
     @if(isset($attachments))
     @foreach ($attachments as $attachment)
