@@ -387,7 +387,7 @@ class UserController extends BaseController
                    ->join('note_user', function ($join) {
                        $join->on('notes.id', '=', 'note_user.note_id')
                             ->where('note_user.user_id', '=', Auth::user()->id)
-                            ->where('note_user.umask', '=', '0');
+                            ->where('note_user.umask', '=', '7');
                    })
                    ->join('notebooks', function ($join) {
                        $join->on('notes.notebook_id', '=', 'notebooks.id');
