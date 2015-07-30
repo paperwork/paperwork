@@ -15,7 +15,7 @@
 [[ Form::open(array('id' => 'form-export', 'class' => 'form', 'role' => 'form', 'action' => 'UserController@export'))]]
     <div class="form-group">
         <label class="control-label">
-            [[ Lang::get('messages.user.settings.export.evernotexml') ]] ([[ Lang::get('keywords.not_implemented') ]])
+            [[ Lang::get('messages.user.settings.export.evernotexml') ]] ([[ Lang::get('keywords.experimental') ]])
         </label>
         <p class="help-block">[[ Lang::get('messages.user.settings.export.download_evernotexml') ]]</p>
         <div class="col-sm-offset-5 col-sm-7">
