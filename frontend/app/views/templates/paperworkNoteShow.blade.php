@@ -99,6 +99,12 @@
 
             <div class="page-content" ng-bind-html="note.version.content">
             </div>
+            <script type="text/javascript">
+                /* This is not ideal but I did not find any way to trigger code when binding finishes */
+                setTimeout(function() {
+                    hljs.initHighlighting();
+                }, 5000);
+            </script>
         </div>
     </div>
     @include('partials/file-uploader', array('uploadEnabled' => false, 'actionsEnabled' => false))
