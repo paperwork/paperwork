@@ -18,6 +18,7 @@ angular.module('paperworkNotes')
                                     'class': $this.attr('class'),
                                     'language': $this.attr('class').replace(/language-/, ''),
                                     'hljs': true,
+                                    'no-escape': true,
                                     'html': $this.html()
                                 })
                             );
