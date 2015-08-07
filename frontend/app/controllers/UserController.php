@@ -468,7 +468,9 @@ class UserController extends BaseController
 
             if ($noteNumber == 1) {
                 $noteArray['start'] = 1;
-            } elseif ($noteNumber == $noteCount) {
+            } 
+            
+            if ($noteNumber == $noteCount) {
                 $noteArray['end'] = 1;
             }
 
