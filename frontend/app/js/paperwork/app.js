@@ -14,10 +14,16 @@
     /**
      * Defines paperwork module and its constants.
      */
-    angular.module('paperworkNotes', ['ngRoute', 'ngSanitize', 'ngAnimate', 'angularFileUpload', 'ab-base64', 'ngDraggable', 'ui.bootstrap', 'angular-loading-bar'])
+    angular.module('paperworkNotes', ['ngRoute', 'ngSanitize', 'ngAnimate', 'angularFileUpload', 'ab-base64', 'ngDraggable', 'ui.bootstrap', 'angular-loading-bar', 'hljs'])
         .constant('paperworkApi', prefix + '/api/v1')
         .constant('paperworkDbAllId', '00000000-0000-0000-0000-000000000000')
         .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
             cfpLoadingBarProvider.includeSpinner = false;
-        }]);
+        }])
+        .config(function (hljsServiceProvider) {
+            hljsServiceProvider.setOptions({
+                tabReplace: '    '
+            });
+        })
+    ;
 }());
