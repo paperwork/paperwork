@@ -83,7 +83,7 @@ return array(
 	'not_implemented' => 'Dit werkt nog niet.',
 	'experimental' => 'Experimenteel',
 	'import' => 'Importeren',
-	'export' => 'Exporteren'
+	'export' => 'Exporteren',
 	'back' => 'Terug',
 	'share_note' => 'Share note',
 	'share_notes' => 'Share notes',
