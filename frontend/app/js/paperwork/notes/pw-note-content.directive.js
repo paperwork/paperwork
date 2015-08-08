@@ -23,7 +23,7 @@ angular.module('paperworkNotes')
 
                     // Wrap value to not lose it content.
                     var content = ae('<div class="node-content-wrapper">' + scope.content + '</div>'),
-                        $code = content.find('$code');
+                        $code = content.find('code');
 
                     if ($code.length) {
                         $code.each(function () {
