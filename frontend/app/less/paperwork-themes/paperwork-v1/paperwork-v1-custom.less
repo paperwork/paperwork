@@ -511,6 +511,17 @@ ul.nav-tabs-margin {
         overflow: hidden;
         color: @text-color;
       }
+      
+      .draggable {
+          cursor: grab;
+          cursor: -moz-grab;
+          cursor: -webkit-grab;
+          height: 100%;
+          position: absolute;
+          width: 15px;
+          z-index: 1;
+          background-color: @brand-primary;
+      }
 
       .notes-list-title-gradient {
         // Removed due to browser issues (e.g. Firefox)
@@ -535,6 +546,12 @@ ul.nav-tabs-margin {
         // -webkit-background-clip: text;
         // -webkit-text-fill-color: transparent;
       }
+  }
+  
+  .notes-list-item.dragging {
+      cursor: grabbing;
+      cursor: -moz-grabbing;
+      cursor: -webkit-grabbing;
   }
 
   .notes-list-item.active {

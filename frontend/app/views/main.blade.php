@@ -74,8 +74,10 @@
 					ng-dblclick="editNote(note.notebook_id, note.id)"
 					ng-class="{ 'active': (note.notebook_id + '-' + note.id == getNoteSelectedId() || (editMultipleNotes && notesSelectedIds[note.id])) }"
 					ng-drag="true"
+					ng-drag-data="(note)"
 					ng-drag-success="onDragSuccess($data,$event)"
 					ng-drag-data="notebook">
+					<span class="draggable"></span>
 					<div class="notes-list-item-checkbox col-sm-1" ng-show="editMultipleNotes">
 						<input name="notes[]" type="checkbox" value="{{ note.id }}" ng-model="notesSelectedIds[note.id]" ng-click="$event.stopPropagation();" ng-dblclick="$event.stopPropagation();">
 					</div>

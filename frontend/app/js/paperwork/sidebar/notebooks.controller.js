@@ -307,13 +307,13 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
       $rootScope.propagationToNotes=_prop;
       $scope.getUsers(notebookId, _prop, true);  
     }
-
+    
     $scope.onDragSuccess = function(data, event) {
-      //u
+      //
     };
     
     $scope.onDropSuccess = function(data, event) {
-      NotesService.moveNote($rootScope.note.notebook_id, $rootScope.note.id, this.notebook.id);
+      NotesService.moveNote(data.notebook_id, data.id, this.notebook.id);
       // Try to make the openNotebook dependant on the result of the move
       $scope.openNotebook(this.notebook.id, this.notebook.type, this.notebook.id);
     };
