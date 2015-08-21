@@ -6,6 +6,5 @@ frontend/public/css
 !frontend/public/css/bootstrap-editable.css
 frontend/public/js
 !frontend/public/js/bootstrap-editable.min.js
-!.gitignore
 Thumbs.db
 frontend/npm-debug.log

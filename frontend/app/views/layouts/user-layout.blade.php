@@ -13,10 +13,10 @@
     [[ HTML::style('css/typeahead.min.css') ]]
 
     [[ HTML::style('css/mathquill.css')]]
-    
+
     [[ HTML::style('css/libs.css') ]]
 
-    [[ HTML::style('//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css') ]]
+    [[ HTML::style('css/bootstrap-editable.css') ]]
 
 </head>
 <body ng-app="paperworkNotes">
@@ -83,7 +83,7 @@
 
 [[ HTML::script('ckeditor/ckeditor.js') ]]
 [[ HTML::script('ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js') ]]
-[[ HTML::script('//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js') ]]
+[[ HTML::script('js/bootstrap-editable.min.js') ]]
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
