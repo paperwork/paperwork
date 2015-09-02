@@ -12,11 +12,11 @@
 <div class="container-fluid">
 	<div class="row">
         <section pw-status-notification></section>
-        <div class="fa sidebar-collapse-switch" ng-show="!expandedNoteLayout"
-             ng-class="sidebarCollapsed ? 'fa-chevron-right sidebar-collapse-switch-closed' : 'fa-chevron-left col-sm-offset-3 col-md-offset-2'"
-             ng-click="sidebarCollapsed = !sidebarCollapsed" ng-init="sidebarCollapsed = false"></div>
 		<div id="sidebarNotebooks" class="col-sm-3 col-md-2 sidebar hidden-xs animate-panel disable-selection" ng-controller="SidebarNotebooksController" ng-show="isVisible()">
 			<ul class="nav nav-sidebar sidebar-no-border" ng-hide="sidebarCollapsed">
+			        <div class="fa sidebar-collapse-switch" ng-show="!expandedNoteLayout"
+                         ng-class="sidebarCollapsed ? 'fa-chevron-right sidebar-collapse-switch-closed' : 'fa-chevron-left col-sm-offset-3 col-md-offset-2'"
+                         ng-click="sidebarCollapsed = !sidebarCollapsed" ng-init="sidebarCollapsed = false"></div>
 				<div class="tree">
 					<ul class="tree-base">
 						<li>
