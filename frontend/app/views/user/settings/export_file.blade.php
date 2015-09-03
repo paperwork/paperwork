@@ -32,7 +32,7 @@
     @if(isset($attachments))
     @foreach ($attachments as $attachment)
         <resource>
-        <data enconding="base64">[[ $attachment['encoded'] ]]</data><mime>[[ $attachment['mimetype'] ]]</mime>
+        <data encoding="base64">[[ $attachment['encoded'] ]]</data><mime>[[ $attachment['mimetype'] ]]</mime>
         <width>0</width><height>0</height>
         <resource-attributes><file-name>[[ $attachment['filename'] ]]</file-name></resource-attributes>
         </resource>
