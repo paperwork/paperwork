@@ -346,11 +346,19 @@ label {
     background-color: @white;
     border-right: 1px solid @gray;
   }
-  .sidebar-collapse-switch{
+  .sidebar-collapse-switch {
     left: -20px;
+    margin-top: 10px;
+    z-index: 9999;
     display: block;
     cursor: pointer;
     position: fixed;
+  }
+  .sidebar-collapse-switch-closed {
+      left: 20px;
+  }
+  .sidebar-collapsed-notes-list {
+      margin-left: 25px !important;
   }
 }
 
