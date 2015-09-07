@@ -33,6 +33,7 @@ html {
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
   padding-top: 50px;
+  padding-right: 0px !important;
 }
 
 /*
@@ -68,11 +69,11 @@ label {
 }
 
 .label-tag {
-  padding: 4px 8px;
+  padding: 5px 9px;
   margin: 3px 6px 3px 0px;
-  font-size: 0.9em;
+  font-size: 1em;
   line-height: 1em;
-  font-weight: 100;
+  font-weight: 300;
   cursor: pointer;
 
   i.fa {
@@ -350,16 +351,16 @@ label {
     left: -35px;
     padding: 5px;
     margin-top: 10px;
-    z-index: 9999;
+    z-index: 1001;
     display: block;
     cursor: pointer;
     position: fixed;
   }
   .sidebar-collapse-switch-closed {
-      left: 15px;
+      left: 10px;
   }
   .sidebar-collapsed-notes-list {
-      margin-left: 25px !important;
+      margin-left: 16px !important;
   }
 }
 
@@ -618,6 +619,12 @@ ul.nav-tabs-margin {
   // border: @navbar-default-bg;
   // background-color: lighten(@navbar-default-bg, 10%);
   // color: @navbar-default-color;
+}
+
+@media (min-width: 768px) {
+    .navbar-search {
+        width: 120% !important;
+    }
 }
 
 // Tree List
