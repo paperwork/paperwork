@@ -13,8 +13,8 @@
 	<div class="row">
         <section pw-status-notification></section>
         <div class="fa sidebar-collapse-switch" ng-show="!expandedNoteLayout"
-             ng-class="sidebarCollapsed ? 'fa-chevron-right sidebar-collapse-switch-closed' : 'fa-chevron-left col-sm-offset-3 col-md-offset-2'"
-             ng-click="sidebarCollapsed = !sidebarCollapsed" ng-init="sidebarCollapsed = false"></div>
+            ng-class="sidebarCollapsed ? 'fa-chevron-right sidebar-collapse-switch-closed' : 'fa-chevron-left col-sm-offset-3 col-md-offset-2'"
+            ng-click="sidebarCollapsed = !sidebarCollapsed" ng-init="sidebarCollapsed = false"></div>
 		<div id="sidebarNotebooks" class="col-sm-3 col-md-2 sidebar hidden-xs animate-panel disable-selection" ng-controller="SidebarNotebooksController" ng-show="isVisible()">
 			<ul class="nav nav-sidebar sidebar-no-border" ng-hide="sidebarCollapsed">
 				<div class="tree">
@@ -67,15 +67,17 @@
 		</div>
 
 		<div id="sidebarNotes" class="col-sm-4 col-md-3 sidebar hidden-xs animate-panel"
-             ng-controller="SidebarNotesController" ng-show="isVisible()" ng-class="sidebarCollapsed ? '' : 'col-sm-offset-3 col-md-offset-2'">
-			<ul id="notes-list" class="nav nav-sidebar notes-list sidebar-no-border" ng-controller="NotesListController">
+             ng-controller="SidebarNotesController" ng-show="isVisible()" ng-class="sidebarCollapsed ? 'sidebar-collapsed-notes' : 'col-sm-offset-3 col-md-offset-2'">
+			<ul id="notes-list" class="nav nav-sidebar notes-list sidebar-no-border" ng-controller="NotesListController" ng-class="sidebarCollapsed ? 'sidebar-collapsed-notes-list' : ''">
 				<li class="notes-list-item" ng-cloak ng-repeat="note in notes"
 					ng-click="noteSelect(note.notebook_id, note.id)"
 					ng-dblclick="editNote(note.notebook_id, note.id)"
 					ng-class="{ 'active': (note.notebook_id + '-' + note.id == getNoteSelectedId() || (editMultipleNotes && notesSelectedIds[note.id])) }"
 					ng-drag="true"
+					ng-drag-data="(note)"
 					ng-drag-success="onDragSuccess($data,$event)"
 					ng-drag-data="notebook">
+					<span class="draggable"></span>
 					<div class="notes-list-item-checkbox col-sm-1" ng-show="editMultipleNotes">
 						<input name="notes[]" type="checkbox" value="{{ note.id }}" ng-model="notesSelectedIds[note.id]" ng-click="$event.stopPropagation();" ng-dblclick="$event.stopPropagation();">
 					</div>

@@ -33,6 +33,7 @@ html {
 /* Move down content because we have a fixed navbar that is 50px tall */
 body {
   padding-top: 50px;
+  padding-right: 0px !important;
 }
 
 /*
@@ -68,11 +69,11 @@ label {
 }
 
 .label-tag {
-  padding: 4px 8px;
+  padding: 5px 9px;
   margin: 3px 6px 3px 0px;
-  font-size: 0.9em;
+  font-size: 1em;
   line-height: 1em;
-  font-weight: 100;
+  font-weight: 300;
   cursor: pointer;
 
   i.fa {
@@ -335,7 +336,7 @@ label {
 @media (min-width: 768px) {
   .sidebar {
     position: fixed;
-    top: 67px;
+    top: 62px;
     bottom: 0;
     left: 0;
     z-index: 1000;
@@ -346,10 +347,20 @@ label {
     background-color: @white;
     border-right: 1px solid @gray;
   }
-  .sidebar-collapse-switch{
+  .sidebar-collapse-switch {
+    left: -35px;
+    padding: 5px;
+    margin-top: 10px;
+    z-index: 1001;
     display: block;
     cursor: pointer;
     position: fixed;
+  }
+  .sidebar-collapse-switch-closed {
+      left: 10px;
+  }
+  .sidebar-collapsed-notes-list {
+      margin-left: 16px !important;
   }
 }
 
@@ -403,6 +414,13 @@ ul.nav-tabs-margin {
 .main .page-content {
   font-size: @font-size-large;
   line-height: 1.7;
+  
+  img {
+      max-width:100%;
+      max-height: 100%;
+      height: auto;
+  }
+  
 }
 
 
@@ -504,6 +522,17 @@ ul.nav-tabs-margin {
         overflow: hidden;
         color: @text-color;
       }
+      
+      .draggable {
+          cursor: grab;
+          cursor: -moz-grab;
+          cursor: -webkit-grab;
+          height: 100%;
+          position: absolute;
+          width: 15px;
+          z-index: 1;
+          background-color: @brand-primary;
+      }
 
       .notes-list-title-gradient {
         // Removed due to browser issues (e.g. Firefox)
@@ -528,6 +557,12 @@ ul.nav-tabs-margin {
         // -webkit-background-clip: text;
         // -webkit-text-fill-color: transparent;
       }
+  }
+  
+  .notes-list-item.dragging {
+      cursor: grabbing;
+      cursor: -moz-grabbing;
+      cursor: -webkit-grabbing;
   }
 
   .notes-list-item.active {
@@ -584,6 +619,12 @@ ul.nav-tabs-margin {
   // border: @navbar-default-bg;
   // background-color: lighten(@navbar-default-bg, 10%);
   // color: @navbar-default-color;
+}
+
+@media (min-width: 768px) {
+    .navbar-search {
+        width: 120% !important;
+    }
 }
 
 // Tree List
