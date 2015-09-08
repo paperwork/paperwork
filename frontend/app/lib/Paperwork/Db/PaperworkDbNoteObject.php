@@ -34,7 +34,8 @@ class PaperworkDbNoteObject extends PaperworkDbObject {
 			},
 		))->join('note_user', function($join) use(&$userId) {
 				$join->on('note_user.note_id', '=', 'notes.id')
-					->where('note_user.user_id', '=', $userId);
+					->where('note_user.user_id', '=', $userId)
+					->where('note_user.umask', '>', 0);
 		})->select($defaultNotesSelect);
 
 		$idCount = count($id);
