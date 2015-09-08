@@ -16,13 +16,15 @@ class PaperworkDbNotebookObject extends PaperworkDbObject {
 			'children' => function($query) use(&$userId, &$defaultNotebooksSelect) {
 				$query->join('notebook_user', function($join) use(&$userId) {
 					$join->on('notebook_user.notebook_id', '=', 'notebooks.id')
-						->where('notebook_user.user_id', '=', $userId);
+						->where('notebook_user.user_id', '=', $userId)
+						->where('notebook_user.umask', '>', 0);
 				})->select($defaultNotebooksSelect)
 				->whereNull('deleted_at');
 			}
 		))->join('notebook_user', function($join) use(&$userId) {
 				$join->on('notebook_user.notebook_id', '=', 'notebooks.id')
-					->where('notebook_user.user_id', '=', $userId);
+					->where('notebook_user.user_id', '=', $userId)
+					->where('notebook_user.umask', '>', 0);
 		})->select($defaultNotebooksSelect);
 
 		$idCount = count($id);
