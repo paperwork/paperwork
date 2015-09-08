@@ -600,7 +600,7 @@ class ApiNotesController extends BaseController
         $status    = PaperworkHelpers::STATUS_SUCCESS;
         foreach ($noteIds as $singleNoteId) {
             for($i=0; $i<count($toUserIds); $i++){//adding a loop to share with multiple users
-                $tmp = $this->shareNote($notebookId, $singleNoteId, $toUserIds[$i], $toUMASK[$i]);
+                $tmp = $this->shareNote($notebookId, $singleNoteId, $toUserIds[$i], $toUMASKs[$i]);
                 if (is_null($tmp)) {
                     $status      = PaperworkHelpers::STATUS_ERROR;
                     $responses[] = array('error_id' => $singleNoteId, 'error_user' => $toUserIds[$i]);
