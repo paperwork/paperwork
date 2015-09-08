@@ -202,7 +202,7 @@ class ApiNotebooksController extends BaseController {
 		$responses = array();
 		$status    = PaperworkHelpers::STATUS_SUCCESS;
 		for($i=0; $i<count($toUserIds); $i++){//adding a loop to share with multiple users
-			$tmp = $this->shareNotebook($notebookId, $toUserIds[$i], $toUMASK[$i]);
+			$tmp = $this->shareNotebook($notebookId, $toUserIds[$i], $toUMASKs[$i]);
 			if (is_null($tmp)) {
 				$status      = PaperworkHelpers::STATUS_ERROR;
 				$responses[] = array('error_id' => $notebookId);
