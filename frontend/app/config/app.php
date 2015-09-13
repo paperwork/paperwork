@@ -1,6 +1,6 @@
 <?php
 
-return array(
+$array = array(
 
 	/*
 	|--------------------------------------------------------------------------
@@ -206,3 +206,16 @@ return array(
 	),
 
 );
+
+if(file_exists(storage_path()."/paperwork_settings")) {
+    $configString = file_get_contents(storage_path()."/paperwork_settings");
+    $configLines = explode("\r\n", $configString);
+    foreach($configLines as $configLine) {
+        $configLineArray = explode(": ", $configLine);
+        if($configLineArray[0] === "debug") {
+            $array['debug'] = $configLineArray[1];
+        }
+    }
+}
+
+return $array;
