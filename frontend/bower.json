@@ -46,5 +46,8 @@
     "placeholders": "~4.0.1",
     "textAngular": "~1.3.0",
     "angular-highlightjs": "~0.4.3"
+  },
+  "devDependencies": {
+    "x-editable": "1.5.0"
   }
 }
