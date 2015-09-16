@@ -10,7 +10,6 @@ if(File::exists(storage_path()."/db_settings")) {
     $databaseInfo = explode(", ", $wholeString);
 }else{
     $databaseInfo = array("mysql", (getenv('DB_1_PORT_3306_TCP_ADDR') ? getenv('DB_1_PORT_3306_TCP_ADDR') : '127.0.0.1'), "3306", "paperwork", "paperwork");
-    $databaseInfo = array("sqlite", ":memory:");
 }
 
 return array(
