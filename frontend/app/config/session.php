@@ -1,6 +1,6 @@
 <?php
 
-return array(
+$array = array(
 
 	/*
 	|--------------------------------------------------------------------------
@@ -16,7 +16,7 @@ return array(
 	|
 	*/
 
-    'driver' => 'database',
+    'driver' => 'file',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -138,3 +138,9 @@ return array(
 	'secure' => false,
 
 );
+
+if(file_exists(storage_path()."/db_settings")) {
+    $array['driver'] = 'database';
+}
+
+return $array;
