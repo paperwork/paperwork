@@ -15,7 +15,7 @@ return array(
         is your first note and we&#39;d like to explain to you some features we hope you&#39;ll find very
         interesting.</p><h3><strong>Notes</strong></h3><p>Notes are the basic form of writing in Paperwork.
         Notes are saved inside notebooks. You already have one named &#39;Welcome&#39; in which this note is
-        stored. You can create as much notebooks and notes as you want by using the <a id="file_click_handler" href="#">
+        stored. You can create as many notebooks and notes as you want by using the <a id="file_click_handler" href="#">
         File menu</a>.</p><h3><strong>Attachments</strong></h3><p>You can also add attachments to your notes.
         This allows you to embed important information and have it there when you need it. Just click its link,
         and you&#39;ll be sent to the file. And since Paperwork is self hosted, you have better privacy too.</p>
