@@ -24,8 +24,12 @@
                     <div class="inner cover">
                         <div class="center-div">
                             <div class="questionnaire">
+                                <div class="form-group" style="display:@if($assets_missing) block @else none @endif">
+                                    <h1>[[ Lang::get('messages.setup.assets_check.assets_not_found') ]]</h1>
+                                    <p>[[ Lang::get('messages.setup.assets_check.assets_not_found_description') ]]</p>
+                                </div>
                                 <ul class="form text-center">
-                                    <li class="form-group">
+                                    <li class="form-group @if($assets_missing) hidden @endif">
                                         <h1>[[ Lang::get('messages.setup.update_check.checking_for_updates') ]]</h1>
                                         <?php
                                             list($lastCommitOnInstall, $upstreamLatest, $lastCommitTimestamp, $upstreamTimestamp) = PaperworkHelpers::getHashes();

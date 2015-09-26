@@ -79,6 +79,10 @@ return array(
             'installation_completed_message' => 'Congratulations! You have now finished installing and setting up Paperwork. Click on the link below to login in the account you have just created. ',
             'proceed_to_paperwork_button' => 'Proceed to Paperwork'
         ),
-        'button_next' => 'Next'
+        'button_next' => 'Next',
+        'assets_check' => array(
+            'assets_not_found' => 'Your installation lacks some files',
+            'assets_not_found_description' => 'We have not found all the files required to run Paperwork. Did you run composer install, npm install, bower install and gulp?'
+        )
 	)
 );
