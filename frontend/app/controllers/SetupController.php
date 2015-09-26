@@ -2,7 +2,21 @@
 class SetupController extends BaseController {
     
     public function showInstallerPage() {
-        return View::make("setup/installer");
+        if (!File::exists('css/themes/paperwork-v1.min.css') 
+            || !File::exists('js/jquery.min.js') 
+            || !File::exists('js/libraries.min.js') 
+            || !File::exists('css/freqselector.min.css') 
+            || !File::exists('css/typeahead.min.css') 
+            || !File::exists('css/libs.css') 
+            || !File::exists('js/angular.min.js') 
+            || !File::exists('js/paperwork.min.js') 
+            || !File::exists('js/paperwork-native.min.js') 
+            || !File::exists('js/tagsinput.min.js')) {
+            $assets_missing = true;
+        }else{
+            $assets_missing = false;
+        }
+        return View::make("setup/installer", array('assets_missing' => $assets_missing));
     }
     
     public function finishSetup() {
