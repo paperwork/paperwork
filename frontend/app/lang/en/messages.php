@@ -80,5 +80,7 @@ return array(
             'proceed_to_paperwork_button' => 'Proceed to Paperwork'
         ),
         'button_next' => 'Next'
-	)
+	),
+	'collections_not_available' => 'Collections Not Available',
+	'collections_not_available_description' => 'Collections have not been implemented yet. '
 );
