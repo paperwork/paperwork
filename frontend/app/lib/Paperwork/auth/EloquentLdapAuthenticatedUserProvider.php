@@ -11,13 +11,21 @@ class EloquentLdapAuthenticatedUserProvider extends EloquentUserProvider
     
     private $config;
     
-    private $adLdap;
+    private $adLdap = NULL;
     
     public function __construct(HasherInterface $hasher, $model,  $config)
     {
         parent::__construct($hasher,$model);
         $this->config = $config;
+    }
+
+    public function getAdLdap() {
+        // create adLDAP on demand because it makes a bind request in the constructor
+        if ($this->adLdap) {
+            return $this->adLdap;
+        }
         $this->adLdap = new adLDAP($this->config);
+        return $this->adLdap;
     }
 
     /**
@@ -33,14 +41,14 @@ class EloquentLdapAuthenticatedUserProvider extends EloquentUserProvider
         if ($user == null && ($this->config['autoRegister'] || isset($credentials['isRegister']) )){
             //if our user wasn't found, and we have auto register enabled or we're coming from the user registration
             //directly, then we'll attempt an authentication and take the appropriate action.
-            $ldap_info = $this->adLdap->user()->info($username);
+            $ldap_info = $this->getAdLdap()->user()->info($username);
             if($ldap_info['count'] != 1)
                 return null;
 
-            if ($this->adLdap->authenticate($ldap_info[0]['dn'], $credentials['password'])){
+            if ($this->getAdLdap()->authenticate($ldap_info[0]['dn'], $credentials['password'])){
                 if ($this->config['autoRegister']){
                     //if we have auto register enabled, create a user and such using the ldap info.
-                    $ldapInfo = $this->adLdap->user()->info($username,array("givenname","sn"))[0];
+                    $ldapInfo = $this->getAdLdap()->user()->info($username,array("givenname","sn"))[0];
                     $userInfo = array();
                     $userInfo['firstname'] = isset($ldapInfo['givenname']) ? $ldapInfo['givenname'][0] : $username;
                     $userInfo['lastname'] = isset($ldapInfo['sn']) ? $ldapInfo['sn'][0] : '';
@@ -68,9 +76,9 @@ class EloquentLdapAuthenticatedUserProvider extends EloquentUserProvider
      */
     public function validateCredentials(UserInterface $user, array $credentials)
     {
-        $ldap_info = $this->adLdap->user()->info($credentials['username']);
+        $ldap_info = $this->getAdLdap()->user()->info($credentials['username']);
         if($ldap_info['count'] != 1)
             return false;
-        return $this->adLdap->authenticate($ldap_info[0]['dn'], $credentials['password']);
+        return $this->getAdLdap()->authenticate($ldap_info[0]['dn'], $credentials['password']);
     }
 } 
