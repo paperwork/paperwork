@@ -39,13 +39,17 @@ class SetupController extends BaseController {
         // Check if any errors occurred
         // If true, send error response 
         // If false, send success response 
-        if(DB::connection()->getDatabaseName()) {
-            $response = PaperworkHelpers::STATUS_SUCCESS;
-            define('STDIN',fopen("php://stdin","r"));
-            Artisan::call("migrate", ['--quiet' => true, '--force' => true]);
+        if(Input::get("driver") !== "sqlite") {
+            if(DB::connection()->getDatabaseName()) {
+                $response = PaperworkHelpers::STATUS_SUCCESS;
+                define('STDIN',fopen("php://stdin","r"));
+                Artisan::call("migrate", ['--quiet' => true, '--force' => true]);
+            }else{
+                $response = PaperworkHelpers::STATUS_NOTFOUND;
+                unlink(storage_path()."/db_settings");
+            }
         }else{
-            $response = PaperworkHelpers::STATUS_NOTFOUND;
-            unlink(storage_path()."/db_settings");
+            $response = PaperworkHelpers::STATUS_SUCCESS;
         }
         
         return PaperworkHelpers::apiResponse($response, array());

@@ -52,10 +52,11 @@
                                         <h1>[[ Lang::get('messages.setup.database_setup.setting_up_database') ]]</h1>
                                         <div class="dbms_choice"> <!--- first drop down - dbms choice -->
                                             <a class="database_links active">MySQL <span class="caret"></span></a><br>
+                                            <a class="database_links">SQLite <span class="caret"></span></a><br>
                                             <a class="database_links hidden">Choice 2 <span class="caret"></span></a>
                                         </div>
                                         <div class="dbms_details_form"> <!-- second drop down - requirements and credentials form -->
-                                            <div>
+                                            <div id="dbms_mysql_form">
                                                 @if(extension_loaded('mysql'))
                                                     <p>[[ Lang::get('messages.setup.database_setup.requirements_met') ]]</p>
                                                 @else 
@@ -92,10 +93,17 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="col-sm-12">
-                                                            <button class="btn btn-default" id="connection_check">[[ Lang::get('messages.setup.database_setup.button_check_connection_install_database') ]]</button>
+                                                            <button class="btn btn-default" id="mysql_connection_check">[[ Lang::get('messages.setup.database_setup.button_check_connection_install_database') ]]</button>
                                                         </div>
                                                     </div>
                                                 </form>
+                                            </div>
+                                            <div id="dbms_sqlite_form" class="hidden">
+                                                @if(extension_loaded('sqlite3'))
+                                                    <p>[[ Lang::get('messages.setup.database_setup.requirements_met') ]]</p>
+                                                @else
+                                                    <p>[[ Lang::get('messages.setup.database_setup.requirements_not_met') ]]</p>
+                                                @endif
                                             </div>
                                         </div>
                                         <button class="btn btn-primary btn-lg next_step" id="step2">[[ Lang::get('messages.setup.button_next') ]]</button>
@@ -181,15 +189,34 @@
         <script type="text/javascript">
             var driver = "mysql";
             $(".database_links").click(function(event) {
+                $("#dbms_"+driver+"_form").addClass("hidden");
                 driver = ((event.currentTarget.innerText).trim()).toLowerCase();
+                $(".database_links").removeClass("active");
+                $(event.currentTarget).addClass("active");
+                $("#dbms_"+driver+"_form").removeClass("hidden");
                 if(driver === "choice 2") {
                     driver = "mysql";
                     alert("[[ Lang::get('messages.setup.database_setup.new_db_options_soon') ]]");
                 }
             });
             $(".next_step").click(function(event) {
-                if($(event.currentTarget).hasClass("btn-primary") && event.target.id !== "step5" && event.target.id !== "step3") {
+                if($(event.currentTarget).hasClass("btn-primary") && event.target.id !== "step5" && event.target.id !== "step3" && driver !== "sqlite") {
                     var currentStep = parseInt(event.currentTarget.id.replace("step", ""), 10) - 1;
+                    var nextStep = currentStep + 1;
+                    $("ul.form li").eq(currentStep).fadeOut("slow");
+                    $("ul.form li").eq(currentStep).addClass("hidden");
+                    $("ul.form li").eq(nextStep).removeClass("hidden");
+                    $("ul.form li").eq(nextStep).fadeIn("slow");
+                    $("#progress_bar").css("width", ((nextStep / 5) * 100) + "%");
+                }else if(event.target.id === "step2" && driver === "sqlite") {
+                    event.preventDefault();
+                    var dataString = "driver="+driver;
+                    $.ajax({
+                        type: "POST",
+                        url: "install/checkdb",
+                        data: dataString,
+                    });
+                    var currentStep = 2 - 1;
                     var nextStep = currentStep + 1;
                     $("ul.form li").eq(currentStep).fadeOut("slow");
                     $("ul.form li").eq(currentStep).addClass("hidden");
@@ -238,7 +265,7 @@
                     }
                 }
             });
-            $("#connection_check").click(function() {
+            $("#mysql_connection_check").click(function() {
                 event.preventDefault();
                 var user = $("#inputUser").val();
                 var pass = $("#inputPassword").val();
