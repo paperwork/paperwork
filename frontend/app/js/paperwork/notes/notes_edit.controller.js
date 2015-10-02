@@ -23,6 +23,12 @@ angular.module('paperworkNotes').controller('NotesEditController',
             if (typeof $rootScope.templateNoteEdit == "undefined" || $rootScope.templateNoteEdit == null) {
                 $rootScope.templateNoteEdit = {};
             }
+            
+            if($rootScope.templateNoteEdit.title) {
+                $rootScope.templateNoteEdit.version = {};
+                $rootScope.templateNoteEdit.version.title = $rootScope.templateNoteEdit.title;
+                $rootScope.templateNoteEdit.version.content = $rootScope.templateNoteEdit.content;
+            }
 
             NotesService.getNoteVersionAttachments($rootScope.getNotebookSelectedId(), ($rootScope.getNoteSelectedId(true)).noteId, $rootScope.getVersionSelectedId(true).versionId,
                 function (response) {
