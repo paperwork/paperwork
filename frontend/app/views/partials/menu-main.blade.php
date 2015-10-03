@@ -8,8 +8,8 @@
 			<li ng-controller="SidebarNotebooksController">
 				<a id="menu-item-file-sub-new_notebook" href="" ng-click="modalNewNotebook()"><i class="fa fa-book"></i> [[Lang::get('keywords.new_notebook')]]</a>
 			</li>
-			<li>
-				<a id="menu-item-file-sub-new_collection" href="" data-toggle="modal" data-target="#modalCollection"><i class="fa fa-folder"></i> [[Lang::get('keywords.new_collection')]]</a>
+			<li ng-controller="ConstructorController">
+				<a id="menu-item-file-sub-new_collection" href="" ng-click="modalNewCollection()" data-toggle="modal" data-target="#modalCollection"><i class="fa fa-folder"></i> [[Lang::get('keywords.new_collection')]]</a>
 			</li>
 		</ul>
 	</li>

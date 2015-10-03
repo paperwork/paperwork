@@ -116,6 +116,17 @@ angular.module('paperworkNotes').controller('ConstructorController',
       }else{
         $rootScope.modalGeneric('modalUsersSelect',modalData);
       }
-    }
+    };
+    
+    $rootScope.modalNewCollection = function() {
+        $rootScope.messageBox({
+            'title': $rootScope.i18n.messages.collections_not_available,
+            'content': $rootScope.i18n.messages.collections_not_available_description,
+            'buttons': [{
+                'label': $rootScope.i18n.keywords.close,
+                'isDismiss': true
+            }]
+        });
+    };
     
   });
