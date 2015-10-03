@@ -227,6 +227,7 @@ class ApiNotesController extends BaseController
                            'versions.title',
                            'versions.content_preview',
                            'versions.content',
+                           'versions.id as version_id',
                            'notes.created_at',
                            'notes.updated_at',
                            'note_user.umask'
@@ -241,6 +242,12 @@ class ApiNotesController extends BaseController
             foreach ($notes as $note) {
                 $note->tags     = $this->getNoteTags($note->id);
                 $note->versions = $this->getNoteVersionsBrief($note->id);
+                $note->version  = array(
+                    'content' => $note->content,
+                    'content_preview' => $note->content_preview,
+                    'title' => $note->title,
+                    'id' => $note->version_id
+                );
             }
             return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS,
                 $notes);
