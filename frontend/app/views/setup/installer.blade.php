@@ -19,6 +19,11 @@
             <div style="height:10px"> <!-- progress container -->
                 <div id="progress_bar"><!-- progress bar --></div>
             </div>
+            <div style="padding:10px;background-color:#FFFF91">
+                <p class="text-center">
+                    If you do not want to use the Setup Wizard, you can follow the instructions <a href="https://github.com/twostairs/paperwork/wiki/Installing-and-configuring-Paperwork-without-using-the-Setup-Wizard" target="_blank">here</a> to configure Paperwork manually. 
+                </p>
+            </div>
             <div class="container-fluid">
                 <div class="first">
                     <div class="inner cover">
