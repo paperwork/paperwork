@@ -1,5 +1,5 @@
 angular.module('paperworkNotes').controller('SidebarNotesController',
-  function($scope, $rootScope, $location, $timeout, $routeParams, NotebooksService, NotesService, ngDraggable, StatusNotifications, NetService) {
+  function($scope, $rootScope, $location, $timeout, $window, $routeParams, NotebooksService, NotesService, ngDraggable, StatusNotifications, NetService) {
     $scope.isVisible = function() {
       return !$rootScope.expandedNoteLayout;
     };
@@ -159,7 +159,7 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
     $scope.closeNote = function() {
       var closeNoteCallback = function() {
         var currentNote = $rootScope.getNoteSelectedId(true);
-        $location.path("/n/" + $rootScope.getNotebookSelectedId() + "/" + currentNote.noteId);
+        $window.history.back();
         CKEDITOR.instances.content.destroy();
         $rootScope.templateNoteEdit = {};
         NotebooksService.getTags();
