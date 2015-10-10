@@ -25,7 +25,7 @@ class PaperworkDbNotebookObject extends PaperworkDbObject {
 				$join->on('notebook_user.notebook_id', '=', 'notebooks.id')
 					->where('notebook_user.user_id', '=', $userId)
 					->where('notebook_user.umask', '>', 0);
-		})->select($defaultNotebooksSelect);
+		})->whereNull('parent_id')->select($defaultNotebooksSelect);
 
 		$idCount = count($id);
 		if($idCount > 0) {
@@ -36,8 +36,10 @@ class PaperworkDbNotebookObject extends PaperworkDbObject {
 				$data->orWhere('notebooks.id', '=', $argv['id'][$i]);
 			}
 		}
+		
 
 		$data->whereNull('deleted_at');
+		$data->orderBy('type', 'desc');
 
 		return $data->get();
 	}

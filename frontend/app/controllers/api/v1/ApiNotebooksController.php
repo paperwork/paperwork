@@ -212,6 +212,29 @@ class ApiNotebooksController extends BaseController {
 		}
         return PaperworkHelpers::apiResponse($status, $responses);
 	}
+	
+	public function storeCollection() {
+	    $validator = $this->getNewCollectionValidator();
+	    if($validator->passes()) {
+	        $data = Input::json();
+	        $collection = Notebook::create(array('title' => $data->get('title'), 'type' => 1));
+	        $collection->save();
+	        $collection->users()->attach(Auth::user()->id, array('umask' => PaperworkHelpers::UMASK_OWNER));
+	        $notebooks = $data->get('notebooks');
+	        for($i = 0; $i < count($notebooks); $i++) {
+	            $notebook = Notebook::find($notebooks[$i]);
+	            $notebook->parent_id = $collection->id;
+	            $notebook->save();
+	        }
+	        return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $collection);
+	    }else{
+	        return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, $validator->getMessageBag()->toArray());
+	    }
+	}
+	
+	protected function getNewCollectionValidator() {
+	    return Validator::make(Input::all(), ["title" => "required"]);
+	}
 }
 
 ?>

@@ -244,6 +244,18 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
 
     $scope.modalMoveNote = function(notebookId, noteId) {
 
+        $rootScope.writableNotebooks = [];
+        angular.forEach($rootScope.notebooks, function(value, key) {
+            if(value.type == 0) {
+                this.push(value);
+            }
+            if(value.children) {
+                for(var i = 0; i < value.children.length; i++) {
+                    this.push(value.children[i]);
+                }
+            }
+        }, $rootScope.writableNotebooks);
+      
       if($rootScope.menuItemNoteClass('multiple') === 'disabled') {
         return false;
       }
