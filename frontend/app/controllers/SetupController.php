@@ -31,7 +31,7 @@ class SetupController extends BaseController {
     
     public function setupDatabase() {
         // Create credentials string
-        $string = Input::get("driver") . ", " . Input::get("server") . ", " . Input::get("port") . ", " . Input::get("username") . ", " . Input::get("password");
+        $string = Input::get("driver") . ", " . Input::get("server") . ", " . Input::get("port") . ", " . Input::get("username") . ", " . Input::get("password") . ", " . Input::get("database");
         // Create file to hold info
         // Save File
         File::put(storage_path()."/db_settings", $string);

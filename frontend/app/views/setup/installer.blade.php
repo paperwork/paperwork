@@ -97,6 +97,12 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
+                                                        <label for="inputDatabase" class="col-sm-2 control-label">[[ Lang::get('messages.setup.database_setup.database_form_label') ]]</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" class="form-control" id="inputDatabase" placeholder="[[ Lang::get('messages.setup.database_setup.database_form_label') ]]">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
                                                         <div class="col-sm-12">
                                                             <button class="btn btn-default" id="mysql_connection_check">[[ Lang::get('messages.setup.database_setup.button_check_connection_install_database') ]]</button>
                                                         </div>
@@ -276,7 +282,8 @@
                 var pass = $("#inputPassword").val();
                 var server = $("#inputServer").val();
                 var port = $("#inputPort").val();
-                var dataString = "username="+user+"&password="+pass+"&server="+server+"&driver="+driver+"&port="+port;
+                var database = $("#inputDatabase").val();
+                var dataString = "username="+user+"&password="+pass+"&server="+server+"&driver="+driver+"&port="+port+"&database="+database;
                 $.ajax({
                     type: "POST",
                     url: "install/checkdb",
