@@ -113,7 +113,6 @@ class ApiNotebooksController extends BaseController {
 				return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
 			}
 			$notebook->title = $updateNotebook->get('title');
-			$notebook->type = $updateNotebook->get('type');
 			$notebook->save();
 
 			$shortcut = Shortcut::where('user_id', '=', Auth::user()->id)->where('notebook_id', '=', $notebook->id);
@@ -149,6 +148,16 @@ class ApiNotebooksController extends BaseController {
 		$shortcut = Shortcut::where('user_id', '=', Auth::user()->id)->where('notebook_id', '=', $notebook->id);
 		if($shortcut->count()>0) {
 			$shortcut->delete();
+		}
+		
+		//Check if notebook is a collection 
+		if($notebook->type == 1) {
+		    $notebooks = User::find(Auth::user()->id)->notebooks()->wherePivot('umask','=', PaperworkHelpers::UMASK_OWNER)->where('notebooks.parent_id', '=', $notebook->id)->whereNull('notebooks.deleted_at')->get();
+		    foreach($notebooks as $row) {
+		        $childNotebook = User::find(Auth::user()->id)->notebooks()->wherePivot('umask','=', PaperworkHelpers::UMASK_OWNER)->where('notebooks.id', '=', $row->id)->whereNull('notebooks.deleted_at')->first();
+		        $childNotebook->parent_id = null;
+		        $childNotebook->save();
+		    }
 		}
 
 		$notebook->delete();
