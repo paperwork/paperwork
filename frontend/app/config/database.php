@@ -66,11 +66,11 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => isset($databaseInfo[1]) ? $databaseInfo[1] : (getenv('DB_1_PORT_3306_TCP_ADDR') ? getenv('DB_1_PORT_3306_TCP_ADDR') : '127.0.0.1'),
-			'port'      => isset($databaseInfo[2]) ? $databaseInfo[2] : '3306',
-			'database'  => isset($databaseInfo[5]) ? $databaseInfo[5] : 'paperwork', //(File::exists(storage_path()."/db_settings")) ? 'paperwork' : '',
-			'username'  => isset($databaseInfo[3]) ? $databaseInfo[3] : 'paperwork',
-			'password'  => isset($databaseInfo[4]) ? $databaseInfo[4] : 'paperwork',
+			'host'      => isset($databaseInfo[1]) ? trim($databaseInfo[1]) : (getenv('DB_1_PORT_3306_TCP_ADDR') ? getenv('DB_1_PORT_3306_TCP_ADDR') : '127.0.0.1'),
+			'port'      => isset($databaseInfo[2]) ? trim($databaseInfo[2]) : '3306',
+			'database'  => isset($databaseInfo[5]) ? trim($databaseInfo[5]) : 'paperwork', //(File::exists(storage_path()."/db_settings")) ? 'paperwork' : '',
+			'username'  => isset($databaseInfo[3]) ? trim($databaseInfo[3]) : 'paperwork',
+			'password'  => isset($databaseInfo[4]) ? trim($databaseInfo[4]) : 'paperwork',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_general_ci',
 			'prefix'    => '',
