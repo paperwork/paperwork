@@ -244,6 +244,52 @@ class ApiNotebooksController extends BaseController {
 	protected function getNewCollectionValidator() {
 	    return Validator::make(Input::all(), ["title" => "required"]);
 	}
+	
+	public function updateCollection($collectionId) {
+		$idArray = [];
+		$validator = $this->getNewCollectionValidator();
+		if($validator->passes()) {
+			$updateCollection = Input::json();
+
+			$collection = User::find(Auth::user()->id)->notebooks()->wherePivot('umask','>',PaperworkHelpers::UMASK_READONLY)->where('notebooks.id', '=', $collectionId)->whereNull('notebooks.deleted_at')->first();
+
+			if(is_null($collection)){
+				return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+			}
+			$collection->title = $updateCollection->get('title');
+			$collection->save();
+
+			$children = User::find(Auth::user()->id)->notebooks()->wherePivot('umask','>',PaperworkHelpers::UMASK_READONLY)->where('notebooks.parent_id', '=', $collectionId)->whereNull('notebooks.deleted_at')->get()->toArray();
+			$newChildren = $updateCollection->get('notebooks');
+			
+			foreach($children as $child) {
+			    $idArray[] = $child["id"];
+			}
+			
+			$addedChildren = array_diff($newChildren, $idArray);
+			if(count($addedChildren) > 0) {
+			    foreach($addedChildren as $addedChild) {
+			        $addedChild = User::find(Auth::user()->id)->notebooks()->wherePivot('umask','>',PaperworkHelpers::UMASK_READONLY)->where('notebooks.id', '=', $addedChild)->whereNull('notebooks.deleted_at')->first();
+			        $addedChild->parent_id = $collectionId;
+			        $addedChild->save();
+			    }
+			}
+			
+			$removedChildren = array_diff($idArray, $newChildren);
+			if(count($removedChildren) > 0) {
+			    foreach($removedChildren as $removedChild) {
+			        $removedChild = User::find(Auth::user()->id)->notebooks()->wherePivot('umask','>',PaperworkHelpers::UMASK_READONLY)->where('notebooks.id', '=', $removedChild)->whereNull('notebooks.deleted_at')->first();
+			        $removedChild->parent_id = null;
+			        $removedChild->save();
+			    }
+			}
+
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $collection);
+		}
+		else {
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, $validator->getMessageBag()->toArray());
+		}
+	}
 }
 
 ?>

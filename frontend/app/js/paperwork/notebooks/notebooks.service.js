@@ -119,6 +119,10 @@ angular.module('paperworkNotes').factory('NotebooksService',
     paperworkNotebooksServiceFactory.createCollection = function(data, callback) {
         NetService.apiPost('/notebooks/collections', data, callback);
     };
+    
+    paperworkNotebooksServiceFactory.updateCollection = function(collectionId, data, callback) {
+        NetService.apiPost('/notebooks/collections/' + collectionId + '/edit', data, callback);
+    };
 
     return paperworkNotebooksServiceFactory;
   });

@@ -22,5 +22,9 @@ return array(
     'note_share_success'            => 'Your note was shared successfully.',
     'note_share_fail'               => 'Something went wrong while sharing your note. You might not have permission to share.',
     'notebook_share_success'        => 'Your notebook was shared successfully.',
-    'notebook_share_fail'           => 'Something went wrong while sharing your notebook. You might not have permission to share.'
+    'notebook_share_fail'           => 'Something went wrong while sharing your notebook. You might not have permission to share.',
+    'collection_create_successfully'=> 'A new collection has been created. ',
+    'collection_create_failed'      => 'Something went wrong while creating the new collection. Please try again. ',
+    'collection_edit_successfully'  => 'Your collection has been updated successfully. ',
+    'collection_edit_failed'        => 'Something went wrong while updating your collection. Please try again. ',
 );

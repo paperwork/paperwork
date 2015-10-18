@@ -403,11 +403,12 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
          $('#modalCollection').modal("show");
     };
     
-    $scope.selectedNotebooksForCollection = {};
-    
+    $rootScope.selectedNotebooksForCollection = {};
+
     $scope.modalCollectionSubmit = function() {
+        console.log($rootScope.modalCollection.notebooks);
         $rootScope.modalCollection.notebooks = [];
-        angular.forEach($scope.selectedNotebooksForCollection, function(value, key) {
+        angular.forEach($rootScope.selectedNotebooksForCollection, function(value, key) {
             if(value) {
                 this.push(key);
             }
@@ -439,12 +440,43 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
         })(NotebooksService);
         if($rootScope.modalCollection.action === "create") {
             NotebooksService.createCollection($rootScope.modalCollection, callback);
+        }else if($rootScope.modalCollection.action === "edit") {
+            NotebooksService.updateCollection($rootScope.modalCollection.id, $rootScope.modalCollection, callback);
         }
-        $scope.selectedNotebooksForCollection = [];
+        $rootScope.selectedNotebooksForCollection = {};
     };
     
     $scope.isCollectionOpen = function(collectionId) {
         return $scope.collectionOpen === collectionId;
+    };
+    
+    $rootScope.modalEditCollection = function(id) {
+         var currentNotebookId = "";
+         var collection = NotebooksService.getNotebookByIdLocal(id);
+         var collectionTitle = collection.title;
+         var collectionNotebooks = collection.children;
+         $rootScope.writableNotebooks = [];
+         angular.forEach($rootScope.notebooks, function(value, key) {
+             if(value.type == 0) {
+                 this.push(value);
+             }
+             if(value.children) {
+                 for(var i = 0; i < value.children.length; i++) {
+                     this.push(value.children[i]);
+                 }
+             }
+         }, $rootScope.writableNotebooks);
+         for(var i = 0; i < collectionNotebooks.length; i++) {
+             currentNotebookId = collectionNotebooks[i].id;
+             $rootScope.selectedNotebooksForCollection[currentNotebookId] = true;
+         }
+         $rootScope.modalCollection = {
+            'action': 'edit',
+            'title': collectionTitle,
+            'id': id
+         };
+
+         $('#modalCollection').modal("show");
     };
 
     NotebooksService.getCalendar($scope.sidebarCalendarCallback);

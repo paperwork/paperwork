@@ -176,4 +176,11 @@ angular.module('paperworkNotes').controller('SidebarManageNotebooksController',
         $row.find('a').editable('show');
       }, 1);
     };
+    
+    $scope.editLineCalled = function(id, type) {
+        if(type == 1) {
+            $rootScope.modalEditCollection(id);
+        }
+    };
+    
   });
