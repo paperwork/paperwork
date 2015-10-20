@@ -359,5 +359,36 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
           ]
       });
     };
+    
+    $scope.sort_order_adjustment = "default";
+    
+    $scope.changeSortOrder = function(criteria) {
+        
+        if(criteria === "creation_date") {
+            $rootScope.notes.sort(function(a, b) {
+                var createdA = new Date(a.created_at);
+                var createdB = new Date(b.created_at);
+                return (createdA > createdB) ? -1 : (createdA < createdB) ? 1 : 0;
+            }); 
+        }else if(criteria === "modification_date") {
+            $rootScope.notes.sort(function(a, b) {
+                var modifiedA = new Date(a.updated_at);
+                var modifiedB = new Date(b.updated_at);
+                return (modifiedA > modifiedB) ? -1 : (modifiedA < modifiedB) ? 1 : 0;
+            }); 
+        }else if(criteria === "title") {
+            $rootScope.notes.sort(function(a, b) {
+                var titleA = a.version.title.toUpperCase();
+                var titleB = b.version.title.toUpperCase();
+                return (titleA < titleB) ? -1 : (titleA > titleB) ? 1 : 0;
+            });
+        }else if(criteria === "default") {
+            $rootScope.notes.sort(function(a, b) {
+                var createdA = new Date(a.created_at);
+                var createdB = new Date(b.created_at);
+                return (createdA < createdB) ? -1 : (createdA > createdB) ? 1 : 0;
+            }); 
+        }
+    };
 
   });
