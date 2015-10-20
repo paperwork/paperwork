@@ -2,7 +2,21 @@
 class SetupController extends BaseController {
     
     public function showInstallerPage() {
-        return View::make("setup/installer");
+        if (!File::exists('css/themes/paperwork-v1.min.css') 
+            || !File::exists('js/jquery.min.js') 
+            || !File::exists('js/libraries.min.js') 
+            || !File::exists('css/freqselector.min.css') 
+            || !File::exists('css/typeahead.min.css') 
+            || !File::exists('css/libs.css') 
+            || !File::exists('js/angular.min.js') 
+            || !File::exists('js/paperwork.min.js') 
+            || !File::exists('js/paperwork-native.min.js') 
+            || !File::exists('js/tagsinput.min.js')) {
+            $assets_missing = true;
+        }else{
+            $assets_missing = false;
+        }
+        return View::make("setup/installer", array('assets_missing' => $assets_missing));
     }
     
     public function finishSetup() {
@@ -17,7 +31,7 @@ class SetupController extends BaseController {
     
     public function setupDatabase() {
         // Create credentials string
-        $string = Input::get("driver") . ", " . Input::get("server") . ", " . Input::get("port") . ", " . Input::get("username") . ", " . Input::get("password");
+        $string = Input::get("driver") . ", " . Input::get("server") . ", " . Input::get("port") . ", " . Input::get("username") . ", " . Input::get("password") . ", " . Input::get("database");
         // Create file to hold info
         // Save File
         File::put(storage_path()."/db_settings", $string);
@@ -25,13 +39,17 @@ class SetupController extends BaseController {
         // Check if any errors occurred
         // If true, send error response 
         // If false, send success response 
-        if(DB::connection()->getDatabaseName()) {
-            $response = PaperworkHelpers::STATUS_SUCCESS;
-            define('STDIN',fopen("php://stdin","r"));
-            Artisan::call("migrate", ['--quiet' => true, '--force' => true]);
+        if(Input::get("driver") !== "sqlite") {
+            if(DB::connection()->getDatabaseName()) {
+                $response = PaperworkHelpers::STATUS_SUCCESS;
+                define('STDIN',fopen("php://stdin","r"));
+                Artisan::call("migrate", ['--quiet' => true, '--force' => true]);
+            }else{
+                $response = PaperworkHelpers::STATUS_NOTFOUND;
+                unlink(storage_path()."/db_settings");
+            }
         }else{
-            $response = PaperworkHelpers::STATUS_NOTFOUND;
-            unlink(storage_path()."/db_settings");
+            $response = PaperworkHelpers::STATUS_SUCCESS;
         }
         
         return PaperworkHelpers::apiResponse($response, array());

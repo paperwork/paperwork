@@ -19,13 +19,22 @@
             <div style="height:10px"> <!-- progress container -->
                 <div id="progress_bar"><!-- progress bar --></div>
             </div>
+            <div style="padding:10px;background-color:#FFFF91">
+                <p class="text-center">
+                    If you do not want to use the Setup Wizard, you can follow the instructions <a href="https://github.com/twostairs/paperwork/wiki/Installing-and-configuring-Paperwork-without-using-the-Setup-Wizard" target="_blank">here</a> to configure Paperwork manually. 
+                </p>
+            </div>
             <div class="container-fluid">
                 <div class="first">
                     <div class="inner cover">
                         <div class="center-div">
                             <div class="questionnaire">
+                                <div class="form-group" style="display:@if($assets_missing) block @else none @endif">
+                                    <h1>[[ Lang::get('messages.setup.assets_check.assets_not_found') ]]</h1>
+                                    <p>[[ Lang::get('messages.setup.assets_check.assets_not_found_description') ]]</p>
+                                </div>
                                 <ul class="form text-center">
-                                    <li class="form-group">
+                                    <li class="form-group @if($assets_missing) hidden @endif">
                                         <h1>[[ Lang::get('messages.setup.update_check.checking_for_updates') ]]</h1>
                                         <?php
                                             list($lastCommitOnInstall, $upstreamLatest, $lastCommitTimestamp, $upstreamTimestamp) = PaperworkHelpers::getHashes();
@@ -48,10 +57,11 @@
                                         <h1>[[ Lang::get('messages.setup.database_setup.setting_up_database') ]]</h1>
                                         <div class="dbms_choice"> <!--- first drop down - dbms choice -->
                                             <a class="database_links active">MySQL <span class="caret"></span></a><br>
+                                            <a class="database_links">SQLite <span class="caret"></span></a><br>
                                             <a class="database_links hidden">Choice 2 <span class="caret"></span></a>
                                         </div>
                                         <div class="dbms_details_form"> <!-- second drop down - requirements and credentials form -->
-                                            <div>
+                                            <div id="dbms_mysql_form">
                                                 @if(extension_loaded('mysql'))
                                                     <p>[[ Lang::get('messages.setup.database_setup.requirements_met') ]]</p>
                                                 @else 
@@ -87,11 +97,24 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
+                                                        <label for="inputDatabase" class="col-sm-2 control-label">[[ Lang::get('messages.setup.database_setup.database_form_label') ]]</label>
+                                                        <div class="col-sm-10">
+                                                            <input type="text" class="form-control" id="inputDatabase" placeholder="[[ Lang::get('messages.setup.database_setup.database_form_label') ]]">
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
                                                         <div class="col-sm-12">
-                                                            <button class="btn btn-default" id="connection_check">[[ Lang::get('messages.setup.database_setup.button_check_connection_install_database') ]]</button>
+                                                            <button class="btn btn-default" id="mysql_connection_check">[[ Lang::get('messages.setup.database_setup.button_check_connection_install_database') ]]</button>
                                                         </div>
                                                     </div>
                                                 </form>
+                                            </div>
+                                            <div id="dbms_sqlite_form" class="hidden">
+                                                @if(extension_loaded('sqlite3'))
+                                                    <p>[[ Lang::get('messages.setup.database_setup.requirements_met') ]]</p>
+                                                @else
+                                                    <p>[[ Lang::get('messages.setup.database_setup.requirements_not_met') ]]</p>
+                                                @endif
                                             </div>
                                         </div>
                                         <button class="btn btn-primary btn-lg next_step" id="step2">[[ Lang::get('messages.setup.button_next') ]]</button>
@@ -177,15 +200,34 @@
         <script type="text/javascript">
             var driver = "mysql";
             $(".database_links").click(function(event) {
+                $("#dbms_"+driver+"_form").addClass("hidden");
                 driver = ((event.currentTarget.innerText).trim()).toLowerCase();
+                $(".database_links").removeClass("active");
+                $(event.currentTarget).addClass("active");
+                $("#dbms_"+driver+"_form").removeClass("hidden");
                 if(driver === "choice 2") {
                     driver = "mysql";
                     alert("[[ Lang::get('messages.setup.database_setup.new_db_options_soon') ]]");
                 }
             });
             $(".next_step").click(function(event) {
-                if($(event.currentTarget).hasClass("btn-primary") && event.target.id !== "step5" && event.target.id !== "step3") {
+                if($(event.currentTarget).hasClass("btn-primary") && event.target.id !== "step5" && event.target.id !== "step3" && driver !== "sqlite") {
                     var currentStep = parseInt(event.currentTarget.id.replace("step", ""), 10) - 1;
+                    var nextStep = currentStep + 1;
+                    $("ul.form li").eq(currentStep).fadeOut("slow");
+                    $("ul.form li").eq(currentStep).addClass("hidden");
+                    $("ul.form li").eq(nextStep).removeClass("hidden");
+                    $("ul.form li").eq(nextStep).fadeIn("slow");
+                    $("#progress_bar").css("width", ((nextStep / 5) * 100) + "%");
+                }else if(event.target.id === "step2" && driver === "sqlite") {
+                    event.preventDefault();
+                    var dataString = "driver="+driver;
+                    $.ajax({
+                        type: "POST",
+                        url: "install/checkdb",
+                        data: dataString,
+                    });
+                    var currentStep = 2 - 1;
                     var nextStep = currentStep + 1;
                     $("ul.form li").eq(currentStep).fadeOut("slow");
                     $("ul.form li").eq(currentStep).addClass("hidden");
@@ -234,13 +276,14 @@
                     }
                 }
             });
-            $("#connection_check").click(function() {
+            $("#mysql_connection_check").click(function() {
                 event.preventDefault();
                 var user = $("#inputUser").val();
                 var pass = $("#inputPassword").val();
                 var server = $("#inputServer").val();
                 var port = $("#inputPort").val();
-                var dataString = "username="+user+"&password="+pass+"&server="+server+"&driver="+driver+"&port="+port;
+                var database = $("#inputDatabase").val();
+                var dataString = "username="+user+"&password="+pass+"&server="+server+"&driver="+driver+"&port="+port+"&database="+database;
                 $.ajax({
                     type: "POST",
                     url: "install/checkdb",
