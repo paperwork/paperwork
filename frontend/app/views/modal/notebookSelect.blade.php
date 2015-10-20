@@ -17,7 +17,7 @@
 					<div class="container">
 						<form id="notebook-select" name="notebook-select">
 							<div ng-repeat="notebook in notebooks | orderBy:'title'">
-								<div ng-hide="(notebook.id == 0 || notebook.id == modalMessageBox.notebookId)">
+								<div ng-hide="(notebook.id == 0 || notebook.id == modalMessageBox.notebookId)" ng-if="(notebook.title !== 'All Notes')">
 									<div class="radio">
 										<label>
 											<input type="radio" name="notebookSelectedModel" ng-model="$parent.notebookSelectedModel" value="{{ notebook.id }}"> {{ notebook.title }}
