@@ -69,6 +69,17 @@
 
 		<div id="sidebarNotes" class="col-sm-4 col-md-3 sidebar hidden-xs animate-panel"
              ng-controller="SidebarNotesController" ng-show="isVisible()" ng-class="sidebarCollapsed ? 'sidebar-collapsed-notes' : 'col-sm-offset-3 col-md-offset-2'">
+			<div class="nav nav-sidebar notes-list sidebar-no-border" ng-class="sidebarCollapsed ? 'sidebar-collapsed-notes-list' : ''" ng-cloak>
+			    <p class="text-center">
+			        Sort notes by: 
+			        <select id="sort_order_change" ng-change="changeSortOrder(sort_order_adjustment)" ng-model="sort_order_adjustment">
+			            <option value="default">Default</option>
+			            <option value="creation_date">Creation Date</option>
+			            <option value="modification_date">Modification Date</option>
+			            <option value="title">Title</option>
+			        </select>
+			    </p>
+			</div>
 			<ul id="notes-list" class="nav nav-sidebar notes-list sidebar-no-border" ng-controller="NotesListController" ng-class="sidebarCollapsed ? 'sidebar-collapsed-notes-list' : ''">
 				<li class="notes-list-item" ng-cloak ng-repeat="note in notes"
 					ng-click="noteSelect(note.notebook_id, note.id)"
