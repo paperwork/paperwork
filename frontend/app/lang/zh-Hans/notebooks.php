@@ -2,38 +2,28 @@
 
 return array(
 
-	'all_notes' => 'All Notes',
-	'title_new_notebook' => 'New notebook',
-	'title_edit_notebook' => 'Edit notebook',
-	'notebook_title' => 'Enter notebook title',
-	'add_shortcut' => 'Add this notebook to my shortcuts',
-	'delete_notebook' => 'I want to delete this notebook (+ its contents) and I\'m damn sure about that!',
-    'welcome_notebook_title' => 'Welcome',
-    'welcome_note_tag' => 'welcome',
+	'all_notes' => '所有笔记',
+	'title_new_notebook' => '创建笔记本',
+	'title_edit_notebook' => '编辑笔记本',
+	'notebook_title' => '输入笔记标题',
+	'add_shortcut' => '添加笔记本到快捷方式',
+	'delete_notebook' => '我十分确认删除这个笔记本（包括其中的所有笔记）！',
+    'welcome_notebook_title' => '欢迎',
+    'welcome_note_tag' => '欢迎',
     'welcome_note_content' =>
-        '<p>Hi there, <strong>welcome to Paperwork</strong>, the open source note-taking solution. This
-        is your first note and we&#39;d like to explain to you some features we hope you&#39;ll find very
-        interesting.</p><h3><strong>Notes</strong></h3><p>Notes are the basic form of writing in Paperwork.
-        Notes are saved inside notebooks. You already have one named &#39;Welcome&#39; in which this note is
-        stored. You can create as much notebooks and notes as you want by using the <a id="file_click_handler" href="#">
-        File menu</a>.</p><h3><strong>Attachments</strong></h3><p>You can also add attachments to your notes.
-        This allows you to embed important information and have it there when you need it. Just click its link,
-        and you&#39;ll be sent to the file. And since Paperwork is self hosted, you have better privacy too.</p>
-        <h3><strong>Tags</strong></h3><p>Tags are one of Paperwork&#39;s powerful features. Tags allow you to search
-        for related notes but which are not in the same notebook. Do you have an idea and want to save it for later now?
-        Put it in a notebook (like &#39;dinner cooking&#39;) and tag it with cooking. Later, when you&#39;ve got time you
-        can just click on cooking from the sidebar and all cooking-related notes are there, no matter if they&#39;re for lunch,
-        dinner or breakfast.</p><h3><strong>Search</strong></h3><p>If you want to search with a more detailed criteria, you can
-        use Paperwork&#39;s search feature. Just <a id="search_handler" href="#">write your query</a> and Paperwork will show you the results from
-        all your notes, no matter in which notebook they are or tag they have.</p><h3><strong>Version Control</strong></h3><p>Everytime
-        you save a note in Paperwork, a new version is created. This feature allows you to be able to see what changed throughout the
-        life of your note in a detailed manner.</p><h3><strong>Shareable</strong></h3><p>Each note you write on Paperwork can be shared
-        with any other user of Paperwork. Are you a company employee and would like to share those draft guidelines for that project? No
-        worries, just sare the note with those users you want to share it with while keeping total control of your note. You can control
-        who sees and edits the note and you can also who did what thanks to version control.</p><p>We hope that you like your experience
-        with Paperwork. If you have any feedback or encounter any issues, just submit an issue <a href="https://github.com/twostairs/paperwork/issues/new">
-        on Github</a>. If you want to be informed on what we&#39;re planning for Paperwork and be able to participate in the discussion, please join
-        our mailing list <a href="mailto:paperwork-dev@googlegroups.com">here</a>.</p><p><strong>Thanks for choosing Paperwork,</strong></p><p><strong>
-        The Paperwork Team. </strong></p>',
-    'welcome_note_title' => 'Welcome to Paperwork'
+        '<p>你好，<strong>欢迎来到 Paperwork</strong>，开源的笔记解决方案. 
+        这是你的第一条笔记，我们将为你介绍一些 Paperwork 的功能，希望你会有喜欢。</p>
+        <h3><strong>笔记</strong></h3>
+        <p>笔记是 Paperwork 里面最基础的，笔记被保存在笔记本中。当前笔记就存放在你的名为&#39;欢迎&#39的笔记本中；
+        你可以使用顶部的菜单 <a id="file_click_handler" href="#">文件</a> 随意创建笔记本和笔记。
+        <h3><strong>附件</strong></h3><p>你可以为你的笔记添加附件。这使你可以在笔记中嵌入的重要信息。当你需要查看时，只需单击其链接即可。并且，由于 Paperwork 是自行管理的，将有利于保障你的隐私信息。</p>
+        <h3><strong>标签</strong></h3><p>标签是 Paperwork 的一个重要功能。 标签允许你搜索相关的笔记，即使不在同一个笔记本中。想马上试一下？
+        在笔记本 (比如 &#39;晚餐&#39;) 中创建笔记并加上标签 &#39;美食&#39;。接下来，当你点击侧边栏的 &#39;美食&#39; 标签时，不管是午餐，早餐或者晚餐相关的美食都会展示出来。</p>
+        <h3><strong>搜索</strong></h3><p>如果你想要一个更详细的搜索，你可以使用 Paperwork 提供的搜索功能。只需在搜索栏输入<a id="search_handler" href="#">关键字</a>，无论在哪个笔记本的相关笔记都会展示出来。</p>
+        <h3><strong>版本控制</strong></h3><p>每次在 Paperwork 的笔记保存动作都会创建一个新的笔记版本。此功能可让你能够看到整个笔记的历史变化。</p><h3>
+        <strong>分享</strong></h3><p>你的所有笔记都可以分享给其他 Paperwork 的用户。如果你是公司职员，想要分享项目草案，只需要简单的分享给你想要分享的人即可，你依旧保留着笔记的控制权限。你可以选择谁可以查看或者编辑笔记，并且可以看到笔记版本的变化。</p>
+        <p>希望你会喜欢 Paperwork。如果你有什么反馈或者遇到什么问题，欢迎在 <a href="https://github.com/twostairs/paperwork/issues/new"> Github</a>上提交 Issue。如果你希望了解 Paperwork 的进一步计划，并且能够参与讨论，请在这里加入我们的<a href="mailto:paperwork-dev@googlegroups.com">邮件列表</a>。</p>
+        <p><strong>感谢选择 Paperwork，</strong></p><p><strong>
+        Paperwork 团队。 </strong></p>',
+    'welcome_note_title' => '欢迎使用Paperwork'
 );

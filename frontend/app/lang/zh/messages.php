@@ -17,21 +17,21 @@ return array(
 			'client_label' => 'Client',
 			'import_slash_export' => 'Import/Export',
 			'language' => array(
-				'ui_language' => 'User Interface Language',
-				'document_languages' => 'Document Languages',
-				'document_languages_description' => 'The languages you select here will be used for parsing text within attachments you upload, allowing you to search for the content of these. An attachment could be a photo of a document you took with your smartphone, for example. Select the languages these documents are usually written in.',
+				'ui_language' => '用户界面语言',
+				'document_languages' => '文档语言',
+				'document_languages_description' => '文档语言用于分析以及搜索你上传的附件中的文本内容。',
 			),
 			'client' => array(
-				'qrcode' => 'QR Code',
-				'scan' => 'Scan this QR code with your mobile app to auto-configure your Paperwork account.'
+				'qrcode' => '二维码',
+				'scan' => '用手机 App 扫描二维码，自动配置你的 Paperwork 账户。'
 			),
 			'import' => array(
-				'evernotexml' => 'Evernote XML:',
-				'upload_evernotexml' => 'Upload your Evernote XML export here, to import your Evernote notes into Paperwork.'
+				'evernotexml' => 'Evernote XML文件:',
+				'upload_evernotexml' => '上传 Evernote XML 文件，将其导入到 Paperwork 中。'
 			),
 			'export' => array(
-				'evernotexml' => 'Evernote XML:',
-				'download_evernotexml' => 'Download an ENEX file compatible with Evernote to move your notes from Paperwork. '
+				'evernotexml' => 'Evernote XML文件:',
+				'download_evernotexml' => '下载 ENEX 文件，将其导出至 Evernote/印象笔记。'
 			)
 		)
 	)
