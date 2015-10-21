@@ -113,7 +113,6 @@ class ApiNotebooksController extends BaseController {
 				return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
 			}
 			$notebook->title = $updateNotebook->get('title');
-			$notebook->type = $updateNotebook->get('type');
 			$notebook->save();
 
 			$shortcut = Shortcut::where('user_id', '=', Auth::user()->id)->where('notebook_id', '=', $notebook->id);
@@ -149,6 +148,16 @@ class ApiNotebooksController extends BaseController {
 		$shortcut = Shortcut::where('user_id', '=', Auth::user()->id)->where('notebook_id', '=', $notebook->id);
 		if($shortcut->count()>0) {
 			$shortcut->delete();
+		}
+		
+		//Check if notebook is a collection 
+		if($notebook->type == 1) {
+		    $notebooks = User::find(Auth::user()->id)->notebooks()->wherePivot('umask','=', PaperworkHelpers::UMASK_OWNER)->where('notebooks.parent_id', '=', $notebook->id)->whereNull('notebooks.deleted_at')->get();
+		    foreach($notebooks as $row) {
+		        $childNotebook = User::find(Auth::user()->id)->notebooks()->wherePivot('umask','=', PaperworkHelpers::UMASK_OWNER)->where('notebooks.id', '=', $row->id)->whereNull('notebooks.deleted_at')->first();
+		        $childNotebook->parent_id = null;
+		        $childNotebook->save();
+		    }
 		}
 
 		$notebook->delete();
@@ -211,6 +220,75 @@ class ApiNotebooksController extends BaseController {
 			}
 		}
         return PaperworkHelpers::apiResponse($status, $responses);
+	}
+	
+	public function storeCollection() {
+	    $validator = $this->getNewCollectionValidator();
+	    if($validator->passes()) {
+	        $data = Input::json();
+	        $collection = Notebook::create(array('title' => $data->get('title'), 'type' => 1));
+	        $collection->save();
+	        $collection->users()->attach(Auth::user()->id, array('umask' => PaperworkHelpers::UMASK_OWNER));
+	        $notebooks = $data->get('notebooks');
+	        for($i = 0; $i < count($notebooks); $i++) {
+	            $notebook = Notebook::find($notebooks[$i]);
+	            $notebook->parent_id = $collection->id;
+	            $notebook->save();
+	        }
+	        return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $collection);
+	    }else{
+	        return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, $validator->getMessageBag()->toArray());
+	    }
+	}
+	
+	protected function getNewCollectionValidator() {
+	    return Validator::make(Input::all(), ["title" => "required"]);
+	}
+	
+	public function updateCollection($collectionId) {
+		$idArray = [];
+		$validator = $this->getNewCollectionValidator();
+		if($validator->passes()) {
+			$updateCollection = Input::json();
+
+			$collection = User::find(Auth::user()->id)->notebooks()->wherePivot('umask','>',PaperworkHelpers::UMASK_READONLY)->where('notebooks.id', '=', $collectionId)->whereNull('notebooks.deleted_at')->first();
+
+			if(is_null($collection)){
+				return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+			}
+			$collection->title = $updateCollection->get('title');
+			$collection->save();
+
+			$children = User::find(Auth::user()->id)->notebooks()->wherePivot('umask','>',PaperworkHelpers::UMASK_READONLY)->where('notebooks.parent_id', '=', $collectionId)->whereNull('notebooks.deleted_at')->get()->toArray();
+			$newChildren = $updateCollection->get('notebooks');
+			
+			foreach($children as $child) {
+			    $idArray[] = $child["id"];
+			}
+			
+			$addedChildren = array_diff($newChildren, $idArray);
+			if(count($addedChildren) > 0) {
+			    foreach($addedChildren as $addedChild) {
+			        $addedChild = User::find(Auth::user()->id)->notebooks()->wherePivot('umask','>',PaperworkHelpers::UMASK_READONLY)->where('notebooks.id', '=', $addedChild)->whereNull('notebooks.deleted_at')->first();
+			        $addedChild->parent_id = $collectionId;
+			        $addedChild->save();
+			    }
+			}
+			
+			$removedChildren = array_diff($idArray, $newChildren);
+			if(count($removedChildren) > 0) {
+			    foreach($removedChildren as $removedChild) {
+			        $removedChild = User::find(Auth::user()->id)->notebooks()->wherePivot('umask','>',PaperworkHelpers::UMASK_READONLY)->where('notebooks.id', '=', $removedChild)->whereNull('notebooks.deleted_at')->first();
+			        $removedChild->parent_id = null;
+			        $removedChild->save();
+			    }
+			}
+
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $collection);
+		}
+		else {
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, $validator->getMessageBag()->toArray());
+		}
 	}
 }
 

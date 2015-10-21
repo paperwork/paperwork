@@ -86,7 +86,9 @@ if(File::exists(storage_path()."/setup")) {
         Route::resource('users', 'ApiUsersController');
         Route::resource('settings', 'ApiSettingsController');
         Route::resource('calendar', 'ApiCalendarController');
-    
+        Route::post('/notebooks/collections', 'ApiNotebooksController@storeCollection');
+        Route::post('/notebooks/collections/{collectionId}/edit', 'ApiNotebooksController@updateCollection');
+
         // Special routes
         Route::get('/tagged/{num}', 'ApiNotesController@tagged');
         Route::get('/search/{query}', 'ApiNotesController@search');

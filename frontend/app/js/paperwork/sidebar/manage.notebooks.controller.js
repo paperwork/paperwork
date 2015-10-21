@@ -13,9 +13,13 @@ angular.module('paperworkNotes').controller('SidebarManageNotebooksController',
       // Remove 'All Notes' item
       var data = ($.isArray($rootScope.notebooks)) ? $rootScope.notebooks.slice() : [];
       for(var i in data) {
-        if(data[i].id == 0) {
+        data[i].css_class = "notebook_line";
+        if(data[i].type == 2) {
           data.splice(i, 1);
-          break;
+          //break;
+        }
+        if(data[i].type == 1) {
+            data[i].css_class = "collection_line";
         }
       }
       $scope.modalList = data;
@@ -50,7 +54,7 @@ angular.module('paperworkNotes').controller('SidebarManageNotebooksController',
     };
 
     $scope.$on('ngRepeatFinished', function(ngRepeatFinishedEvent) {
-      $('#modalManageNotebooks .line').editable({
+      $('#modalManageNotebooks .notebook_line').editable({
         params:       parseParams,
         send:         'always',
         savenochange: true,
@@ -80,28 +84,36 @@ angular.module('paperworkNotes').controller('SidebarManageNotebooksController',
       });
     });
 
-    $scope.deleteItem = function(id) {
+    $scope.deleteItem = function(id, type) {
+      var modalTitle, modalContent;
+      if(type == 0) {
+          modalTitle = $rootScope.i18n.keywords.delete_notebook_question;
+          modalContent = $rootScope.i18n.keywords.delete_notebook_message;
+      }else if(type == 1) {
+          modalTitle = $rootScope.i18n.keywords.delete_collection_question;
+          modalContent = $rootScope.i18n.keywords.delete_collection_message;
+      }
       $rootScope.modalMessageBox = {
-        'title':   $rootScope.i18n.keywords.delete_notebook_question,
-        'content': $rootScope.i18n.keywords.delete_notebook_message,
+        'title':   modalTitle,
+        'content': modalContent,
         'buttons': [
-          {
-            'label':     $rootScope.i18n.keywords.cancel,
-            'isDismiss': true
-          },
-          {
-            'id':    'button-yes',
-            'label': $rootScope.i18n.keywords.yes,
-            'class': 'btn-warning',
-            'click': function() {
-              NotebooksService.deleteNotebook(id, function(status, data) {
-                NotebooksService.getNotebooks();
-                NotebooksService.getNotebookShortcuts();
-              });
-              $('#modalManageNotebooks').find(".line[data-pk='" + id + "']").closest('.row').remove();
-              return true;
+            {
+                'label':     $rootScope.i18n.keywords.cancel,
+                'isDismiss': true
+            },
+            {
+                'id':    'button-yes',
+                'label': $rootScope.i18n.keywords.yes,
+                'class': 'btn-warning',
+                'click': function() {
+                  NotebooksService.deleteNotebook(id, function(status, data) {
+                    NotebooksService.getNotebooks();
+                    NotebooksService.getNotebookShortcuts();
+                  });
+                  $('#modalManageNotebooks').find(".line[data-pk='" + id + "']").closest('.row').remove();
+                  return true;
+                }
             }
-          }
         ]
       };
       $('#modalMessageBox').modal('show');
@@ -164,4 +176,11 @@ angular.module('paperworkNotes').controller('SidebarManageNotebooksController',
         $row.find('a').editable('show');
       }, 1);
     };
+    
+    $scope.editLineCalled = function(id, type) {
+        if(type == 1) {
+            $rootScope.modalEditCollection(id);
+        }
+    };
+    
   });

@@ -43,6 +43,8 @@ return array(
 	'delete_notebook' => 'Delete notebook',
 	'delete_notebook_question' => 'Delete notebook?',
 	'delete_notebook_message' => 'This will delete the selected notebook and all its notes. Are you sure?',
+	'delete_collection_question' => 'Delete collection?',
+	'delete_collection_message' => 'This will delete the selected collection and will move out all notebooks inside the collection outside of it. Are you sure?',
 	'delete_tag_question' => 'Delete tag?',
 	'delete_tag_message' => 'This will delete the selected tag. Are you sure?',
 	'new_collection' => 'New collection',
