@@ -12,6 +12,8 @@ return array(
 	'found_bug_newer_commit_installed' => 'Found a bug? It seems like you have done some changes to the Paperwork code. Before opening a new issue, please check if this issue is present in the official source code available in our Github repository. ',
 	'error_message' => 'Whooops!',
 	'onbeforeunload_info' => 'Data will be lost if you leave the page, are you sure?',
+	'nothing_here' => 'Nothing here',
+	'no_notes_in_notebook' => 'Paperwork did not find any notes in this notebook. Go on and create a new one from the File menu. ',
 	'user' => array(
 		'settings' => array(
 			'language_label' => 'Language',
