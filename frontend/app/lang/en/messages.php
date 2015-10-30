@@ -11,6 +11,7 @@ return array(
 	'error_version_check' => 'Found a bug? Paperwork cannot connect to Github to check the latest version. A solution to this can be installling the curl PHP extension. This not mandatory, however before reporting any issues, plese make sure that you are using the latest version.  ',
 	'found_bug_newer_commit_installed' => 'Found a bug? It seems like you have done some changes to the Paperwork code. Before opening a new issue, please check if this issue is present in the official source code available in our Github repository. ',
 	'error_message' => 'Whooops!',
+	'dblclick_dismiss' => 'Double click to dismiss.',
 	'onbeforeunload_info' => 'Data will be lost if you leave the page, are you sure?',
 	'user' => array(
 		'settings' => array(

@@ -66,7 +66,7 @@
 @yield("content")
 
 <div class="container-fluid">
-    <div class="footer footer-issue [[ Config::get('paperwork.showIssueReportingLink') ? '' : 'hide' ]]">
+    <div class="footer footer-issue [[ Config::get('paperwork.showIssueReportingLink') ? '' : 'hide' ]]" ondblclick="$(this).hide()">
         @include('partials/error-reporting-footer')
     </div>
 </div>
