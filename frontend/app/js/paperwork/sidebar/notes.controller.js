@@ -1,5 +1,5 @@
 angular.module('paperworkNotes').controller('SidebarNotesController',
-  function($scope, $rootScope, $location, $timeout, $routeParams, NotebooksService, NotesService, ngDraggable, StatusNotifications, NetService) {
+  function($scope, $rootScope, $location, $timeout, $window, $routeParams, NotebooksService, NotesService, ngDraggable, StatusNotifications, NetService) {
     $scope.isVisible = function() {
       return !$rootScope.expandedNoteLayout;
     };
@@ -159,7 +159,7 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
     $scope.closeNote = function() {
       var closeNoteCallback = function() {
         var currentNote = $rootScope.getNoteSelectedId(true);
-        $location.path("/n/" + $rootScope.getNotebookSelectedId() + "/" + currentNote.noteId);
+        $window.history.back();
         CKEDITOR.instances.content.destroy();
         $rootScope.templateNoteEdit = {};
         NotebooksService.getTags();
@@ -244,6 +244,18 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
 
     $scope.modalMoveNote = function(notebookId, noteId) {
 
+        $rootScope.writableNotebooks = [];
+        angular.forEach($rootScope.notebooks, function(value, key) {
+            if(value.type == 0) {
+                this.push(value);
+            }
+            if(value.children) {
+                for(var i = 0; i < value.children.length; i++) {
+                    this.push(value.children[i]);
+                }
+            }
+        }, $rootScope.writableNotebooks);
+      
       if($rootScope.menuItemNoteClass('multiple') === 'disabled') {
         return false;
       }
@@ -358,6 +370,66 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
             }
           ]
       });
+    };
+    
+    $scope.sort_order_adjustment = "default";
+    
+    $scope.changeSortOrder = function(criteria) {
+        switch(criteria) {
+            case "creation_date":
+                $rootScope.notes.sort(function(a, b) {
+                    var createdA = new Date(a.created_at);
+                    var createdB = new Date(b.created_at);
+                    return (createdA > createdB) ? -1 : (createdA < createdB) ? 1 : 0;
+                });
+                break;
+            case "modification_date":
+                $rootScope.notes.sort(function(a, b) {
+                    var modifiedA = new Date(a.updated_at);
+                    var modifiedB = new Date(b.updated_at);
+                    return (modifiedA > modifiedB) ? -1 : (modifiedA < modifiedB) ? 1 : 0;
+                });
+                break;
+            case "title":
+                $rootScope.notes.sort(function(a, b) {
+                    var titleA = a.version.title.toUpperCase();
+                    var titleB = b.version.title.toUpperCase();
+                    return (titleA < titleB) ? -1 : (titleA > titleB) ? 1 : 0;
+                });
+                break;
+            default:
+                $rootScope.notes.sort(function(a, b) {
+                    var createdA = new Date(a.created_at);
+                    var createdB = new Date(b.created_at);
+                    return (createdA < createdB) ? -1 : (createdA > createdB) ? 1 : 0;
+                }); 
+                break;
+        }
+        /*if(criteria === "creation_date") {
+            $rootScope.notes.sort(function(a, b) {
+                var createdA = new Date(a.created_at);
+                var createdB = new Date(b.created_at);
+                return (createdA > createdB) ? -1 : (createdA < createdB) ? 1 : 0;
+            }); 
+        }else if(criteria === "modification_date") {
+            $rootScope.notes.sort(function(a, b) {
+                var modifiedA = new Date(a.updated_at);
+                var modifiedB = new Date(b.updated_at);
+                return (modifiedA > modifiedB) ? -1 : (modifiedA < modifiedB) ? 1 : 0;
+            }); 
+        }else if(criteria === "title") {
+            $rootScope.notes.sort(function(a, b) {
+                var titleA = a.version.title.toUpperCase();
+                var titleB = b.version.title.toUpperCase();
+                return (titleA < titleB) ? -1 : (titleA > titleB) ? 1 : 0;
+            });
+        }else if(criteria === "default") {
+            $rootScope.notes.sort(function(a, b) {
+                var createdA = new Date(a.created_at);
+                var createdB = new Date(b.created_at);
+                return (createdA < createdB) ? -1 : (createdA > createdB) ? 1 : 0;
+            }); 
+        }*/
     };
 
   });

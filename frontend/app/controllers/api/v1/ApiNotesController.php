@@ -135,7 +135,8 @@ class ApiNotesController extends BaseController
         $notes = DB::table('notes')
                    ->join('note_user', function ($join) {
                        $join->on('notes.id', '=', 'note_user.note_id')
-                            ->where('note_user.user_id', '=', Auth::user()->id);
+                            ->where('note_user.user_id', '=', Auth::user()->id)
+                            ->where('note_user.umask', '>', 0);
                    })
                    ->join('notebooks', function ($join) {
                        $join->on('notes.notebook_id', '=', 'notebooks.id');
@@ -226,6 +227,7 @@ class ApiNotesController extends BaseController
                            'versions.title',
                            'versions.content_preview',
                            'versions.content',
+                           'versions.id as version_id',
                            'notes.created_at',
                            'notes.updated_at',
                            'note_user.umask'
@@ -240,6 +242,12 @@ class ApiNotesController extends BaseController
             foreach ($notes as $note) {
                 $note->tags     = $this->getNoteTags($note->id);
                 $note->versions = $this->getNoteVersionsBrief($note->id);
+                $note->version  = array(
+                    'content' => $note->content,
+                    'content_preview' => $note->content_preview,
+                    'title' => $note->title,
+                    'id' => $note->version_id
+                );
             }
             return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS,
                 $notes);
@@ -600,7 +608,7 @@ class ApiNotesController extends BaseController
         $status    = PaperworkHelpers::STATUS_SUCCESS;
         foreach ($noteIds as $singleNoteId) {
             for($i=0; $i<count($toUserIds); $i++){//adding a loop to share with multiple users
-                $tmp = $this->shareNote($notebookId, $singleNoteId, $toUserIds[$i], $toUMASK[$i]);
+                $tmp = $this->shareNote($notebookId, $singleNoteId, $toUserIds[$i], $toUMASKs[$i]);
                 if (is_null($tmp)) {
                     $status      = PaperworkHelpers::STATUS_ERROR;
                     $responses[] = array('error_id' => $singleNoteId, 'error_user' => $toUserIds[$i]);

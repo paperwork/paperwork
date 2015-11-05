@@ -59,18 +59,28 @@ class UserController extends BaseController
                     'password_confirmation', 'ui_language'),
                     Input::get('ui_language'));
             }
-            if ($user) {
+            if ($user && !(Input::get('frominstaller'))) {
                 Auth::login($user);
 
                 Session::put('ui_language', Input::get('ui_language'));
 
                 return Redirect::route("/");
+            }else if($user) {
+                return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, array());
             }
 
-            return Redirect::back()
+            if(!(Input::get('frominstaller'))) {
+                return Redirect::back()
                            ->withErrors(["password" => [Lang::get('messages.account_creation_failed')]]);
+            }else{
+                return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, ["password" => [Lang::get('messages.account_creation_failed')]]);
+            }
         } else {
-            return Redirect::back()->withInput()->withErrors($validator);
+            if(!(Input::get('frominstaller'))) {
+                return Redirect::back()->withInput()->withErrors($validator);
+            }else{
+                return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, $validator->failed());
+            }
         }
     }
 

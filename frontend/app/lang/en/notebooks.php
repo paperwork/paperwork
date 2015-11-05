@@ -36,5 +36,8 @@ return array(
         our mailing list <a href="mailto:paperwork-dev@googlegroups.com">here</a>.</p><p><strong>Thanks for choosing Paperwork,</strong></p><p><strong>
         The Paperwork Team. </strong></p>',
     'welcome_note_title' => 'Welcome to Paperwork',
-    'move_note_description' => 'Please click on the radio button next to the name of the notebook you want to move this note to. '
+    'move_note_description' => 'Please click on the radio button next to the name of the notebook you want to move this note to. ',
+    'title_new_collection' => 'New Collection',
+    'collection_title' => 'Enter collection title',
+    'title_edit_collection' => 'Edit Collection'
 );

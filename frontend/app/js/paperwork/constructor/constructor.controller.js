@@ -116,6 +116,6 @@ angular.module('paperworkNotes').controller('ConstructorController',
       }else{
         $rootScope.modalGeneric('modalUsersSelect',modalData);
       }
-    }
+    };
     
   });

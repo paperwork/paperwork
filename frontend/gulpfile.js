@@ -51,7 +51,8 @@ var paths = {
         'app/js/freqselector.js',
         'app/js/mathquill.js',
         'app/js/bower_components/retinajs/dist/retina.js',
-        'public/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js'
+        'app/js/bower_components/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js',
+        //'public/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js'
     ],
     ie9compat: [
         'app/js/bower_components/html5shiv/dist/html5shiv.js',

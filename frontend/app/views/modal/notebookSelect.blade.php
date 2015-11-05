@@ -16,21 +16,21 @@
 				<div class="container-scrollable">
 					<div class="container">
 						<form id="notebook-select" name="notebook-select">
-							<div ng-repeat="notebook in notebooks | orderBy:'title'">
-								<div ng-hide="(notebook.id == 0 || notebook.id == modalMessageBox.notebookId)">
+							<div ng-repeat="notebook in writableNotebooks | orderBy:'title'">
+								<div ng-if="(notebook.id != modalMessageBox.notebookId)">
 									<div class="radio">
 										<label>
 											<input type="radio" name="notebookSelectedModel" ng-model="$parent.notebookSelectedModel" value="{{ notebook.id }}"> {{ notebook.title }}
 										</label>
 									</div>
 								</div>
-								<div ng-repeat="child in notebooks.children | orderBy:'title'">
+								<!--<div ng-repeat="child in notebooks.children | orderBy:'title'">
 									<div class="radio">
 										<label>
 											<input type="radio" name="notebookSelectedModel" ng-model="$parent.notebookSelectedModel" value="{{ child.id }}"> {{ child.title }}
 										</label>
 									</div>
-								</div>
+								</div>-->
 							</div>
 						</form>
 					</div>

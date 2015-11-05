@@ -7,6 +7,7 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
      $scope.notebooksCollapsed=false;
      $scope.tagsCollapsed=false;
      $scope.calentdarCollapsed=false;
+     $scope.collectionOpen = 0;
     
 
     $scope.isVisible = function() {
@@ -18,7 +19,7 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
         case 0:
           return 'fa-book';
         case 1:
-          return 'fa-folder-open';
+          return 'fa-folder';
         case 2:
           return 'fa-archive';
       }
@@ -71,6 +72,10 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
     };
     
     $scope.openNotebook = function(notebookId, type, index) {
+      if(parseInt(type) == 1) {
+          $scope.collectionOpen = notebookId;
+      }
+      
       if(parseInt(type) == 0 || parseInt(type) == 2) {
         // If the notebooks tree should be collapsed, expand it,
         // so the user sees which notebook is being selected through the shortcut.
@@ -377,6 +382,101 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
       });
 
       sidebarCalendarDefer.notify(new Date().getTime());
+    };
+
+    $scope.modalNewCollection = function() {
+         $rootScope.writableNotebooks = [];
+         angular.forEach($rootScope.notebooks, function(value, key) {
+             if(value.type == 0) {
+                 this.push(value);
+             }
+             if(value.children) {
+                 for(var i = 0; i < value.children.length; i++) {
+                     this.push(value.children[i]);
+                 }
+             }
+         }, $rootScope.writableNotebooks);
+         $rootScope.modalCollection = {
+            'action': 'create',
+            'title': ''
+         };
+         $('#modalCollection').modal("show");
+    };
+    
+    $rootScope.selectedNotebooksForCollection = {};
+
+    $scope.modalCollectionSubmit = function() {
+        console.log($rootScope.modalCollection.notebooks);
+        $rootScope.modalCollection.notebooks = [];
+        angular.forEach($rootScope.selectedNotebooksForCollection, function(value, key) {
+            if(value) {
+                this.push(key);
+            }
+        }, $rootScope.modalCollection.notebooks);
+        if($rootScope.modalCollection.notebooks.length == 0) {
+            angular.element("#modalCollectionNotebookCheckboxes").addClass("error");
+            return;
+        }
+        var callback = (function (_paperworkNotebooksService) {
+            var action = $rootScope.modalCollection.action;
+            return function(status, data) {
+                switch(status) {
+                    case 200: 
+                        $("#modalCollection").modal("hide");
+                        _paperworkNotebooksService.getNotebooks();
+                        StatusNotifications.sendStatusFeedback("success", "collection_" + action + "_successfully");
+                        break;
+                    case 400:
+                        if(typeof data.errors.title != "undefined") {
+                            var elementWrapper = angular.element("#modalCollection");
+                            elementWrapper.find("input[name='title']").parents('.form-group').addClass('has-error');
+                        }
+                        break;
+                    default: 
+                        StatusNotifications.sendStatusFeedback("error", "collection_" + action + "_failed");
+                        break;
+                }
+            };
+        })(NotebooksService);
+        if($rootScope.modalCollection.action === "create") {
+            NotebooksService.createCollection($rootScope.modalCollection, callback);
+        }else if($rootScope.modalCollection.action === "edit") {
+            NotebooksService.updateCollection($rootScope.modalCollection.id, $rootScope.modalCollection, callback);
+        }
+        $rootScope.selectedNotebooksForCollection = {};
+    };
+    
+    $scope.isCollectionOpen = function(collectionId) {
+        return $scope.collectionOpen === collectionId;
+    };
+    
+    $rootScope.modalEditCollection = function(id) {
+         var currentNotebookId = "";
+         var collection = NotebooksService.getNotebookByIdLocal(id);
+         var collectionTitle = collection.title;
+         var collectionNotebooks = collection.children;
+         $rootScope.writableNotebooks = [];
+         angular.forEach($rootScope.notebooks, function(value, key) {
+             if(value.type == 0) {
+                 this.push(value);
+             }
+             if(value.children) {
+                 for(var i = 0; i < value.children.length; i++) {
+                     this.push(value.children[i]);
+                 }
+             }
+         }, $rootScope.writableNotebooks);
+         for(var i = 0; i < collectionNotebooks.length; i++) {
+             currentNotebookId = collectionNotebooks[i].id;
+             $rootScope.selectedNotebooksForCollection[currentNotebookId] = true;
+         }
+         $rootScope.modalCollection = {
+            'action': 'edit',
+            'title': collectionTitle,
+            'id': id
+         };
+
+         $('#modalCollection').modal("show");
     };
 
     NotebooksService.getCalendar($scope.sidebarCalendarCallback);

@@ -11,6 +11,7 @@ return array(
 	'error_version_check' => 'Found a bug? Paperwork cannot connect to Github to check the latest version. A solution to this can be installling the curl PHP extension. This not mandatory, however before reporting any issues, plese make sure that you are using the latest version.  ',
 	'found_bug_newer_commit_installed' => 'Found a bug? It seems like you have done some changes to the Paperwork code. Before opening a new issue, please check if this issue is present in the official source code available in our Github repository. ',
 	'error_message' => 'Whooops!',
+	'dblclick_dismiss' => 'Double click to dismiss.',
 	'onbeforeunload_info' => 'Data will be lost if you leave the page, are you sure?',
 	'user' => array(
 		'settings' => array(
@@ -35,5 +36,54 @@ return array(
 				'download_evernotexml' => 'Download an ENEX file compatible with Evernote to move your notes from Paperwork. '
 			)
 		)
+	),
+	'setup' => array(
+        'update_check' => array(
+            'checking_for_updates' => 'Checking for Updates',
+            'cannot_connect_error_no_solution' => 'Paperwork cannot connect to Github to check the latest version. Please make sure that you are installing the latest version. ',
+            'cannot_connect_error_curl' => 'Paperwork cannot connect to Github to check the latest version because you do not have php5-curl installed on your system. A solution to this can be installing the curl PHP extension.',
+            'newer_commit_found' => 'It seems like you have done some changes to the Paperwork code. Before opening a new issue, please check if this issue is present in the official source code available in our Github repository. ',
+            'newer_version_available' => 'It seems like this is not the latest version of Paperwork. Please consider installing a newer version. ',
+            'update_check_button' => 'Update (coming soon)',
+            'coming_soon' => 'Coming Soon',
+            
+        ),
+        'database_setup' => array(
+            'setting_up_database' => 'Setting up the database',
+            'requirements_met' => 'All requirements have been met. ',
+            'requirements_not_met' => 'Not all system requireents have been met. Please use another database system. ',
+            'credentials_correct' => 'Credentials Correct',
+            'credentials_not_correct' => 'Credentials Not Correct. Please delete db_settings file in storage directory and try again. ',
+            'server_form_label' => 'Server',
+            'port_form_label' => 'Port',
+            'username_form_label' => 'Username',
+            'password_form_label' => 'Password',
+            'button_check_connection_install_database' => 'Check Connection and Install Database',
+            'new_db_options_soon' => 'New Database Options - Coming Soon',
+        ),
+        'configuration' => array(
+            'configurating' => 'Configurating',
+            'configuration_settings' => 'Configuration Settings',
+            'change' => 'Change',
+            'debug_mode' => 'Debug Mode',
+            'registrations' => 'Enable Registrations',
+            'forgot_password' => 'Enable Forgot Password',
+            'issue_reporting_link' => 'Show Issue Reporting Link'
+        ),
+        'registration_first_user' => array(
+            'register_first_user' => 'Registering your first user account',
+            'registration_failed' => 'Registration failed because of an error in these fields: ',
+            'continue_without_registering' => 'Continue without registering'
+        ),
+        'install_complete' => array(
+            'installation_completed' => 'Installation Completed',
+            'installation_completed_message' => 'Congratulations! You have now finished installing and setting up Paperwork. Click on the link below to login in the account you have just created. ',
+            'proceed_to_paperwork_button' => 'Proceed to Paperwork'
+        ),
+        'button_next' => 'Next',
+        'assets_check' => array(
+            'assets_not_found' => 'Your installation lacks some files',
+            'assets_not_found_description' => 'We have not found all the files required to run Paperwork. Did you run composer install, npm install, bower install and gulp?'
+        )
 	)
 );

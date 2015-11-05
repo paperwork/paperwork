@@ -16,14 +16,16 @@ class PaperworkDbNotebookObject extends PaperworkDbObject {
 			'children' => function($query) use(&$userId, &$defaultNotebooksSelect) {
 				$query->join('notebook_user', function($join) use(&$userId) {
 					$join->on('notebook_user.notebook_id', '=', 'notebooks.id')
-						->where('notebook_user.user_id', '=', $userId);
+						->where('notebook_user.user_id', '=', $userId)
+						->where('notebook_user.umask', '>', 0);
 				})->select($defaultNotebooksSelect)
 				->whereNull('deleted_at');
 			}
 		))->join('notebook_user', function($join) use(&$userId) {
 				$join->on('notebook_user.notebook_id', '=', 'notebooks.id')
-					->where('notebook_user.user_id', '=', $userId);
-		})->select($defaultNotebooksSelect);
+					->where('notebook_user.user_id', '=', $userId)
+					->where('notebook_user.umask', '>', 0);
+		})->whereNull('parent_id')->select($defaultNotebooksSelect);
 
 		$idCount = count($id);
 		if($idCount > 0) {
@@ -34,8 +36,10 @@ class PaperworkDbNotebookObject extends PaperworkDbObject {
 				$data->orWhere('notebooks.id', '=', $argv['id'][$i]);
 			}
 		}
+		
 
 		$data->whereNull('deleted_at');
+		$data->orderBy('type', 'desc');
 
 		return $data->get();
 	}

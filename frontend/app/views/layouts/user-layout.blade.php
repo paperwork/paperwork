@@ -66,13 +66,14 @@
 @yield("content")
 
 <div class="container-fluid">
-    <div class="footer footer-issue [[ Config::get('paperwork.showIssueReportingLink') ? '' : 'hide' ]]">
+    <div class="footer footer-issue [[ Config::get('paperwork.showIssueReportingLink') ? '' : 'hide' ]]" ondblclick="$(this).hide()">
         @include('partials/error-reporting-footer')
     </div>
 </div>
 
 [[ HTML::script('js/jquery.min.js') ]]
-[[ HTML::script('js/libraries.min.js') ]]
+
+[[ HTML::script('ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js') ]]
 [[ HTML::script('js/angular.min.js') ]]
 
 [[ HTML::script('js/paperwork.min.js') ]]
@@ -80,10 +81,12 @@
 
 [[ HTML::script('js/bootstrap.min.js') ]]
 [[ HTML::script('js/tagsinput.min.js') ]]
+[[ HTML::script('js/libraries.min.js') ]]
 
 [[ HTML::script('ckeditor/ckeditor.js') ]]
-[[ HTML::script('ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js') ]]
-[[ HTML::script('js/bootstrap-editable.min.js') ]]
+
+[[-- HTML::script('js/bootstrap-editable.min.js') --]]
+[[-- HTML::script('//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js') --]]
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
