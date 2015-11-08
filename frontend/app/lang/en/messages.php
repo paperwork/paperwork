@@ -13,6 +13,8 @@ return array(
 	'error_message' => 'Whooops!',
 	'dblclick_dismiss' => 'Double click to dismiss.',
 	'onbeforeunload_info' => 'Data will be lost if you leave the page, are you sure?',
+	'nothing_here' => 'Nothing here',
+	'no_notes_in_notebook' => 'Paperwork did not find any notes in this notebook. Go on and create a new one from the File menu. ',
 	'user' => array(
 		'settings' => array(
 			'language_label' => 'Language',
