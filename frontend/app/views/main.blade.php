@@ -71,12 +71,12 @@
              ng-controller="SidebarNotesController" ng-show="isVisible()" ng-class="sidebarCollapsed ? 'sidebar-collapsed-notes' : 'col-sm-offset-3 col-md-offset-2'" ng-if="(notes.length != 0)">
 			<div class="nav nav-sidebar notes-list sidebar-no-border" ng-class="sidebarCollapsed ? 'sidebar-collapsed-notes-list' : ''" ng-cloak>
 			    <p class="text-center">
-			        Sort notes by: 
+			        [[ Lang::get('keywords.sort_notes_by') ]]
 			        <select id="sort_order_change" ng-change="changeSortOrder(sort_order_adjustment)" ng-model="sort_order_adjustment">
-			            <option value="default">Default</option>
-			            <option value="creation_date">Creation Date</option>
-			            <option value="modification_date">Modification Date</option>
-			            <option value="title">Title</option>
+			            <option value="default">[[ Lang::get('keywords.default') ]]</option>
+			            <option value="creation_date">[[ Lang::get('keywords.creation_date') ]]</option>
+			            <option value="modification_date">[[ Lang::get('keywords.modification_date') ]]</option>
+			            <option value="title">[[ Lang::get('keywords.title') ]]</option>
 			        </select>
 			    </p>
 			</div>
@@ -121,6 +121,7 @@
 		</div>
 		<div id="paperworkViewParent" class="main col-xs-12" ng-controller="ViewController" ng-if="(notes.length == 0)" ng-class="(sidebarCollapsed ? 'col-sm-12 col-md-12' : 'col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2' )">
 		    <div class="text-center">
+		        <p style="font-size:15px;padding-top:15px;display:none">[[ Lang::get('messages.no_notes_in_notebook') ]]</p>
 		        <h1>[[ Lang::get('messages.nothing_here') ]]</h1>
 		        <p style="font-size:15px;padding-top:15px">[[ Lang::get('messages.no_notes_in_notebook') ]]</p>
 		    </div>
