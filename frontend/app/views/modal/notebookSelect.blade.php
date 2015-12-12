@@ -20,7 +20,7 @@
 								<div ng-if="(notebook.id != modalMessageBox.notebookId)">
 									<div class="radio">
 										<label>
-											<input type="radio" name="notebookSelectedModel" ng-model="$parent.notebookSelectedModel" value="{{ notebook.id }}"> {{ notebook.title }}
+											<input type="radio" name="notebookSelectedModel" ng-model="$parent.$parent.notebookSelectedModel" value="{{ notebook.id }}"> {{ notebook.title }}
 										</label>
 									</div>
 								</div>
