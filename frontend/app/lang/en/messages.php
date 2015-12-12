@@ -60,6 +60,7 @@ return array(
             'port_form_label' => 'Port',
             'username_form_label' => 'Username',
             'password_form_label' => 'Password',
+            'database_form_label' => 'Database',
             'button_check_connection_install_database' => 'Check Connection and Install Database',
             'new_db_options_soon' => 'New Database Options - Coming Soon',
         ),
