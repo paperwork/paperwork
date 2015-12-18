@@ -177,7 +177,7 @@ $array = array(
 
 if(File::exists(storage_path()."/paperwork_settings")) {
     $configString = file_get_contents(storage_path()."/paperwork_settings");
-    $configLines = explode("\r\n", $configString);
+    $configLines = explode(PHP_EOL, $configString);
     foreach($configLines as $configLine) {
         $configLineArray = explode(": ", $configLine);
         if(isset($array[$configLineArray[0]])) {
