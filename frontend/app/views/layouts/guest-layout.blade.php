@@ -16,12 +16,10 @@
         <img class="guest-logo-img" src="[[ asset('images/paperwork-logo.png') ]]">
       </div>
       @yield("content")
-      <div class="footer [[ Config::get('paperwork.showIssueReportingLink') ? '' : 'hide' ]]">
+      <div class="footer [[ Config::get('paperwork.showIssueReportingLink') ? '' : 'hide' ]]" ondblclick="this.style.display = 'none'">
         @include('partials/error-reporting-footer')
       </div>
     </div> <!-- /container -->
-
-  [[ HTML::script('js/jquery.min.js') ]]
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -30,6 +28,5 @@
   <!--[if lt IE 11]>
     [[ HTML::script('js/ltie11compat.js') ]]
   <![endif]-->
-  [[ HTML::script('js/libraries.min.js') ]]
   </body>
 </html>
