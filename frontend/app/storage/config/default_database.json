@@ -1,0 +1,8 @@
+{
+    "driver": "mysql",
+    "database": "paperwork",
+    "host": "localhost",
+    "username": "paperwork",
+    "password": "paperwork",
+    "port": 3306
+}

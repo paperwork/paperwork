@@ -59,7 +59,7 @@ class UserController extends BaseController
                     'password_confirmation', 'ui_language'),
                     Input::get('ui_language'));
             }
-            if ($user && !(Input::get('frominstaller'))) {
+            if ($user && !Request::ajax()) {
                 Auth::login($user);
 
                 Session::put('ui_language', Input::get('ui_language'));
@@ -69,17 +69,18 @@ class UserController extends BaseController
                 return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, array());
             }
 
-            if(!(Input::get('frominstaller'))) {
+            if(!Request::ajax()) {
                 return Redirect::back()
                            ->withErrors(["password" => [Lang::get('messages.account_creation_failed')]]);
             }else{
-                return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, ["password" => [Lang::get('messages.account_creation_failed')]]);
+                return Response::json(array('html' => View::make('partials/registration-form', array('ajax' => true, 'password' => Lang::get('messages.account_creation_failed'))), 'input' => Input::all()), 400);
+
             }
         } else {
-            if(!(Input::get('frominstaller'))) {
+            if(!Request::ajax()) {
                 return Redirect::back()->withInput()->withErrors($validator);
             }else{
-                return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, $validator->failed());
+                return Response::json(array('html' => View::make('partials/registration-form', array('ajax' => true))->withErrors($validator)->render(), 'input' => Input::all()), 400);
             }
         }
     }
