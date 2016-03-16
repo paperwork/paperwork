@@ -18,6 +18,8 @@ return array(
 			'language_label' => 'Language',
 			'client_label' => 'Client',
 			'import_slash_export' => 'Import/Export',
+			'import_error' => 'The import failed. The technical error message is: ',
+			'import_success' => 'Your notes have been imported into the notebook: ',
 			'language' => array(
 				'ui_language' => 'User Interface Language',
 				'document_languages' => 'Document Languages',
@@ -46,7 +48,7 @@ return array(
             'newer_version_available' => 'It seems like this is not the latest version of Paperwork. Please consider installing a newer version. ',
             'update_check_button' => 'Update (coming soon)',
             'coming_soon' => 'Coming Soon',
-            
+
         ),
         'database_setup' => array(
             'setting_up_database' => 'Setting up the database',
