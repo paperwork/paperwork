@@ -172,6 +172,15 @@ $array = array(
 	*/
 	'tagsPublicPrefixCharacter' => '+',
   	'purgeTagList' => ['script'],
+  	
+  	/*
+  	|------------------------------------------------------------------------
+  	| Maximum Attachments Per Note 
+  	|------------------------------------------------------------------------
+  	|
+  	| The maximum number of attachments that can be attachned to each note. 
+  	*/
+  	'maximumAttachmentsPerNote' => 10,
 
 );
 

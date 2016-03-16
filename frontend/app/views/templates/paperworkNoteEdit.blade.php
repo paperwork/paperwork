@@ -1,5 +1,5 @@
 <div ng-controller="FileUploadController" class="file-upload-wrapper" uploader="uploader" nv-file-drop=""
-     uploader="uploader" filters="queueLimit, customFilter">
+     uploader="uploader" filters="queueLimit, customFilter" ng-init="maximumAttachmentsPerNote=[[ Config::get('paperwork.maximumAttachmentsPerNote') ]]">
     <nav class="navbar navbar-inverse navbar-edit" role="navigation">
         <div class="row">
             <div class="col-xs-12" id="navbar-paperwork-note-edit">
