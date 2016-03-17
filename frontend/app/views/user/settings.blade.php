@@ -13,6 +13,16 @@
     [[ Session::get("status") ]]
   </div>
 @endif
+@if ($errors->first('enex_file')!=null)
+  <div class="alert alert-danger" role="alert">
+    [[ Lang::get('messages.user.settings.import_error') ]] [[ $errors->first('enex_file') ]]
+  </div>
+@endif
+@if ($errors->first('enex_file_success')!=null)
+  <div class="alert alert-success" role="alert">
+    [[ Lang::get('messages.user.settings.import_success') ]] [[ $errors->first('enex_file_success') ]]
+  </div>
+@endif
 
 <ul class="nav nav-tabs nav-tabs-margin" role="tablist">
 	<li class="active"><a href="#language" role="tab" data-toggle="tab">[[ Lang::get('messages.user.settings.language_label') ]]</a></li>
