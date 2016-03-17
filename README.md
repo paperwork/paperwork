@@ -12,11 +12,11 @@ Paperwork is written in PHP, utilising the beautiful Laravel 4 framework. It pro
 
 For the back-end part a MySQL database stores everything. With such common requirements (Linux, Apache, MySQL, PHP), Paperwork will be able to run not only on dedicated servers, but also on small to mid-size NAS devices (Synology ®, QNAP ®, etc.).
 
-## Demo (yes, there is one!)
+## Demo
 
-At [demo.paperwork.rocks](http://demo.paperwork.rocks) you can actually see the current development status of Paperwork. Every night at 3am (CET) the database is being dropped and newly created, and the latest sources from GitHub are being deployed on the machine.
+Paperwork does not offer an official demo at the moment. However, if you really want to experience what Paperwork is, you can try a demo running a port of Paperwork built for Sandstorm.io. Please note that Sandstorm.io is by no means related to or endorsed by Paperwork and that this demo is not under the control of any of Paperwork's active contributors. This demo can be accessed from [this link](https://oasis.sandstorm.io/appdemo/vxe8awcxvtj6yu0vgjpm1tsaeu7x8v8tfp71tyvnm6ykkephu9q0). 
 
-Feel free to create/modify/delete accounts, notebooks and notes. This demo can be used for heavy playing without regrets. Just try not to take down that thing. :)
+**Note**: This demo may not run the latest version of Paperwork and some features may be disabled. Thank you to the Sandstorm.io community for providing this demo to us. 
 
 ## Getting Started
 
