@@ -123,13 +123,13 @@
                                         <h1>[[ Lang::get('messages.setup.configuration.configurating') ]]</h1>
                                         <div>
                                             <div class="row">
-                                                <h2 style="">[[ Lang::get('messages.setup.configuration.configuration_settings') ]]</h2>
+                                                <h2 class="configuration_subheading">[[ Lang::get('messages.setup.configuration.configuration_settings') ]]</h2>
                                                 <a id="change_config">[[ Lang::get('messages.setup.configuration.change') ]]</a>
                                             </div>
                                             <div>    
                                                 <div class="row">
                                                     <div class="col-md-9">
-                                                        <h3>[[ Lang::get('messages.setup.configuration.debug_mode') ]]</h3>
+                                                        <h3 class="configuration_setting_heading">[[ Lang::get('messages.setup.configuration.debug_mode') ]]</h3>
                                                         <p><!--Help Text--></p>
                                                     </div>
                                                     <div id="debug_non_editable" class="col-md-3">
@@ -141,7 +141,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-9">
-                                                        <h3>[[ Lang::get('messages.setup.configuration.registrations') ]]</h3>
+                                                        <h3 class="configuration_setting_heading">[[ Lang::get('messages.setup.configuration.registrations') ]]</h3>
                                                         <p><!--Help Text--></p>
                                                     </div>
                                                     <div id="registration_non_editable" class="col-md-3">
@@ -153,7 +153,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-9">
-                                                        <h3>[[ Lang::get('messages.setup.configuration.forgot_password') ]]</h3>
+                                                        <h3 class="configuration_setting_heading">[[ Lang::get('messages.setup.configuration.forgot_password') ]]</h3>
                                                         <p><!--Help Text--></p>
                                                     </div>
                                                     <div id="forgot_password_non_editable" class="col-md-3">
@@ -165,7 +165,7 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-9">
-                                                        <h3>[[ Lang::get('messages.setup.configuration.issue_reporting_link') ]]</h3>
+                                                        <h3 class="configuration_setting_heading">[[ Lang::get('messages.setup.configuration.issue_reporting_link') ]]</h3>
                                                         <p><!--Help Text--></p>
                                                     </div>
                                                     <div id="issue_reporting_non_editable" class="col-md-3">
