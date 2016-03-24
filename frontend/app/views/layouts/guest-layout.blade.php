@@ -16,7 +16,7 @@
         <img class="guest-logo-img" src="[[ asset('images/paperwork-logo.png') ]]">
       </div>
       @yield("content")
-      <div class="footer [[ Config::get('paperwork.showIssueReportingLink') ? '' : 'hide' ]]">
+      <div class="footer [[ Config::get('paperwork.showIssueReportingLink') ? '' : 'hide' ]]" ondblclick="$(this).hide()">
         @include('partials/error-reporting-footer')
       </div>
     </div> <!-- /container -->
