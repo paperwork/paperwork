@@ -1203,121 +1203,251 @@ body.paperwork-error {
 /*
     Setup Wizard CSS 
 */
-html.setup_wizard {
+
+.setup_wizard {
     height: 100%;
-    margin-top: -1px;
+}
+
+.wizard-body-wrapper {
+    height: 100%;
+}
+
+#wizard-body {
+    padding: 0;
+    height: 100%;
     
-    body {
-        margin-top: -1px;
-        position: relative;
-        height: 100%;
+    h4 {
+        font-size: 150%;
     }
     
-    ul.form {
-        position: relative;
-        margin: 0;
-        padding: 0;
-        min-height: 500px;
+    p{
+        font-size: 120%;
+    }
+}
+
+#wizard-menu {
+    /*border-right: @black-lighter 2px;
+    border-right-style: solid;
+    height: 97%;
+    margin-top: 1%;
+    margin-bottom: 1%;*/
+    height: 100%;
+    background-color: @gray-light;
+}
+
+#wizard-brand {
+    padding: 0;
+    line-height: initial;
+    float: none;
+}
+
+.wizard-paperwork-logo {
+    width: 220px;
+    height: 220px;
+}
+
+.wizard-title {
+    /*font-size: 2.5em;*/
+    margin-top: 0;
+}
+
+#wizard-flow {
+    //float: left;
+    line-height: 2em;
+    width: 12em;
+    margin-top: 1.75em;
+    
+    .fa {
+        float: left;
     }
     
-    ul.form li {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-        width: 100%;
-        /* position: absolute; */
+    h4 {
+        font-size: 150%;
+        margin-bottom: 12px;
     }
     
-    .next_step {
-        position: absolute;
-        bottom: 5%;
-        right: 5%;
-        left: 5%;
-        width: 100%;
-    }
-    
-    .wizard {
-        left: 0;
-        right: 0;
-        z-index: 1;
-        display: block;
-        width: 100%;
-        height: 100%;
+    .current {
+        font-weight: bold;
         
-        .container-fluid {
-            display: table;
-            width: 100%;
-            height: 100%;
-            
-            .first {
-                z-index: 111111111;
-                display: table-cell;
-                vertical-align: middle;
-                padding : 0;
-            }
+        .fa {
+            color: rgb(3, 169, 244);
         }
     }
     
-    #progress_bar {
-        width: 0;
-        background-color: @brand-primary;
-        height: 10px;
+    .others {
+        font-weight: 400;
+        color: rgba(66, 66, 66, 0.6);
     }
     
-    .inner.cover {
-        padding: 20px 60px;
+    .secondary {
+        font-size:130%;
+        
+        .fa {
+            margin-left:10px;
+            margin-right:-8px;
+        }
     }
     
-    .center-div {
-        max-width: 750px;
-        margin: 0 auto;
-    }
-    
-    #update_button {
-        left: 5% !important;
-        right: 5% !important;
-        width: 100%;
-        bottom: 25%;
-    }
-    
-    .dbms_choice {
-        width: 48%;
-        height: 100%;
-        float: left;
-        margin-right: 10px;
-    }
-    
-    .database_links {
-        display: block;
-        padding: 20px 0;
-    }
-    
-    .database_links:not(.active) {
-        font-style: italic;
-        background-color: #CCCCCC;
-    }
-    
-    .dbms_details_form {
-        width: 50%;
-        height: 100%;
-        float: left;
-    }
-    
-    #connection_id_success {
-        padding: 5px;
-        background-color: @brand-success;
-    }
-    
-    #connection_id_failure {
-        padding: 5px;
-        background-color: @brand-danger;
-    }
-    
-    #change_config {
-        float: right;
-    }
-    
-    #error_div {
-        color: red;
+    #flow-wizard-secondary {
+        border: 1px solid transparent;
+        margin-top:-8px;
+        margin-bottom:-6px;
     }
 }
+
+.blue-theme {
+    #wizard-menu {
+        background-color: #004C79;
+    }
+    
+    #wizard-flow {
+        color: white;
+        
+        .current {
+            .fa {
+                color: rgb(3, 169, 244);
+            }
+        }
+        
+        .others {
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.80);
+        }
+    }
+}
+
+.check-connection-btn {
+    margin-top: -10px;
+    margin-bottom: 15px;
+}
+
+.config_switch {
+    margin-top:31px;
+}
+
+#error_div, #connection_id_failure {
+    border-left-width: 4px;
+    border-left-color: @brand-danger;
+    border-left-style: solid;
+    padding-left: 1em;
+    margin-bottom:1em;
+}
+
+// html.setup_wizard {
+//     height: 100%;
+//     margin-top: -1px;
+    
+//     body {
+//         margin-top: -1px;
+//         position: relative;
+//         height: 100%;
+//     }
+    
+//     ul.form {
+//         position: relative;
+//         margin: 0;
+//         padding: 0;
+//         min-height: 500px;
+//     }
+    
+//     ul.form li {
+//         margin: 0;
+//         padding: 0;
+//         list-style: none;
+//         width: 100%;
+//         /* position: absolute; */
+//     }
+    
+//     .next_step {
+//         position: absolute;
+//         bottom: 5%;
+//         right: 5%;
+//         left: 5%;
+//         width: 100%;
+//     }
+    
+//     .wizard {
+//         left: 0;
+//         right: 0;
+//         z-index: 1;
+//         display: block;
+//         width: 100%;
+//         height: 100%;
+        
+//         .container-fluid {
+//             display: table;
+//             width: 100%;
+//             height: 100%;
+            
+//             .first {
+//                 z-index: 111111111;
+//                 display: table-cell;
+//                 vertical-align: middle;
+//                 padding : 0;
+//             }
+//         }
+//     }
+    
+//     #progress_bar {
+//         width: 0;
+//         background-color: @brand-primary;
+//         height: 10px;
+//     }
+    
+//     .inner.cover {
+//         padding: 20px 60px;
+//     }
+    
+//     .center-div {
+//         max-width: 750px;
+//         margin: 0 auto;
+//     }
+    
+//     #update_button {
+//         left: 5% !important;
+//         right: 5% !important;
+//         width: 100%;
+//         bottom: 25%;
+//     }
+    
+//     .dbms_choice {
+//         width: 48%;
+//         height: 100%;
+//         float: left;
+//         margin-right: 10px;
+//     }
+    
+//     .database_links {
+//         display: block;
+//         padding: 20px 0;
+//     }
+    
+//     .database_links:not(.active) {
+//         font-style: italic;
+//         background-color: #CCCCCC;
+//     }
+    
+//     .dbms_details_form {
+//         width: 50%;
+//         height: 100%;
+//         float: left;
+//     }
+    
+//     #connection_id_success {
+//         padding: 5px;
+//         background-color: @brand-success;
+//     }
+    
+//     #connection_id_failure {
+//         padding: 5px;
+//         background-color: @brand-danger;
+//     }
+    
+//     #change_config {
+//         float: right;
+//     }
+    
+//     #error_div {
+//         color: red;
+//     }
+// }

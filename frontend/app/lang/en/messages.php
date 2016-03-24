@@ -40,6 +40,14 @@ return array(
 		)
 	),
 	'setup' => array(
+	    'general' => array(
+	        'manual_configuration' => 'If you do not want to use the Setup Wizard, you can follow the instructions ',
+	        'first_time' => 'This is the first time you are running Paperwork, now you can set up the database, configurations and your first user account, after that Paperwork will be up and running!',
+	        'problems' => 'For any problems you may (unfortunately) encounter during the setup, you can ask for help from the Paperwork community.',
+	        'wiki' => 'You can also check out the Paperwork Wiki where you can find information about configurations, troubleshooting, update instructions and FAQ.',
+	        'setup_wizard' => 'Setup Wizard',
+	        'setup_wizard_text' => 'Configure database settings, system and admin settings and set up your first user account for Paperwork to run'
+	    ),
         'update_check' => array(
             'checking_for_updates' => 'Checking for Updates',
             'cannot_connect_error_no_solution' => 'Paperwork cannot connect to Github to check the latest version. Please make sure that you are installing the latest version. ',
@@ -47,7 +55,7 @@ return array(
             'newer_commit_found' => 'It seems like you have done some changes to the Paperwork code. Before opening a new issue, please check if this issue is present in the official source code available in our Github repository. ',
             'newer_version_available' => 'It seems like this is not the latest version of Paperwork. Please consider installing a newer version. ',
             'update_check_button' => 'Update (coming soon)',
-            'coming_soon' => 'Coming Soon',
+            'coming_soon' => 'Coming Soon'
             
         ),
         'database_setup' => array(
@@ -55,12 +63,18 @@ return array(
             'requirements_met' => 'All requirements have been met. ',
             'requirements_not_met' => 'Not all system requireents have been met. Please use another database system. ',
             'credentials_correct' => 'Credentials Correct',
-            'credentials_not_correct' => 'Credentials Not Correct. Please delete db_settings file in storage directory and try again. ',
+            'credentials_not_correct' => 'Credentials Not Correct. Please delete db_settings file in storage directory and try again.',
+            'problem_persists' => 'If this problem persists, please try manual setup as instructed in Paperwork Wiki on GitHub.',
             'server_form_label' => 'Server',
             'port_form_label' => 'Port',
             'username_form_label' => 'Username',
             'password_form_label' => 'Password',
             'database_form_label' => 'Database',
+            'server_form_placeholder' => 'Server host name or an IP address (usually localhost)',
+            'port_form_placeholder' => 'Port number for MySQL database (usually 3306)',
+            'username_form_placeholder' => 'Username for MySQL',
+            'password_form_placeholder' => 'Password for MySQL',
+            'database_form_placeholder' => 'Database name (leave blank for default option)',
             'button_check_connection_install_database' => 'Check Connection and Install Database',
             'new_db_options_soon' => 'New Database Options - Coming Soon',
         ),
@@ -76,7 +90,8 @@ return array(
         'registration_first_user' => array(
             'register_first_user' => 'Registering your first user account',
             'registration_failed' => 'Registration failed because of an error in these fields: ',
-            'continue_without_registering' => 'Continue without registering'
+            'continue_without_registering' => 'Continue without registering',
+            'try_again' => 'you can try again later after completing the setup wizard'
         ),
         'install_complete' => array(
             'installation_completed' => 'Installation Completed',
@@ -84,6 +99,7 @@ return array(
             'proceed_to_paperwork_button' => 'Proceed to Paperwork'
         ),
         'button_next' => 'Next',
+        'proceed_to_wizard_button' => 'Proceed to Setup Wizard',
         'assets_check' => array(
             'assets_not_found' => 'Your installation lacks some files',
             'assets_not_found_description' => 'We have not found all the files required to run Paperwork. Did you run composer install, npm install, bower install and gulp?'
