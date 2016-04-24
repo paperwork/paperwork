@@ -376,17 +376,23 @@ class UserController extends BaseController
     {
         if ($this->isPostRequest()) {
             if(Input::hasFile('enex')) {
-                $notebookId = with(new \Paperwork\Import\EvernoteImport())->import(Input::file('enex'));
-                if($notebookId) {
-                    // TODO: redirect to notebook
-                    return Redirect::route("/");
+                $notebookNew = with(new \Paperwork\Import\EvernoteImport())->import(Input::file('enex'));
+                if($notebookNew[0]) {
+                    return Redirect::route("user/settings")
+                                   ->withErrors(["enex_file_success" => $notebookNew[1]]);
                 }
                 else {
-                    // Show some error message
+                    return Redirect::route("user/settings")
+                                   ->withErrors(["enex_file" => $notebookNew[1]]);
                 }
+            } else {
+              return Redirect::route("user/settings")
+                            ->withErrors(["enex_file" => "You must choose an ENEX file!"]);
             }
+        } else {
+          return Redirect::route("user/settings")
+                        ->withErrors(["enex_file" => "Nothing selected!"]);
         }
-        return Redirect::route("user/settings");
     }
 
     public function export()
@@ -479,8 +485,8 @@ class UserController extends BaseController
 
             if ($noteNumber == 1) {
                 $noteArray['start'] = 1;
-            } 
-            
+            }
+
             if ($noteNumber == $noteCount) {
                 $noteArray['end'] = 1;
             }
