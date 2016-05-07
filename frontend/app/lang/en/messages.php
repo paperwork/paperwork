@@ -19,6 +19,7 @@ return array(
 		'settings' => array(
 			'language_label' => 'Language',
 			'client_label' => 'Client',
+			'about_label' => 'About',
 			'import_slash_export' => 'Import/Export',
 			'import_error' => 'The import failed. The technical error message is: ',
 			'import_success' => 'Your notes have been imported into the notebook: ',
@@ -38,6 +39,9 @@ return array(
 			'export' => array(
 				'evernotexml' => 'Export as Evernote XML:',
 				'download_evernotexml' => 'Download an ENEX file compatible with Evernote to move your notes from Paperwork. '
+			),
+			'about' => array(
+			    'about_help_text' => 'Please include this identification code in any issues you open on our Github repository. This code does not contain any personal information and can be shared freely. ',
 			)
 		)
 	),
