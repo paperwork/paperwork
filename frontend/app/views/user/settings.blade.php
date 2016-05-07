@@ -25,13 +25,17 @@
 @endif
 
 <ul class="nav nav-tabs nav-tabs-margin" role="tablist">
-	<li class="active"><a href="#language" role="tab" data-toggle="tab">[[ Lang::get('messages.user.settings.language_label') ]]</a></li>
+	<li class="active"><a href="#about" role="tab" data-toggle="tab">[[ Lang::get('messages.user.settings.about_label')]]</a></li>
+	<li><a href="#language" role="tab" data-toggle="tab">[[ Lang::get('messages.user.settings.language_label') ]]</a></li>
 	<li><a href="#client" role="tab" data-toggle="tab" ng-click="getTabContent('client')">[[ Lang::get('messages.user.settings.client_label') ]]</a></li>
 	<li><a href="#import" role="tab" data-toggle="tab">[[ Lang::get('messages.user.settings.import_slash_export') ]]</a></li>
 </ul>
 
 <div class="tab-content">
-	<div class="tab-pane fade in active" id="language">
+	<div class="tab-pane fade in active" id="about">
+	    @include('user/settings/about', array('commit_id' => PaperworkHelpers::getHashes()[0] ))
+	</div>
+	<div class="tab-pane fade" id="language">
 		@include('user/settings/language', array('settings' => $settings, 'languages' => $languages))
 	</div>
 	<div class="tab-pane fade" id="client">
