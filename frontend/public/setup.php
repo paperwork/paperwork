@@ -451,18 +451,18 @@
             <div class="container-fluid button_switcher">
                 <div class="row button_switch_row">
                     <div class="col-md-4 hidden-xs hidden-sm">
-                        <button type="button" class="btn btn-default" id="previous_btn">Previous</button>
+                        <button type="button" class="btn btn-default disabled" id="previous_btn">Previous</button>
                     </div>
-                    <div class="hidden-lg hidden-md col-sm-5 col-xs-5">
-                        <button type="button" class="btn btn-default col-sm-5 col-xs-5" id="previous_btn_mobile">Previous</button>
+                    <div class="hidden-lg hidden-md col-sm-4 col-xs-4">
+                        <button type="button" class="btn btn-default col-sm-10 col-xs-10 disabled" id="previous_btn_mobile">Previous</button>
                     </div>
-                    <div class="col-md-4 text-center step_counter hidden-xs hidden-sm">Step <span id="step_counter_dynamic">1</span></div>
+                    <div class="col-md-4 text-center step_counter col-xs-4 col-sm-4">Step <span id="step_counter_dynamic">1</span></div>
                     <div class="col-md-4 hidden-xs hidden-sm" id="next_btn_element">
                         <button type="button" class="btn btn-primary pull-right" id="next_btn">Next</button>
                     </div>
                     <div class="hidden-lg hidden-md col-sm-2 col-xs-2"></div>
-                    <div class="hidden-lg hidden-md col-sm-5 col-xs-5">
-                        <button type="button" class="btn btn-primary pull-right col-sm-5 col-xs-5" id="next_btn_mobile">Next</button>
+                    <div class="hidden-lg hidden-md col-sm-4 col-xs-4">
+                        <button type="button" class="btn btn-primary pull-right col-sm-10 col-xs-10" id="next_btn_mobile">Next</button>
                     </div>
                 </div>
             </div>
@@ -574,6 +574,7 @@
                     });
                 }
                 $.get("setup/update_step.php?step=" + goToStep);
+                $("#previous_btn, #previous_btn_mobile").removeClass('disabled');
             }
             $("#previous_btn, #previous_btn_mobile").click(function() {
                 if(currentStep > 1) {
