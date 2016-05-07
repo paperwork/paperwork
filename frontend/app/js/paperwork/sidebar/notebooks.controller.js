@@ -8,7 +8,7 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
      $scope.tagsCollapsed=false;
      $scope.calentdarCollapsed=false;
      $scope.collectionOpen = 0;
-    
+
 
     $scope.isVisible = function() {
       return !$rootScope.expandedNoteLayout;
@@ -236,6 +236,7 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
         return function(status, data) {
           switch(status) {
             case 200:
+              console.log(5);
               NotebooksService.getNotebookShortcuts(null);
               NotebooksService.getNotebooks();
               $location.path("/n/0" + paperworkDbAllId);
@@ -478,9 +479,12 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
 
          $('#modalCollection').modal("show");
     };
-
-    NotebooksService.getCalendar($scope.sidebarCalendarCallback);
-    NotebooksService.getNotebookShortcuts(null);
-    NotebooksService.getNotebooks();
-    NotebooksService.getTags();
+    
+    $scope.initialiseSidebar = function () {
+        NotebooksService.getCalendar($scope.sidebarCalendarCallback);
+        NotebooksService.getNotebookShortcuts(null);
+        NotebooksService.getNotebooks();
+        NotebooksService.getTags();
+    };
+    
   });
