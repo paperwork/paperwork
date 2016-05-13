@@ -121,7 +121,7 @@
                   id="paperworkViewEmpty" 
                   ng-if="(notes.length == 0)" 
                   ng-show="!expandedNoteLayout" 
-                  ng-class="(sidebarCollapsed ? 'col-sm-12 col-md-12' : 'col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2' )" 
+                  ng-class="" 
                   ng-init="">
 		        <p style="font-size:15px;padding-top:15px;display:none">[[ Lang::get('messages.no_notes_in_notebook') ]]</p>
 		        <h1>[[ Lang::get('messages.nothing_here') ]]</h1>
@@ -129,15 +129,6 @@
              </div>
 			<div id="paperworkView" ng-view></div>
 		</div>
-		<!--<div id="paperworkViewParent" class="main col-xs-12" ng-controller="ViewController" ng-if="(notes.length == 0)" ng-show="!expandedNoteLayout" ng-class="(sidebarCollapsed ? 'col-sm-12 col-md-12' : 'col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2' )">
-		    <div class="text-center">
-		        <p style="font-size:1
-		        x;padding-top:15px;display:none">[[ Lang::get('messages.no_notes_in_notebook') ]]</p>
-		        <h1>[[ Lang::get('messages.nothing_here') ]]</h1>
-		        <p style="font-size:15px;padding-top:15px">[[ Lang::get('messages.no_notes_in_notebook') ]]</p>
-		    </div>
-		    <div id="paperworkView" ng-view></div>
-		</div>-->
 	</div>
 </div>
 
