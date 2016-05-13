@@ -39,5 +39,6 @@ return array(
     'move_note_description' => 'Please click on the radio button next to the name of the notebook you want to move this note to. ',
     'title_new_collection' => 'New Collection',
     'collection_title' => 'Enter collection title',
-    'title_edit_collection' => 'Edit Collection'
+    'title_edit_collection' => 'Edit Collection',
+    'delete_notes_inside' => 'Delete the notes in this notebook'
 );

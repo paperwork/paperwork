@@ -236,7 +236,6 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
         return function(status, data) {
           switch(status) {
             case 200:
-              console.log(5);
               NotebooksService.getNotebookShortcuts(null);
               NotebooksService.getNotebooks();
               $location.path("/n/0" + paperworkDbAllId);
@@ -249,7 +248,7 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
         };
       })();
 
-      $rootScope.messageBox({
+      /*$rootScope.messageBox({
         'title':   $rootScope.i18n.keywords.delete_notebook_question,
         'content': $rootScope.i18n.keywords.delete_notebook_message,
         'buttons': [
@@ -269,7 +268,12 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
             },
           }
         ]
-      });
+      });*/
+      $rootScope.modalNotebookDelete = {
+          'delete_notes': false,
+          'notebookId': notebookId
+      };
+      $("#modalNotebookDelete").show();
     };
     
     $rootScope.propagationToNotes=false;
@@ -313,10 +317,6 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
       $rootScope.propagationToNotes=_prop;
       $scope.getUsers(notebookId, _prop, true);  
     }
-    
-    $scope.onDragSuccess = function(data, event) {
-      //
-    };
     
     $scope.onDropSuccess = function(data, event) {
       NotesService.moveNote(data.notebook_id, data.id, this.notebook.id);
@@ -485,6 +485,37 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
         NotebooksService.getNotebookShortcuts(null);
         NotebooksService.getNotebooks();
         NotebooksService.getTags();
+    };
+    
+    $scope.modalNotebookDeleteSubmit = function () {
+        var callback = (function() {
+            return function(status, data) {
+                switch(status) {
+                    case 200:
+                        NotebooksService.getNotebookShortcuts(null);
+                        NotebooksService.getNotebooks();
+                        $location.path("/n/0" + paperworkDbAllId);
+                        if($rootScope.modalNotebookDelete.delete_notes) {
+                            NotesService.getNotesInNotebook($rootScope.modalNotebookDelete.notebookId, function() {
+                                angular.forEach($rootScope.notes, function(value, key) {
+                                    NotesService.deleteNote(value.id, function() {
+                                        //
+                                    });
+                                });
+                            });
+                        }
+                        StatusNotifications.sendStatusFeedback("success", "notebook_deleted_successfully");
+                        break;
+                    case 400:
+                        StatusNotifications.sendStatusFeedback("error", "notebook_delete_fail");
+                        break;
+                }
+            };
+        })();
+        
+        NotebooksService.deleteNotebook($rootScope.modalNotebookDelete.notebookId, callback);
+        $('#modalNotebookDelete').modal('hide');
+        return true;
     };
     
   });
