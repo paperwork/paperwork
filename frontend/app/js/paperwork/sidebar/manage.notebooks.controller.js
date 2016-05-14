@@ -93,30 +93,38 @@ angular.module('paperworkNotes').controller('SidebarManageNotebooksController',
           modalTitle = $rootScope.i18n.keywords.delete_collection_question;
           modalContent = $rootScope.i18n.keywords.delete_collection_message;
       }
-      $rootScope.modalMessageBox = {
-        'title':   modalTitle,
-        'content': modalContent,
-        'buttons': [
-            {
-                'label':     $rootScope.i18n.keywords.cancel,
-                'isDismiss': true
-            },
-            {
-                'id':    'button-yes',
-                'label': $rootScope.i18n.keywords.yes,
-                'class': 'btn-warning',
-                'click': function() {
-                  NotebooksService.deleteNotebook(id, function(status, data) {
-                    NotebooksService.getNotebooks();
-                    NotebooksService.getNotebookShortcuts();
-                  });
-                  $('#modalManageNotebooks').find(".line[data-pk='" + id + "']").closest('.row').remove();
-                  return true;
+      if(type == 1) {
+          $rootScope.modalMessageBox = {
+            'title':   modalTitle,
+            'content': modalContent,
+            'buttons': [
+                {
+                    'label':     $rootScope.i18n.keywords.cancel,
+                    'isDismiss': true
+                },
+                {
+                    'id':    'button-yes',
+                    'label': $rootScope.i18n.keywords.yes,
+                    'class': 'btn-warning',
+                    'click': function() {
+                      NotebooksService.deleteNotebook(id, function(status, data) {
+                        NotebooksService.getNotebooks();
+                        NotebooksService.getNotebookShortcuts();
+                      });
+                      $('#modalManageNotebooks').find(".line[data-pk='" + id + "']").closest('.row').remove();
+                      return true;
+                    }
                 }
-            }
-        ]
-      };
-      $('#modalMessageBox').modal('show');
+            ]
+          };
+          $('#modalMessageBox').modal('show');
+      }else{
+          $rootScope.modalNotebookDelete = {
+              'action': false,
+              'notebookId': id
+          };
+          $('#modalNotebookDelete').modal('show');
+      }
     };
 
     $scope.addNotebook = function() {

@@ -9,6 +9,7 @@
 @include('modal/usersSelect')
 @include('modal/usersNotebookSelect')
 @include('modal/collection')
+@include('modal/notebookDelete')
 
 <div class="container-fluid">
 	<div class="row">
