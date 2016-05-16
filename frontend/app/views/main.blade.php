@@ -119,7 +119,7 @@
              ng-controller="ViewController">
 			<div id="paperworkView" ng-view ng-if="(notes.length != 0)"></div>
 		</div>
-		<div id="paperworkViewParent" class="main col-xs-12" ng-controller="ViewController" ng-if="(notes.length == 0)" ng-class="(sidebarCollapsed ? 'col-sm-12 col-md-12' : 'col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2' )">
+		<div id="paperworkViewParent" class="main col-xs-12" ng-controller="ViewController" ng-if="(notes.length == 0)" ng-class="(sidebarCollapsed ? 'col-sm-12 col-md-12' : 'col-sm-9 col-md-10 col-sm-offset-3 col-md-offset-2' )" ng-cloak>
 		    <div class="text-center">
 		        <p style="font-size:15px;padding-top:15px;display:none">[[ Lang::get('messages.no_notes_in_notebook') ]]</p>
 		        <h1>[[ Lang::get('messages.nothing_here') ]]</h1>
