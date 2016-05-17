@@ -76,9 +76,23 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
       
       if(typeof notebookId == "undefined" || notebookId == 0 || notebookId === "00000000-0000-0000-0000-000000000000") {
         //Open Select Notebook dialog to choose destination of new note 
+        NotebooksService.getNotebooks();
+        $rootScope.writableNotebooks = [];
+        angular.forEach($rootScope.notebooks, function(value, key) {
+             if(value.type == 0) {
+                 this.push(value);
+             }
+             if(value.children) {
+                 for(var i = 0; i < value.children.length; i++) {
+                     this.push(value.children[i]);
+                 }
+             }
+        }, $rootScope.writableNotebooks);
         $rootScope.modalNotebookSelect({ 
             'notebookId': notebookId,
             'noteId': 0,
+            'description': $rootScope.i18n.notebooks.move_note_description,
+            'title': $rootScope.i18n.keywords.select_notebook_title,
             'theCallback': function(notebookId, noteId, toNotebookId) {
                 $('#modalNotebookSelect').modal('hide');
                 NotesService.createNote(toNotebookId, data, callback);
