@@ -17,5 +17,6 @@
     "watch": "gulp watch",
     "bower": "gulp bower",
     "bower-update": "gulp bower-update"
-  }
+  },
+  "private": true
 }
