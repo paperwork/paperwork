@@ -80,6 +80,9 @@
 			            <option value="title">[[ Lang::get('keywords.title') ]]</option>
 			        </select>
 			    </p>
+			    <p class="text-center new-note-notes-list-button">
+			        <a ng-controller="SidebarNotesController" ng-click="newNote(getNotebookSelectedId())" href><i class="fa fa-plus"></i> [[ Lang::get('keywords.new_note') ]]</a>
+			    </p>
 			</div>
 			<ul id="notes-list" class="nav nav-sidebar notes-list sidebar-no-border" ng-controller="NotesListController" ng-class="sidebarCollapsed ? 'sidebar-collapsed-notes-list' : ''">
 				<li class="notes-list-item" ng-cloak ng-repeat="note in notes"
