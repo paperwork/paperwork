@@ -28,7 +28,7 @@
     </nav>
 
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-9 col-sm-12">
             <form role="form" class="form">
                 <div>
                     <div class="page-header">
@@ -49,7 +49,7 @@
                 </div>
             </form>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-3 col-sm-12">
             @include('partials/file-uploader', array('uploadEnabled' => true, 'actionsEnabled' => true))
         </div>
     </div>
