@@ -73,14 +73,14 @@ class UserController extends BaseController
                 return Redirect::back()
                            ->withErrors(["password" => [Lang::get('messages.account_creation_failed')]]);
             }else{
-                return Response::json(array('html' => View::make('partials/registration-form', array('ajax' => true, 'password' => Lang::get('messages.account_creation_failed'))), 'input' => Input::all()), 400);
+                return Response::json(array('html' => View::make('partials/registration-form', array('password' => Lang::get('messages.account_creation_failed'))), 'input' => Input::all()), 400);
 
             }
         } else {
             if(!Request::ajax()) {
                 return Redirect::back()->withInput()->withErrors($validator);
             }else{
-                return Response::json(array('html' => View::make('partials/registration-form', array('ajax' => true))->withErrors($validator)->render(), 'input' => Input::all()), 400);
+                return Response::json(array('html' => View::make('partials/registration-form')->withErrors($validator)->render(), 'input' => Input::all()), 400);
             }
         }
     }
