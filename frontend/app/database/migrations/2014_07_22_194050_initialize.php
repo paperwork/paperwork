@@ -38,7 +38,6 @@ class Initialize extends Migration
         Schema::create('languages', function (Blueprint $table) {
             $table->char('id', 36)->default(null)->primary();
             $table->char('language_code', 7);
-            $table->timestamps();
             $table->softDeletes();
             $table->engine = 'InnoDB';
         });
