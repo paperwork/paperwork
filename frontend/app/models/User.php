@@ -6,7 +6,7 @@ use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends PaperworkModel implements UserInterface, RemindableInterface {
-	use UserTrait, RemindableTrait;
+	use UserTrait, RemindableTrait, SoftDeletingTrait;
 
 	/**
 	 * The database table used by the model.
@@ -21,6 +21,8 @@ class User extends PaperworkModel implements UserInterface, RemindableInterface 
 	 * @var array
 	 */
 	protected $hidden = array('password', 'remember_token');
+	
+	protected $softDelete = true;
 
 	protected $fillable = array('username', 'password', 'firstname', 'lastname', 'is_admin', 'remember_token');
 
