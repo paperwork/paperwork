@@ -18,7 +18,6 @@ App::missing(function ($exception) {
 });
 
 if(File::exists(storage_path() . "/config/setup") && File::get(storage_path() . "/config/setup") < 7) {
-    Route::post('setup/checkDB', ["as" => "setup/checkDB", "uses" => "SetupController@checkDatabaseCredentials"]);
     Route::post('setup/setConfig', ["as" => "setup/setConfig", "uses" => "SetupController@setConfiguration"]);
     Route::get('setup/register', function() {
         return View::make('partials/registration-form', array('ajax' => true));
