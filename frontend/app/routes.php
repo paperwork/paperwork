@@ -55,6 +55,7 @@ if(File::exists(storage_path() . "/config/setup") && File::get(storage_path() . 
         //Administrators
         Route::group(['prefix' => 'admin', 'before' => ['admin']], function () {
             Route::get('/', ['as' => 'admin/console', 'uses' => 'AdminController@showConsole']);
+            Route::post('/users/delete', ['as' => 'admin/users/delete', 'uses' => 'AdminController@deleteOrRestoreUsers']);
         });
     });
     

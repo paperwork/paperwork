@@ -116,5 +116,7 @@ return array(
     'modification_date' => 'Modification Date',
     'creation_date' => 'Creation Date',
     'default' => 'Default',
-    'sort_notes_by' => 'Sort notes by: '
+    'sort_notes_by' => 'Sort notes by: ',
+    'delete_users' => 'Delete Users',
+    'restore_users' => 'Restore Users'
 );
