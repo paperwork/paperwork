@@ -608,7 +608,7 @@
             });
             $("#check_credentials").click(function() {
                 data = $("#database_info_form").serialize();
-                $.ajax("/setup/checkDB", {
+                $.ajax("setup/check_database_credentials.php", {
                     type: "POST",
                     data: data
                 }).success(function() {

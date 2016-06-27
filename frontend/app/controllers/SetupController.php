@@ -7,19 +7,6 @@ class SetupController extends BaseController {
     
     //public $process = "";
     
-    public function checkDatabaseCredentials() {
-        File::put(storage_path() . "/config/database.json", json_encode(Input::all()));
-        try {
-            DB::reconnect();
-            //$this->process = new Process('php artisan migrate');
-            //$this->process->start();
-            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, array());
-        }catch(\PDOException $e) {
-            File::delete(storage_path() . "/config/database.json");
-            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, Input::all());
-        }
-    }
-    
     public function installDatabase() {
         define('STDIN', fopen("php://stdin", "r"));
         Artisan::call('migrate', ['--force' => true]);
