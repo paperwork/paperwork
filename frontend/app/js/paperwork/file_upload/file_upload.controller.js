@@ -3,11 +3,16 @@ angular.module('paperworkNotes').controller('FileUploadController',
     var uploader = $scope.uploader = new FileUploader({
       url: $rootScope.uploadUrl
     });
-
+    var maximumAttachmentsPerNote = 10;
+    
+    $scope.$watch('maximumAttachmentsPerNote', function(value) {
+        maximumAttachmentsPerNote = value;
+    });
+    
     uploader.filters.push({
       name: 'customFilter',
       fn:   function(item /*{File|FileLikeObject}*/, options) {
-        return this.queue.length < 10;
+        return this.queue.length < maximumAttachmentsPerNote;
       }
     });
 

@@ -1,6 +1,6 @@
 <?php
 
-$array = array(
+return array(
 
 	/*
 	|--------------------------------------------------------------------------
@@ -16,7 +16,7 @@ $array = array(
 	|
 	*/
 
-    'driver' => 'file',
+    'driver' => File::exists(storage_path() . '/config/database.json') ? 'database' : 'file',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -138,9 +138,3 @@ $array = array(
 	'secure' => false,
 
 );
-
-if(file_exists(storage_path()."/db_settings")) {
-    $array['driver'] = 'database';
-}
-
-return $array;

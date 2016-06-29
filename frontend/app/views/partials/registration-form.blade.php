@@ -17,7 +17,7 @@
 @endforeach
 
 [[ Form::open(array('class' => 'form-signin', 'role' => 'form')) ]]
-@if (!$frominstaller)
+@if (!Request::ajax())
 <h1 class="form-signin-heading">[[Lang::get('users.title_register')]]</h1>
 @endif
 <div class="form-group [[ $errors->first('username') ? 'has-error' : '' ]]">
@@ -44,9 +44,8 @@
 <div class="checkbox">
 </div>
 <div class="form-group">
-  [[ Form::submit(Lang::get('keywords.sign_up'), array('class' => 'btn btn-lg btn-primary btn-block', 'id' => 'step5_submit')) ]]
-  [[ Form::hidden('frominstaller', $frominstaller)]]
-  @if ($back)
+  @if (!Request::ajax())
+  [[ Form::submit(Lang::get('keywords.sign_up'), array('class' => 'btn btn-lg btn-primary btn-block')) ]]
   <a class="btn btn-lg btn-default btn-block" href="[[ URL::route("/")]]">[[Lang::get('keywords.back')]]</a>
   @endif
 </div>

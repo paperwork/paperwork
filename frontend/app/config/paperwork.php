@@ -1,6 +1,12 @@
 <?php
 
-$array = array(
+if(File::exists(storage_path() . "/config/paperwork.json")) {
+    $configuration = json_decode(file_get_contents(storage_path() . "/config/paperwork.json"));
+}else{
+    $configuration = json_decode(file_get_contents(storage_path() . "/config/default_paperwork.json"));
+}
+
+return array(
 	/*
 	|--------------------------------------------------------------------------
 	| Access settings
@@ -51,7 +57,7 @@ $array = array(
 	| no new users will be able to register.
 	|
 	*/
-	'registration' => true,
+	'registration' => isset($configuration->registration) ? ($configuration->registration == "true") : true,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -61,7 +67,7 @@ $array = array(
 	| If set to true, forgot password link is enabled.
 	|
 	*/
-	'forgot_password' => true,
+	'forgot_password' => isset($configuration->forgot_password) ? ($configuration->forgot_password == "true") : true,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -73,7 +79,7 @@ $array = array(
 	| language set in app.php -> locale will be used.
 	|
 	*/
-	'userAgentLanguage' => false,
+	'userAgentLanguage' => isset($configuration->userAgentLanguage) ? ($configuration->userAgentLanguage == "true") : false,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -149,7 +155,7 @@ $array = array(
 	| If set to true, a link for reporting issues is being displayed.
 	|
 	*/
-	'showIssueReportingLink' => true,
+	'showIssueReportingLink' => isset($configuration->showIssueReportingLink) ? ($configuration->showIssueReportingLink == "true") : true,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -172,18 +178,14 @@ $array = array(
 	*/
 	'tagsPublicPrefixCharacter' => '+',
   	'purgeTagList' => ['script'],
+  	
+  	/*
+  	|------------------------------------------------------------------------
+  	| Maximum Attachments Per Note 
+  	|------------------------------------------------------------------------
+  	|
+  	| The maximum number of attachments that can be attachned to each note. 
+  	*/
+  	'maximumAttachmentsPerNote' => 10,
 
 );
-
-if(File::exists(storage_path()."/paperwork_settings")) {
-    $configString = file_get_contents(storage_path()."/paperwork_settings");
-    $configLines = explode("\r\n", $configString);
-    foreach($configLines as $configLine) {
-        $configLineArray = explode(": ", $configLine);
-        if(isset($array[$configLineArray[0]])) {
-            $key = $configLineArray[0];
-            $array[$key] = $configLineArray[1];
-        }
-    }
-}
-return $array;

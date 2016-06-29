@@ -111,5 +111,12 @@ return array(
     'cannot_share_notes_warning' => 'You do not own any notes in the selected notebook. You will not be able to share anything.',
     'loading_message' => 'Loading...',
     'unnest_tag_question' => 'Unnest tag?',
-    'unnest_tag_message' => 'This will unnest the tag and move it back to the tags\' root level. Are you sure?'
+    'unnest_tag_message' => 'This will unnest the tag and move it back to the tags\' root level. Are you sure?',
+    'title' => 'Title',
+    'modification_date' => 'Modification Date',
+    'creation_date' => 'Creation Date',
+    'default' => 'Default',
+    'sort_notes_by' => 'Sort notes by: ',
+    'delete_users' => 'Delete Users',
+    'restore_users' => 'Restore Users'
 );

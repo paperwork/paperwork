@@ -17,17 +17,15 @@ App::missing(function ($exception) {
     return Response::view('404', array(), 404);
 });
 
-if(!File::exists(storage_path()."/db_settings")) {
-    File::put(storage_path()."/setup", "");
-}
-
-if(File::exists(storage_path()."/setup")) {
-    Route::get('{all}', ["as" => "setup/installer", "uses" => "SetupController@showInstallerPage"])->where('all', '.*');
-    Route::post('/install/checkdb', ["as" => "install/checkdb", "uses" => "SetupController@setupDatabase"]);
-    Route::post('/install/finish', ["as" => "install/finish", "uses" => "SetupController@finishSetup"]);
-    Route::post("/install/registeradmin", ["as" => "install/registeradmin", "uses" => "UserController@register"]);
-    Route::post("/install/configurate", ["as" => "install/configurate", "uses" => "SetupController@configurate"]);
-    Route::post("/install/update", ["as" => "install/update", "uses" => "SetupController@update"]);
+if(File::exists(storage_path() . "/config/setup") && File::get(storage_path() . "/config/setup") < 7) {
+    Route::post('setup/setConfig', ["as" => "setup/setConfig", "uses" => "SetupController@setConfiguration"]);
+    Route::get('setup/register', function() {
+        return View::make('partials/registration-form', array('ajax' => true));
+    });
+    Route::post('setup/register', ["as" => "setup/register", "uses" => "UserController@register"]);
+    Route::get('setup/finish', ["as" => "setup/finish", "uses" => "SetupController@finishSetup"]);
+    Route::get('setup/checkDBStatus', ["as" => "setup/checkDBStatus", "uses" => "SetupController@checkDatabaseStatus"]);
+    Route::get('setup/installDatabase', ["as" => "setup/installDatabase", "uses" => "SetupController@installDatabase"]);
 }else{
     Route::get('/login', ["as" => "user/login", "uses" => "UserController@showLoginForm"]);
     Route::post('/login', ["as" => "user/login", "uses" => "UserController@login"]);
@@ -56,6 +54,7 @@ if(File::exists(storage_path()."/setup")) {
         //Administrators
         Route::group(['prefix' => 'admin', 'before' => ['admin']], function () {
             Route::get('/', ['as' => 'admin/console', 'uses' => 'AdminController@showConsole']);
+            Route::post('/users/delete', ['as' => 'admin/users/delete', 'uses' => 'AdminController@deleteOrRestoreUsers']);
         });
     });
     

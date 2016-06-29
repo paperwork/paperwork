@@ -21,6 +21,9 @@ angular.module('paperworkNotes').service('NetService',
                 error(function (data, status, headers, config) {
                     if (status == 401) {
                         StatusNotifications.sendStatusFeedback("error", "session_expired");
+                        setInterval(function() {
+                            $window.location.reload();
+                        }, 5000);
                         //$window.location.reload();
                         return false;
                     }

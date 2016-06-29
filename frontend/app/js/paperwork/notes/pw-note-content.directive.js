@@ -36,8 +36,8 @@ angular.module('paperworkNotes')
 
                             // Replace <code> with div to avoid styles applied to <code>
                             var $codeContainer = ae('<div>', {
-                                'class': $this.attr('class'),
-                                'language': $this.attr('class').replace(/language-/, ''),
+                                'class': $this.attr('class') ? $this.attr('class') : '',
+                                'language': $this.attr('class') ? $this.attr('class').replace(/language-/, '') : '',
                                 'html': $this.html()
                             });
 

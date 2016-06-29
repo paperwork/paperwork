@@ -1,0 +1,5 @@
+{
+    "registration": true,
+    "forgot_password": true,
+    "showIssueReportingLink": false
+}

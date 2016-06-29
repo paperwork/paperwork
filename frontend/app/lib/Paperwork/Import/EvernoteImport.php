@@ -56,24 +56,23 @@ class EvernoteImport extends AbstractImport
      *
      * @return bool|int
      */
-    public function import(UploadedFile $file)
-    {
-        try {
-            $this->xml = simplexml_load_file($file->getRealPath(), 'SimpleXMLElement',
-                LIBXML_PARSEHUGE | LIBXML_NOCDATA);
+     public function import(UploadedFile $file)
+     {
+         try {
+             $xmlfile = file_get_contents($file->getRealPath());
+             $xmlfile = html_entity_decode($xmlfile);
+             $this->xml = simplexml_load_string($xmlfile, 'SimpleXMLElement',
+                 LIBXML_PARSEHUGE | LIBXML_NOCDATA);
              $this->xml = json_decode(json_encode($this->xml), true);
-
-            if ($this->xml && $this->isEvernote()) {
-                $this->process();
-
-                return $this->notebook->id;
-            }
-        } catch (Exception $e) {
-            return false;
-        }
-
-        return false;
-    }
+             if ($this->xml && $this->isEvernote()) {
+                 $this->process();
+                 return array (true, $this->notebook->title);
+             }
+         } catch (Exception $e) {
+             return array (false, $e->getMessage());
+         }
+         return array (false, 'Something went wrong.');
+     }
 
 
     /**

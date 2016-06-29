@@ -8,16 +8,21 @@ return array(
 	'note_version_info' => 'You are previewing an older version of this note.',
 	'found_bug' => 'Found a bug? <a href="https://github.com/twostairs/paperwork/issues/new" target="_blank" title="Submit Issue">Submit it on GitHub!</a>',
 	'new_version_available' => 'Found a bug? It seems like you are not running the latest version of Paperwork. Please consider updating before submitting an issue. ',
-	'error_version_check' => 'Found a bug? Paperwork cannot connect to Github to check the latest version. A solution to this can be installling the curl PHP extension. This not mandatory, however before reporting any issues, plese make sure that you are using the latest version.  ',
+	'error_version_check' => 'Found a bug? Paperwork cannot connect to Github to check the latest version. A solution to this can be installling the curl PHP extension. This is not mandatory, however before reporting any issues, please make sure that you are using the latest version.  ',
 	'found_bug_newer_commit_installed' => 'Found a bug? It seems like you have done some changes to the Paperwork code. Before opening a new issue, please check if this issue is present in the official source code available in our Github repository. ',
 	'error_message' => 'Whooops!',
 	'dblclick_dismiss' => 'Double click to dismiss.',
 	'onbeforeunload_info' => 'Data will be lost if you leave the page, are you sure?',
+	'nothing_here' => 'Nothing here',
+	'no_notes_in_notebook' => 'Paperwork did not find any notes in this notebook. Go on and create a new one from the File menu. ',
 	'user' => array(
 		'settings' => array(
 			'language_label' => 'Language',
 			'client_label' => 'Client',
+			'about_label' => 'About',
 			'import_slash_export' => 'Import/Export',
+			'import_error' => 'The import failed. The technical error message is: ',
+			'import_success' => 'Your notes have been imported into the notebook: ',
 			'language' => array(
 				'ui_language' => 'User Interface Language',
 				'document_languages' => 'Document Languages',
@@ -34,6 +39,9 @@ return array(
 			'export' => array(
 				'evernotexml' => 'Export as Evernote XML:',
 				'download_evernotexml' => 'Download an ENEX file compatible with Evernote to move your notes from Paperwork. '
+			),
+			'about' => array(
+			    'about_help_text' => 'Please include this identification code in any issues you open on our Github repository. This code does not contain any personal information and can be shared freely. ',
 			)
 		)
 	),
@@ -46,7 +54,7 @@ return array(
             'newer_version_available' => 'It seems like this is not the latest version of Paperwork. Please consider installing a newer version. ',
             'update_check_button' => 'Update (coming soon)',
             'coming_soon' => 'Coming Soon',
-            
+
         ),
         'database_setup' => array(
             'setting_up_database' => 'Setting up the database',
@@ -58,6 +66,7 @@ return array(
             'port_form_label' => 'Port',
             'username_form_label' => 'Username',
             'password_form_label' => 'Password',
+            'database_form_label' => 'Database',
             'button_check_connection_install_database' => 'Check Connection and Install Database',
             'new_db_options_soon' => 'New Database Options - Coming Soon',
         ),

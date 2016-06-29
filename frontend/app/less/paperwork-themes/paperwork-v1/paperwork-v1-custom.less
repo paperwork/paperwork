@@ -465,6 +465,7 @@ ul.nav-tabs-margin {
   .notes-list-item {
       margin-right: 1px;
       border-bottom: 1px solid @gray-light;
+      background-color: @white;
       a {
         border: 2px solid @white;
       }
@@ -571,6 +572,9 @@ ul.nav-tabs-margin {
       cursor: grabbing;
       cursor: -moz-grabbing;
       cursor: -webkit-grabbing;
+      margin-left: 0;
+      width: 200px;
+      z-index: 2;
   }
 
   .notes-list-item.active {
@@ -1320,4 +1324,16 @@ html.setup_wizard {
     #error_div {
         color: red;
     }
+}
+.new-note-notes-list-button {
+    padding: 10px;
+    margin-bottom: 2px;
+    border: 2px solid @brand-primary;
+}
+.new-note-notes-list-button:hover {
+    background-color: @brand-primary;
+}
+.new-note-notes-list-button:hover > * {
+    text-decoration: none;
+    color: #FFFFFF;
 }

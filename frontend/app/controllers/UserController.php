@@ -59,7 +59,7 @@ class UserController extends BaseController
                     'password_confirmation', 'ui_language'),
                     Input::get('ui_language'));
             }
-            if ($user && !(Input::get('frominstaller'))) {
+            if ($user && !Request::ajax()) {
                 Auth::login($user);
 
                 Session::put('ui_language', Input::get('ui_language'));
@@ -69,17 +69,18 @@ class UserController extends BaseController
                 return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, array());
             }
 
-            if(!(Input::get('frominstaller'))) {
+            if(!Request::ajax()) {
                 return Redirect::back()
                            ->withErrors(["password" => [Lang::get('messages.account_creation_failed')]]);
             }else{
-                return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, ["password" => [Lang::get('messages.account_creation_failed')]]);
+                return Response::json(array('html' => View::make('partials/registration-form', array('password' => Lang::get('messages.account_creation_failed'))), 'input' => Input::all()), 400);
+
             }
         } else {
-            if(!(Input::get('frominstaller'))) {
+            if(!Request::ajax()) {
                 return Redirect::back()->withInput()->withErrors($validator);
             }else{
-                return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, $validator->failed());
+                return Response::json(array('html' => View::make('partials/registration-form')->withErrors($validator)->render(), 'input' => Input::all()), 400);
             }
         }
     }
@@ -375,17 +376,23 @@ class UserController extends BaseController
     {
         if ($this->isPostRequest()) {
             if(Input::hasFile('enex')) {
-                $notebookId = with(new \Paperwork\Import\EvernoteImport())->import(Input::file('enex'));
-                if($notebookId) {
-                    // TODO: redirect to notebook
-                    return Redirect::route("/");
+                $notebookNew = with(new \Paperwork\Import\EvernoteImport())->import(Input::file('enex'));
+                if($notebookNew[0]) {
+                    return Redirect::route("user/settings")
+                                   ->withErrors(["enex_file_success" => $notebookNew[1]]);
                 }
                 else {
-                    // Show some error message
+                    return Redirect::route("user/settings")
+                                   ->withErrors(["enex_file" => $notebookNew[1]]);
                 }
+            } else {
+              return Redirect::route("user/settings")
+                            ->withErrors(["enex_file" => "You must choose an ENEX file!"]);
             }
+        } else {
+          return Redirect::route("user/settings")
+                        ->withErrors(["enex_file" => "Nothing selected!"]);
         }
-        return Redirect::route("user/settings");
     }
 
     public function export()
@@ -478,8 +485,8 @@ class UserController extends BaseController
 
             if ($noteNumber == 1) {
                 $noteArray['start'] = 1;
-            } 
-            
+            }
+
             if ($noteNumber == $noteCount) {
                 $noteArray['end'] = 1;
             }
