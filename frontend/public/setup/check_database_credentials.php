@@ -1,6 +1,6 @@
 <?php
 
-    if(!file_exists("../../app/storage/config/database1.json")) {
+    if(!file_exists("../../app/storage/config/database.json")) {
 
         try {
             if($_GET['driver'] === "mysql") {
