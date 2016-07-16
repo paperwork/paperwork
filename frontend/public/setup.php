@@ -1,7 +1,11 @@
 <?php 
     $currentStep = (file_exists("../app/storage/config/setup") ? file_get_contents("../app/storage/config/setup") : 1);
-    if($currentStep >= 7) {
+    if($currentStep >= 7 && file_exists("../app/storage/config/database.json") && file_exists("../app/storage/config/paperwork.json")) {
         header("Location: /");
+    }else if(!file_exists("../app/storage/config/database.json")) {
+        $currentStep = 3;
+    }else if(!file_exists("../app/storage/config/paperwork.json")) {
+        $currentStep = 4;
     }
 ?>
 <!DOCTYPE html>
