@@ -634,12 +634,12 @@
                 if($(this)[0].id !== "") {
                     var chosenText = $(this)[0].id;
                     $("#dbms_choice").val(chosenText);
-                    if(chosenText === "pgsql" || chosenText === "sqlsrv") {
+                    if(chosenText === "sqlsrv") {
                         $("#portFieldElement").hide();
                         $("#serverFieldElement, #usernameFieldElement, #passwordFieldElement").show();
                     }else if(chosenText === "sqlite") {
                         $("#serverFieldElement, #portFieldElement, #usernameFieldElement, #passwordFieldElement").hide();
-                    }else if(chosenText === "mysql") {
+                    }else if(chosenText === "pgsql" || chosenText === "mysql") {
                         $("#serverFieldElement, #portFieldElement, #usernameFieldElement, #passwordFieldElement").show();
                     }
                 }
