@@ -7,14 +7,16 @@ class AdminController extends BaseController {
 	
 	public function deleteOrRestoreUsers() {
 	    $input = Input::get('selected_users');
-	    foreach($input as $single_input) {
-	        $user = User::withTrashed()->where('id', '=', $single_input);
-	        if(Input::get('restore')) {
-	            $user->restore();
-	        }else{
-	            $user->delete();
-	        }
-	    }
+        if (!empty($input)) {
+            foreach ($input as $single_input) {
+                $user = User::withTrashed()->where('id', '=', $single_input);
+                if (Input::get('restore')) {
+                    $user->restore();
+                } else {
+                    $user->delete();
+                }
+            }
+        }
 	    return Redirect::route("admin/console");
 	}
 }
