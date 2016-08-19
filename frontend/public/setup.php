@@ -1,7 +1,11 @@
 <?php 
     $currentStep = (file_exists("../app/storage/config/setup") ? file_get_contents("../app/storage/config/setup") : 1);
-    if($currentStep >= 7) {
+    if($currentStep >= 7 && file_exists("../app/storage/config/database.json") && file_exists("../app/storage/config/paperwork.json")) {
         header("Location: /");
+    }else if(!file_exists("../app/storage/config/database.json")) {
+        $currentStep = 3;
+    }else if(!file_exists("../app/storage/config/paperwork.json")) {
+        $currentStep = 4;
     }
 ?>
 <!DOCTYPE html>
@@ -634,12 +638,12 @@
                 if($(this)[0].id !== "") {
                     var chosenText = $(this)[0].id;
                     $("#dbms_choice").val(chosenText);
-                    if(chosenText === "pgsql" || chosenText === "sqlsrv") {
+                    if(chosenText === "sqlsrv") {
                         $("#portFieldElement").hide();
                         $("#serverFieldElement, #usernameFieldElement, #passwordFieldElement").show();
                     }else if(chosenText === "sqlite") {
                         $("#serverFieldElement, #portFieldElement, #usernameFieldElement, #passwordFieldElement").hide();
-                    }else if(chosenText === "mysql") {
+                    }else if(chosenText === "pgsql" || chosenText === "mysql") {
                         $("#serverFieldElement, #portFieldElement, #usernameFieldElement, #passwordFieldElement").show();
                     }
                 }
