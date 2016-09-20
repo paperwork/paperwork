@@ -34,4 +34,4 @@ Github: [https://github.com/sandstorm-io/sandstorm](https://github.com/sandstorm
 
 Demo: [Paperwork on Cloudron](https://my-demo.cloudron.me) (username: cloudron password: cloudron)
 Website: [cloudron.io](https://cloudron.io)
-Github: [https://github.com/cloudron-io/paperwork-app](https://github.com/cloudron-io/paperwork-app)
+Code: [https://git.cloudron.io/cloudron/paperwork-app](https://git.cloudron.io/cloudron/paperwork-app)
