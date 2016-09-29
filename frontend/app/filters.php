@@ -29,13 +29,13 @@ App::before(function($request)
 		is_array($access[$zone]) &&
 		array_key_exists('dns', $access[$zone]) &&
 		$access[$zone]['dns'] == $requestServerName) {
-                        if($access[$zone]['ports']['trustProxy'] === true) {
-                                $proxyip = $access[$zone]['ports']['trustProxy'];
-                                if($proxyip === true) {
-                                        $proxyip = [ $request->getClientIp() ];
-                                }
-                                Request::setTrustedProxies( $proxyip );
-                        }
+			if($access[$zone]['ports']['trustProxy'] === true) {
+				$proxyip = $access[$zone]['ports']['trustProxy'];
+				if($proxyip === true) {
+					$proxyip = [ $request->getClientIp() ];
+				}
+				Request::setTrustedProxies( $proxyip );
+			}
 
 			if(array_key_exists('ports', $access[$zone]) &&
 			is_array($access[$zone]['ports']) &&

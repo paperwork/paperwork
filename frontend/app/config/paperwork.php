@@ -38,7 +38,7 @@ return array(
 				'http'		 => 80,
 				'https' 	 => 443,
 				'forceHttps' => true,
-                                'trustProxy' => true
+				'trustProxy' => true
 
 			)
 		),
@@ -50,7 +50,7 @@ return array(
 				'http'		 => 8888,
 				'https' 	 => 8443,
 				'forceHttps' => false,
-                                'trustProxy' => false
+				'trustProxy' => false
 
 			)
 		)
