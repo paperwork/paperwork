@@ -25,6 +25,10 @@ return array(
 	| your Paperwork installation is reachable from your LAN using the
 	| previously defined 'external' settings, you can skip the 'internal'
 	| configuration.
+        |
+        | trustProxy should be false if no extra reverse proxy/load balancer is
+        | used, or can be set to array of proxy ip address' to lock it down,
+        | or true to allow all.
 	|
 	*/
 	'access' => array(
@@ -33,7 +37,9 @@ return array(
 			'ports' => array(
 				'http'		 => 80,
 				'https' 	 => 443,
-				'forceHttps' => true
+				'forceHttps' => true,
+				'trustProxy' => true
+
 			)
 		),
 	//  if same as external:
@@ -43,7 +49,9 @@ return array(
 			'ports' => array(
 				'http'		 => 8888,
 				'https' 	 => 8443,
-				'forceHttps' => false
+				'forceHttps' => false,
+				'trustProxy' => false
+
 			)
 		)
 	),
