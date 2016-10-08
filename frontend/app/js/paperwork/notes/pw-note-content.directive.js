@@ -18,6 +18,7 @@ angular.module('paperworkNotes')
                 // So content must be updated later, at the change.
                 scope.$watch('content', function () {
                     if (!scope.content) {
+                        element.html('');
                         return;
                     }
 
