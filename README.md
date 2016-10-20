@@ -26,12 +26,12 @@ Ready to install? See the [Wiki](https://github.com/twostairs/paperwork/wiki) fo
 
 **Sandstorm**
 
-Demo: [Paperwork on Sandstorm](https://oasis.sandstorm.io/appdemo/vxe8awcxvtj6yu0vgjpm1tsaeu7x8v8tfp71tyvnm6ykkephu9q0)
-Website: [sandstorm.io](https://sandstorm.io)
+Demo: [Paperwork on Sandstorm](https://oasis.sandstorm.io/appdemo/vxe8awcxvtj6yu0vgjpm1tsaeu7x8v8tfp71tyvnm6ykkephu9q0)  
+Website: [sandstorm.io](https://sandstorm.io)  
 Github: [https://github.com/sandstorm-io/sandstorm](https://github.com/sandstorm-io/sandstorm)
 
 **Cloudron**
 
-Demo: [Paperwork on Cloudron](https://my-demo.cloudron.me) (username: cloudron password: cloudron)
-Website: [cloudron.io](https://cloudron.io)
+Demo: [Paperwork on Cloudron](https://my-demo.cloudron.me) (username: cloudron password: cloudron)  
+Website: [cloudron.io](https://cloudron.io)  
 Code: [https://git.cloudron.io/cloudron/paperwork-app](https://git.cloudron.io/cloudron/paperwork-app)
