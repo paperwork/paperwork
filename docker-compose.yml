@@ -5,10 +5,13 @@ db:
     MYSQL_USER: paperwork
     MYSQL_PASSWORD: paperwork
     MYSQL_DATABASE: paperwork
-  ports:
-    - "3306:3306"
 web:
   build: ./frontend
+  environment:
+    PR_ALLOW_REGISTRATION: "true"
+    PR_ALLOW_PASSWORD_RESET: "true"
+    PR_USER_AGENT_LANG: "false"
+    PR_SHOW_REPORT_LINK: "true"
   ports:
     - "8080:80"
   links:
