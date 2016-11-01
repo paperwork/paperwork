@@ -284,6 +284,7 @@
                         $npm_dependencies = json_decode($npm_dependencies);
                         $npm_dependencies = $npm_dependencies->{"devDependencies"};
 
+                        $npm_missing = false;
                         foreach($npm_dependencies as $npm_dependency_name => $npm_dependency_value) {
                             foreach($npm_packages_installed as $npm_package_installed_name => $npm_package_installed_value) {
                                 if($npm_dependency_name === $npm_package_installed_name) {
