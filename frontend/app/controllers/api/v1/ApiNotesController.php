@@ -155,18 +155,18 @@ class ApiNotesController extends BaseController
 
             if ($date !== false) {
 
-                $notes = $notes->where(DB::raw('YEAR(notes.updated_at)'), '=',
+                $notes = $notes->where(DB::raw('EXTRACT(year FROM notes.updated_at)'), '=',
                     $date[1]);
 
                 if (isset($date[2])) {
                     $notes =
-                        $notes->where(DB::raw('MONTH(notes.updated_at)'), '=',
+                        $notes->where(DB::raw('EXTRACT(month FROM notes.updated_at)'), '=',
                             sprintf("%02s", $date[2]));
                 }
 
                 if (isset($date[3])) {
                     $notes =
-                        $notes->where(DB::raw('DAY(notes.updated_at)'), '=',
+                        $notes->where(DB::raw('EXTRACT(day FROM notes.updated_at)'), '=',
                             sprintf("%02s", $date[3]));
                 }
             }
