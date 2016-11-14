@@ -180,7 +180,7 @@
                         if(extension_loaded("mysql")) {
                             $installed_modules++;
                         }
-                        if(extension_loaded("postgresql")) {
+                        if(extension_loaded("pgsql")) {
                             $installed_modules++;
                         }
                         if(extension_loaded("sqlite3")) {
@@ -201,7 +201,7 @@
                             <p class="text-success">MySQL is installed and enabled. </p>
                             <?php
                                 }
-                                if(extension_loaded("postgresql")) {
+                                if(extension_loaded("pgsql")) {
                             ?>
                             <p class="text-success">Postgres is installed and enabled. </p>
                             <?php
