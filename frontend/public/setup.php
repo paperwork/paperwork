@@ -627,7 +627,7 @@
             });
             $("#check_credentials").click(function() {
                 data = $("#database_info_form").serialize();
-                if(!$("#usernameField").val() || !$("#passwordField").val() || !$("#databaseField").val())) {
+                if((!$("#usernameField").val() || !$("#passwordField").val() || !$("#databaseField").val())) && $("#dbms_choice").val() !== "sqlite") {
                     credentialsCorrect = false;
                     $("#credentials_correct").hide();
                     $("#credentials_not_correct").show();
