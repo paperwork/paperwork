@@ -397,14 +397,14 @@ class ApiNotesController extends BaseController
             return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND,
                 array('item' => 'note', 'id' => $noteId));
         }
-                    
-                    
+
+
        $tagIds = ApiTagsController::createOrGetTags($updateNote->get('tags'),$noteId,$note->pivot->umask);
 
         if (!is_null($tagIds)) {
             $note->tags()->sync($tagIds);
         }
-        
+
         if($note->pivot->umask<PaperworkHelpers::UMASK_READWRITE){
             return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, array('message' => 'Permission error. The private tags have been saved though.'));
         }
@@ -419,13 +419,19 @@ class ApiNotesController extends BaseController
             $pureContent =
                 PaperworkHelpers::purgeHtml($updateNote->get("content"));
 
-            // TODO: This is a temporary workaround for the content_preview. We need to check, whether there is content or at least one attachment.
-            // If there's no content, parse the attachment and set the result as content_preview. This should somehow be done within the DocumentParser, I guess.
+            if(empty($pureContent)) {
+                // TODO: Check if there is at least one attachment. If yes, parse the attachment and set this result as content_preview.
+                // This should probably be done in DocumentParser.
+                $contentPreview = "";
+            }else{
+                $contentPreview = substr(strip_tags($pureContent), 0, 255);
+            }
+
             $version = new Version(array(
                 'title'           => $updateNote->get("title"),
                 'content'         => $pureContent,
-                'content_preview' => substr(strip_tags($pureContent), 0, 255),
-		'user_id' => $user->id
+                'content_preview' => $contentPreview,
+                'user_id' => $user->id
             ));
 
             $version->save();
@@ -524,7 +530,7 @@ class ApiNotesController extends BaseController
             // return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array('item'=>'notebook', 'id'=>$toNotebookId));
             return null;
         }
-    
+
         $note->notebook()->associate($toNotebook);
         $note->save();
 
@@ -592,7 +598,7 @@ class ApiNotesController extends BaseController
             $note->save();
             return $note;
         }
-        
+
     }
     public function share($notebookId, $noteId, $toUserId, $toUMASK){
         $noteIds   =
@@ -617,7 +623,7 @@ class ApiNotesController extends BaseController
                 }
             }
         }
-        return PaperworkHelpers::apiResponse($status, $responses);        
+        return PaperworkHelpers::apiResponse($status, $responses);
     }
 }
 
