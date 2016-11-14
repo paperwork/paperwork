@@ -377,15 +377,15 @@
                     </div>
                     <div class="form-group" id="usernameFieldElement">
                         <label for="usernameField">Username</label>
-                        <input type="text" name="username" id="usernameField" placeholder="Username" class="form-control">
+                        <input type="text" name="username" id="usernameField" placeholder="Username" class="form-control" required>
                     </div>
                     <div class="form-group" id="passwordFieldElement">
                         <label for="passwordField">Password</label>
-                        <input type="password" name="password" id="passwordField" placeholder="Password" class="form-control">
+                        <input type="password" name="password" id="passwordField" placeholder="Password" class="form-control" required>
                     </div>
                     <div class="form-group" id="databaseFieldElement">
                         <label for="databaseField">Database</label>
-                        <input type="text" name="database" id="databaseField" placeholder="Database" class="form-control">
+                        <input type="text" name="database" id="databaseField" placeholder="Database" class="form-control" required>
                     </div>
                     <input type="hidden" name="driver" id="dbms_choice" value="mysql">
                     <button type="button"  class="btn btn-primary col-md-12" id="check_credentials">Check Credentials</button>
@@ -627,25 +627,34 @@
             });
             $("#check_credentials").click(function() {
                 data = $("#database_info_form").serialize();
-                $.ajax("setup/check_database_credentials.php", {
-                    type: "POST",
-                    data: data
-                }).success(function() {
-                    credentialsCorrect = true;
-                    $("#credentials_correct").show();
-                    $("#credentials_not_correct").hide();
-                    $("body").animate({
-                        scrollTop: $("#credentials_correct").offset().top
-                    });
-                    $("#next_btn_mobile, #next_btn").attr("disabled", false);
-                }).error(function() {
+                if(!$("#usernameField").val() || !$("#passwordField").val() || !$("#databaseField").val())) {
                     credentialsCorrect = false;
                     $("#credentials_correct").hide();
                     $("#credentials_not_correct").show();
                     $("body").animate({
                         scrollTop: $("#credentials_not_correct").offset().top
                     });
-                });
+                }else{
+                    $.ajax("setup/check_database_credentials.php", {
+                        type: "POST",
+                        data: data
+                    }).success(function() {
+                        credentialsCorrect = true;
+                        $("#credentials_correct").show();
+                        $("#credentials_not_correct").hide();
+                        $("body").animate({
+                            scrollTop: $("#credentials_correct").offset().top
+                        });
+                        $("#next_btn_mobile, #next_btn").attr("disabled", false);
+                    }).error(function() {
+                        credentialsCorrect = false;
+                        $("#credentials_correct").hide();
+                        $("#credentials_not_correct").show();
+                        $("body").animate({
+                            scrollTop: $("#credentials_not_correct").offset().top
+                        });
+                    });
+                }
             });
             $(".nav-tabs").on("click", "*", function() {
                 $(".nav-tabs > li").removeClass("active");
