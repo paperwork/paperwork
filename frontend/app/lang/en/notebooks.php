@@ -40,5 +40,6 @@ return array(
     'title_new_collection' => 'New Collection',
     'collection_title' => 'Enter collection title',
     'title_edit_collection' => 'Edit Collection',
-    'delete_notes_inside' => 'Delete the notes in this notebook'
+    'delete_notes_inside' => 'Delete the notes in this notebook',
+    'remove_from_collection' => 'Remove from collection'
 );
