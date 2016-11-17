@@ -14,7 +14,7 @@
                             <a class="{{item.css_class}}" href="#" data-name="title" data-type="text" data-pk="{{item.id}}" ng-click="editLineCalled(item.id, item.type)">{{item.title}}</a>
                         </div>
                         <div class="col-sm-6">
-                            <button class="btn btn-xs btn-default" ng-click="removeFromCollection(item.id)">[[Lang::get('notebooks.remove_from_collection')]]</button>
+                            <button class="btn btn-xs btn-default" ng-click="removeFromCollection(item.id)" ng-if="(item.type == 0 && item.parent_id != NULL)">[[Lang::get('notebooks.remove_from_collection')]]</button>
                         </div>
                         <div class="col-sm-2">
                             <button class="btn btn-xs btn-danger" ng-click="deleteItem(item.id, item.type)"><i class="fa fa-trash-o"></i></button>
