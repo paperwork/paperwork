@@ -29,17 +29,17 @@ if(File::exists(storage_path() . "/config/setup") && File::get(storage_path() . 
 }else{
     Route::get('/login', ["as" => "user/login", "uses" => "UserController@showLoginForm"]);
     Route::post('/login', ["as" => "user/login", "uses" => "UserController@login"]);
-    
-    if (Config::get('paperwork.registration')) {
+
+    if (Config::get('paperwork.registration') === "true") {
         Route::get("/register", ["as" => "user/register", "uses" => "UserController@showRegistrationForm"]);
         Route::post("/register", ["as" => "user/register", "uses" => "UserController@register"]);
     }
-    
+
     if (Config::get('paperwork.forgot_password')) {
         Route::any("/request", ["as" => "user/request", "uses" => "UserController@request"]);
         Route::any("/reset/{token}", ["as" => "user/reset", "uses" => "UserController@reset"]);
     }
-    
+
     //Authorized Users
     Route::group(["before" => "auth"], function () {
         App::setLocale(PaperworkHelpers::getUiLanguageFromSession());
@@ -50,19 +50,24 @@ if(File::exists(storage_path() . "/config/setup") && File::get(storage_path() . 
         Route::any("/settings/export", ["as" => "user/settings/export", "uses" => "UserController@export"]);
         Route::any("/settings/import", ["as" => "user/settings/import", "uses" => "UserController@import"]);
         Route::get('/', ["as" => "/", "uses" => "LibraryController@show"]);
-    
+
         //Administrators
         Route::group(['prefix' => 'admin', 'before' => ['admin']], function () {
             Route::get('/', ['as' => 'admin/console', 'uses' => 'AdminController@showConsole']);
             Route::post('/users/delete', ['as' => 'admin/users/delete', 'uses' => 'AdminController@deleteOrRestoreUsers']);
+
+            if(Config::get('paperwork.registration') === "admin") {
+                Route::get("/register", ["as" => "user/register", "uses" => "UserController@showRegistrationForm"]);
+                Route::post("/register", ["as" => "user/register", "uses" => "UserController@register"]);
+            }
         });
     });
-    
-    
+
+
     Route::get('/templates/{angularTemplate}', function ($angularTemplate) {
         return View::make('templates/' . $angularTemplate);
     });
-    
+
     Route::group(array('prefix' => 'api/v1', 'before' => 'auth'), function () {
         App::setLocale(PaperworkHelpers::getUiLanguageFromSession());
         // Route::any('notebook/{num?}', 'ApiNotebooksController@index')->where('num','([0-9]*)');
@@ -92,7 +97,7 @@ if(File::exists(storage_path() . "/config/setup") && File::get(storage_path() . 
         Route::get('/tagged/{num}', 'ApiNotesController@tagged');
         Route::get('/search/{query}', 'ApiNotesController@search');
     });
-    
+
     // Route::any('/api/v1/notebooks/(:num?)', array('as' => 'api.v1.notebooks', 'uses' => 'ApiNotebooksController@index'));
     // Route::any('/api/v1/notes/(:num?)', array('as' => 'api.v1.notes', 'uses' => 'api.v1.notes@index'));
 }

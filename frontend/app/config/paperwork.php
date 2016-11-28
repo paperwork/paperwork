@@ -57,7 +57,7 @@ return array(
 	| no new users will be able to register.
 	|
 	*/
-	'registration' => isset($configuration->registration) ? ($configuration->registration == "true") : true,
+	'registration' => isset($configuration->registration) ? ($configuration->registration) : true,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -178,13 +178,13 @@ return array(
 	*/
 	'tagsPublicPrefixCharacter' => '+',
   	'purgeTagList' => ['script'],
-  	
+
   	/*
   	|------------------------------------------------------------------------
-  	| Maximum Attachments Per Note 
+  	| Maximum Attachments Per Note
   	|------------------------------------------------------------------------
   	|
-  	| The maximum number of attachments that can be attachned to each note. 
+  	| The maximum number of attachments that can be attachned to each note.
   	*/
   	'maximumAttachmentsPerNote' => 10,
 
