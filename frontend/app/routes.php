@@ -73,6 +73,7 @@ if(File::exists(storage_path() . "/config/setup") && File::get(storage_path() . 
         // Route::any('notebook/{num?}', 'ApiNotebooksController@index')->where('num','([0-9]*)');
         Route::resource('notebooks', 'ApiNotebooksController');
     	Route::get('/notebooks/{notebookId}/share/{toUserId}/{toUMASK}', 'ApiNotebooksController@share');
+        Route::get('/notebooks/{notebookId}/remove-collection', 'ApiNotebooksController@removeNotebookFromCollection');
         Route::resource('tags', 'ApiTagsController');
         Route::resource('notebooks.notes', 'ApiNotesController');
         // I really don't know whether that's a great way to solve this...

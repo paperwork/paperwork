@@ -149,8 +149,8 @@ class ApiNotebooksController extends BaseController {
 		if($shortcut->count()>0) {
 			$shortcut->delete();
 		}
-		
-		//Check if notebook is a collection 
+
+		//Check if notebook is a collection
 		if($notebook->type == 1) {
 		    $notebooks = User::find(Auth::user()->id)->notebooks()->wherePivot('umask','=', PaperworkHelpers::UMASK_OWNER)->where('notebooks.parent_id', '=', $notebook->id)->whereNull('notebooks.deleted_at')->get();
 		    foreach($notebooks as $row) {
@@ -164,8 +164,8 @@ class ApiNotebooksController extends BaseController {
 
 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $deletedNotebook);
 	}
-	
-	
+
+
 	private function shareNotebook($notebookId,$toUserId,$toUMASK){
 		$notebook=User::find(Auth::user()->id)->notebooks()
 						->wherePivot('umask','=',PaperworkHelpers::UMASK_OWNER)
@@ -200,7 +200,17 @@ class ApiNotebooksController extends BaseController {
 		    return $notebook;
 		}
 	}
-	
+
+	public function removeNotebookFromCollection($notebookId) {
+		$notebook = Notebook::find($notebookId);
+		$notebook->parent_id = NULL;
+		if($notebook->save()) {
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notebook);
+		}else{
+			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, $notebook);
+		}
+	}
+
 	public function share($notebookId,$toUserId,$toUMASK){
 		$toUserIds = explode(PaperworkHelpers::MULTIPLE_REST_RESOURCE_DELIMITER,
 			$toUserId);
@@ -221,7 +231,7 @@ class ApiNotebooksController extends BaseController {
 		}
         return PaperworkHelpers::apiResponse($status, $responses);
 	}
-	
+
 	public function storeCollection() {
 	    $validator = $this->getNewCollectionValidator();
 	    if($validator->passes()) {
@@ -240,11 +250,11 @@ class ApiNotebooksController extends BaseController {
 	        return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, $validator->getMessageBag()->toArray());
 	    }
 	}
-	
+
 	protected function getNewCollectionValidator() {
 	    return Validator::make(Input::all(), ["title" => "required"]);
 	}
-	
+
 	public function updateCollection($collectionId) {
 		$idArray = [];
 		$validator = $this->getNewCollectionValidator();
@@ -261,11 +271,11 @@ class ApiNotebooksController extends BaseController {
 
 			$children = User::find(Auth::user()->id)->notebooks()->wherePivot('umask','>',PaperworkHelpers::UMASK_READONLY)->where('notebooks.parent_id', '=', $collectionId)->whereNull('notebooks.deleted_at')->get()->toArray();
 			$newChildren = $updateCollection->get('notebooks');
-			
+
 			foreach($children as $child) {
 			    $idArray[] = $child["id"];
 			}
-			
+
 			$addedChildren = array_diff($newChildren, $idArray);
 			if(count($addedChildren) > 0) {
 			    foreach($addedChildren as $addedChild) {
@@ -274,7 +284,7 @@ class ApiNotebooksController extends BaseController {
 			        $addedChild->save();
 			    }
 			}
-			
+
 			$removedChildren = array_diff($idArray, $newChildren);
 			if(count($removedChildren) > 0) {
 			    foreach($removedChildren as $removedChild) {

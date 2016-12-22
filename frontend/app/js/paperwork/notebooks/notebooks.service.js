@@ -37,6 +37,10 @@ angular.module('paperworkNotes').factory('NotebooksService',
       NetService.apiDelete('/notebooks/' + notebookId, callback);
     };
 
+    paperworkNotebooksServiceFactory.removeNotebookFromCollection = function(notebookId, callback) {
+      NetService.apiGet('/notebooks/'+ notebookId + '/remove-collection', callback);
+    };
+
     paperworkNotebooksServiceFactory.deleteTag = function(tagId, callback) {
       NetService.apiDelete('/tags/' + tagId, callback);
     };
@@ -115,11 +119,11 @@ angular.module('paperworkNotes').factory('NotebooksService',
             }
         });
     };
-    
+
     paperworkNotebooksServiceFactory.createCollection = function(data, callback) {
         NetService.apiPost('/notebooks/collections', data, callback);
     };
-    
+
     paperworkNotebooksServiceFactory.updateCollection = function(collectionId, data, callback) {
         NetService.apiPost('/notebooks/collections/' + collectionId + '/edit', data, callback);
     };
