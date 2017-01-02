@@ -7,7 +7,13 @@ CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here.
 	// For complete reference see:
 	// http://docs.ckeditor.com/#!/api/CKEDITOR.config
-
+	
+	// Set CKEditor theme
+	config.skin = 'bootstrapck';
+	
+	// Add autosave plugin
+	config.extraPlugins = 'autosave';
+	
 	// The toolbar groups arrangement, optimized for a single toolbar row.
 	config.toolbarGroups = [
 		{ name: 'document',	   groups: [ 'mode', 'document', 'doctools' ] },
@@ -33,4 +39,5 @@ CKEDITOR.editorConfig = function( config ) {
 	config.removeDialogTabs = 'link:advanced';
 	
 	config.allowedContent = true;
+	
 };

@@ -142,7 +142,7 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
               $rootScope.errors = {};
               $rootScope.templateNoteEdit.modified = false;
               CKEDITOR.instances.content.resetDirty();
-              localStorage.removeItem('autosave' + window.location + '_' + CKEDITOR.instances.content.id);
+              localStorage.removeItem('paperwork_autosave_' + window.location);
               // Temporary until related issue is closed
               StatusNotifications.sendStatusFeedback("success", "note_saved_successfully");
               break;
