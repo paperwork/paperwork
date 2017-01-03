@@ -58,7 +58,7 @@ angular.module('paperworkNotes').controller('NotesEditController',
                 tabSpaces: 4,
                 height: '400px',
                 autosave: {
-                    SaveKey: 'paperwork_autosave_' + window.location,
+                    SaveKey: 'paperwork_autosave_' + $rootScope.noteSelectedId.noteId,
                     saveOnDestroy: true,
                     messageType: 'statusbar'
                 }
