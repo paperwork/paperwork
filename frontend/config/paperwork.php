@@ -1,10 +1,11 @@
 <?php
 
-if(File::exists(storage_path() . "/config/paperwork.json")) {
+if(file_exists(storage_path() . "/config/paperwork.json")) {
     $configuration = json_decode(file_get_contents(storage_path() . "/config/paperwork.json"));
 }else{
     $configuration = json_decode(file_get_contents(storage_path() . "/config/default_paperwork.json"));
 }
+
 
 return array(
 	/*
@@ -178,13 +179,13 @@ return array(
 	*/
 	'tagsPublicPrefixCharacter' => '+',
   	'purgeTagList' => ['script'],
-  	
+
   	/*
   	|------------------------------------------------------------------------
-  	| Maximum Attachments Per Note 
+  	| Maximum Attachments Per Note
   	|------------------------------------------------------------------------
   	|
-  	| The maximum number of attachments that can be attachned to each note. 
+  	| The maximum number of attachments that can be attachned to each note.
   	*/
   	'maximumAttachmentsPerNote' => 10,
 
