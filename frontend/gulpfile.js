@@ -13,54 +13,54 @@ var gulp = require('gulp'),
 
 var paths = {
     bootstrap: [
-        'app/js/bower_components/bootstrap/dist/js/bootstrap.js'//,
-        //'app/js/bootstrap-tree.js'
+        'app/resources/assets/js/bower_components/bootstrap/dist/js/bootstrap.js'//,
+        //'app/resources/assets/js/bootstrap-tree.js'
     ],
     paperwork: [
-        'app/js/paperwork/**/*.js'
+        'app/resources/assets/js/paperwork/**/*.js'
     ],
     paperworknative: [
-        'app/js/paperwork-native.js'
+        'app/resources/assets/js/paperwork-native.js'
     ],
     angular: [
-        'app/js/bower_components/angular/angular.js',
-        'app/js/bower_components/angular-resource/angular-resource.js',
-        'app/js/bower_components/angular-route/angular-route.js',
-        //'app/js/bower_components/angular-sanitize/angular-sanitize.js',
-        'app/js/bower_components/angular-animate/angular-animate.js',
-        'app/js/bower_components/angular-file-upload/angular-file-upload.js',
-        'app/js/bower_components/angular-utf8-base64/angular-utf8-base64.js',
-        'app/js/bower_components/angular-ui-bootstrap-bower/ui-bootstrap.js',
-        'app/js/bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js',
-        'app/js/bower_components/ngDraggable/ngDraggable.js',
-        'app/js/bower_components/angular-loading-bar/src/loading-bar.js',
-        'app/js/bower_components/textAngular/src/textAngular-sanitize.js',
-        'app/js/bower_components/angular-highlightjs/angular-highlightjs.min.js'
+        'app/resources/assets/js/bower_components/angular/angular.js',
+        'app/resources/assets/js/bower_components/angular-resource/angular-resource.js',
+        'app/resources/assets/js/bower_components/angular-route/angular-route.js',
+        //'app/resources/assets/js/bower_components/angular-sanitize/angular-sanitize.js',
+        'app/resources/assets/js/bower_components/angular-animate/angular-animate.js',
+        'app/resources/assets/js/bower_components/angular-file-upload/angular-file-upload.js',
+        'app/resources/assets/js/bower_components/angular-utf8-base64/angular-utf8-base64.js',
+        'app/resources/assets/js/bower_components/angular-ui-bootstrap-bower/ui-bootstrap.js',
+        'app/resources/assets/js/bower_components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js',
+        'app/resources/assets/js/bower_components/ngDraggable/ngDraggable.js',
+        'app/resources/assets/js/bower_components/angular-loading-bar/src/loading-bar.js',
+        'app/resources/assets/js/bower_components/textAngular/src/textAngular-sanitize.js',
+        'app/resources/assets/js/bower_components/angular-highlightjs/angular-highlightjs.min.js'
     ],
     jQuery: [
-        'app/js/bower_components/jquery/dist/jquery.js',
-        'app/js/bower_components/jquery-overscroll-fixed/dist/jquery.overscroll.js',
-        'app/js/bower_components/jquery.scrollTo/jquery.scrollTo.js'
+        'app/resources/assets/js/bower_components/jquery/dist/jquery.js',
+        'app/resources/assets/js/bower_components/jquery-overscroll-fixed/dist/jquery.overscroll.js',
+        'app/resources/assets/js/bower_components/jquery.scrollTo/jquery.scrollTo.js'
     ],
     tagsinput: [
-        'app/js/bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js',
-        'app/js/bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput-angular.js',
-        'app/js/bower_components/typeahead.js/dist/typeahead.bundle.js'
+        'app/resources/assets/js/bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput.js',
+        'app/resources/assets/js/bower_components/bootstrap-tagsinput/dist/bootstrap-tagsinput-angular.js',
+        'app/resources/assets/js/bower_components/typeahead.js/dist/typeahead.bundle.js'
     ],
     libraries: [
-        'app/js/freqselector.js',
-        'app/js/mathquill.js',
-        'app/js/bower_components/retinajs/dist/retina.js',
-        'app/js/bower_components/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js',
+        'app/resources/assets/js/freqselector.js',
+        'app/resources/assets/js/mathquill.js',
+        'app/resources/assets/js/bower_components/retinajs/dist/retina.js',
+        'app/resources/assets/js/bower_components/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js',
         //'public/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js'
     ],
     ie9compat: [
-        'app/js/bower_components/html5shiv/dist/html5shiv.js',
-        'app/js/bower_components/respond/dest/respond.src.js',
-        'app/js/bower_components/placeholders/dist/placeholders.min.js'
+        'app/resources/assets/js/bower_components/html5shiv/dist/html5shiv.js',
+        'app/resources/assets/js/bower_components/respond/dest/respond.src.js',
+        'app/resources/assets/js/bower_components/placeholders/dist/placeholders.min.js'
     ],
     ie11compat: [
-        'app/js/bower_components/bootstrap3-ie10-viewport-bug-workaround/ie10-viewport-bug-workaround.js'
+        'app/resources/assets/js/bower_components/bootstrap3-ie10-viewport-bug-workaround/ie10-viewport-bug-workaround.js'
     ],
     output: {
         js: 'public/js',
@@ -70,9 +70,9 @@ var paths = {
 
 gulp.task('compileLessBootstrapTheme', function () {
     gulp
-        .src('app/less/bootstrap/theme.less')
+        .src('app/resources/assets/less/bootstrap/theme.less')
         .pipe(less({
-            paths: ['app/less/bootstrap/']
+            paths: ['app/resources/assets/less/bootstrap/']
         }))
         .pipe(rename({
             basename: 'bootstrap-theme.min'
@@ -83,9 +83,9 @@ gulp.task('compileLessBootstrapTheme', function () {
 
 gulp.task('compileLessPaperworkThemeV1', function () {
     gulp
-        .src('app/less/paperwork-themes/paperwork-v1/paperwork-v1.less')
+        .src('app/resources/assets/less/paperwork-themes/paperwork-v1/paperwork-v1.less')
         .pipe(less({
-            paths: ['app/less/bootstrap/', 'app/less/paperwork-themes/paperwork-v1/', 'app/less/font-awesome/']
+            paths: ['app/resources/assets/less/bootstrap/', 'app/resources/assets/less/paperwork-themes/paperwork-v1/', 'app/resources/assets/less/font-awesome/']
         }))
         .pipe(rename({
             basename: 'paperwork-v1.min'
@@ -97,7 +97,7 @@ gulp.task('compileLessPaperworkThemeV1', function () {
 gulp.task('concatLibCSS', function () {
     gulp.src([
         'public/ckeditor/plugins/codesnippet/lib/highlight/styles/default.css',
-        'app/js/bower_components/angular-loading-bar/src/loading-bar.css'
+        'app/resources/assets/js/bower_components/angular-loading-bar/src/loading-bar.css'
     ])
         .pipe(concat('libs.css'))
         .pipe(gulp.dest(paths.output.css));
@@ -106,9 +106,9 @@ gulp.task('concatLibCSS', function () {
 
 gulp.task('compileLessFreqselector', function() {
 	gulp
-		.src('app/less/freqselector.less')
+		.src('app/resources/assets/less/freqselector.less')
 		.pipe(less({
-			paths: ['app/less/']
+			paths: ['app/resources/assets/less/']
 		}))
 		.pipe(rename({
 			basename: 'freqselector.min'
@@ -119,9 +119,9 @@ gulp.task('compileLessFreqselector', function() {
 
 gulp.task('compileLessTypeahead', function () {
     gulp
-        .src('app/less/typeahead.less')
+        .src('app/resources/assets/less/typeahead.less')
         .pipe(less({
-            paths: ['app/less/']
+            paths: ['app/resources/assets/less/']
         }))
         .pipe(rename({
             basename: 'typeahead.min'
@@ -235,11 +235,11 @@ gulp.task('prod', ['default', 'minifyJs']);
 
 gulp.task('watch', function () {
     livereload.listen();
-    gulp.watch('app/less/*.less', ['less']);
-    gulp.watch('app/less/bootstrap/*.less', ['less']);
-    gulp.watch('app/less/font-fontawesome/*.less', ['less']);
-    gulp.watch('app/less/paperwork-themes/paperwork-v1/*.less', ['less']);
-    gulp.watch('app/js/**/*.js', ['js']);
-    gulp.watch('app/js/bootstrap/*.js', ['compileJsBootstrap']);
-    gulp.watch('app/js/paperwork/*.js', ['compileJsPaperwork']);
+    gulp.watch('app/resources/assets/less/*.less', ['less']);
+    gulp.watch('app/resources/assets/less/bootstrap/*.less', ['less']);
+    gulp.watch('app/resources/assets/less/font-fontawesome/*.less', ['less']);
+    gulp.watch('app/resources/assets/less/paperwork-themes/paperwork-v1/*.less', ['less']);
+    gulp.watch('app/resources/assets/js/**/*.js', ['js']);
+    gulp.watch('app/resources/assets/js/bootstrap/*.js', ['compileJsBootstrap']);
+    gulp.watch('app/resources/assets/js/paperwork/*.js', ['compileJsPaperwork']);
 });
