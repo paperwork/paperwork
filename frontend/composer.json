@@ -26,7 +26,8 @@
 			"app/Http/Controllers",
 			"app/Models",
 			"app/Console/Commands",
-			"app/Lib"
+			"app/Lib",
+			"app/Extensions"
 		],
 		"psr-4": {
 			"App\\": "app/"
