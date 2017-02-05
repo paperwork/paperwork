@@ -5,8 +5,8 @@
 	"license": "MIT",
 	"type": "project",
 	"require": {
-		"laravel/framework": "5.0.*",
-		"laravelcollective/html": "~5.0",
+		"laravel/framework": "5.1.*",
+		"laravelcollective/html": "~5.1",
         "jenssegers/agent": "*",
 		"erusev/parsedown": "1.6.*",
 		"thiagoalessio/tesseract_ocr": ">= 0.2.0",

@@ -1,6 +1,6 @@
 <?php
 
-return [
+$array = [
 
 	/*
 	|--------------------------------------------------------------------------
@@ -135,6 +135,7 @@ return [
 		'Illuminate\Translation\TranslationServiceProvider',
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
+		'Illuminate\Broadcasting\BroadcastServiceProvider',
 
 		/*
 		 * Application Service Providers...
@@ -144,6 +145,14 @@ return [
 		'App\Providers\RouteServiceProvider',
 		'Collective\Html\HtmlServiceProvider',
 
+		'Paperwork\EloquentLdapConnectorServiceProvider',
+		'Paperwork\UserRegistrationProvider',
+		'Paperwork\Db\PaperworkDbServiceProvider',
+		'Paperwork\Helpers\PaperworkHelpersServiceProvider',
+
+		'Jenssegers\Agent\AgentServiceProvider',
+		'SimpleSoftwareIO\QrCode\QrCodeServiceProvider',
+        'Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider',
 	],
 
 	/*
@@ -194,6 +203,27 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
 
+        'PaperworkHelpers' => 'Paperwork\Helpers\PaperworkHelpersFacade',
+		'PaperworkDb' 	  => 'Paperwork\Db\PaperworkDbFacade',
+
+		'Agent'           => 'Jenssegers\Agent\Facades\Agent',
+		'QrCode'		  => 'SimpleSoftwareIO\QrCode\Facades\QrCode',
+		'Uuid'			  => 'Webpatser\Uuid\Uuid'
+
 	],
 
 ];
+
+
+if(file_exists(storage_path()."/paperwork_settings")) {
+    $configString = file_get_contents(storage_path()."/paperwork_settings");
+    $configLines = explode("\r\n", $configString);
+    foreach($configLines as $configLine) {
+        $configLineArray = explode(": ", $configLine);
+        if($configLineArray[0] === "debug") {
+            $array['debug'] = $configLineArray[1];
+        }
+    }
+}
+
+return $array;

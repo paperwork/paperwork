@@ -13,9 +13,6 @@
 
 Blade::setContentTags('[[', ']]');
 Blade::setEscapedContentTags('[[[', ']]]');
-App::missing(function ($exception) {
-    return Response::view('404', array(), 404);
-});
 
 if(File::exists(storage_path() . "/config/setup") && File::get(storage_path() . "/config/setup") < 7) {
     Route::post('setup/setConfig', ["as" => "setup/setConfig", "uses" => "SetupController@setConfiguration"]);
@@ -96,4 +93,8 @@ if(File::exists(storage_path() . "/config/setup") && File::get(storage_path() . 
 
     // Route::any('/api/v1/notebooks/(:num?)', array('as' => 'api.v1.notebooks', 'uses' => 'ApiNotebooksController@index'));
     // Route::any('/api/v1/notes/(:num?)', array('as' => 'api.v1.notes', 'uses' => 'api.v1.notes@index'));
+
+    Route::any('{catchall}', function() {
+        return Response::view('404', array(), 404);
+    })->where('catchall', '.*');
 }
