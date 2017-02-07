@@ -1,7 +1,6 @@
 <?php
 
 class ApiCalendarController extends BaseController {
-	use SoftDeletingTrait;
 
 	public $restful = true;
 

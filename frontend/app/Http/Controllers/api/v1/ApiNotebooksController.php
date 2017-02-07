@@ -1,8 +1,7 @@
 <?php
 
 class ApiNotebooksController extends BaseController {
-	use SoftDeletingTrait;
-
+	
 	const NOTEBOOK_ALL_ID = '00000000-0000-0000-0000-000000000000';
 	protected $dates = ['deleted_at'];
 	public $restful = true;

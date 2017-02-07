@@ -1,7 +1,11 @@
 <?php
 
-class Version extends PaperworkModel {
-	use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+
+class Version extends PaperworkModel {	
+	use SoftDeletes;
+
 	protected $softDelete = true;
 	protected $table = 'versions';
 	protected $fillable = array('previous_id', 'next_id', 'title', 'content', 'content_preview','user_id');

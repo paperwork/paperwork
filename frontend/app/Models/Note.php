@@ -1,7 +1,11 @@
 <?php
 
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+
 class Note extends PaperworkModel {
-	use Illuminate\Database\Eloquent\SoftDeletes;
+    use SoftDeletes;
+
 	protected $softDelete = true;
 	protected $table = 'notes';
 	protected $fillable = array('notebook_id', 'version_id');

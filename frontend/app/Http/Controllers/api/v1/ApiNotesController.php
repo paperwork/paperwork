@@ -2,7 +2,6 @@
 
 class ApiNotesController extends BaseController
 {
-    use SoftDeletingTrait;
 
     protected $dates = ['deleted_at'];
     public $restful = true;

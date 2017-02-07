@@ -1,4 +1,6 @@
 <?php
+
+
 class PaperworkModel extends Eloquent {
 	public $incrementing = false;
 

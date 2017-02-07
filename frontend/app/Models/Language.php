@@ -1,7 +1,11 @@
 <?php
 
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+
 class Language extends PaperworkModel {
-	use Illuminate\Database\Eloquent\SoftDeletes;
+    use SoftDeletes;
+
 	protected $softDelete = true;
 	protected $table = 'languages';
 	protected $fillable = array('language_code');

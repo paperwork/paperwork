@@ -1,7 +1,11 @@
 <?php
 
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+
 class Setting extends PaperworkModel {
-	use Illuminate\Database\Eloquent\SoftDeletes;
+    use SoftDeletes;
+    
 	protected $softDelete = true;
 	protected $table = 'settings';
 	protected $fillable = array('user_id', 'ui_language');

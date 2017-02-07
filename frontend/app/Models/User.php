@@ -4,10 +4,11 @@ use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatbleContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class User extends PaperworkModel implements AuthenticatbleContract, CanResetPasswordContract {
-	use Authenticatable, CanResetPassword;
-	use Illuminate\Database\Eloquent\SoftDeletes;
+	use Authenticatable, CanResetPassword, SoftDeletes;
 
 	/**
 	 * The database table used by the model.
