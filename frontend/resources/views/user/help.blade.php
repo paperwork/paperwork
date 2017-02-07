@@ -2,7 +2,7 @@
 @section("content")
 
 <div class="container-narrow">
-[[ $topic ]]
+{!! $topic !!}
 </div>
 
 @stop

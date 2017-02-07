@@ -1,12 +1,12 @@
 <div ng-controller="FileUploadController" class="file-upload-wrapper" uploader="uploader" nv-file-drop=""
-     uploader="uploader" filters="queueLimit, customFilter" ng-init="maximumAttachmentsPerNote=[[ Config::get('paperwork.maximumAttachmentsPerNote') ]]">
+     uploader="uploader" filters="queueLimit, customFilter" ng-init="maximumAttachmentsPerNote={!! Config::get('paperwork.maximumAttachmentsPerNote') !!}">
     <nav class="navbar navbar-inverse navbar-edit" role="navigation">
         <div class="row">
             <div class="col-xs-12" id="navbar-paperwork-note-edit">
                 <ul class="nav navbar-nav navbar-edit">
                     <li>
                         <div class="btn-group">
-                            <!-- 			      		<button ng-controller="SidebarNotesController" class="btn btn-default navbar-btn"><i class="fa fa-book"></i> {!!templateNoteEdit.notebook_title!!}</button>
+                            <!-- 			      		<button ng-controller="SidebarNotesController" class="btn btn-default navbar-btn"><i class="fa fa-book"></i> @((templateNoteEdit.notebook_title}}</button>
                                                       <button class="btn btn-default navbar-btn"><i class="fa fa-tags"></i></button> -->
                         </div>
                     </li>
@@ -15,9 +15,9 @@
                     <li>
                         <div class="btn-group" ng-controller="SidebarNotesController">
                             <a id="updateNote" href="" ng-click="updateNote()" class="btn btn-default navbar-btn"
-                               title="[[Lang::get('keywords.save')]]"><i class="fa fa-floppy-o"></i></a>
+                               title="{!!Lang::get('keywords.save')!!}"><i class="fa fa-floppy-o"></i></a>
                             <a href="" ng-click="closeNote()" class="btn btn-default navbar-btn"
-                               title="[[Lang::get('keywords.close')]]"><i class="fa fa-times-circle"></i></a>
+                               title="{!!Lang::get('keywords.close')!!}"><i class="fa fa-times-circle"></i></a>
                         </div>
                     </li>
                 </ul>
@@ -32,14 +32,14 @@
             <form role="form" class="form">
                 <div>
                     <div class="page-header">
-                        <div class="form-group {!! errors.title ? 'has-error' : '' !!}">
+                        <div class="form-group @(( errors.title ? 'has-error' : '' }}">
                             <input type="text" class="form-control input-lg" id="title"
-                                   placeholder="[[Lang::get('keywords.note_title')]]"
+                                   placeholder="{!!Lang::get('keywords.note_title')!!}"
                                    ng-model="templateNoteEdit.version.title">
                         </div>
-                        <div class="form-group {!! errors.tags ? 'has-error' : '' !!}">
+                        <div class="form-group @(( errors.tags ? 'has-error' : '' }}">
                             <input type="text" class="form-control input-lg" id="tags"
-                                   placeholder="[[Lang::get('keywords.tags_separated')]]">
+                                   placeholder="{!!Lang::get('keywords.tags_separated')!!}">
                         </div>
                     </div>
                     <div class="page-content">

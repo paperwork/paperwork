@@ -11,8 +11,6 @@
 |
 */
 
-Blade::setContentTags('[[', ']]');
-Blade::setEscapedContentTags('[[[', ']]]');
 
 if(File::exists(storage_path() . "/config/setup") && File::get(storage_path() . "/config/setup") < 7) {
     Route::post('setup/setConfig', ["as" => "setup/setConfig", "uses" => "SetupController@setConfiguration"]);
