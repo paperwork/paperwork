@@ -26,17 +26,18 @@ class RouteServiceProvider extends ServiceProvider {
 	{
 		parent::boot($router);
 
-        Route::filter('auth.basic', function()
-        {
-        	return Auth::basic("username");
-        });
-
-        Route::filter('admin', function($route, $request)
-        {
-         if ( ! Auth::user()->isAdmin()) {
-        	 return App::abort(401, 'You are not authorized.');
-         }
-        });
+		// TODO
+        // Route::filter('auth.basic', function()
+        // {
+        // 	return Auth::basic("username");
+        // });
+		//
+        // Route::filter('admin', function($route, $request)
+        // {
+        //  if ( ! Auth::user()->isAdmin()) {
+        // 	 return App::abort(401, 'You are not authorized.');
+        //  }
+        // });
 	}
 
 	/**

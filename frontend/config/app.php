@@ -2,6 +2,8 @@
 
 $array = [
 
+	'env' => env('APP_ENV', 'production'),
+
 	/*
 	|--------------------------------------------------------------------------
 	| Application Debug Mode
@@ -113,12 +115,10 @@ $array = [
 		/*
 		 * Laravel Framework Service Providers...
 		 */
-		'Illuminate\Foundation\Providers\ArtisanServiceProvider',
 		'Illuminate\Auth\AuthServiceProvider',
 		'Illuminate\Bus\BusServiceProvider',
 		'Illuminate\Cache\CacheServiceProvider',
 		'Illuminate\Foundation\Providers\ConsoleSupportServiceProvider',
-		'Illuminate\Routing\ControllerServiceProvider',
 		'Illuminate\Cookie\CookieServiceProvider',
 		'Illuminate\Database\DatabaseServiceProvider',
 		'Illuminate\Encryption\EncryptionServiceProvider',
@@ -183,7 +183,7 @@ $array = [
 		'File'      => 'Illuminate\Support\Facades\File',
 		'Form'      => 'Collective\Html\FormFacade',
 		'Hash'      => 'Illuminate\Support\Facades\Hash',
-		'Html'      => 'Collective\Html\HtmlFacade',
+		'HTML'      => 'Collective\Html\HtmlFacade',
 		'Input'     => 'Illuminate\Support\Facades\Input',
 		'Inspiring' => 'Illuminate\Foundation\Inspiring',
 		'Lang'      => 'Illuminate\Support\Facades\Lang',
