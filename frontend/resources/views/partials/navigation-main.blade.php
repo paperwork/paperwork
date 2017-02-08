@@ -17,7 +17,7 @@
 			"fa_icon" => "fa-cog"
 		])
 
-	@if (Auth::user() && Auth::user()->isAdmin())
+	@if (Auth::user() && Auth::user()->is_admin)
 		@include("partials.navbar.navbar-link", [
 				"route" => URL::route("admin/console"),
 				"title" => Lang::get("keywords.admin_area"),

@@ -54,11 +54,4 @@ class User extends PaperworkModel implements AuthenticatbleContract, CanResetPas
 	  return $this->hasMany('Version')->withTimestamps();
 	}
 
-    public function isAdmin() {
-    	return $this->is_admin;
-    }
-
-    public function getReminderEmail() {
-        return $this->username;
-    }
 }
