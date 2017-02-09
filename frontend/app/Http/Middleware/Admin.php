@@ -3,7 +3,7 @@
 use Closure;
 use Illuminate\Contracts\Auth\Guard;
 
-class Authenticate {
+class Admin {
 
 	/**
 	 * The Guard implementation.
@@ -32,20 +32,8 @@ class Authenticate {
 	 */
 	public function handle($request, Closure $next)
 	{
-        if ($request->header('Authorization') === null) {
-    		if ($this->auth->guest())
-    		{
-    			if ($request->ajax())
-    			{
-    				return response('Unauthorized.', 401);
-    			}
-    			else
-    			{
-    				return redirect()->guest('login');
-    			}
-    		}
-        } else {
-            return Auth::basic("username");
+        if (! $this->auth->user->is_admin) {
+            return App::abort(401, 'You are not authorized.');
         }
 
 		return $next($request);
