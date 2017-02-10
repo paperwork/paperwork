@@ -8,7 +8,6 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatbleContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-
 class User extends PaperworkModel implements AuthenticatbleContract, CanResetPasswordContract
 {
     use Authenticatable, CanResetPassword, SoftDeletes;
@@ -66,5 +65,15 @@ class User extends PaperworkModel implements AuthenticatbleContract, CanResetPas
     public function versions()
     {
         return $this->hasMany('App\Models\Version')->withTimestamps();
+    }
+
+    public function isAdmin()
+    {
+        return $this->is_admin;
+    }
+
+    public function getReminderEmail()
+    {
+        return $this->username;
     }
 }

@@ -33,7 +33,7 @@ class RouteServiceProvider extends ServiceProvider {
 		//
         // Route::filter('admin', function($route, $request)
         // {
-        //  if ( ! Auth::user()->is_admin) {
+        //  if ( ! Auth::user()->isAdmin()) {
         // 	 return App::abort(401, 'You are not authorized.');
         //  }
         // });
