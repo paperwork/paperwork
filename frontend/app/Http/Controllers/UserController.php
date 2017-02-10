@@ -1,6 +1,18 @@
 <?php
 
+namespace App\Http\Controllers;
+
 use \Paperwork\UserRegistrator;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\View;
+use App\Models\Setting;
+use App\Models\Language;
 
 /**
  * Class UserController
@@ -19,7 +31,7 @@ class UserController extends BaseController
     public function __construct(UserRegistrator $userRegistrator)
     {
         $this->userRegistrator = $userRegistrator;
-        $this->isLdap          = PaperworkHelpers::isLdap();
+        $this->isLdap          = \PaperworkHelpers::isLdap();
     }
 
     public function showRegistrationForm()
@@ -32,7 +44,7 @@ class UserController extends BaseController
      *
      * @return $this|\Illuminate\Http\RedirectResponse
      */
-    public function register()
+    public function register(Request $request)
     {
         $validator = $this->getRegistrationValidator();
 
@@ -51,18 +63,17 @@ class UserController extends BaseController
             //thus, we need to just load the user using eloquent and not create a new one.
             if ($this->isLdap && Config::get('ldap.autoRegister')) {
                 $user = User::query()
-                            ->where('username', Input::get('username'))
+                            ->where('username', $request->input('username'))
                             ->first();
             } else {
                 $user =
-                  $this->userRegistrator->registerUser(Input::except('_token',
-                    'password_confirmation', 'ui_language'),
-                    Input::get('ui_language'));
+                  $this->userRegistrator->registerUser($request->except(['_token', 'password_confirmation', 'ui_language']),
+                    $request->input('ui_language'));
             }
             if ($user && !Request::ajax()) {
                 Auth::login($user);
 
-                Session::put('ui_language', Input::get('ui_language'));
+                Session::put('ui_language', $request->input('ui_language'));
 
                 return Redirect::route("/");
             }else if($user) {
@@ -73,26 +84,26 @@ class UserController extends BaseController
                 return Redirect::back()
                            ->withErrors(["password" => [Lang::get('messages.account_creation_failed')]]);
             }else{
-                return Response::json(array('html' => View::make('partials/registration-form', array('password' => Lang::get('messages.account_creation_failed'))), 'input' => Input::all()), 400);
+                return Response::json(array('html' => View::make('partials/registration-form', array('password' => Lang::get('messages.account_creation_failed'))), 'input' => $request->all()), 400);
 
             }
         } else {
             if(!Request::ajax()) {
                 return Redirect::back()->withInput()->withErrors($validator);
             }else{
-                return Response::json(array('html' => View::make('partials/registration-form')->withErrors($validator)->render(), 'input' => Input::all()), 400);
+                return Response::json(array('html' => View::make('partials/registration-form')->withErrors($validator)->render(), 'input' => $request->all()), 400);
             }
         }
     }
 
-    public function login()
+    public function login(Request $request)
     {
         $validator = $this->getLoginValidator();
 
         if ($validator->passes()) {
             $credentials = $this->getLoginCredentials();
 
-            if (Auth::attempt($credentials, Input::has('remember_me'))) {
+            if (Auth::attempt($credentials, $request->has('remember_me'))) {
                 $settings =
                   Setting::where('user_id', '=', Auth::user()->id)->first();
 
@@ -166,21 +177,21 @@ class UserController extends BaseController
         ];
     }
 
-    public function profile()
+    public function profile(Request $request)
     {
-        $user = User::find(Auth::user()->id);
+        $user = $request->user();
 
         if ($this->isPostRequest()) {
             $validator = $this->getProfileValidator();
 
             if ($validator->passes()) {
-                $user->firstname = Input::get('firstname');
-                $user->lastname  = Input::get('lastname');
+                $user->firstname = $request->get('firstname');
+                $user->lastname  = $request->get('lastname');
 
-                $passwd = Input::get('password');
+                $passwd = $request->get('password');
 
                 if (!is_null($passwd) && trim($passwd) != "") {
-                    $user->password = Input::get('password');
+                    $user->password = $request->get('password');
                 }
 
                 if (!$user->save()) {
@@ -197,7 +208,7 @@ class UserController extends BaseController
 
     public function settings()
     {
-        $user     = User::find(Auth::user()->id);
+        $user     = Auth::user();
         $settings = Setting::where('user_id', '=', $user->id)->first();
 
         if ($this->isPostRequest()) {

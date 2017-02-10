@@ -11,7 +11,6 @@
 |
 */
 
-
 if (File::exists(storage_path() . "/config/setup") && File::get(storage_path() . "/config/setup") < 7) {
     Route::post('setup/setConfig', ["as" => "setup/setConfig", "uses" => "SetupController@setConfiguration"]);
     Route::get('setup/register', function () {
@@ -61,32 +60,32 @@ if (File::exists(storage_path() . "/config/setup") && File::get(storage_path() .
     Route::group(array('prefix' => 'api/v1', 'middleware' => 'auth'), function () {
         App::setLocale(PaperworkHelpers::getUiLanguageFromSession());
         // Route::any('notebook/{num?}', 'ApiNotebooksController@index')->where('num','([0-9]*)');
-        Route::resource('notebooks', 'ApiNotebooksController');
-        Route::get('/notebooks/{notebookId}/share/{toUserId}/{toUMASK}', 'ApiNotebooksController@share');
-        Route::get('/notebooks/{notebookId}/remove-collection', 'ApiNotebooksController@removeNotebookFromCollection');
-        Route::resource('tags', 'ApiTagsController');
-        Route::resource('notebooks.notes', 'ApiNotesController');
+        Route::resource('notebooks', 'Api\V1\ApiNotebooksController');
+        Route::get('/notebooks/{notebookId}/share/{toUserId}/{toUMASK}', 'Api\V1\ApiNotebooksController@share');
+        Route::get('/notebooks/{notebookId}/remove-collection', 'Api\V1\ApiNotebooksController@removeNotebookFromCollection');
+        Route::resource('tags', 'Api\V1\ApiTagsController');
+        Route::resource('notebooks.notes', 'Api\V1\ApiNotesController');
         // I really don't know whether that's a great way to solve this...
-        Route::get('/notebooks/{notebookId}/notes/{noteId}/move/{toNotebookId}', 'ApiNotesController@move');
-        Route::get('/notebooks/{notebookId}/notes/{noteId}/tag/{toTagId}', 'ApiNotesController@tagNote');
-        Route::get('/notebooks/{notebookId}/notes/{noteId}/share/{toUserId}/{toUMASK}', 'ApiNotesController@share');
-        Route::resource('notebooks.notes.versions', 'ApiVersionsController');
-        Route::resource('notebooks.notes.versions.attachments', 'ApiAttachmentsController');
-        Route::get('/notebooks/{notebookId}/notes/{noteId}/versions/{versionId}/attachments/{attachmentId}/raw', 'ApiAttachmentsController@raw');
-        Route::resource('shortcuts', 'ApiShortcutsController');
-        Route::get('/tags/{tagId}/{parentTagId}', 'ApiTagsController@nest');
-        Route::resource('tags', 'ApiTagsController');
-        Route::resource('i18n', 'ApiI18nController');
-        Route::get('/users/notebooks/{notebookId}', 'ApiUsersController@showNotebook');
-        Route::resource('users', 'ApiUsersController');
-        Route::resource('settings', 'ApiSettingsController');
-        Route::resource('calendar', 'ApiCalendarController');
-        Route::post('/notebooks/collections', 'ApiNotebooksController@storeCollection');
-        Route::post('/notebooks/collections/{collectionId}/edit', 'ApiNotebooksController@updateCollection');
+        Route::get('/notebooks/{notebookId}/notes/{noteId}/move/{toNotebookId}', 'Api\V1\ApiNotesController@move');
+        Route::get('/notebooks/{notebookId}/notes/{noteId}/tag/{toTagId}', 'Api\V1\ApiNotesController@tagNote');
+        Route::get('/notebooks/{notebookId}/notes/{noteId}/share/{toUserId}/{toUMASK}', 'Api\V1\ApiNotesController@share');
+        Route::resource('notebooks.notes.versions', 'Api\V1\ApiVersionsController');
+        Route::resource('notebooks.notes.versions.attachments', 'Api\V1\ApiAttachmentsController');
+        Route::get('/notebooks/{notebookId}/notes/{noteId}/versions/{versionId}/attachments/{attachmentId}/raw', 'Api\V1\ApiAttachmentsController@raw');
+        Route::resource('shortcuts', 'Api\V1\ApiShortcutsController');
+        Route::get('/tags/{tagId}/{parentTagId}', 'Api\V1\ApiTagsController@nest');
+        Route::resource('tags', 'Api\V1\ApiTagsController');
+        Route::resource('i18n', 'Api\V1\ApiI18nController');
+        Route::get('/users/notebooks/{notebookId}', 'Api\V1\ApiUsersController@showNotebook');
+        Route::resource('users', 'Api\V1\ApiUsersController');
+        Route::resource('settings', 'Api\V1\ApiSettingsController');
+        Route::resource('calendar', 'Api\V1\ApiCalendarController');
+        Route::post('/notebooks/collections', 'Api\V1\ApiNotebooksController@storeCollection');
+        Route::post('/notebooks/collections/{collectionId}/edit', 'Api\V1\ApiNotebooksController@updateCollection');
 
         // Special routes
-        Route::get('/tagged/{num}', 'ApiNotesController@tagged');
-        Route::get('/search/{query}', 'ApiNotesController@search');
+        Route::get('/tagged/{num}', 'Api\V1\ApiNotesController@tagged');
+        Route::get('/search/{query}', 'Api\V1\ApiNotesController@search');
     });
 
     // Route::any('/api/v1/notebooks/(:num?)', array('as' => 'api.v1.notebooks', 'uses' => 'ApiNotebooksController@index'));

@@ -1,16 +1,19 @@
 <?php
 
-class Shortcut extends PaperworkModel {
-	protected $table = 'shortcuts';
-	protected $fillable = array('notebook_id', 'user_id', 'sortkey');
+namespace App\Models;
 
-	public function notebooks() {
-		return $this->hasMany('Notebook');
-	}
+class Shortcut extends PaperworkModel
+{
+    protected $table = 'shortcuts';
+    protected $fillable = array('notebook_id', 'user_id', 'sortkey');
 
-	public function users() {
-		return $this->hasMany('User');
-	}
+    public function notebooks()
+    {
+        return $this->hasMany('App\Models\Notebook');
+    }
+
+    public function users()
+    {
+        return $this->hasMany('App\Models\User');
+    }
 }
-
-?>

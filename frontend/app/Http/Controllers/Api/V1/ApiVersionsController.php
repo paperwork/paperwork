@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Http\Controllers\Api\V1;
+
+use App\Http\Controllers\BaseController;
+
 class ApiVersionsController extends BaseController {
     protected $dates = ['deleted_at'];
 	public $restful = true;

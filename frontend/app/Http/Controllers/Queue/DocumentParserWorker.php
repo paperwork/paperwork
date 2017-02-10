@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Http\Controllers\Queue;
+
 class DocumentParserWorker {
 	private $job;
 	private $jobData;

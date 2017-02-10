@@ -3,6 +3,7 @@
 namespace Paperwork\Db;
 
 use Illuminate\Config\Repository;
+use App\Models\Note;
 
 class PaperworkDbNoteObject extends PaperworkDbObject {
 
@@ -13,12 +14,12 @@ class PaperworkDbNoteObject extends PaperworkDbObject {
 		$defaultVersionsSelect = array('versions.id','versions.title', 'versions.content_preview', 'versions.content','versions.user_id');
 		$defaultTagsSelect = array('tags.id','tags.visibility', 'tags.title');
 		$defaultUsersSelect=array('users.id','users.firstname','users.lastname');
-		
+
 		$userId = $this->getArg($argv, 'userid');
 		$id = $this->getArg($argv, 'id');
 		$notebookId = $this->getArg($argv, 'notebookid');
 
-		$data = \Note::with(array(
+		$data = Note::with(array(
 			'version' => function($query) use(&$defaultVersionsSelect, &$defaultUsersSelect) {
 				$query->select($defaultVersionsSelect)
 					->with(array('user' => function($query) use(&$defaultUsersSelect){

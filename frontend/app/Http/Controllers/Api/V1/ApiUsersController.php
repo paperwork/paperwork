@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Http\Controllers\Api\V1;
+
+use App\Http\Controllers\BaseController;
+
 class ApiUsersController extends BaseController {
 	public $restful = true;
 
@@ -30,7 +34,7 @@ class ApiUsersController extends BaseController {
 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $users);
 		//return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, array());
 	}
-	
+
 	public function showNotebook($notebookId)
 	{
 		$current_userId=Auth::user()->id;

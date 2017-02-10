@@ -1,10 +1,13 @@
 <?php
+
+namespace App\Http\Controllers;
+
 class AdminController extends BaseController {
 	public function showConsole() {
 		$users = User::withTrashed()->get();
 	    return View::make('admin/console')->with('users', $users);
 	}
-	
+
 	public function deleteOrRestoreUsers() {
 	    $input = Input::get('selected_users');
         if (!empty($input)) {

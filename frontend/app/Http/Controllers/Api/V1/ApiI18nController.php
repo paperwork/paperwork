@@ -1,5 +1,11 @@
 <?php
 
+namespace App\Http\Controllers\Api\V1;
+
+use App\Http\Controllers\BaseController;
+use Lang;
+use PaperworkHelpers;
+
 class ApiI18nController extends BaseController {
 	public $restful = true;
 

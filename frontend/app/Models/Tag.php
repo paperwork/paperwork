@@ -1,24 +1,27 @@
 <?php
 
-class Tag extends PaperworkModel {
-	protected $table = 'tags';
-	protected $fillable = array('visibility', 'title', 'user_id');
+namespace App\Models;
 
-	public function notes()
-	{
-	  return $this->belongsToMany('Note', 'tag_note')->withTimestamps();
-	}
+class Tag extends PaperworkModel
+{
+    protected $table = 'tags';
+    protected $fillable = array('visibility', 'title', 'user_id');
 
-	public function users()
-	{
-	  return $this->belongsTo('User');
-	}
-	public function children(){
-		return $this->hasMany('Tag','parent_id','id');
-	}
-	public function parents(){
-		return $this->belongsTo('Tag','parent_id','id');
-	}
+    public function notes()
+    {
+        return $this->belongsToMany('App\Models\Note', 'tag_note')->withTimestamps();
+    }
+
+    public function users()
+    {
+        return $this->belongsTo('App\Models\User');
+    }
+    public function children()
+    {
+        return $this->hasMany('App\Models\Tag', 'parent_id', 'id');
+    }
+    public function parents()
+    {
+        return $this->belongsTo('App\Models\Tag', 'parent_id', 'id');
+    }
 }
-
-?>

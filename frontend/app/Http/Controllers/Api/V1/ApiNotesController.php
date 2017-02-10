@@ -1,20 +1,24 @@
 <?php
 
+namespace App\Http\Controllers\Api\V1;
+
+use App\Http\Controllers\BaseController;
+use App\Models\Note;
+use PaperworkDb;
+use PaperworkHelpers;
+
 class ApiNotesController extends BaseController
 {
-
     protected $dates = ['deleted_at'];
     public $restful = true;
 
     private function getNoteTags($noteId)
     {
-        $note = Note::with(array('tags' => function($query){
-                                                $query->where('visibility','=',1)
-                                                ->orWhere('user_id','=',Auth::user()->id);
-                                            }
-                                )
-                           )
-                        ->where('notes.id', '=', $noteId)->first();
+        $note = Note::with(array('tags' => function ($query) {
+            $query->where('visibility', '=', 1)
+                ->orWhere('user_id', '=', Auth::user()->id);
+        }))->where('notes.id', '=', $noteId)->first();
+
         $tags = array();
         foreach ($note->tags as $tag) {
             $tags[] = array(
@@ -28,8 +32,7 @@ class ApiNotesController extends BaseController
 
     private function getNoteVersionsBrief($noteId)
     {
-        $note           =
-            Note::with('version')->where('notes.id', '=', $noteId)->first();
+        $note = Note::with('version')->where('notes.id', '=', $noteId)->first();
         $versionsObject = $note->version()->first();
         if (is_null($versionsObject)) {
             return null;
@@ -42,14 +45,14 @@ class ApiNotesController extends BaseController
         $versions = array();
         while (!is_null($tmp)) {
             $versionsArray[] = $tmp;
-	    $user=$tmp->user()->first();
+            $user=$tmp->user()->first();
             $versions[] = array(
                 'id'          => $tmp->id,
                 'previous_id' => $tmp->previous_id,
                 'next_id'     => $tmp->next_id,
                 'latest'      => $isLatest,
                 'timestamp'   => $tmp->created_at->getTimestamp(),
-		'username'    => $user->firstname.' '.$user->lastname
+        'username'    => $user->firstname.' '.$user->lastname
             );
             $isLatest   = false;
             $tmp        = $tmp->previous()->first();
@@ -153,7 +156,6 @@ class ApiNotesController extends BaseController
             $date = end($matches);
 
             if ($date !== false) {
-
                 $notes = $notes->where(DB::raw('EXTRACT(year FROM notes.updated_at)'), '=',
                     $date[1]);
 
@@ -180,7 +182,7 @@ class ApiNotesController extends BaseController
         if ($filters !== false && $filters > 0) {
             foreach ($matches as $match) {
                 switch ($match[1]) {
-                    case "tagid" :
+                    case "tagid":
                         $notes = $notes->join('tag_note', function ($join) {
                             $join->on('notes.id', '=', 'tag_note.note_id');
                         })
@@ -188,11 +190,11 @@ class ApiNotesController extends BaseController
                                            $match[2]);
 
                         break;
-                    case "noteid" :
+                    case "noteid":
                         $notes = $notes->where('notes.id', '=', $match[2]);
 
                         break;
-                    case "notebookid" :
+                    case "notebookid":
                         if ($match[2] !=
                             ApiNotebooksController::NOTEBOOK_ALL_ID
                         ) {
@@ -321,7 +323,6 @@ class ApiNotesController extends BaseController
         $note = $notes->first();
         $note->versions = $this->getNoteVersionsBrief($note->id);
         return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $note);
-
     }
 
     public function store($notebookId)
@@ -334,7 +335,7 @@ class ApiNotesController extends BaseController
                       ->select('notebooks.id', 'notebooks.type',
                           'notebooks.title')
                       ->where('notebooks.id', '=', $notebookId)
-                      ->wherePivot('umask','>',PaperworkHelpers::UMASK_READONLY)
+                      ->wherePivot('umask', '>', PaperworkHelpers::UMASK_READONLY)
                       ->whereNull('notebooks.deleted_at')
                       ->first();
 
@@ -347,7 +348,7 @@ class ApiNotesController extends BaseController
             'title'           => $newNote->get("title"),
             'content'         => $newNote->get("content"),
             'content_preview' => $newNote->get("content_preview"),
-	    'user_id' => Auth::user()->id
+        'user_id' => Auth::user()->id
         ]);
 
         $version->save();
@@ -362,7 +363,7 @@ class ApiNotesController extends BaseController
              ->attach(Auth::user()->id,
                  array('umask' => PaperworkHelpers::UMASK_OWNER));
 
-        $tagIds = ApiTagsController::createOrGetTags($newNote->get('tags'),$note->id,PaperworkHelpers::UMASK_OWNER);
+        $tagIds = ApiTagsController::createOrGetTags($newNote->get('tags'), $note->id, PaperworkHelpers::UMASK_OWNER);
 
         if (!is_null($tagIds)) {
             $note->tags()->sync($tagIds);
@@ -382,14 +383,14 @@ class ApiNotesController extends BaseController
 
         $updateNote = Input::json();
 
-       $user=User::find(Auth::user()->id);
+        $user=User::find(Auth::user()->id);
         if (is_null($user)) {
             return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND,
                 array('item' => 'user'));
         }
         //only a read-writer or owner of the note can update it. however the private tags can be saved whatever the status
         $note = $user->notes()
-                    ->where('notes.id','=',$noteId)
+                    ->where('notes.id', '=', $noteId)
                     ->first();
 
         if (is_null($note)) {
@@ -398,13 +399,13 @@ class ApiNotesController extends BaseController
         }
 
 
-       $tagIds = ApiTagsController::createOrGetTags($updateNote->get('tags'),$noteId,$note->pivot->umask);
+        $tagIds = ApiTagsController::createOrGetTags($updateNote->get('tags'), $noteId, $note->pivot->umask);
 
         if (!is_null($tagIds)) {
             $note->tags()->sync($tagIds);
         }
 
-        if($note->pivot->umask<PaperworkHelpers::UMASK_READWRITE){
+        if ($note->pivot->umask<PaperworkHelpers::UMASK_READWRITE) {
             return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, array('message' => 'Permission error. The private tags have been saved though.'));
         }
 
@@ -414,15 +415,14 @@ class ApiNotesController extends BaseController
         if ($previousVersion->title != $updateNote->get("title") ||
             $previousVersion->content != $updateNote->get("content")
         ) {
-
             $pureContent =
                 PaperworkHelpers::purgeHtml($updateNote->get("content"));
 
-            if(empty($pureContent)) {
+            if (empty($pureContent)) {
                 // TODO: Check if there is at least one attachment. If yes, parse the attachment and set this result as content_preview.
                 // This should probably be done in DocumentParser.
                 $contentPreview = "";
-            }else{
+            } else {
                 $contentPreview = substr(strip_tags($pureContent), 0, 255);
             }
 
@@ -453,7 +453,6 @@ class ApiNotesController extends BaseController
             $note->version_id = $version->id;
 
             $note->save();
-
         }
 
         return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS,
@@ -465,7 +464,7 @@ class ApiNotesController extends BaseController
         //only owner of the note can destroy it
         $note = User::find(Auth::user()->id)
                     ->notes()
-                    ->wherePivot('umask','=',PaperworkHelpers::UMASK_OWNER)
+                    ->wherePivot('umask', '=', PaperworkHelpers::UMASK_OWNER)
                     ->where('notes.id', '=', $noteId)
                     ->whereNull('notes.deleted_at')
                     ->first();
@@ -510,8 +509,8 @@ class ApiNotesController extends BaseController
         }
         //the user shall be owner of the note
         $note = $user->notes()
-                    ->wherePivot('umask','=',PaperworkHelpers::UMASK_OWNER)
-                    ->where('notes.id','=',$noteId)
+                    ->wherePivot('umask', '=', PaperworkHelpers::UMASK_OWNER)
+                    ->where('notes.id', '=', $noteId)
                     ->whereNull('notes.deleted_at')
                     ->first();
         if (is_null($note)) {
@@ -521,8 +520,8 @@ class ApiNotesController extends BaseController
 
         //the user shall have the right to write into the destination notebook
         $toNotebook = $user->notebooks()
-                        ->wherePivot('umask','>',PaperworkHelpers::UMASK_READONLY)
-                        ->where('notebooks.id','=',$toNotebookId)
+                        ->wherePivot('umask', '>', PaperworkHelpers::UMASK_READONLY)
+                        ->where('notebooks.id', '=', $toNotebookId)
                         ->whereNull('notebooks.deleted_at')
                         ->first();
         if (is_null($toNotebook)) {
@@ -562,30 +561,33 @@ class ApiNotesController extends BaseController
         return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS,
             $noteId);
     }
-    private function shareNote($notebookId, $noteId, $toUserId, $toUMASK){
+    private function shareNote($notebookId, $noteId, $toUserId, $toUMASK)
+    {
         //only owner of the note can share it
         $note=User::find(Auth::user()->id)->notes()
-                        ->wherePivot('umask','=',PaperworkHelpers::UMASK_OWNER)
-                        ->where('notes.id','=',$noteId)
+                        ->wherePivot('umask', '=', PaperworkHelpers::UMASK_OWNER)
+                        ->where('notes.id', '=', $noteId)
                         ->whereNull('notes.deleted_at')
                         ->first();
-        if(is_null($note)){
+        if (is_null($note)) {
             return null;
         }
         $toUser=User::find($toUserId);
-        if(is_null($toUser))
-            return null; //user with whom we want to share the note doesn't exist
+        if (is_null($toUser)) {
+            return null;
+        } //user with whom we want to share the note doesn't exist
         $toUser=$note->users()->where('users.id', '=', $toUserId)->first();
-        if (!is_null($toUser)){
-            if($toUser->pivot->umask==PaperworkHelpers::UMASK_OWNER)
+        if (!is_null($toUser)) {
+            if ($toUser->pivot->umask==PaperworkHelpers::UMASK_OWNER) {
                 return null;
-            if($toUMASK==0){//set UMASK to 0 to stop sharing
+            }
+            if ($toUMASK==0) {//set UMASK to 0 to stop sharing
                 $note->users()->detach($toUserId);
                 $note->save();
                 return $note;
             }
-            if($toUser->pivot->umask!=$toUMASK){
-                $note->users()->updateExistingPivot($toUserId,array('umask' => $toUMASK));
+            if ($toUser->pivot->umask!=$toUMASK) {
+                $note->users()->updateExistingPivot($toUserId, array('umask' => $toUMASK));
                 $note->save();
                 return $note;
             }
@@ -597,9 +599,9 @@ class ApiNotesController extends BaseController
             $note->save();
             return $note;
         }
-
     }
-    public function share($notebookId, $noteId, $toUserId, $toUMASK){
+    public function share($notebookId, $noteId, $toUserId, $toUMASK)
+    {
         $noteIds   =
             explode(PaperworkHelpers::MULTIPLE_REST_RESOURCE_DELIMITER,
                 $noteId);
@@ -607,12 +609,13 @@ class ApiNotesController extends BaseController
                 $toUserId);
         $toUMASKs=explode(PaperworkHelpers::MULTIPLE_REST_RESOURCE_DELIMITER,
                 $toUMASK);
-        if(count($toUserIds)!=count($toUMASKs))//as much toUsers as toUmasks, if not raise an Error.
+        if (count($toUserIds)!=count($toUMASKs)) {//as much toUsers as toUmasks, if not raise an Error.
             return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, array('error_id' => $noteId));
+        }
         $responses = array();
         $status    = PaperworkHelpers::STATUS_SUCCESS;
         foreach ($noteIds as $singleNoteId) {
-            for($i=0; $i<count($toUserIds); $i++){//adding a loop to share with multiple users
+            for ($i=0; $i<count($toUserIds); $i++) {//adding a loop to share with multiple users
                 $tmp = $this->shareNote($notebookId, $singleNoteId, $toUserIds[$i], $toUMASKs[$i]);
                 if (is_null($tmp)) {
                     $status      = PaperworkHelpers::STATUS_ERROR;
@@ -625,5 +628,3 @@ class ApiNotesController extends BaseController
         return PaperworkHelpers::apiResponse($status, $responses);
     }
 }
-
-?>

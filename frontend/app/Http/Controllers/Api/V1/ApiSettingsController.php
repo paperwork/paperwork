@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Http\Controllers\Api\V1;
+
+use App\Http\Controllers\BaseController;
+
 class ApiSettingsController extends BaseController {
 	public $restful = true;
 

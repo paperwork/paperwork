@@ -6,6 +6,8 @@ use Config;
 use DOMDocument;
 use Illuminate\Config\Repository;
 use Carbon\Carbon;
+use App\Models\Language;
+
 
 class PaperworkHelpers {
 
@@ -122,7 +124,7 @@ class PaperworkHelpers {
 	}
 
 	public function getDocumentLanguages() {
-		$languages = \Language::all();
+		$languages = Language::all();
 		$documentLanguages = array();
 
 		foreach($languages as $language) {
