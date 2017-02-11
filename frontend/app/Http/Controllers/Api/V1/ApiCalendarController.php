@@ -27,7 +27,8 @@ class ApiCalendarController extends BaseController
             ->select('notes.id', 'versions.title', DB::raw('DATE(notes.updated_at) as updated_at'))
             ->whereNull('notes.deleted_at')
             ->whereNull('notebooks.deleted_at')
-            ->get();
+            ->get()
+            ->all();
 
         $indexed = array_reduce($notes, function (&$array, $item) {
             if (!isset($array[$item->updated_at])) {

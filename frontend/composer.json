@@ -5,8 +5,8 @@
 	"license": "MIT",
 	"type": "project",
 	"require": {
-		"laravel/framework": "5.2.*",
-		"laravelcollective/html": "~5.2",
+		"laravel/framework": "5.3.*",
+		"laravelcollective/html": "~5.3",
         "jenssegers/agent": "*",
 		"erusev/parsedown": "1.6.*",
 		"thiagoalessio/tesseract_ocr": ">= 0.2.0",
@@ -19,8 +19,8 @@
 		"phpunit/phpunit": "~4.0",
 		"phpspec/phpspec": "~2.1",
         "doctrine/dbal": "^2.5",
-		"symfony/dom-crawler": "~3.0",
-		"symfony/css-selector": "~3.0"
+		"symfony/dom-crawler": "3.1.*",
+		"symfony/css-selector": "3.1.*"
 	},
 	"autoload": {
 		"classmap": [

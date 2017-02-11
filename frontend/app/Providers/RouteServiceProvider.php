@@ -18,12 +18,11 @@ class RouteServiceProvider extends ServiceProvider {
 	/**
 	 * Define your route model bindings, pattern filters, etc.
 	 *
-	 * @param  \Illuminate\Routing\Router  $router
 	 * @return void
 	 */
-	public function boot(Router $router)
+	public function boot()
 	{
-		parent::boot($router);
+		parent::boot();
 
 		// TODO
         // Route::filter('auth.basic', function()
@@ -47,9 +46,60 @@ class RouteServiceProvider extends ServiceProvider {
 	 */
 	public function map(Router $router)
 	{
-		$router->group(['namespace' => $this->namespace], function($router)
-		{
-			require app_path('Http/routes.php');
+        $this->mapWebRoutes();
+
+		$this->mapApiRoutes();
+
+		$this->mapAngularTemplates();
+	}
+
+
+    /**
+     * Define the "web" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapWebRoutes()
+    {
+        Route::group([
+            'middleware' => 'web',
+            'namespace' => $this->namespace,
+        ], function ($router) {
+            require base_path('routes/web.php');
+        });
+    }
+
+    /**
+     * Define the "api" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapApiRoutes()
+    {
+        Route::group([
+            'middleware' => ['api', 'auth'],
+            'namespace' => $this->namespace,
+            'prefix' => 'api/v1',
+        ], function ($router) {
+            require base_path('routes/api.php');
+        });
+    }
+
+	/**
+	 * Define the Angular templates helper.
+	 *
+	 * @return void
+	 */
+	protected function mapAngularTemplates()
+	{
+		Route::group([
+			'namespace' => $this->namespace,
+		], function($router) {
+			require base_path('routes/templates.php');
 		});
 	}
 
