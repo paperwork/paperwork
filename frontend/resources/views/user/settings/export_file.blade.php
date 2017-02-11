@@ -1,4 +1,4 @@
-{!!-- This is the template for the Evernote Export file --!!}
+<?php /* This is the template for the Evernote Export file */ ?>
 @if(isset($start))
 {!! '<'.'?'.'xml version="1.0" encoding="UTF-8"?>' !!}
 <!DOCTYPE en-export SYSTEM "http://xml.evernote.com/pub/evernote-export3.dtd">
