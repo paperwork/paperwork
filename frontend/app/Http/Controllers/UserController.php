@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\URL;
+use Parsedown;
 use App\Models\Setting;
 use App\Models\Language;
 
@@ -336,9 +342,9 @@ class UserController extends BaseController
         $topic_clean = str_replace('.', '/', $topic);
 
         $topic_path             =
-          app_path() . '/help/' . $topic_clean . '.' . App::getLocale() . '.md';
+          base_path() . '/resources/help/' . $topic_clean . '.' . App::getLocale() . '.md';
         $topic_path_alternative =
-          app_path() . '/help/' . $topic_clean . '/index.' . App::getLocale() .
+          base_path() . '/resources/help/' . $topic_clean . '/index.' . App::getLocale() .
           '.md';
 
         if (File::exists($topic_path)) {
