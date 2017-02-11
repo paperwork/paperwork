@@ -11,14 +11,14 @@
                 <div class="manage-list-content">
                     <div class="row" ng-repeat="tag in modalTags | orderBy:'title':reverse" pw-on-finish-render="ngRepeatFinished">
                         <div class="col-sm-10">
-                            <a class="line" href="#" data-name="title" data-type="text" data-pk="@((tag.id}}">@((tag.title}}</a>
+                            <a class="line" href="#" data-name="title" data-type="text" data-pk="@{{tag.id}}">@{{tag.title}}</a>
                         </div>
                         <div class="col-sm-2">
                             <button class="btn btn-xs btn-danger" ng-click="deleteTag(tag.id)"><i class="fa fa-trash-o"></i></button>
                         </div>
                     <div ng-repeat="child in tag.children | orderBy:'title':reverse" pw-on-finish-render="ngRepeatFinished">
                         <div class="col-sm-8">
-                            <a class="line" href="#" data-name="title" data-type="text" data-pk="@((child.id}}">@((child.title}}</a>
+                            <a class="line" href="#" data-name="title" data-type="text" data-pk="@{{child.id}}">@{{child.title}}</a>
                         </div>
                         <div class="col-sm-2">
                             <button class="btn btn-xs btn-info" ng-click="unNestTag(child.id)"><i class="fa fa-unlink"></i></button>

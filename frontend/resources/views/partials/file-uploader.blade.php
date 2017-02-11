@@ -5,7 +5,7 @@
         <div ng-show="uploader.isHTML5" id="file-upload-dropzone" class="file-upload-dropzone" over-class="file-upload-dropzone-active" nv-file-over="" uploader="uploader">
             <span><i class="fa fa-upload"></i> {!!Lang::get('keywords.upload_document')!!}</span>
         </div>
-        <input id="file-upload-input" class="@(( uploader.isHTML5 ? 'file-upload-input-hidden' : '' }}" type="file" nv-file-select="" uploader="uploader" multiple="">
+        <input id="file-upload-input" class="@{{ uploader.isHTML5 ? 'file-upload-input-hidden' : '' }}" type="file" nv-file-select="" uploader="uploader" multiple="">
         @endif
 
         <table class="table table-striped" ng-show="(uploader.queue.length > 0 || fileList.length > 0)">
@@ -21,9 +21,9 @@
             <tbody>
                 <tr ng-repeat="item in fileList">
                     <td class="status-td">
-                        <i ng-controller="FileUploadController" class="fa @(( getFaClassFromMimetype(item.mimetype) }}"></i>
+                        <i ng-controller="FileUploadController" class="fa @{{ getFaClassFromMimetype(item.mimetype) }}"></i>
                     </td>
-                    <td><a href="@(('/api/v1/notebooks/' + getNotebookSelectedId() + '/notes/' + (getNoteSelectedId(true)).noteId + '/versions/' + (getVersionSelectedId(true)).versionId + '/attachments/' + item.id + '/raw' }}" target="_blank"><strong>@(( item.filename }}</strong></a></td>
+                    <td><a href="@{{'/api/v1/notebooks/' + getNotebookSelectedId() + '/notes/' + (getNoteSelectedId(true)).noteId + '/versions/' + (getVersionSelectedId(true)).versionId + '/attachments/' + item.id + '/raw' }}" target="_blank"><strong>@{{ item.filename }}</strong></a></td>
                     @if ($actionsEnabled)
                     <td>
                         <a class="btn btn-default btn-xs btn-block" ng-click="fileUploadInsertFile(getNotebookSelectedId(), (getNoteSelectedId(true)).noteId, (getVersionSelectedId(true)).versionId, item.id, item)">{!!Lang::get('keywords.insert')!!}</a>
@@ -39,7 +39,7 @@
                         <span ng-show="item.isError"><i class="fa fa-exclamation-triangle"></i></i></span>
                         <span ng-show="item.isUploading"><i class="fa fa-circle-o-notch fa-spin"></i></span>
                     </td>
-                    <td><strong>@(( item.file.name }}</strong></td>
+                    <td><strong>@{{ item.file.name }}</strong></td>
                     <td ng-show="uploader.isHTML5">
                         <div class="progress" style="margin-bottom: 0;">
                             <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>

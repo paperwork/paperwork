@@ -6,12 +6,12 @@
 				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 				<h4 class="modal-title" id="modalNotebookSelectLabel">
 					<?php // Lang::get('keywords.select_notebook_title') ?>
-					@(( modalMessageBox.header }}
+					@{{ modalMessageBox.header }}
 				</h4>
 			</div>
 			<div class="modal-body">
 			    <div ng-if="(modalMessageBox.description)">
-			        <p>@(( modalMessageBox.description }}</p>
+			        <p>@{{ modalMessageBox.description }}</p>
 			    </div>
 				<div class="container-scrollable">
 					<div class="container">
@@ -20,14 +20,14 @@
 								<div ng-if="(notebook.id != modalMessageBox.notebookId)">
 									<div class="radio">
 										<label>
-											<input type="radio" name="notebookSelectedModel" ng-model="$parent.$parent.notebookSelectedModel" value="@(( notebook.id }}"> @(( notebook.title }}
+											<input type="radio" name="notebookSelectedModel" ng-model="$parent.$parent.notebookSelectedModel" value="@{{ notebook.id }}"> @{{ notebook.title }}
 										</label>
 									</div>
 								</div>
 								<!--<div ng-repeat="child in notebooks.children | orderBy:'title'">
 									<div class="radio">
 										<label>
-											<input type="radio" name="notebookSelectedModel" ng-model="$parent.notebookSelectedModel" value="@(( child.id }}"> @(( child.title }}
+											<input type="radio" name="notebookSelectedModel" ng-model="$parent.notebookSelectedModel" value="@{{ child.id }}"> @{{ child.title }}
 										</label>
 									</div>
 								</div>-->

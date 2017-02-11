@@ -17,14 +17,14 @@
 	      <div ng-hide="(user.is_current_user)">
 		<div class="user-row">
 		  <i class="fa fa-warning" title="{!!Lang::get('keywords.owner_warning')!!}" ng-show="(user.owner)"></i>
-		  @(( user.firstname }} @((user.lastname}}
+		  @{{ user.firstname }} @{{user.lastname}}
 		  <select class="perm-select" ng-model="user.umask" ng-options="u.value as (u.name) for u in umasks">
 		  </select>
 		</div>
 	      </div>
 	      <div ng-show="(user.is_current_user)">
 		<div class="user-row">
-		  @(( user.firstname }} @((user.lastname}}
+		  @{{ user.firstname }} @{{user.lastname}}
 		  <div class="perm-select">
 		  {!!Lang::get('keywords.current_user')!!}
 		  </div>

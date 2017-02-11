@@ -6,7 +6,7 @@
                 <ul class="nav navbar-nav navbar-edit">
                     <li>
                         <div class="btn-group">
-                            <!-- 			      		<button ng-controller="SidebarNotesController" class="btn btn-default navbar-btn"><i class="fa fa-book"></i> @((templateNoteEdit.notebook_title}}</button>
+                            <!-- 			      		<button ng-controller="SidebarNotesController" class="btn btn-default navbar-btn"><i class="fa fa-book"></i> @{{templateNoteEdit.notebook_title}}</button>
                                                       <button class="btn btn-default navbar-btn"><i class="fa fa-tags"></i></button> -->
                         </div>
                     </li>
@@ -32,12 +32,12 @@
             <form role="form" class="form">
                 <div>
                     <div class="page-header">
-                        <div class="form-group @(( errors.title ? 'has-error' : '' }}">
+                        <div class="form-group @{{ errors.title ? 'has-error' : '' }}">
                             <input type="text" class="form-control input-lg" id="title"
                                    placeholder="{!!Lang::get('keywords.note_title')!!}"
                                    ng-model="templateNoteEdit.version.title">
                         </div>
-                        <div class="form-group @(( errors.tags ? 'has-error' : '' }}">
+                        <div class="form-group @{{ errors.tags ? 'has-error' : '' }}">
                             <input type="text" class="form-control input-lg" id="tags"
                                    placeholder="{!!Lang::get('keywords.tags_separated')!!}">
                         </div>
