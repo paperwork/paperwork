@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers\Api\V1;
 
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\BaseController;
 use App\Models\Note;
+use App\Models\User;
+use App\Models\Version;
 use PaperworkDb;
 use PaperworkHelpers;
 

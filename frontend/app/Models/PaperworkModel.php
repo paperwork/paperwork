@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use PaperworkHelpers;
 
 class PaperworkModel extends Model
 {
