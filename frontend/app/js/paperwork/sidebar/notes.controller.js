@@ -92,7 +92,7 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
             'notebookId': notebookId,
             'noteId': 0,
             'description': $rootScope.i18n.notebooks.move_note_description,
-            'title': $rootScope.i18n.keywords.select_notebook_title,
+            'header': $rootScope.i18n.keywords.select_notebook_title,
             'theCallback': function(notebookId, noteId, toNotebookId) {
                 $('#modalNotebookSelect').modal('hide');
                 NotesService.createNote(toNotebookId, data, callback);
