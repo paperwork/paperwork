@@ -5,6 +5,7 @@
 	[[ Form::open(array('url' => 'admin/users/delete')) ]]
 	[[ Form::submit(Lang::get('keywords.delete_users'), array('class' => 'btn btn-primary', 'name' => 'delete')) ]]
 	[[ Form::submit(Lang::get('keywords.restore_users'), array('class' => 'btn btn-default', 'name' => 'restore')) ]]
+	[[ HTML::link('/admin/register', Lang::get('keywords.register_users'), array('class' => 'btn btn-default pull-right')) ]]
 	<table class="table">
 		<tr>
 			<th>[[Lang::get('keywords.id')]]</th>

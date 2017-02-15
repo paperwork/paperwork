@@ -60,7 +60,7 @@ class EvernoteImport extends AbstractImport
      {
          try {
              $xmlfile = file_get_contents($file->getRealPath());
-             $xmlfile = html_entity_decode($xmlfile);
+             $xmlfile = str_replace(array("&amp;", "&"), array("&", "&amp;"), $xmlfile);
              $this->xml = simplexml_load_string($xmlfile, 'SimpleXMLElement',
                  LIBXML_PARSEHUGE | LIBXML_NOCDATA);
              $this->xml = json_decode(json_encode($this->xml), true);

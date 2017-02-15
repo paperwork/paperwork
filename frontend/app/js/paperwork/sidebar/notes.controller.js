@@ -92,7 +92,7 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
             'notebookId': notebookId,
             'noteId': 0,
             'description': $rootScope.i18n.notebooks.move_note_description,
-            'title': $rootScope.i18n.keywords.select_notebook_title,
+            'header': $rootScope.i18n.keywords.select_notebook_title,
             'theCallback': function(notebookId, noteId, toNotebookId) {
                 $('#modalNotebookSelect').modal('hide');
                 NotesService.createNote(toNotebookId, data, callback);
@@ -142,6 +142,7 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
               $rootScope.errors = {};
               $rootScope.templateNoteEdit.modified = false;
               CKEDITOR.instances.content.resetDirty();
+              localStorage.removeItem('paperwork_autosave_' + $rootScope.noteSelectedId.noteId);
               // Temporary until related issue is closed
               StatusNotifications.sendStatusFeedback("success", "note_saved_successfully");
               break;
