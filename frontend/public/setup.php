@@ -405,10 +405,17 @@
                                 Enable User Registration
                             </div>
                             <div class="col-md-3">
+                                <!--
                                 <div class="switch" onclick="toggleButton()" id="registration_switch">
                                     <span class="switch_round" id="registration_round"></span>
                                 </div>
                                 <input type="checkbox" name="registration" id="registration" checked class="hide">
+                                -->
+                                <select id="registration">
+                                    <option value="true">Enabled</option>
+                                    <option value="admin">Enabled only for administrators</option>
+                                    <option value="false">Disabled</option>
+                                </select>
                             </div>
                         </div>
                         <div class="row">
@@ -612,6 +619,7 @@
                             data += "false&"
                         }
                     }
+                    data += "registration=" + $("#registration").val();
                     $.ajax({
                         type: "POST",
                         url: "setup/setConfig",

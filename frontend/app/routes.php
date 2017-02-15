@@ -30,7 +30,7 @@ if(File::exists(storage_path() . "/config/setup") && File::get(storage_path() . 
     Route::get('/login', ["as" => "user/login", "uses" => "UserController@showLoginForm"]);
     Route::post('/login', ["as" => "user/login", "uses" => "UserController@login"]);
 
-    if (Config::get('paperwork.registration')) {
+    if (Config::get('paperwork.registration') === "true") {
         Route::get("/register", ["as" => "user/register", "uses" => "UserController@showRegistrationForm"]);
         Route::post("/register", ["as" => "user/register", "uses" => "UserController@register"]);
     }
@@ -55,6 +55,11 @@ if(File::exists(storage_path() . "/config/setup") && File::get(storage_path() . 
         Route::group(['prefix' => 'admin', 'before' => ['admin']], function () {
             Route::get('/', ['as' => 'admin/console', 'uses' => 'AdminController@showConsole']);
             Route::post('/users/delete', ['as' => 'admin/users/delete', 'uses' => 'AdminController@deleteOrRestoreUsers']);
+
+            if(Config::get('paperwork.registration') === "admin") {
+                Route::get("/register", ["as" => "user/register", "uses" => "UserController@showRegistrationForm"]);
+                Route::post("/register", ["as" => "user/register", "uses" => "UserController@register"]);
+            }
         });
     });
 

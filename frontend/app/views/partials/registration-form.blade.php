@@ -42,6 +42,7 @@
   [[ Form::select("ui_language", PaperworkHelpers::getUiLanguages(), PaperworkHelpers::getUiLanguageFromSession(), array('id' => 'ui_language', 'class' => 'form-control')) ]]
 </div>
 <div class="checkbox">
+  [[ Form::hidden("admin_creator", $admin) ]]
 </div>
 <div class="form-group">
   @if (!Request::ajax())
