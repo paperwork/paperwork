@@ -24,7 +24,13 @@ class UserController extends BaseController
 
     public function showRegistrationForm()
     {
-        return View::make('user.register');
+        if(Auth::user()) {
+            $admin = User::find(Auth::user()->id)->is_admin;
+        }else{
+            $admin = false;
+        }
+        
+        return View::make('user.register')->with('admin', $admin);
     }
 
     /**
@@ -56,10 +62,13 @@ class UserController extends BaseController
             } else {
                 $user =
                   $this->userRegistrator->registerUser(Input::except('_token',
-                    'password_confirmation', 'ui_language'),
+                    'password_confirmation', 'ui_language', 'admin_creator'),
                     Input::get('ui_language'));
             }
-            if ($user && !Request::ajax()) {
+
+            if(Input::get('admin_creator') == true) {
+                return Redirect::route("admin/console");
+            }else if ($user && !Request::ajax()) {
                 Auth::login($user);
 
                 Session::put('ui_language', Input::get('ui_language'));

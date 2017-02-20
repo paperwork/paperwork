@@ -1,5 +1,5 @@
 ﻿/**
- * @license Copyright (c) 2003-2015, CKSource - Frederico Knabben. All rights reserved.
+ * @license Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
 
@@ -13,10 +13,10 @@
  * (1) http://ckeditor.com/builder
  *     Visit online builder to build CKEditor from scratch.
  *
- * (2) http://ckeditor.com/builder/12208d45edf9fe4a9f160c59b4d302ca
+ * (2) http://ckeditor.com/builder/cacff20ba340da963688921fbe6f8a75
  *     Visit online builder to build CKEditor, starting with the same setup as before.
  *
- * (3) http://ckeditor.com/builder/download/12208d45edf9fe4a9f160c59b4d302ca
+ * (3) http://ckeditor.com/builder/download/cacff20ba340da963688921fbe6f8a75
  *     Straight download link to the latest version of CKEditor (Optimized) with the same setup as before.
  *
  * NOTE:
@@ -34,6 +34,7 @@ var CKBUILDER_CONFIG = {
 		'bender-out.log',
 		'dev',
 		'.DS_Store',
+		'.editorconfig',
 		'.gitattributes',
 		'.gitignore',
 		'gruntfile.js',
@@ -41,6 +42,7 @@ var CKBUILDER_CONFIG = {
 		'.jscsrc',
 		'.jshintignore',
 		'.jshintrc',
+		'less',
 		'.mailmap',
 		'node_modules',
 		'package.json',
@@ -58,7 +60,6 @@ var CKBUILDER_CONFIG = {
 		'entities' : 1,
 		'find' : 1,
 		'floatingspace' : 1,
-		'fontawesome' : 1,
 		'format' : 1,
 		'image2' : 1,
 		'indentlist' : 1,

@@ -59,7 +59,7 @@ return array(
         'database_setup' => array(
             'setting_up_database' => 'Setting up the database',
             'requirements_met' => 'All requirements have been met. ',
-            'requirements_not_met' => 'Not all system requireents have been met. Please use another database system. ',
+            'requirements_not_met' => 'Not all system requirements have been met. Please use another database system. ',
             'credentials_correct' => 'Credentials Correct',
             'credentials_not_correct' => 'Credentials Not Correct. Please delete db_settings file in storage directory and try again. ',
             'server_form_label' => 'Server',
