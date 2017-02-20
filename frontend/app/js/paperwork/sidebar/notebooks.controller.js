@@ -73,7 +73,11 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
 
     $scope.openNotebook = function(notebookId, type, index) {
       if(parseInt(type) == 1) {
-          $scope.collectionOpen = notebookId;
+          if($scope.collectionOpen === notebookId) {
+            $scope.collectionOpen = "";
+          }else {
+            $scope.collectionOpen = notebookId;
+          }
       }
 
       if(parseInt(type) == 0 || parseInt(type) == 2) {
@@ -407,7 +411,6 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
     $rootScope.selectedNotebooksForCollection = {};
 
     $scope.modalCollectionSubmit = function() {
-        console.log($rootScope.modalCollection.notebooks);
         $rootScope.modalCollection.notebooks = [];
         angular.forEach($rootScope.selectedNotebooksForCollection, function(value, key) {
             if(value) {
