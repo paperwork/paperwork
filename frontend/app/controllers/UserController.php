@@ -24,7 +24,13 @@ class UserController extends BaseController
 
     public function showRegistrationForm()
     {
-        return View::make('user.register')->with('admin', (User::find(Auth::user()->id)->exists()));
+        if(Auth::user()) {
+            $admin = User::find(Auth::user()->id)->is_admin;
+        }else{
+            $admin = false;
+        }
+        
+        return View::make('user.register')->with('admin', $admin);
     }
 
     /**
