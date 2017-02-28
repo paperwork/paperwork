@@ -56,11 +56,12 @@ angular.module('paperworkNotes').controller('NotesEditController',
                 toolbarCanCollapse: true,
                 toolbarStartupExpanded: false,
                 tabSpaces: 4,
-                skin: 'bootstrapck',
                 height: '400px',
-
-                autosave_saveOnDestroy: true,
-                autosave_saveDetectionSelectors: "[id*='updateNote']"
+                autosave: {
+                    SaveKey: 'paperwork_autosave_' + $rootScope.noteSelectedId.noteId,
+                    saveOnDestroy: true,
+                    messageType: 'statusbar'
+                }
             });
 
             ck.on('change', _onChangeFunction);

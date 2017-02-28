@@ -405,10 +405,17 @@
                                 Enable User Registration
                             </div>
                             <div class="col-md-3">
+                                <!--
                                 <div class="switch" onclick="toggleButton()" id="registration_switch">
                                     <span class="switch_round" id="registration_round"></span>
                                 </div>
                                 <input type="checkbox" name="registration" id="registration" checked class="hide">
+                                -->
+                                <select id="registration">
+                                    <option value="true">Enabled</option>
+                                    <option value="admin">Enabled only for administrators</option>
+                                    <option value="false">Disabled</option>
+                                </select>
                             </div>
                         </div>
                         <div class="row">
@@ -486,7 +493,7 @@
                 </div>
             </div>
         </div>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         <script type="text/javascript">
             var currentStep = <?php echo $currentStep; ?>;
@@ -612,6 +619,7 @@
                             data += "false&"
                         }
                     }
+                    data += "registration=" + $("#registration").val();
                     $.ajax({
                         type: "POST",
                         url: "setup/setConfig",

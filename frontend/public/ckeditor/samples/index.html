@@ -1,125 +1,128 @@
 <!DOCTYPE html>
 <!--
-Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
+Copyright (c) 2003-2016, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.md or http://ckeditor.com/license
 -->
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>CKEditor Samples</title>
-	<link rel="stylesheet" href="sample.css">
+	<title>CKEditor Sample</title>
+	<script src="../ckeditor.js"></script>
+	<script src="js/sample.js"></script>
+	<link rel="stylesheet" href="css/samples.css">
+	<link rel="stylesheet" href="toolbarconfigurator/lib/codemirror/neo.css">
 </head>
-<body>
-	<h1 class="samples">
-		CKEditor Samples
-	</h1>
-	<div class="twoColumns">
-		<div class="twoColumnsLeft">
-			<h2 class="samples">
-				Basic Samples
-			</h2>
-			<dl class="samples">
-				<dt><a class="samples" href="replacebyclass.html">Replace textarea elements by class name</a></dt>
-				<dd>Automatic replacement of all textarea elements of a given class with a CKEditor instance.</dd>
+<body id="main">
 
-				<dt><a class="samples" href="replacebycode.html">Replace textarea elements by code</a></dt>
-				<dd>Replacement of textarea elements with CKEditor instances by using a JavaScript call.</dd>
+<nav class="navigation-a">
+	<div class="grid-container">
+		<ul class="navigation-a-left grid-width-70">
+			<li><a href="http://ckeditor.com">Project Homepage</a></li>
+			<li><a href="http://dev.ckeditor.com/">I found a bug</a></li>
+			<li><a href="http://github.com/ckeditor/ckeditor-dev" class="icon-pos-right icon-navigation-a-github">Fork CKEditor on GitHub</a></li>
+		</ul>
+		<ul class="navigation-a-right grid-width-30">
+			<li><a href="http://ckeditor.com/blog-list">CKEditor Blog</a></li>
+		</ul>
+	</div>
+</nav>
 
-				<dt><a class="samples" href="jquery.html">Create editors with jQuery</a></dt>
-				<dd>Creating standard and inline CKEditor instances with jQuery adapter.</dd>
-			</dl>
+<header class="header-a">
+	<div class="grid-container">
+		<h1 class="header-a-logo grid-width-30">
+			<a href="index.html"><img src="img/logo.png" alt="CKEditor Sample"></a>
+		</h1>
 
-			<h2 class="samples">
-				Basic Customization
-			</h2>
-			<dl class="samples">
-				<dt><a class="samples" href="uicolor.html">User Interface color</a></dt>
-				<dd>Changing CKEditor User Interface color and adding a toolbar button that lets the user set the UI color.</dd>
+		<nav class="navigation-b grid-width-70">
+			<ul>
+				<li><a href="index.html" class="button-a button-a-background">Start</a></li>
+				<li><a href="toolbarconfigurator/index.html" class="button-a">Toolbar configurator <span class="balloon-a balloon-a-nw">Edit your toolbar now!</span></a></li>
+			</ul>
+		</nav>
+	</div>
+</header>
 
-				<dt><a class="samples" href="uilanguages.html">User Interface languages</a></dt>
-				<dd>Changing CKEditor User Interface language and adding a drop-down list that lets the user choose the UI language.</dd>
-			</dl>
-
-
-			<h2 class="samples">Plugins</h2>
-<dl class="samples">
-<dt><a class="samples" href="plugins/codesnippet/codesnippet.html">Code Snippet plugin</a><span class="new">New!</span></dt>
-<dd>View and modify code using the Code Snippet plugin.</dd>
-
-<dt><a class="samples" href="plugins/image2/image2.html">New Image plugin</a><span class="new">New!</span></dt>
-<dd>Using the new Image plugin to insert captioned images and adjust their dimensions.</dd>
-
-<dt><a class="samples" href="plugins/wysiwygarea/fullpage.html">Full page support</a></dt>
-<dd>CKEditor inserted with a JavaScript call and used to edit the whole page from &lt;html&gt; to &lt;/html&gt;.</dd>
-</dl>
-		</div>
-		<div class="twoColumnsRight">
-			<h2 class="samples">
-				Inline Editing
-			</h2>
-			<dl class="samples">
-				<dt><a class="samples" href="inlineall.html">Massive inline editor creation</a></dt>
-				<dd>Turn all elements with <code>contentEditable = true</code> attribute into inline editors.</dd>
-
-				<dt><a class="samples" href="inlinebycode.html">Convert element into an inline editor by code</a></dt>
-				<dd>Conversion of DOM elements into inline CKEditor instances by using a JavaScript call.</dd>
-
-				<dt><a class="samples" href="inlinetextarea.html">Replace textarea with inline editor</a> <span class="new">New!</span></dt>
-				<dd>A form with a textarea that is replaced by an inline editor at runtime.</dd>
-
-				
-			</dl>
-
-			<h2 class="samples">
-				Advanced Samples
-			</h2>
-			<dl class="samples">
-				<dt><a class="samples" href="datafiltering.html">Data filtering and features activation</a> <span class="new">New!</span></dt>
-				<dd>Data filtering and automatic features activation basing on configuration.</dd>
-
-				<dt><a class="samples" href="divreplace.html">Replace DIV elements on the fly</a></dt>
-				<dd>Transforming a <code>div</code> element into an instance of CKEditor with a mouse click.</dd>
-
-				<dt><a class="samples" href="appendto.html">Append editor instances</a></dt>
-				<dd>Appending editor instances to existing DOM elements.</dd>
-
-				<dt><a class="samples" href="ajax.html">Create and destroy editor instances for Ajax applications</a></dt>
-				<dd>Creating and destroying CKEditor instances on the fly and saving the contents entered into the editor window.</dd>
-
-				<dt><a class="samples" href="api.html">Basic usage of the API</a></dt>
-				<dd>Using the CKEditor JavaScript API to interact with the editor at runtime.</dd>
-
-				<dt><a class="samples" href="xhtmlstyle.html">XHTML-compliant style</a></dt>
-				<dd>Configuring CKEditor to produce XHTML 1.1 compliant attributes and styles.</dd>
-
-				<dt><a class="samples" href="readonly.html">Read-only mode</a></dt>
-				<dd>Using the readOnly API to block introducing changes to the editor contents.</dd>
-
-				<dt><a class="samples" href="tabindex.html">"Tab" key-based navigation</a></dt>
-				<dd>Navigating among editor instances with tab key.</dd>
-
-
-				
-<dt><a class="samples" href="plugins/dialog/dialog.html">Using the JavaScript API to customize dialog windows</a></dt>
-<dd>Using the dialog windows API to customize dialog windows without changing the original editor code.</dd>
-
-<dt><a class="samples" href="plugins/enterkey/enterkey.html">Using the &quot;Enter&quot; key in CKEditor</a></dt>
-<dd>Configuring the behavior of <em>Enter</em> and <em>Shift+Enter</em> keys.</dd>
-
-<dt><a class="samples" href="plugins/toolbar/toolbar.html">Toolbar Configurations</a></dt>
-<dd>Configuring CKEditor to display full or custom toolbar layout.</dd>
-
-			</dl>
+<main>
+	<div class="adjoined-top">
+		<div class="grid-container">
+			<div class="content grid-width-100">
+				<h1>Congratulations!</h1>
+				<p>
+					If you can see CKEditor below, it means that the installation succeeded.
+					You can now try out your new editor version, see its features, and when you are ready to move on, check some of the <a href="#sample-customize">most useful resources</a> recommended below.
+				</p>
+			</div>
 		</div>
 	</div>
-	<div id="footer">
-		<hr>
-		<p>
-			CKEditor - The text editor for the Internet - <a class="samples" href="http://ckeditor.com/">http://ckeditor.com</a>
+	<div class="adjoined-bottom">
+		<div class="grid-container">
+			<div class="grid-width-100">
+				<div id="editor">
+					<h1>Hello world!</h1>
+					<p>I'm an instance of <a href="http://ckeditor.com">CKEditor</a>.</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="grid-container">
+		<div class="content grid-width-100">
+			<section id="sample-customize">
+				<h2>Customize Your Editor</h2>
+				<p>Modular build and <a href="http://docs.ckeditor.com/#!/guide/dev_configuration">numerous configuration options</a> give you nearly endless possibilities to customize CKEditor. Replace the content of your <code><a href="../config.js">config.js</a></code> file with the following code and refresh this page (<strong>remember to clear the browser cache</strong>)!</p>
+		<pre class="cm-s-neo CodeMirror"><code><span style="padding-right: 0.1px;"><span class="cm-variable">CKEDITOR</span>.<span class="cm-property">editorConfig</span> <span class="cm-operator">=</span> <span class="cm-keyword">function</span>( <span class="cm-def">config</span> ) {</span>
+<span style="padding-right: 0.1px;"><span class="cm-tab">	</span><span class="cm-variable-2">config</span>.<span class="cm-property">language</span> <span class="cm-operator">=</span> <span class="cm-string">'es'</span>;</span>
+<span style="padding-right: 0.1px;"><span class="cm-tab">	</span><span class="cm-variable-2">config</span>.<span class="cm-property">uiColor</span> <span class="cm-operator">=</span> <span class="cm-string">'#F7B42C'</span>;</span>
+<span style="padding-right: 0.1px;"><span class="cm-tab">	</span><span class="cm-variable-2">config</span>.<span class="cm-property">height</span> <span class="cm-operator">=</span> <span class="cm-number">300</span>;</span>
+<span style="padding-right: 0.1px;"><span class="cm-tab">	</span><span class="cm-variable-2">config</span>.<span class="cm-property">toolbarCanCollapse</span> <span class="cm-operator">=</span> <span class="cm-atom">true</span>;</span>
+<span style="padding-right: 0.1px;">};</span></code></pre>
+			</section>
+
+			<section>
+				<h2>Toolbar Configuration</h2>
+				<p>If you want to reorder toolbar buttons or remove some of them, check <a href="toolbarconfigurator/index.html">this handy tool</a>!</p>
+			</section>
+
+			<section>
+				<h2>More Samples!</h2>
+				<p>Visit the <a href="http://sdk.ckeditor.com">CKEditor SDK</a> for a huge collection of samples showcasing editor features, with source code readily available to copy and use in your own implementation.</p>
+			</section>
+
+			<section>
+				<h2>Developer's Guide</h2>
+				<p>The most important resource for all developers working with CKEditor, integrating it with their websites and applications, and customizing to their needs. You can start from here:</p>
+				<ul>
+					<li><a href="http://docs.ckeditor.com/#!/guide/dev_installation">Getting Started</a> &ndash; Explains most crucial editor concepts and practices as well as the installation process and integration with your website.</li>
+					<li><a href="http://docs.ckeditor.com/#!/guide/dev_advanced_installation">Advanced Installation Concepts</a> &ndash; Describes how to upgrade, install additional components (plugins, skins), or create a custom build.</li>
+				</ul>
+					<p>When you have the basics sorted out, feel free to browse some more advanced sections like:</p>
+				<ul>
+					<li><a href="http://docs.ckeditor.com/#!/guide/dev_features">Functionality Overview</a> &ndash; Descriptions and samples of various editor features.</li>
+					<li><a href="http://docs.ckeditor.com/#!/guide/plugin_sdk_intro">Plugin SDK</a>, <a href="http://docs.ckeditor.com/#!/guide/widget_sdk_intro">Widget SDK</a>, and <a href="http://docs.ckeditor.com/#!/guide/skin_sdk_intro">Skin SDK</a> &ndash; Useful when you want to create your own editor components.</li>
+				</ul>
+			</section>
+
+			<section>
+				<h2>CKEditor JavaScript API</h2>
+				<p>CKEditor boasts a rich <a href="http://docs.ckeditor.com/#!/api">JavaScript API</a> that you can use to adjust the editor to your needs and integrate it with your website or application.</p>
+			</section>
+		</div>
+	</div>
+</main>
+
+<footer class="footer-a grid-container">
+	<div class="grid-container">
+		<p class="grid-width-100">
+			CKEditor &ndash; The text editor for the Internet &ndash; <a class="samples" href="http://ckeditor.com/">http://ckeditor.com</a>
 		</p>
-		<p id="copy">
-			Copyright &copy; 2003-2014, <a class="samples" href="http://cksource.com/">CKSource</a> - Frederico Knabben. All rights reserved.
+		<p class="grid-width-100" id="copy">
+			Copyright &copy; 2003-2016, <a class="samples" href="http://cksource.com/">CKSource</a> &ndash; Frederico Knabben. All rights reserved.
 		</p>
 	</div>
+</footer>
+<script>
+	initSample();
+</script>
+
 </body>
 </html>

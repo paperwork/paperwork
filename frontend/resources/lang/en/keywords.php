@@ -118,5 +118,6 @@ return array(
     'default' => 'Default',
     'sort_notes_by' => 'Sort notes by: ',
     'delete_users' => 'Delete Users',
-    'restore_users' => 'Restore Users'
+    'restore_users' => 'Restore Users',
+    'register_users' => 'Register Users'
 );

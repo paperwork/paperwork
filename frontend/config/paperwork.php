@@ -58,7 +58,7 @@ return array(
 	| no new users will be able to register.
 	|
 	*/
-	'registration' => isset($configuration->registration) ? ($configuration->registration == "true") : true,
+	'registration' => isset($configuration->registration) ? ($configuration->registration) : true,
 
 	/*
 	|--------------------------------------------------------------------------
