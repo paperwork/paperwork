@@ -12,7 +12,7 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "app/js/bower_components",
+    "app/resources/assets/js/bower_components",
     "test",
     "tests"
   ],
