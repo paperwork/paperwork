@@ -35,7 +35,7 @@ class LibraryController extends BaseController {
         ->orderBy('notes.created_at')
         ->whereNull('notes.deleted_at')
         ->first();
-            
+
         if(is_null($welcomeNote)) {
             $welcomeNoteArray = array('welcomeNoteSaved' => 0);
         }else{
