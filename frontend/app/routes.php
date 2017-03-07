@@ -20,7 +20,7 @@ App::missing(function ($exception) {
 if(File::exists(storage_path() . "/config/setup") && File::get(storage_path() . "/config/setup") < 7) {
     Route::post('setup/setConfig', ["as" => "setup/setConfig", "uses" => "SetupController@setConfiguration"]);
     Route::get('setup/register', function() {
-        return View::make('partials/registration-form', array('ajax' => true));
+        return View::make('partials/registration-form', array('ajax' => true, 'admin' => false));
     });
     Route::post('setup/register', ["as" => "setup/register", "uses" => "UserController@register"]);
     Route::get('setup/finish', ["as" => "setup/finish", "uses" => "SetupController@finishSetup"]);
