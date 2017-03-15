@@ -29,8 +29,7 @@ class ApiNotesController extends BaseController
 
     private function getNoteVersionsBrief($noteId)
     {
-        $note           =
-            Note::with('version')->where('notes.id', '=', $noteId)->first();
+        $note = Note::with('version')->where('notes.id', '=', $noteId)->first();
         $versionsObject = $note->version()->first();
         if (is_null($versionsObject)) {
             return null;
@@ -43,17 +42,27 @@ class ApiNotesController extends BaseController
         $versions = array();
         while (!is_null($tmp)) {
             $versionsArray[] = $tmp;
-	    $user=$tmp->user()->first();
+            $user = $tmp->user()->first();
             $versions[] = array(
                 'id'          => $tmp->id,
                 'previous_id' => $tmp->previous_id,
                 'next_id'     => $tmp->next_id,
                 'latest'      => $isLatest,
                 'timestamp'   => $tmp->created_at->getTimestamp(),
-		'username'    => $user->firstname.' '.$user->lastname
+                'username'    => $user->firstname.' '.$user->lastname
             );
             $isLatest   = false;
             $tmp        = $tmp->previous()->first();
+        }
+
+        /**
+         * If the note has more than one version, remove the oldest version from
+         * the returned history since this is the one automatically created when
+         * creating the note and thus is blank.
+         */
+        $versionsCount = count($versions);
+        if ($versionsCount > 1) {
+            unset($versions[$versionsCount - 1]);
         }
 
         return $versions;
