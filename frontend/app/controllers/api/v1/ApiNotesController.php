@@ -50,7 +50,7 @@ class ApiNotesController extends BaseController
                 'next_id'     => $tmp->next_id,
                 'latest'      => $isLatest,
                 'timestamp'   => $tmp->created_at->getTimestamp(),
-		'username'    => $user->firstname.' '.$user->lastname
+                'username'    => $user->firstname.' '.$user->lastname
             );
             $isLatest   = false;
             $tmp        = $tmp->previous()->first();
@@ -232,7 +232,6 @@ class ApiNotesController extends BaseController
                            'notes.updated_at',
                            'note_user.umask'
                        )->distinct()
-            //->toSql();
                        ->get();
 
         if (is_null($notes)) {
@@ -348,7 +347,7 @@ class ApiNotesController extends BaseController
             'title'           => $newNote->get("title"),
             'content'         => $newNote->get("content"),
             'content_preview' => $newNote->get("content_preview"),
-	    'user_id' => Auth::user()->id
+            'user_id' => Auth::user()->id
         ]);
 
         $version->save();

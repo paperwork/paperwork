@@ -2,11 +2,11 @@
 class AdminController extends BaseController {
 	public function showConsole() {
 		$users = User::withTrashed()->get();
-	    return View::make('admin/console')->with('users', $users);
+        return View::make('admin/console')->with('users', $users);
 	}
-	
+
 	public function deleteOrRestoreUsers() {
-	    $input = Input::get('selected_users');
+        $input = Input::get('selected_users');
         if (!empty($input)) {
             foreach ($input as $single_input) {
                 $user = User::withTrashed()->where('id', '=', $single_input);
@@ -17,6 +17,6 @@ class AdminController extends BaseController {
                 }
             }
         }
-	    return Redirect::route("admin/console");
+        return Redirect::route("admin/console");
 	}
 }

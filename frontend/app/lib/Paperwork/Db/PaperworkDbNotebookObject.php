@@ -36,7 +36,7 @@ class PaperworkDbNotebookObject extends PaperworkDbObject {
 				$data->orWhere('notebooks.id', '=', $argv['id'][$i]);
 			}
 		}
-		
+
 
 		$data->whereNull('deleted_at');
 		$data->orderBy('type', 'desc');
