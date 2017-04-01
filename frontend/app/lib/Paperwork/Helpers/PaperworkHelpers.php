@@ -174,7 +174,7 @@ class PaperworkHelpers {
 
 		return $string;
 	}
-    
+
     public function isLdap()
     {
         return strpos(\Config::get('auth.driver'),'ldap') !== false;
@@ -203,7 +203,7 @@ class PaperworkHelpers {
                 curl_setopt($ch, CURLOPT_USERAGENT, "Colorado");
 
                 $content = curl_exec($ch);
-                
+
                 /* Check if user is in a branch not found in Paperwork's source code */
                 $info = curl_getinfo($ch);
                 if($info["http_code"] != 200) {
@@ -232,11 +232,11 @@ class PaperworkHelpers {
 
                     $localLatestSha1 = trim(end($matchSeparated));
                 }
-                
+
                 $localTimestamp = "";
-                $upstreamTimestamp = ""; 
-                
-                // If user is not running latest official source code, check if last commit installed is earlier than last on git 
+                $upstreamTimestamp = "";
+
+                // If user is not running latest official source code, check if last commit installed is earlier than last on git
                 if($localLatestSha1 !== $upstreamHeadSha1){
                     $localTimestamp = exec("git show -s --format=%ci $localLatestSha1");
                     curl_setopt($ch, CURLOPT_URL, $commit_url);

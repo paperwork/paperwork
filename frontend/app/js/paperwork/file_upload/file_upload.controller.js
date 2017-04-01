@@ -54,7 +54,7 @@ angular.module('paperworkNotes').controller('FileUploadController',
           $rootScope.fileList = response;
           uploader.clearQueue();
         });
-      StatusNotifications.sendStatusFeedback("success", "file_uploaded_sucessfully");
+      StatusNotifications.sendStatusFeedback("success", "upload_finished_successfully");
     };
 
     $('#file-upload-dropzone').click(function() {
@@ -94,7 +94,7 @@ angular.module('paperworkNotes').controller('FileUploadController',
           }
 
           $rootScope.$broadcast('deleteAttachmentLink', {'url': fileUrl});
-          StatusNotifications.sendStatusFeedback("success", "file_deleted_sucessfully");
+          StatusNotifications.sendStatusFeedback("success", "file_deleted_successfully");
         });
       }
       return true;
