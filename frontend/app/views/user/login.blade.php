@@ -32,7 +32,7 @@
 </div>
 <div class="[[ (Config::get('paperwork.registration') === 'true') ? '' : 'hide' ]]">
 	<div class="form-group">
-		<a class="btn btn-lg btn-default btn-block" href="[[ Config::get('paperwork.registration') ? URL::route("user/register") : '#' ]]">[[Lang::get('keywords.sign_up')]]</a>
+		<a class="btn btn-lg btn-default btn-block" href="[[ (Config::get('paperwork.registration') === 'true') ? URL::route("user/register") : '#' ]]">[[Lang::get('keywords.sign_up')]]</a>
 	</div>
 </div>
 
