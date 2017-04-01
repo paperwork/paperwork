@@ -2,6 +2,22 @@
 
 /*
 |--------------------------------------------------------------------------
+| Taken from JamborJan/paperwork repo
+|--------------------------------------------------------------------------
+| Set $_SERVER['HTTPS'] depending on HTTP_X_FORWARDED_PROTO
+|--------------------------------------------------------------------------
+|
+| See: https://github.com/twostairs/paperwork/issues/281
+| See: https://github.com/JamborJan/paperwork/issues/20
+|
+*/
+if ((array_key_exists('HTTP_X_FORWARDED_PROTO', $_SERVER) ? $_SERVER[ 'HTTP_X_FORWARDED_PROTO'] : 'HTTP_X_FORWARDED_PROTO not set') == "https") {
+	$_SERVER['HTTPS'] = "on";
+	URL::forceSchema('https');
+}
+
+/*
+|--------------------------------------------------------------------------
 | Application Routes
 |--------------------------------------------------------------------------
 |
