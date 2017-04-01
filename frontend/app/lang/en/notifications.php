@@ -18,7 +18,7 @@ return array(
     'notebook_edit_failed'          => 'Something went wrong while updating your notebook. Please try again. ',
     'upload_finished_successfully'  => 'Your upload finished successfully. ',
     'upload_failed'                 => 'Your upload has failed. Please try again. ',
-    'file_deleted_successfully'     => 'Something went wrong while deleting your file. Please try again. ',
+    'file_deleted_successfully'     => 'Your attachment has been deleted successfully. ',
     'note_share_success'            => 'Your note was shared successfully.',
     'note_share_fail'               => 'Something went wrong while sharing your note. You might not have permission to share.',
     'notebook_share_success'        => 'Your notebook was shared successfully.',
