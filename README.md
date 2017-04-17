@@ -3,6 +3,7 @@ Paperwork - OpenSource note-taking & archiving
 
 [![Join the chat at https://gitter.im/twostairs/paperwork](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/twostairs/paperwork?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/twostairs/paperwork.svg?branch=master)](https://travis-ci.org/twostairs/paperwork)
+[![Code Climate](https://codeclimate.com/repos/566c07cfdf67bb59c00027cb/badges/3c705d903c542fb898ff/gpa.svg)](https://codeclimate.com/repos/566c07cfdf67bb59c00027cb/feed)
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/twostairs/paperwork/tree/deploy-heroku-develop)
 
