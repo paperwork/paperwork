@@ -13,12 +13,12 @@ return array(
 	|
 	*/
 
-	"password" => "Passwords must be at least six characters and match the confirmation.",
+	"password" => "密码至少6个字符并且两次输入必须一致。",
 
-	"user" => "We can't find a user with that e-mail address.",
+	"user" => "无法找到此电子邮箱地址。",
 
-	"token" => "This password reset token is invalid.",
+	"token" => "密码重置已经失效。",
 
-	"sent" => "Password reminder sent!",
+	"sent" => "密码重置已经发送。",
 
 );

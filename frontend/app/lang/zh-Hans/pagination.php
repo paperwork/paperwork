@@ -13,8 +13,8 @@ return array(
 	|
 	*/
 
-	'previous' => '&laquo; Previous',
+	'previous' => '&laquo; 上一页',
 
-	'next'     => 'Next &raquo;',
+	'next'     => '下一页 &raquo;',
 
 );
