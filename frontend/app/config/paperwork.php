@@ -194,6 +194,6 @@ return array(
   	|
   	| The maximum number of attachments that can be attachned to each note.
   	*/
-  	'maximumAttachmentsPerNote' => 10,
+	'maximumAttachmentsPerNote' => isset($configuration->maximumAttachmentsPerNote) ? ($configuration->maximumAttachmentsPerNote) : 10,
 
 );
