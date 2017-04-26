@@ -23,7 +23,7 @@ angular.module('paperworkNotes').controller('NotesEditController',
             if (typeof $rootScope.templateNoteEdit == "undefined" || $rootScope.templateNoteEdit == null) {
                 $rootScope.templateNoteEdit = {};
             }
-            
+
             if($rootScope.templateNoteEdit.title) {
                 $rootScope.templateNoteEdit.version = {};
                 $rootScope.templateNoteEdit.version.title = $rootScope.templateNoteEdit.title;
@@ -49,7 +49,7 @@ angular.module('paperworkNotes').controller('NotesEditController',
                 window.onCkeditChangeFunction();
             });
 
-            var ck = CKEDITOR.replace('content', {
+            var ck_config = {
                 fullPage: false,
                 // extraPlugins: 'myplugin,anotherplugin',
                 // removePlugins: 'sourcearea,save,newpage,preview,print,forms',
@@ -61,10 +61,19 @@ angular.module('paperworkNotes').controller('NotesEditController',
                     SaveKey: 'paperwork_autosave_' + $rootScope.noteSelectedId.noteId,
                     saveOnDestroy: true,
                     messageType: 'statusbar'
-                }
-            });
+                },
+                removeButtons: 'Cut,Copy,Paste,Undo,Redo,Anchor,Underline,Strike,Subscript,Superscript'
+            };
 
+            var ck = CKEDITOR.replace('content', ck_config);
             ck.on('change', _onChangeFunction);
+
+            $scope.$watch(function() { return $rootScope.removeEditorButtonsCKEditor; }, function(value) {
+                ck.destroy();
+                ck_config.removeButtons = ''; //value;
+                ck = CKEDITOR.replace('content', ck_config);
+                ck.on('change', _onChangeFunction);
+            });
 
             window.onbeforeunloadInfo = $rootScope.i18n.messages.onbeforeunload_info;
             window.onbeforeunload = function () {
@@ -163,5 +172,5 @@ angular.module('paperworkNotes').controller('NotesEditController',
         $rootScope.navbarMainMenu = false;
         $rootScope.navbarSearchForm = false;
         $rootScope.expandedNoteLayout = true;
-	CKEDITOR.dtd.$removeEmpty['span'] = false; //necessary to CKEDITOR fontawesome plugin
+        CKEDITOR.dtd.$removeEmpty['span'] = false; //necessary to CKEDITOR fontawesome plugin
     });
