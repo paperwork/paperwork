@@ -27,4 +27,5 @@ return array(
     'collection_create_failed'      => 'Something went wrong while creating the new collection. Please try again. ',
     'collection_edit_successfully'  => 'Your collection has been updated successfully. ',
     'collection_edit_failed'        => 'Something went wrong while updating your collection. Please try again. ',
+    'maximum_attachments_reached'   => 'You have reached the maximum number of attachments allowed per note. ',
 );
