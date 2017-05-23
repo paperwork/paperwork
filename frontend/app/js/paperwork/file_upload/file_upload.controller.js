@@ -3,6 +3,7 @@ angular.module('paperworkNotes').controller('FileUploadController',
     var uploader = $scope.uploader = new FileUploader({
       url: $rootScope.uploadUrl
     });
+    
     var maximumAttachmentsPerNote = 10;
     
     $scope.$watch('maximumAttachmentsPerNote', function(value) {
@@ -10,9 +11,13 @@ angular.module('paperworkNotes').controller('FileUploadController',
     });
     
     uploader.filters.push({
-      name: 'customFilter',
+      name: 'maximumAttachmentsPerNoteLimitCheck',
       fn:   function(item /*{File|FileLikeObject}*/, options) {
-        return this.queue.length < maximumAttachmentsPerNote;
+        if(($rootScope.fileList.length + 1) > maximumAttachmentsPerNote) {
+          StatusNotifications.sendStatusFeedback("error", "maximum_attachments_reached");
+          return false;
+        }
+        return true;
       }
     });
 
