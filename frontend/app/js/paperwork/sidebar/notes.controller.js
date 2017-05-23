@@ -57,7 +57,6 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
       
       var callback = (function(_notebookId) {
         return function(status, data) {
-          console.log(status);
           switch(status) {
             case 200:
               $rootScope.templateNoteEdit = {};
