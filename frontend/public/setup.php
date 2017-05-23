@@ -393,7 +393,11 @@
             </div>
             <div class="col-md-12 step <?php if($currentStep == 4) { ?>step_active<?php } ?>" id="step4">
                 <h1>Customise your Paperwork</h1>
-                <p>Paperwork can be customised to fit your needs. Use the form below to configurate Paperwork according to your wishes. </p>
+                <p>
+                    Paperwork can be customised to fit your needs. Use the form below to configurate Paperwork according to your wishes. For more
+                    information on what these setting mean and how to change them after installation, check out
+                    <a href="https://github.com/twostairs/paperwork/wiki/Configuring-Paperwork" target="_blank">Configuring Paperwork</a>.
+                </p>
                 <br>
                 <div class="bg-danger credentials_alert" id="config_not_set" style="display: none">
                     <p>Configuration has not been set correctly. Please try again. </p>
