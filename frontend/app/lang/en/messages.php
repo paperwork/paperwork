@@ -94,5 +94,6 @@ return array(
             'assets_not_found' => 'Your installation lacks some files',
             'assets_not_found_description' => 'We have not found all the files required to run Paperwork. Did you run composer install, npm install, bower install and gulp?'
         )
-	)
+	),
+	'required_configuration_setting_register_admin_tooltip' => 'You need to set your registration configuration setting to \'admin\''
 );
