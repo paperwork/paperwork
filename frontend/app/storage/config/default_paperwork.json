@@ -2,5 +2,6 @@
     "registration": "true",
     "forgot_password": true,
     "showIssueReportingLink": false,
-    "maximumAttachmentsPerNote": 10
+    "maximumAttachmentsPerNote": 10,
+    "removeEditorButtonsCKEditor": "Cut,Copy,Paste,Undo,Redo,Anchor,Underline,Strike,Subscript,Superscript"
 }

@@ -99,7 +99,7 @@
 
             <!-- <div class="page-content" ng-bind-html="note.version.content">
             </div>-->
-            <div pw-note-content content="note.version.content"></div>
+            <div class="note-content" pw-note-content content="note.version.content"></div>
         </div>
     </div>
     @include('partials/file-uploader', array('uploadEnabled' => false, 'actionsEnabled' => false))
