@@ -187,14 +187,14 @@ return array(
 	'tagsPublicPrefixCharacter' => '+',
   	'purgeTagList' => ['script'],
 
-	/*
-	|------------------------------------------------------------------------
-	| Maximum Attachments Per Note
-	|------------------------------------------------------------------------
-	|
-	| The maximum number of attachments that can be attached to each note.
-	*/
-	'maximumAttachmentsPerNote' => 10,
+  	/*
+  	|------------------------------------------------------------------------
+  	| Maximum Attachments Per Note
+  	|------------------------------------------------------------------------
+  	|
+  	| The maximum number of attachments that can be attachned to each note.
+  	*/
+	'maximumAttachmentsPerNote' => isset($configuration->maximumAttachmentsPerNote) ? ($configuration->maximumAttachmentsPerNote) : 10,
 
 	/*
 	|-------------------------------------------------------------------------
