@@ -221,10 +221,11 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
         return function(status, data) {
           switch(status) {
             case 200:
+              StatusNotifications.sendStatusFeedback("success", "note_deleted_successfully");
               $location.path("/n/" + notebookId);
               break;
             case 400:
-              // TODO: Show some kind of error
+              StatusNotifications.sendStatusFeedback("error", "note_delete_failed");
               break;
           }
         };
@@ -253,9 +254,7 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
                   }
                 });
               }
-              NotesService.deleteNote(noteId, callback, function() {
-                $location.path("/n/" + notebookId);
-              });
+              NotesService.deleteNote(noteId, callback);
               return true;
             }
           }
