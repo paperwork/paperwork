@@ -70,7 +70,7 @@ angular.module('paperworkNotes').controller('NotesEditController',
 
             $scope.$watch(function() { return $rootScope.removeEditorButtonsCKEditor; }, function(value) {
                 ck.destroy();
-                ck_config.removeButtons = ''; //value;
+                ck_config.removeButtons = value;
                 ck = CKEDITOR.replace('content', ck_config);
                 ck.on('change', _onChangeFunction);
             });
