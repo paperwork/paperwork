@@ -5,7 +5,11 @@
 	[[ Form::open(array('url' => 'admin/users/delete')) ]]
 	[[ Form::submit(Lang::get('keywords.delete_users'), array('class' => 'btn btn-primary', 'name' => 'delete')) ]]
 	[[ Form::submit(Lang::get('keywords.restore_users'), array('class' => 'btn btn-default', 'name' => 'restore')) ]]
-	[[ HTML::link('/admin/register', Lang::get('keywords.register_users'), array('class' => 'btn btn-default pull-right')) ]]
+	@if (Config::get('paperwork.registration') === "admin")
+	<a class="btn btn-default pull-right" href="/admin/register" title="[[ Lang::get('messages.required_configuration_setting_register_admin_tooltip') ]]">[[ Lang::get('keywords.register_users') ]]</a>
+	@else
+	<a class="btn btn-default disabled pull-right" style="pointer-events: auto" title="[[ Lang::get('messages.required_configuration_setting_register_admin_tooltip') ]]">[[ Lang::get('keywords.register_users') ]]</a>
+	@endif
 	<table class="table">
 		<tr>
 			<th>[[Lang::get('keywords.id')]]</th>
