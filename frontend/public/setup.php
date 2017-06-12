@@ -1,10 +1,10 @@
  <?php
     function getCurrentSetupStep () {
+        $setup_file_contents = file_exists("../app/storage/config/setup") ? file_get_contents("../app/storage/config/setup") : 0;
         // Check if setup file is present
-        if (!file_exists("../app/storage/config/setup")) {
+        if ($setup_file_contents <= 1) {
             return 1;
         }
-        $setup_file_contents = file_get_contents("../app/storage/config/setup");
         // Check if setup should have created database.json
         if ($setup_file_contents > 3 && !file_exists("../app/storage/config/database.json")) {
             return 3;
@@ -12,6 +12,10 @@
         // Check if setup should have created paperwork.json
         if ($setup_file_contents > 4 && !file_exists("../app/storage/config/paperwork.json")) {
             return 4;
+        }
+        // Skip step 5 of the setup wizard (not implemented yet)
+        if ($setup_file_contents == 5) {
+            $setup_file_contents++;
         }
         // Check if setup should be skipped
         if ($setup_file_contents >= 7) {
@@ -39,10 +43,15 @@
             }
             div {
                 width: 100%;
+                float: left;
+            }
+            p {
+                margin-bottom: 0;
             }
             .progress_bar {
                 width: 100%;
                 height: 10px;
+                border-bottom: 1px solid #E7E7E7;
             }
             .progres {
                 background-color: #03A9F4;
@@ -51,8 +60,6 @@
                 width: 0%;
             }
             .button_switch {
-                position: fixed !important /* do not use !important */;
-                bottom: 0;
                 width: 100%;
                 margin-bottom: 0 !important;
             }
@@ -60,13 +67,15 @@
                 margin-bottom: 0 !important;
             }
             .step {
-                height: 0;
-                position: absolute !important;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
                 overflow: auto;
-                margin-bottom: 60px;
+                display: none;
             }
             .step_active {
-                height: 100%;
+                display: block;
             }
             .button_switcher {
                 min-height: 35px;
@@ -83,10 +92,13 @@
             }
             .wizard-placeholder {
                 position: relative;
-                height: 100%;
+                min-height: 100%;
+                min-height: calc(100% - 124px);
+                padding-bottom: 10px;
             }
             .credentials_alert{
-                padding: 10px;
+                padding: 10px 10px 0 10px;
+                margin-bottom: 5px;
             }
             .switch {
                 height: 25px;
@@ -105,6 +117,9 @@
             }
             .switch_active {
                 background-color: #286090;
+            }
+            .configuration_setting {
+                padding: 10px 0;
             }
         </style>
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -149,7 +164,7 @@
             </div>
         </div>
         <div class="progress_bar">
-            <span id="progress" class="progres" style="width: <?php echo $currentStep / 7 * 100 ?>%"></span>
+            <span id="progress" class="progres" style="width: <?php echo floor((($currentStep - 1) / 7) * 100) ?>%"></span>
         </div>
         <div class="wizard-placeholder">
             <div class="col-md-12 step <?php if($currentStep == 1) { ?>step_active<?php } ?>" id="step1">
@@ -158,15 +173,23 @@
                     Through this wizard, you will be able to install and configure your Paperwork instance. At the end of
                     this process, you will be able to use Paperwork as your note-taking application. This installer will
                     take care of the following things:
-                    <ul>
-                        <li>check that all assets and dependencies are in place, </li>
-                        <li>configure the database needed to save Paperwork's data,</li>
-                        <li>configure Paperwork's settings,</li>
-                        <li>install the Paperwork database,</li>
-                        <li>register the first user account on your Paperwork instance. </li>
-                    </ul>
-                    <br>
+                </p>
+                <ul>
+                    <li>check that all assets and dependencies are in place, </li>
+                    <li>configure the database needed to save Paperwork's data,</li>
+                    <li>configure Paperwork's settings,</li>
+                    <li>install the Paperwork database,</li>
+                    <li>register the first user account on your Paperwork instance. </li>
+                </ul>
+                <p>
                     Paperwork is licensed under the MIT license.
+                </p>
+                <p>
+                    <strong>
+                        Please note that any previous install's settings may be overwritten during installation. If you
+                        wish to keep anything, please backup before continuing through this process.
+                    </strong>
+                    <!-- ADD INSTRUCTIONS FOR SKIPPING THE SETUP WIZARD -->
                 </p>
             </div>
             <div class="col-md-12 step <?php if($currentStep == 2) { ?>step_active<?php } ?>" id="step2">
@@ -352,11 +375,13 @@
             <div class="col-md-12 step <?php if($currentStep == 3) { ?>step_active<?php } ?>" id="step3">
                 <h1>Where should everything be saved?</h1>
                 <p>Paperwork needs a database in order to save all its information. Please fill in the form below with the credentials to the database you want Paperwork to use. Make sure that the database already exists. </p>
-                <div class="bg-success credentials_alert" id="credentials_correct" style="display: none">
-                    <p>These credentials are correct. Install your Paperwork database by clicking 'Next' below. </p>
-                </div>
-                <div class="bg-danger credentials_alert" id="credentials_not_correct" style="display: none">
-                    <p>These credentials do not appear to be correct. Please check them again. </p>
+                <div id="credentials_holder">
+                    <div class="bg-success credentials_alert" id="credentials_correct" style="display: none">
+                        <p>These credentials are correct. Install your Paperwork database by clicking 'Next' below. </p>
+                    </div>
+                    <div class="bg-danger credentials_alert" id="credentials_not_correct" style="display: none">
+                        <p>These credentials do not appear to be correct. Please check them again. </p>
+                    </div>
                 </div>
                 <br>
                 <ul class="nav nav-tabs">
@@ -400,11 +425,11 @@
                 </p>
                 <br>
                 <div class="bg-danger credentials_alert" id="config_not_set" style="display: none">
-                    <p>Configuration has not been set correctly. Please try again. </p>
+                    <p>Configuration has not been set correctly due to <span id="configuration_fail_reason"></span>. Please try again. </p>
                 </div>
                 <form id="config_form">
                     <div class="container-fluid">
-                        <div class="row">
+                        <div class="row configuration_setting">
                             <div class="col-md-9">
                                 Enable User Registration
                             </div>
@@ -422,7 +447,7 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row configuration_setting">
                             <div class="col-md-9">
                                 Enable Forgot Password
                             </div>
@@ -433,7 +458,7 @@
                                 <input type="checkbox" name="forgot_password" id="forgot_password" checked class="hide">
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row configuration_setting">
                             <div class="col-md-9">
                                 Enable Automatic Language Detection
                             </div>
@@ -444,7 +469,7 @@
                                 <input type="checkbox" name="userAgentLanguage" id="language_detection" class="hide">
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row configuration_setting">
                             <div class="col-md-9">
                                 Show Issue Reporting Link
                             </div>
@@ -459,8 +484,10 @@
                 </form>
             </div>
             <div class="col-md-12 step <?php if($currentStep == 5) { ?>step_active<?php } ?>" id="step5">
+                <!--
                 <h1>Wait a moment...</h1>
                 <p>Your Paperwork is still not ready for showtime yet. Please wait a little bit while the last parts are finished. </p>
+                -->
             </div>
             <div class="col-md-12 step <?php if($currentStep == 6) { ?>step_active<?php } ?>" id="step6">
                 <h1>Register your first account</h1>
@@ -481,12 +508,12 @@
             <div class="container-fluid button_switcher">
                 <div class="row button_switch_row">
                     <div class="col-md-4 hidden-xs hidden-sm">
-                        <button type="button" class="btn btn-default disabled" id="previous_btn">Previous</button>
+                        <button type="button" class="btn btn-default <?php if($currentStep == 1) { ?>disabled<?php } ?>" id="previous_btn">Previous</button>
                     </div>
                     <div class="hidden-lg hidden-md col-sm-4 col-xs-4">
-                        <button type="button" class="btn btn-default col-sm-10 col-xs-10 disabled" id="previous_btn_mobile">Previous</button>
+                        <button type="button" class="btn btn-default col-sm-10 col-xs-10 <?php if($currentStep == 1) { ?>disabled<?php } ?>" id="previous_btn_mobile">Previous</button>
                     </div>
-                    <div class="col-md-4 text-center step_counter col-xs-4 col-sm-4">Step <span id="step_counter_dynamic">1</span></div>
+                    <div class="col-md-4 text-center step_counter col-xs-4 col-sm-4">Step <span id="step_counter_dynamic"><?php echo $currentStep; ?></span></div>
                     <div class="col-md-4 hidden-xs hidden-sm" id="next_btn_element">
                         <button type="button" class="btn btn-primary pull-right" id="next_btn">Next</button>
                     </div>
@@ -503,50 +530,56 @@
             var currentStep = <?php echo $currentStep; ?>;
             var data = "";
             var credentialsCorrect = false;
+            var previousBTN = $("#previous_btn, #previous_btn_mobile");
+            var nextBTN = $("#next_btn, #next_btn_mobile");
             function disableButtons () {
-                $("#previous_btn").remove();
-                $(".step_counter").remove();
+                $("#previous_btn, #previous_btn_mobile, .step_counter").remove();
                 $("#next_btn_element").removeClass("col-md-4").addClass("col-md-12 text-center");
-                $("#next_btn").removeClass("pull-right");
-                $("#next_btn").text("Go to Paperwork");
-                $("#next_btn").off("click");
-                $("#next_btn").on("click", function() {
+                nextBTN.removeClass("pull-right");
+                nextBTN.text("Go to Paperwork");
+                nextBTN.off("click");
+                nextBTN.on("click", function() {
                     window.location.reload();
                 })
             }
-            function previousStep (goToStep) {
+            function stepChange (goToStep, currentlyActiveStep) {
                 $("#step" + goToStep).addClass("step_active");
+                $("#step_counter_dynamic").text(goToStep);
+                currentStep = goToStep;
+                var newProgress = parseInt(((currentStep - 1) / 7) * 100, 10) + "%";
+                $("#progress").width(newProgress);
+                $.get("setup/update_step.php?step=" + goToStep);
+            }
+            function previousStep (goToStep) {
+                stepChange(goToStep, (goToStep + 1));
                 $("#step" + (goToStep + 1)).slideDown();
                 $("#step" + goToStep).show();
                 $("#step" + (goToStep + 1)).removeClass("step_active");
-                $("#step_counter_dynamic").text(goToStep);
-                currentStep = goToStep;
-                $("#progress").width(parseInt(currentStep / 7 * 100, 10) + "%");
-                $.get("setup/update_step.php?step=" + goToStep);
+                if(goToStep == 1) {
+                    previousBTN.addClass("disabled");
+                    previousBTN.attr("disabled", true);
+                }
             }
             function nextStep (goToStep) {
-                $("#step" + goToStep).addClass("step_active");
+                stepChange(goToStep, (goToStep - 1));
                 $("#step" + (goToStep - 1)).slideUp();
                 $("#step" + (goToStep - 1)).removeClass("step_active");
-                $("#step_counter_dynamic").text(goToStep);
-                currentStep = goToStep;
-                $("#progress").width(parseInt(currentStep / 7 * 100, 10) + "%");
                 if(currentStep == 7) {
                     disableButtons();
                 }else if(currentStep == 2) {
                     <?php
                         if($installed_modules <= 0 || $showErrorBackground ||  $npm_missing || $assets_missing) {
                     ?>
-                    $("#next_btn").text("Reload");
-                    $("#next_btn").off("click");
-                    $("#next_btn").on("click", function() {
+                    nextBTN.text("Reload");
+                    nextBTN.off("click");
+                    nextBTN.on("click", function() {
                         window.location.reload();
                     });
                     <?php
                         }
                     ?>
                 }else if(currentStep == 3) {
-                    $("#next_btn, #next_btn_mobile").attr("disabled", true);
+                    nextBTN.attr("disabled", true);
                     <?php
                         if(file_exists("../app/storage/db_settings")) {
                     ?>
@@ -558,7 +591,7 @@
                         }).success(function() {
                             $("#convert_settings_dialog").modal("hide");
                             nextStep((currentStep + 1));
-                            $("#next_btn, #next_btn_mobile").attr("disabled", false);
+                            nextBTN.attr("disabled", false);
                         }).error(function() {
                             $("#convert_settings_error").show();
                         });
@@ -566,52 +599,31 @@
                     <?php
                         }
                     ?>
-                }else if(currentStep == 4) {
-                    $.get("setup/installDatabase");
                 }else if(currentStep == 6) {
-                    $.get("setup/register", function(data) {
-                        $("#registration_form").html(data);
-                        $("#next_btn_mobile, #next_btn").text("Register and Finish Installation");
-                        $("#next_btn_mobile, #next_btn").off("click");
-                        $("#next_btn_mobile, #next_btn").click(function() {
-                            $.ajax({
-                                type: "POST",
-                                url: "setup/register",
-                                data: $(".form-signin").serialize()
-                            }).success(function() {
-                                $.get("setup/update_step.php?step=" + goToStep);
-                                nextStep((currentStep + 1));
-                            }).error(function(jqXHR) {
-                                $("#registration_failed").show();
-                                $("#registration_form").html(jqXHR.responseJSON.html);
-                                var formValues = jqXHR.responseJSON.input;
-                                $("#registration_form input").each(function(index, element) {
-                                    console.log(element);
-                                    if(element.type !== "hidden") {
-                                        $("#registration_form [name='" + element.name + "']").val(formValues[element.name]);
-                                    }
-                                });
-                            });
-                        });
-                    });
+                    openRegistrationForm();
                 }else if(currentStep == 7) {
                     $.get("setup/finish");
                 }else if(currentStep == 5) {
-                    $.get("setup/checkDBStatus", function(data) {
-                        if(data.status == 1) {
-                            nextStep((currentStep + 1));
-                        }
-                    });
+                    /**
+                     * TODO - Not implemented on the server side yet
+                     *
+                     * $.get("setup/checkDBStatus", function(data) {
+                     *   if(data.status == 1) {
+                     *       nextStep((currentStep + 1));
+                     *   }
+                     * });
+                     */
+                    nextStep((currentStep + 1));
                 }
-                $.get("setup/update_step.php?step=" + goToStep);
-                $("#previous_btn, #previous_btn_mobile").removeClass('disabled');
+                previousBTN.removeClass('disabled');
+                previousBTN.attr("disabled", false);
             }
-            $("#previous_btn, #previous_btn_mobile").click(function() {
+            previousBTN.click(function() {
                 if(currentStep > 1) {
                     previousStep((currentStep - 1));
                 }
             });
-            $("#next_btn, #next_btn_mobile").click(function() {
+            nextBTN.click(function() {
                 if(currentStep == 4) {
                     data = "";
                     var checkboxes = $("#config_form input[type='checkbox']");
@@ -630,41 +642,39 @@
                         data: data
                     }).success(function() {
                         nextStep((currentStep + 1));
-                    }).error(function() {
+                    }).error(function(data) {
+                        $("#configuration_fail_reason").text(data.responseJSON.errors);
                         $("#config_not_set").show();
                     });
                 }else if(currentStep < 7) {
                     nextStep((currentStep + 1));
                 }
             });
-            $("#check_credentials").click(function() {
-                data = $("#database_info_form").serialize();
-                if((!$("#usernameField").val() || !$("#passwordField").val() || !$("#databaseField").val()) && $("#dbms_choice").val() !== "sqlite") {
-                    credentialsCorrect = false;
+            function showCredentialAlert (credentialsCorrect) {
+                if(credentialsCorrect == true) {
+                    $("#credentials_correct").show();
+                    $("#credentials_not_correct").hide();
+                }else{
                     $("#credentials_correct").hide();
                     $("#credentials_not_correct").show();
-                    $("body").animate({
-                        scrollTop: $("#credentials_not_correct").offset().top
-                    });
+                }
+                $("html, body").animate({
+                    scrollTop: $("#credentials_holder").offset().top
+                });
+            }
+            $("#check_credentials").click(function() {
+                data = $("#database_info_form").serialize();
+                if((!$("#databaseField").val()) && $("#dbms_choice").val() !== "sqlite") {
+                    showCredentialAlert(false);
                 }else{
                     $.ajax("setup/check_database_credentials.php", {
                         type: "POST",
                         data: data
                     }).success(function() {
-                        credentialsCorrect = true;
-                        $("#credentials_correct").show();
-                        $("#credentials_not_correct").hide();
-                        $("body").animate({
-                            scrollTop: $("#credentials_correct").offset().top
-                        });
-                        $("#next_btn_mobile, #next_btn").attr("disabled", false);
+                        showCredentialAlert(true);
+                        nextBTN.attr("disabled", false);
                     }).error(function() {
-                        credentialsCorrect = false;
-                        $("#credentials_correct").hide();
-                        $("#credentials_not_correct").show();
-                        $("body").animate({
-                            scrollTop: $("#credentials_not_correct").offset().top
-                        });
+                        showCredentialAlert(false);
                     });
                 }
             });
@@ -711,6 +721,31 @@
                     }
                 }
             }
+            function openRegistrationForm () {
+                $.get("setup/register", function(data) {
+                    $("#registration_form").html(data);
+                    nextBTN.text("Register and Finish Installation");
+                    nextBTN.off("click");
+                    nextBTN.click(function() {
+                        $.ajax({
+                            type: "POST",
+                            url: "setup/register",
+                            data: $(".form-signin").serialize()
+                        }).success(function() {
+                            nextStep((currentStep + 1));
+                        }).error(function(jqXHR) {
+                            $("#registration_failed").show();
+                            $("#registration_form").html(jqXHR.responseJSON.html);
+                            var formValues = jqXHR.responseJSON.input;
+                            $("#registration_form input").each(function(index, element) {
+                                if(element.type !== "hidden") {
+                                    $("#registration_form [name='" + element.name + "']").val(formValues[element.name]);
+                                }
+                            });
+                        });
+                    });
+                });
+            }
             $(document).ready(function() {
                 $("#config_form div.switch").each(function(index, element) {
                     toggleButton((element.id).replace("_switch", ""), true);
@@ -718,6 +753,13 @@
                         toggleButton((element.id).replace("_switch", ""), false);
                     });
                 });
+                <?php
+                    if($currentStep == 6) {
+                ?>
+                openRegistrationForm();
+                <?php
+                    }
+                ?>
             });
         </script>
     </body>
