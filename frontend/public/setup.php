@@ -189,7 +189,12 @@
                         Please note that any previous install's settings may be overwritten during installation. If you
                         wish to keep anything, please backup before continuing through this process.
                     </strong>
-                    <!-- ADD INSTRUCTIONS FOR SKIPPING THE SETUP WIZARD -->
+                </p>
+                <p>
+                    If you want to skip using this wizard, please folow the instructions availabe
+                    <a href="https://github.com/twostairs/paperwork/wiki/Installing-and-configuring-Paperwork-without-using-the-Setup-Wizard" target="_blank">here</a>. 
+                    Please avoid this since the wizard makes sure that all dependencies are 
+                    installed and settings are set correctly. 
                 </p>
             </div>
             <div class="col-md-12 step <?php if($currentStep == 2) { ?>step_active<?php } ?>" id="step2">
