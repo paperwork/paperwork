@@ -169,6 +169,19 @@
         <div class="wizard-placeholder">
             <div class="col-md-12 step <?php if($currentStep == 1) { ?>step_active<?php } ?>" id="step1">
                 <h1>Welcome</h1>
+                <?php
+                    if(!is_writable("../app/storage/config")) {
+                ?>
+                <p class="text-danger">
+                    <strong>
+                        The Setup Wizard needs the web server to have enough permissions to write files in your frontend/app/storage/config
+                        folder to work correctly. Please make sure this is possible before going to the next steps. Otherwise, some
+                        functionality may not work well.
+                    </strong>
+                </p>
+                <?php
+                    }
+                ?>
                 <p>
                     Through this wizard, you will be able to install and configure your Paperwork instance. At the end of
                     this process, you will be able to use Paperwork as your note-taking application. This installer will
@@ -192,9 +205,9 @@
                 </p>
                 <p>
                     If you want to skip using this wizard, please folow the instructions availabe
-                    <a href="https://github.com/twostairs/paperwork/wiki/Installing-and-configuring-Paperwork-without-using-the-Setup-Wizard" target="_blank">here</a>. 
-                    Please avoid this since the wizard makes sure that all dependencies are 
-                    installed and settings are set correctly. 
+                    <a href="https://github.com/twostairs/paperwork/wiki/Installing-and-configuring-Paperwork-without-using-the-Setup-Wizard" target="_blank">here</a>.
+                    Please avoid this since the wizard makes sure that all dependencies are
+                    installed and settings are set correctly.
                 </p>
             </div>
             <div class="col-md-12 step <?php if($currentStep == 2) { ?>step_active<?php } ?>" id="step2">
