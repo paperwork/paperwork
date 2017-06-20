@@ -398,7 +398,7 @@
                         <p>These credentials are correct. Install your Paperwork database by clicking 'Next' below. </p>
                     </div>
                     <div class="bg-danger credentials_alert" id="credentials_not_correct" style="display: none">
-                        <p>These credentials do not appear to be correct. Please check them again. </p>
+                        <p>A connection with the database could not be completed due to <span id="credentials_fail_reason"></span>. Please try again. </p>
                     </div>
                 </div>
                 <br>
@@ -668,12 +668,13 @@
                     nextStep((currentStep + 1));
                 }
             });
-            function showCredentialAlert (credentialsCorrect) {
+            function showCredentialAlert (credentialsCorrect, details) {
                 if(credentialsCorrect == true) {
                     $("#credentials_correct").show();
                     $("#credentials_not_correct").hide();
                 }else{
                     $("#credentials_correct").hide();
+                    $("#credentials_fail_reason").text(details);
                     $("#credentials_not_correct").show();
                 }
                 $("html, body").animate({
@@ -683,16 +684,16 @@
             $("#check_credentials").click(function() {
                 data = $("#database_info_form").serialize();
                 if((!$("#databaseField").val()) && $("#dbms_choice").val() !== "sqlite") {
-                    showCredentialAlert(false);
+                    showCredentialAlert(false, "not enough information");
                 }else{
                     $.ajax("setup/check_database_credentials.php", {
                         type: "POST",
                         data: data
                     }).success(function() {
-                        showCredentialAlert(true);
+                        showCredentialAlert(true, "");
                         nextBTN.attr("disabled", false);
-                    }).error(function() {
-                        showCredentialAlert(false);
+                    }).error(function(jqXHR) {
+                        showCredentialAlert(false, jqXHR.responseText);
                     });
                 }
             });

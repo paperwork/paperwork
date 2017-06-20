@@ -34,8 +34,9 @@
             exec("cd ../../ && php artisan migrate --force");
         }
 
-        header("Location: ".$_SERVER['HTTP_REFERRER'], true, 200);
+        http_response_code(200);
 
     }catch(PDOException $e) {
-        header("Location: ".$_SERVER['HTTP_REFERRER'], true, 404);
+        echo "incorrect credentials or unavailable server";
+        http_response_code(404);
     }
