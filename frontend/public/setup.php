@@ -259,7 +259,7 @@
                                 }
                                 if($installed_modules < 0) {
                             ?>
-                            <p class="text-error">None of the supported database systems are installed and enabled. </p>
+                            <p class="text-danger">None of the supported database systems are installed and enabled. </p>
                             <?php
                                 }
                             ?>
@@ -298,7 +298,7 @@
                             foreach ($installed_dependencies as $package_name => $installed) {
                                 if(!$installed_dependencies[$package_name]) {
                         ?>
-                        <p class="text-error">The package <?php echo $package_name; ?> is not fully installed. Did you run <code>composer install</code>?</p>
+                        <p class="text-danger">The package <?php echo $package_name; ?> is not fully installed. Did you run <code>composer install</code>?</p>
                         <?php
                                 }else{
                         ?>
@@ -350,7 +350,7 @@
                         <?php
                                 }else{
                         ?>
-                        <p class="text-error">The package <?php echo $npm_dependency_name; ?> is not fully installed. Did you run <code>npm install</code>?</p>
+                        <p class="text-danger">The package <?php echo $npm_dependency_name; ?> is not fully installed. Did you run <code>npm install</code>?</p>
                         <?php
                                 }
                             }
@@ -379,7 +379,7 @@
                         <?php
                             if($assets_missing) {
                         ?>
-                        <p class="text-error">You seem to be lacking some files required for Paperwork to work. Did you run <code>bower install</code> and <code>gulp</code>?</p>
+                        <p class="text-danger">You seem to be lacking some files required for Paperwork to work. Did you run <code>bower install</code> and <code>gulp</code>?</p>
                         <?php
                             }else{
                         ?>
