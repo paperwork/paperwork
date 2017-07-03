@@ -1,5 +1,5 @@
 angular.module('paperworkNotes').controller('SidebarNotesController',
-  function($scope, $rootScope, $location, $timeout, $window, $routeParams, NotebooksService, NotesService, ngDraggable, StatusNotifications, NetService) {
+  function($scope, $rootScope, $location, $timeout, $window, $routeParams, NotebooksService, NotesService, ngDraggable, StatusNotifications, NetService, $filter) {
 
     $rootScope.removeEditorButtonsCKEditor = '';
 
@@ -393,39 +393,29 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
       });
     };
 
-    $scope.sort_order_adjustment = "default";
+    if(typeof $rootScope.sort_order_adjustment === "undefined") {
+      $rootScope.sort_order_adjustment = "default";
+      $rootScope.sort_criteria = ["created_at", false];
+    }
 
     $scope.changeSortOrder = function(criteria) {
         switch(criteria) {
             case "creation_date":
-                $rootScope.notes.sort(function(a, b) {
-                    var createdA = new Date(a.created_at);
-                    var createdB = new Date(b.created_at);
-                    return (createdA > createdB) ? -1 : (createdA < createdB) ? 1 : 0;
-                });
+                $rootScope.sort_criteria = ["created_at", true];
                 break;
             case "modification_date":
-                $rootScope.notes.sort(function(a, b) {
-                    var modifiedA = new Date(a.updated_at);
-                    var modifiedB = new Date(b.updated_at);
-                    return (modifiedA > modifiedB) ? -1 : (modifiedA < modifiedB) ? 1 : 0;
-                });
+                $rootScope.sort_criteria = ["updated_at", true];
                 break;
             case "title":
-                $rootScope.notes.sort(function(a, b) {
-                    var titleA = a.version.title.toUpperCase();
-                    var titleB = b.version.title.toUpperCase();
-                    return (titleA < titleB) ? -1 : (titleA > titleB) ? 1 : 0;
-                });
+                $rootScope.sort_criteria = ["version.title", false];
                 break;
             default:
-                $rootScope.notes.sort(function(a, b) {
-                    var createdA = new Date(a.created_at);
-                    var createdB = new Date(b.created_at);
-                    return (createdA < createdB) ? -1 : (createdA > createdB) ? 1 : 0;
-                });
+                $rootScope.sort_criteria = ["created_at", false];
                 break;
         }
+
+        $rootScope.notes = $filter('orderBy')($rootScope.notes, $rootScope.sort_criteria[0], $rootScope.sort_criteria[1]);
+
         /*if(criteria === "creation_date") {
             $rootScope.notes.sort(function(a, b) {
                 var createdA = new Date(a.created_at);
