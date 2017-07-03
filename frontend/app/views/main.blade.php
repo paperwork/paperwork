@@ -93,7 +93,6 @@
     					ng-drag="true"
     					ng-drag-data="(note)"
     					ng-drag-success="onDragSuccess($data,$event)"
-    					ng-drag-data="notebook"
     					data-allow-transform="false">
     					<span class="draggable"></span>
     					<div class="notes-list-item-checkbox col-sm-1" ng-show="editMultipleNotes">
@@ -115,10 +114,6 @@
     			</ul>
     		</div>
 		</div>
-
-[[-- @if($welcomeNoteSaved == 1) --]
-    [[-- HTML::script('js/special_note.js') --]]
-[[-- @endif --]]
 		<div id="paperworkViewParent"
              class="main col-xs-12 {{ isVisible() ?
                 (sidebarCollapsed ? 'col-sm-8 col-md-9 col-sm-offset-4 col-md-offset-3' : 'col-sm-5 col-md-7 col-sm-offset-7 col-md-offset-5' )
@@ -131,7 +126,6 @@
                   ng-class=""
                   ng-init=""
                   ng-cloak>
-		        <p style="font-size:15px;padding-top:15px;display:none">[[ Lang::get('messages.no_notes_in_notebook') ]]</p>
 		        <h1>[[ Lang::get('messages.nothing_here') ]]</h1>
 		        <p style="font-size:15px;padding-top:15px">[[ Lang::get('messages.no_notes_in_notebook') ]]</p>
              </div>
