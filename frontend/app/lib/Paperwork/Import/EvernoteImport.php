@@ -161,8 +161,6 @@ class EvernoteImport extends AbstractImport
             $hasResourceAttr = isset($attachment['resource-attributes']);
             $hasFileName     = isset($attachment['resource-attributes']['file-name']);
 
-            //$fileName = $attachment['resource-attributes']['file-name'];
-            //$fileName = ($hasResourceAttr && $hasFileName) ? $fileName : uniqid(rand(), true);
             $fileName = ($hasResourceAttr && $hasFileName) ? $attachment['resource-attributes']['file-name'] : uniqid(rand(), true);
 
             $fileContent = base64_decode($attachment['data']);
