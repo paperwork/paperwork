@@ -59,6 +59,7 @@ class EvernoteImport extends AbstractImport
      public function import(UploadedFile $file)
      {
          try {
+             ini_set('memory_limit', '-1');
              $xmlfile = file_get_contents($file->getRealPath());
              $xmlfile = str_replace(array("&amp;", "&"), array("&", "&amp;"), $xmlfile);
              $this->xml = simplexml_load_string($xmlfile, 'SimpleXMLElement',
