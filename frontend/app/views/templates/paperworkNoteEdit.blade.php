@@ -13,7 +13,7 @@
                 </ul>
                 <ul class="nav navbar-nav pull-right navbar-edit">
                     <li>
-                        <div class="btn-group" ng-controller="SidebarNotesController">
+                        <div class="btn-group" ng-controller="SidebarNotesController" ng-init="removeEditorButtonsCKEditor='[[ Config::get('paperwork.removeEditorButtonsCKEditor') ]]'">
                             <a id="updateNote" href="" ng-click="updateNote()" class="btn btn-default navbar-btn"
                                title="[[Lang::get('keywords.save')]]"><i class="fa fa-floppy-o"></i></a>
                             <a href="" ng-click="closeNote()" class="btn btn-default navbar-btn"

@@ -28,7 +28,7 @@
     "angular-animate": "~1.2",
     "angular-route": "~1.2",
     "angular-resource": "~1.2",
-    "angular-file-upload": "1.1.5",
+    "angular-file-upload": "2.5.0",
     "jquery": "~1.11",
     "angular-utf8-base64": "~0.0.5",
     "ngDraggable": "~0.1.3",

@@ -194,6 +194,18 @@ return array(
   	|
   	| The maximum number of attachments that can be attachned to each note.
   	*/
-  	'maximumAttachmentsPerNote' => 10,
+	'maximumAttachmentsPerNote' => isset($configuration->maximumAttachmentsPerNote) ? ($configuration->maximumAttachmentsPerNote) : 10,
+
+	/*
+	|-------------------------------------------------------------------------
+	| removeEditorButtonsCKEditor
+	|-------------------------------------------------------------------------
+	|
+	| The default plugins included in the basic setup define some buttons that
+	| are not needed in a basic editor. The ones to be removed are defined
+	| here.
+	*/
+	'removeEditorButtonsCKEditor' =>
+		isset($configuration->removeEditorButtonsCKEditor) ? $configuration->removeEditorButtonsCKEditor : 'Cut,Copy,Paste,Undo,Redo,Anchor,Underline,Strike,Subscript,Superscript',
 
 );
