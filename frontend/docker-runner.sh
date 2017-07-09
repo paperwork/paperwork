@@ -30,4 +30,4 @@ EOF
 
 echo -n "8" > /app/app/storage/config/setup
 
-/run.sh
+# /run.sh
