@@ -1,22 +1,23 @@
-FROM wonderfall/nginx-php:7.1
+FROM klud/nginx-php:5.6
 LABEL maintainer "Pierre Ugaz <pierre.ugazm@gmail.com>"
 
+ENV UID=991 \
+    GID=991
+
 # Override default nginx conf
+ADD https://getcomposer.org/download/1.4.2/composer.phar /usr/bin/composer
 ADD ./deploy/paperwork.conf /nginx/sites-enabled/nginx.conf
 ADD . /app
 
-# Install packages
-RUN apt add --no-cache \
+# Grant execution permission on composer
+RUN chmod +x /usr/bin/composer && \
+
+    # Install packages
+    apk add --no-cache \
+    bash \
     nodejs \
     nodejs-npm \
     git
-    # DEBIAN_FRONTEND=noninteractive apt-get -y install supervisor pwgen && \
-
-# Enable apache rewrite module
-# Enable php mcrypt module
-# Configure /app folder
-# RUN a2enmod rewrite && php5enmod mcrypt && \
-    # mkdir -p /app && rm -rf /var/www/html && ln -s /app/public /var/www/html
 
 # Copy application + install dependencies
 # ADD . /app
@@ -36,6 +37,6 @@ RUN \
 RUN sed -i 's/return $app;//' /app/bootstrap/start.php
 RUN echo '$env = $app->detectEnvironment(function() { return "development"; }); return $app;' >> /app/bootstrap/start.php
 
+EXPOSE 8888
 VOLUME ["/app/app/storage/"]
-
 CMD ["/app/docker-runner.sh"]
