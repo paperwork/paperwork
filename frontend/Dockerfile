@@ -1,24 +1,25 @@
-FROM centurylink/apache-php:latest
-MAINTAINER Derek Myers <arcticpro@gmail.com>
+FROM wonderfall/nginx-php:7.1
+LABEL maintainer "Pierre Ugaz <pierre.ugazm@gmail.com>"
+
+# Override default nginx conf
+ADD ./deploy/paperwork.conf /nginx/sites-enabled/nginx.conf
+ADD . /app
 
 # Install packages
-RUN apt-get update && \
- DEBIAN_FRONTEND=noninteractive apt-get -y upgrade && \
- DEBIAN_FRONTEND=noninteractive apt-get -y install supervisor pwgen && \
- apt-get -y install mysql-client libmcrypt4 php5-mcrypt php5-json php5-curl \
- php5-ldap php5-cli nodejs nodejs-legacy npm git git-core
-
-# Override default apache conf
-ADD ./deploy/apache.conf /etc/apache2/sites-enabled/000-default.conf
+RUN apt add --no-cache \
+    nodejs \
+    nodejs-npm \
+    git
+    # DEBIAN_FRONTEND=noninteractive apt-get -y install supervisor pwgen && \
 
 # Enable apache rewrite module
 # Enable php mcrypt module
 # Configure /app folder
-RUN a2enmod rewrite && php5enmod mcrypt && \
-    mkdir -p /app && rm -rf /var/www/html && ln -s /app/public /var/www/html
+# RUN a2enmod rewrite && php5enmod mcrypt && \
+    # mkdir -p /app && rm -rf /var/www/html && ln -s /app/public /var/www/html
 
 # Copy application + install dependencies
-ADD . /app
+# ADD . /app
 WORKDIR /app
 
 RUN \
@@ -29,10 +30,12 @@ RUN \
     composer install && npm update && npm install && \
     npm install -g gulp bower && bower --allow-root install && gulp && \
     # Fix permissions for apache \
-    chown -R www-data:www-data /app && chmod +x /app/docker-runner.sh
+    chown -R $UID:$GID /app && chmod +x /app/docker-runner.sh
 
 # Override environment to ensure laravel is running migrations.
 RUN sed -i 's/return $app;//' /app/bootstrap/start.php
 RUN echo '$env = $app->detectEnvironment(function() { return "development"; }); return $app;' >> /app/bootstrap/start.php
+
+VOLUME ["/app/app/storage/"]
 
 CMD ["/app/docker-runner.sh"]
