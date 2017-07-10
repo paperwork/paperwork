@@ -1,5 +1,13 @@
 <?php
 
+    /**
+     * If the user is using PHP 7.1, turn off the error caused by the deprecation
+     * of Mcrypt. 
+     */
+    if(version_compare(phpversion(), "7.1.0", ">=")) {
+        error_reporting(E_ALL & ~E_DEPRECATED);
+    }
+    
     /** Check if all config lines are present. 
      * If not, either the installation is damaged
      * or installation has not been done. Run the 
