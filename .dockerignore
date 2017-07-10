@@ -1,0 +1,8 @@
+.tx/
+.gitignore
+.travis.yml
+apiary.apib
+docker-compose.yml
+LICENSE
+paperwork-logo.png
+README.md
