@@ -5,19 +5,22 @@ ENV UID=991 \
     GID=991
 
 # Override default nginx conf
-ADD https://getcomposer.org/download/1.4.2/composer.phar /usr/bin/composer
-ADD ./deploy/paperwork.conf /nginx/sites-enabled/nginx.conf
-ADD . /app
+ADD https://getcomposer.org/download/1.4.2/composer.phar /usr/local/bin/composer
+ADD docker/ /
+ADD frontend/ /app
 
 # Grant execution permission on composer
-RUN chmod +x /usr/bin/composer && \
+RUN chmod +x /usr/local/bin/composer && \
 
     # Install packages
     apk add --no-cache \
     bash \
     nodejs \
     nodejs-npm \
-    git
+    git \
+    # Mysql client because it installs mysqladmin which is needed
+    # In order to wait and connect with mysql/mariadb container
+    mysql-client
 
 # Copy application + install dependencies
 # ADD . /app
@@ -31,7 +34,7 @@ RUN \
     composer install && npm update && npm install && \
     npm install -g gulp bower && bower --allow-root install && gulp && \
     # Fix permissions for apache \
-    chown -R $UID:$GID /app && chmod +x /app/docker-runner.sh
+    chown -R $UID:$GID /app && chmod +x /usr/local/bin/docker-runner.sh
 
 # Override environment to ensure laravel is running migrations.
 RUN sed -i 's/return $app;//' /app/bootstrap/start.php
@@ -39,4 +42,4 @@ RUN echo '$env = $app->detectEnvironment(function() { return "development"; }); 
 
 EXPOSE 8888
 VOLUME ["/app/app/storage/"]
-CMD ["/app/docker-runner.sh"]
+CMD ["/usr/local/bin/docker-runner.sh"]
