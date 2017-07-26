@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\BaseController;
+use Paperwork\Helpers\PaperworkHelpersFacade;
 
 class ApiVersionsController extends BaseController {
     protected $dates = ['deleted_at'];
@@ -28,7 +29,7 @@ class ApiVersionsController extends BaseController {
 		$versionsArray = array();
 
 		if(is_null($versionsObject)) {
-			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+			return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_NOTFOUND, array());
 		}
 
 		$versionsArray[] = $versionsObject;
@@ -40,7 +41,7 @@ class ApiVersionsController extends BaseController {
 			$tmp = $tmp->previous()->first();
 		}
 
-		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $versionsArray);
+		return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_SUCCESS, $versionsArray);
 	}
 
 	public function show($notebookId, $noteId, $versionId)
@@ -62,17 +63,17 @@ class ApiVersionsController extends BaseController {
 		$currentVersion = $note->version()->first();
 
 		if(is_null($currentVersion)) {
-			return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+			return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_NOTFOUND, array());
 		}
 
 		while(!is_null($currentVersion)) {
  			if($currentVersion->id == $versionId || $versionId == '0') {
-				return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $currentVersion);
+				return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_SUCCESS, $currentVersion);
 			}
 			$currentVersion = $currentVersion->previous()->first();
 		}
 
-		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+		return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_NOTFOUND, array());
 	}
 
 

@@ -6,7 +6,8 @@ use App\Http\Controllers\BaseController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use PaperworkHelpers;
+use Paperwork\Helpers\PaperworkHelpers;
+use Paperwork\Helpers\PaperworkHelpersFacade;
 
 class ApiShortcutsController extends BaseController
 {
@@ -22,7 +23,7 @@ class ApiShortcutsController extends BaseController
             ->select('notebooks.id', 'notebooks.parent_id', 'notebooks.type', 'notebooks.title', 'shortcuts.id as shortcut_id', 'shortcuts.sortkey')
             ->get();
 
-        return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $shortcuts);
+        return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_SUCCESS, $shortcuts);
     }
 
     public function show($id = null)
@@ -40,9 +41,9 @@ class ApiShortcutsController extends BaseController
                 ->first();
 
             if (is_null($shortcuts)) {
-                return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+                return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_NOTFOUND, array());
             } else {
-                return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $shortcuts);
+                return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_SUCCESS, $shortcuts);
             }
         }
     }

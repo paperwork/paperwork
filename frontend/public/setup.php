@@ -1,16 +1,17 @@
  <?php
     function getCurrentSetupStep () {
+        $configpath="../storage/config"
         // Check if setup file is present
-        if (!file_exists("../app/storage/config/setup")) {
+        if (!file_exists($config . "/setup")) {
             return 1;
         }
-        $setup_file_contents = file_get_contents("../app/storage/config/setup");
+        $setup_file_contents = file_get_contents($config . "/setup");
         // Check if setup should have created database.json
-        if ($setup_file_contents > 3 && !file_exists("../app/storage/config/database.json")) {
+        if ($setup_file_contents > 3 && !file_exists($config . "/database.json")) {
             return 3;
         }
         // Check if setup should have created paperwork.json
-        if ($setup_file_contents > 4 && !file_exists("../app/storage/config/paperwork.json")) {
+        if ($setup_file_contents > 4 && !file_exists($config . "/paperwork.json")) {
             return 4;
         }
         // Check if setup should be skipped
@@ -274,9 +275,9 @@
                     </div>
                     <?php
                         $installed_npm_packages = [];
-                        exec("cd ../app/storage/config/ && npm ls --json=true > npm-packages.json");
+                        exec("cd ../storage/config/ && npm ls --json=true > npm-packages.json");
 
-                        $npm_packages_installed = file_get_contents("../app/storage/config/npm-packages.json");
+                        $npm_packages_installed = file_get_contents("../storage/config/npm-packages.json");
                         $npm_packages_installed = json_decode($npm_packages_installed);
                         $npm_packages_installed = $npm_packages_installed->{"dependencies"};
 
@@ -296,7 +297,7 @@
                             }
                         }
 
-                        unlink("../app/storage/config/npm-packages.json");
+                        unlink("../storage/config/npm-packages.json");
 
                     ?>
                     <div class="panel-body <?php echo ($npm_missing) ? 'bg-danger' : 'bg-success'; ?>">

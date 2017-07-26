@@ -16,9 +16,12 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Lang;
 use Parsedown;
 use App\Models\Setting;
 use App\Models\Language;
+use Paperwork\Helpers\PaperworkHelpers;
+use Paperwork\Helpers\PaperworkHelpersFacade;
 
 /**
  * Class UserController
@@ -79,14 +82,14 @@ class UserController extends BaseController
 
             if(Input::get('admin_creator') == true) {
                 return Redirect::route("admin/console");
-            }else if ($user && !Request::ajax()) {
+            }else if ($user && !$request->ajax()) {
                 Auth::login($user);
 
                 Session::put('ui_language', $request->input('ui_language'));
 
                 return Redirect::route("/");
             }else if($user) {
-                return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, array());
+                return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_SUCCESS, array());
             }
 
             if(!Request::ajax()) {
@@ -97,7 +100,7 @@ class UserController extends BaseController
 
             }
         } else {
-            if(!Request::ajax()) {
+            if(!$request->ajax()) {
                 return Redirect::back()->withInput()->withErrors($validator);
             }else{
                 return Response::json(array('html' => View::make('partials/registration-form')->withErrors($validator)->render(), 'input' => $request->all()), 400);

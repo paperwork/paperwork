@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\BaseController;
 use Lang;
-use PaperworkHelpers;
+use Paperwork\Helpers\PaperworkHelpers;
+use Paperwork\Helpers\PaperworkHelpersFacade;
 
 class ApiI18nController extends BaseController {
 	public $restful = true;
@@ -21,12 +22,12 @@ class ApiI18nController extends BaseController {
 			'users' => Lang::get('users'),
 			'validation' => Lang::get('validation')
 		);
-		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $i18n);
+		return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_SUCCESS, $i18n);
 	}
 
 	public function show($translation)
 	{
-		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, Lang::get($translation));
+		return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_SUCCESS, Lang::get($translation));
 	}
 }
 

@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\User;
+use Illuminate\Support\Facades\View;
 
 class AdminController extends BaseController {
 	public function showConsole() {

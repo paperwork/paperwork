@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Api\V1;
 use App\Http\Controllers\BaseController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use PaperworkHelpers;
+use Paperwork\Helpers\PaperworkHelpers;
+use Paperwork\Helpers\PaperworkHelpersFacade;
 
 class ApiCalendarController extends BaseController
 {
@@ -39,6 +40,6 @@ class ApiCalendarController extends BaseController
             return $array;
         }, array());
 
-        return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $indexed);
+        return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_SUCCESS, $indexed);
     }
 }

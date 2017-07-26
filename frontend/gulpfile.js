@@ -17,10 +17,10 @@ var paths = {
         //'bootstrap-tree.js'
     ],
     paperwork: [
-        'paperwork/**/*.js'
+        'resources/assets/js/paperwork/**/*.js'
     ],
     paperworknative: [
-        'paperwork-native.js'
+        'resources/assets/js/paperwork-native.js'
     ],
     angular: [
         'resources/assets/bower_components/angular/angular.js',
@@ -48,8 +48,8 @@ var paths = {
         'resources/assets/bower_components/typeahead.js/dist/typeahead.bundle.js'
     ],
     libraries: [
-        'freqselector.js',
-        'mathquill.js',
+        'resources/assets/freqselector.js',
+        'resources/assets/mathquill.js',
         'resources/assets/bower_components/retinajs/dist/retina.js',
         'resources/assets/bower_components/x-editable/dist/bootstrap3-editable/js/bootstrap-editable.min.js',
         //'public/ckeditor/plugins/codesnippet/lib/highlight/highlight.pack.js'

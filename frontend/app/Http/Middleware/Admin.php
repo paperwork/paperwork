@@ -32,7 +32,7 @@ class Admin {
 	 */
 	public function handle($request, Closure $next)
 	{
-        if (! $this->auth->user->is_admin) {
+        if (! $this->auth->user()->is_admin) {
             return App::abort(401, 'You are not authorized.');
         }
 

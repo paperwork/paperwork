@@ -67,7 +67,7 @@ class PaperworkHelpers {
 		return $html;
 	}
 
-	public function apiResponse($status, $data)	{
+	public static function apiResponse($status, $data)	{
 		$return = array();
 
 		switch($status) {
@@ -84,7 +84,7 @@ class PaperworkHelpers {
 		return \Response::json($return, $status);
 	}
 
-	public function getUiLanguages() {
+	public static function getUiLanguages() {
 		$directories = \File::directories(resource_path('lang'));
 		$uiLanguages = array();
 
@@ -95,7 +95,7 @@ class PaperworkHelpers {
 		return $uiLanguages;
 	}
 
-	public function hasUiLanguage($languageCode) {
+	public static function hasUiLanguage($languageCode) {
 		$directories = \File::directories(resource_path('lang'));
 		$uiLanguages = array();
 
@@ -109,7 +109,7 @@ class PaperworkHelpers {
 
 	}
 
-	public function getUiLanguageFromSession() {
+	public static function getUiLanguageFromSession() {
 	    $setLanguage = \Session::get('ui_language', \Config::get('app.locale'));
 	    if(\Config::get('paperwork.userAgentLanguage')) {
 	        $uaLanguages = \Agent::languages();
@@ -123,7 +123,7 @@ class PaperworkHelpers {
 	    return $setLanguage;
 	}
 
-	public function getDocumentLanguages() {
+	public static function getDocumentLanguages() {
 		$languages = Language::all();
 		$documentLanguages = array();
 
@@ -134,7 +134,7 @@ class PaperworkHelpers {
 		return $documentLanguages;
 	}
 
-	public function generateClientQrCodeJson() {
+	public static function generateClientQrCodeJson() {
 		$data = array(
 			'paperwork' => array(
 				'user' => array(
@@ -150,12 +150,12 @@ class PaperworkHelpers {
 	}
 
 	// Let's abstract the UUID generation process, so we can easily switch levels or even libraries
-	public function generateUuid($info) {
+	public static function generateUuid($info) {
 		// $info isn't yet used, but could be in future
 		return \Uuid::generate(4);
 	}
 
-	public function extendAttributes($attributes, $extensions, $info) {
+	public static function extendAttributes($attributes, $extensions, $info) {
 		foreach($extensions as $extension) {
 			switch($extension) {
 				case 'uuid':
@@ -166,7 +166,7 @@ class PaperworkHelpers {
 		return $attributes;
 	}
 
-	public function cleanupMatches($string, $matches, $key = 0) {
+	public static function cleanupMatches($string, $matches, $key = 0) {
 		foreach($matches as $match) {
 			$pos = strpos($string, $match[$key]);
 			if($pos !== false) {
@@ -177,7 +177,7 @@ class PaperworkHelpers {
 		return $string;
 	}
 
-    public function isLdap()
+    public static function isLdap()
     {
         return strpos(\Config::get('auth.driver'),'ldap') !== false;
     }
@@ -187,7 +187,7 @@ class PaperworkHelpers {
      *
      * @return mixed
      */
-    public function getHashes(){
+    public static function getHashes(){
         $cachedInfo = !\Cache::get('paperwork.commitInfo', [null, false]);
 
         if (!$cachedInfo[0] && !$cachedInfo[1]) {

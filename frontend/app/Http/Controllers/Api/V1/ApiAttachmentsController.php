@@ -6,7 +6,8 @@ use App\Http\Controllers\BaseController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use App\Models\User;
-use PaperworkHelpers;
+use Paperwork\Helpers\PaperworkHelpers;
+use Paperwork\Helpers\PaperworkHelpersFacade;
 
 class ApiAttachmentsController extends BaseController
 {
@@ -44,7 +45,7 @@ class ApiAttachmentsController extends BaseController
         $version = null;
 
         if (is_null($tmp)) {
-            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+            return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_NOTFOUND, array());
         }
 
         while (!is_null($tmp)) {
@@ -55,7 +56,7 @@ class ApiAttachmentsController extends BaseController
             $tmp = $tmp->previous()->first();
         }
 
-        return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $version->attachments()->whereNull('attachments.deleted_at')->get());
+        return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_SUCCESS, $version->attachments()->whereNull('attachments.deleted_at')->get());
     }
 
     public function show($notebookId, $noteId, $versionId, $attachmentId)
@@ -66,7 +67,7 @@ class ApiAttachmentsController extends BaseController
         $version = null;
 
         if (is_null($tmp)) {
-            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+            return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_NOTFOUND, array());
         }
 
         while (!is_null($tmp)) {
@@ -79,15 +80,15 @@ class ApiAttachmentsController extends BaseController
 
         $attachment = $version->attachments()->where('attachments.id', '=', $attachmentId)->whereNull('attachments.deleted_at')->first();
 
-        return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $attachment);
+        return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_SUCCESS, $attachment);
     }
 
 
     public function store($notebookId, $noteId, $versionId)
     {
         $note=self::getNote($notebookId, $noteId, $versionId);
-        if ($note->pivot->umask < PaperworkHelpers::UMASK_READWRITE) {
-            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, array('message' => 'Permission Error'));
+        if ($note->pivot->umask < PaperworkHelpersFacade::UMASK_READWRITE) {
+            return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_ERROR, array('message' => 'Permission Error'));
         }
         if ((Input::hasFile('file') && Input::file('file')->isValid()) || (Input::json() != null && Input::json() != "")) {
             $fileUpload = null;
@@ -121,7 +122,7 @@ class ApiAttachmentsController extends BaseController
 
             if (!File::makeDirectory($destinationFolder, 0700)) {
                 $newAttachment->delete();
-                return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, array('message' => 'Internal Error'));
+                return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_ERROR, array('message' => 'Internal Error'));
             }
 
             // Get Version with versionId
@@ -133,7 +134,7 @@ class ApiAttachmentsController extends BaseController
             if (is_null($tmp)) {
                 $newAttachment->delete();
                 File::deleteDirectory($destinationFolder);
-                return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array('message' => 'version->first'));
+                return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_NOTFOUND, array('message' => 'version->first'));
             }
 
             while (!is_null($tmp)) {
@@ -147,7 +148,7 @@ class ApiAttachmentsController extends BaseController
             if (is_null($version)) {
                 $newAttachment->delete();
                 File::deleteDirectory($destinationFolder);
-                return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array('message' => 'version'));
+                return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_NOTFOUND, array('message' => 'version'));
             }
 
             if (Input::hasFile('file')) {
@@ -160,9 +161,9 @@ class ApiAttachmentsController extends BaseController
             // Let's push that parsing job, which analyzes the document, converts it if needed and parses the crap out of it.
             Queue::push('DocumentParserWorker', array('user_id' => Auth::user()->id, 'document_id' => $newAttachment->id));
 
-            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $newAttachment);
+            return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_SUCCESS, $newAttachment);
         } else {
-            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, array('message' => 'Invalid input'));
+            return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_ERROR, array('message' => 'Invalid input'));
         }
     }
 
@@ -170,20 +171,20 @@ class ApiAttachmentsController extends BaseController
     // {
         // We actually don't need this. If the user wants to update an attachment, he'd probably
         // upload the new version and delete the old one, right?
-        // return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, null);
+        // return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_SUCCESS, null);
     // }
 
     public function destroy($notebookId, $noteId, $versionId, $attachmentId)
     {
         $note = self::getNote($notebookId, $noteId, $versionId);
-        if ($note->pivot->umask < PaperworkHelpers::UMASK_READWRITE) {
-            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, array('message' => 'Permission Error'));
+        if ($note->pivot->umask < PaperworkHelpersFacade::UMASK_READWRITE) {
+            return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_ERROR, array('message' => 'Permission Error'));
         }
         $tmp = $note->version()->first();
         $version = null;
 
         if (is_null($tmp)) {
-            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+            return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_NOTFOUND, array());
         }
 
         while (!is_null($tmp)) {
@@ -198,13 +199,13 @@ class ApiAttachmentsController extends BaseController
 
         // $version->attachments()->detach($attachment);
         if (is_null($attachment)) {
-            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+            return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_NOTFOUND, array());
         }
 
         $oldAttachment = $attachment;
         $attachment->delete();
 
-        return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $oldAttachment);
+        return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_SUCCESS, $oldAttachment);
     }
 
 
@@ -216,7 +217,7 @@ class ApiAttachmentsController extends BaseController
         $version = null;
 
         if (is_null($tmp)) {
-            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+            return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_NOTFOUND, array());
         }
 
         while (!is_null($tmp)) {
@@ -231,7 +232,7 @@ class ApiAttachmentsController extends BaseController
 
         // $version->attachments()->detach($attachment);
         if (is_null($attachment)) {
-            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+            return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_NOTFOUND, array());
         }
 
         $destinationFolder = Config::get('paperwork.attachmentsDirectory') . '/' . $attachment->id;

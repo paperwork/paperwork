@@ -3,6 +3,12 @@ namespace Paperwork;
 
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Input;
+use App\Models\User;
+use App\Models\Setting;
+use App\Models\Notebook;
+use App\Models\Tag;
+use App\Models\Version;
+use App\Models\Note;
 
 class UserRegistrator
 {
@@ -16,9 +22,9 @@ class UserRegistrator
      */
     public function registerUser(array $userInfo, $userLanguage)
     {
-        $user = \User::create($userInfo);
+        $user = User::create($userInfo);
         //make the first user an admin
-        if (\User::all()->count() <= 1) {
+        if (User::all()->count() <= 1) {
             $user->is_admin = 1;
         }
 
@@ -27,14 +33,14 @@ class UserRegistrator
         $user->lastname  = trim($user->lastname);
 
         $user->save();
-        \Setting::create([
+        Setting::create([
           'ui_language' => $userLanguage,
           'user_id'     => $user->id
         ]);
 
         /* Add welcome note to user - create notebook, tag and note */
         //$notebookCreate = Notebook::create(array('title' => Lang::get('notebooks.welcome_notebook_title')));
-        $notebookCreate = new \Notebook();
+        $notebookCreate = new Notebook();
 
         $notebookCreate->title = Lang::get('notebooks.welcome_notebook_title');
         $notebookCreate->save();
@@ -44,7 +50,7 @@ class UserRegistrator
                          ['umask' => \PaperworkHelpers::UMASK_OWNER]);
 
         //$tagCreate = Tag::create(array('title' => Lang::get('notebooks.welcome_note_tag'), 'visibility' => 0));
-        $tagCreate = new \Tag();
+        $tagCreate = new Tag();
 
         $tagCreate->title      = Lang::get('notebooks.welcome_note_tag');
         $tagCreate->visibility = 0;
@@ -52,9 +58,9 @@ class UserRegistrator
         $tagCreate->save();
         //$tagCreate->users()->attach($user->id);
 
-        $noteCreate = new \Note;
+        $noteCreate = new Note;
 
-        $versionCreate = new \Version([
+        $versionCreate = new Version([
           'title'           => Lang::get('notebooks.welcome_note_title'),
           'content'         => Lang::get('notebooks.welcome_note_content'),
           'content_preview' => mb_substr(strip_tags(Lang::get('notebooks.welcome_note_content')),

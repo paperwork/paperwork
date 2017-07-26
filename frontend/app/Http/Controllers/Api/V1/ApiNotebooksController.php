@@ -11,7 +11,8 @@ use App\Models\Notebook;
 use App\Models\Shortcut;
 use App\Models\User;
 use PaperworkDb;
-use PaperworkHelpers;
+use Paperwork\Helpers\PaperworkHelpers;
+use Paperwork\Helpers\PaperworkHelpersFacade;
 
 class ApiNotebooksController extends BaseController
 {
@@ -50,7 +51,7 @@ class ApiNotebooksController extends BaseController
 
         $notebooks = PaperworkDb::notebook()->get()->toArray();
         array_unshift($notebooks, array('id' => PaperworkDb::DB_ALL_ID, 'type' => '2', 'title' => Lang::get('notebooks.all_notes')));
-        return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notebooks);
+        return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_SUCCESS, $notebooks);
     }
 
     public function show($id = null)
@@ -72,17 +73,17 @@ class ApiNotebooksController extends BaseController
         // 		->first();
 
         // 	if(is_null($notebook)){
-        // 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+        // 		return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_NOTFOUND, array());
         // 	} else {
         // 		$notebook->children = $this->getNotebookChildren($id);
-        // 		return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notebook);
+        // 		return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_SUCCESS, $notebook);
         // 	}
         // }
-        $notebooks = PaperworkDb::notebook()->get(array('id' => explode(PaperworkHelpers::MULTIPLE_REST_RESOURCE_DELIMITER, $id)))->toArray();
+        $notebooks = PaperworkDb::notebook()->get(array('id' => explode(PaperworkHelpersFacade::MULTIPLE_REST_RESOURCE_DELIMITER, $id)))->toArray();
         if (empty($notebooks)) {
-            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+            return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_NOTFOUND, array());
         }
-        return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notebooks);
+        return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_SUCCESS, $notebooks);
     }
 
 
@@ -95,16 +96,16 @@ class ApiNotebooksController extends BaseController
             $notebook = Notebook::create(array('title' => $newNotebook->get('title'), 'type' => $newNotebook->get('type')));
             $notebook->save();
 
-            $notebook->users()->attach(Auth::user()->id, array('umask' => PaperworkHelpers::UMASK_OWNER));
+            $notebook->users()->attach(Auth::user()->id, array('umask' => PaperworkHelpersFacade::UMASK_OWNER));
 
             if ($newNotebook->get('shortcut')) {
                 $shortcut = new Shortcut(array('sortkey' => 255, 'user_id' => Auth::user()->id));
                 $notebook->shortcuts()->save($shortcut);
             }
 
-            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notebook);
+            return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_SUCCESS, $notebook);
         } else {
-            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, $validator->getMessageBag()->toArray());
+            return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_ERROR, $validator->getMessageBag()->toArray());
         }
     }
 
@@ -120,10 +121,10 @@ class ApiNotebooksController extends BaseController
         if ($validator->passes()) {
             $updateNotebook = Input::json();
 
-            $notebook = User::find(Auth::user()->id)->notebooks()->wherePivot('umask', '>', PaperworkHelpers::UMASK_READONLY)->where('notebooks.id', '=', $notebookId)->whereNull('notebooks.deleted_at')->first();
+            $notebook = User::find(Auth::user()->id)->notebooks()->wherePivot('umask', '>', PaperworkHelpersFacade::UMASK_READONLY)->where('notebooks.id', '=', $notebookId)->whereNull('notebooks.deleted_at')->first();
 
             if (is_null($notebook)) {
-                return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+                return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_NOTFOUND, array());
             }
             $notebook->title = $updateNotebook->get('title');
             $notebook->save();
@@ -141,18 +142,18 @@ class ApiNotebooksController extends BaseController
                 }
             }
 
-            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notebook);
+            return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_SUCCESS, $notebook);
         } else {
-            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, $validator->getMessageBag()->toArray());
+            return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_ERROR, $validator->getMessageBag()->toArray());
         }
     }
 
     public function destroy($notebookId)
     {
-        $notebook = User::find(Auth::user()->id)->notebooks()->wherePivot('umask', '=', PaperworkHelpers::UMASK_OWNER)->where('notebooks.id', '=', $notebookId)->whereNull('notebooks.deleted_at')->first();
+        $notebook = User::find(Auth::user()->id)->notebooks()->wherePivot('umask', '=', PaperworkHelpersFacade::UMASK_OWNER)->where('notebooks.id', '=', $notebookId)->whereNull('notebooks.deleted_at')->first();
 
         if (is_null($notebook)) {
-            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+            return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_NOTFOUND, array());
         }
         $deletedNotebook = $notebook;
 
@@ -163,9 +164,9 @@ class ApiNotebooksController extends BaseController
 
         //Check if notebook is a collection
         if ($notebook->type == 1) {
-            $notebooks = User::find(Auth::user()->id)->notebooks()->wherePivot('umask', '=', PaperworkHelpers::UMASK_OWNER)->where('notebooks.parent_id', '=', $notebook->id)->whereNull('notebooks.deleted_at')->get();
+            $notebooks = User::find(Auth::user()->id)->notebooks()->wherePivot('umask', '=', PaperworkHelpersFacade::UMASK_OWNER)->where('notebooks.parent_id', '=', $notebook->id)->whereNull('notebooks.deleted_at')->get();
             foreach ($notebooks as $row) {
-                $childNotebook = User::find(Auth::user()->id)->notebooks()->wherePivot('umask', '=', PaperworkHelpers::UMASK_OWNER)->where('notebooks.id', '=', $row->id)->whereNull('notebooks.deleted_at')->first();
+                $childNotebook = User::find(Auth::user()->id)->notebooks()->wherePivot('umask', '=', PaperworkHelpersFacade::UMASK_OWNER)->where('notebooks.id', '=', $row->id)->whereNull('notebooks.deleted_at')->first();
                 $childNotebook->parent_id = null;
                 $childNotebook->save();
             }
@@ -173,14 +174,14 @@ class ApiNotebooksController extends BaseController
 
         $notebook->delete();
 
-        return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $deletedNotebook);
+        return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_SUCCESS, $deletedNotebook);
     }
 
 
     private function shareNotebook($notebookId, $toUserId, $toUMASK)
     {
         $notebook=User::find(Auth::user()->id)->notebooks()
-                        ->wherePivot('umask', '=', PaperworkHelpers::UMASK_OWNER)
+                        ->wherePivot('umask', '=', PaperworkHelpersFacade::UMASK_OWNER)
                         ->where('notebooks.id', '=', $notebookId)
                         ->whereNull('notebooks.deleted_at')
                         ->first();
@@ -193,7 +194,7 @@ class ApiNotebooksController extends BaseController
         } //user with which we want to share the note doesn't exist
         $toUser=$notebook->users()->where('users.id', '=', $toUserId)->first();
         if (!is_null($toUser)) {
-            if ($toUser->pivot->umask==PaperworkHelpers::UMASK_OWNER) {
+            if ($toUser->pivot->umask==PaperworkHelpersFacade::UMASK_OWNER) {
                 return null;
             }
             if ($toUMASK==0) {//set UMASK to 0 to stop sharing
@@ -209,7 +210,7 @@ class ApiNotebooksController extends BaseController
         }
         if (is_null($toUser)) {
             $notebook->users()->attach($toUserId, array('umask' => $toUMASK)); //add user
-            // return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array('item'=>'user'));
+            // return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_NOTFOUND, array('item'=>'user'));
             $notebook->save();
             return $notebook;
         }
@@ -220,27 +221,27 @@ class ApiNotebooksController extends BaseController
         $notebook = Notebook::find($notebookId);
         $notebook->parent_id = null;
         if ($notebook->save()) {
-            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notebook);
+            return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_SUCCESS, $notebook);
         } else {
-            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, $notebook);
+            return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_NOTFOUND, $notebook);
         }
     }
 
     public function share($notebookId, $toUserId, $toUMASK)
     {
-        $toUserIds = explode(PaperworkHelpers::MULTIPLE_REST_RESOURCE_DELIMITER,
+        $toUserIds = explode(PaperworkHelpersFacade::MULTIPLE_REST_RESOURCE_DELIMITER,
             $toUserId);
-        $toUMASKs=explode(PaperworkHelpers::MULTIPLE_REST_RESOURCE_DELIMITER,
+        $toUMASKs=explode(PaperworkHelpersFacade::MULTIPLE_REST_RESOURCE_DELIMITER,
             $toUMASK);
         if (count($toUserIds)!=count($toUMASKs)) {//as much toUsers as toUmasks, if not raise an Error.
-            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, array('error_id' => $noteId));
+            return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_ERROR, array('error_id' => $noteId));
         }
         $responses = array();
-        $status    = PaperworkHelpers::STATUS_SUCCESS;
+        $status    = PaperworkHelpersFacade::STATUS_SUCCESS;
         for ($i=0; $i<count($toUserIds); $i++) {//adding a loop to share with multiple users
             $tmp = $this->shareNotebook($notebookId, $toUserIds[$i], $toUMASKs[$i]);
             if (is_null($tmp)) {
-                $status      = PaperworkHelpers::STATUS_ERROR;
+                $status      = PaperworkHelpersFacade::STATUS_ERROR;
                 $responses[] = array('error_id' => $notebookId);
             } else {
                 $responses[] = $tmp;
@@ -256,16 +257,16 @@ class ApiNotebooksController extends BaseController
             $data = Input::json();
             $collection = Notebook::create(array('title' => $data->get('title'), 'type' => 1));
             $collection->save();
-            $collection->users()->attach(Auth::user()->id, array('umask' => PaperworkHelpers::UMASK_OWNER));
+            $collection->users()->attach(Auth::user()->id, array('umask' => PaperworkHelpersFacade::UMASK_OWNER));
             $notebooks = $data->get('notebooks');
             for ($i = 0; $i < count($notebooks); $i++) {
                 $notebook = Notebook::find($notebooks[$i]);
                 $notebook->parent_id = $collection->id;
                 $notebook->save();
             }
-            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $collection);
+            return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_SUCCESS, $collection);
         } else {
-            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, $validator->getMessageBag()->toArray());
+            return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_ERROR, $validator->getMessageBag()->toArray());
         }
     }
 
@@ -281,15 +282,15 @@ class ApiNotebooksController extends BaseController
         if ($validator->passes()) {
             $updateCollection = Input::json();
 
-            $collection = User::find(Auth::user()->id)->notebooks()->wherePivot('umask', '>', PaperworkHelpers::UMASK_READONLY)->where('notebooks.id', '=', $collectionId)->whereNull('notebooks.deleted_at')->first();
+            $collection = User::find(Auth::user()->id)->notebooks()->wherePivot('umask', '>', PaperworkHelpersFacade::UMASK_READONLY)->where('notebooks.id', '=', $collectionId)->whereNull('notebooks.deleted_at')->first();
 
             if (is_null($collection)) {
-                return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+                return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_NOTFOUND, array());
             }
             $collection->title = $updateCollection->get('title');
             $collection->save();
 
-            $children = User::find(Auth::user()->id)->notebooks()->wherePivot('umask', '>', PaperworkHelpers::UMASK_READONLY)->where('notebooks.parent_id', '=', $collectionId)->whereNull('notebooks.deleted_at')->get()->toArray();
+            $children = User::find(Auth::user()->id)->notebooks()->wherePivot('umask', '>', PaperworkHelpersFacade::UMASK_READONLY)->where('notebooks.parent_id', '=', $collectionId)->whereNull('notebooks.deleted_at')->get()->toArray();
             $newChildren = $updateCollection->get('notebooks');
 
             foreach ($children as $child) {
@@ -299,7 +300,7 @@ class ApiNotebooksController extends BaseController
             $addedChildren = array_diff($newChildren, $idArray);
             if (count($addedChildren) > 0) {
                 foreach ($addedChildren as $addedChild) {
-                    $addedChild = User::find(Auth::user()->id)->notebooks()->wherePivot('umask', '>', PaperworkHelpers::UMASK_READONLY)->where('notebooks.id', '=', $addedChild)->whereNull('notebooks.deleted_at')->first();
+                    $addedChild = User::find(Auth::user()->id)->notebooks()->wherePivot('umask', '>', PaperworkHelpersFacade::UMASK_READONLY)->where('notebooks.id', '=', $addedChild)->whereNull('notebooks.deleted_at')->first();
                     $addedChild->parent_id = $collectionId;
                     $addedChild->save();
                 }
@@ -308,15 +309,15 @@ class ApiNotebooksController extends BaseController
             $removedChildren = array_diff($idArray, $newChildren);
             if (count($removedChildren) > 0) {
                 foreach ($removedChildren as $removedChild) {
-                    $removedChild = User::find(Auth::user()->id)->notebooks()->wherePivot('umask', '>', PaperworkHelpers::UMASK_READONLY)->where('notebooks.id', '=', $removedChild)->whereNull('notebooks.deleted_at')->first();
+                    $removedChild = User::find(Auth::user()->id)->notebooks()->wherePivot('umask', '>', PaperworkHelpersFacade::UMASK_READONLY)->where('notebooks.id', '=', $removedChild)->whereNull('notebooks.deleted_at')->first();
                     $removedChild->parent_id = null;
                     $removedChild->save();
                 }
             }
 
-            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $collection);
+            return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_SUCCESS, $collection);
         } else {
-            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, $validator->getMessageBag()->toArray());
+            return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_ERROR, $validator->getMessageBag()->toArray());
         }
     }
 }

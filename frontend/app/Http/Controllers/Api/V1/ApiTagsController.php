@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Tag;
 use App\Models\Note;
-use PaperworkHelpers;
+use Paperwork\Helpers\PaperworkHelpers;
+use Paperwork\Helpers\PaperworkHelpersFacade;
 
 class ApiTagsController extends BaseController
 {
@@ -43,7 +44,7 @@ class ApiTagsController extends BaseController
                 // ->select('tags.id')
                 // ->first();
 
-            if (is_null($tag) && ($tagVisibility == 0 || ($tagVisibility==1 && $noteUmask > PaperworkHelpers::UMASK_READONLY))) {
+            if (is_null($tag) && ($tagVisibility == 0 || ($tagVisibility==1 && $noteUmask > PaperworkHelpersFacade::UMASK_READONLY))) {
                 $newTag = new Tag();
                 $newTag->title = $tagTitle;
                 $newTag->visibility = $tagVisibility;
@@ -54,7 +55,7 @@ class ApiTagsController extends BaseController
 
                 $createdOrFoundIds[] = $newTag->id;
             } else {
-                if ($tagVisibility==0 || ($tagVisibility==1 && $noteUmask > PaperworkHelpers::UMASK_READONLY)) {
+                if ($tagVisibility==0 || ($tagVisibility==1 && $noteUmask > PaperworkHelpersFacade::UMASK_READONLY)) {
                     /*if(is_null($tag->users()->where('users.id', '=', Auth::user()->id)->first())) {
                         $tag->users()->attach(Auth::user()->id);
                     }*/
@@ -68,7 +69,7 @@ class ApiTagsController extends BaseController
             $createdOrFoundIds[]=$addtag->id;
         }
         //if the user is not writer, he cannot change public tags.
-        if ($noteUmask < PaperworkHelpers::UMASK_READWRITE) {
+        if ($noteUmask < PaperworkHelpersFacade::UMASK_READWRITE) {
             $addpubtags = Note::find($noteId)->tags()->where('tags.visibility', '=', 1)->get();
             foreach ($addpubtags as $addtag) {
                 $createdOrFoundIds[]=$addtag->id;
@@ -109,7 +110,7 @@ class ApiTagsController extends BaseController
             }
         }
         $tags=$tmp_parents;
-        return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $tags);
+        return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_SUCCESS, $tags);
     }
 
     public function show($id = null)
@@ -122,21 +123,21 @@ class ApiTagsController extends BaseController
             ->first();
 
             if (is_null($tags)) {
-                return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+                return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_NOTFOUND, array());
             } else {
-                return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $tags);
+                return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_SUCCESS, $tags);
             }
         }
     }
 
     public function store()
     {
-        return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notebook);
+        return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_SUCCESS, $notebook);
     }
 
     public function delete($id = null)
     {
-        return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $notebook);
+        return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_SUCCESS, $notebook);
     }
 
     protected function getSaveTagValidator()
@@ -153,15 +154,15 @@ class ApiTagsController extends BaseController
             $tag = Tag::find($tagId);
 
             if (is_null($tag) || $tag->user_id !=  Auth::user()->id) {
-                return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+                return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_NOTFOUND, array());
             }
 
             $tag->title = $updateTag->get('title');
             $tag->save();
 
-            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $tagId);
+            return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_SUCCESS, $tagId);
         } else {
-            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_ERROR, $validator->getMessageBag()->toArray());
+            return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_ERROR, $validator->getMessageBag()->toArray());
         }
     }
 
@@ -170,36 +171,36 @@ class ApiTagsController extends BaseController
         $tag = Tag::find($tagId);
 
         if (is_null($tag) || $tag->user_id != Auth::user()->id) {
-            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+            return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_NOTFOUND, array());
         }
 
         $tag->delete();
 
-        return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $tagId);
+        return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_SUCCESS, $tagId);
     }
     public function nest($tagId, $parentTagId)
     {
         $tag=Tag::find($tagId);
     //cannot nest a tag in itself.
     if (is_null($tag) || $tag->user_id != Auth::user()->id || $tagId==$parentTagId) {
-        return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+        return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_NOTFOUND, array());
     }
         $parentTag=Tag::find($parentTagId);
     //if trying to nest in an unexisting tag, then tag is unnested.
     if (is_null($parentTag)) {
         $tag->parent_id=null;
         $tag->save();
-        return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $tagId);
+        return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_SUCCESS, $tagId);
     }
         if ($parentTag->user_id != Auth::user()->id) {
-            return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+            return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_NOTFOUND, array());
         }
     //cannot nest a tag with children, cannot nest into a tag with parents
     if (count($tag->children()->get())>0 || count($parentTag->parents()->get())>0) {
-        return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_NOTFOUND, array());
+        return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_NOTFOUND, array());
     }
         $tag->parents()->associate($parentTag);
         $tag->save();
-        return PaperworkHelpers::apiResponse(PaperworkHelpers::STATUS_SUCCESS, $tagId);
+        return PaperworkHelpers::apiResponse(PaperworkHelpersFacade::STATUS_SUCCESS, $tagId);
     }
 }
