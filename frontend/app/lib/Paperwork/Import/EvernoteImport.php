@@ -45,8 +45,9 @@ class EvernoteImport extends AbstractImport
         $rootHasAttributes = isset($this->xml['@attributes']);
         $isAppSet          = isset($this->xml['@attributes']['application']);
         $isEvernote        = preg_match('/evernote/i', $this->xml['@attributes']['application']);
+        $isPaperwork       = preg_match('/paperwork/i', $this->xml['@attributes']['application']);
 
-        return $rootHasAttributes && $isAppSet && $isEvernote;
+        return $rootHasAttributes && $isAppSet && ($isEvernote || $isPaperwork);
     }
 
     /**
