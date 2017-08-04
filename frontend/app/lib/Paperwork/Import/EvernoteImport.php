@@ -19,7 +19,7 @@ class EvernoteImport extends AbstractImport
     public function process()
     {
         if (isset($this->xml['note'])) {
-            $this->createNotebook('Evernote');
+            $this->createNotebook('Evernote'.date('omd').'T'.date('His').'Z');
 
             // libxml returns single element instead of array if 1 note
             if (isset($this->xml['note']['content'])) {
