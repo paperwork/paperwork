@@ -4,7 +4,7 @@
 			<form method="POST" accept-charset="UTF-8" class="form ng-pristine ng-invalid ng-invalid-required" role="form" ng-submit="modalNotebookDeleteSubmit()">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-					<h4 class="modal-title" id="modalNotebookDeleteLabel">[[ Lang::get('keywords.delete_notebook_question') ]]</h4>
+					<h4 class="modal-title" id="modalNotebookDeleteLabel">[[ Lang::get('keywords.delete_notebook') ]]{{ modalNotebookDelete.notebookTitle ? ' ' + modalNotebookDelete.notebookTitle : '' }}?</h4>
 				</div>
 				<div class="modal-body">
 					<div class="form-group [[ $errors->first('title') ? 'has-error' : '' ]]">

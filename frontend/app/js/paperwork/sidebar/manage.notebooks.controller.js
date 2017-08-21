@@ -130,7 +130,8 @@ angular.module('paperworkNotes').controller('SidebarManageNotebooksController',
       }else{
           $rootScope.modalNotebookDelete = {
               'action': false,
-              'notebookId': id
+              'notebookId': id,
+              'notebookTitle': NotebooksService.getNotebookByIdLocal(id).title
           };
           $('#modalNotebookDelete').modal('show');
       }
