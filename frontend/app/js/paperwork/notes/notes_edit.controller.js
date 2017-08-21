@@ -20,6 +20,7 @@ angular.module('paperworkNotes').controller('NotesEditController',
             $rootScope.versionSelectedId = {'notebookId': notebookId, 'noteId': noteId, 'versionId': 0};
             NotesService.getNoteById(noteId);
             $rootScope.templateNoteEdit = $rootScope.getNoteByIdLocal(noteId);
+
             if (typeof $rootScope.templateNoteEdit == "undefined" || $rootScope.templateNoteEdit == null) {
                 $rootScope.templateNoteEdit = {};
             }
@@ -29,6 +30,18 @@ angular.module('paperworkNotes').controller('NotesEditController',
                 $rootScope.templateNoteEdit.version.title = $rootScope.templateNoteEdit.title;
                 $rootScope.templateNoteEdit.version.content = $rootScope.templateNoteEdit.content;
             }
+
+            $scope.$watch('templateNoteEdit.version.content', function(value) {
+                var nonEditableMessage = $rootScope.i18n.messages.non_editable_checkbox_explanation;
+                var rawContent = $rootScope.templateNoteEdit.version.content;
+                var checkedBox = "<input type=\"checkbox\" checked disabled title=\"" + nonEditableMessage + "\">";
+                var uncheckedBox = "<input type=\"checkbox\" disabled title=\"" + nonEditableMessage + "\">";
+                if (rawContent.indexOf(checkedBox) !== -1 || rawContent.indexOf(uncheckedBox) !== -1) {
+                    rawContent = rawContent.replace(checkedBox, "[X]");
+                    rawContent = rawContent.replace(uncheckedBox, "[]");
+                    $rootScope.templateNoteEdit.version.content = rawContent;
+                }
+            });
 
             NotesService.getNoteVersionAttachments($rootScope.getNotebookSelectedId(), ($rootScope.getNoteSelectedId(true)).noteId, $rootScope.getVersionSelectedId(true).versionId,
                 function (response) {
