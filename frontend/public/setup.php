@@ -113,7 +113,7 @@
     </head>
     <body>
         <?php
-            if(file_exists("../app/storage/db_settings")) {
+            if(file_exists("../storage/db_settings")) {
         ?>
         <div class="modal fade" tabindex="-1" role="dialog" id="convert_settings_dialog">
             <div class="modal-dialog">
@@ -545,7 +545,7 @@
                 }else if(currentStep == 3) {
                     $("#next_btn, #next_btn_mobile").attr("disabled", true);
                     <?php
-                        if(file_exists("../app/storage/db_settings")) {
+                        if(file_exists("../storage/db_settings")) {
                     ?>
                     $("#convert_settings_dialog").modal();
                     $("#convert_settings").click(function() {
