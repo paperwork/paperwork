@@ -1,5 +1,12 @@
 angular.module('paperworkNotes').controller('SidebarNotesController',
   function($scope, $rootScope, $location, $timeout, $window, $routeParams, NotebooksService, NotesService, ngDraggable, StatusNotifications, NetService) {
+
+    $rootScope.removeEditorButtonsCKEditor = '';
+
+    $scope.$watch('removeEditorButtonsCKEditor', function(value) {
+      $rootScope.removeEditorButtonsCKEditor = value;
+    });
+
     $scope.isVisible = function() {
       return !$rootScope.expandedNoteLayout;
     };
@@ -25,7 +32,7 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
       }
       return null;
     };
-    
+
     $scope.getUsers = function (noteId, callback){
       $scope.can_share=false;
         if(typeof $rootScope.i18n != "undefined")
@@ -48,16 +55,15 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
       if($rootScope.menuItemNotebookClass() === 'disabled') {
         return false;
       }
-      
+
       var data = {
         'title':           $rootScope.i18n.keywords.untitled || 'Untitled',
         'content':         '',
         'content_preview': ''
       };
-      
+
       var callback = (function(_notebookId) {
         return function(status, data) {
-          console.log(status);
           switch(status) {
             case 200:
               $rootScope.templateNoteEdit = {};
@@ -73,9 +79,9 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
           }
         };
       })(notebookId);
-      
+
       if(typeof notebookId == "undefined" || notebookId == 0 || notebookId === "00000000-0000-0000-0000-000000000000") {
-        //Open Select Notebook dialog to choose destination of new note 
+        //Open Select Notebook dialog to choose destination of new note
         NotebooksService.getNotebooks();
         $rootScope.writableNotebooks = [];
         angular.forEach($rootScope.notebooks, function(value, key) {
@@ -88,7 +94,7 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
                  }
              }
         }, $rootScope.writableNotebooks);
-        $rootScope.modalNotebookSelect({ 
+        $rootScope.modalNotebookSelect({
             'notebookId': notebookId,
             'noteId': 0,
             'description': $rootScope.i18n.notebooks.move_note_description,
@@ -215,10 +221,11 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
         return function(status, data) {
           switch(status) {
             case 200:
+              StatusNotifications.sendStatusFeedback("success", "note_deleted_successfully");
               $location.path("/n/" + notebookId);
               break;
             case 400:
-              // TODO: Show some kind of error
+              StatusNotifications.sendStatusFeedback("error", "note_delete_failed");
               break;
           }
         };
@@ -247,9 +254,7 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
                   }
                 });
               }
-              NotesService.deleteNote(noteId, callback, function() {
-                $location.path("/n/" + notebookId);
-              });
+              NotesService.deleteNote(noteId, callback);
               return true;
             }
           }
@@ -270,7 +275,7 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
                 }
             }
         }, $rootScope.writableNotebooks);
-      
+
       if($rootScope.menuItemNoteClass('multiple') === 'disabled') {
         return false;
       }
@@ -348,29 +353,26 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
         });
       });
     };
-    
+
     $scope.modalUsersSelectSubmit = function(notebookId, noteId, toUserId) {
       console.log(toUserId);
       $rootScope.modalMessageBox.theCallback(notebookId, noteId, toUserId);
     };
-    
+
     $scope.modalUsersSelectInherit = function(notebookId){
       NetService.apiGet('/users/notebooks/'+notebookId, function(status, data) {
         if(status == 200) {
           $rootScope.users = data.response;
         }
       });
-    }
+    };
+
     $scope.submitSearch = function() {
       if($scope.search == "") {
         $location.path("/");
       } else {
         $location.path("/s/" + encodeURIComponent($scope.search));
       }
-    };
-
-    $scope.onDragSuccess = function(data, event) {
-      //u
     };
 
     $scope.openShare = function(){
@@ -386,9 +388,9 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
           ]
       });
     };
-    
+
     $scope.sort_order_adjustment = "default";
-    
+
     $scope.changeSortOrder = function(criteria) {
         switch(criteria) {
             case "creation_date":
@@ -417,34 +419,9 @@ angular.module('paperworkNotes').controller('SidebarNotesController',
                     var createdA = new Date(a.created_at);
                     var createdB = new Date(b.created_at);
                     return (createdA < createdB) ? -1 : (createdA > createdB) ? 1 : 0;
-                }); 
+                });
                 break;
         }
-        /*if(criteria === "creation_date") {
-            $rootScope.notes.sort(function(a, b) {
-                var createdA = new Date(a.created_at);
-                var createdB = new Date(b.created_at);
-                return (createdA > createdB) ? -1 : (createdA < createdB) ? 1 : 0;
-            }); 
-        }else if(criteria === "modification_date") {
-            $rootScope.notes.sort(function(a, b) {
-                var modifiedA = new Date(a.updated_at);
-                var modifiedB = new Date(b.updated_at);
-                return (modifiedA > modifiedB) ? -1 : (modifiedA < modifiedB) ? 1 : 0;
-            }); 
-        }else if(criteria === "title") {
-            $rootScope.notes.sort(function(a, b) {
-                var titleA = a.version.title.toUpperCase();
-                var titleB = b.version.title.toUpperCase();
-                return (titleA < titleB) ? -1 : (titleA > titleB) ? 1 : 0;
-            });
-        }else if(criteria === "default") {
-            $rootScope.notes.sort(function(a, b) {
-                var createdA = new Date(a.created_at);
-                var createdB = new Date(b.created_at);
-                return (createdA < createdB) ? -1 : (createdA > createdB) ? 1 : 0;
-            }); 
-        }*/
     };
 
   });
