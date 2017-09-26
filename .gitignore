@@ -7,3 +7,4 @@ frontend/public/css
 frontend/public/js
 Thumbs.db
 frontend/npm-debug.log
+frontend/deploy/apache.conf
