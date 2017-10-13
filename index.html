@@ -153,12 +153,12 @@ RewriteRule (.*) /paperwork/frontend/public/$1 [L]
 
 <p>Basically you just have to:</p>
 
-<pre><code>fig up
+<pre><code>docker-compose up
 </code></pre>
 
 <p>To run the migrations (once):</p>
 
-<pre><code>fig run web php artisan migrate --force
+<pre><code>docker-compose run web php artisan migrate --force
 </code></pre>
 
 <h2>
