@@ -28,6 +28,6 @@ cat << EOF > /app/app/storage/config/paperwork.json
  "showIssueReportingLink":"$PR_SHOW_REPORT_LINK"}
 EOF
 
-echo -n "8" > /app/app/storage/config/setup
+echo -n "8" > /app/storage/config/setup
 
 /run.sh
