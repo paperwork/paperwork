@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cat << EOF > /app/app/storage/config/database.json
+cat << EOF > /app/storage/config/database.json
 {"driver":"mysql",
  "database":"$DB_ENV_MYSQL_DATABASE",
  "host":"$DB_PORT_3306_TCP_ADDR",
@@ -21,7 +21,7 @@ if [[ ! -e migrated ]]; then
     touch migrated
 fi
 
-cat << EOF > /app/app/storage/config/paperwork.json
+cat << EOF > /app/storage/config/paperwork.json
 {"registration":"$PR_ALLOW_REGISTRATION",
  "forgot_password":"$PR_ALLOW_PASSWORD_RESET",
  "userAgentLanguage":"$PR_USER_AGENT_LANG",
