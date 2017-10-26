@@ -33,15 +33,22 @@ App::missing(function ($exception) {
     return Response::view('404', array(), 404);
 });
 
-if(File::exists(storage_path() . "/config/setup") && File::get(storage_path() . "/config/setup") < 7) {
+$setupFilePath = "../app/storage/config/setup";
+
+if(File::exists($setupFilePath) && File::get($setupFilePath) < 7) {
     Route::post('setup/setConfig', ["as" => "setup/setConfig", "uses" => "SetupController@setConfiguration"]);
     Route::get('setup/register', function() {
-        return View::make('partials/registration-form', array('ajax' => true, 'admin' => false));
+        return View::make('partials/registration-form');
     });
     Route::post('setup/register', ["as" => "setup/register", "uses" => "UserController@register"]);
     Route::get('setup/finish', ["as" => "setup/finish", "uses" => "SetupController@finishSetup"]);
-    Route::get('setup/checkDBStatus', ["as" => "setup/checkDBStatus", "uses" => "SetupController@checkDatabaseStatus"]);
-    Route::get('setup/installDatabase', ["as" => "setup/installDatabase", "uses" => "SetupController@installDatabase"]);
+
+    /* This is not needed for now since it is being handled by check_database_credentials.php */
+    //Route::get('setup/installDatabase', ["as" => "setup/installDatabase", "uses" => "SetupController@installDatabase"]);
+
+    /* TODO - Not implemented yet in the controller */
+    //Route::get('setup/checkDBStatus', ["as" => "setup/checkDBStatus", "uses" => "SetupController@checkDatabaseStatus"]);
+
 }else{
     Route::get('/login', ["as" => "user/login", "uses" => "UserController@showLoginForm"]);
     Route::post('/login', ["as" => "user/login", "uses" => "UserController@login"]);
