@@ -4,7 +4,7 @@
     "gulp": "^3.8.10",
     "gulp-bower": "0.0.10",
     "gulp-concat": "^2.4.2",
-    "gulp-jshint": "^1.9.2",
+    "gulp-jshint": "^2.0.2",
     "gulp-less": "2.0.1",
     "gulp-livereload": "^3.2.0",
     "gulp-ng-annotate": "^0.5.2",

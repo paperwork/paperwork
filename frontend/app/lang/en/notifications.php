@@ -28,4 +28,6 @@ return array(
     'collection_edit_successfully'  => 'Your collection has been updated successfully. ',
     'collection_edit_failed'        => 'Something went wrong while updating your collection. Please try again. ',
     'maximum_attachments_reached'   => 'You have reached the maximum number of attachments allowed per note. ',
+    'note_delete_failed'            => 'Something went wrong while deleting your note. Please try again. ',
+    'note_deleted_successfully'     => 'Your note has been deleted successfully. ',
 );
