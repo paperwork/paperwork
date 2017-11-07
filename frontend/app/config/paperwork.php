@@ -208,4 +208,14 @@ return array(
 	'removeEditorButtonsCKEditor' =>
 		isset($configuration->removeEditorButtonsCKEditor) ? $configuration->removeEditorButtonsCKEditor : 'Cut,Copy,Paste,Undo,Redo,Anchor,Underline,Strike,Subscript,Superscript',
 
+	/*
+	|-------------------------------------------------------------------------
+	| EXTRA Features
+	|-------------------------------------------------------------------------
+	| These are candidates to be plugins when the necessary functionality is
+	| implemented. Until then, these are implemented in core but can be
+	| turned off from the configuration settings.
+	*/
+	'extra_feature_checkboxes' => isset($configuration->extra_feature_checkboxes) ? ($configuration->extra_feature_checkboxes) : true,
+
 );

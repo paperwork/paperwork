@@ -95,5 +95,6 @@ return array(
             'assets_not_found_description' => 'We have not found all the files required to run Paperwork. Did you run composer install, npm install, bower install and gulp?'
         )
 	),
-	'required_configuration_setting_register_admin_tooltip' => 'You need to set your registration configuration setting to \'admin\''
+	'required_configuration_setting_register_admin_tooltip' => 'You need to set your registration configuration setting to \'admin\'',
+	'non_editable_checkbox_explanation' => 'To check or uncheck this checkbox, edit the note and put X (to check) or leave empty (to uncheck) the space between the [ ] before this line'
 );
