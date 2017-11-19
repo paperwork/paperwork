@@ -1,6 +1,14 @@
 <?php
 
-    /** Check if all config lines are present.
+    /**
+     * If the user is using PHP 7.1 (or newer), turn off the deprecation errors
+     * of Mcrypt. 
+     */
+    if(version_compare(phpversion(), "7.1.0", ">=")) {
+        error_reporting(E_ALL & ~E_DEPRECATED);
+    }
+    
+    /** Check if all config lines are present. 
      * If not, either the installation is damaged
      * or installation has not been done. Run the
      * Setup Wizard.
