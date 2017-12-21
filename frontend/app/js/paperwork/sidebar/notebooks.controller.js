@@ -275,7 +275,8 @@ angular.module('paperworkNotes').controller('SidebarNotebooksController',
       });*/
       $rootScope.modalNotebookDelete = {
           'delete_notes': false,
-          'notebookId': notebookId
+          'notebookId': notebookId,
+          'notebookTitle': NotebooksService.getNotebookByIdLocal(notebookId).title
       };
       $("#modalNotebookDelete").modal("show");
     };

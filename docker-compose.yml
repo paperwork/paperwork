@@ -6,7 +6,7 @@ db:
     MYSQL_PASSWORD: paperwork
     MYSQL_DATABASE: paperwork
 web:
-  build: ./frontend
+  build: .
   environment:
     PR_ALLOW_REGISTRATION: "true"
     PR_ALLOW_PASSWORD_RESET: "true"
