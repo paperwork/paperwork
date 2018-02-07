@@ -16,4 +16,3 @@ web:
     - "8080:80"
   links:
     - db
-  command: /app/docker-runner.sh
