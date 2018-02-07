@@ -1,6 +1,8 @@
 Paperwork - OpenSource note-taking & archiving
 ==============================================
 
+## This version [*is* dormant](https://github.com/twostairs/paperwork/issues/851). Work on the second iteration of Paperwork has begun. [Join the force](https://github.com/twostairs/paperwork/tree/2).
+
 [![Join the chat at https://gitter.im/twostairs/paperwork](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/twostairs/paperwork?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/twostairs/paperwork.svg?branch=master)](https://travis-ci.org/twostairs/paperwork)
 
