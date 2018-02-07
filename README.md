@@ -10,3 +10,30 @@ Paperwork
 
 Paperwork is an open-source, self-hosted alternative to services like Evernote ®, Microsoft OneNote ® or Google Keep ®.
 
+### Development
+
+Starting in development mode (with code auto-reload):
+
+```bash
+$ git clone git@github.com:twostairs/paperwork.git
+$ cd paperwork
+$ git checkout 2
+$ npm install
+$ cp .env.example .env
+$ vim .env
+$ # adjust the settings accordingly
+$ npm run dev
+```
+
+Running tests:
+
+```bash
+$ npm test
+```
+
+### Docker
+
+```bash
+$ docker build -t="twostairs/paperwork" .
+$ docker run -it --rm --name="paperwork" --env-file .env twostairs/paperwork
+```
