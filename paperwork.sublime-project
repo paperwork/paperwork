@@ -1,0 +1,13 @@
+{
+    "folders":
+    [
+        {
+            "path": ".",
+            "folder_exclude_patterns": [
+                "compiled",
+                "coverage",
+                "documentation"
+            ]
+        }
+    ]
+}
