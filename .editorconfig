@@ -1,0 +1,21 @@
+root = true
+
+[*]
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+indent_style = space
+indent_size = 4
+
+[*.{md,markdown}]
+trim_trailing_whitespace = false
+
+[src/**.js]
+indent_style = space
+indent_size = 4
+max_line = 120
+
+[*.yml]
+indent_style = space
+indent_size = 2
+max_line = 80
