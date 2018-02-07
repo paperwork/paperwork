@@ -1,10 +1,7 @@
 .DS_Store
-.codekit-cache
-frontend/app/storage/attachments/*
-frontend/_ide_helper.php
-frontend/node_modules
-frontend/public/css
-frontend/public/js
-Thumbs.db
-frontend/npm-debug.log
-frontend/deploy/apache.conf
+/.env
+/node_modules
+/server
+/docs
+/compiled
+/core.sublime-workspace

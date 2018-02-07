@@ -1,5 +1,0 @@
-v1.1
-	- updating of font awesome
-
-v1.0
-	- initial release
