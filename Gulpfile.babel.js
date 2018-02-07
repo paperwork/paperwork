@@ -137,12 +137,12 @@ gulp.task('docs', cb => {
 /**
  * Server (live)
  */
-gulp.task('server:live', shell.task(['node --harmony ./compiled/server.js']));
+gulp.task('server:live', shell.task(['node --harmony ./compiled/Server.js']));
 
 /**
  * Server (debug)
  */
-gulp.task('server:debug', shell.task(['node --harmony --inspect ./compiled/server.js']));
+gulp.task('server:debug', shell.task(['node --harmony --inspect ./compiled/Server.js']));
 
 /**
  * Server Start
@@ -150,7 +150,7 @@ gulp.task('server:debug', shell.task(['node --harmony --inspect ./compiled/serve
 gulp.task('server:start', () => {
     server.listen({
         execArgv: ['--harmony'],
-        path: './compiled/server.js'
+        path: './compiled/Server.js'
     });
 });
 
