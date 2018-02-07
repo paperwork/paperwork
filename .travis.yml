@@ -1,19 +1,15 @@
-language: php
+language: node_js
 sudo: false
-php:
-  - 5.4
-  - 5.5
-  - 5.6
+node_js:
+  - 8.5
+  - 9.5
+
+cache:
+  directories:
+    - "node_modules"
 
 before_script:
-  - composer self-update
-  - composer install --dev --no-interaction -d "$(pwd)/frontend/"
+  - npm install
 
 script:
-  - cd frontend
-  - npm install
-  - bower install
-  - gulp
-  - cd ..
-  - mkdir -p build/logs
-  - (cd "$(pwd)/frontend/"; phpunit)
+  - npm test
