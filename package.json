@@ -1,0 +1,125 @@
+{
+  "name": "paperwork",
+  "version": "2.0.0",
+  "description": "OpenSource note-taking & archiving alternative to Evernote, Microsoft OneNote & Google Keep",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/twostairs/paperwork.git"
+  },
+  "main": "server/server.js",
+  "scripts": {
+    "lint": "gulp lint",
+    "compile": "gulp build",
+    "test": "gulp lint && gulp flowtype && gulp build && gulp test",
+    "dev": "gulp | node_modules/bunyan/bin/bunyan",
+    "docs": "gulp docs",
+    "debug": "gulp debug | node_modules/bunyan/bin/bunyan",
+    "start": "gulp start",
+    "ava": "ava",
+    "flow": "flow"
+  },
+  "keywords": [
+    "paperwork",
+    "evernote",
+    "microsoft",
+    "onenote",
+    "google",
+    "keep",
+    "googlekeep",
+    "note",
+    "note-taking",
+    "archiving",
+    "paper",
+    "work",
+    "productivity",
+    "notebook",
+    "collection",
+    "remember",
+    "todo"
+  ],
+  "author": {
+    "name": "The Paperwork Team",
+    "email": "highfive@paperwork.rocks",
+    "url": "http://paperwork.rocks"
+  },
+  "contributors": [
+    {
+      "name": "Marius M.",
+      "email": "marius@twostairs.com",
+      "url": "https://twostairs.com"
+    }
+  ],
+  "license": "AGPL-3.0",
+  "engines": {
+    "node": ">=8.5.0"
+  },
+  "ava": {
+    "require": "babel-register",
+    "babel": "inherit",
+    "files": [
+      "tests/**/*Test.js"
+    ],
+    "source": [
+      "src/**/*.js"
+    ]
+  },
+  "dependencies": {
+    "async-busboy": "^0.6.2",
+    "bcrypt": "^1.0.3",
+    "bluebird": "^3.5.1",
+    "bunyan": "^1.8.12",
+    "cassandra-driver": "^3.4.0",
+    "dotenv": "^5.0.0",
+    "eventemitter2": "^5.0.1",
+    "http-status-codes": "^1.3.0",
+    "joi": "^13.1.2",
+    "jsonwebtoken": "^8.1.1",
+    "kcors": "^2.2.1",
+    "koa": "^2.4.1",
+    "koa-bodyparser": "^4.2.0",
+    "koa-jwt": "^3.3.0",
+    "koa-passport": "^4.0.1",
+    "koa-router": "^7.4.0",
+    "lodash": "^4.17.5",
+    "moment-timezone": "^0.5.14",
+    "paperframe": "^2.0.6",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "uuid": "^3.2.1"
+  },
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.2.1",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "documentation": "^5.3.5",
+    "eslint": "^4.17.0",
+    "eslint-plugin-async-await": "0.0.0",
+    "eslint-plugin-ava": "^4.5.0",
+    "eslint-plugin-flowtype": "^2.42.0",
+    "flow-bin": "^0.65.0",
+    "gulp": "^3.9.1",
+    "gulp-ava": "^0.18.0",
+    "gulp-babel": "^7.0.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-develop-server": "^0.5.2",
+    "gulp-documentation": "^3.2.1",
+    "gulp-eslint": "^4.0.2",
+    "gulp-istanbul": "^1.1.3",
+    "gulp-jsdoc3": "^1.0.1",
+    "gulp-shell": "^0.6.5",
+    "gulp-sourcemaps": "^2.6.4",
+    "gulp-watch": "^5.0.0",
+    "isparta": "^4.0.0",
+    "jsdoc": "^3.5.5",
+    "jshint-sourcemap-reporter": "0.0.1",
+    "minami": "^1.2.3",
+    "nsp": "^3.1.0",
+    "nsp-formatter-checkstyle": "^1.0.2",
+    "rimraf": "^2.6.2",
+    "run-sequence": "^2.2.1",
+    "tmp": "0.0.33"
+  }
+}
