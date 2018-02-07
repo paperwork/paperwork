@@ -1,0 +1,13 @@
+[include]
+./src/**/.js
+
+[ignore]
+.*/tests
+.*/compiled
+.*/documentation
+.*/node_modules/documentation/*.
+.*/node_modules/config-chain/*.
+
+[options]
+suppress_comment= \\(.\\|\n\\)*\\@flowIgnore
+module.ignore_non_literal_requires=true
