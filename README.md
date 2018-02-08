@@ -66,3 +66,9 @@ $ npm test
 $ docker build -t="twostairs/paperwork" .
 $ docker run -it --rm --name="paperwork" --env-file .env twostairs/paperwork
 ```
+
+### Docker Compose
+
+```bash
+$ docker-compose up
+```
