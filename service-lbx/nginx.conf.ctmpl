@@ -1,0 +1,39 @@
+user nginx;
+worker_processes auto;
+
+error_log /var/log/nginx/error.log warn;
+pid /var/run/nginx.pid;
+
+events {
+    worker_connections 65536;
+}
+
+http {
+    include /etc/nginx/mime.types;
+    default_type application/octet-stream;
+    charset UTF-8;
+
+    server {
+        listen 80;
+        location /health {
+            # requires http_stub_status_module
+            stub_status;
+            allow 127.0.0.1;
+            deny all;
+        }
+    }
+}
+
+stream {
+    {{range services}}
+    upstream {{.Name}} {
+        least_conn;{{range service .Name}}
+        server {{.Address}}:{{.Port}} max_fails=3 fail_timeout=60 weight=1;{{else}}
+        server 0.0.0.1:80; # invalid placeholder{{end}}
+    }{{range $index, $element := service .Name}}{{if eq $index 0}}
+    server {
+        listen {{.Port}};
+        proxy_pass {{.Name}};
+    }
+    {{end}}{{end}}{{end}}
+}
