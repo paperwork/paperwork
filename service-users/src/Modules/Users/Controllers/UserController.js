@@ -27,19 +27,6 @@ module.exports = class UserController extends PaperworkController {
         return '/users';
     }
 
-    get routeAcl(): ControllerRouteAclTable {
-        let acl: ControllerRouteAclTable = {
-            'index': {
-                'protected': true
-            },
-            'show': {
-                'protected': true
-            }
-        };
-
-        return acl;
-    }
-
     get eventListener(): string {
         return '**';
     }
