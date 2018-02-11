@@ -11,7 +11,6 @@ ADD frontend/ /app
 
 # Grant execution permission on composer
 RUN chmod +x /usr/local/bin/composer && \
-
     # Install packages
     apk add --no-cache \
     bash \
