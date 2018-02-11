@@ -100,6 +100,6 @@ services:
       - DATABASE_DRIVER=cql
       - "DATABASE_CONNECTION={ \"contactPoints\": [\"database\"], \"keyspace\": \"service-users\" }"
       - "DATABASE_OPTIONS={}"
-      - JWT_SECRET=70B3C7BC1954CE09F4282B963E628FD6B586100CF8C21678FF4CAA1D04128FD5
+      - KONG_API_URL=http://service-kong:8001
     ports:
       - 3000:3000
