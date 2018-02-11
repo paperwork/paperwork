@@ -1,92 +1,98 @@
 //@flow
 
-const jwt = require('jsonwebtoken');
-const crypto = require('crypto');
-const promisify = require('bluebird').promisify;
+import type {
+    JwtCredentials,
+    JwtToken
+} from './Types/Jwt.t';
 
-const signAsync = promisify(jwt.sign, jwt);
-const randomBytesAsync = promisify(crypto.randomBytes, crypto);
+const axios = require('axios');
+const jwt = require('jsonwebtoken');
+const bluebird = require('bluebird');
+
+const jwtSign = bluebird.promisify(jwt.sign);
 
 const ServiceProvider = require('paperframe').ServiceProvider;
+const PaperframeCommon = require('paperframe').Common;
 
 module.exports = class JwtServiceProvider extends ServiceProvider {
-    _secretToken:               string
+    _kongApiUrl: string
+    _accessTokenExpiresIn: number
+    _accessTokenNotBefore: number
 
     initialize() {
-        this.logger.debug('Jwt: Initializing ...');
-
-        let secretToken = process.env.JWT_SECRET;
-        if(typeof secretToken === 'undefined'
-        || secretToken === null) {
-            throw new Error('Jwt: No secret defined! Please set JWT_SECRET in your environment first.');
+        // Kong API URL
+        if(typeof process.env.KONG_API_URL === 'undefined'
+        || process.env.KONG_API_URL === null
+        || process.env.KONG_API_URL.length === PaperframeCommon.EMPTY) {
+            this.logger.error('JwtServiceProvider: Could not initialize, KONG_API_URL not set!');
+            return false;
         }
 
-        this._secretToken = secretToken;
+        this._kongApiUrl = process.env.KONG_API_URL;
+
+        this.logger.debug('JwtServiceProvider: Initialized with KONG_API_URL set to %s.', this._kongApiUrl);
+
+        // JWT Access Token Expiry
+        if(typeof process.env.SERVER_JWT_ACCESS_EXPIRY === 'undefined'
+        || process.env.SERVER_JWT_ACCESS_EXPIRY === null
+        || process.env.SERVER_JWT_ACCESS_EXPIRY.length === PaperframeCommon.EMPTY) {
+            this.logger.error('JwtServiceProvider: Could not initialize, SERVER_JWT_ACCESS_EXPIRY not set!');
+            return false;
+        }
+
+        this._accessTokenExpiresIn = parseInt(process.env.SERVER_JWT_ACCESS_EXPIRY, 10);
+
+        // JWT Access Token not before (unused so far)
+        this._accessTokenNotBefore = PaperframeCommon.ZERO;
+
+        this.logger.debug('JwtServiceProvider: Initialized with SERVER_JWT_ACCESS_EXPIRY set to %s.', this._accessTokenExpiresIn);
 
         return true;
     }
 
-    async generateJwtId(): Promise<?string> {
-        try {
-            const randomSize = 32;
-            let jti = await randomBytesAsync(randomSize);
-            return Promise.resolve(jti.toString('hex'));
-        } catch (e) {
-            return Promise.reject(e);
-        }
-    }
+    async getCredentials(userId: string): Promise<?JwtCredentials> {
+        let responseData = {};
 
-    async generateTokens(payload: any, opts: Object = {}): Promise<?Object> {
         try {
-            const accessTokenId = await this.generateJwtId();
-            const refreshTokenId = await this.generateJwtId();
+            this.logger.debug('JwtServiceProvider: Getting credentials for userId %s ...', userId);
 
-            const accessTokenPayload = Object.assign({}, payload, { jti: accessTokenId });
-            const refreshTokenPayload = Object.assign({}, {
-                jti: refreshTokenId,
-                ati: accessTokenId
+            const response = await axios.post(`${this._kongApiUrl}/consumers/${userId}/jwt`, {
+                'algorithm': 'HS256'
             });
 
-            const expiresRefresh = parseInt(process.env.SERVER_JWT_REFRESH_EXPIRY, 10);
-            const refreshTokenOpts = Object.assign({}, {
-                expiresIn: expiresRefresh
-            }, opts);
+            const jwtCredentials: JwtCredentials = response.data;
 
-            const expiresAccess = parseInt(process.env.SERVER_JWT_ACCESS_EXPIRY, 10);
-            const accessTokenOpts = Object.assign({}, {
-                expiresIn: expiresAccess
-            }, opts);
+            this.logger.debug('JwtServiceProvider: Got credentials for userId %s: %j', userId, jwtCredentials);
 
-            const refreshToken = await signAsync(refreshTokenPayload, this._secretToken, refreshTokenOpts);
-            const accessToken = await signAsync(accessTokenPayload, this._secretToken, accessTokenOpts);
+            return jwtCredentials;
+        } catch(error) {
+            this.logger.error('JwtServiceProvider: Getting credentials failed:');
+            this.logger.error(error);
 
-            return Promise.resolve({
-                accessToken,
-                refreshToken
-            });
-        } catch(e) {
-            return Promise.reject(e);
-        }
-    }
-
-    verifyTokensAndGetUserId(accessToken: string, refreshToken: string): ?string {
-        let accessTokenDecoded = null;
-        let refreshTokenDecoded = null;
-
-        try {
-            accessTokenDecoded = jwt.decode(accessToken, process.env.JWT_SECRET);
-            refreshTokenDecoded = jwt.verify(refreshToken, process.env.JWT_SECRET);
-        } catch(err) {
-            this.logger.debug('Jwt: refreshToken expired already! (%s)', err);
             return null;
         }
-
-        if(refreshTokenDecoded.ati === accessTokenDecoded.jti) {
-            return accessTokenDecoded.session.id;
-        }
-
-        this.logger.debug('Jwt: accessToken.jti does not match refreshToken.ati');
-        return null;
     }
 
+    async getToken(credentials: JwtCredentials, payload: Object): Promise<?JwtToken> {
+        try {
+            const jwtToken: JwtToken = await jwtSign(payload, credentials.secret, {
+                'algorithm': 'HS256',
+                'expiresIn': this._accessTokenExpiresIn,
+                //'notBefore': this._accessTokenNotBefore, // TODO: Not in use yet.
+                'issuer': credentials.key,
+                'jwtid': credentials.id,
+                'header': {
+                    'typ': 'JWT',
+                    'alg': 'HS256'
+                }
+            });
+
+            return jwtToken;
+        } catch(error) {
+            this.logger.error('JwtServiceProvider: Getting token failed:');
+            this.logger.error(error);
+
+            return null;
+        }
+    }
 };
