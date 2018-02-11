@@ -12,7 +12,9 @@ Paperwork is an open-source, self-hosted alternative to services like Evernote Â
 
 ### Version 2
 
-This branch contains the second iteration of Paperwork, which is a complete rewrite. Not only is it based on another framework - it is based on a completely different technology stack.
+This branch contains the second iteration of Paperwork, which is a complete rewrite. Not only is it based on another framework - it is based on a completely different technology stack. **It is in its very early development phase and not yet usable**.
+
+If you were looking for the Laravel-based version 1 of Paperwork, please check [out this repository](https://github.com/twostairs/paperwork/tree/1).
 
 #### Background
 
