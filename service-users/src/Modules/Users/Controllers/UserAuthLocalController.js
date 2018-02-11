@@ -8,6 +8,11 @@ import type {
     ControllerRouteAclTable
 } from 'paperframe';
 
+import type {
+    JwtCredentials,
+    JwtToken
+} from '../../../ServiceProviders/Jwt/Types/Jwt.t';
+
 const PaperworkController = require('../../../Library/PaperworkController');
 const PaperworkStatusCodes = require('../../../Library/PaperworkStatusCodes');
 
@@ -47,10 +52,11 @@ module.exports = class UserAuthLocalController extends PaperworkController {
 
         this._auth = passport;
         this._auth.use(new Strategy((username: string, password: string, callback: Function) => {
-            if(username === 'test' && password === 'test') {
+            if(username === 'test' && password === 'test') { // TODO: This is a mock check, replace with real code!
                 callback(
                     null,
-                    {
+                    { // TODO: This is a mock response, replace with real code/response!
+                        'id': '00000000-0000-0000-0000-000000000000',
                         'username': 'test',
                         'verified': 'true'
                     },
@@ -96,17 +102,15 @@ module.exports = class UserAuthLocalController extends PaperworkController {
             }
 
             try {
-                const { accessToken, refreshToken } = await this.$S('jwt').generateTokens({
-                    'session': user
-                });
+                const jwtCredentials: JwtCredentials = await this.$S('jwt').getCredentials(user.id);
+                const jwtToken: JwtToken = await this.$S('jwt').getToken(jwtCredentials, { 'session': user });
 
-                const body = {
-                    accessToken,
-                    refreshToken,
+                const response = {
+                    'accessToken': jwtToken,
                     'user': user
                 };
 
-                return this.response(HttpStatus.OK, PaperworkStatusCodes.AUTHENTICATION_SUCCEEDED, body);
+                return this.response(HttpStatus.OK, PaperworkStatusCodes.AUTHENTICATION_SUCCEEDED, response);
             } catch(error) {
                 return this.response(HttpStatus.INTERNAL_SERVER_ERROR, PaperworkStatusCodes.AUTHENTICATION_ERROR, error);
             }
