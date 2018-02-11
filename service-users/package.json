@@ -66,6 +66,7 @@
   },
   "dependencies": {
     "async-busboy": "^0.6.2",
+    "axios": "^0.17.1",
     "bcrypt": "^1.0.3",
     "bluebird": "^3.5.1",
     "bunyan": "^1.8.12",
@@ -78,7 +79,6 @@
     "kcors": "^2.2.1",
     "koa": "^2.4.1",
     "koa-bodyparser": "^4.2.0",
-    "koa-jwt": "^3.3.0",
     "koa-passport": "^4.0.1",
     "koa-router": "^7.4.0",
     "lodash": "^4.17.5",
