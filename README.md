@@ -41,6 +41,12 @@ Everyone who is interested in getting their feet wet is highly welcome to [join 
 
 Funding. Basically this point was planned and headed towards sometime in mid 2016. Since then, different attempts were made to get funding for this project, through individuals but also programs like [Prototypefund](https://prototypefund.de). The general idea was to accelerate development by paying you, the contributors, using a bounty-source-like approach. Unfortunately none of the attempts led to an actual funding or investment whatsoever. At this point putting the effort into the actual development, instead of pursuing further discussions and applications for such programs seems to make more sense.
 
+#### I would love to help!
+
+Feel free to check out this branch and get involved with what's there already to get an idea of where Paperwork is heading. Also check out the [project board](https://github.com/twostairs/paperwork/projects/1) to see what needs to be done or suggest what and how should be done.
+
+Feel free to actively participate in the [chatroom](https://riot.im/app/#/room/#paperwork:matrix.org) or [shoot an email](mailto:paperwork-dev@googlegroups.com) to the [Paperwork dev mailinglist](https://groups.google.com/forum/#!forum/paperwork-dev).
+
 ### Development
 
 Starting in development mode (with code auto-reload):
@@ -63,6 +69,8 @@ Running tests:
 $ cd service-users/
 $ npm test
 ```
+
+TODO: Write tests.
 
 ### Docker
 
