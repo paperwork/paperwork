@@ -15,9 +15,9 @@ const ServiceProvider = require('paperframe').ServiceProvider;
 const PaperframeCommon = require('paperframe').Common;
 
 module.exports = class JwtServiceProvider extends ServiceProvider {
-    _kongApiUrl: string
-    _accessTokenExpiresIn: number
-    _accessTokenNotBefore: number
+    _kongApiUrl:                string
+    _accessTokenExpiresIn:      number
+    _accessTokenNotBefore:      number
 
     initialize() {
         // Kong API URL
