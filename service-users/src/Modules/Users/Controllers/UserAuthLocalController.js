@@ -37,16 +37,6 @@ module.exports = class UserAuthLocalController extends PaperworkController {
         return '/auth/local';
     }
 
-    get routeAcl(): ControllerRouteAclTable {
-        let acl: ControllerRouteAclTable = {
-            'create': {
-                'protected': false
-            }
-        };
-
-        return acl;
-    }
-
     constructor(config: ControllerConfig) {
         super(config);
 
