@@ -86,7 +86,7 @@ services:
     links:
       - database
     environment:
-      - SERVER_NAME=Paperwork
+      - SERVER_NAME=service-users
       - SERVER_LOGLEVEL=20
       - SERVER_PORT=3000
       - SERVER_BODYPARSER_FORMLIMIT=56kb
@@ -98,7 +98,7 @@ services:
       - SERVER_JWT_ACCESS_EXPIRY=3000
       - SERVER_JWT_REFRESH_EXPIRY=3600
       - DATABASE_DRIVER=cql
-      - "DATABASE_CONNECTION={ \"contactPoints\": [\"database\"], \"keyspace\": \"paperwork\" }"
+      - "DATABASE_CONNECTION={ \"contactPoints\": [\"database\"], \"keyspace\": \"service-users\" }"
       - "DATABASE_OPTIONS={}"
       - JWT_SECRET=70B3C7BC1954CE09F4282B963E628FD6B586100CF8C21678FF4CAA1D04128FD5
     ports:

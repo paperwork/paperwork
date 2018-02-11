@@ -31,14 +31,15 @@ class Server extends Base {
             'level': parseInt(process.env.SERVER_LOGLEVEL, 10)
         });
 
-        this.logger.info('████╗  ███╗ ████╗ ██████╗████╗ █╗    █╗ ████╗ ████╗ █╗  █╗');
-        this.logger.info('█╔══█╗█╔══█╗█╔══█╗█╔════╝█╔══█╗█║    █║█╔═══█╗█╔══█╗█║ █╔╝');
-        this.logger.info('████╔╝█████║████╔╝████╗  ████╔╝█║ █╗ █║█║   █║████╔╝███╔╝ ');
-        this.logger.info('█╔══╝ █╔══█║█╔══╝ █╔══╝  █╔══█╗█║███╗█║█║   █║█╔══█╗█╔═█╗ ');
-        this.logger.info('█║    █║  █║█║    ██████╗█║  █║╚██╔██╔╝╚████╔╝█║  █║█║  █╗');
-        this.logger.info('╚╝    ╚╝  ╚╝╚╝    ╚═════╝╚╝  ╚╝ ╚═╝╚═╝  ╚═══╝ ╚╝  ╚╝╚╝  ╚╝');
-        this.logger.info('                                                    v%s', packageJson.version);
-        this.logger.info('                                                          ');
+
+        this.logger.info('██╗   ██╗███████╗███████╗██████╗ ███████╗');
+        this.logger.info('██║   ██║██╔════╝██╔════╝██╔══██╗██╔════╝');
+        this.logger.info('██║   ██║███████╗█████╗  ██████╔╝███████╗');
+        this.logger.info('██║   ██║╚════██║██╔══╝  ██╔══██╗╚════██║');
+        this.logger.info('╚██████╔╝███████║███████╗██║  ██║███████║');
+        this.logger.info(' ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝');
+        this.logger.info('                                     v%s', packageJson.version);
+        this.logger.info('                                         ');
 
         this._server = new Koa();
         this._router = new Router({
@@ -78,6 +79,6 @@ class Server extends Base {
     }
 }
 
-const paperworkCore = new Server();
-paperworkCore.initialize();
-paperworkCore.run();
+const service = new Server();
+service.initialize();
+service.run();

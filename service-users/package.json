@@ -1,5 +1,5 @@
 {
-  "name": "paperwork",
+  "name": "paperwork-service-users",
   "version": "2.0.0",
   "description": "OpenSource note-taking & archiving alternative to Evernote, Microsoft OneNote & Google Keep",
   "private": true,
@@ -7,7 +7,7 @@
     "type": "git",
     "url": "https://github.com/twostairs/paperwork.git"
   },
-  "main": "server/server.js",
+  "main": "server/Server.js",
   "scripts": {
     "lint": "gulp lint",
     "compile": "gulp build",

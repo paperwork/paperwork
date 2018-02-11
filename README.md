@@ -47,6 +47,7 @@ Starting in development mode (with code auto-reload):
 $ git clone git@github.com:twostairs/paperwork.git
 $ cd paperwork
 $ git checkout 2
+$ cd service-users/
 $ npm install
 $ cp .env.example .env
 $ vim .env
@@ -57,14 +58,16 @@ $ npm run dev
 Running tests:
 
 ```bash
+$ cd service-users/
 $ npm test
 ```
 
 ### Docker
 
 ```bash
-$ docker build -t="twostairs/paperwork" .
-$ docker run -it --rm --name="paperwork" --env-file .env twostairs/paperwork
+$ cd service-users/
+$ docker build -t="paperwork/service-users" .
+$ docker run -it --rm --name="paperwork-service-users" --env-file .env paperwork/service-users
 ```
 
 ### Docker Compose
