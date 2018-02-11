@@ -6,7 +6,7 @@ Paperwork
 [<img src="https://about.riot.im/wp-content/themes/riot/img/tiny-riot.svg" width="22"/> Join the chat](https://riot.im/app/#/room/#paperwork:matrix.org)
 [![Build Status](https://travis-ci.org/twostairs/paperwork.svg?branch=2)](https://travis-ci.org/twostairs/paperwork)
 
-<img src="https://raw.githubusercontent.com/twostairs/paperwork/2/paperwork-logo.png" width="250"/>
+<img src="https://raw.githubusercontent.com/twostairs/paperwork/master/paperwork-logo.png" width="250"/>
 
 Paperwork is an open-source, self-hosted alternative to services like Evernote ®, Microsoft OneNote ® or Google Keep ®.
 
@@ -14,7 +14,7 @@ Paperwork is an open-source, self-hosted alternative to services like Evernote �
 
 This branch contains the second iteration of Paperwork, which is a complete rewrite. Not only is it based on another framework - it is based on a completely different technology stack. **It is in its very early development phase and not yet usable**.
 
-If you were looking for the Laravel-based version 1 of Paperwork, please check [out this repository](https://github.com/twostairs/paperwork/tree/1).
+If you were looking for the Laravel-based version 1 of Paperwork, please check [out this branch](https://github.com/twostairs/paperwork/tree/1).
 
 #### Background
 
