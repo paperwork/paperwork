@@ -8,6 +8,5 @@ export type JwtCredentials = {
     secret: string
 };
 
-export type JwtToken = {
-};
+export type JwtToken = string;
 
