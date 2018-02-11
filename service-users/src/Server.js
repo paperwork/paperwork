@@ -8,7 +8,6 @@ const cors = require('kcors');
 const KoaRouter = require('koa-router');
 const KoaPassport = require('koa-passport');
 const bodyParser = require('koa-bodyparser');
-const KoaJwt = require('koa-jwt');
 
 const paperframe = require('paperframe');
 const Base = require('paperframe').Base;
@@ -38,13 +37,12 @@ class Server extends Base {
         this.logger.info('██║   ██║╚════██║██╔══╝  ██╔══██╗╚════██║');
         this.logger.info('╚██████╔╝███████║███████╗██║  ██║███████║');
         this.logger.info(' ╚═════╝ ╚══════╝╚══════╝╚═╝  ╚═╝╚══════╝');
-        this.logger.info('                                     v%s', packageJson.version);
+        this.logger.info('                                   v%s', packageJson.version);
         this.logger.info('                                         ');
 
         this._server = new Koa();
         this._router = new Router({
             'koaRouter': KoaRouter,
-            'jwtHandler': KoaJwt,
             'logger': this.logger
         });
     }
