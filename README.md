@@ -84,4 +84,6 @@ $ docker run -it --rm --name="paperwork-service-users" --env-file .env paperwork
 
 ```bash
 $ docker-compose up
+$ cd setup/
+$ ./run-migrations-api.sh http://YOUR-KONG-ADMIN-URL:PORT
 ```
