@@ -1,5 +1,11 @@
 #!/bin/sh
 
+while ! wget http://service-discovery:8500
+do
+    echo "Consul not yet running - sleeping ..."
+    sleep 3
+done
+
 # Render Nginx configuration template using values from Consul,
 # but do not reload because Nginx has't started yet
 preStart() {
