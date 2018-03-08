@@ -3,13 +3,15 @@ version: '3'
 services:
   service-discovery:
     image: progrium/consul:latest
+    container_name: "service-discovery"
+    hostname: "service-discovery"
     command: -server -bootstrap -ui-dir /ui
     healthcheck:
       test: ["CMD-SHELL", "curl -I -s -L http://127.0.0.1:8500 || exit 1"]
       interval: 5s
       retries: 10
     ports:
-      - 8500:8500
+      - "8500:8500"
     expose:
       - 53
       - 8300
@@ -36,10 +38,6 @@ services:
       - 8444
     links:
       - service-discovery
-    command: >
-        /bin/containerpilot
-        -config file:///etc/containerpilot/containerpilot.json
-        nginx -g "daemon off;"
 
   database-kong:
     image: postgres:9.5
@@ -70,7 +68,6 @@ services:
       test: ["CMD-SHELL", "curl -I -s -L http://127.0.0.1:8000 || exit 1"]
       interval: 5s
       retries: 10
-    command: ["/usr/local/bin/run-kong.sh", "database-kong"]
 
   database:
     image: scylladb/scylla:latest
@@ -81,6 +78,7 @@ services:
       - 9160:9160
       - 9180:9180
       - 10000:10000
+
   service-users:
     build: service-users/
     links:
