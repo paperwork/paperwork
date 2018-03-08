@@ -5,29 +5,39 @@ angular.module('paperworkNotes').controller('ViewController',
     };
 
     $scope.getStyleClasses = function(notesLength, sidebarCollapsed) {
+
+      // Define the classes variable
       var classes = "",
-          md = 0,
-          sm = 0;
+          xs = 12,
+          sm = 12,
+          md = 12;
 
-      if(!sidebarCollapsed) {
-        md += 2;
-        sm += 3;
+      // Check if the note screen needs to be full screen
+      if ($scope.isVisible()) {
+
+        // Make space for sidebar
+        if (!sidebarCollapsed) {
+          sm -= 3;
+          md -= 2;
+        }
+
+        // Make space for the notes switcher
+        if ($rootScope.notes.length > 0) {
+          sm -= 4;
+          md -= 3;
+        }
+
       }
 
-      if(notesLength > 0) {
-        md += 3;
-        sm += 4;
-      }
+      // Assign the appropriate column numbers
+      classes = "col-xs-" + xs + " col-sm-" + sm + " col-md-" + md;
 
-      if(sm > 0) {
-        classes += " col-sm-offset-" + sm + " col-sm-" + (12 - sm);
-      }
+      // Set up the appropriate offset
+      classes += " col-xs-offset-" + (12 - xs) + " col-sm-offset-" + (12 - sm) + " col-md-offset-" + (12 - md);
 
-      if(md > 0) {
-        classes += " col-md-offset-" + md + " col-md-" + (12 - md);
-      }
-
+      // Return the correct dimension
       return classes;
+
     };
 
   });
