@@ -16,8 +16,8 @@ RUN export CP_SHA1=e886899467ced6d7c76027d58c7f7554c2fb2bcc \
 COPY containerpilot.json /etc/containerpilot.json
 ENV CONTAINERPILOT=file:///etc/containerpilot.json
 
-COPY run-kong.sh /usr/local/bin/run-kong.sh
-
-CMD /bin/containerpilot kong start
+COPY run.sh /usr/local/bin/run.sh
 
 EXPOSE 8000 8443 8001 7946
+
+CMD ["/usr/local/bin/run.sh", "database-kong"]
