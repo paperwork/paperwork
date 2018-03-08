@@ -1,7 +1,7 @@
 # a minimal Nginx container including ContainerPilot and a simple virtulhost config
 FROM nginx:latest
 
-RUN apt-get update && apt-get install -y curl unzip
+RUN apt-get update && apt-get install -y curl unzip wget
 
 # we use consul-template to re-write our Nginx virtualhost config
 RUN curl -Lo /tmp/consul_template_0.14.0_linux_amd64.zip https://releases.hashicorp.com/consul-template/0.14.0/consul-template_0.14.0_linux_amd64.zip && \
@@ -18,7 +18,8 @@ RUN export CP_SHA1=198d96c8d7bfafb1ab6df96653c29701510b833c \
     && rm /tmp/containerpilot.tar.gz
 
 # add ContainerPilot configuration and onChange handler
-COPY containerpilot.json /etc/containerpilot/containerpilot.json
+COPY containerpilot.json /etc/containerpilot.json
+ENV CONTAINERPILOT=file:///etc/containerpilot.json
 COPY reload-nginx.sh /bin/reload-nginx.sh
 
 # add Nginx virtualhost configuration
@@ -28,3 +29,5 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY nginx.conf.ctmpl /etc/containerpilot/nginx.conf.ctmpl
 
 EXPOSE 8000 8443 8001 8444
+
+CMD ["/bin/containerpilot", "nginx", "-g", "daemon off;"]
