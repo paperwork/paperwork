@@ -19,5 +19,6 @@ services:
       - "DATABASE_CONNECTION={ \"contactPoints\": [\"database\"], \"keyspace\": \"service-users\" }"
       - "DATABASE_OPTIONS={}"
       - KONG_API_URL=http://service-kong:8001
+      - SERVICE_USERS_URL=http://service-users:3000
     ports:
       - 3000:3000
