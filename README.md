@@ -71,6 +71,14 @@ $ docker-compose -f ./docker-compose.service-users.yml up --build
 
 This allows running each service either as fully built docker container or as development instance. For example, `service-users` could also be run locally, via `npm run dev`, alongside the `infrastructure` compose-file. This would make `service-kong` (inside `infrastructure`) reach out to the local development instance of `service-users` and allow for easy development on individual services.
 
+In order to make a local service available inside docker, the `devproxy` is being required. The `devproxy` automatically runs inside the `infrastructure`, exposes port `2222` on the host and provides a way to forward local development ports into the docker environment. In order to forward the local `service-users` port into the docker environment, an SSH port forward is required:
+
+```bash
+$ ssh -o "UserKnownHostsFile /dev/null" -o "StrictHostKeyChecking=no" -p 2222 -R 3000:127.0.0.1:3000 root@127.0.0.1
+```
+
+The *root password* is `root`. This forwards the local port `3000` into the `devproxy`, so that `service-kong` could reach `service-users` through `devproxy:3000`. In order to do so, the locally running `service-users` needs to have the `SERVICE_USERS_URL` environment variable set to `http://devproxy:3000`, as it uses this variable to set up the kong upstream for `service-users`.
+
 ### Developing / contributing
 
 Please refer to [the components' repositories](https://github.com/paperworkco) in order to get more information on how to contribute.
