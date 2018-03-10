@@ -57,9 +57,19 @@ $ git clone --recursive git@github.com:twostairs/paperwork.git
 
 #### Docker Compose
 
+The setup is split into separate compose files that can be run individually of each other. In order for the `service` compose-files to work, the `infrastructure` compose-file needs to be running, though.
+
 ```bash
-$ docker-compose up --build
+$ docker-compose -f ./docker-compose.infrastructure.yml up --build
 ```
+
+After the `infrastructure` setup is up and running all the services can be started individually:
+
+```bash
+$ docker-compose -f ./docker-compose.service-users.yml up --build
+```
+
+This allows running each service either as fully built docker container or as development instance. For example, `service-users` could also be run locally, via `npm run dev`, alongside the `infrastructure` compose-file. This would make `service-kong` (inside `infrastructure`) reach out to the local development instance of `service-users` and allow for easy development on individual services.
 
 ### Developing / contributing
 
