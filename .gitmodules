@@ -4,3 +4,6 @@
 [submodule "service-lbx"]
 	path = service-lbx
 	url = git@github.com:paperworkco/service-lbx.git
+[submodule "service-kong"]
+	path = service-kong
+	url = git@github.com:paperworkco/service-kong.git
