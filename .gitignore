@@ -1,6 +1,2 @@
 .DS_Store
-/service-users/.env
-/service-users/node_modules
-/service-users/documentation
-/service-users/compiled
-/*.sublime-workspace
+*.sublime-workspace
