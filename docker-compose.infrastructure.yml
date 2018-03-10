@@ -66,6 +66,8 @@ services:
       test: ["CMD-SHELL", "curl -I -s -L http://127.0.0.1:8000 || exit 1"]
       interval: 5s
       retries: 10
+    links:
+      - devproxy
 
   database:
     image: scylladb/scylla:latest
@@ -76,3 +78,10 @@ services:
       - 9160:9160
       - 9180:9180
       - 10000:10000
+
+  devproxy:
+    build: devproxy/
+    ports:
+      - "2222:22"
+    expose:
+      - 3000
