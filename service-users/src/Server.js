@@ -73,7 +73,10 @@ class Server extends Base {
             this.logger.debug('Server: Applying routes ...');
             this._server.use(this._router.routes());
 
-            this._kong = new Kong();
+            this._kong = new Kong({
+                'logger': this.logger
+            });
+
             await this._kong.initialize();
 
             return true;

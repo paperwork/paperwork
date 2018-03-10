@@ -8,22 +8,30 @@ const HttpStatus = require('http-status-codes');
 module.exports = class Kong extends Base {
     _kongApiUrl:                string
 
-    constructor() {
+    constructor(options: Object) {
         super();
+
+        this.logger = options.logger;
     }
 
     async execute(method: string, url: string, payload: ?Object): Promise<Object> {
         let responseCode = 200;
         let responseData = {};
 
+        this.logger.debug(`Kong: Executing ${method} on ${url}...`);
+
         try {
             const response = await axios[method](url, payload);
 
             responseCode = response.code;
             responseData =  response.data;
+
+            this.logger.debug(`Kong: Executed ${method} on ${url} successfully.`);
         } catch(response) {
             responseCode = response.response.status;
             responseData = response.response;
+
+            this.logger.debug(`Kong: Execution of ${method} on ${url} returned response code ${responseCode}.`);
         }
 
         if(responseCode !== HttpStatus.OK && responseCode !== HttpStatus.CONFLICT) {
