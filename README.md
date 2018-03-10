@@ -58,7 +58,7 @@ $ git clone --recursive git@github.com:twostairs/paperwork.git
 #### Docker Compose
 
 ```bash
-$ docker-compose up
+$ docker-compose up --build
 ```
 
 ### Developing / contributing
