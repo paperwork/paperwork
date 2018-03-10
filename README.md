@@ -47,64 +47,6 @@ Feel free to check out this branch and get involved with what's there already to
 
 Feel free to actively participate in the [chatroom](https://riot.im/app/#/room/#paperwork:matrix.org) or [shoot an email](mailto:paperwork-dev@googlegroups.com) to the [Paperwork dev mailinglist](https://groups.google.com/forum/#!forum/paperwork-dev).
 
-### Development
-
-#### Users Service
-
-(Optional) Using a local version of Paperframe:
-
-```bash
-$ git clone git@github.com:paperworkco/paperframe.git
-$ cd paperframe
-$ npm link
-```
-
-Cloning the repository:
-
-```bash
-$ git clone git@github.com:twostairs/paperwork.git
-$ cd paperwork
-$ cd service-users/
-```
-
-(Optional) Linking local version of Paperframe:
-
-```bash
-$ npm link paperframe
-```
-
-Preparing:
-
-```bash
-$ npm install
-$ cp .env.example .env
-$ vim .env
-$ # adjust the settings accordingly
-```
-
-Starting in development mode (with code auto-reload):
-
-```bash
-$ npm run dev
-```
-
-Running tests:
-
-```bash
-$ cd service-users/
-$ npm test
-```
-
-TODO: Write tests.
-
-### Docker
-
-```bash
-$ cd service-users/
-$ docker build -t="paperwork/service-users" .
-$ docker run -it --rm --name="paperwork-service-users" --env-file .env paperwork/service-users
-```
-
 ### Docker Compose
 
 ```bash
