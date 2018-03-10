@@ -21,26 +21,21 @@ module.exports = class JwtServiceProvider extends ServiceProvider {
 
     initialize() {
         // Kong API URL
-        if(typeof process.env.KONG_API_URL === 'undefined'
-        || process.env.KONG_API_URL === null
-        || process.env.KONG_API_URL.length === PaperframeCommon.EMPTY) {
+        this._kongApiUrl = this.getEnv('KONG_API_URL');
+        if(typeof this._kongApiUrl === 'undefined') {
             this.logger.error('JwtServiceProvider: Could not initialize, KONG_API_URL not set!');
             return false;
         }
 
-        this._kongApiUrl = process.env.KONG_API_URL;
-
         this.logger.debug('JwtServiceProvider: Initialized with KONG_API_URL set to %s.', this._kongApiUrl);
 
         // JWT Access Token Expiry
-        if(typeof process.env.SERVER_JWT_ACCESS_EXPIRY === 'undefined'
-        || process.env.SERVER_JWT_ACCESS_EXPIRY === null
-        || process.env.SERVER_JWT_ACCESS_EXPIRY.length === PaperframeCommon.EMPTY) {
+        const accessTokenExpiresIn = this.getEnv('SERVER_JWT_ACCESS_EXPIRY');
+        if(typeof accessTokenExpiresIn === 'undefined') {
             this.logger.error('JwtServiceProvider: Could not initialize, SERVER_JWT_ACCESS_EXPIRY not set!');
             return false;
         }
-
-        this._accessTokenExpiresIn = parseInt(process.env.SERVER_JWT_ACCESS_EXPIRY, 10);
+        this._accessTokenExpiresIn = parseInt(accessTokenExpiresIn, 10);
 
         // JWT Access Token not before (unused so far)
         this._accessTokenNotBefore = PaperframeCommon.ZERO;
