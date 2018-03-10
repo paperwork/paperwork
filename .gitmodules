@@ -1,9 +1,9 @@
 [submodule "service-users"]
 	path = service-users
-	url = git@github.com:paperworkco/service-users.git
+	url = https://github.com/paperworkco/service-users.git
 [submodule "service-lbx"]
 	path = service-lbx
-	url = git@github.com:paperworkco/service-lbx.git
+	url = https://github.com/paperworkco/service-lbx.git
 [submodule "service-kong"]
 	path = service-kong
-	url = git@github.com:paperworkco/service-kong.git
+	url = https://github.com/paperworkco/service-kong.git
