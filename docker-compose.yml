@@ -3,8 +3,6 @@ version: '3'
 services:
   service-discovery:
     image: progrium/consul:latest
-    container_name: "service-discovery"
-    hostname: "service-discovery"
     command: -server -bootstrap -ui-dir /ui
     healthcheck:
       test: ["CMD-SHELL", "curl -I -s -L http://127.0.0.1:8500 || exit 1"]
