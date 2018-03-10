@@ -1,0 +1,3 @@
+[submodule "service-users"]
+	path = service-users
+	url = git@github.com:paperworkco/service-users.git
