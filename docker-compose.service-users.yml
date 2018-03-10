@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  service-users:
+    build: service-users/
+    # links:
+    #   - database
+    environment:
+      - SERVER_NAME=service-users
+      - SERVER_LOGLEVEL=20
+      - SERVER_PORT=3000
+      - SERVER_BODYPARSER_FORMLIMIT=56kb
+      - SERVER_BODYPARSER_JSONLIMIT=10mb
+      - SERVER_BODYPARSER_TEXTLIMIT=10mb
+      - SERVER_MODULES=users
+      - SERVER_COLLECTIONS=user
+      - SERVER_PASSWORDS_SALTROUNDS=10
+      - SERVER_JWT_ACCESS_EXPIRY=3000
+      - SERVER_JWT_REFRESH_EXPIRY=3600
+      - DATABASE_DRIVER=cql
+      - "DATABASE_CONNECTION={ \"contactPoints\": [\"database\"], \"keyspace\": \"service-users\" }"
+      - "DATABASE_OPTIONS={}"
+      - KONG_API_URL=http://service-kong:8001
+    ports:
+      - 3000:3000
