@@ -1,3 +1,6 @@
 [submodule "service-users"]
 	path = service-users
 	url = git@github.com:paperworkco/service-users.git
+[submodule "service-lbx"]
+	path = service-lbx
+	url = git@github.com:paperworkco/service-lbx.git
