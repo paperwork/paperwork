@@ -47,10 +47,20 @@ Feel free to check out this branch and get involved with what's there already to
 
 Feel free to actively participate in the [chatroom](https://riot.im/app/#/room/#paperwork:matrix.org) or [shoot an email](mailto:paperwork-dev@googlegroups.com) to the [Paperwork dev mailinglist](https://groups.google.com/forum/#!forum/paperwork-dev).
 
-### Docker Compose
+### Usage
+
+This repository is structuring and unifying all required components for Paperwork. Make sure to clone this repository with all its submodules:
+
+```bash
+$ git clone --recursive git@github.com:twostairs/paperwork.git
+```
+
+#### Docker Compose
 
 ```bash
 $ docker-compose up
-$ cd setup/
-$ ./run-migrations-api.sh http://YOUR-KONG-ADMIN-URL:PORT
 ```
+
+### Developing / contributing
+
+Please refer to [the components' repositories](https://github.com/paperworkco) in order to get more information on how to contribute.
