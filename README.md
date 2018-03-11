@@ -4,7 +4,6 @@ Paperwork
 ## OpenSource note-taking & archiving
 
 [<img src="https://about.riot.im/wp-content/themes/riot/img/tiny-riot.svg" width="22"/> Join the chat](https://riot.im/app/#/room/#paperwork:matrix.org)
-[![Build Status](https://travis-ci.org/twostairs/paperwork.svg?branch=2)](https://travis-ci.org/twostairs/paperwork)
 
 <img src="https://raw.githubusercontent.com/twostairs/paperwork/master/paperwork-logo.png" width="250"/>
 
@@ -52,7 +51,8 @@ Feel free to actively participate in the [chatroom](https://riot.im/app/#/room/#
 This repository is structuring and unifying all required components for Paperwork. Make sure to clone this repository with all its submodules:
 
 ```bash
-$ git clone --recursive git@github.com:twostairs/paperwork.git
+$ git clone git@github.com:twostairs/paperwork.git
+$ git submodule update --init --recursive
 ```
 
 #### Docker Compose
@@ -82,3 +82,10 @@ The *root password* is `root`. This forwards the local port `3000` into the `dev
 ### Developing / contributing
 
 Please refer to [the components' repositories](https://github.com/paperworkco) in order to get more information on how to contribute.
+
+#### List of components
+
+- [service-lbx](https://github.com/paperworkco/service-lbx) [![Build Status](https://travis-ci.org/paperworkco/service-lbx.svg?branch=master)](https://travis-ci.org/twostairs/paperwork)
+- [service-kong](https://github.com/paperworkco/service-kong) [![Build Status](https://travis-ci.org/paperworkco/service-kong.svg?branch=master)](https://travis-ci.org/twostairs/paperwork)
+- [service-users](https://github.com/paperworkco/service-users) [![Build Status](https://travis-ci.org/paperworkco/service-users.svg?branch=master)](https://travis-ci.org/twostairs/paperwork)
+
