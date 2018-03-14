@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  service-nats:
+    build: service-nats/
+    ports:
+      - 4222:4222
