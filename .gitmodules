@@ -7,3 +7,6 @@
 [submodule "service-kong"]
 	path = service-kong
 	url = https://github.com/paperworkco/service-kong.git
+[submodule "service-nats"]
+	path = service-nats
+	url = https://github.com/paperworkco/service-nats.git
