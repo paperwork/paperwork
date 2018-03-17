@@ -9,6 +9,6 @@ services:
   service-nats:
     build: ./service-nats/
     environment:
-      - "CONSUL_SERVER=service-discovery"
+      - CONSUL_SERVER=service-discovery
     ports:
       - 4222
