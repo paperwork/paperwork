@@ -2,6 +2,8 @@ version: '3'
 
 services:
   service-nats:
-    build: service-nats/
+    build: ./service-nats/
+    environment:
+      - "CONSUL_SERVER=service-discovery"
     ports:
-      - 4222:4222
+      - 4222
