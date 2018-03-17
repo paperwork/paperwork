@@ -1,4 +1,16 @@
 version: '3'
+networks:
+  papernet:
+    driver: overlay
+    driver_opts:
+      encrypted: "true"
+  xnet:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+      -
+        subnet: 172.16.10.0/24
 
 services:
   service-discovery:
@@ -8,6 +20,8 @@ services:
       test: ["CMD-SHELL", "curl -I -s -L http://127.0.0.1:8500 || exit 1"]
       interval: 5s
       retries: 10
+    networks:
+      - papernet
     ports:
       - "8500:8500"
     expose:
@@ -24,6 +38,9 @@ services:
     build: service-lbx/
     depends_on:
       - service-discovery
+    networks:
+      - papernet
+      - xnet
     ports:
       - 8000:8000
       - 8443:8443
@@ -47,6 +64,8 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - papernet
 
   service-kong:
     build: service-kong/
@@ -57,6 +76,8 @@ services:
       - KONG_PG_HOST=database-kong
       - KONG_PG_DATABASE=kong
       - KONG_ADMIN_LISTEN=0.0.0.0:8001
+    networks:
+      - papernet
     expose:
       - 8000
       - 8001
@@ -71,6 +92,8 @@ services:
 
   database:
     image: scylladb/scylla:latest
+    networks:
+      - papernet
     ports:
       - 7000:7000
       - 7001:7001
@@ -81,6 +104,9 @@ services:
 
   devproxy:
     build: devproxy/
+    networks:
+      - papernet
+      - xnet
     ports:
       - "2222:22"
     expose:
