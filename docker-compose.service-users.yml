@@ -2,7 +2,7 @@ version: '3'
 
 services:
   service-users:
-    build: service-users/
+    build: ./service-users/
     environment:
       - SERVER_NAME=service-users
       - SERVER_LOGLEVEL=20
