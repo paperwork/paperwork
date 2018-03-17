@@ -1,5 +1,10 @@
 version: '3'
 
+networks:
+  default:
+    external:
+      name: paperwork_papernet
+
 services:
   service-users:
     build: ./service-users/
