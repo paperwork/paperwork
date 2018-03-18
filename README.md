@@ -59,11 +59,23 @@ $ git submodule update --init --recursive
 
 The setup is split into separate compose files that can be run individually of each other. In order for the `service` compose-files to work, the `infrastructure` compose-file needs to be running, though.
 
+The compose-setup depends on an encrypted overlay network to be created. For that, your docker environment needs to have swarm activated. You can do so by running:
+
+```bash
+$ docker swarm init
+```
+
+There is no need to join any more members to it. Only with swarm enabled the `infrastructure` can be launched:
+
 ```bash
 $ docker-compose -f ./docker-compose.infrastructure.yml up --build
 ```
 
-After the `infrastructure` setup is up and running all the services can be started individually:
+After the `infrastructure` is up and running all the services can be started individually.
+
+##### Users Service
+
+In order to start the users service (`service-users`), run the following `docker-compose` command:
 
 ```bash
 $ docker-compose -f ./docker-compose.service-users.yml up --build
