@@ -12,10 +12,15 @@ networks:
       -
         subnet: 172.16.10.0/24
 
+# CONSUL SERVICE
+# This is really a bullshit setup due to consul param requirements and due to
+# docker-compose / docker stack deply inconsistency with replicas
 services:
   service-discovery:
-    image: progrium/consul:latest
-    command: -server -bootstrap -ui-dir /ui
+    image: consul:latest
+    command: "agent -server -bootstrap-expect 3 -ui -client 0.0.0.0"
+    environment:
+      - CONSUL_BIND_INTERFACE=eth0
     healthcheck:
       test: ["CMD-SHELL", "curl -I -s -L http://127.0.0.1:8500 || exit 1"]
       interval: 5s
@@ -23,7 +28,9 @@ services:
     networks:
       - papernet
     ports:
+      - "8400:8400"
       - "8500:8500"
+      - "8600:8600"
     expose:
       - 53
       - 8300
@@ -34,10 +41,44 @@ services:
     dns:
       - 127.0.0.1
 
+  service-discovery-server-1:
+    image: consul:latest
+    command: "agent -server -retry-join service-discovery -client 0.0.0.0"
+    environment:
+      - CONSUL_BIND_INTERFACE=eth0
+    ## This doesn't work with docker-compose...
+    # deploy:
+    #   mode: replicated
+    #   replicas: 3
+    healthcheck:
+      test: ["CMD-SHELL", "curl -I -s -L http://127.0.0.1:8500 || exit 1"]
+      interval: 5s
+      retries: 10
+    networks:
+      - papernet
+
+  service-discovery-server-2:
+    image: consul:latest
+    command: "agent -server -retry-join service-discovery -client 0.0.0.0"
+    environment:
+      - CONSUL_BIND_INTERFACE=eth0
+    ## This doesn't work with docker-compose...
+    # deploy:
+    #   mode: replicated
+    #   replicas: 3
+    healthcheck:
+      test: ["CMD-SHELL", "curl -I -s -L http://127.0.0.1:8500 || exit 1"]
+      interval: 5s
+      retries: 10
+    networks:
+      - papernet
+# END OF CONSUL SERVICE
+
+# LBX SERVICE
   service-lbx:
-    build: service-lbx/
-    depends_on:
-      - service-discovery
+    build: ./service-lbx/
+    environment:
+      - CONSUL_SERVER=service-discovery
     networks:
       - papernet
       - xnet
@@ -53,6 +94,7 @@ services:
       - 8444
     links:
       - service-discovery
+# END OF LBX SERVICE
 
   database-kong:
     image: postgres:9.5
@@ -68,10 +110,9 @@ services:
       - papernet
 
   service-kong:
-    build: service-kong/
-    depends_on:
-      - database-kong
+    build: ./service-kong/
     environment:
+      - CONSUL_SERVER=service-discovery
       - KONG_DATABASE=postgres
       - KONG_PG_HOST=database-kong
       - KONG_PG_DATABASE=kong
@@ -87,27 +128,34 @@ services:
       test: ["CMD-SHELL", "curl -I -s -L http://127.0.0.1:8000 || exit 1"]
       interval: 5s
       retries: 10
-    links:
-      - devproxy
+    # links:
+    #   - devproxy
 
-  database:
-    image: scylladb/scylla:latest
-    networks:
-      - papernet
-    ports:
-      - 7000:7000
-      - 7001:7001
-      - 9042:9042
-      - 9160:9160
-      - 9180:9180
-      - 10000:10000
+  # database:
+  #   image: scylladb/scylla:latest
+  #   networks:
+  #     - papernet
+  #   ports:
+  #     - 7000:7000
+  #     - 7001:7001
+  #     - 9042:9042
+  #     - 9160:9160
+  #     - 9180:9180
+  #     - 10000:10000
 
-  devproxy:
-    build: devproxy/
-    networks:
-      - papernet
-      - xnet
-    ports:
-      - "2222:22"
-    expose:
-      - 3000
+  # service-nats:
+  #   build: ../service-nats/
+  #   environment:
+  #     - CONSUL_SERVER=service-discovery
+  #   ports:
+  #     - 4222
+
+  # devproxy:
+  #   build: devproxy/
+  #   networks:
+  #     - papernet
+  #     - xnet
+  #   ports:
+  #     - "2222:22"
+  #   expose:
+  #     - 3000
