@@ -7,7 +7,7 @@ networks:
 
 services:
   service-users:
-    build: ./service-users/
+    build: paperworkco/service-users:latest
     environment:
       - CONSUL_SERVER=service-discovery
       - SERVER_NAME=service-users

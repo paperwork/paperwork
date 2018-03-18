@@ -76,7 +76,7 @@ services:
 
 # LBX SERVICE
   service-lbx:
-    build: ./service-lbx/
+    build: paperworkco/service-lbx:latest
     environment:
       - CONSUL_SERVER=service-discovery
     networks:
@@ -96,8 +96,13 @@ services:
       - service-discovery
 # END OF LBX SERVICE
 
+  # This is a snowflake while Syclla does not support Kong.
+  # See here for more info:
+  # - https://github.com/Kong/kong/issues/754#issuecomment-364659935
+  # - https://github.com/scylladb/scylla/issues/3202
   database-kong:
     image: postgres:9.5
+    # TODO: Add persistance as soon as it makes sense.
     environment:
       - POSTGRES_USER=kong
       - POSTGRES_DB=kong
@@ -110,7 +115,7 @@ services:
       - papernet
 
   service-kong:
-    build: ./service-kong/
+    build: paperworkco/service-kong:latest
     environment:
       - CONSUL_SERVER=service-discovery
       - KONG_DATABASE=postgres
@@ -131,31 +136,33 @@ services:
     # links:
     #   - devproxy
 
-  # database:
-  #   image: scylladb/scylla:latest
-  #   networks:
-  #     - papernet
-  #   ports:
-  #     - 7000:7000
-  #     - 7001:7001
-  #     - 9042:9042
-  #     - 9160:9160
-  #     - 9180:9180
-  #     - 10000:10000
+  database-scylla:
+    image: scylladb/scylla:latest
+    networks:
+      - papernet
+    ports:
+      - 7000:7000
+      - 7001:7001
+      - 9042:9042
+      - 9160:9160
+      - 9180:9180
+      - 10000:10000
 
-  # service-nats:
-  #   build: ../service-nats/
-  #   environment:
-  #     - CONSUL_SERVER=service-discovery
-  #   ports:
-  #     - 4222
+  service-nats:
+    build: paperworkco/service-nats:latest
+    environment:
+      - CONSUL_SERVER=service-discovery
+    networks:
+      - papernet
+    ports:
+      - 4222
 
-  # devproxy:
-  #   build: devproxy/
-  #   networks:
-  #     - papernet
-  #     - xnet
-  #   ports:
-  #     - "2222:22"
-  #   expose:
-  #     - 3000
+  devproxy:
+    build: devproxy/
+    networks:
+      - papernet
+      - xnet
+    ports:
+      - "2222:22"
+    expose:
+      - 3000
