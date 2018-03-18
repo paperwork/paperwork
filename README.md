@@ -48,11 +48,10 @@ Feel free to actively participate in the [chatroom](https://riot.im/app/#/room/#
 
 ### Usage
 
-This repository is structuring and unifying all required components for Paperwork. Make sure to clone this repository with all its submodules:
+This repository is structuring and unifying all required components for Paperwork.
 
 ```bash
 $ git clone git@github.com:twostairs/paperwork.git
-$ git submodule update --init --recursive
 ```
 
 #### Docker Compose
@@ -99,5 +98,6 @@ Please refer to [the components' repositories](https://github.com/paperworkco) i
 
 - [service-lbx](https://github.com/paperworkco/service-lbx) [![Build Status](https://travis-ci.org/paperworkco/service-lbx.svg?branch=master)](https://travis-ci.org/twostairs/paperwork)
 - [service-kong](https://github.com/paperworkco/service-kong) [![Build Status](https://travis-ci.org/paperworkco/service-kong.svg?branch=master)](https://travis-ci.org/twostairs/paperwork)
+- [service-nats](https://github.com/paperworkco/service-nats) [![Build Status](https://travis-ci.org/paperworkco/service-nats.svg?branch=master)](https://travis-ci.org/twostairs/paperwork)
 - [service-users](https://github.com/paperworkco/service-users) [![Build Status](https://travis-ci.org/paperworkco/service-users.svg?branch=master)](https://travis-ci.org/twostairs/paperwork)
 
