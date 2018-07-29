@@ -4,13 +4,6 @@ networks:
     driver: overlay
     driver_opts:
       encrypted: "true"
-  xnet:
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-      -
-        subnet: 172.16.10.0/24
 
 # CONSUL SERVICE
 # This is really a bullshit setup due to consul param requirements and due to
@@ -50,7 +43,6 @@ services:
       - CONSUL_SERVER=service-discovery
     networks:
       - papernet
-      - xnet
     ports:
       - 8000:8000
       - 8443:8443
@@ -74,6 +66,7 @@ services:
       - KONG_DATABASE=cassandra
       - KONG_CASSANDRA_CONTACT_POINTS=database-scylla
       - KONG_ADMIN_LISTEN=0.0.0.0:8001
+      - KONG_ADMIN_LISTEN_SSL=0.0.0.0:8444
       - KONG_DB_UPDATE_PROPAGATION=5s
     networks:
       - papernet
@@ -102,21 +95,22 @@ services:
       - 9180:9180
       - 10000:10000
 
-  # service-nats:
-  #   image: paperworkco/service-nats:latest
-  #   environment:
-  #     - CONSUL_SERVER=service-discovery
-  #   networks:
-  #     - papernet
-  #   ports:
-  #     - 4222
+  service-nats:
+    image: paperworkco/service-nats:latest
+    environment:
+      - CONSUL_SERVER=service-discovery
+    networks:
+      - papernet
+    ports:
+      - 4222
+    expose:
+      - 4222
 
-  # devproxy:
-  #   build: devproxy/
-  #   networks:
-  #     - papernet
-  #     - xnet
-  #   ports:
-  #     - "2222:22"
-  #   expose:
-  #     - 3000
+  devproxy:
+    build: devproxy/
+    networks:
+      - papernet
+    ports:
+      - "2222:22"
+    expose:
+      - 3000
