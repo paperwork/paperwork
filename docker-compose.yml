@@ -60,8 +60,7 @@ services:
 # END OF LBX SERVICE
 
   service-kong:
-    # image: paperworkco/service-kong:latest
-    build: ../service-kong
+    image: paperworkco/service-kong:latest
     environment:
       - CONSUL_SERVER=service-discovery
       - KONG_LOG_LEVEL=debug
