@@ -67,28 +67,31 @@ $ docker swarm init
 There is no need to join any more members to it. Only with swarm enabled the `infrastructure` can be launched:
 
 ```bash
-$ docker-compose -f ./docker-compose.infrastructure.yml up --build
+$ docker-compose up --build
 ```
 
 After the `infrastructure` is up and running all the services can be started individually.
 
 ##### Users Service
 
-In order to start the users service (`service-users`), run the following `docker-compose` command:
+In order to start the users service (`service-users`), run the following command:
 
 ```bash
-$ docker-compose -f ./docker-compose.service-users.yml up --build
+npm run dev
 ```
 
-This allows running each service either as fully built docker container or as development instance. For example, `service-users` could also be run locally, via `npm run dev`, alongside the `infrastructure` compose-file. This would make `service-kong` (inside `infrastructure`) reach out to the local development instance of `service-users` and allow for easy development on individual services.
+This requires `service-kong` (inside `infrastructure`) reach out to the local development instance of `service-users`. In to do that the `devproxy` is being required.
 
-In order to make a local service available inside docker, the `devproxy` is being required. The `devproxy` automatically runs inside the `infrastructure`, exposes port `2222` on the host and provides a way to forward local development ports into the docker environment. In order to forward the local `service-users` port into the docker environment, an SSH port forward is required:
+##### `devproxy` Service
+
+The `devproxy` automatically runs inside the `infrastructure`, exposes port `2222` on the host and provides a way to forward local development ports into the docker environment. In order to forward the local `service-users` port into the docker environment, an SSH port forward is required:
 
 ```bash
 $ ssh -o "UserKnownHostsFile /dev/null" -o "StrictHostKeyChecking=no" -p 2222 -R 3000:127.0.0.1:3000 root@127.0.0.1
 ```
 
-The *root password* is `root`. This forwards the local port `3000` into the `devproxy`, so that `service-kong` could reach `service-users` through `devproxy:3000`. In order to do so, the locally running `service-users` needs to have the `SERVICE_USERS_URL` environment variable set to `http://devproxy:3000`, as it uses this variable to set up the kong upstream for `service-users`.
+The *root password* is `root`. This forwards the local port `3000` into the `devproxy`, so that `service-kong` could reach `service-users` through `devproxy:3000`.
+In order to do so, the locally running `service-users` needs to have the `SERVICE_USERS_URL` environment variable set to `http://devproxy:3000`, as it uses this variable to set up the kong upstream for `service-users`.
 
 ### Developing / contributing
 
