@@ -5,7 +5,7 @@ Paperwork
 
 [<img src="https://about.riot.im/wp-content/themes/riot/img/tiny-riot.svg" width="22"/> Join the chat](https://riot.im/app/#/room/#paperwork:matrix.org)
 
-<img src="https://raw.githubusercontent.com/twostairs/paperwork/master/paperwork-logo.png" width="250"/>
+<img src="https://raw.githubusercontent.com/paperwork/paperwork/master/paperwork-logo.png" width="250"/>
 
 Paperwork is an open-source, self-hosted alternative to services like Evernote ®, Microsoft OneNote ® or Google Keep ®.
 
@@ -13,11 +13,11 @@ Paperwork is an open-source, self-hosted alternative to services like Evernote �
 
 This branch contains the second iteration of Paperwork, which is a complete rewrite. Not only is it based on another framework - it is based on a completely different technology stack. **It is in its very early development phase and not yet usable**.
 
-If you were looking for the Laravel-based version 1 of Paperwork, please check [out this branch](https://github.com/twostairs/paperwork/tree/1).
+If you were looking for the Laravel-based version 1 of Paperwork, please check [out this branch](https://github.com/paperwork/paperwork/tree/1).
 
 #### Background
 
-The very first version of Paperwork was started in July 2014 as a pet-project by [this guy](https://twitter.com/mrusme), mainly out of frustration about the existing services (Evernote & others), fear ignited by the Snowden revelations and curiosity about whether the effort would lead to something people would be interested in. And apparently it did. :) Soon, more [great](https://github.com/Liongold) [people](https://github.com/joshlemer) [joined](https://github.com/JamborJan) the project and [contributed](https://github.com/twostairs/paperwork/graphs/contributors).
+The very first version of Paperwork was started in July 2014 as a pet-project by [this guy](https://twitter.com/mrusme), mainly out of frustration about the existing services (Evernote & others), fear ignited by the Snowden revelations and curiosity about whether the effort would lead to something people would be interested in. And apparently it did. :) Soon, more [great](https://github.com/Liongold) [people](https://github.com/joshlemer) [joined](https://github.com/JamborJan) the project and [contributed](https://github.com/paperwork/paperwork/graphs/contributors).
 
 However, originally the tech that was used to build the very first version on top (mainly PHP 5, MySQL, Laravel 4, Angular & Bootstrap) was chosen to keep things simple and allow iterating quickly. The primary goal for the project was the actual result, rather than any sort of technological finesse.
 
@@ -34,7 +34,7 @@ With the effort to revamp Paperwork in its current form (e.g. clean the code on 
 
 This branch contains a very first suggestion, of how the second iteration of Paperwork could look like. As you might notice, one major change is the clear separation of components, making this branch (and hopefully soon the whole repository) only one piece of the puzzle. Currently, it only contains of the back-end component — or better, one of them — and does not include front-end components whatsoever. The idea is to build the second iteration in a more modular and diversified manner, picking the right tool for the task rather than building a monolith that is harder to maintain the bigger it grows.
 
-Everyone who is interested in getting their feet wet is highly welcome to [join the discussion](https://riot.im/app/#/room/#paperwork:matrix.org) and [planning](https://github.com/twostairs/paperwork/projects/1?) around Paperwork 2.
+Everyone who is interested in getting their feet wet is highly welcome to [join the discussion](https://riot.im/app/#/room/#paperwork:matrix.org) and [planning](https://github.com/paperwork/paperwork/projects/1?) around Paperwork 2.
 
 #### Okay, cool. But what took you so long to get to this point?
 
@@ -42,7 +42,7 @@ Funding. Basically this point was planned and headed towards sometime in mid 201
 
 #### I would love to help!
 
-Feel free to check out this branch and get involved with what's there already to get an idea of where Paperwork is heading. Also check out the [project board](https://github.com/twostairs/paperwork/projects/1) to see what needs to be done or suggest what and how should be done.
+Feel free to check out this branch and get involved with what's there already to get an idea of where Paperwork is heading. Also check out the [project board](https://github.com/paperwork/paperwork/projects/1) to see what needs to be done or suggest what and how should be done.
 
 Feel free to actively participate in the [chatroom](https://riot.im/app/#/room/#paperwork:matrix.org) or [shoot an email](mailto:paperwork-dev@googlegroups.com) to the [Paperwork dev mailinglist](https://groups.google.com/forum/#!forum/paperwork-dev).
 
@@ -51,7 +51,7 @@ Feel free to actively participate in the [chatroom](https://riot.im/app/#/room/#
 This repository is structuring and unifying all required components for Paperwork.
 
 ```bash
-$ git clone git@github.com:twostairs/paperwork.git
+$ git clone git@github.com:paperwork/paperwork.git
 ```
 
 #### Docker Compose
@@ -99,8 +99,8 @@ Please refer to [the components' repositories](https://github.com/paperworkco) i
 
 #### List of components
 
-- [service-lbx](https://github.com/paperworkco/service-lbx) [![Build Status](https://travis-ci.org/paperworkco/service-lbx.svg?branch=master)](https://travis-ci.org/twostairs/paperwork)
-- [service-kong](https://github.com/paperworkco/service-kong) [![Build Status](https://travis-ci.org/paperworkco/service-kong.svg?branch=master)](https://travis-ci.org/twostairs/paperwork)
-- [service-nats](https://github.com/paperworkco/service-nats) [![Build Status](https://travis-ci.org/paperworkco/service-nats.svg?branch=master)](https://travis-ci.org/twostairs/paperwork)
-- [service-users](https://github.com/paperworkco/service-users) [![Build Status](https://travis-ci.org/paperworkco/service-users.svg?branch=master)](https://travis-ci.org/twostairs/paperwork)
+- [service-lbx](https://github.com/paperworkco/service-lbx) [![Build Status](https://travis-ci.org/paperworkco/service-lbx.svg?branch=master)](https://travis-ci.org/paperwork/paperwork)
+- [service-kong](https://github.com/paperworkco/service-kong) [![Build Status](https://travis-ci.org/paperworkco/service-kong.svg?branch=master)](https://travis-ci.org/paperwork/paperwork)
+- [service-nats](https://github.com/paperworkco/service-nats) [![Build Status](https://travis-ci.org/paperworkco/service-nats.svg?branch=master)](https://travis-ci.org/paperwork/paperwork)
+- [service-users](https://github.com/paperworkco/service-users) [![Build Status](https://travis-ci.org/paperworkco/service-users.svg?branch=master)](https://travis-ci.org/paperwork/paperwork)
 
