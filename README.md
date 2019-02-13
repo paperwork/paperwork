@@ -1,14 +1,14 @@
 Paperwork - OpenSource note-taking & archiving
 ==============================================
 
-## This version [*is* dormant](https://github.com/twostairs/paperwork/issues/851). Work on the second iteration of Paperwork has begun. [Join the force](https://github.com/twostairs/paperwork/tree/master).
+## This version [*is* dormant](https://github.com/paperwork/paperwork/issues/851). Work on the second iteration of Paperwork has begun. [Join the force](https://github.com/paperwork/paperwork/tree/master).
 
-[![Join the chat at https://gitter.im/twostairs/paperwork](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/twostairs/paperwork?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Build Status](https://travis-ci.org/twostairs/paperwork.svg?branch=1)](https://travis-ci.org/twostairs/paperwork)
+[![Join the chat at https://gitter.im/paperwork/paperwork](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/paperwork/paperwork?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://travis-ci.org/paperwork/paperwork.svg?branch=1)](https://travis-ci.org/paperwork/paperwork)
 
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/twostairs/paperwork/tree/deploy-heroku-develop)
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/paperwork/paperwork/tree/deploy-heroku-develop)
 
-<img src="https://raw.githubusercontent.com/twostairs/paperwork/1/paperwork-logo.png" width="250" align="left" />
+<img src="https://raw.githubusercontent.com/paperwork/paperwork/1/paperwork-logo.png" width="250" align="left" />
 
 Paperwork aims to be an open-source, self-hosted alternative to services like Evernote ®, Microsoft OneNote ® or Google Keep ®.
 
@@ -22,7 +22,7 @@ You can check out Paperwork demos at one of the projects providing hosted Paperw
 
 ## Run your own Paperwork server
 
-Ready to install? See the [Wiki](https://github.com/twostairs/paperwork/wiki) for a full list of instructions, FAQ and more!
+Ready to install? See the [Wiki](https://github.com/paperwork/paperwork/wiki) for a full list of instructions, FAQ and more!
 
 ## Projects with hosted Paperwork
 
