@@ -1,0 +1,25 @@
+root = true
+
+[*]
+indent_style = space
+indent_size = 4
+end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+
+[*.{md,markdown}]
+trim_trailing_whitespace = false
+
+[*.yml]
+indent_style = space
+indent_size = 2
+max_line = 80
+
+[*.{ex,exs}]
+indent_style = space
+indent_size = 2
+max_line = 80
+
+[{Makefile,**.mk}]
+indent_style = tab
