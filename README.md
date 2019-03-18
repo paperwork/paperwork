@@ -33,29 +33,39 @@ This repository is structuring and unifying all required components for Paperwor
 $ git clone git@github.com:paperwork/paperwork.git
 ```
 
-#### Docker Compose
+#### Docker Stack
 
-The compose-setup depends on an encrypted overlay network to be created. For that, your docker environment needs to have swarm activated. You can do so by running:
-
-```bash
-$ docker swarm init
-```
-
-There is no need to join any more members to it. Only with swarm enabled the stack can be launched:
+In order to easily get Paperwork running as a Docker stack, utilizing whichever orchestrator you'd like, this repository comes with a handy Makefile. Let's have a look at it:
 
 ```bash
-$ docker-compose up --build
+$ make help
 ```
 
-##### `devproxy` Service
-
-The [`devproxy`](https://github.com/paperwork/paperwork/tree/master/devproxy) automatically runs inside the stack, exposes port `2222` on the host and provides a way to forward local development ports into the docker environment. In order to forward for example the local [`service-users`](https://github.com/paperwork/service-users) port into the docker environment, an SSH port forward is required:
+Launching the Paperwork can be done by make`-ing the `deploy` target:
 
 ```bash
-$ ssh -o "UserKnownHostsFile /dev/null" -o "StrictHostKeyChecking=no" -p 2222 -R 8880:127.0.0.1:8880 root@127.0.0.1
+$ make deploy
 ```
 
-**The *root password* is `root`**. This forwards the local port `3000` into the `devproxy`, so that [`service-gatekeeper`](https://github.com/paperwork/service-gatekeeper) could reach `service-users` through `devproxy:8880`.
+The Makefile then takes care of initializing Swarm, in case you haven't done that already, creating the encrypted network (`papernet`) and deploying the Paperwork stack on top of it.
+
+In order to stop/remove the whole stack, simply use the `undeploy` target:
+
+```bash
+$ make undeploy
+```
+
+Note: This won't make your Docker host leave Swarm again, in case it wasn't running in Swarm mode before deploying! If you'd like to turn off Swarm, you have to manually do so.
+
+##### Orchestrator
+
+If you'd like to use a different orchestrator for stack deployment, you can do so by setting the `ORCHESTRATOR` variable on deploy:
+
+```bash
+$ make deploy ORCHESTRATOR=kubernetes
+```
+
+For more info, check the official Docker documentation [for Mac](https://docs.docker.com/docker-for-mac/kubernetes/#override-the-default-orchestrator) and [Windows](https://docs.docker.com/docker-for-windows/kubernetes/#override-the-default-orchestrator).
 
 ### Developing / contributing
 
