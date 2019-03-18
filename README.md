@@ -1,9 +1,8 @@
 Paperwork
 =========
-
-## OpenSource note-taking & archiving
-
 [<img src="https://img.shields.io/matrix/paperwork:matrix.org.svg?color=%2361BCEE&label=JOIN%20THE%20CHAT&server_fqdn=matrix.org&style=for-the-badge"/>](https://riot.im/app/#/room/#paperwork:matrix.org)
+
+### OpenSource note-taking & archiving
 
 <img src="https://raw.githubusercontent.com/paperwork/paperwork/master/paperwork-logo.png" width="250"/>
 
