@@ -1,0 +1,113 @@
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║                                                                            ║
+# ║              _ \                                           |               ║
+# ║             |   | _` | __ \   _ \  __|\ \  \   / _ \   __| |  /            ║
+# ║             ___/ (   | |   |  __/ |    \ \  \ / (   | |      <             ║
+# ║            _|   \__,_| .__/ \___|_|     \_/\_/ \___/ _|   _|\_\            ║
+# ║                       _|                                                   ║
+# ║                                                                            ║
+# ║           * github.com/paperwork * twitter.com/paperworkcloud *            ║
+# ║                                                                            ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+version: '3.7'
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Networks                                                                   ║
+# ║                                                                            ║
+# ║ Please make sure to create this network before launching this stack        ║
+# ║ file, otherwise composer won't be able to deploy.                          ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+networks:
+  papernet:
+    driver: overlay
+    driver_opts:
+      encrypted: "true"
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Services                                                                   ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+services:
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Database                                                                   ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+  db:
+    image: mongo:latest
+    command: --wiredTigerCacheSizeGB 1.5
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    volumes:
+      - type: bind
+        source: ./volumes/mongodb
+        target: /data/db
+    networks:
+      - papernet
+    deploy:
+      mode: global
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 3
+        window: 360s
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Gatekeeper Service                                                         ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+  service_gatekeeper:
+    image: paperwork/service-gatekeeper:latest
+    environment:
+      PORT: 8080
+      JWT_SECRET: "ru4XngBQ/uXZX4o/dTjy3KieL7OHkqeKwGH9KhClVnfpEaRcpw+rNvvSiC66dyiY"
+      SERVICE_USERS: http://service_users:8080
+    networks:
+      - papernet
+    ports:
+      - target: 8080
+        published: 8080
+        protocol: tcp
+        mode: host
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 3
+        window: 60s
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ Users Service                                                              ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+  service_users:
+    image: paperwork/service-users:latest
+    environment:
+      PORT: 8080
+      JWT_SECRET: "ru4XngBQ/uXZX4o/dTjy3KieL7OHkqeKwGH9KhClVnfpEaRcpw+rNvvSiC66dyiY"
+      MONGODB_URL: mongodb://db:27017/users
+    networks:
+      - papernet
+    depends_on:
+      - db
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+      restart_policy:
+        condition: on-failure
+        delay: 10s
+        max_attempts: 3
+        window: 120s
+
+# ╔════════════════════════════════════════════════════════════════════════════╗
+# ║ devproxy (only for local development)                                      ║
+# ╚════════════════════════════════════════════════════════════════════════════╝
+  devproxy:
+    build: devproxy/
+    networks:
+      - papernet
+    ports:
+      - "2222:22"
+
+
